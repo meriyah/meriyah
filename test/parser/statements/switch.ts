@@ -1,37 +1,41 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements  Switch', () => {
   fail('Statements  Switch (fail)', [
-    ['switch(x) { default: default: }', Context.None],
-    ['switch(x) { default: break; default: break; }', Context.None],
-    ['switch(x) { case y: break; case z: break; default: default: }', Context.None],
-    ['switch(x) { default: default: case y: break; case z: break; }', Context.None],
-    ['switch(0) { case 0: !function(){ break; }; }', Context.None],
-    ['switch (a) { case b: let [x] }', Context.None],
-    ['switch(0) { case 0: function f(){ break; } }', Context.None],
-    ['switch(0) { default: !function(){ break; }; }', Context.None],
-    ['switch(0) { default: function f(){ break; } }', Context.None],
-    ['switch(x) { default: break; case y: break; case z: break; default: break; }', Context.None],
+    'switch(x) { default: default: }',
+    'switch(x) { default: break; default: break; }',
+    'switch(x) { case y: break; case z: break; default: default: }',
+    'switch(x) { default: default: case y: break; case z: break; }',
+    'switch(0) { case 0: !function(){ break; }; }',
+    'switch (a) { case b: let [x] }',
+    'switch(0) { case 0: function f(){ break; } }',
+    'switch(0) { default: !function(){ break; }; }',
+    'switch(0) { default: function f(){ break; } }',
+    'switch(x) { default: break; case y: break; case z: break; default: break; }',
   ]);
 
   pass('Statements  Switch (pass)', [
     {
-      code: `switch (X) {
-        case k:
-          foo: bar: function f(){}
-      }`,
+      code: outdent`
+        switch (X) {
+          case k:
+            foo: bar: function f(){}
+        }
+      `,
       options: { webcompat: true },
     },
     {
-      code: `for (let i = 0; i < 1; ++i) {
-        switch (a) {
-          case 2:
-              foo:a = 3;
-              break;
+      code: outdent`
+        for (let i = 0; i < 1; ++i) {
+            switch (a) {
+              case 2:
+                  foo:a = 3;
+                  break;
+            }
         }
-    }`,
+      `,
       options: { ranges: true },
     },
     { code: 'switch(foo) {}', options: { ranges: true } },

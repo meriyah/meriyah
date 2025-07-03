@@ -1,9 +1,10 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
-import { Token } from '../../src/token';
-import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
+import { Parser } from '../../src/parser/parser';
+import { Token } from '../../src/token';
+import { type NormalizedOptions } from './../../src/options';
 
 describe('Lexer - Template', () => {
   describe('Lexer - Template Tail', () => {
@@ -39,15 +40,15 @@ describe('Lexer - Template', () => {
 
     for (const [ctx, token, op, value] of tokens) {
       it(`scans '${op}' at the end`, () => {
-        const state = new Parser(op);
-        const found = scanSingleToken(state, ctx, 0);
+        const parser = new Parser(op);
+        const found = scanSingleToken(parser, ctx, 0);
 
         t.deepEqual(
           {
             token: found,
-            hasNext: state.index < state.source.length,
-            value: state.tokenValue,
-            index: state.index,
+            hasNext: parser.index < parser.source.length,
+            value: parser.tokenValue,
+            index: parser.index,
           },
           {
             token: token,
@@ -59,15 +60,15 @@ describe('Lexer - Template', () => {
       });
 
       it(`scans '${op}' with more to go`, () => {
-        const state = new Parser(`${op} `);
-        const found = scanSingleToken(state, ctx, 0);
+        const parser = new Parser(`${op} `);
+        const found = scanSingleToken(parser, ctx, 0);
 
         t.deepEqual(
           {
             token: found,
-            hasNext: state.index < state.source.length,
-            value: state.tokenValue,
-            index: state.index,
+            hasNext: parser.index < parser.source.length,
+            value: parser.tokenValue,
+            index: parser.index,
           },
           {
             token: token,
@@ -89,13 +90,13 @@ describe('Lexer - Template', () => {
 
     for (const [ctx, token, op, value] of tokens) {
       it(`scans '${op}' at the end`, () => {
-        const state = new Parser(op);
-        const found = scanSingleToken(state, ctx, 0);
+        const parser = new Parser(op);
+        const found = scanSingleToken(parser, ctx, 0);
 
         t.deepEqual(
           {
             token: found,
-            value: state.tokenValue,
+            value: parser.tokenValue,
           },
           {
             token: token,
@@ -141,13 +142,13 @@ describe('Lexer - Template', () => {
 
     for (const [ctx, token, op, value] of tokens) {
       it(`scans '${op}' at the end`, () => {
-        const state = new Parser(op);
-        const found = scanSingleToken(state, ctx, 0);
+        const parser = new Parser(op);
+        const found = scanSingleToken(parser, ctx, 0);
 
         t.deepEqual(
           {
             token: found,
-            value: state.tokenValue,
+            value: parser.tokenValue,
           },
           {
             token: token,
@@ -158,22 +159,22 @@ describe('Lexer - Template', () => {
     }
   });
 
-  function fail(name: string, source: string, context: Context) {
+  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
     it(name, () => {
-      const state = new Parser(source);
-      t.throws(() => scanSingleToken(state, context, 0));
+      const parser = new Parser(source, options);
+      t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
 
   fail(String.raw`fails on "\9999"`, String.raw`"\9999"`, Context.None);
   fail('fails on "foo', '"foo', Context.None);
-  fail(String.raw`fails on "\u007"`, String.raw`"\u007"`, Context.OptionsNext);
-  fail(String.raw`fails on "\u007Xvwxyz"`, String.raw`"\u007Xvwxyz"`, Context.OptionsNext);
+  fail(String.raw`fails on "\u007"`, String.raw`"\u007"`, Context.None, { next: true });
+  fail(String.raw`fails on "\u007Xvwxyz"`, String.raw`"\u007Xvwxyz"`, Context.None, { next: true });
   // fail('fails on "abc\\u{}"', '"abc\\u{}"', Context.OptionsNext);
   // fail('fails on "abc\\u}"', '"abc\\u}"', Context.OptionsNext);
   // fail('fails on "abc\\u{', '"abc\\u{"', Context.OptionsNext);
-  fail(String.raw`fails on "\u{70bc"`, String.raw`"\u{70bc"`, Context.OptionsNext);
-  fail(String.raw`fails on "\u{70"`, String.raw`"\u{70"`, Context.OptionsNext);
+  fail(String.raw`fails on "\u{70bc"`, String.raw`"\u{70bc"`, Context.None, { next: true });
+  fail(String.raw`fails on "\u{70"`, String.raw`"\u{70"`, Context.None, { next: true });
   fail(String.raw`fails on "\u{!"`, String.raw`"\u{!"`, Context.None);
   fail(String.raw`fails on "\u"`, String.raw`"\u"`, Context.None);
   fail(String.raw`fails on "\8"`, String.raw`"\8"`, Context.None);

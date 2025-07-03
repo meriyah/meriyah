@@ -1,12 +1,72 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements  Switch > Statements  Switch (fail) > switch (a) { case b: let [x] } 1`] = `
+"SyntaxError [1:29-1:30]: Missing initializer in destructuring declaration
+> 1 | switch (a) { case b: let [x] }
+    |                              ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { case 0: !function(){ break; }; } 1`] = `
+"SyntaxError [1:38-1:39]: Illegal break statement
+> 1 | switch(0) { case 0: !function(){ break; }; }
+    |                                       ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { case 0: function f(){ break; } } 1`] = `
+"SyntaxError [1:39-1:40]: Illegal break statement
+> 1 | switch(0) { case 0: function f(){ break; } }
+    |                                        ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { default: !function(){ break; }; } 1`] = `
+"SyntaxError [1:39-1:40]: Illegal break statement
+> 1 | switch(0) { default: !function(){ break; }; }
+    |                                        ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { default: function f(){ break; } } 1`] = `
+"SyntaxError [1:40-1:41]: Illegal break statement
+> 1 | switch(0) { default: function f(){ break; } }
+    |                                         ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { case y: break; case z: break; default: default: } 1`] = `
+"SyntaxError [1:58-1:59]: More than one default clause in switch statement
+> 1 | switch(x) { case y: break; case z: break; default: default: }
+    |                                                           ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: break; case y: break; case z: break; default: break; } 1`] = `
+"SyntaxError [1:65-1:66]: More than one default clause in switch statement
+> 1 | switch(x) { default: break; case y: break; case z: break; default: break; }
+    |                                                                  ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: break; default: break; } 1`] = `
+"SyntaxError [1:35-1:36]: More than one default clause in switch statement
+> 1 | switch(x) { default: break; default: break; }
+    |                                    ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: default: } 1`] = `
+"SyntaxError [1:28-1:29]: More than one default clause in switch statement
+> 1 | switch(x) { default: default: }
+    |                             ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: default: case y: break; case z: break; } 1`] = `
+"SyntaxError [1:28-1:29]: More than one default clause in switch statement
+> 1 | switch(x) { default: default: case y: break; case z: break; }
+    |                             ^ More than one default clause in switch statement"
+`;
+
 exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1; ++i) {
-        switch (a) {
-          case 2:
-              foo:a = 3;
-              break;
-        }
-    } 1`] = `
+    switch (a) {
+      case 2:
+          foo:a = 3;
+          break;
+    }
+} 1`] = `
 {
   "body": [
     {
@@ -18,86 +78,86 @@ exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1;
                 "consequent": [
                   {
                     "body": {
-                      "end": 93,
+                      "end": 81,
                       "expression": {
-                        "end": 92,
+                        "end": 80,
                         "left": {
-                          "end": 88,
+                          "end": 76,
                           "name": "a",
                           "range": [
-                            87,
-                            88,
+                            75,
+                            76,
                           ],
-                          "start": 87,
+                          "start": 75,
                           "type": "Identifier",
                         },
                         "operator": "=",
                         "range": [
-                          87,
-                          92,
+                          75,
+                          80,
                         ],
                         "right": {
-                          "end": 92,
+                          "end": 80,
                           "range": [
-                            91,
-                            92,
+                            79,
+                            80,
                           ],
-                          "start": 91,
+                          "start": 79,
                           "type": "Literal",
                           "value": 3,
                         },
-                        "start": 87,
+                        "start": 75,
                         "type": "AssignmentExpression",
                       },
                       "range": [
-                        87,
-                        93,
+                        75,
+                        81,
                       ],
-                      "start": 87,
+                      "start": 75,
                       "type": "ExpressionStatement",
                     },
-                    "end": 93,
+                    "end": 81,
                     "label": {
-                      "end": 86,
+                      "end": 74,
                       "name": "foo",
                       "range": [
-                        83,
-                        86,
+                        71,
+                        74,
                       ],
-                      "start": 83,
+                      "start": 71,
                       "type": "Identifier",
                     },
                     "range": [
-                      83,
-                      93,
+                      71,
+                      81,
                     ],
-                    "start": 83,
+                    "start": 71,
                     "type": "LabeledStatement",
                   },
                   {
-                    "end": 114,
+                    "end": 98,
                     "label": null,
                     "range": [
-                      108,
-                      114,
+                      92,
+                      98,
                     ],
-                    "start": 108,
+                    "start": 92,
                     "type": "BreakStatement",
                   },
                 ],
-                "end": 114,
+                "end": 98,
                 "range": [
-                  61,
-                  114,
+                  53,
+                  98,
                 ],
-                "start": 61,
+                "start": 53,
                 "test": {
-                  "end": 67,
+                  "end": 59,
                   "range": [
-                    66,
-                    67,
+                    58,
+                    59,
                   ],
-                  "start": 66,
+                  "start": 58,
                   "type": "Literal",
                   "value": 2,
                 },
@@ -105,33 +165,33 @@ exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1;
               },
             ],
             "discriminant": {
-              "end": 47,
+              "end": 43,
               "name": "a",
               "range": [
-                46,
-                47,
+                42,
+                43,
               ],
-              "start": 46,
+              "start": 42,
               "type": "Identifier",
             },
-            "end": 124,
+            "end": 104,
             "range": [
-              38,
-              124,
+              34,
+              104,
             ],
-            "start": 38,
+            "start": 34,
             "type": "SwitchStatement",
           },
         ],
-        "end": 130,
+        "end": 106,
         "range": [
           28,
-          130,
+          106,
         ],
         "start": 28,
         "type": "BlockStatement",
       },
-      "end": 130,
+      "end": 106,
       "init": {
         "declarations": [
           {
@@ -175,7 +235,7 @@ exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1;
       },
       "range": [
         0,
-        130,
+        106,
       ],
       "start": 0,
       "test": {
@@ -232,10 +292,10 @@ exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1;
       },
     },
   ],
-  "end": 130,
+  "end": 106,
   "range": [
     0,
-    130,
+    106,
   ],
   "sourceType": "script",
   "start": 0,
@@ -735,9 +795,9 @@ exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {default: D
 `;
 
 exports[`Statements  Switch > Statements  Switch (pass) > switch (X) {
-        case k:
-          foo: bar: function f(){}
-      } 1`] = `
+  case k:
+    foo: bar: function f(){}
+} 1`] = `
 {
   "body": [
     {

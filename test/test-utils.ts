@@ -1,44 +1,83 @@
-import * as t from 'node:assert/strict';
-import { describe, it, expect } from 'vitest';
-import { parseSource, type Options } from '../src/parser';
+import { codeFrameColumns } from '@babel/code-frame';
+import { describe, expect, it } from 'vitest';
 import { Context } from '../src/common';
+import { ParseError } from '../src/errors';
+import { type Options } from '../src/options';
+import { parseSource } from '../src/parser';
 
 const IS_CI = Boolean(process.env.CI);
+// https://github.com/vitest-dev/vitest/issues/8151
+const toTestTile = (code: string) => code.replaceAll('\r', '␍␊');
 
-export const pass = (
-  name: string,
-  valid: (string | { code: string; options?: Options; context?: Context; only?: true })[],
-): void => {
-  describe(name, () => {
-    for (let testCase of valid) {
-      if (typeof testCase === 'string') {
-        testCase = { code: testCase };
-      }
+type NormalizedTestCase = { code: string; options?: Options; context?: Context; only?: true };
+type TestCase = string | NormalizedTestCase;
 
-      const { code, options, context, only } = testCase;
+const serializeParserError = (code: string, error: unknown) => {
+  if (!(error instanceof ParseError)) {
+    throw error;
+  }
 
-      if (IS_CI && only) {
-        throw new Error(`Please remove 'only'.`);
-      }
+  const {
+    message,
+    loc: { start, end },
+    description,
+  } = error;
 
-      // https://github.com/vitest-dev/vitest/issues/8151
-      const title = code.replaceAll('\r', '␍␊');
-      (only ? it.only : it)(title, () => {
-        const parseResult = parseSource(code, options, context ?? Context.None);
-        expect(parseResult).toMatchSnapshot();
-      });
+  const codeFrame = codeFrameColumns(
+    code,
+    {
+      start: { line: start.line, column: start.column + 1 },
+      end: { line: end.line, column: end.column + 1 },
+    },
+    { highlightCode: false, message: description },
+  );
+
+  return `${error.name} ${message}\n${codeFrame}`;
+};
+
+function runTests(testCases: TestCase[], callback: (testCase: NormalizedTestCase) => void) {
+  for (let testCase of testCases) {
+    if (typeof testCase === 'string') {
+      testCase = { code: testCase };
     }
+
+    const { code, only } = testCase;
+
+    if (IS_CI && only) {
+      throw new Error("Please remove 'only'.");
+    }
+
+    // https://github.com/vitest-dev/vitest/issues/8151
+    (only ? it.only : it)(toTestTile(code), () => {
+      callback(testCase);
+    });
+  }
+}
+
+export const pass = (name: string, testCases: TestCase[]) => {
+  describe(name, () => {
+    runTests(testCases, ({ code, options, context }) => {
+      const parseResult = parseSource(code, options, context ?? Context.None);
+      expect(parseResult).toMatchSnapshot();
+    });
   });
 };
 
-export const fail = (name: string, invalid: [string, Context][]): void => {
+export const fail = (name: string, testCases: TestCase[]) => {
   describe(name, () => {
-    for (const [source, ctx] of invalid) {
-      it(source, () => {
-        t.throws(() => {
-          parseSource(source, undefined, ctx);
-        });
-      });
-    }
+    runTests(testCases, ({ code, options, context }) => {
+      let error;
+      try {
+        parseSource(code, options, context ?? Context.None);
+      } catch (parseError) {
+        error = parseError;
+      }
+
+      if (!error) {
+        throw new Error('Expect a ParserError thrown');
+      }
+
+      expect(serializeParserError(code, error)).toMatchSnapshot();
+    });
   });
 };

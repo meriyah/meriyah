@@ -1,5 +1,119 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > !1 ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | !1 ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > !3 ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | !3 ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (!3 ** 2) 1`] = `
+"SyntaxError [1:4-1:6]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (!3 ** 2)
+    |     ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (+x ** 2) 1`] = `
+"SyntaxError [1:4-1:6]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (+x ** 2)
+    |     ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (~3 ** 2) 1`] = `
+"SyntaxError [1:4-1:6]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (~3 ** 2)
+    |     ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (a * +a ** a ** 3) 1`] = `
+"SyntaxError [1:8-1:10]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (a * +a ** a ** 3)
+    |         ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (a * +a ** a ** 3) 2`] = `
+"SyntaxError [1:8-1:10]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (a * +a ** a ** 3)
+    |         ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (delete 3 ** 2) 1`] = `
+"SyntaxError [1:10-1:12]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (delete 3 ** 2)
+    |           ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > (typeof 3 ** 2) 1`] = `
+"SyntaxError [1:10-1:12]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | (typeof 3 ** 2)
+    |           ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > +1 ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | +1 ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > +x ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | +x ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > ~3 ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | ~3 ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > -3 ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | -3 ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > -x ** 2; 1`] = `
+"SyntaxError [1:3-1:5]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | -x ** 2;
+    |    ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > async function f() { await 2 ** 2; } 1`] = `
+"SyntaxError [1:29-1:31]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | async function f() { await 2 ** 2; }
+    |                              ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > delete 3 ** 2; 1`] = `
+"SyntaxError [1:9-1:11]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | delete 3 ** 2;
+    |          ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > delete o.p ** 2; 1`] = `
+"SyntaxError [1:11-1:13]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | delete o.p ** 2;
+    |            ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > for (var import.meta of [1]) {} 1`] = `
+"SyntaxError [1:9-1:15]: Invalid keyword
+> 1 | for (var import.meta of [1]) {}
+    |          ^^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (fail) > typeof 3 ** 2; 1`] = `
+"SyntaxError [1:9-1:11]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | typeof 3 ** 2;
+    |          ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
 exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (++x ** a) 1`] = `
 {
   "body": [

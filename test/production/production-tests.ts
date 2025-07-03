@@ -1,7 +1,7 @@
+import * as t from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 
 const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);

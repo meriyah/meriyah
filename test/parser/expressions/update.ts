@@ -1,11 +1,10 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Update', () => {
   fail('Expressions - Update (fail)', [
-    ['foo\n++', Context.None],
-    ['if (foo\n++);', Context.None],
+    'foo\n++',
+    'if (foo\n++);',
     /*['++[]', Context.None],
     ['++([])', Context.None],
     ['(++[])', Context.None],

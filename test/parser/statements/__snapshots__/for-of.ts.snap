@@ -1,10 +1,664 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - For of > Statements - For of (fail) > for (({x}) of [{x:1}]) {} 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in for-of
+> 1 | for (({x}) of [{x:1}]) {}
+    |            ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for ((this) of []) {} 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in for-of
+> 1 | for ((this) of []) {}
+    |             ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for ([...[a]] = 0 of {}); 1`] = `
+"SyntaxError [1:18-1:20]: Expected ';'
+> 1 | for ([...[a]] = 0 of {});
+    |                   ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for ([] = 0 of {}); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for ([] = 0 of {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for ({...rest, b} of [{}]) ; 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in for-of
+> 1 | for ({...rest, b} of [{}]) ;
+    |                   ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for ({p: x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:20-1:22]: Expected ';'
+> 1 | for ({p: x = 0} = 0 of {});
+    |                     ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for ({x} = 0 of {}); 1`] = `
+"SyntaxError [1:13-1:15]: Expected ';'
+> 1 | for ({x} = 0 of {});
+    |              ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const [x] = 1 of []) {} 1`] = `
+"SyntaxError [1:11-1:21]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (const [x] = 1 of []) {}
+    |            ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const {x} = 1 of []) {} 1`] = `
+"SyntaxError [1:11-1:21]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (const {x} = 1 of []) {}
+    |            ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const i, j = 1 of {}) {} 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const i, j = 1 of {}) {}
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const i, j = void 0 of [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const i, j = void 0 of [1, 2, 3]) {}
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const i, j of [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const i, j of [1, 2, 3]) {}
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const i, j of {}) {} 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const i, j of {}) {}
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (const x = 1 of []) {} 1`] = `
+"SyntaxError [1:11-1:19]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (const x = 1 of []) {}
+    |            ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (function(){} of x); 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in for-of
+> 1 | for (function(){} of x);
+    |                   ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let [...{ x } = []] of [[]]) {} 1`] = `
+"SyntaxError [1:25-1:27]: The binding declaration is not destructible
+> 1 | for (let [...{ x } = []] of [[]]) {}
+    |                          ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let [x] = 1 of []) {} 1`] = `
+"SyntaxError [1:9-1:19]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (let [x] = 1 of []) {}
+    |          ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let {x} = 1 of []) {} 1`] = `
+"SyntaxError [1:9-1:19]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (let {x} = 1 of []) {}
+    |          ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let i, j = 1 of {}) {} 1`] = `
+"SyntaxError [1:12-1:20]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (let i, j = 1 of {}) {}
+    |             ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let i, j = void 0 of [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:12-1:25]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (let i, j = void 0 of [1, 2, 3]) {}
+    |             ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let i, j of [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-of loop: Must have a single binding
+> 1 | for (let i, j of [1, 2, 3]) {}
+    |               ^^ Invalid left-hand side in for-of loop: Must have a single binding"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let i, j of {}) {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-of loop: Must have a single binding
+> 1 | for (let i, j of {}) {}
+    |               ^^ Invalid left-hand side in for-of loop: Must have a single binding"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let of x) y 1`] = `
+"SyntaxError [1:12-1:13]: Expected ';'
+> 1 | for (let of x) y
+    |             ^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let of x) y 2`] = `
+"SyntaxError [1:12-1:13]: Expected ';'
+> 1 | for (let of x) y
+    |             ^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let of x); 1`] = `
+"SyntaxError [1:12-1:13]: Expected ';'
+> 1 | for (let of x);
+    |             ^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let x = 1 of []) {} 1`] = `
+"SyntaxError [1:9-1:17]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (let x = 1 of []) {}
+    |          ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let x of a,b) c 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | for (let x of a,b) c
+    |                ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let x of y, z) {} 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | for (let x of y, z) {}
+    |                ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let() of x); 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of a for-of loop may not start with 'let'
+> 1 | for (let() of x);
+    |            ^^ The left-hand side of a for-of loop may not start with 'let'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let().foo of x); 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of a for-of loop may not start with 'let'
+> 1 | for (let().foo of x);
+    |                ^^ The left-hand side of a for-of loop may not start with 'let'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let.foo of x); 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of a for-of loop may not start with 'let'
+> 1 | for (let.foo of x);
+    |              ^^ The left-hand side of a for-of loop may not start with 'let'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (let[a+b] of x); 1`] = `
+"SyntaxError [1:14-1:16]: The binding declaration is not destructible
+> 1 | for (let[a+b] of x);
+    |               ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (this of []) {} 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for (this of []) {}
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (this of []); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for (this of []);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (this of []; ;); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for (this of []; ;);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var ({x}) of [{x:1}]) {} 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: '('
+> 1 | for (var ({x}) of [{x:1}]) {}
+    |          ^ Unexpected token: '('"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var [x]   of 1, 2) {} 1`] = `
+"SyntaxError [1:19-1:20]: Expected ')'
+> 1 | for (var [x]   of 1, 2) {}
+    |                    ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var [x] = 1 of []) {} 1`] = `
+"SyntaxError [1:9-1:19]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (var [x] = 1 of []) {}
+    |          ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var i, j = 1 of {}) {} 1`] = `
+"SyntaxError [1:12-1:20]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (var i, j = 1 of {}) {}
+    |             ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var i, j = void 0 of [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:12-1:25]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (var i, j = void 0 of [1, 2, 3]) {}
+    |             ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var i, j of [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-of loop: Must have a single binding
+> 1 | for (var i, j of [1, 2, 3]) {}
+    |               ^^ Invalid left-hand side in for-of loop: Must have a single binding"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var i, j of {}) {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-of loop: Must have a single binding
+> 1 | for (var i, j of {}) {}
+    |               ^^ Invalid left-hand side in for-of loop: Must have a single binding"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var x     of 1, 2) {} 1`] = `
+"SyntaxError [1:19-1:20]: Expected ')'
+> 1 | for (var x     of 1, 2) {}
+    |                    ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var x = 1 of []) {} 1`] = `
+"SyntaxError [1:9-1:17]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (var x = 1 of []) {}
+    |          ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (x in y of z) ; 1`] = `
+"SyntaxError [1:12-1:14]: Expected ')'
+> 1 | for (x in y of z) ;
+    |             ^^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (x in y of) ; 1`] = `
+"SyntaxError [1:12-1:14]: Expected ')'
+> 1 | for (x in y of) ;
+    |             ^^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for await (({x}) of [{x:1}]) {} 1`] = `
+"SyntaxError [1:4-1:9]: Expected '('
+> 1 | for await (({x}) of [{x:1}]) {}
+    |     ^^^^^ Expected '('"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(([a]) of 0); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for(([a]) of 0);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(([a]) of 0); 2`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for(([a]) of 0);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(([a]) of 0); 3`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for(([a]) of 0);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(({a}) of 0); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for(({a}) of 0);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(({a}) of 0); 2`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for(({a}) of 0);
+    |           ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for({x} = 0 of {}); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for({x} = 0 of {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(a of b, c); 1`] = `
+"SyntaxError [1:10-1:11]: Expected ')'
+> 1 | for(a of b, c);
+    |           ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(a of b, c); 2`] = `
+"SyntaxError [1:10-1:11]: Expected ')'
+> 1 | for(a of b, c);
+    |           ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(a of b, c); 3`] = `
+"SyntaxError [1:10-1:11]: Expected ')'
+> 1 | for(a of b, c);
+    |           ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(a of b, c); 4`] = `
+"SyntaxError [1:10-1:11]: Expected ')'
+> 1 | for(a of b, c);
+    |           ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(a of b, c); 5`] = `
+"SyntaxError [1:10-1:11]: Expected ')'
+> 1 | for(a of b, c);
+    |           ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const [,] = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:20]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const [,] = 0 of {});
+    |           ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const [...[]] = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:24]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const [...[]] = 0 of {});
+    |           ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const [...[a]] = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:25]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const [...[a]] = 0 of {});
+    |           ^^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const [...a] = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:23]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const [...a] = 0 of {});
+    |           ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const [a = 0] = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:24]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const [a = 0] = 0 of {});
+    |           ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const [a] = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:20]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const [a] = 0 of {});
+    |           ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const {} = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:19]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const {} = 0 of {});
+    |           ^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const {p: x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:27]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const {p: x = 0} = 0 of {});
+    |           ^^^^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const {p: x} = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:23]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const {p: x} = 0 of {});
+    |           ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const {x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:24]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const {x = 0} = 0 of {});
+    |           ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const {x} = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:20]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const {x} = 0 of {});
+    |           ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const a = 0 of b); 1`] = `
+"SyntaxError [1:10-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(const a = 0 of b);
+    |           ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(const x of [], []) {} 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | for(const x of [], []) {}
+    |                  ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(f() = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | for(f() = 0 of {});
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [,] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [,] = 0 of {});
+    |         ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [...[]] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [...[]] = 0 of {});
+    |         ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [...[a]] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:23]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [...[a]] = 0 of {});
+    |         ^^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [...a] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [...a] = 0 of {});
+    |         ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:17]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [] = 0 of {});
+    |         ^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [a = 0] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [a = 0] = 0 of {});
+    |         ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let [a] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let [a] = 0 of {});
+    |         ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let {} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:17]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let {} = 0 of {});
+    |         ^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let {p: x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:25]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let {p: x = 0} = 0 of {});
+    |         ^^^^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let {p: x} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let {p: x} = 0 of {});
+    |         ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let {x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let {x = 0} = 0 of {});
+    |         ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let {x} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let {x} = 0 of {});
+    |         ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let a = 0 of b); 1`] = `
+"SyntaxError [1:8-1:16]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let a = 0 of b);
+    |         ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let of 0); 1`] = `
+"SyntaxError [1:11-1:12]: Expected ';'
+> 1 | for(let of 0);
+    |            ^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let x = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:16]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(let x = 0 of {});
+    |         ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(let x of [], []) {} 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | for(let x of [], []) {}
+    |                ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(o.p = 0 of {}); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for(o.p = 0 of {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(o.p = 0 of {}); 2`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for(o.p = 0 of {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(o[0] = 0 of {}); 1`] = `
+"SyntaxError [1:13-1:15]: Expected ';'
+> 1 | for(o[0] = 0 of {});
+    |              ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(this of 0);  1`] = `
+"SyntaxError [1:9-1:11]: Invalid left-hand side in for-of
+> 1 | for(this of 0); 
+    |          ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [,] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [,] = 0 of {});
+    |         ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [...[]] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [...[]] = 0 of {});
+    |         ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [...[a]] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:23]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [...[a]] = 0 of {});
+    |         ^^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [...a] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [...a] = 0 of {});
+    |         ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:17]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [] = 0 of {});
+    |         ^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [a = 0] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [a = 0] = 0 of {});
+    |         ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var [a] = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var [a] = 0 of {});
+    |         ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var {} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:17]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var {} = 0 of {});
+    |         ^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var {p: x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:25]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var {p: x = 0} = 0 of {});
+    |         ^^^^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var {p: x} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var {p: x} = 0 of {});
+    |         ^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var {x = 0} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var {x = 0} = 0 of {});
+    |         ^^^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var {x} = 0 of {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var {x} = 0 of {});
+    |         ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var a = 0 of b); 1`] = `
+"SyntaxError [1:8-1:16]: 'for-of' loop head declarations can not have an initializer
+> 1 | for(var a = 0 of b);
+    |         ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var a of b, c); 1`] = `
+"SyntaxError [1:14-1:15]: Expected ')'
+> 1 | for(var a of b, c);
+    |               ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(var x of [], []) {} 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | for(var x of [], []) {}
+    |                ^ Expected ')'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(x = 0 of {}); 1`] = `
+"SyntaxError [1:10-1:12]: Expected ';'
+> 1 | for(x = 0 of {});
+    |           ^^ Expected ';'"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for(x of [], []) {} 1`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | for(x of [], []) {}
+    |            ^ Expected ')'"
+`;
+
 exports[`Statements - For of > Statements - For of (pass) > for ( let member of [ 'a', 'b', 'c' ] ) {
-      setTimeout( function () {
-      doSomething( member );
-      });
-     } 1`] = `
+  setTimeout( function () {
+  doSomething( member );
+  });
+} 1`] = `
 {
   "body": [
     {
@@ -146,9 +800,9 @@ exports[`Statements - For of > Statements - For of (pass) > for ( let[x] of [[34
 `;
 
 exports[`Statements - For of > Statements - For of (pass) > for ( var i = 0, list = items; i < list.length; i += 1 ) {
-      var item = list[i];
-        if ( item.foo ) { continue; }
-    } 1`] = `
+  var item = list[i];
+    if ( item.foo ) { continue; }
+} 1`] = `
 {
   "body": [
     {
@@ -1883,9 +2537,9 @@ exports[`Statements - For of > Statements - For of (pass) > for (const a of b); 
 `;
 
 exports[`Statements - For of > Statements - For of (pass) > for (const puxdlkurdxjjhtxg of [, new (({a: () => {
-      }, d}))(..."ªZW", (((this))), ((this)), ...(() => () => 2646) || function* () {
-        "¡";
-      })]) {} 1`] = `
+}, d}))(..."ªZW", (((this))), ((this)), ...(() => () => 2646) || function* () {
+  "¡";
+})]) {} 1`] = `
 {
   "body": [
     {

@@ -1,33 +1,33 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - Try', () => {
   fail('Statements - Try (fail)', [
-    ['function f() { try {}  }', Context.None],
-    ['try {} catch(x, f){}', Context.None],
-    ['try {} catch(x = b){}', Context.None],
-    ['try {} catch(x,){}', Context.None],
-    ['try {} catch({x},){}', Context.None],
-    ['try {} catch({x}=x){}', Context.None],
-    ['try {} catch([x],){}', Context.None],
-    ['try {} catch(e=x){}', Context.None],
-    ['try {} catch([e]=x){}', Context.None],
-    ['try { }', Context.None],
-    ['try { } foo();', Context.None],
-    ['try { } catch (e) foo();', Context.None],
-    ['try { } finally foo();', Context.None],
-    ['try { throw []; } catch ([...[ x ] = []]) {}', Context.None],
-    ['try { throw []; } catch ([...x = []]) {}', Context.None],
-    ['try { throw [1, 2, 3]; } catch ([...{ x }, y]) {}', Context.None],
-    ['try { throw [1, 2, 3]; } catch ([...[x], y]) { }', Context.None],
-    ['try {} catch ({foo = "bar"} = {}) {}', Context.None],
-    ['try {} catch [] {}', Context.None],
-    ['try {} catch foo {}', Context.None],
-    ['try {} catch({e},){}', Context.None],
-    ['try {} catch(){}', Context.None],
+    'function f() { try {}  }',
+    'try {} catch(x, f){}',
+    'try {} catch(x = b){}',
+    'try {} catch(x,){}',
+    'try {} catch({x},){}',
+    'try {} catch({x}=x){}',
+    'try {} catch([x],){}',
+    'try {} catch(e=x){}',
+    'try {} catch([e]=x){}',
+    'try { }',
+    'try { } foo();',
+    'try { } catch (e) foo();',
+    'try { } finally foo();',
+    'try { throw []; } catch ([...[ x ] = []]) {}',
+    'try { throw []; } catch ([...x = []]) {}',
+    'try { throw [1, 2, 3]; } catch ([...{ x }, y]) {}',
+    'try { throw [1, 2, 3]; } catch ([...[x], y]) { }',
+    'try {} catch ({foo = "bar"} = {}) {}',
+    'try {} catch [] {}',
+    'try {} catch foo {}',
+    'try {} catch({e},){}',
+    'try {} catch(){}',
   ]);
 
   for (const binding of ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]']) {
@@ -41,23 +41,21 @@ describe('Statements - Try', () => {
           for (${binding} of []);
         }
       `,
-          undefined,
-          Context.Strict,
+          { impliedStrict: true },
         );
       });
     });
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
-          `
-          try {
-            throw 0;
-          } catch (x) {
-            for (${binding} of []);
-          }
-        `,
-          undefined,
-          Context.OptionsWebCompat,
+          outdent`
+            try {
+              throw 0;
+            } catch (x) {
+              for (${binding} of []);
+            }
+          `,
+          { webcompat: true },
         );
       });
     });
@@ -83,8 +81,7 @@ describe('Statements - Try', () => {
         }
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -103,8 +100,7 @@ describe('Statements - Try', () => {
         (()=>{for (${binding} of []);})();
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -121,8 +117,7 @@ describe('Statements - Try', () => {
       })();
     }
   `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -154,8 +149,7 @@ describe('Statements - Try', () => {
         for (${binding} of []);
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -215,14 +209,16 @@ describe('Statements - Try', () => {
     'try {} catch (e) { for (let e of y) {} }',
     'try {} catch (e) { for (const e of y) {} }',
     'var foo; try {} catch (_) { const foo = 1; }',
-    `try {
-      var x = 2;
-      probeTry = function() { return x; };
-      throw [];
-    } catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
-      var x = 4;
-      probeBlock = function() { return x; };
-    }`,
+    outdent`
+      try {
+        var x = 2;
+        probeTry = function() { return x; };
+        throw [];
+      } catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
+        var x = 4;
+        probeBlock = function() { return x; };
+      }
+    `,
     'try {} catch(e) {}',
   ]);
 });

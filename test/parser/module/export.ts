@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Module - Export', () => {
   // Async await module errors
@@ -16,13 +16,13 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
+        parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
       });
     });
   }
@@ -35,17 +35,13 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsWebCompat | Context.OptionsLexical,
-        );
+        parseSource(`${arg}`, { sourceType: 'module', webcompat: true, lexical: true });
       });
     });
   }
@@ -68,8 +64,10 @@ describe('Module - Export', () => {
     String.raw`export function p\u0061ckage() {}`,
     String.raw`export function br\u0065ak() {}`,
     'export var {[x] = y} = z;',
-    `export default var x = null;
-    export default var x = null;`,
+    outdent`
+      export default var x = null;
+      export default var x = null;
+    `,
     'export { , };',
     'export default let x = 7;',
     'export default const x = 7;',
@@ -136,325 +134,341 @@ describe('Module - Export', () => {
     'if (false) {} else export default null;',
     'for(var i=0; i<1; i++) export default null;',
     'while(false) export default null;',
-    `do export default null
-                                while (false);`,
+    outdent`
+      do export default null
+      while (false);
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
 
   fail('Module - Export (fail)', [
-    ['export const x = x, x = y;', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export const [x, x] = c', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export const [x, {x}] = y', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export const {x:x, x:x} = c', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export const a = b; let a = c', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['var x; export {x: a}', Context.Strict | Context.Module],
-    ['var x; export {x: a}', Context.OptionsWebCompat],
-    ['export async function(){}', Context.Strict | Context.Module],
-    ['export async', Context.Strict | Context.Module],
-    ['export let ...x = y', Context.Strict | Context.Module],
-    ['export ...x = y', Context.Strict | Context.Module],
-    ['export default ...x = y', Context.Strict | Context.Module],
-    ['export async function f(){} foo', Context.None],
-    ['export class x {} foo', Context.None],
-    ['export default await', Context.Strict | Context.Module],
-    ['export var let = x;', Context.Strict | Context.Module],
-    ['{export {x};}', Context.Strict | Context.Module],
-    ['let x = () => {export {x};}', Context.Strict | Context.Module],
-    ['if (x) export {x};', Context.Strict | Context.Module],
-    ['for (;;) export {x};', Context.Strict | Context.Module],
-    ['x = { foo(){ export {x}; }}', Context.Strict | Context.Module],
-    ['x = { foo(){ export {x}; }}', Context.None],
-    ['class x { foo(){ export {x}; }}', Context.Strict | Context.Module],
-    ['var foo, bar; export {foo, ...bar}', Context.Strict | Context.Module],
-    ['var foo, bar; export {[foo]}', Context.Strict | Context.Module],
-    ['var foo, bar; export {{foo}}', Context.Strict | Context.Module],
-    ['var foo, bar, x; export {{foo: x}}', Context.Strict | Context.Module],
-    ['var foo; export {foo(){}}', Context.Strict | Context.Module],
-    ['var foo; export {[foo](){}}', Context.Strict | Context.Module],
-    ['export let await;', Context.Strict | Context.Module],
-    ['var foo; export {async foo(){}}', Context.Strict | Context.Module],
-    ['var foo; export {*foo(){}}', Context.Strict | Context.Module],
-    ['var foo; export {*foo(){}}', Context.None],
-    ['export foo', Context.Strict | Context.Module],
-    ['export {', Context.Strict | Context.Module],
-    ['export async;', Context.Strict | Context.Module],
-    ['export async () => y', Context.Strict | Context.Module],
-    ['var a; export { a,', Context.Strict | Context.Module],
-    ['class A extends B { foo() { (super).foo } }', Context.OptionsWebCompat],
-    ['export class extends C {}', Context.None],
-    ['export *;', Context.Strict | Context.Module],
-    ['export * as;', Context.Strict | Context.Module],
-    [
-      'var x; export { x as z }; export * as z from "string";',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    ['export {', Context.Strict | Context.Module],
-    ['export *;', Context.Strict | Context.Module],
-    ['export * as;', Context.Strict | Context.Module],
-    ['export * as foo;', Context.Strict | Context.Module],
-    ['export * as foo from;', Context.Strict | Context.Module],
-    ["export * as foo from ';", Context.Strict | Context.Module],
-    ["export * as ,foo from 'bar'", Context.Strict | Context.Module],
-    ['export * as foo from;', Context.Strict | Context.Module],
-    ["export * as foo from ';", Context.Strict | Context.Module],
-    ["export * as ,foo from 'bar'", Context.Strict | Context.Module],
-    ['var a; export { a', Context.Strict | Context.Module],
-    ['var a; export { a,', Context.Strict | Context.Module],
-    ['var a; export { a, ;', Context.Strict | Context.Module],
-    ['var a; export { a as };', Context.Strict | Context.Module],
-    ['var a, b; export { a as , b};', Context.Strict | Context.Module],
-    ['export default = 42', Context.Strict | Context.Module],
-    ['export {default} +', Context.Strict | Context.Module],
-    ['export default from "foo"', Context.Strict | Context.Module],
-    ['({ set m(x) { export default null; } });', Context.Strict | Context.Module],
-    ['for (let y in []) import v from "foo"', Context.Strict | Context.Module],
-    ['for (let y in []) import v from "foo"', Context.Strict | Context.Module],
-    ['switch(0) { default: export default null; }', Context.Strict | Context.Module],
-    ['switch(0) { case 1: export default null; }', Context.Strict | Context.Module],
-    ['if (true) { } else export default null;', Context.Strict | Context.Module],
-    ['function* g() { export default null; }', Context.None],
-    ['test262: export default null;', Context.Strict | Context.Module],
-    ['(function() { export default null; });', Context.Strict | Context.Module],
-    ['for (x = 0; false;) export default null;', Context.Strict | Context.Module],
-    ['do export default null; while (false)', Context.Strict | Context.Module],
-    ['export default async x \n() => {}', Context.Strict | Context.Module],
-    ['{export default 3}', Context.Strict | Context.Module],
-    ['while (1) export default 3', Context.Strict | Context.Module],
-    ['export {a,,b}', Context.Strict | Context.Module],
-    ['export {function} from a', Context.Strict | Context.Module],
-    ['export let[a] = 0 export let[b] = 0', Context.Strict | Context.Module],
-    ['export 3', Context.Strict | Context.Module],
-    ['export function () {}', Context.Strict | Context.Module],
-    ['export default default', Context.Strict | Context.Module],
-    ['export default function', Context.Strict | Context.Module],
-    ['export default let', Context.Strict | Context.Module],
-    ['let a; let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['let a; export class a {};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['let a; export function a(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['let a; export let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['let a; export const a = 0;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['const a = 0; export class a {};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['const a = 0; export function a(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['const a = 0; export let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['const a = 0; export const a = 1;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['let a; var a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export class a {};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export function a(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export const a = 0;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export var a; export var a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a, a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a, b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a, a as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a}; export class a{};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a}; export function a(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let a; export let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export const a = 0; export const a = 0;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let a; export let a;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default 0; export default 0;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default 0; export default function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default 0; export default class a {};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export {b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a as b}; var b;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['let a; export {b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a as b}; let b;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export {a, a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {a, b, a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {b, a, a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {a, b, c}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {a, b as a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let [x, x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function x(){}; export let [x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let [x] = y; export function x(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let x = y, [x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let x = y, [...x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let x = y, {...x} = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export {a}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a,b; export {b, a}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a,b; export {a}; export {a, b};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {b as a}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a}; export {b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { x as y };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function f(){}; function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function f(){}; async function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function f(){}; class f{};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export async function f(){}; class f{};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export class f{}; function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export class f{}; async function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    [
-      'export foo; export bar; class f{}; async function foo(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    ['export async function f(){}; function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    [
-      'export default function(){}; export default function(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      'export default class x{}; export default async function x(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      'export default class x{}; export async function x(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      'export class x{}; export default async function x(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    ['export class x{}; export async function x(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    [
-      'export default class x{}; export default function(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    ['export default class x{}; export default class x{};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default class x{}; export default () => {};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default async x => { let x; };', Context.Strict | Context.Module | Context.OptionsLexical],
-    [
-      'export default function() {} export default function() {}',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    ['export function a() {} export default function a() {}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function f(){}; export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function f(){}; export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export class f {} export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {f} export class f {};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export const x = y; export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let x = y; export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {f}; export const x = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {f}; export async function f() {}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default x; export {y as default};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var x, y; export default x; export {y as default};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export async function f(){}; const f = foo;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['const f = foo; export async function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { Q } from;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export var foo; export let foo;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let foo; export let foo;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a}; export {b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a,b; export {b, a}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a,b; export {a, b}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default function(a){ let a; }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default function(a){ const a = 0; }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default function(a, a){}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default function([a, a]){}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { for }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {b as a}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {a}; export {b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let x = y, {...x} = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let x = y, [...x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let [x] = y; export function x(){};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function x(){}; export let [x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {x}; export let {...x} = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {x}; export let [...x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {x}; export let [x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let [x] = y; export {x};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export async function f(){}; export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export var a = x, a = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export class f {}; export function f() {}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export class f {}; export function f() {}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export var a = x, a = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export var a = x, a = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export let [x, x] = y;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {a, a, b}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {b, a, a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a, b; export {a, b, a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var a; export {a, a}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['class C { method() { export default null; } }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['{ export default null; }', Context.Strict | Context.Module | Context.OptionsLexical],
+    { code: 'export const x = x, x = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export const [x, x] = c', options: { sourceType: 'module', lexical: true } },
+    { code: 'export const [x, {x}] = y', options: { sourceType: 'module', lexical: true } },
+    { code: 'export const {x:x, x:x} = c', options: { sourceType: 'module', lexical: true } },
+    { code: 'export const a = b; let a = c', options: { sourceType: 'module', lexical: true } },
+    { code: 'var x; export {x: a}', options: { sourceType: 'module' } },
+    { code: 'var x; export {x: a}', options: { webcompat: true } },
+    { code: 'export async function(){}', options: { sourceType: 'module' } },
+    { code: 'export async', options: { sourceType: 'module' } },
+    { code: 'export let ...x = y', options: { sourceType: 'module' } },
+    { code: 'export ...x = y', options: { sourceType: 'module' } },
+    { code: 'export default ...x = y', options: { sourceType: 'module' } },
+    'export async function f(){} foo',
+    'export class x {} foo',
+    { code: 'export default await', options: { sourceType: 'module' } },
+    { code: 'export var let = x;', options: { sourceType: 'module' } },
+    { code: '{export {x};}', options: { sourceType: 'module' } },
+    { code: 'let x = () => {export {x};}', options: { sourceType: 'module' } },
+    { code: 'if (x) export {x};', options: { sourceType: 'module' } },
+    { code: 'for (;;) export {x};', options: { sourceType: 'module' } },
+    { code: 'x = { foo(){ export {x}; }}', options: { sourceType: 'module' } },
+    'x = { foo(){ export {x}; }}',
+    { code: 'class x { foo(){ export {x}; }}', options: { sourceType: 'module' } },
+    { code: 'var foo, bar; export {foo, ...bar}', options: { sourceType: 'module' } },
+    { code: 'var foo, bar; export {[foo]}', options: { sourceType: 'module' } },
+    { code: 'var foo, bar; export {{foo}}', options: { sourceType: 'module' } },
+    { code: 'var foo, bar, x; export {{foo: x}}', options: { sourceType: 'module' } },
+    { code: 'var foo; export {foo(){}}', options: { sourceType: 'module' } },
+    { code: 'var foo; export {[foo](){}}', options: { sourceType: 'module' } },
+    { code: 'export let await;', options: { sourceType: 'module' } },
+    { code: 'var foo; export {async foo(){}}', options: { sourceType: 'module' } },
+    { code: 'var foo; export {*foo(){}}', options: { sourceType: 'module' } },
+    'var foo; export {*foo(){}}',
+    { code: 'export foo', options: { sourceType: 'module' } },
+    { code: 'export {', options: { sourceType: 'module' } },
+    { code: 'export async;', options: { sourceType: 'module' } },
+    { code: 'export async () => y', options: { sourceType: 'module' } },
+    { code: 'var a; export { a,', options: { sourceType: 'module' } },
+    { code: 'class A extends B { foo() { (super).foo } }', options: { webcompat: true } },
+    'export class extends C {}',
+    { code: 'export *;', options: { sourceType: 'module' } },
+    { code: 'export * as;', options: { sourceType: 'module' } },
+    {
+      code: 'var x; export { x as z }; export * as z from "string";',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export {', options: { sourceType: 'module' } },
+    { code: 'export *;', options: { sourceType: 'module' } },
+    { code: 'export * as;', options: { sourceType: 'module' } },
+    { code: 'export * as foo;', options: { sourceType: 'module' } },
+    { code: 'export * as foo from;', options: { sourceType: 'module' } },
+    { code: "export * as foo from ';", options: { sourceType: 'module' } },
+    { code: "export * as ,foo from 'bar'", options: { sourceType: 'module' } },
+    { code: 'export * as foo from;', options: { sourceType: 'module' } },
+    { code: "export * as foo from ';", options: { sourceType: 'module' } },
+    { code: "export * as ,foo from 'bar'", options: { sourceType: 'module' } },
+    { code: 'var a; export { a', options: { sourceType: 'module' } },
+    { code: 'var a; export { a,', options: { sourceType: 'module' } },
+    { code: 'var a; export { a, ;', options: { sourceType: 'module' } },
+    { code: 'var a; export { a as };', options: { sourceType: 'module' } },
+    { code: 'var a, b; export { a as , b};', options: { sourceType: 'module' } },
+    { code: 'export default = 42', options: { sourceType: 'module' } },
+    { code: 'export {default} +', options: { sourceType: 'module' } },
+    { code: 'export default from "foo"', options: { sourceType: 'module' } },
+    { code: '({ set m(x) { export default null; } });', options: { sourceType: 'module' } },
+    { code: 'for (let y in []) import v from "foo"', options: { sourceType: 'module' } },
+    { code: 'for (let y in []) import v from "foo"', options: { sourceType: 'module' } },
+    { code: 'switch(0) { default: export default null; }', options: { sourceType: 'module' } },
+    { code: 'switch(0) { case 1: export default null; }', options: { sourceType: 'module' } },
+    { code: 'if (true) { } else export default null;', options: { sourceType: 'module' } },
+    'function* g() { export default null; }',
+    { code: 'test262: export default null;', options: { sourceType: 'module' } },
+    { code: '(function() { export default null; });', options: { sourceType: 'module' } },
+    { code: 'for (x = 0; false;) export default null;', options: { sourceType: 'module' } },
+    { code: 'do export default null; while (false)', options: { sourceType: 'module' } },
+    { code: 'export default async x \n() => {}', options: { sourceType: 'module' } },
+    { code: '{export default 3}', options: { sourceType: 'module' } },
+    { code: 'while (1) export default 3', options: { sourceType: 'module' } },
+    { code: 'export {a,,b}', options: { sourceType: 'module' } },
+    { code: 'export {function} from a', options: { sourceType: 'module' } },
+    { code: 'export let[a] = 0 export let[b] = 0', options: { sourceType: 'module' } },
+    { code: 'export 3', options: { sourceType: 'module' } },
+    { code: 'export function () {}', options: { sourceType: 'module' } },
+    { code: 'export default default', options: { sourceType: 'module' } },
+    { code: 'export default function', options: { sourceType: 'module' } },
+    { code: 'export default let', options: { sourceType: 'module' } },
+    { code: 'let a; let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a; export class a {};', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a; export function a(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a; export let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a; export const a = 0;', options: { sourceType: 'module', lexical: true } },
+    { code: 'const a = 0; export class a {};', options: { sourceType: 'module', lexical: true } },
+    { code: 'const a = 0; export function a(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'const a = 0; export let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'const a = 0; export const a = 1;', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a; var a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export class a {};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export function a(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export const a = 0;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export var a; export var a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a, a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a, b as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a, a as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a}; export class a{};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a}; export function a(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let a; export let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export const a = 0; export const a = 0;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let a; export let a;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default 0; export default 0;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default 0; export default function f(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default 0; export default class a {};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export {b as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a as b}; var b;', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a; export {b as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a as b}; let b;', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export {a, a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {a, b, a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {b, a, a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {a, b, c}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {a, b as a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let [x, x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function x(){}; export let [x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let [x] = y; export function x(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let x = y, [x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let x = y, [...x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let x = y, {...x} = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export {a}; export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a,b; export {b, a}; export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a,b; export {a}; export {a, b};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {b as a}; export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a}; export {b as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { x as y };', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function f(){}; function f(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function f(){}; async function f(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function f(){}; class f{};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export async function f(){}; class f{};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export class f{}; function f(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export class f{}; async function f(){};', options: { sourceType: 'module', lexical: true } },
+    {
+      code: 'export foo; export bar; class f{}; async function foo(){};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export async function f(){}; function f(){};', options: { sourceType: 'module', lexical: true } },
+    {
+      code: 'export default function(){}; export default function(){};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: 'export default class x{}; export default async function x(){};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: 'export default class x{}; export async function x(){};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: 'export class x{}; export default async function x(){};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export class x{}; export async function x(){};', options: { sourceType: 'module', lexical: true } },
+    {
+      code: 'export default class x{}; export default function(){};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export default class x{}; export default class x{};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default class x{}; export default () => {};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default async x => { let x; };', options: { sourceType: 'module', lexical: true } },
+    {
+      code: 'export default function() {} export default function() {}',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export function a() {} export default function a() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function f(){}; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function f(){}; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export class f {} export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {f} export class f {};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export const x = y; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let x = y; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {f}; export const x = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {f}; export async function f() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default x; export {y as default};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var x, y; export default x; export {y as default};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export async function f(){}; const f = foo;', options: { sourceType: 'module', lexical: true } },
+    { code: 'const f = foo; export async function f(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { Q } from;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export var foo; export let foo;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let foo; export let foo;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a}; export {b as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a,b; export {b, a}; export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a,b; export {a, b}; export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default function(a){ let a; }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default function(a){ const a = 0; }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default function(a, a){}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default function([a, a]){}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { for }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {b as a}; export {a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {a}; export {b as a};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let x = y, {...x} = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let x = y, [...x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let [x] = y; export function x(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function x(){}; export let [x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {x}; export let {...x} = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {x}; export let [...x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {x}; export let [x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let [x] = y; export {x};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export async function f(){}; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export var a = x, a = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export class f {}; export function f() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export class f {}; export function f() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export var a = x, a = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export var a = x, a = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let [x, x] = y;', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {a, a, b}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {b, a, a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a, b; export {a, b, a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'var a; export {a, a}', options: { sourceType: 'module', lexical: true } },
+    { code: 'class C { method() { export default null; } }', options: { sourceType: 'module', lexical: true } },
+    { code: '{ export default null; }', options: { sourceType: 'module', lexical: true } },
 
-    ['export const const1;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['function foo() { }; export foo;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export function* () { }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export class { }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['function foo() { }; export [ foo ];', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['function foo() { export default function() { } }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export default 1, 2, 3;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export 12;', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export "string_constant";', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export ', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['function foo() { }; export { foo as 100 };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {foo}', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {Array}', Context.Strict | Context.Module | Context.OptionsLexical],
-    [
-      `export function f() {}
-    export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      `export class f() {}
-    export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      `export function f() {}
-    export class f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      `export async function *f() {}
-    export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      `export default async function *f() {}
-    export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      `export async function *f() {}
-    export default function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      'var canBeUndeclared; export {mustExist as canBeUndeclared};',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    ['export {mustExist as canBeUndeclared};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['var x, y; export default x; export {y as default};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {foo, bar,};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { for }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { for as foo }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { arguments }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { bar, };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { foo as foo2, baz }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { foo as foo3, baz as baz2, }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { foo as foo4, bar as bar2, foobar }', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { x as default };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {aa as bb, x};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export {foob};', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { "a" as b };', Context.Strict | Context.Module | Context.OptionsLexical],
-    [String.raw`export { "\uD83C" as b } from "./foo";`, Context.Strict | Context.Module | Context.OptionsLexical],
-    [String.raw`export { a as "\uD83C" } from "./foo";`, Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export * as "foo" from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export * as foo from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
-    [
-      'export * as foo from "./f"; export { "foo" } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      'export * as foo from "./f"; export { "a" as "foo" } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      String.raw`export { a }; export { "\u0061" } from "./m";`,
-      Context.Strict | Context.Module | Context.OptionsLexical,
-    ],
-    [
-      'export async function a() {}\nexport async function a() {}',
-      Context.OptionsLexical | Context.Strict | Context.Module,
-    ],
-    ['export function a() {}\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export async function a() {}\nexport function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export async function a() {}\nexport const a = 1;', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export let a = 1;\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
+    { code: 'export const const1;', options: { sourceType: 'module', lexical: true } },
+    { code: 'function foo() { }; export foo;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export function* () { }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export class { }', options: { sourceType: 'module', lexical: true } },
+    { code: 'function foo() { }; export [ foo ];', options: { sourceType: 'module', lexical: true } },
+    { code: 'function foo() { export default function() { } }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default 1, 2, 3;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export 12;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export "string_constant";', options: { sourceType: 'module', lexical: true } },
+    { code: 'export ', options: { sourceType: 'module', lexical: true } },
+    { code: 'function foo() { }; export { foo as 100 };', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {foo}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {Array}', options: { sourceType: 'module', lexical: true } },
+    {
+      code: outdent`
+        export function f() {}
+        export function *f() {}
+      `,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: outdent`
+        export class f() {}
+        export function *f() {}
+      `,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: outdent`
+        export function f() {}
+        export class f() {}
+      `,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: outdent`
+        export async function *f() {}
+        export function *f() {}
+      `,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: outdent`
+        export default async function *f() {}
+        export function *f() {}
+      `,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: outdent`
+        export async function *f() {}
+        export default function *f() {}
+      `,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: 'var canBeUndeclared; export {mustExist as canBeUndeclared};',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export {mustExist as canBeUndeclared};', options: { sourceType: 'module', lexical: true } },
+    { code: 'var x, y; export default x; export {y as default};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {foo, bar,};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { for }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { for as foo }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { arguments }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { foo };', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { bar, };', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { foo as foo2, baz }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { foo as foo3, baz as baz2, }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { foo as foo4, bar as bar2, foobar }', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { x as default };', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {aa as bb, x};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export {foob};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export { "a" as b };', options: { sourceType: 'module', lexical: true } },
+    { code: String.raw`export { "\uD83C" as b } from "./foo";`, options: { sourceType: 'module', lexical: true } },
+    { code: String.raw`export { a as "\uD83C" } from "./foo";`, options: { sourceType: 'module', lexical: true } },
+    { code: 'export * as "foo" from "./f"; export { foo };', options: { sourceType: 'module', lexical: true } },
+    { code: 'export * as foo from "./f"; export { foo };', options: { sourceType: 'module', lexical: true } },
+    {
+      code: 'export * as foo from "./f"; export { "foo" } from "./m";',
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: 'export * as foo from "./f"; export { "a" as "foo" } from "./m";',
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: String.raw`export { a }; export { "\u0061" } from "./m";`,
+      options: { sourceType: 'module', lexical: true },
+    },
+    {
+      code: 'export async function a() {}\nexport async function a() {}',
+      options: { sourceType: 'module', lexical: true },
+    },
+    { code: 'export function a() {}\nexport async function a() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export async function a() {}\nexport function a() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'export async function a() {}\nexport const a = 1;', options: { sourceType: 'module', lexical: true } },
+    { code: 'export let a = 1;\nexport async function a() {}', options: { sourceType: 'module', lexical: true } },
+    { code: 'const a = 1; export {a as "a", a as "a"}', options: { sourceType: 'module', lexical: true } },
+    { code: 'const a = 1; export {a as "", a as ""}', options: { sourceType: 'module', lexical: true } },
   ]);
 
   for (const arg of [
@@ -539,7 +553,7 @@ describe('Module - Export', () => {
     'export var foo;',
     'export function goo() {};',
     'export let hoo;',
-    `export default class { constructor() {	foo() } a() {	bar()	}	}`,
+    'export default class { constructor() {	foo() } a() {	bar()	}	}',
     'export const joo = 42;',
     'export default (function koo() {});',
     'export { };',
@@ -560,8 +574,10 @@ describe('Module - Export', () => {
     'export default class {}',
     'export default class extends C {}',
     'export default 42',
-    `export var x;
-    x = 'Pass';`,
+    outdent`
+      export var x;
+      x = 'Pass';
+    `,
     'var x; export default x = 7',
     "export { Q } from 'somemodule.js';",
     "export * from 'somemodule.js';",
@@ -697,7 +713,8 @@ describe('Module - Export', () => {
     'export var a = x, b = y;',
     'export let [x, z] = y;',
     "var _ = { method: function() { return 'method_result'; }, method2: function() { return 'method2_result'; } }; export default _",
-    `export{};
+    outdent`
+      export{};
       export {};
       export {}
       export { };
@@ -708,15 +725,18 @@ describe('Module - Export', () => {
       {//-
       //-
       };
-      export/**/{/**/};`,
-    `import {} from 'a';
+      export/**/{/**/};
+    `,
+    outdent`
+      import {} from 'a';
       import 'b';
       import * as ns1 from 'c';
       import dflt1 from 'd';
       export {} from 'e';
       import dflt2, {} from 'f';
       export * from 'g';
-      import dflt3, * as ns2 from 'h';`,
+      import dflt3, * as ns2 from 'h';
+    `,
     'var a; export { a as b };',
     'export default 1',
     'export default () => {}',
@@ -729,18 +749,18 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
     it(`${arg}`, () => {
-      parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
+      parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
     });
   }
   for (const arg of [
@@ -765,105 +785,107 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsLexical);
+        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
       });
     });
   }
 
   pass('Module - Export (pass)', [
-    { code: 'export default async', options: { module: true, ranges: true } },
-    { code: 'export default class f{}; export {f};', options: { module: true, lexical: true } },
-    { code: 'export default function f(){}; export {f};', options: { module: true, lexical: true } },
-    { code: 'export default async \nfunction f(){}', options: { module: true } },
-    { code: "export * as class from 'source';", options: { module: true } },
-    { code: 'export * as ns from "source";', options: { module: true } },
-    { code: 'export * from "a"', options: { module: true, ranges: true } },
-    { code: 'export * as foo from "./foo";', options: { module: true } },
-    { code: 'export {}', options: { module: true, ranges: true } },
-    { code: 'export {x}; var x;', options: { module: true, ranges: true } },
-    { code: 'var x; export {x as a}', options: { module: true, ranges: true } },
-    { code: 'var x; export {x,}', options: { module: true, ranges: true } },
-    { code: 'export {x} from "foo"', options: { module: true, ranges: true } },
-    { code: 'export {x as a} from "foo"', options: { module: true, ranges: true } },
-    { code: 'export {x,} from "foo"', options: { module: true } },
-    { code: 'var x; export {x as a,}', options: { module: true, ranges: true } },
-    { code: 'var x,y; export {x as a, y as b}', options: { module: true, ranges: true } },
-    { code: 'export var x = 10, y = 20', options: { module: true, ranges: true } },
-    { code: 'export let x', options: { module: true, ranges: true } },
-    { code: 'export let x, y', options: { module: true, ranges: true } },
-    { code: 'export const x = 10, y = 20', options: { module: true, ranges: true } },
-    { code: 'export function f(){}', options: { module: true, ranges: true } },
-    { code: 'export async function f(){}', options: { module: true, ranges: true } },
-    { code: 'export function* f(){}', options: { module: true } },
-    { code: 'export default function f(){}', options: { module: true } },
-    { code: 'export default async function f(){}', options: { module: true, ranges: true } },
+    { code: 'export default async', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default class f{}; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default function f(){}; export {f};', options: { sourceType: 'module', lexical: true } },
+    { code: 'export default async \nfunction f(){}', options: { sourceType: 'module' } },
+    { code: "export * as class from 'source';", options: { sourceType: 'module' } },
+    { code: 'export * as ns from "source";', options: { sourceType: 'module' } },
+    { code: 'export * from "a"', options: { sourceType: 'module', ranges: true } },
+    { code: 'export * as foo from "./foo";', options: { sourceType: 'module' } },
+    { code: 'export {}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export {x}; var x;', options: { sourceType: 'module', ranges: true } },
+    { code: 'var x; export {x as a}', options: { sourceType: 'module', ranges: true } },
+    { code: 'var x; export {x,}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export {x} from "foo"', options: { sourceType: 'module', ranges: true } },
+    { code: 'export {x as a} from "foo"', options: { sourceType: 'module', ranges: true } },
+    { code: 'export {x,} from "foo"', options: { sourceType: 'module' } },
+    { code: 'var x; export {x as a,}', options: { sourceType: 'module', ranges: true } },
+    { code: 'var x,y; export {x as a, y as b}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export var x = 10, y = 20', options: { sourceType: 'module', ranges: true } },
+    { code: 'export let x', options: { sourceType: 'module', ranges: true } },
+    { code: 'export let x, y', options: { sourceType: 'module', ranges: true } },
+    { code: 'export const x = 10, y = 20', options: { sourceType: 'module', ranges: true } },
+    { code: 'export function f(){}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export async function f(){}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export function* f(){}', options: { sourceType: 'module' } },
+    { code: 'export default function f(){}', options: { sourceType: 'module' } },
+    { code: 'export default async function f(){}', options: { sourceType: 'module', ranges: true } },
 
-    { code: 'export default function* f(){}', options: { module: true, ranges: true } },
-    { code: 'export class x {}', options: { module: true, ranges: true } },
+    { code: 'export default function* f(){}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export class x {}', options: { sourceType: 'module', ranges: true } },
 
-    { code: 'export default class x {}', options: { webcompat: true, module: true, ranges: true } },
-    { code: 'export let [...x] = y', options: { module: true, ranges: true } },
-    { code: 'export let {...x} = y', options: { module: true } },
-    { code: 'export default [x] = y', options: { module: true } },
-    { code: 'var a,b; export {a}; export {b};', options: { module: true, ranges: true } },
-    { code: 'export default async () => y', options: { module: true, ranges: true } },
-    { code: 'export default async (x) => y', options: { module: true, ranges: true } },
-    { code: 'export default async function(){}', options: { module: true, ranges: true } },
-    { code: 'export default function* (){}', options: { module: true } },
-    { code: 'export default class x{}', options: { module: true, ranges: true } },
-    { code: 'export {} from "x"', options: { module: true, ranges: true } },
-    { code: 'export default async x => y', options: { module: true, ranges: true } },
-    { code: 'export default (a,b) => {}', options: { module: true, ranges: true } },
-    { code: 'export default () => {}', options: { module: true } },
-    { code: 'export {};', options: { module: true } },
-    { code: 'export var foo = 1;', options: { module: true } },
-    { code: 'export function foo () {}', options: { module: true } },
-    { code: String.raw`export function \u{5A}() {}`, options: { module: true } },
+    { code: 'export default class x {}', options: { webcompat: true, sourceType: 'module', ranges: true } },
+    { code: 'export let [...x] = y', options: { sourceType: 'module', ranges: true } },
+    { code: 'export let {...x} = y', options: { sourceType: 'module' } },
+    { code: 'export default [x] = y', options: { sourceType: 'module' } },
+    { code: 'var a,b; export {a}; export {b};', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default async () => y', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default async (x) => y', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default async function(){}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default function* (){}', options: { sourceType: 'module' } },
+    { code: 'export default class x{}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export {} from "x"', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default async x => y', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default (a,b) => {}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default () => {}', options: { sourceType: 'module' } },
+    { code: 'export {};', options: { sourceType: 'module' } },
+    { code: 'export var foo = 1;', options: { sourceType: 'module' } },
+    { code: 'export function foo () {}', options: { sourceType: 'module' } },
+    { code: String.raw`export function \u{5A}() {}`, options: { sourceType: 'module' } },
 
-    { code: 'export {foo} from "foo";', options: { module: true } },
-    { code: 'export default function () {}', options: { module: true } },
-    { code: 'export default (1 + 2);', options: { module: true, ranges: true } },
+    { code: 'export {foo} from "foo";', options: { sourceType: 'module' } },
+    { code: 'export default function () {}', options: { sourceType: 'module' } },
+    { code: 'export default (1 + 2);', options: { sourceType: 'module', ranges: true } },
 
-    { code: 'export class a {}', options: { module: true } },
-    { code: 'export default class A {}', options: { module: true } },
-    { code: 'export default [];', options: { module: true, ranges: true } },
+    { code: 'export class a {}', options: { sourceType: 'module' } },
+    { code: 'export default class A {}', options: { sourceType: 'module' } },
+    { code: 'export default [];', options: { sourceType: 'module', ranges: true } },
 
-    { code: 'export default function foo() {}', options: { module: true } },
-    { code: 'export default function *foo() {}', options: { module: true } },
-    { code: 'var foo; export {foo as new}', options: { module: true, ranges: true } },
-    { code: 'export {a as b}; var a;', options: { module: true, ranges: true } },
-    { code: 'var a; export {a as b};', options: { module: true } },
+    { code: 'export default function foo() {}', options: { sourceType: 'module' } },
+    { code: 'export default function *foo() {}', options: { sourceType: 'module' } },
+    { code: 'var foo; export {foo as new}', options: { sourceType: 'module', ranges: true } },
+    { code: 'export {a as b}; var a;', options: { sourceType: 'module', ranges: true } },
+    { code: 'var a; export {a as b};', options: { sourceType: 'module' } },
     {
-      code: `[function* (...{}) {  switch (yield) {}  }]
-        a = (u) => {}`,
-      options: { module: true, ranges: true },
+      code: outdent`
+        [function* (...{}) {  switch (yield) {}  }]
+        a = (u) => {}
+      `,
+      options: { sourceType: 'module', ranges: true },
     },
-    { code: 'export {foo}; function foo() {};', options: { module: true } },
-    { code: 'export var x = 1;', options: { module: true } },
-    { code: 'export default 3;', options: { module: true } },
-    { code: 'var x; export { x as a }; export { x as b };', options: { module: true, ranges: true } },
-    { code: 'export default [x] = y', options: { module: true, ranges: true } },
-    { code: 'let foo, bar; export {foo, bar}', options: { module: true } },
-    { code: 'export default function *f(){} foo', options: { module: true } },
-    { code: 'export {}', options: { module: true } },
-    { code: 'export {x}; var x;', options: { module: true } },
-    { code: 'var x; export {x as a}', options: { module: true } },
-    { code: 'var x; export {x,}', options: { module: true } },
-    { code: 'export {x} from "foo"', options: { module: true } },
-    { code: 'export {x as a} from "foo"', options: { module: true } },
-    { code: 'export {x,} from "foo"', options: { module: true } },
-    { code: 'var x; export {x as a,}', options: { module: true } },
-    { code: 'var x,y; export {x, y}', options: { module: true } },
-    { code: 'var x,y; export {x as a, y as b}', options: { module: true, ranges: true } },
-    { code: 'var x,y; export {x, y,}', options: { module: true } },
-    { code: 'var x,y; export {x as a, y as b,}', options: { module: true } },
-    { code: 'export var x', options: { module: true } },
-    { code: 'export var x, y', options: { module: true } },
-    { code: 'export var x = 10, y = 20', options: { module: true } },
-    { code: 'export let x', options: { module: true } },
-    { code: 'export let x, y', options: { module: true } },
-    { code: 'export let a = 1;', options: { module: true } },
-    { code: 'export * as "foo" from "./foo";', options: { module: true } },
-    { code: String.raw`export { "\uD83C\uDF19" as "a"} from "./foo";`, options: { module: true, loc: true } },
+    { code: 'export {foo}; function foo() {};', options: { sourceType: 'module' } },
+    { code: 'export var x = 1;', options: { sourceType: 'module' } },
+    { code: 'export default 3;', options: { sourceType: 'module' } },
+    { code: 'var x; export { x as a }; export { x as b };', options: { sourceType: 'module', ranges: true } },
+    { code: 'export default [x] = y', options: { sourceType: 'module', ranges: true } },
+    { code: 'let foo, bar; export {foo, bar}', options: { sourceType: 'module' } },
+    { code: 'export default function *f(){} foo', options: { sourceType: 'module' } },
+    { code: 'export {}', options: { sourceType: 'module' } },
+    { code: 'export {x}; var x;', options: { sourceType: 'module' } },
+    { code: 'var x; export {x as a}', options: { sourceType: 'module' } },
+    { code: 'var x; export {x,}', options: { sourceType: 'module' } },
+    { code: 'export {x} from "foo"', options: { sourceType: 'module' } },
+    { code: 'export {x as a} from "foo"', options: { sourceType: 'module' } },
+    { code: 'export {x,} from "foo"', options: { sourceType: 'module' } },
+    { code: 'var x; export {x as a,}', options: { sourceType: 'module' } },
+    { code: 'var x,y; export {x, y}', options: { sourceType: 'module' } },
+    { code: 'var x,y; export {x as a, y as b}', options: { sourceType: 'module', ranges: true } },
+    { code: 'var x,y; export {x, y,}', options: { sourceType: 'module' } },
+    { code: 'var x,y; export {x as a, y as b,}', options: { sourceType: 'module' } },
+    { code: 'export var x', options: { sourceType: 'module' } },
+    { code: 'export var x, y', options: { sourceType: 'module' } },
+    { code: 'export var x = 10, y = 20', options: { sourceType: 'module' } },
+    { code: 'export let x', options: { sourceType: 'module' } },
+    { code: 'export let x, y', options: { sourceType: 'module' } },
+    { code: 'export let a = 1;', options: { sourceType: 'module' } },
+    { code: 'export * as "foo" from "./foo";', options: { sourceType: 'module' } },
+    { code: String.raw`export { "\uD83C\uDF19" as "a"} from "./foo";`, options: { sourceType: 'module', loc: true } },
   ]);
 });

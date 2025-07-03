@@ -25,8 +25,6 @@ jobs:
           - '24'
           - '22'
           - '20'
-          # Can't install
-          # - '18'
     name: Node.js ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
@@ -36,8 +34,12 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'yarn'
           cache-dependency-path: ./package.json
+      - uses: actions/cache@v4
+        with:
+          path: test262/test262
+          key: ${{ hashFiles('test262/test262-commit-hash') }}
       - run: yarn
-      - run: npm run bundle
+      - run: npm run build
       - run: npm run test
       - run: npm run lint
 
@@ -52,5 +54,5 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: ./package.json
       - run: yarn
-      - run: npm run bundle
+      - run: npm run build
       - run: npx pkg-pr-new publish --compact

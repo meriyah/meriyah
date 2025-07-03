@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - JSX', () => {
   for (const arg of [
@@ -12,12 +12,14 @@ describe('Miscellaneous - JSX', () => {
     '{foo && <Something foo={foo} /> }',
     '<Component:Test />;',
     '<Component.Test />;',
-    `<></>;
+    outdent`
+      <></>;
 
-    <
-    >
-      text
-    </>;`,
+      <
+      >
+        text
+      </>;
+    `,
     '<div>{this.props.children}</div>;',
     '<a>{}</a>;',
     '<p>{1/2}</p>',
@@ -25,222 +27,238 @@ describe('Miscellaneous - JSX', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsJSX);
+        parseSource(`${arg}`, { jsx: true, next: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsJSX);
+        parseSource(`${arg}`, { jsx: true, next: true, webcompat: true });
       });
     });
   }
 
   fail('Miscellaneous - JSX (fail)', [
-    ['<', Context.None],
-    ['<foo', Context.None],
-    ['>', Context.None],
-    ['<>', Context.None],
-    ['< >', Context.None],
-    ['</>', Context.None],
-    ['<><//>', Context.None],
-    ['<', Context.OptionsJSX],
-    ['>', Context.OptionsJSX],
-    ['<>', Context.OptionsJSX],
-    ['< >', Context.OptionsJSX],
-    ['</>', Context.OptionsJSX],
-    ['<><//>', Context.OptionsJSX],
-    ['<p>', Context.OptionsJSX],
-    ['<p></q>', Context.OptionsJSX],
-    ['<p></>', Context.OptionsJSX],
-    ['<p><q></p>', Context.OptionsJSX],
-    ['<1/>', Context.OptionsJSX],
-    [`<div id={}></div>`, Context.OptionsJSX],
-    ['<div>one</div><div>two</div>', Context.OptionsJSX],
-    ['</>', Context.OptionsJSX],
-    ['<a/!', Context.OptionsJSX],
-    ['<img src={}>', Context.OptionsJSX],
-    ['<a b=: />', Context.OptionsJSX],
-    ['<xyz. />', Context.OptionsJSX],
-    ['<.abc />', Context.OptionsJSX],
-    ['<Foo></Bar>', Context.OptionsJSX],
-    ['<dd><e></e></dddd>;', Context.OptionsJSX],
-    ['<{...b} {...a }>{...b}</{...b}>', Context.OptionsJSX],
-    ['<f><g/></ff>;', Context.OptionsJSX],
-    ['<:path />', Context.OptionsJSX],
-    ['<path></svg:path>', Context.OptionsJSX],
-    ['<foo.bar></foo.baz>', Context.OptionsJSX],
-    ['<chinese:alladinfoo.bar></foo.baz>', Context.OptionsJSX],
-    ['<foo:bar></foo.baz>', Context.OptionsJSX],
-    ['<foo:bar.baz></foo.baz:bar>', Context.OptionsJSX],
-    ['<foo.bar></foo.baz>', Context.OptionsJSX],
-    ['var x = <div>one</div> /* intervening comment */ <div>two</div>;', Context.OptionsJSX],
-    ['<tag className=></tag>', Context.OptionsJSX],
-    ['<tag ${"className"}="tag"></tag>', Context.OptionsJSX],
-    ['<a: />;', Context.OptionsJSX],
-    ['<:a />;', Context.OptionsJSX],
-    ['<a></b>', Context.OptionsJSX],
-    ['<a foo="bar;', Context.OptionsJSX],
-    ['<a:b></b>;', Context.OptionsJSX],
-    ['<a.b:c></a.b:c>;', Context.OptionsJSX],
-    ['<a[foo]></a[foo]>;', Context.OptionsJSX],
-    ['<a["foo"]></a["foo"]>;', Context.OptionsJSX],
-    ['<a b={}>;', Context.OptionsJSX],
-    ['var x = <div>one</div><div>two</div>;', Context.OptionsJSX],
-    ['<div {props} />;', Context.OptionsJSX],
-    ['<div {...props}>stuff</div {...props}>;', Context.OptionsJSX],
-    ['<a>></a>;', Context.OptionsJSX],
-    ['<a b=}>;', Context.OptionsJSX],
-    [' > ;', Context.OptionsJSX],
-    ['<a>;</>;', Context.OptionsJSX],
-    ['<a b></b>;', Context.OptionsJSX],
-    ['<a.b.c></a>;', Context.OptionsJSX],
-    [' < .a > ;', Context.OptionsJSX],
-    ['a > ;', Context.OptionsJSX],
-    ['[foo] > ;', Context.OptionsJSX],
-    ['<.a></.a>', Context.OptionsJSX],
-    ['<a.></a.>', Context.OptionsJSX],
-    ['<div className"app">', Context.OptionsJSX],
-    ['<div {props} />', Context.OptionsJSX],
-    ['<a>></a>', Context.OptionsJSX],
-    ['<div {...props}>stuff</div {...props}>', Context.OptionsJSX],
-    ['<a><</a>', Context.OptionsJSX],
-    ['[foo] > ;', Context.OptionsJSX],
-    ['[foo] > ;', Context.OptionsJSX],
-    ['[foo] > ;', Context.OptionsJSX],
-    ['[foo] > ;', Context.OptionsJSX],
-    ['var x = <div>one</div>, <div>two</div>;', Context.OptionsJSX],
-    ['<p>{/}</p>', Context.OptionsJSX],
-    ['<div=""></div>', Context.OptionsJSX],
-    ['<div =""></div>', Context.OptionsJSX],
-    ['<div=1></div>', Context.OptionsJSX],
-    ['<div=div></div>', Context.OptionsJSX],
-    ['<div=/>', Context.OptionsJSX],
-    ['<div=-/>', Context.OptionsJSX],
-    ['<div=/>', Context.OptionsJSX],
-    ['<div =/>', Context.OptionsJSX],
-    ['<div=+-%&([)]}.../>', Context.OptionsJSX],
+    '<',
+    '<foo',
+    '>',
+    '<>',
+    '< >',
+    '</>',
+    '<><//>',
+    { code: '<', options: { jsx: true } },
+    { code: '>', options: { jsx: true } },
+    { code: '<>', options: { jsx: true } },
+    { code: '< >', options: { jsx: true } },
+    { code: '</>', options: { jsx: true } },
+    { code: '<><//>', options: { jsx: true } },
+    { code: '<p>', options: { jsx: true } },
+    { code: '<p></q>', options: { jsx: true } },
+    { code: '<p></>', options: { jsx: true } },
+    { code: '<p><q></p>', options: { jsx: true } },
+    { code: '<1/>', options: { jsx: true } },
+    { code: '<div id={}></div>', options: { jsx: true } },
+    { code: '<div>one</div><div>two</div>', options: { jsx: true } },
+    { code: '</>', options: { jsx: true } },
+    { code: '<a/!', options: { jsx: true } },
+    { code: '<img src={}>', options: { jsx: true } },
+    { code: '<a b=: />', options: { jsx: true } },
+    { code: '<xyz. />', options: { jsx: true } },
+    { code: '<.abc />', options: { jsx: true } },
+    { code: '<Foo></Bar>', options: { jsx: true } },
+    { code: '<dd><e></e></dddd>;', options: { jsx: true } },
+    { code: '<{...b} {...a }>{...b}</{...b}>', options: { jsx: true } },
+    { code: '<f><g/></ff>;', options: { jsx: true } },
+    { code: '<:path />', options: { jsx: true } },
+    { code: '<path></svg:path>', options: { jsx: true } },
+    { code: '<foo.bar></foo.baz>', options: { jsx: true } },
+    { code: '<chinese:alladinfoo.bar></foo.baz>', options: { jsx: true } },
+    { code: '<foo:bar></foo.baz>', options: { jsx: true } },
+    { code: '<foo:bar.baz></foo.baz:bar>', options: { jsx: true } },
+    { code: '<foo.bar></foo.baz>', options: { jsx: true } },
+    { code: 'var x = <div>one</div> /* intervening comment */ <div>two</div>;', options: { jsx: true } },
+    { code: '<tag className=></tag>', options: { jsx: true } },
+    { code: '<tag ${"className"}="tag"></tag>', options: { jsx: true } },
+    { code: '<a: />;', options: { jsx: true } },
+    { code: '<:a />;', options: { jsx: true } },
+    { code: '<a></b>', options: { jsx: true } },
+    { code: '<a foo="bar;', options: { jsx: true } },
+    { code: '<a:b></b>;', options: { jsx: true } },
+    { code: '<a.b:c></a.b:c>;', options: { jsx: true } },
+    { code: '<a[foo]></a[foo]>;', options: { jsx: true } },
+    { code: '<a["foo"]></a["foo"]>;', options: { jsx: true } },
+    { code: '<a b={}>;', options: { jsx: true } },
+    { code: 'var x = <div>one</div><div>two</div>;', options: { jsx: true } },
+    { code: '<div {props} />;', options: { jsx: true } },
+    { code: '<div {...props}>stuff</div {...props}>;', options: { jsx: true } },
+    { code: '<a>></a>;', options: { jsx: true } },
+    { code: '<a b=}>;', options: { jsx: true } },
+    { code: ' > ;', options: { jsx: true } },
+    { code: '<a>;</>;', options: { jsx: true } },
+    { code: '<a b></b>;', options: { jsx: true } },
+    { code: '<a.b.c></a>;', options: { jsx: true } },
+    { code: ' < .a > ;', options: { jsx: true } },
+    { code: 'a > ;', options: { jsx: true } },
+    { code: '[foo] > ;', options: { jsx: true } },
+    { code: '<.a></.a>', options: { jsx: true } },
+    { code: '<a.></a.>', options: { jsx: true } },
+    { code: '<div className"app">', options: { jsx: true } },
+    { code: '<div {props} />', options: { jsx: true } },
+    { code: '<a>></a>', options: { jsx: true } },
+    { code: '<div {...props}>stuff</div {...props}>', options: { jsx: true } },
+    { code: '<a><</a>', options: { jsx: true } },
+    { code: '[foo] > ;', options: { jsx: true } },
+    { code: '[foo] > ;', options: { jsx: true } },
+    { code: '[foo] > ;', options: { jsx: true } },
+    { code: '[foo] > ;', options: { jsx: true } },
+    { code: 'var x = <div>one</div>, <div>two</div>;', options: { jsx: true } },
+    { code: '<p>{/}</p>', options: { jsx: true } },
+    { code: '<div=""></div>', options: { jsx: true } },
+    { code: '<div =""></div>', options: { jsx: true } },
+    { code: '<div=1></div>', options: { jsx: true } },
+    { code: '<div=div></div>', options: { jsx: true } },
+    { code: '<div=/>', options: { jsx: true } },
+    { code: '<div=-/>', options: { jsx: true } },
+    { code: '<div=/>', options: { jsx: true } },
+    { code: '<div =/>', options: { jsx: true } },
+    { code: '<div=+-%&([)]}.../>', options: { jsx: true } },
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
-    { code: `<!--ccc-->`, options: { jsx: true } },
+    { code: '<!--ccc-->', options: { jsx: true } },
     {
-      code: `class Columns extends React.Component {
-        render() {
-          return (
-            <>
-              <td>Hello</td>
-              <td>World</td>
-            </>
-          );
+      code: outdent`
+        class Columns extends React.Component {
+          render() {
+            return (
+              <>
+                <td>Hello</td>
+                <td>World</td>
+              </>
+            );
+          }
         }
-      }`,
+      `,
       options: { jsx: true, ranges: true, loc: true },
     },
-    { code: `<div>{111}</div>`, options: { jsx: true, ranges: true } },
-    { code: `<div></div>`, options: { jsx: true, ranges: true } },
-    { code: `<div {...[<div/>]} />`, options: { jsx: true, ranges: true } },
-    { code: `<div >{111}</div>`, options: { jsx: true } },
-    { code: `<div >xxx{111}xxx{222}</div>`, options: { jsx: true, ranges: true } },
+    { code: '<div>{111}</div>', options: { jsx: true, ranges: true } },
+    { code: '<div></div>', options: { jsx: true, ranges: true } },
+    { code: '<div {...[<div/>]} />', options: { jsx: true, ranges: true } },
+    { code: '<div >{111}</div>', options: { jsx: true } },
+    { code: '<div >xxx{111}xxx{222}</div>', options: { jsx: true, ranges: true } },
     {
-      code: `<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
+      code: '<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>',
       options: { jsx: true, ranges: true },
     },
-    { code: `<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>`, options: { jsx: true, ranges: true } },
+    { code: '<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>', options: { jsx: true, ranges: true } },
     {
-      code: `<div id="复杂结构">xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
+      code: '<div id="复杂结构">xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>',
       options: { jsx: true },
     },
-    { code: `<ul>  <li>  </li> <li>x</li> </ul>`, options: { jsx: true } },
+    { code: '<ul>  <li>  </li> <li>x</li> </ul>', options: { jsx: true } },
     {
-      code: `<option><b>dddd</b><script>333</script><xmp>eee</xmp><template>eeeee</template></option>`,
+      code: '<option><b>dddd</b><script>333</script><xmp>eee</xmp><template>eeeee</template></option>',
       options: { jsx: true },
     },
-    { code: `<div id={aa} class="className" > t </div>`, options: { jsx: true, ranges: true, loc: true, raw: true } },
-    { code: `<div id={function(){ return <div/> }} class="className"><p>xxx</p></div>`, options: { jsx: true } },
-    { code: `<div id={aa} title={ bb } {...{a:1}} class="className" ></div>`, options: { jsx: true } },
-    { code: `<X prop="2"><Y /><Z /></X>`, options: { jsx: true } },
-    { code: `<X>{a} {b}</X>`, options: { jsx: true } },
-    { code: `<X data-prop={x ? <Y prop={2} /> : <Z>\n</Z>}></X>`, options: { jsx: true } },
-    { code: `/** @jsx CUSTOM_DOM */<a></a>`, options: { jsx: true } },
+    { code: '<div id={aa} class="className" > t </div>', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<div id={function(){ return <div/> }} class="className"><p>xxx</p></div>', options: { jsx: true } },
+    { code: '<div id={aa} title={ bb } {...{a:1}} class="className" ></div>', options: { jsx: true } },
+    { code: '<X prop="2"><Y /><Z /></X>', options: { jsx: true } },
+    { code: '<X>{a} {b}</X>', options: { jsx: true } },
+    { code: '<X data-prop={x ? <Y prop={2} /> : <Z>\n</Z>}></X>', options: { jsx: true } },
+    { code: '/** @jsx CUSTOM_DOM */<a></a>', options: { jsx: true } },
     {
-      code: `import React from 'react'
-     const Component = () => (
-       <div>Hello, World</div>
-     )`,
-      options: { jsx: true, module: true },
+      code: outdent`
+        import React from 'react'
+        const Component = () => (
+          <div>Hello, World</div>
+        )
+      `,
+      options: { jsx: true, sourceType: 'module' },
     },
     {
-      code: `<Basic>
-       <BasicChild>
-         <BasicChild>
-           <BasicChild>
-             Title 2
-           </BasicChild>
-         </BasicChild>
-       </BasicChild>
-     </Basic>`,
-      options: { jsx: true, module: true },
+      code: outdent`
+        <Basic>
+          <BasicChild>
+            <BasicChild>
+              <BasicChild>
+                Title 2
+              </BasicChild>
+            </BasicChild>
+          </BasicChild>
+        </Basic>
+      `,
+      options: { jsx: true, sourceType: 'module' },
     },
     {
-      code: `<div>
-     one
-     <div>
-       two
-       <span>
-         three
-       </span>
-     </div>
-   </div>`,
+      code: outdent`
+        <div>
+          one
+          <div>
+            two
+            <span>
+              three
+            </span>
+          </div>
+        </div>
+      `,
       options: { jsx: true },
     },
-    { code: `<>Fragment</>`, options: { jsx: true } },
-    { code: `<p>hello,world</p>`, options: { jsx: true } },
-    { code: `<></>`, options: { jsx: true, ranges: true } },
-    { code: `<    ></   >`, options: { jsx: true, ranges: true } },
-    { code: `< /*starting wrap*/ ></ /*ending wrap*/>;`, options: { jsx: true } },
-    { code: `<>hi</>;`, options: { jsx: true } },
-    { code: `<><div>JSXElement</div>JSXText{'JSXExpressionContainer'}</>`, options: { jsx: true } },
-    { code: `<><span>hi</span><div>bye</div></>;`, options: { jsx: true } },
-    { code: `<><span>1</span><><span>2.1</span><span>2.2</span></><span>3</span></>;`, options: { jsx: true } },
-    { code: `<><span> hi </span> <div>bye</div> </>`, options: { jsx: true } },
+    { code: '<>Fragment</>', options: { jsx: true } },
+    { code: '<p>hello,world</p>', options: { jsx: true } },
+    { code: '<></>', options: { jsx: true, ranges: true } },
+    { code: '<    ></   >', options: { jsx: true, ranges: true } },
+    { code: '< /*starting wrap*/ ></ /*ending wrap*/>;', options: { jsx: true } },
+    { code: '<>hi</>;', options: { jsx: true } },
+    { code: "<><div>JSXElement</div>JSXText{'JSXExpressionContainer'}</>", options: { jsx: true } },
+    { code: '<><span>hi</span><div>bye</div></>;', options: { jsx: true } },
+    { code: '<><span>1</span><><span>2.1</span><span>2.2</span></><span>3</span></>;', options: { jsx: true } },
+    { code: '<><span> hi </span> <div>bye</div> </>', options: { jsx: true } },
     {
-      code: `<>
-     <>
-       <>
-        Ghost!
-       </>
-     </>
-   </>`,
+      code: outdent`
+        <>
+          <>
+            <>
+             Ghost!
+            </>
+          </>
+        </>
+      `,
       options: { jsx: true },
     },
     {
-      code: `<>
-     <>
-       <>
-         super deep
-       </>
-     </>
-   </>`,
+      code: outdent`
+        <>
+          <>
+            <>
+              super deep
+            </>
+          </>
+        </>
+      `,
       options: { jsx: true },
     },
     {
-      code: `<dl>
-     {props.items.map(item => (
-       <React.Fragment key={item.id}>
-         <dt>{item.term}</dt>
-         <dd>{item.description}</dd>
-       </React.Fragment>
-     ))}
-   </dl>`,
+      code: outdent`
+        <dl>
+          {props.items.map(item => (
+            <React.Fragment key={item.id}>
+              <dt>{item.term}</dt>
+              <dd>{item.description}</dd>
+            </React.Fragment>
+          ))}
+        </dl>
+      `,
       options: { jsx: true },
     },
 
     {
-      code: `<em>
-     One
-     Two
-     Three
-     </em>`,
+      code: outdent`
+        <em>
+        One
+        Two
+        Three
+        </em>
+      `,
       options: { jsx: true },
     },
     {
@@ -263,25 +281,27 @@ describe('Miscellaneous - JSX', () => {
 
     { code: 'var component = <Component {...props} />;', options: { jsx: true } },
     {
-      code: `class SayHello extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {message: 'Hello!'};
-        // This line is important!
-        this.handleClick = this.handleClick.bind(this);
-      }
-      handleClick() {
-        alert(this.state.message);
-      }
-      render() {
-        // Because "this.handleClick" is bound, we can use it as an event handler.
-        return (
-          <button onClick={this.handleClick}>
-            Say hello
-          </button>
-        );
-      }
-    }`,
+      code: outdent`
+        class SayHello extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = {message: 'Hello!'};
+            // This line is important!
+            this.handleClick = this.handleClick.bind(this);
+          }
+          handleClick() {
+            alert(this.state.message);
+          }
+          render() {
+            // Because "this.handleClick" is bound, we can use it as an event handler.
+            return (
+              <button onClick={this.handleClick}>
+                Say hello
+              </button>
+            );
+          }
+        }
+      `,
       options: { jsx: true },
     },
     { code: '<a>{\r\n}</a>', options: { jsx: true } },
@@ -335,27 +355,33 @@ describe('Miscellaneous - JSX', () => {
     { code: '<Component {...{...props, y: 1 }} />', options: { jsx: true } },
     { code: '<Component {...props} y={1} />', options: { jsx: true } },
     {
-      code: `var div = (
-      <div className='foo'>
-        <img src='foo.gif'/>
-        <img src='bar.gif'/>
-      </div>
-    );`,
+      code: outdent`
+        var div = (
+          <div className='foo'>
+            <img src='foo.gif'/>
+            <img src='bar.gif'/>
+          </div>
+        );
+      `,
       options: { jsx: true },
     },
     {
-      code: `<h1>
-     Hello {name}
-     !
-   </h1>`,
+      code: outdent`
+        <h1>
+          Hello {name}
+          !
+        </h1>
+      `,
       options: { jsx: true },
     },
     {
-      code: `var div = (
-      <div>
-        { images.map( src => <img src={src}/> ) }
-      </div>
-    );`,
+      code: outdent`
+        var div = (
+          <div>
+            { images.map( src => <img src={src}/> ) }
+          </div>
+        );
+      `,
       options: { jsx: true },
     },
     { code: '<div {...c}> {...children}{a}{...b}</div>', options: { jsx: true } },
@@ -368,10 +394,12 @@ describe('Miscellaneous - JSX', () => {
     { code: '<a b={x ? <c /> : <d />} />', options: { jsx: true } },
     { code: '<Test {...{a: "foo"}} {...{b: 123}} />;', options: { jsx: true } },
     {
-      code: `ReactDOM.render(
-        <CommentBox url="/api/comments" pollInterval={2000} />,
-        document.getElementById('content')
-      );`,
+      code: outdent`
+        ReactDOM.render(
+          <CommentBox url="/api/comments" pollInterval={2000} />,
+          document.getElementById('content')
+        );
+      `,
       options: { jsx: true },
     },
     { code: '<div>{0}</div>;', options: { jsx: true } },
@@ -428,30 +456,34 @@ describe('Miscellaneous - JSX', () => {
     { code: 'let w1 = <Poisoned {...{x: 5, y: "2"}} X="hi" />', options: { jsx: true } },
     { code: '<div>\n</div>', options: { jsx: true } },
     { code: '<div attr="&#0123;&hellip;&#x7D;"></div>', options: { jsx: true } },
-    { code: `<div attr='"'></div>`, options: { jsx: true } },
+    { code: "<div attr='\"'></div>", options: { jsx: true } },
     { code: '<foo bar=<baz.zoo></baz.zoo> />', options: { jsx: true } },
     { code: '<a href={link}></a>', options: { jsx: true } },
     { code: '<img width={320}/>', options: { jsx: true, ranges: true } },
     { code: '<日本語></日本語>', options: { jsx: true } },
     {
-      code: `<em>
-     One
-     Two
-     Three
-     </em>`,
+      code: outdent`
+        <em>
+        One
+        Two
+        Three
+        </em>
+      `,
       options: { jsx: true },
     },
 
     { code: '<SolarSystem.Earth.America.USA.California.mountain-view />', options: { jsx: true, ranges: true } },
     { code: '<div> foo:bar</div>', options: { jsx: true, ranges: true, raw: true } },
     { code: '<div><li>Item 1</li><li>Item 1</li></div>', options: { jsx: true } },
-    { code: `<div style={{color: 'red', fontWeight: 'bold'}} />`, options: { jsx: true } },
+    { code: "<div style={{color: 'red', fontWeight: 'bold'}} />", options: { jsx: true } },
     { code: '<h1>Hello {data.target}</h1>', options: { jsx: true } },
     {
-      code: `<div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-     <h1>Move the mouse around!</h1>
-     <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
-   </div>`,
+      code: outdent`
+        <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
+          <h1>Move the mouse around!</h1>
+          <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+        </div>
+      `,
       options: { jsx: true },
     },
     { code: 'var element = <Hello name={name}/>', options: { jsx: true } },

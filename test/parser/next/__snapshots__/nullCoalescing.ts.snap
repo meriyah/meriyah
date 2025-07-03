@@ -1,5 +1,119 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > ({a:let??foo} = 0); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({a:let??foo} = 0);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > [a ?? b, c] = f(() => {  });  1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | [a ?? b, c] = f(() => {  }); 
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > [a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; });  1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | [a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); 
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > 0 && 1 ?? 2 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 0 && 1 ?? 2
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > 0 && 1 ?? 2 2`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 0 && 1 ?? 2
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > 0 ?? 1 && 2 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 0 ?? 1 && 2
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > 0 ?? 1 && 2 2`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 0 ?? 1 && 2
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > 0 ?? 1 || 2 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 0 ?? 1 || 2
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > 3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0 1`] = `
+"SyntaxError [1:100-1:102]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0
+    |                                                                                                     ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > a ?? b || c 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | a ?? b || c
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > a || b ?? c 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | a || b ?? c
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > a.??(nil).b.c.d.??(null) 1`] = `
+"SyntaxError [1:2-1:4]: Dot property must be an identifier
+> 1 | a.??(nil).b.c.d.??(null)
+    |   ^^ Dot property must be an identifier"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > a??x = (true?.(123)) 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | a??x = (true?.(123))
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > a??x = true?.(123) 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | a??x = true?.(123)
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > c && d ?? e 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | c && d ?? e
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > c && d ?? e 2`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | c && d ?? e
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > c && d ?? e 3`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | c && d ?? e
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > e ?? f ?? g || h; 1`] = `
+"SyntaxError [1:12-1:14]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | e ?? f ?? g || h;
+    |             ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Next - Nullish Coalescing > Expressions - Nullish Coalescing (fail) > obj.??(defObj) 1`] = `
+"SyntaxError [1:4-1:6]: Dot property must be an identifier
+> 1 | obj.??(defObj)
+    |     ^^ Dot property must be an identifier"
+`;
+
 exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > 'hi' ?? 3 1`] = `
 {
   "body": [
@@ -202,8 +316,8 @@ exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > 1 << null ?
 `;
 
 exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > a
-        ?? b
-        ?? c; 1`] = `
+  ?? b
+  ?? c; 1`] = `
 {
   "body": [
     {

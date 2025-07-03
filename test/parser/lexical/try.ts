@@ -1,18 +1,14 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Try', () => {
   for (const declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `try { throw 0; } catch(e) { ${declaration} }`,
-          undefined,
-          Context.OptionsLexical | Context.OptionsWebCompat,
-        );
+        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -40,126 +36,131 @@ describe('Lexical - Try', () => {
   ]) {
     it(`try { throw 0; } catch(e) { ${declaration} } `, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch(e) { ${declaration} } `, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { ${declaration} } `, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch({e}) { ${declaration} }`, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch({e}) { ${declaration} }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch({e}) { ${declaration} }`, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, { lexical: true });
       });
     });
   }
 
   fail('Lexical - Try (fail)', [
-    ['try {} catch (arguments) { }', Context.OptionsLexical | Context.Strict],
-    ['try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}', Context.OptionsLexical | Context.Strict],
-    ['try {} catch (arguments) { }', Context.Strict],
-    ['try {} catch (e) { for (var e in y) {} }', Context.OptionsLexical],
-    ['try {} catch (e) { for (var e;;) {} }', Context.OptionsLexical],
-    ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
-    ['try {} catch(e) { var e; }', Context.OptionsLexical],
-    ['try { } catch (x) { for (var x of []) {} }', Context.Strict | Context.OptionsLexical],
-    ['try { } catch (x) { let x; }', Context.Strict | Context.OptionsLexical],
-    ['function f() { try {} catch (e) { function e(){} } }', Context.Strict | Context.OptionsLexical],
-    ['try {} catch (a, a) { }', Context.OptionsLexical],
-    ['try {} catch ([a,a]) { }', Context.OptionsLexical],
-    ['try {} catch ([a] = b) { }', Context.OptionsLexical],
-    ['try {} catch (a) { const a = 1; } ', Context.OptionsLexical],
-    ['try { } catch (x) { for (var x of []) {} }', Context.OptionsLexical],
-    ['try { } catch (x) { let x; }', Context.OptionsLexical],
-    ['try { } catch (e) { async function f(){} async function f(){} }', Context.OptionsLexical],
-    ['try {} catch (foo) { var foo; }', Context.OptionsLexical],
-    ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
-    ['try {} catch (foo) { try {} catch (_) { var foo; } }', Context.OptionsLexical],
-    ['try {} catch ([foo]) { var foo; }', Context.OptionsLexical],
-    ['try {} catch ({ foo }) { var foo; }', Context.OptionsLexical],
-    ['try { throw {}; } catch ({ f }) { if (true) function f() {  } }', Context.OptionsLexical],
-    ['try {} catch ({ a: foo, b: { c: [foo] } }) {}', Context.OptionsLexical],
-    ['try {} catch (foo) { function foo() {} }', Context.OptionsLexical],
-    ['try {} catch (e) { for (var e;;) {} }', Context.OptionsLexical],
-    ['try {} catch (e) { for (var e in y) {} }', Context.OptionsLexical],
-    ['try { } catch ([x, x]) {}', Context.Strict | Context.OptionsLexical],
-    ['try {} catch (foo) { var foo; }', Context.OptionsLexical],
-    ['try {} catch (foo) { let foo = 1; }', Context.OptionsLexical],
-    ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
-    ['try {} catch (foo) { function foo() {} }', Context.OptionsLexical],
-    ['try { } catch ([x, x]) {}', Context.Strict | Context.OptionsLexical],
-    ['try { } catch (x) { for (var x of []) {} }', Context.OptionsLexical],
-    ['try { } catch (x) { let x; }', Context.OptionsLexical],
-    ['try {} catch(e) { let e; }', Context.OptionsLexical],
-    ['try {} catch(e) { for(var e of 0); }', Context.OptionsLexical],
-    ['try {} catch ({a: e, b: e}) {}', Context.OptionsLexical],
-    ['try {} catch ({a: e, b: e}) {}', Context.OptionsLexical],
-    ['try {} catch ({e = 0, a: e}) {}', Context.OptionsLexical],
-    ['try {} catch ({e, e}) {}', Context.OptionsLexical],
-    ['function f() { try {} catch (e) { function e(){} } }', Context.OptionsLexical],
-    ['try {} catch (e) { for (var e of y) {} }', Context.OptionsLexical],
-    ['try {} catch (e) { let e = x; }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['try {} catch (e) { const e = x; }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
-    ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
-    ['let foo; try {} catch (foo) {} let foo;', Context.OptionsLexical],
-    ['try {} catch (foo) { function foo() {} }', Context.OptionsLexical],
-    ['try {} catch (foo) {if (1) function foo() {}}', Context.OptionsLexical],
-    ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
-    ['try {} catch (e) { let e = x; }', Context.OptionsLexical],
-    ['try {} catch (e) { const e = x; }', Context.OptionsLexical],
-    ['try {} catch (e) { for (var e;;) {} }', Context.OptionsLexical],
-    ['try {} catch (e) { for (var e in y) {} }', Context.OptionsLexical],
-    ['try {} catch ({ a: foo, b: { c: [foo] } }) {}', Context.OptionsLexical],
-    ['try {} catch ([foo]) { var foo; }', Context.OptionsLexical],
-    ['try {} catch ({ foo }) { var foo; }', Context.OptionsLexical],
-    ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
-    ['try { async function *f(){} var f } catch (e) {}', Context.OptionsLexical],
-    ['try { function f(){} var f } catch (e) {}', Context.OptionsLexical],
-    ['try {} catch ([foo, foo]) {}', Context.OptionsLexical],
-    ['try {} catch ([foo, foo]) {}', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['try { } catch (e) { function f(){} function f(){} }', Context.OptionsLexical],
-    ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical],
-    ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['try { function *f(){} var f } catch (e) {}', Context.OptionsLexical],
-    ['try { function(){} var f } catch (e) {}', Context.OptionsLexical],
-    ['try { async function f(){} var f } catch (e) {}', Context.OptionsLexical],
-    ['try {} catch (e) { let e = x; }', Context.OptionsLexical],
-    ['try { } catch (e) { function(){} function(){} }', Context.OptionsLexical],
-    ['try { } catch (e) { function(){} function(){} }', Context.OptionsLexical],
-    ['try { } finally { function(){} function(){} }', Context.OptionsLexical],
-    ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
-    ['try { } finally { function *f(){} function *f(){} }', Context.OptionsLexical],
-    ['try {} catch (e) { { var e = x; } }', Context.OptionsLexical],
-    ['const a = 1, a = 2', Context.OptionsLexical],
-    ['try { } finally { function f(){} function f(){} }', Context.OptionsLexical],
-    ['try { } finally { async function *f(){} async function *f(){} }', Context.OptionsLexical],
-    ['try { } finally { async function f(){} async function f(){} }', Context.OptionsLexical],
-    ['try {} catch (x) { { let x } ', Context.OptionsLexical],
-    ['try {} catch (x) { let x }', Context.OptionsLexical],
-    ['let e; try {} catch (e) { let e; }', Context.OptionsLexical],
-    ['try {} catch (x) { { let x } ', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['try {} catch (x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat],
-    [
-      `try {} catch (foo) {}  let foo;
-    try {} catch (foo) {}  let foo;`,
-      Context.OptionsLexical,
-    ],
+    { code: 'try {} catch (arguments) { }', options: { impliedStrict: true, lexical: true } },
+    {
+      code: 'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}',
+      options: { impliedStrict: true, lexical: true },
+    },
+    { code: 'try {} catch (arguments) { }', options: { impliedStrict: true } },
+    { code: 'try {} catch (e) { for (var e in y) {} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { for (var e;;) {} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { var e = x; }', options: { lexical: true } },
+    { code: 'try {} catch(e) { var e; }', options: { lexical: true } },
+    { code: 'try { } catch (x) { for (var x of []) {} }', options: { impliedStrict: true, lexical: true } },
+    { code: 'try { } catch (x) { let x; }', options: { impliedStrict: true, lexical: true } },
+    { code: 'function f() { try {} catch (e) { function e(){} } }', options: { impliedStrict: true, lexical: true } },
+    { code: 'try {} catch (a, a) { }', options: { lexical: true } },
+    { code: 'try {} catch ([a,a]) { }', options: { lexical: true } },
+    { code: 'try {} catch ([a] = b) { }', options: { lexical: true } },
+    { code: 'try {} catch (a) { const a = 1; } ', options: { lexical: true } },
+    { code: 'try { } catch (x) { for (var x of []) {} }', options: { lexical: true } },
+    { code: 'try { } catch (x) { let x; }', options: { lexical: true } },
+    { code: 'try { } catch (e) { async function f(){} async function f(){} }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { var foo; }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { let foo; }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { try {} catch (_) { var foo; } }', options: { lexical: true } },
+    { code: 'try {} catch ([foo]) { var foo; }', options: { lexical: true } },
+    { code: 'try {} catch ({ foo }) { var foo; }', options: { lexical: true } },
+    { code: 'try { throw {}; } catch ({ f }) { if (true) function f() {  } }', options: { lexical: true } },
+    { code: 'try {} catch ({ a: foo, b: { c: [foo] } }) {}', options: { lexical: true } },
+    { code: 'try {} catch (foo) { function foo() {} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { for (var e;;) {} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { for (var e in y) {} }', options: { lexical: true } },
+    { code: 'try { } catch ([x, x]) {}', options: { impliedStrict: true, lexical: true } },
+    { code: 'try {} catch (foo) { var foo; }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { let foo = 1; }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { let foo; }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { function foo() {} }', options: { lexical: true } },
+    { code: 'try { } catch ([x, x]) {}', options: { impliedStrict: true, lexical: true } },
+    { code: 'try { } catch (x) { for (var x of []) {} }', options: { lexical: true } },
+    { code: 'try { } catch (x) { let x; }', options: { lexical: true } },
+    { code: 'try {} catch(e) { let e; }', options: { lexical: true } },
+    { code: 'try {} catch(e) { for(var e of 0); }', options: { lexical: true } },
+    { code: 'try {} catch ({a: e, b: e}) {}', options: { lexical: true } },
+    { code: 'try {} catch ({a: e, b: e}) {}', options: { lexical: true } },
+    { code: 'try {} catch ({e = 0, a: e}) {}', options: { lexical: true } },
+    { code: 'try {} catch ({e, e}) {}', options: { lexical: true } },
+    { code: 'function f() { try {} catch (e) { function e(){} } }', options: { lexical: true } },
+    { code: 'try {} catch (e) { for (var e of y) {} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { let e = x; }', options: { webcompat: true, lexical: true } },
+    { code: 'try {} catch (e) { const e = x; }', options: { webcompat: true, lexical: true } },
+    { code: 'try {} catch (e) { var e = x; }', options: { lexical: true } },
+    { code: 'try {} catch (e) { var e = x; }', options: { lexical: true } },
+    { code: 'let foo; try {} catch (foo) {} let foo;', options: { lexical: true } },
+    { code: 'try {} catch (foo) { function foo() {} }', options: { lexical: true } },
+    { code: 'try {} catch (foo) {if (1) function foo() {}}', options: { lexical: true } },
+    { code: 'try {} catch (foo) { let foo; }', options: { lexical: true } },
+    { code: 'try {} catch (e) { let e = x; }', options: { lexical: true } },
+    { code: 'try {} catch (e) { const e = x; }', options: { lexical: true } },
+    { code: 'try {} catch (e) { for (var e;;) {} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { for (var e in y) {} }', options: { lexical: true } },
+    { code: 'try {} catch ({ a: foo, b: { c: [foo] } }) {}', options: { lexical: true } },
+    { code: 'try {} catch ([foo]) { var foo; }', options: { lexical: true } },
+    { code: 'try {} catch ({ foo }) { var foo; }', options: { lexical: true } },
+    { code: 'try {} catch (foo) { let foo; }', options: { lexical: true } },
+    { code: 'try { async function *f(){} var f } catch (e) {}', options: { lexical: true } },
+    { code: 'try { function f(){} var f } catch (e) {}', options: { lexical: true } },
+    { code: 'try {} catch ([foo, foo]) {}', options: { lexical: true } },
+    { code: 'try {} catch ([foo, foo]) {}', options: { webcompat: true, lexical: true } },
+    { code: 'try { } catch (e) { function f(){} function f(){} }', options: { lexical: true } },
+    { code: 'try { } catch (e) { function *f(){} function *f(){} }', options: { lexical: true } },
+    { code: 'try { } catch (e) { function *f(){} function *f(){} }', options: { webcompat: true, lexical: true } },
+    { code: 'try { function *f(){} var f } catch (e) {}', options: { lexical: true } },
+    { code: 'try { function(){} var f } catch (e) {}', options: { lexical: true } },
+    { code: 'try { async function f(){} var f } catch (e) {}', options: { lexical: true } },
+    { code: 'try {} catch (e) { let e = x; }', options: { lexical: true } },
+    { code: 'try { } catch (e) { function(){} function(){} }', options: { lexical: true } },
+    { code: 'try { } catch (e) { function(){} function(){} }', options: { lexical: true } },
+    { code: 'try { } finally { function(){} function(){} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { var e = x; }', options: { lexical: true } },
+    { code: 'try { } finally { function *f(){} function *f(){} }', options: { lexical: true } },
+    { code: 'try {} catch (e) { { var e = x; } }', options: { lexical: true } },
+    { code: 'const a = 1, a = 2', options: { lexical: true } },
+    { code: 'try { } finally { function f(){} function f(){} }', options: { lexical: true } },
+    { code: 'try { } finally { async function *f(){} async function *f(){} }', options: { lexical: true } },
+    { code: 'try { } finally { async function f(){} async function f(){} }', options: { lexical: true } },
+    { code: 'try {} catch (x) { { let x } ', options: { lexical: true } },
+    { code: 'try {} catch (x) { let x }', options: { lexical: true } },
+    { code: 'let e; try {} catch (e) { let e; }', options: { lexical: true } },
+    { code: 'try {} catch (x) { { let x } ', options: { webcompat: true, lexical: true } },
+    { code: 'try {} catch (x) { let x }', options: { webcompat: true, lexical: true } },
+    {
+      code: outdent`
+        try {} catch (foo) {}  let foo;
+        try {} catch (foo) {}  let foo;
+      `,
+      options: { lexical: true },
+    },
   ]);
 
   for (const arg of [
@@ -169,20 +170,26 @@ describe('Lexical - Try', () => {
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
     'try {} catch (foo) { { let foo; } }',
-    `try {} catch (foo) { { let foo; } }
-    try {} catch (foo) { { let foo; } }`,
+    outdent`
+      try {} catch (foo) { { let foo; } }
+      try {} catch (foo) { { let foo; } }
+    `,
     'try {} catch (foo) { function x() { var foo; } }',
     'try {} catch (foo) { function x(foo) {} }',
     'try {} catch(x) { x = 0; }',
     'try {} catch(x) { with ({}) { x = 1; } }',
-    `try {} catch(x) { with ({}) { x = 1; } }
-    try {} catch(x) { with ({}) { x = 1; } }`,
+    outdent`
+      try {} catch(x) { with ({}) { x = 1; } }
+      try {} catch(x) { with ({}) { x = 1; } }
+    `,
     'try {} catch (foo) {} var foo;',
     'try { } catch (a) { { const a = b; } }',
     'var foo; try {} catch (_) { const foo = 1; }',
     'try {} catch (foo) { { let foo; } }',
-    `try {} catch (foo) { { let foo; } }
-    try {} catch (foo) { { let foo; } }`,
+    outdent`
+      try {} catch (foo) { { let foo; } }
+      try {} catch (foo) { { let foo; } }
+    `,
     'var foo; try {} catch (_) { let foo; }',
     'try {} catch (e) { { let e = x; } }',
     'try {} catch (foo) {} let foo;',
@@ -192,19 +199,19 @@ describe('Lexical - Try', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
   }
@@ -215,10 +222,14 @@ describe('Lexical - Try', () => {
     'try {} catch (e) { for (var e in y) {} }',
     'try {} catch (x) { { var x } }',
     'try {} catch (e) { for (let e;;) {} }',
-    `try {} catch (e) { for (let e;;) {} }
-    try {} catch (e) { for (let e;;) {} }`,
-    `try {} catch (e) { for (const e = y;;) {} }
-    try {} catch (e) { for (const e = y;;) {} }`,
+    outdent`
+      try {} catch (e) { for (let e;;) {} }
+      try {} catch (e) { for (let e;;) {} }
+    `,
+    outdent`
+      try {} catch (e) { for (const e = y;;) {} }
+      try {} catch (e) { for (const e = y;;) {} }
+    `,
     'try {} catch (e) { for (const e = y;;) {} }',
     'try {} catch (e) { for (let e in y) {} }',
     'try {} catch (e) { for (const e in y) {} }',
@@ -228,8 +239,10 @@ describe('Lexical - Try', () => {
     'try { f; } catch (exception) { err1 = exception; } switch (1) { case 1: function f() {  } } try { f; } catch (exception) { err2 = exception; }',
     'try { throw {}; } catch ({ f }) {  if (false) ; else function f() {  }  }',
     'try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }',
-    `try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
-    try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }`,
+    outdent`
+      try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
+      try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
+    `,
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
     'try {} catch (foo) { { let foo; } }',
@@ -239,8 +252,10 @@ describe('Lexical - Try', () => {
     'try {} catch (e) { for (var e of y) {} }',
     'try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }',
     'try {} catch (e) { var e = x; }',
-    `try {} catch (e) { var e = x; }
-    try {} catch (e) { var e = x; }`,
+    outdent`
+      try {} catch (e) { var e = x; }
+      try {} catch (e) { var e = x; }
+    `,
     'try {} catch(e) { var e; }',
     'try { } finally { function f(){} function f(){} }',
     'try { throw 0; } catch(e) { { function e(){} } }',
@@ -260,13 +275,13 @@ describe('Lexical - Try', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

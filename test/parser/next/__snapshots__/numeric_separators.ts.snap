@@ -1,0 +1,169 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > "use strict"; 0__777 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token
+> 1 | "use strict"; 0__777
+    |               ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > "use strict"; 0_012 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token
+> 1 | "use strict"; 0_012
+    |               ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > "use strict"; 0_7_7_7 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token
+> 1 | "use strict"; 0_7_7_7
+    |               ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > "use strict"; 00_122 1`] = `
+"SyntaxError [1:14-1:15]: Octal escape sequences are not allowed in strict mode
+> 1 | "use strict"; 00_122
+    |               ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > "use strict"; 07_7_7 1`] = `
+"SyntaxError [1:14-1:15]: Octal escape sequences are not allowed in strict mode
+> 1 | "use strict"; 07_7_7
+    |               ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > "use strict"; 07_7_7_ 1`] = `
+"SyntaxError [1:14-1:15]: Octal escape sequences are not allowed in strict mode
+> 1 | "use strict"; 07_7_7_
+    |               ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0.0__21 1`] = `
+"SyntaxError [1:4-1:4]: Only one underscore is allowed as numeric separator
+> 1 | 0.0__21
+    |     ^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0.0_2_1_ 1`] = `
+"SyntaxError [1:8-1:8]: Numeric separators are not allowed at the end of numeric literals
+> 1 | 0.0_2_1_
+    |         ^ Numeric separators are not allowed at the end of numeric literals"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0_ 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | 0_
+    | ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0_b_1 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | 0_b_1
+    | ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0_b1 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | 0_b1
+    | ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0_x_1 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | 0_x_1
+    | ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0_x1 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | 0_x1
+    | ^ Unexpected token"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 09_0; 1`] = `
+"SyntaxError [1:3-1:3]: Only one underscore is allowed as numeric separator
+> 1 | 09_0;
+    |    ^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0b_0101 1`] = `
+"SyntaxError [1:0-1:2]: Only one underscore is allowed as numeric separator
+> 1 | 0b_0101
+    | ^^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0b1__1 1`] = `
+"SyntaxError [1:0-1:4]: Only one underscore is allowed as numeric separator
+> 1 | 0b1__1
+    | ^^^^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0b11_ 1`] = `
+"SyntaxError [1:0-1:5]: Numeric separators are not allowed at the end of numeric literals
+> 1 | 0b11_
+    | ^^^^^ Numeric separators are not allowed at the end of numeric literals"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0o_777 1`] = `
+"SyntaxError [1:0-1:2]: Only one underscore is allowed as numeric separator
+> 1 | 0o_777
+    | ^^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0o7__77 1`] = `
+"SyntaxError [1:0-1:4]: Only one underscore is allowed as numeric separator
+> 1 | 0o7__77
+    | ^^^^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0o777_ 1`] = `
+"SyntaxError [1:0-1:6]: Numeric separators are not allowed at the end of numeric literals
+> 1 | 0o777_
+    | ^^^^^^ Numeric separators are not allowed at the end of numeric literals"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0x_1 1`] = `
+"SyntaxError [1:0-1:2]: Only one underscore is allowed as numeric separator
+> 1 | 0x_1
+    | ^^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0x1_ 1`] = `
+"SyntaxError [1:0-1:4]: Numeric separators are not allowed at the end of numeric literals
+> 1 | 0x1_
+    | ^^^^ Numeric separators are not allowed at the end of numeric literals"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 0x1__1 1`] = `
+"SyntaxError [1:0-1:4]: Only one underscore is allowed as numeric separator
+> 1 | 0x1__1
+    | ^^^^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 1__0 1`] = `
+"SyntaxError [1:2-1:2]: Only one underscore is allowed as numeric separator
+> 1 | 1__0
+    |   ^ Only one underscore is allowed as numeric separator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 1_0_0_0_ 1`] = `
+"SyntaxError [1:8-1:8]: Numeric separators are not allowed at the end of numeric literals
+> 1 | 1_0_0_0_
+    |         ^ Numeric separators are not allowed at the end of numeric literals"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 1_e+1 1`] = `
+"SyntaxError [1:2-1:2]: Numeric separators are not allowed at the end of numeric literals
+> 1 | 1_e+1
+    |   ^ Numeric separators are not allowed at the end of numeric literals"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 1e+_1 1`] = `
+"SyntaxError [1:0-1:3]: Non-number found after exponent indicator
+> 1 | 1e+_1
+    | ^^^ Non-number found after exponent indicator"
+`;
+
+exports[`Next - Numeric separators > Next - Numeric separators (fail) > 1e_1 1`] = `
+"SyntaxError [1:0-1:2]: Non-number found after exponent indicator
+> 1 | 1e_1
+    | ^^ Non-number found after exponent indicator"
+`;

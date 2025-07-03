@@ -1,5 +1,185 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Next - Decorators > Next - Decorators (fail) > (@bar const foo = 1); 1`] = `
+"SyntaxError [1:16-1:17]: Expected '{'
+> 1 | (@bar const foo = 1);
+    |                 ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > (@bar function foo() {}) 1`] = `
+"SyntaxError [1:18-1:19]: Expected '{'
+> 1 | (@bar function foo() {})
+    |                   ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar const foo = 1; 1`] = `
+"SyntaxError [1:15-1:16]: Expected '{'
+> 1 | @bar const foo = 1;
+    |                ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export * from "./foo"; 1`] = `
+"SyntaxError [1:26-1:27]: Leading decorators must be attached to a class declaration
+> 1 | @bar export * from "./foo";
+    |                           ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export {Foo}; 1`] = `
+"SyntaxError [1:17-1:18]: Leading decorators must be attached to a class declaration
+> 1 | @bar export {Foo};
+    |                  ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export const foo = 1; 1`] = `
+"SyntaxError [1:25-1:26]: Leading decorators must be attached to a class declaration
+> 1 | @bar export const foo = 1;
+    |                          ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export const lo = {a: class Foo {}}; 1`] = `
+"SyntaxError [1:40-1:41]: Leading decorators must be attached to a class declaration
+> 1 | @bar export const lo = {a: class Foo {}};
+    |                                         ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export default function foo() {} 1`] = `
+"SyntaxError [1:36-1:37]: Leading decorators must be attached to a class declaration
+> 1 | @bar export default function foo() {}
+    |                                     ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar function foo() {} 1`] = `
+"SyntaxError [1:17-1:18]: Expected '{'
+> 1 | @bar function foo() {}
+    |                  ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar(); 1`] = `
+"SyntaxError [1:6-1:7]: Class declaration must have a name in this context
+> 1 | @bar();
+    |       ^ Class declaration must have a name in this context"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar; 1`] = `
+"SyntaxError [1:4-1:5]: Class declaration must have a name in this context
+> 1 | @bar;
+    |     ^ Class declaration must have a name in this context"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @decorate 1`] = `
+"SyntaxError [1:1-1:9]: Class declaration must have a name in this context
+> 1 | @decorate
+    |  ^^^^^^^^ Class declaration must have a name in this context"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @foo export @bar class A {} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '@'
+> 1 | @foo export @bar class A {}
+    |             ^ Unexpected token: '@'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @foo export default @bar class A {} 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '@'
+> 1 | @foo export default @bar class A {}
+    |                     ^ Unexpected token: '@'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A {  constructor(@foo x) {} } 1`] = `
+"SyntaxError [1:23-1:24]: Expected ')'
+> 1 | class A {  constructor(@foo x) {} }
+    |                        ^ Expected ')'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @abc constructor(){} } 1`] = `
+"SyntaxError [1:15-1:26]: Decorators can't be used with a constructor
+> 1 | class A { @abc constructor(){} }
+    |                ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @dec ;} 1`] = `
+"SyntaxError [1:16-1:17]: Decorators must not be followed by a semicolon
+> 1 | class A { @dec ;}
+    |                 ^ Decorators must not be followed by a semicolon"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @dec } 1`] = `
+"SyntaxError [1:15-1:16]: Trailing decorator may be followed by method
+> 1 | class A { @dec }
+    |                ^ Trailing decorator may be followed by method"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @dec accessor a() {}} 1`] = `
+"SyntaxError [1:25-1:26]: Unexpected token: '('
+> 1 | class A { @dec accessor a() {}}
+    |                          ^ Unexpected token: '('"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @foo && bar method() {}  } 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '&&'
+> 1 | class A { @foo && bar method() {}  }
+    |                ^^ Unexpected token: '&&'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @foo && bar; method() {}  } 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '&&'
+> 1 | class A { @foo && bar; method() {}  }
+    |                ^^ Unexpected token: '&&'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { accessor @dec a} 1`] = `
+"SyntaxError [1:19-1:20]: Invalid key token
+> 1 | class A { accessor @dec a}
+    |                    ^ Invalid key token"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { accessor a() {}} 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '('
+> 1 | class A { accessor a() {}}
+    |                     ^ Unexpected token: '('"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo {  @a; m(){}} 1`] = `
+"SyntaxError [1:17-1:18]: Decorators must not be followed by a semicolon
+> 1 | class Foo {  @a; m(){}}
+    |                  ^ Decorators must not be followed by a semicolon"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo { @abc constructor(){} } 1`] = `
+"SyntaxError [1:17-1:28]: Decorators can't be used with a constructor
+> 1 | class Foo { @abc constructor(){} }
+    |                  ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo { @abc constructor(){} } 2`] = `
+"SyntaxError [1:17-1:28]: Decorators can't be used with a constructor
+> 1 | class Foo { @abc constructor(){} }
+    |                  ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo { constructor(@foo x) {} } 1`] = `
+"SyntaxError [1:24-1:25]: Expected ')'
+> 1 | class Foo { constructor(@foo x) {} }
+    |                         ^ Expected ')'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo {@abc constructor(){} 1`] = `
+"SyntaxError [1:16-1:27]: Decorators can't be used with a constructor
+> 1 | class Foo {@abc constructor(){}
+    |                 ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > export default @decorator class Foo {} 1`] = `
+"SyntaxError [1:26-1:31]: Expected '{'
+> 1 | export default @decorator class Foo {}
+    |                           ^^^^^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > var obj = { method(@foo x) {} }; 1`] = `
+"SyntaxError [1:19-1:20]: Expected ')'
+> 1 | var obj = { method(@foo x) {} };
+    |                    ^ Expected ')'"
+`;
+
 exports[`Next - Decorators > Next - Decorators (pass) > (@
  dec() class C {}) 1`] = `
 {
@@ -59,16 +239,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@
                   "line": 2,
                 },
                 "start": {
-                  "column": 4,
+                  "column": 1,
                   "line": 2,
                 },
               },
               "optional": false,
               "range": [
-                7,
+                4,
                 9,
               ],
-              "start": 7,
+              "start": 4,
               "type": "CallExpression",
             },
             "loc": {
@@ -168,30 +348,30 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
-  class Foo {}) 1`] = `
+class Foo {}) 1`] = `
 {
   "body": [
     {
-      "end": 28,
+      "end": 26,
       "expression": {
         "body": {
           "body": [],
-          "end": 27,
+          "end": 25,
           "loc": {
             "end": {
-              "column": 14,
+              "column": 12,
               "line": 2,
             },
             "start": {
-              "column": 12,
+              "column": 10,
               "line": 2,
             },
           },
           "range": [
+            23,
             25,
-            27,
           ],
-          "start": 25,
+          "start": 23,
           "type": "ClassBody",
         },
         "decorators": [
@@ -247,16 +427,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
                   "line": 1,
                 },
                 "start": {
-                  "column": 5,
+                  "column": 2,
                   "line": 1,
                 },
               },
               "optional": false,
               "range": [
-                5,
+                2,
                 12,
               ],
-              "start": 5,
+              "start": 2,
               "type": "CallExpression",
             },
             "loc": {
@@ -277,30 +457,30 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
             "type": "Decorator",
           },
         ],
-        "end": 27,
+        "end": 25,
         "id": {
-          "end": 24,
+          "end": 22,
           "loc": {
             "end": {
-              "column": 11,
+              "column": 9,
               "line": 2,
             },
             "start": {
-              "column": 8,
+              "column": 6,
               "line": 2,
             },
           },
           "name": "Foo",
           "range": [
-            21,
-            24,
+            19,
+            22,
           ],
-          "start": 21,
+          "start": 19,
           "type": "Identifier",
         },
         "loc": {
           "end": {
-            "column": 14,
+            "column": 12,
             "line": 2,
           },
           "start": {
@@ -310,7 +490,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
         },
         "range": [
           1,
-          27,
+          25,
         ],
         "start": 1,
         "superClass": null,
@@ -318,7 +498,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
       },
       "loc": {
         "end": {
-          "column": 15,
+          "column": 13,
           "line": 2,
         },
         "start": {
@@ -328,16 +508,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
       },
       "range": [
         0,
-        28,
+        26,
       ],
       "start": 0,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 28,
+  "end": 26,
   "loc": {
     "end": {
-      "column": 15,
+      "column": 13,
       "line": 2,
     },
     "start": {
@@ -347,7 +527,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
   },
   "range": [
     0,
-    28,
+    26,
   ],
   "sourceType": "script",
   "start": 0,
@@ -356,7 +536,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
-  class Foo {}) 2`] = `
+class Foo {}) 2`] = `
 {
   "body": [
     {
@@ -866,16 +1046,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                 "line": 2,
               },
               "start": {
-                "column": 4,
+                "column": 1,
                 "line": 2,
               },
             },
             "optional": false,
             "range": [
-              6,
+              3,
               8,
             ],
-            "start": 6,
+            "start": 3,
             "type": "CallExpression",
           },
           "loc": {
@@ -994,7 +1174,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                 "line": 2,
               },
               "start": {
-                "column": 2,
+                "column": 1,
                 "line": 2,
               },
             },
@@ -1040,10 +1220,10 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
               "type": "Identifier",
             },
             "range": [
-              4,
+              3,
               6,
             ],
-            "start": 4,
+            "start": 3,
             "type": "MemberExpression",
           },
           "loc": {
@@ -1126,11 +1306,11 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @({
-                store: @inner class Foo {}
-              })
-              class Bar {
+  store: @inner class Foo {}
+})
+class Bar {
 
-              } 1`] = `
+} 1`] = `
 {
   "body": [
     {
@@ -1512,29 +1692,29 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @bar export default
-          class Foo { } 1`] = `
+class Foo { } 1`] = `
 {
   "body": [
     {
       "declaration": {
         "body": {
           "body": [],
-          "end": 43,
+          "end": 33,
           "loc": {
             "end": {
-              "column": 23,
+              "column": 13,
               "line": 2,
             },
             "start": {
-              "column": 20,
+              "column": 10,
               "line": 2,
             },
           },
           "range": [
-            40,
-            43,
+            30,
+            33,
           ],
-          "start": 40,
+          "start": 30,
           "type": "ClassBody",
         },
         "decorators": [
@@ -1578,30 +1758,30 @@ exports[`Next - Decorators > Next - Decorators (pass) > @bar export default
             "type": "Decorator",
           },
         ],
-        "end": 43,
+        "end": 33,
         "id": {
-          "end": 39,
+          "end": 29,
           "loc": {
             "end": {
-              "column": 19,
+              "column": 9,
               "line": 2,
             },
             "start": {
-              "column": 16,
+              "column": 6,
               "line": 2,
             },
           },
           "name": "Foo",
           "range": [
-            36,
-            39,
+            26,
+            29,
           ],
-          "start": 36,
+          "start": 26,
           "type": "Identifier",
         },
         "loc": {
           "end": {
-            "column": 23,
+            "column": 13,
             "line": 2,
           },
           "start": {
@@ -1611,16 +1791,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > @bar export default
         },
         "range": [
           0,
-          43,
+          33,
         ],
         "start": 0,
         "superClass": null,
         "type": "ClassDeclaration",
       },
-      "end": 43,
+      "end": 33,
       "loc": {
         "end": {
-          "column": 23,
+          "column": 13,
           "line": 2,
         },
         "start": {
@@ -1630,16 +1810,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > @bar export default
       },
       "range": [
         0,
-        43,
+        33,
       ],
       "start": 0,
       "type": "ExportDefaultDeclaration",
     },
   ],
-  "end": 43,
+  "end": 33,
   "loc": {
     "end": {
-      "column": 23,
+      "column": 13,
       "line": 2,
     },
     "start": {
@@ -1649,7 +1829,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @bar export default
   },
   "range": [
     0,
-    43,
+    33,
   ],
   "sourceType": "module",
   "start": 0,
@@ -1970,125 +2150,21 @@ exports[`Next - Decorators > Next - Decorators (pass) > @dec export default clas
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @deco
-          class A {
-            static #foo() {}
+class A {
+  get #get() {}
 
-            test() {
-              A.#foo();
-            }
-          } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "decorators": [],
-            "key": {
-              "name": "foo",
-              "type": "PrivateIdentifier",
-            },
-            "kind": "method",
-            "static": true,
-            "type": "MethodDefinition",
-            "value": {
-              "async": false,
-              "body": {
-                "body": [],
-                "type": "BlockStatement",
-              },
-              "generator": false,
-              "id": null,
-              "params": [],
-              "type": "FunctionExpression",
-            },
-          },
-          {
-            "computed": false,
-            "decorators": [],
-            "key": {
-              "name": "test",
-              "type": "Identifier",
-            },
-            "kind": "method",
-            "static": false,
-            "type": "MethodDefinition",
-            "value": {
-              "async": false,
-              "body": {
-                "body": [
-                  {
-                    "expression": {
-                      "arguments": [],
-                      "callee": {
-                        "computed": false,
-                        "object": {
-                          "name": "A",
-                          "type": "Identifier",
-                        },
-                        "optional": false,
-                        "property": {
-                          "name": "foo",
-                          "type": "PrivateIdentifier",
-                        },
-                        "type": "MemberExpression",
-                      },
-                      "optional": false,
-                      "type": "CallExpression",
-                    },
-                    "type": "ExpressionStatement",
-                  },
-                ],
-                "type": "BlockStatement",
-              },
-              "generator": false,
-              "id": null,
-              "params": [],
-              "type": "FunctionExpression",
-            },
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "decorators": [
-        {
-          "expression": {
-            "name": "deco",
-            "type": "Identifier",
-          },
-          "type": "Decorator",
-        },
-      ],
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
+  set #set(_) {}
 
-exports[`Next - Decorators > Next - Decorators (pass) > @deco
-        class A {
-          get #get() {}
+  get #getset() {}
+  set #getset(_) {}
 
-          set #set(_) {}
-
-          get #getset() {}
-          set #getset(_) {}
-
-          test() {
-            this.#get;
-            this.#set = 2;
-            this.#getset;
-            this.#getset = 2;
-          }
-        } 1`] = `
+  test() {
+    this.#get;
+    this.#set = 2;
+    this.#getset;
+    this.#getset = 2;
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -2316,6 +2392,110 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
 }
 `;
 
+exports[`Next - Decorators > Next - Decorators (pass) > @deco
+class A {
+  static #foo() {}
+
+  test() {
+    A.#foo();
+  }
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "key": {
+              "name": "test",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "object": {
+                          "name": "A",
+                          "type": "Identifier",
+                        },
+                        "optional": false,
+                        "property": {
+                          "name": "foo",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "optional": false,
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "expression": {
+            "name": "deco",
+            "type": "Identifier",
+          },
+          "type": "Decorator",
+        },
+      ],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {} 1`] = `
 {
   "body": [
@@ -2428,11 +2608,11 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @decorator
-           class Foo {
-            async f1() {}
-            *f2() {}
-            async *f3() {}
-          } 1`] = `
+class Foo {
+  async f1() {}
+  *f2() {}
+  async *f3() {}
+} 1`] = `
 {
   "body": [
     {
@@ -2530,7 +2710,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @decorator
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
-  class Foo {} 1`] = `
+class Foo {} 1`] = `
 {
   "body": [
     {
@@ -2571,7 +2751,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
-  class Foo {} 2`] = `
+class Foo {} 2`] = `
 {
   "body": [
     {
@@ -2612,7 +2792,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @foo(class Bar{})
-    class Foo {} 1`] = `
+class Foo {} 1`] = `
 {
   "body": [
     {
@@ -2662,11 +2842,11 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo(class Bar{})
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @outer({
-            store: @inner class Foo {}
-          })
-          class Bar {
+  store: @inner class Foo {}
+})
+class Bar {
 
-          } 1`] = `
+} 1`] = `
 {
   "body": [
     {
@@ -2740,14 +2920,14 @@ exports[`Next - Decorators > Next - Decorators (pass) > @outer({
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > @pushElement({
-        kind: "initializer",
-        placement: "own",
-        initializer() {
-          self = this;
-        }
-      })
-      class A {}
-      new A(); 1`] = `
+  kind: "initializer",
+  placement: "own",
+  initializer() {
+    self = this;
+  }
+})
+class A {}
+new A(); 1`] = `
 {
   "body": [
     {
@@ -2867,327 +3047,13 @@ exports[`Next - Decorators > Next - Decorators (pass) > @pushElement({
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > class A {
-                        @dec static #name = 0
-                      } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "decorators": [
-              {
-                "expression": {
-                  "name": "dec",
-                  "type": "Identifier",
-                },
-                "type": "Decorator",
-              },
-            ],
-            "key": {
-              "name": "name",
-              "type": "PrivateIdentifier",
-            },
-            "static": true,
-            "type": "PropertyDefinition",
-            "value": {
-              "type": "Literal",
-              "value": 0,
-            },
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "decorators": [],
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
+  @(({ key }) => { pn = key; })
+  #x = 1;
 
-exports[`Next - Decorators > Next - Decorators (pass) > class A {
-                    @dec #name = 0
-                  } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "decorators": [
-              {
-                "expression": {
-                  "name": "dec",
-                  "type": "Identifier",
-                },
-                "type": "Decorator",
-              },
-            ],
-            "key": {
-              "name": "name",
-              "type": "PrivateIdentifier",
-            },
-            "static": false,
-            "type": "PropertyDefinition",
-            "value": {
-              "type": "Literal",
-              "value": 0,
-            },
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "decorators": [],
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Decorators > Next - Decorators (pass) > class A {
-                  @(_ => el = _)
-                  static foo() {}
-                } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "decorators": [
-              {
-                "expression": {
-                  "async": false,
-                  "body": {
-                    "left": {
-                      "name": "el",
-                      "type": "Identifier",
-                    },
-                    "operator": "=",
-                    "right": {
-                      "name": "_",
-                      "type": "Identifier",
-                    },
-                    "type": "AssignmentExpression",
-                  },
-                  "expression": true,
-                  "generator": false,
-                  "params": [
-                    {
-                      "name": "_",
-                      "type": "Identifier",
-                    },
-                  ],
-                  "type": "ArrowFunctionExpression",
-                },
-                "type": "Decorator",
-              },
-            ],
-            "key": {
-              "name": "foo",
-              "type": "Identifier",
-            },
-            "kind": "method",
-            "static": true,
-            "type": "MethodDefinition",
-            "value": {
-              "async": false,
-              "body": {
-                "body": [],
-                "type": "BlockStatement",
-              },
-              "generator": false,
-              "id": null,
-              "params": [],
-              "type": "FunctionExpression",
-            },
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "decorators": [],
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Decorators > Next - Decorators (pass) > class A {
-              @(({ key }) => { pn = key; })
-              #x;
-            } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "decorators": [
-              {
-                "expression": {
-                  "async": false,
-                  "body": {
-                    "body": [
-                      {
-                        "expression": {
-                          "left": {
-                            "name": "pn",
-                            "type": "Identifier",
-                          },
-                          "operator": "=",
-                          "right": {
-                            "name": "key",
-                            "type": "Identifier",
-                          },
-                          "type": "AssignmentExpression",
-                        },
-                        "type": "ExpressionStatement",
-                      },
-                    ],
-                    "type": "BlockStatement",
-                  },
-                  "expression": false,
-                  "generator": false,
-                  "params": [
-                    {
-                      "properties": [
-                        {
-                          "computed": false,
-                          "key": {
-                            "name": "key",
-                            "type": "Identifier",
-                          },
-                          "kind": "init",
-                          "method": false,
-                          "shorthand": true,
-                          "type": "Property",
-                          "value": {
-                            "name": "key",
-                            "type": "Identifier",
-                          },
-                        },
-                      ],
-                      "type": "ObjectPattern",
-                    },
-                  ],
-                  "type": "ArrowFunctionExpression",
-                },
-                "type": "Decorator",
-              },
-            ],
-            "key": {
-              "name": "x",
-              "type": "PrivateIdentifier",
-            },
-            "static": false,
-            "type": "PropertyDefinition",
-            "value": null,
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "decorators": [],
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Decorators > Next - Decorators (pass) > class A {
-          @foo get getter(){}
-        } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "decorators": [
-              {
-                "expression": {
-                  "name": "foo",
-                  "type": "Identifier",
-                },
-                "type": "Decorator",
-              },
-            ],
-            "key": {
-              "name": "getter",
-              "type": "Identifier",
-            },
-            "kind": "get",
-            "static": false,
-            "type": "MethodDefinition",
-            "value": {
-              "async": false,
-              "body": {
-                "body": [],
-                "type": "BlockStatement",
-              },
-              "generator": false,
-              "id": null,
-              "params": [],
-              "type": "FunctionExpression",
-            },
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "decorators": [],
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Decorators > Next - Decorators (pass) > class A {
-        @(({ key }) => { pn = key; })
-        #x = 1;
-
-        getX() {
-          return this.#x;
-        }
-      } 1`] = `
+  getX() {
+    return this.#x;
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -3289,6 +3155,320 @@ exports[`Next - Decorators > Next - Decorators (pass) > class A {
                     "type": "ReturnStatement",
                   },
                 ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > class A {
+  @(({ key }) => { pn = key; })
+  #x;
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "left": {
+                            "name": "pn",
+                            "type": "Identifier",
+                          },
+                          "operator": "=",
+                          "right": {
+                            "name": "key",
+                            "type": "Identifier",
+                          },
+                          "type": "AssignmentExpression",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "properties": [
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "key",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": true,
+                          "type": "Property",
+                          "value": {
+                            "name": "key",
+                            "type": "Identifier",
+                          },
+                        },
+                      ],
+                      "type": "ObjectPattern",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "x",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > class A {
+  @(_ => el = _)
+  static foo() {}
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "async": false,
+                  "body": {
+                    "left": {
+                      "name": "el",
+                      "type": "Identifier",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "name": "_",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "expression": true,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "_",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > class A {
+  @dec #name = 0
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "name": "dec",
+                  "type": "Identifier",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "name",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 0,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > class A {
+  @dec static #name = 0
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "name": "dec",
+                  "type": "Identifier",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "name",
+              "type": "PrivateIdentifier",
+            },
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 0,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > class A {
+  @foo get getter(){}
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "getter",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
                 "type": "BlockStatement",
               },
               "generator": false,
@@ -4195,14 +4375,14 @@ exports[`Next - Decorators > Next - Decorators (pass) > class A { @dec name = 0;
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > class Bar{
-              @outer(
-                @classDec class {
-                  @inner
-                  innerMethod() {}
-                }
-              )
-              outerMethod() {}
-            } 1`] = `
+  @outer(
+    @classDec class {
+      @inner
+      innerMethod() {}
+    }
+  )
+  outerMethod() {}
+} 1`] = `
 {
   "body": [
     {
@@ -4310,10 +4490,12 @@ exports[`Next - Decorators > Next - Decorators (pass) > class Bar{
 }
 `;
 
-exports[`Next - Decorators > Next - Decorators (pass) > class Foo {
-                      @dec
-                      static bar() {}
-                    } 1`] = `
+exports[`Next - Decorators > Next - Decorators (pass) > class C {
+  @dec method() {}
+  @dec static method() {}
+  @dec field;
+  @dec static field;
+} 1`] = `
 {
   "body": [
     {
@@ -4323,52 +4505,504 @@ exports[`Next - Decorators > Next - Decorators (pass) > class Foo {
             "computed": false,
             "decorators": [
               {
+                "end": 16,
                 "expression": {
+                  "end": 16,
+                  "loc": {
+                    "end": {
+                      "column": 6,
+                      "line": 2,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 2,
+                    },
+                  },
                   "name": "dec",
+                  "range": [
+                    13,
+                    16,
+                  ],
+                  "start": 13,
                   "type": "Identifier",
                 },
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                },
+                "range": [
+                  12,
+                  16,
+                ],
+                "start": 12,
                 "type": "Decorator",
               },
             ],
+            "end": 28,
             "key": {
-              "name": "bar",
+              "end": 23,
+              "loc": {
+                "end": {
+                  "column": 13,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "name": "method",
+              "range": [
+                17,
+                23,
+              ],
+              "start": 17,
               "type": "Identifier",
             },
             "kind": "method",
+            "loc": {
+              "end": {
+                "column": 18,
+                "line": 2,
+              },
+              "start": {
+                "column": 2,
+                "line": 2,
+              },
+            },
+            "range": [
+              12,
+              28,
+            ],
+            "start": 12,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 28,
+                "loc": {
+                  "end": {
+                    "column": 18,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 16,
+                    "line": 2,
+                  },
+                },
+                "range": [
+                  26,
+                  28,
+                ],
+                "start": 26,
+                "type": "BlockStatement",
+              },
+              "end": 28,
+              "generator": false,
+              "id": null,
+              "loc": {
+                "end": {
+                  "column": 18,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 2,
+                },
+              },
+              "params": [],
+              "range": [
+                23,
+                28,
+              ],
+              "start": 23,
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "end": 35,
+                "expression": {
+                  "end": 35,
+                  "loc": {
+                    "end": {
+                      "column": 6,
+                      "line": 3,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 3,
+                    },
+                  },
+                  "name": "dec",
+                  "range": [
+                    32,
+                    35,
+                  ],
+                  "start": 32,
+                  "type": "Identifier",
+                },
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 3,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 3,
+                  },
+                },
+                "range": [
+                  31,
+                  35,
+                ],
+                "start": 31,
+                "type": "Decorator",
+              },
+            ],
+            "end": 54,
+            "key": {
+              "end": 49,
+              "loc": {
+                "end": {
+                  "column": 20,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 14,
+                  "line": 3,
+                },
+              },
+              "name": "method",
+              "range": [
+                43,
+                49,
+              ],
+              "start": 43,
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "loc": {
+              "end": {
+                "column": 25,
+                "line": 3,
+              },
+              "start": {
+                "column": 2,
+                "line": 3,
+              },
+            },
+            "range": [
+              31,
+              54,
+            ],
+            "start": 31,
             "static": true,
             "type": "MethodDefinition",
             "value": {
               "async": false,
               "body": {
                 "body": [],
+                "end": 54,
+                "loc": {
+                  "end": {
+                    "column": 25,
+                    "line": 3,
+                  },
+                  "start": {
+                    "column": 23,
+                    "line": 3,
+                  },
+                },
+                "range": [
+                  52,
+                  54,
+                ],
+                "start": 52,
                 "type": "BlockStatement",
               },
+              "end": 54,
               "generator": false,
               "id": null,
+              "loc": {
+                "end": {
+                  "column": 25,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 20,
+                  "line": 3,
+                },
+              },
               "params": [],
+              "range": [
+                49,
+                54,
+              ],
+              "start": 49,
               "type": "FunctionExpression",
             },
           },
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "end": 61,
+                "expression": {
+                  "end": 61,
+                  "loc": {
+                    "end": {
+                      "column": 6,
+                      "line": 4,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 4,
+                    },
+                  },
+                  "name": "dec",
+                  "range": [
+                    58,
+                    61,
+                  ],
+                  "start": 58,
+                  "type": "Identifier",
+                },
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 4,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 4,
+                  },
+                },
+                "range": [
+                  57,
+                  61,
+                ],
+                "start": 57,
+                "type": "Decorator",
+              },
+            ],
+            "end": 68,
+            "key": {
+              "end": 67,
+              "loc": {
+                "end": {
+                  "column": 12,
+                  "line": 4,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 4,
+                },
+              },
+              "name": "field",
+              "range": [
+                62,
+                67,
+              ],
+              "start": 62,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 4,
+              },
+              "start": {
+                "column": 2,
+                "line": 4,
+              },
+            },
+            "range": [
+              57,
+              68,
+            ],
+            "start": 57,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "end": 75,
+                "expression": {
+                  "end": 75,
+                  "loc": {
+                    "end": {
+                      "column": 6,
+                      "line": 5,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 5,
+                    },
+                  },
+                  "name": "dec",
+                  "range": [
+                    72,
+                    75,
+                  ],
+                  "start": 72,
+                  "type": "Identifier",
+                },
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 5,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 5,
+                  },
+                },
+                "range": [
+                  71,
+                  75,
+                ],
+                "start": 71,
+                "type": "Decorator",
+              },
+            ],
+            "end": 89,
+            "key": {
+              "end": 88,
+              "loc": {
+                "end": {
+                  "column": 19,
+                  "line": 5,
+                },
+                "start": {
+                  "column": 14,
+                  "line": 5,
+                },
+              },
+              "name": "field",
+              "range": [
+                83,
+                88,
+              ],
+              "start": 83,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 20,
+                "line": 5,
+              },
+              "start": {
+                "column": 2,
+                "line": 5,
+              },
+            },
+            "range": [
+              71,
+              89,
+            ],
+            "start": 71,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
         ],
+        "end": 91,
+        "loc": {
+          "end": {
+            "column": 1,
+            "line": 6,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
+        "range": [
+          8,
+          91,
+        ],
+        "start": 8,
         "type": "ClassBody",
       },
       "decorators": [],
+      "end": 91,
       "id": {
-        "name": "Foo",
+        "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
         "type": "Identifier",
       },
+      "loc": {
+        "end": {
+          "column": 1,
+          "line": 6,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        91,
+      ],
+      "start": 0,
       "superClass": null,
       "type": "ClassDeclaration",
     },
   ],
+  "end": 91,
+  "loc": {
+    "end": {
+      "column": 1,
+      "line": 6,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    91,
+  ],
   "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > class Foo {
-        @A * b() {}
-      } 1`] = `
+  @A * b() {}
+} 1`] = `
 {
   "body": [
     {
@@ -4422,9 +5056,65 @@ exports[`Next - Decorators > Next - Decorators (pass) > class Foo {
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > class Foo {
-    @dec
-    static bar() {}
-  } 1`] = `
+  @dec
+  static bar() {}
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "name": "dec",
+                  "type": "Identifier",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "bar",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "Foo",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > class Foo {
+  @dec
+  static bar() {}
+} 2`] = `
 {
   "body": [
     {
@@ -4763,115 +5453,115 @@ exports[`Next - Decorators > Next - Decorators (pass) > export @dec class E {}; 
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > export default
-          @bar class Foo { } 1`] = `
+@bar class Foo { } 1`] = `
 {
   "body": [
     {
       "declaration": {
         "body": {
           "body": [],
-          "end": 43,
+          "end": 33,
           "loc": {
             "end": {
-              "column": 28,
+              "column": 18,
               "line": 2,
             },
             "start": {
-              "column": 25,
+              "column": 15,
               "line": 2,
             },
           },
           "range": [
-            40,
-            43,
+            30,
+            33,
           ],
-          "start": 40,
+          "start": 30,
           "type": "ClassBody",
         },
         "decorators": [
           {
-            "end": 29,
+            "end": 19,
             "expression": {
-              "end": 29,
+              "end": 19,
               "loc": {
                 "end": {
-                  "column": 14,
+                  "column": 4,
                   "line": 2,
                 },
                 "start": {
-                  "column": 11,
+                  "column": 1,
                   "line": 2,
                 },
               },
               "name": "bar",
               "range": [
-                26,
-                29,
+                16,
+                19,
               ],
-              "start": 26,
+              "start": 16,
               "type": "Identifier",
             },
             "loc": {
               "end": {
-                "column": 14,
+                "column": 4,
                 "line": 2,
               },
               "start": {
-                "column": 10,
+                "column": 0,
                 "line": 2,
               },
             },
             "range": [
-              25,
-              29,
+              15,
+              19,
             ],
-            "start": 25,
+            "start": 15,
             "type": "Decorator",
           },
         ],
-        "end": 43,
+        "end": 33,
         "id": {
-          "end": 39,
+          "end": 29,
           "loc": {
             "end": {
-              "column": 24,
+              "column": 14,
               "line": 2,
             },
             "start": {
-              "column": 21,
+              "column": 11,
               "line": 2,
             },
           },
           "name": "Foo",
           "range": [
-            36,
-            39,
+            26,
+            29,
           ],
-          "start": 36,
+          "start": 26,
           "type": "Identifier",
         },
         "loc": {
           "end": {
-            "column": 28,
+            "column": 18,
             "line": 2,
           },
           "start": {
-            "column": 10,
+            "column": 0,
             "line": 2,
           },
         },
         "range": [
-          25,
-          43,
+          15,
+          33,
         ],
-        "start": 25,
+        "start": 15,
         "superClass": null,
         "type": "ClassDeclaration",
       },
-      "end": 43,
+      "end": 33,
       "loc": {
         "end": {
-          "column": 28,
+          "column": 18,
           "line": 2,
         },
         "start": {
@@ -4881,16 +5571,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > export default
       },
       "range": [
         0,
-        43,
+        33,
       ],
       "start": 0,
       "type": "ExportDefaultDeclaration",
     },
   ],
-  "end": 43,
+  "end": 33,
   "loc": {
     "end": {
-      "column": 28,
+      "column": 18,
       "line": 2,
     },
     "start": {
@@ -4900,7 +5590,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > export default
   },
   "range": [
     0,
-    43,
+    33,
   ],
   "sourceType": "module",
   "start": 0,
@@ -4942,7 +5632,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > export default (@decorat
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > export default @bar
-          class Foo { } 1`] = `
+class Foo { } 1`] = `
 {
   "body": [
     {
@@ -5121,10 +5811,10 @@ exports[`Next - Decorators > Next - Decorators (pass) > export default @dec clas
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > export default @id class Sample {
-        method() {
-          class Child {}
-        }
-      } 1`] = `
+  method() {
+    class Child {}
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -5196,10 +5886,10 @@ exports[`Next - Decorators > Next - Decorators (pass) > export default @id class
 
 exports[`Next - Decorators > Next - Decorators (pass) > function deco() {}
 
-      class Foo {
-        @deco
-        *generatorMethod() {}
-      } 1`] = `
+class Foo {
+  @deco
+  *generatorMethod() {}
+} 1`] = `
 {
   "body": [
     {
@@ -5267,27 +5957,27 @@ exports[`Next - Decorators > Next - Decorators (pass) > function deco() {}
 `;
 
 exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
-                return desc => {
-                  desc.descriptor.writable = w;
-                }
-              }
+  return desc => {
+    desc.descriptor.writable = w;
+  }
+}
 
-              class A {
-                @writable(false)
-                #x = 2;
+class A {
+  @writable(false)
+  #x = 2;
 
-                @writable(true)
-                @writable(false)
-                #y = 2;
+  @writable(true)
+  @writable(false)
+  #y = 2;
 
-                testX() {
-                  this.#x = 1;
-                }
+  testX() {
+    this.#x = 1;
+  }
 
-                testY() {
-                  this.#y = 1;
-                }
-              } 1`] = `
+  testY() {
+    this.#y = 1;
+  }
+} 1`] = `
 {
   "body": [
     {

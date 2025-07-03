@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Async Generator', () => {
   for (const arg of [
@@ -34,37 +34,37 @@ describe('Expressions - Async Generator', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -102,102 +102,106 @@ describe('Expressions - Async Generator', () => {
     '(async function*({}) { })',
     '(async function*({ x, }) { })',
     '(async function*({ x: y = 33 }) { })',
-    `var gen = async function *g() {
-      yield [...yield];
-    };`,
-    `var gen = async function *() {
-      yield {
-           ...yield yield,
-           ...(function(arg) {
+    outdent`
+      var gen = async function *g() {
+        yield [...yield];
+      };
+    `,
+    outdent`
+      var gen = async function *() {
+        yield {
+            ...yield yield,
+            ...(function(arg) {
               var yield = arg;
               return {...yield};
-           }(yield)),
-           ...yield,
-        }
-    };`,
-    `var gen = async function *g() {
-      return (function(arg) {
-          var yield = arg + 1;
-          return yield;
-        }(yield))
-    };
+            }(yield)),
+            ...yield,
+          }
+      };
+    `,
+    outdent`
+      var gen = async function *g() {
+        return (function(arg) {
+            var yield = arg + 1;
+            return yield;
+          }(yield))
+      };
     `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
     it(`() => { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { ${arg} }`, undefined, Context.None);
+        parseSource(`() => { ${arg} }`);
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.None);
+        parseSource(`function foo() { ${arg}}`);
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.OptionsNext);
+        parseSource(`function foo() { ${arg}}`, { next: true });
       });
     });
   }
   fail('Expressions - Async Generator (pass)', [
-    ['(async function*(a = super()) { });', Context.None],
-    ['0, async function* g(...a,) {};', Context.None],
-    ['(async function* yield() { });', Context.None],
-    ['(async function* g() { var await; });', Context.None],
-    [
-      `"use strict";
-    async function *g() {
-    return {
-         ...(function() {
-            var yield;
-         }()),
-      }
-  };`,
-      Context.None,
-    ],
-    ['(async function* g() { var yield; });', Context.None],
-    ['(async function*(a = super()) { });', Context.None],
-    ['(async function*() { } = 1);', Context.None],
-    ['(async function *() { var await; })', Context.None],
-    ['(async function*([...x, y] = [1, 2, 3]) {})', Context.None],
-    ['(async function* h([...{ x } = []]) {})', Context.None],
-    ['(async.foo6 => 1)', Context.None],
-    ['(async function* h([...{ x } = []] = []) {})', Context.None],
-    ['(async function*(x = await 1) { });', Context.None],
-    ['(async function*() { await: 1; });', Context.None],
-    ['(async function *foo(...a,) {})', Context.None],
-    ['(async function *foo([...[ x ] = []])', Context.None],
-    ['(async function *foo([...{ x } = []]) {})', Context.None],
-    ['(async function *foo([...{ x } = []] = []) {})', Context.None],
-    ['(async function *foo([...x, y]) {})', Context.None],
-    ['(async function *foo([...x = []] = []) {})', Context.None],
-    ['(async function *foo(...a,) {})', Context.None],
-    ['(async function *foo([...[x], y] = [1, 2, 3]) {})', Context.None],
-    ['(async function *foo([...{ x }, y] = [1, 2, 3])', Context.None],
-    ['(async function *foo([...{ x }, y])', Context.None],
-    ['(async function *foo([...{ x } = []] = [])', Context.None],
-    ['(async function *foo([...{ x } = []])', Context.None],
-    ['(async function* yield() { });', Context.None],
-    ['(async function* g() { var await; });', Context.None],
-    ['(async function* g() { void await; });', Context.Module | Context.Strict],
-    ['(async function* g() { void yield; });', Context.None],
-    ['0, async function* g(...x = []) {}', Context.None],
-    ['(async function *foo([...{ x } = []])', Context.None],
-    ['(async function *foo([...{ x } = []])', Context.None],
-    ['(async function *foo([...{ x } = []])', Context.None],
-    ['(async function *foo([...{ x } = []])', Context.None],
+    '(async function*(a = super()) { });',
+    '0, async function* g(...a,) {};',
+    '(async function* yield() { });',
+    '(async function* g() { var await; });',
+    outdent`
+      "use strict";
+        async function *g() {
+        return {
+             ...(function() {
+                var yield;
+             }()),
+          }
+      };
+    `,
+    '(async function* g() { var yield; });',
+    '(async function*(a = super()) { });',
+    '(async function*() { } = 1);',
+    '(async function *() { var await; })',
+    '(async function*([...x, y] = [1, 2, 3]) {})',
+    '(async function* h([...{ x } = []]) {})',
+    '(async.foo6 => 1)',
+    '(async function* h([...{ x } = []] = []) {})',
+    '(async function*(x = await 1) { });',
+    '(async function*() { await: 1; });',
+    '(async function *foo(...a,) {})',
+    '(async function *foo([...[ x ] = []])',
+    '(async function *foo([...{ x } = []]) {})',
+    '(async function *foo([...{ x } = []] = []) {})',
+    '(async function *foo([...x, y]) {})',
+    '(async function *foo([...x = []] = []) {})',
+    '(async function *foo(...a,) {})',
+    '(async function *foo([...[x], y] = [1, 2, 3]) {})',
+    '(async function *foo([...{ x }, y] = [1, 2, 3])',
+    '(async function *foo([...{ x }, y])',
+    '(async function *foo([...{ x } = []] = [])',
+    '(async function *foo([...{ x } = []])',
+    '(async function* yield() { });',
+    '(async function* g() { var await; });',
+    { code: '(async function* g() { void await; });', options: { sourceType: 'module' } },
+    '(async function* g() { void yield; });',
+    '0, async function* g(...x = []) {}',
+    '(async function *foo([...{ x } = []])',
+    '(async function *foo([...{ x } = []])',
+    '(async function *foo([...{ x } = []])',
+    '(async function *foo([...{ x } = []])',
   ]);
 
   pass('Expressions - Async Generator (pass)', [

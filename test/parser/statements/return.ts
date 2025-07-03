@@ -1,18 +1,18 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - Return', () => {
   fail('Statements - Return (fail)', [
-    ['return', Context.None],
-    ['() => return', Context.None],
-    ['*() => {return}', Context.None],
+    'return',
+    '() => return',
+    '*() => {return}',
     // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960924476
-    ['class X { static { return; } }', Context.InReturnContext],
+    { code: 'class X { static { return; } }', options: { globalReturn: true } },
     // The following should be allowed in CommonJS
     // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960396571
-    ['new.target', Context.InReturnContext],
-    ['using foo = null', Context.InReturnContext | Context.OptionsNext],
+    { code: 'new.target', options: { globalReturn: true } },
+    { code: 'using foo = null', options: { globalReturn: true, next: true } },
   ]);
 
   pass('Statements - Return (pass)', [
@@ -30,10 +30,12 @@ describe('Statements - Return', () => {
     '() => {return}',
     'function f(){   return;return    };',
     'function f(){   return\nreturn   }',
-    `//
+    outdent`
+      //
       function a() {
           return;
-      };`,
+      };
+    `,
     { code: 'function a(x) { return x+y; }', options: { loc: true, ranges: true } },
   ]);
 });

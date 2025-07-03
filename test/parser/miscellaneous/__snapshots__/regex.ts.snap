@@ -1,0 +1,99 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /(?<\\uD835\\uDFD0rest>foo)/ 1`] = `
+"SyntaxError [1:0-1:26]: Unterminated regular expression
+> 1 | /(?<\\uD835\\uDFD0rest>foo)/
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /(?<42a>a)/ 1`] = `
+"SyntaxError [1:0-1:11]: Unterminated regular expression
+> 1 | /(?<42a>a)/
+    | ^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /(?<a>.)\\k<a/ 1`] = `
+"SyntaxError [1:0-1:13]: Unterminated regular expression
+> 1 | /(?<a>.)\\k<a/
+    | ^^^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /(?<abc\\uD835\\uDFD0def>foo\\k<abc\\uD835def>)/ 1`] = `
+"SyntaxError [1:0-1:44]: Unterminated regular expression
+> 1 | /(?<abc\\uD835\\uDFD0def>foo\\k<abc\\uD835def>)/
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /(?<𝟐>foo)/ 1`] = `
+"SyntaxError [1:0-1:12]: Unterminated regular expression
+> 1 | /(?<𝟐>foo)/
+    | ^^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /(?<𝟐rest>foo)/ 1`] = `
+"SyntaxError [1:0-1:16]: Unterminated regular expression
+> 1 | /(?<𝟐rest>foo)/
+    | ^^^^^^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > /\\k<a(?<a>a)/ 1`] = `
+"SyntaxError [1:0-1:13]: Unterminated regular expression
+> 1 | /\\k<a(?<a>a)/
+    | ^^^^^^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > 0 ?? 1 && 2 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 0 ?? 1 && 2
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > 3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0 1`] = `
+"SyntaxError [1:100-1:102]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | 3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0
+    |                                                                                                     ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > c && d ?? e 1`] = `
+"SyntaxError [1:7-1:9]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | c && d ?? e
+    |        ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > e ?? f ?? g || h; 1`] = `
+"SyntaxError [1:12-1:14]: Coalescing and logical operators used together in the same expression must be disambiguated with parentheses
+> 1 | e ?? f ?? g || h;
+    |             ^^ Coalescing and logical operators used together in the same expression must be disambiguated with parentheses"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > function *f(){   s = {"foo": yield / x}   } 1`] = `
+"SyntaxError [1:35-1:43]: Unterminated regular expression
+> 1 | function *f(){   s = {"foo": yield / x}   }
+    |                                    ^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > function *f(){   s = {foo: yield / x}   } 1`] = `
+"SyntaxError [1:33-1:41]: Unterminated regular expression
+> 1 | function *f(){   s = {foo: yield / x}   }
+    |                                  ^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > function l(){((/)/))(/]/)}; 1`] = `
+"SyntaxError [1:15-1:18]: Unterminated regular expression
+> 1 | function l(){((/)/))(/]/)};
+    |                ^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > function* f(){ yield
+/foo } 1`] = `
+"SyntaxError [2:0-2:6]: Unterminated regular expression
+  1 | function* f(){ yield
+> 2 | /foo }
+    | ^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > s = {foo: yield / x} 1`] = `
+"SyntaxError [1:10-1:15]: 'yield' may not be used as an identifier in this context
+> 1 | s = {foo: yield / x}
+    |           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;

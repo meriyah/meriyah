@@ -1,5 +1,767 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > "use strict"; async function eval () {  } 1`] = `
+"SyntaxError [1:29-1:33]: Unexpected eval or arguments in strict mode
+> 1 | "use strict"; async function eval () {  }
+    |                              ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo() { await }}) 1`] = `
+"SyntaxError [1:16-1:21]: cannot use "await" as identifier inside an async function
+> 1 | ({async foo() { await }})
+    |                 ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo() { return {await} }}) 1`] = `
+"SyntaxError [1:29-1:30]: Can not use \`await\` as identifier in module or async func
+> 1 | ({async foo() { return {await} }})
+    |                              ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo() { var await }}) 1`] = `
+"SyntaxError [1:20-1:25]: cannot use "await" as identifier inside an async function
+> 1 | ({async foo() { var await }})
+    |                     ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo() { var await }}) 2`] = `
+"SyntaxError [1:20-1:25]: cannot use "await" as identifier inside an async function
+> 1 | ({async foo() { var await }})
+    |                     ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo(a = await b) {}}) 1`] = `
+"SyntaxError [1:16-1:21]: Await expression not allowed in formal parameter
+> 1 | ({async foo(a = await b) {}})
+    |                 ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo(await) { }}) 1`] = `
+"SyntaxError [1:12-1:17]: cannot use "await" as identifier inside an async function
+> 1 | ({async foo(await) { }})
+    |             ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async foo: 1}) 1`] = `
+"SyntaxError [1:11-1:12]: Expected '('
+> 1 | ({async foo: 1})
+    |            ^ Expected '('"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async get foo() { }}) 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async get foo() { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > ({async set foo(value) { }}) 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async set foo(value) { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > (async function await() { }) 1`] = `
+"SyntaxError [1:16-1:21]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function await() { })
+    |                 ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > (async function foo() { await }) 1`] = `
+"SyntaxError [1:24-1:29]: cannot use "await" as identifier inside an async function
+> 1 | (async function foo() { await })
+    |                         ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > (async function foo() { return {await} }) 1`] = `
+"SyntaxError [1:37-1:38]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function foo() { return {await} })
+    |                                      ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > (async function foo(a = await b) {}) 1`] = `
+"SyntaxError [1:24-1:29]: Await expression not allowed in formal parameter
+> 1 | (async function foo(a = await b) {})
+    |                         ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > (async function foo(await) { }) 1`] = `
+"SyntaxError [1:20-1:25]: cannot use "await" as identifier inside an async function
+> 1 | (async function foo(await) { })
+    |                     ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > \\u0061sync function f(){} 1`] = `
+"SyntaxError [1:11-1:19]: Unexpected token: 'function'
+> 1 | \\u0061sync function f(){}
+    |            ^^^^^^^^ Unexpected token: 'function'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > \\u0061sync function f(){} 2`] = `
+"SyntaxError [1:11-1:19]: Unexpected token: 'function'
+> 1 | \\u0061sync function f(){}
+    |            ^^^^^^^^ Unexpected token: 'function'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > { async function f() {} async function f() {} } 1`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'f'
+> 1 | { async function f() {} async function f() {} }
+    |                                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > { function* f() {} async function f() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { function* f() {} async function f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > { function* f() {} async function f() {} } 2`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { function* f() {} async function f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > abc: async function a() {} 1`] = `
+"SyntaxError [1:11-1:19]: Async functions can only be declared at the top level or inside a block
+> 1 | abc: async function a() {}
+    |            ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (...await) => 1 1`] = `
+"SyntaxError [1:17-1:19]: Await expression not allowed in formal parameter
+> 1 | async (...await) => 1
+    |                  ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async ([...await]) => 1 1`] = `
+"SyntaxError [1:19-1:21]: Await expression not allowed in formal parameter
+> 1 | async ([...await]) => 1
+    |                    ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async ([await]) => 1 1`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async ([await]) => 1
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async ({a = b}) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid shorthand property initializer
+> 1 | async ({a = b})
+    |               ^ Invalid shorthand property initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (a = await b) => {} 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | async (a = await b) => {}
+    |                  ^ Expected ')'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (a = await) => {} 1`] = `
+"SyntaxError [1:18-1:20]: Await expression not allowed in formal parameter
+> 1 | async (a = await) => {}
+    |                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (a = await) => {} 2`] = `
+"SyntaxError [1:18-1:20]: Await expression not allowed in formal parameter
+> 1 | async (a = await) => {}
+    |                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (await, b = async () => {}) => 1 1`] = `
+"SyntaxError [1:34-1:36]: Await expression not allowed in formal parameter
+> 1 | async (await, b = async () => {}) => 1
+    |                                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (await, b = async()) => 2 1`] = `
+"SyntaxError [1:27-1:29]: Await expression not allowed in formal parameter
+> 1 | async (await, b = async()) => 2
+    |                            ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (b = (await) => {}) => 1 1`] = `
+"SyntaxError [1:26-1:28]: Await expression not allowed in formal parameter
+> 1 | async (b = (await) => {}) => 1
+    |                           ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (b = [...await]) => 1 1`] = `
+"SyntaxError [1:23-1:25]: Await expression not allowed in formal parameter
+> 1 | async (b = [...await]) => 1
+    |                        ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (b = [await]) => 1 1`] = `
+"SyntaxError [1:20-1:22]: Await expression not allowed in formal parameter
+> 1 | async (b = [await]) => 1
+    |                     ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (b = {a: await}) => 1 1`] = `
+"SyntaxError [1:23-1:25]: Await expression not allowed in formal parameter
+> 1 | async (b = {a: await}) => 1
+    |                        ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (b = {await}) => 1 1`] = `
+"SyntaxError [1:20-1:22]: Await expression not allowed in formal parameter
+> 1 | async (b = {await}) => 1
+    |                     ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async (b = class await {}) => 1 1`] = `
+"SyntaxError [1:17-1:22]: Can not use \`await\` as identifier in module or async func
+> 1 | async (b = class await {}) => 1
+    |                  ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async await => 1" 1`] = `
+"SyntaxError [1:6-1:11]: Await expression not allowed in formal parameter
+> 1 | async await => 1"
+    |       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a() { async function b(k = [await 3]) {} } 1`] = `
+"SyntaxError [1:43-1:48]: Await expression not allowed in formal parameter
+> 1 | async function a() { async function b(k = [await 3]) {} }
+    |                                            ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a() { async function b(k = await 3) {} } 1`] = `
+"SyntaxError [1:42-1:47]: Await expression not allowed in formal parameter
+> 1 | async function a() { async function b(k = await 3) {} }
+    |                                           ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){  (foo = [{m: 5 + t(+await bar)}]) => {}     } 1`] = `
+"SyntaxError [1:54-1:56]: Await expression not allowed in formal parameter
+> 1 | async function a(){  (foo = [{m: 5 + t(+await bar)}]) => {}     }
+    |                                                       ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){ ([await]) => 1 } 1`] = `
+"SyntaxError [1:22-1:27]: cannot use "await" as identifier inside an async function
+> 1 | async function a(){ ([await]) => 1 }
+    |                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){ (await) => x } 1`] = `
+"SyntaxError [1:21-1:26]: cannot use "await" as identifier inside an async function
+> 1 | async function a(){ (await) => x }
+    |                      ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){ (e=await)=>l } 1`] = `
+"SyntaxError [1:23-1:28]: cannot use "await" as identifier inside an async function
+> 1 | async function a(){ (e=await)=>l }
+    |                        ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){ (foo = +await bar) => {} } 1`] = `
+"SyntaxError [1:39-1:41]: Await expression not allowed in formal parameter
+> 1 | async function a(){ (foo = +await bar) => {} }
+    |                                        ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){ (x = delete ((await) = f)) => {} } 1`] = `
+"SyntaxError [1:34-1:39]: cannot use "await" as identifier inside an async function
+> 1 | async function a(){ (x = delete ((await) = f)) => {} }
+    |                                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(){ async ([a=await]) => 1 } 1`] = `
+"SyntaxError [1:30-1:35]: cannot use "await" as identifier inside an async function
+> 1 | async function a(){ async ([a=await]) => 1 }
+    |                               ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function a(k = await 3) {} 1`] = `
+"SyntaxError [1:21-1:26]: Await expression not allowed in formal parameter
+> 1 | async function a(k = await 3) {}
+    |                      ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = (await) => { }; } 1`] = `
+"SyntaxError [1:31-1:36]: cannot use "await" as identifier inside an async function
+> 1 | async function af() { var a = (await) => { }; }
+    |                                ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = (x = await 0) => { }; } 1`] = `
+"SyntaxError [1:44-1:46]: Await expression not allowed in formal parameter
+> 1 | async function af() { var a = (x = await 0) => { }; }
+    |                                             ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = (x, await, y) => { }; } 1`] = `
+"SyntaxError [1:34-1:39]: cannot use "await" as identifier inside an async function
+> 1 | async function af() { var a = (x, await, y) => { }; }
+    |                                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = (x, y = await 0, z = 0) => { }; } 1`] = `
+"SyntaxError [1:54-1:56]: Await expression not allowed in formal parameter
+> 1 | async function af() { var a = (x, y = await 0, z = 0) => { }; }
+    |                                                       ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = (x, y, await) => { }; } 1`] = `
+"SyntaxError [1:37-1:42]: cannot use "await" as identifier inside an async function
+> 1 | async function af() { var a = (x, y, await) => { }; }
+    |                                      ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = (x, y, z = await 0) => { }; } 1`] = `
+"SyntaxError [1:50-1:52]: Await expression not allowed in formal parameter
+> 1 | async function af() { var a = (x, y, z = await 0) => { }; }
+    |                                                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af() { var a = await => { }; } 1`] = `
+"SyntaxError [1:30-1:42]: cannot use "await" as identifier inside an async function
+> 1 | async function af() { var a = await => { }; }
+    |                               ^^^^^^^^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af(a, b = await a) { "use strict"; } 1`] = `
+"SyntaxError [1:25-1:30]: Await expression not allowed in formal parameter
+> 1 | async function af(a, b = await a) { "use strict"; }
+    |                          ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af(a, b = await a) { } 1`] = `
+"SyntaxError [1:25-1:30]: Await expression not allowed in formal parameter
+> 1 | async function af(a, b = await a) { }
+    |                          ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af(arguments) { "use strict"; } 1`] = `
+"SyntaxError [1:45-1:46]: Unexpected eval or arguments in strict mode
+> 1 | async function af(arguments) { "use strict"; }
+    |                                              ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af(eval) { "use strict"; } 1`] = `
+"SyntaxError [1:40-1:41]: Unexpected eval or arguments in strict mode
+> 1 | async function af(eval) { "use strict"; }
+    |                                         ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af(x) { function f(a = await x) { } f(); } af(); 1`] = `
+"SyntaxError [1:38-1:43]: Await expression not allowed in formal parameter
+> 1 | async function af(x) { function f(a = await x) { } f(); } af();
+    |                                       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function arguments() { "use strict"; } 1`] = `
+"SyntaxError [1:43-1:44]: Unexpected eval or arguments in strict mode
+> 1 | async function arguments() { "use strict"; }
+    |                                            ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { "use strict"; let
+await 0 } 1`] = `
+"SyntaxError [2:0-2:5]: cannot use "await" as identifier inside an async function
+  1 | async function f() { "use strict"; let
+> 2 | await 0 }
+    | ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { a = async function(a = await) {}; } 1`] = `
+"SyntaxError [1:44-1:49]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { a = async function(a = await) {}; }
+    |                                             ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { delete await; } 1`] = `
+"SyntaxError [1:28-1:33]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { delete await; }
+    |                             ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { for await (let.x of a); } 1`] = `
+"SyntaxError [1:38-1:40]: The left-hand side of a for-of loop may not start with 'let'
+> 1 | async function f() { for await (let.x of a); }
+    |                                       ^^ The left-hand side of a for-of loop may not start with 'let'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { let
+arguments.await } 1`] = `
+"SyntaxError [2:9-2:10]: Unexpected token: '.'
+  1 | async function f() { let
+> 2 | arguments.await }
+    |          ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { let
+arguments.length } 1`] = `
+"SyntaxError [2:9-2:10]: Unexpected token: '.'
+  1 | async function f() { let
+> 2 | arguments.length }
+    |          ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { let
+arguments.package } 1`] = `
+"SyntaxError [2:9-2:10]: Unexpected token: '.'
+  1 | async function f() { let
+> 2 | arguments.package }
+    |          ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { let
+arguments.yield } 1`] = `
+"SyntaxError [2:9-2:10]: Unexpected token: '.'
+  1 | async function f() { let
+> 2 | arguments.yield }
+    |          ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f() { let
+yield 0 } 1`] = `
+"SyntaxError [2:6-2:7]: Unexpected token: 'number'
+  1 | async function f() { let
+> 2 | yield 0 }
+    |       ^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f(){ (x = new x(await x)) => {}   } 1`] = `
+"SyntaxError [1:41-1:43]: Await expression not allowed in formal parameter
+> 1 | async function f(){ (x = new x(await x)) => {}   }
+    |                                          ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function f(a = await) {} 1`] = `
+"SyntaxError [1:21-1:26]: cannot use "await" as identifier inside an async function
+> 1 | async function f(a = await) {}
+    |                      ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for (const {x} = 1 of []) {} } 1`] = `
+"SyntaxError [1:33-1:43]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for (const {x} = 1 of []) {} }
+    |                                  ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for (let {x} = 1 of []) {} } 1`] = `
+"SyntaxError [1:31-1:41]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for (let {x} = 1 of []) {} }
+    |                                ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for (let x = 1 of []) {} } 1`] = `
+"SyntaxError [1:31-1:39]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for (let x = 1 of []) {} }
+    |                                ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for (var x = 1 of []) {} } 1`] = `
+"SyntaxError [1:31-1:39]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for (var x = 1 of []) {} }
+    |                                ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (const [x] = 1 of []) {} } 1`] = `
+"SyntaxError [1:39-1:49]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (const [x] = 1 of []) {} }
+    |                                        ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (const {x} = 1 of []) {} } 1`] = `
+"SyntaxError [1:39-1:49]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (const {x} = 1 of []) {} }
+    |                                        ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (const x = 1 of []) {} } 1`] = `
+"SyntaxError [1:39-1:47]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (const x = 1 of []) {} }
+    |                                        ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (let [x] = 1 of []) {} } 1`] = `
+"SyntaxError [1:37-1:47]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (let [x] = 1 of []) {} }
+    |                                      ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (let {x} = 1 of []) {} } 1`] = `
+"SyntaxError [1:37-1:47]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (let {x} = 1 of []) {} }
+    |                                      ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (let x = 1 of []) {} } 1`] = `
+"SyntaxError [1:37-1:45]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (let x = 1 of []) {} }
+    |                                      ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (var [x] = 1 of []) {} } 1`] = `
+"SyntaxError [1:37-1:47]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (var [x] = 1 of []) {} }
+    |                                      ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (var {x} = 1 of []) {} } 1`] = `
+"SyntaxError [1:37-1:47]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (var {x} = 1 of []) {} }
+    |                                      ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn() { for await (var x = 1 of []) {} } 1`] = `
+"SyntaxError [1:37-1:45]: 'for-of' loop head declarations can not have an initializer
+> 1 | async function fn() { for await (var x = 1 of []) {} }
+    |                                      ^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function fn(eval) { "use strict"; } 1`] = `
+"SyntaxError [1:40-1:41]: Unexpected eval or arguments in strict mode
+> 1 | async function fn(eval) { "use strict"; }
+    |                                         ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo (foo = super()) { let bar; } 1`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function foo (foo = super()) { let bar; }
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo (foo = super()) { let bar; } 2`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function foo (foo = super()) { let bar; }
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo (foo = super()) { let bar; } 3`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function foo (foo = super()) { let bar; }
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo (foo = super()) { let bar; } 4`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function foo (foo = super()) { let bar; }
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo (foo) { super.prop }; 1`] = `
+"SyntaxError [1:32-1:33]: Member access on super must be in a method
+> 1 | async function foo (foo) { super.prop };
+    |                                 ^ Member access on super must be in a method"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo (foo) { super.prop }; 2`] = `
+"SyntaxError [1:32-1:33]: Member access on super must be in a method
+> 1 | async function foo (foo) { super.prop };
+    |                                 ^ Member access on super must be in a method"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo() { await } 1`] = `
+"SyntaxError [1:23-1:28]: cannot use "await" as identifier inside an async function
+> 1 | async function foo() { await }
+    |                        ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo(a = await b) {} 1`] = `
+"SyntaxError [1:23-1:28]: Await expression not allowed in formal parameter
+> 1 | async function foo(a = await b) {}
+    |                        ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function foo(await) { } 1`] = `
+"SyntaxError [1:19-1:24]: cannot use "await" as identifier inside an async function
+> 1 | async function foo(await) { }
+    |                    ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function k() { function a() { await 4; } } 1`] = `
+"SyntaxError [1:42-1:43]: Unexpected token: 'number'
+> 1 | async function k() { function a() { await 4; } }
+    |                                           ^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function method() { var await = 1; } 1`] = `
+"SyntaxError [1:30-1:35]: cannot use "await" as identifier inside an async function
+> 1 | async function method() { var await = 1; }
+    |                               ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function method() { var x = await; } 1`] = `
+"SyntaxError [1:34-1:39]: cannot use "await" as identifier inside an async function
+> 1 | async function method() { var x = await; }
+    |                                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function method(await;) { } 1`] = `
+"SyntaxError [1:22-1:27]: cannot use "await" as identifier inside an async function
+> 1 | async function method(await;) { }
+    |                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function wrap() {
+({a = await b} = obj) => a
+} 1`] = `
+"SyntaxError [2:22-2:24]: Await expression not allowed in formal parameter
+  1 | async function wrap() {
+> 2 | ({a = await b} = obj) => a
+    |                       ^^ Await expression not allowed in formal parameter
+  3 | }"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function wrap() {
+(a = await b) => a
+} 1`] = `
+"SyntaxError [2:14-2:16]: Await expression not allowed in formal parameter
+  1 | async function wrap() {
+> 2 | (a = await b) => a
+    |               ^^ Await expression not allowed in formal parameter
+  3 | }"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function wrap() {
+async function await() { }
+} 1`] = `
+"SyntaxError [2:15-2:20]: Can not use \`await\` as identifier in module or async func
+  1 | async function wrap() {
+> 2 | async function await() { }
+    |                ^^^^^ Can not use \`await\` as identifier in module or async func
+  3 | }"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function wrapper() {
+async (a = await b) => {}
+} 1`] = `
+"SyntaxError [2:20-2:22]: Await expression not allowed in formal parameter
+  1 | async function wrapper() {
+> 2 | async (a = await b) => {}
+    |                     ^^ Await expression not allowed in formal parameter
+  3 | }"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function x(a=class b{
+  [a = class b{
+      [await 0](){}
+  }](){}
+}) {
+} 1`] = `
+"SyntaxError [3:7-3:12]: Await expression not allowed in formal parameter
+  1 | async function x(a=class b{
+  2 |   [a = class b{
+> 3 |       [await 0](){}
+    |        ^^^^^ Await expression not allowed in formal parameter
+  4 |   }](){}
+  5 | }) {
+  6 | }"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* a() { (await) => {} } 1`] = `
+"SyntaxError [1:23-1:28]: cannot use "await" as identifier inside an async function
+> 1 | async function* a() { (await) => {} }
+    |                        ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* a() { await;  (r = a) => {} } 1`] = `
+"SyntaxError [1:22-1:27]: cannot use "await" as identifier inside an async function
+> 1 | async function* a() { await;  (r = a) => {} }
+    |                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* a() { for (let m in ((await))) x;  (r = a) => {} } 1`] = `
+"SyntaxError [1:38-1:43]: cannot use "await" as identifier inside an async function
+> 1 | async function* a() { for (let m in ((await))) x;  (r = a) => {} }
+    |                                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* f() { a = async function*(a = await) {}; } 1`] = `
+"SyntaxError [1:46-1:51]: cannot use "await" as identifier inside an async function
+> 1 | async function* f() { a = async function*(a = await) {}; }
+    |                                               ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* f(a = await) {} 1`] = `
+"SyntaxError [1:22-1:27]: cannot use "await" as identifier inside an async function
+> 1 | async function* f(a = await) {}
+    |                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* g() { await; }; f = ([...[,]] = g()) => {}; 1`] = `
+"SyntaxError [1:22-1:27]: cannot use "await" as identifier inside an async function
+> 1 | async function* g() { await; }; f = ([...[,]] = g()) => {};
+    |                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* g(){ ({[await]: a}) => 0; } 1`] = `
+"SyntaxError [1:24-1:29]: cannot use "await" as identifier inside an async function
+> 1 | async function* g(){ ({[await]: a}) => 0; }
+    |                         ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > await 1`] = `
+"SyntaxError [1:0-1:5]: Can not use \`await\` as identifier in module or async func
+> 1 | await
+    | ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > class A {async constructor() { }} 1`] = `
+"SyntaxError [1:26-1:27]: Class constructor may not be a accessor
+> 1 | class A {async constructor() { }}
+    |                           ^ Class constructor may not be a accessor"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > class A {async foo() { return {await} }} 1`] = `
+"SyntaxError [1:36-1:37]: Can not use \`await\` as identifier in module or async func
+> 1 | class A {async foo() { return {await} }}
+    |                                     ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > delete await; 1`] = `
+"SyntaxError [1:7-1:12]: Can not use \`await\` as identifier in module or async func
+> 1 | delete await;
+    |        ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > function f() { a = async function(a = await) {}; } 1`] = `
+"SyntaxError [1:38-1:43]: cannot use "await" as identifier inside an async function
+> 1 | function f() { a = async function(a = await) {}; }
+    |                                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > function f() { a = async function*(a = await) {}; } 1`] = `
+"SyntaxError [1:39-1:44]: cannot use "await" as identifier inside an async function
+> 1 | function f() { a = async function*(a = await) {}; }
+    |                                        ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > function f(a = async function(a = await) {}) {} 1`] = `
+"SyntaxError [1:34-1:39]: cannot use "await" as identifier inside an async function
+> 1 | function f(a = async function(a = await) {}) {}
+    |                                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > function f(a = async function*(a = await) {}) {} 1`] = `
+"SyntaxError [1:35-1:40]: cannot use "await" as identifier inside an async function
+> 1 | function f(a = async function*(a = await) {}) {}
+    |                                    ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > function* wrap() {
+async(a = yield b) => a
+} 1`] = `
+"SyntaxError [2:19-2:21]: Yield expression not allowed in formal parameter
+  1 | function* wrap() {
+> 2 | async(a = yield b) => a
+    |                    ^^ Yield expression not allowed in formal parameter
+  3 | }"
+`;
+
+exports[`Declarations - Async Function > Declarations - Async Function (fail) > switch (0) { case 1: async function f() {} default: function f() {} } 1`] = `
+"SyntaxError [1:61-1:62]: Duplicate binding 'f'
+> 1 | switch (0) { case 1: async function f() {} default: function f() {} }
+    |                                                              ^ Duplicate binding 'f'"
+`;
+
 exports[`Declarations - Async Function > Declarations - Async function (pass) > "use strict"; async function foo() { function bar() { await = 1; } bar(); } 1`] = `
 {
   "body": [

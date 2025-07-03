@@ -9401,28 +9401,28 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class{}
 `;
 
 exports[`Expressions - Class > Expressions - Class (pass) > class A {
-        constructor() {
-          count++;
-        }
-        increment() {
-          count++;
-        }
-        decrement() {
-          count--;
-        }
-        getCount()
-        {
-          return count;
-        }
-        1() { return 1; }
-        2() { return 2; }
-        1.1() { return 1.1; }
-        2.2() { return 2.2; }
-        static [1+3]() { return 4; }
-        [1.1+1]() { return 2.1; }
-        ["foo"+1]() { return "foo1"; }
-        [sym1](){return "bart";}
-      } 1`] = `
+  constructor() {
+    count++;
+  }
+  increment() {
+    count++;
+  }
+  decrement() {
+    count--;
+  }
+  getCount()
+  {
+    return count;
+  }
+  1() { return 1; }
+  2() { return 2; }
+  1.1() { return 1.1; }
+  2.2() { return 2.2; }
+  static [1+3]() { return 4; }
+  [1.1+1]() { return 2.1; }
+  ["foo"+1]() { return "foo1"; }
+  [sym1](){return "bart";}
+} 1`] = `
 {
   "body": [
     {
@@ -10026,13 +10026,415 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A extends B { 
 }
 `;
 
+exports[`Expressions - Class > Expressions - Class (pass) > class C {
+static accessor = 42;
+static set = 42;
+static get = 42;
+static async = 42;
+static static = 42;} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 31,
+            "key": {
+              "end": 25,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "name": "accessor",
+              "range": [
+                17,
+                25,
+              ],
+              "start": 17,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 21,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "range": [
+              10,
+              31,
+            ],
+            "start": 10,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 30,
+              "loc": {
+                "end": {
+                  "column": 20,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 18,
+                  "line": 2,
+                },
+              },
+              "range": [
+                28,
+                30,
+              ],
+              "start": 28,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 48,
+            "key": {
+              "end": 42,
+              "loc": {
+                "end": {
+                  "column": 10,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 3,
+                },
+              },
+              "name": "set",
+              "range": [
+                39,
+                42,
+              ],
+              "start": 39,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 16,
+                "line": 3,
+              },
+              "start": {
+                "column": 0,
+                "line": 3,
+              },
+            },
+            "range": [
+              32,
+              48,
+            ],
+            "start": 32,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 47,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 3,
+                },
+              },
+              "range": [
+                45,
+                47,
+              ],
+              "start": 45,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 65,
+            "key": {
+              "end": 59,
+              "loc": {
+                "end": {
+                  "column": 10,
+                  "line": 4,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 4,
+                },
+              },
+              "name": "get",
+              "range": [
+                56,
+                59,
+              ],
+              "start": 56,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 16,
+                "line": 4,
+              },
+              "start": {
+                "column": 0,
+                "line": 4,
+              },
+            },
+            "range": [
+              49,
+              65,
+            ],
+            "start": 49,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 64,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 4,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 4,
+                },
+              },
+              "range": [
+                62,
+                64,
+              ],
+              "start": 62,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 84,
+            "key": {
+              "end": 78,
+              "loc": {
+                "end": {
+                  "column": 12,
+                  "line": 5,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 5,
+                },
+              },
+              "name": "async",
+              "range": [
+                73,
+                78,
+              ],
+              "start": 73,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 18,
+                "line": 5,
+              },
+              "start": {
+                "column": 0,
+                "line": 5,
+              },
+            },
+            "range": [
+              66,
+              84,
+            ],
+            "start": 66,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 83,
+              "loc": {
+                "end": {
+                  "column": 17,
+                  "line": 5,
+                },
+                "start": {
+                  "column": 15,
+                  "line": 5,
+                },
+              },
+              "range": [
+                81,
+                83,
+              ],
+              "start": 81,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 104,
+            "key": {
+              "end": 98,
+              "loc": {
+                "end": {
+                  "column": 13,
+                  "line": 6,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 6,
+                },
+              },
+              "name": "static",
+              "range": [
+                92,
+                98,
+              ],
+              "start": 92,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 19,
+                "line": 6,
+              },
+              "start": {
+                "column": 0,
+                "line": 6,
+              },
+            },
+            "range": [
+              85,
+              104,
+            ],
+            "start": 85,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 103,
+              "loc": {
+                "end": {
+                  "column": 18,
+                  "line": 6,
+                },
+                "start": {
+                  "column": 16,
+                  "line": 6,
+                },
+              },
+              "range": [
+                101,
+                103,
+              ],
+              "start": 101,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+        ],
+        "end": 105,
+        "loc": {
+          "end": {
+            "column": 20,
+            "line": 6,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
+        "range": [
+          8,
+          105,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 105,
+      "id": {
+        "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 20,
+          "line": 6,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        105,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 105,
+  "loc": {
+    "end": {
+      "column": 20,
+      "line": 6,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    105,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Class > Expressions - Class (pass) > class C { async *gen() {
-            yield {
-                ...yield,
-                y: 1,
-                ...yield yield,
-              };
-        }} 1`] = `
+    yield {
+        ...yield,
+        y: 1,
+        ...yield yield,
+      };
+}} 1`] = `
 {
   "body": [
     {
@@ -10124,30 +10526,30 @@ exports[`Expressions - Class > Expressions - Class (pass) > class C { async *gen
 `;
 
 exports[`Expressions - Class > Expressions - Class (pass) > class SimpleParent {
-          constructor() {
-              this.foo = 'SimpleParent';
-          }
-      }
+    constructor() {
+        this.foo = 'SimpleParent';
+    }
+}
 
-      let calls_to_ConstructorCountingParent = 0;
-      class ConstructorCountingParent {
-          constructor() {
-              calls_to_ConstructorCountingParent++;
-          }
-      }
+let calls_to_ConstructorCountingParent = 0;
+class ConstructorCountingParent {
+    constructor() {
+        calls_to_ConstructorCountingParent++;
+    }
+}
 
-      class UninitializedThisReturningArgumentConstructor extends SimpleParent {
-          constructor(arg) {
-              return arg;
-          }
-      };
+class UninitializedThisReturningArgumentConstructor extends SimpleParent {
+    constructor(arg) {
+        return arg;
+    }
+};
 
-      class InitializedThisReturningArgumentConstructor extends SimpleParent {
-          constructor(arg) {
-              super();
-              return arg;
-          }
-      }; 1`] = `
+class InitializedThisReturningArgumentConstructor extends SimpleParent {
+    constructor(arg) {
+        super();
+        return arg;
+    }
+}; 1`] = `
 {
   "body": [
     {
@@ -12106,13 +12508,13 @@ exports[`Expressions - Class > Expressions - Class (pass) > f = ([xCls2 = class 
 `;
 
 exports[`Expressions - Class > Expressions - Class (pass) > new class {
-        start() {
-          new class {
-            constructor() {}
-          }
-        }
-        constructor() {}
-      } 1`] = `
+  start() {
+    new class {
+      constructor() {}
+    }
+  }
+  constructor() {}
+} 1`] = `
 {
   "body": [
     {
@@ -12220,9 +12622,9 @@ exports[`Expressions - Class > Expressions - Class (pass) > new class {
 `;
 
 exports[`Expressions - Class > Expressions - Class (pass) > var C = class { static async *gen() {
-        callCount += 1;
-        yield [...yield];
-    }} 1`] = `
+    callCount += 1;
+    yield [...yield];
+}} 1`] = `
 {
   "body": [
     {
@@ -12587,11 +12989,11 @@ exports[`Expressions - Class > Expressions - Class (pass) > var C = class { stat
 `;
 
 exports[`Expressions - Class > Expressions - Class (pass) > var gen = {
-          async *method() {
-            callCount += 1;
-            yield [...yield];
-          }
-        }.method; 1`] = `
+  async *method() {
+    callCount += 1;
+    yield [...yield];
+  }
+}.method; 1`] = `
 {
   "body": [
     {
@@ -12768,4 +13170,1630 @@ exports[`Expressions - Class > Expressions - Class (pass) > x = class{} / x 1`] 
   "start": 0,
   "type": "Program",
 }
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { adf &/()}) 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: '&'
+> 1 | (class { adf &/()})
+    |              ^ Unexpected token: '&'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { adf&/()}) 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '&'
+> 1 | (class { adf&/()})
+    |             ^ Unexpected token: '&'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { get [yield]() { return "get yield"; }}) (class { get [yield]() { return "get yield"; }}) 1`] = `
+"SyntaxError [1:14-1:19]: 'yield' may not be used as an identifier in this context
+> 1 | (class { get [yield]() { return "get yield"; }}) (class { get [yield]() { return "get yield"; }})
+    |               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { get [yield]() { return "get yield"; }}) 1`] = `
+"SyntaxError [1:14-1:19]: 'yield' may not be used as an identifier in this context
+> 1 | (class { get [yield]() { return "get yield"; }})
+    |               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { set [yield](param) { yieldSet = param; }}) (class { set [yield](param) { yieldSet = param; }}) 1`] = `
+"SyntaxError [1:14-1:19]: 'yield' may not be used as an identifier in this context
+> 1 | (class { set [yield](param) { yieldSet = param; }}) (class { set [yield](param) { yieldSet = param; }})
+    |               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { static *get [x](){}}) (class { static *get [x](){}}) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token
+> 1 | (class { static *get [x](){}}) (class { static *get [x](){}})
+    |                      ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { static *get [x](){}}) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token
+> 1 | (class { static *get [x](){}})
+    |                      ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { static *set [x](y){}}) (class { static *set [x](y){}}) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token
+> 1 | (class { static *set [x](y){}}) (class { static *set [x](y){}})
+    |                      ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class { static *set [x](y){}}) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token
+> 1 | (class { static *set [x](y){}})
+    |                      ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class {a:0}) 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ':'
+> 1 | (class {a:0})
+    |          ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { ["async"] a() {} }) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: 'identifier'
+> 1 | (class A { ["async"] a() {} })
+    |                      ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { ["get"] a() {} }) 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: 'identifier'
+> 1 | (class A { ["get"] a() {} })
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static *get [x](){} }) 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token
+> 1 | (class A { static *get [x](){} })
+    |                        ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static *prototype() {} }) 1`] = `
+"SyntaxError [1:28-1:29]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static *prototype() {} })
+    |                             ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static *prototype() {} }) 2`] = `
+"SyntaxError [1:28-1:29]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static *prototype() {} })
+    |                             ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static *prototype() {} }) 3`] = `
+"SyntaxError [1:28-1:29]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static *prototype() {} })
+    |                             ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static *set [x](y){}}) 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token
+> 1 | (class A { static *set [x](y){}})
+    |                        ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static get prototype() {} }) 1`] = `
+"SyntaxError [1:31-1:32]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static get prototype() {} })
+    |                                ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static prototype() {} }) 1`] = `
+"SyntaxError [1:27-1:28]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static prototype() {} })
+    |                            ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static prototype() {} }) 2`] = `
+"SyntaxError [1:27-1:28]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static prototype() {} })
+    |                            ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static prototype() {} }) 3`] = `
+"SyntaxError [1:27-1:28]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static prototype() {} })
+    |                            ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A { static set prototype(_) {} }) 1`] = `
+"SyntaxError [1:31-1:32]: Classes may not have a static property named 'prototype'
+> 1 | (class A { static set prototype(_) {} })
+    |                                ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* get "foo"(){}}) 1`] = `
+"SyntaxError [1:16-1:21]: Unexpected token
+> 1 | (class A {* get "foo"(){}})
+    |                 ^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* get 8(){}}) 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token
+> 1 | (class A {* get 8(){}})
+    |                 ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* get foo(){}}) 1`] = `
+"SyntaxError [1:16-1:19]: Unexpected token
+> 1 | (class A {* get foo(){}})
+    |                 ^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* set "foo"(x){}}) 1`] = `
+"SyntaxError [1:16-1:21]: Unexpected token
+> 1 | (class A {* set "foo"(x){}})
+    |                 ^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* set [foo](x){}}) 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token
+> 1 | (class A {* set [foo](x){}})
+    |                 ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* set 12(x){}}) 1`] = `
+"SyntaxError [1:16-1:18]: Unexpected token
+> 1 | (class A {* set 12(x){}})
+    |                 ^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* set 12(x){}}) 2`] = `
+"SyntaxError [1:16-1:18]: Unexpected token
+> 1 | (class A {* set 12(x){}})
+    |                 ^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {* set foo(x){}}) 1`] = `
+"SyntaxError [1:16-1:19]: Unexpected token
+> 1 | (class A {* set foo(x){}})
+    |                 ^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {*constructor(){}}) 1`] = `
+"SyntaxError [1:22-1:23]: Class constructor may not be a accessor
+> 1 | (class A {*constructor(){}})
+    |                       ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {a(){}; constructor(){}; a(){}; a(){}; a(){}; constructor(){}; a(){}}) 1`] = `
+"SyntaxError [1:66-1:67]: Duplicate constructor method in class
+> 1 | (class A {a(){}; constructor(){}; a(){}; a(){}; a(){}; constructor(){}; a(){}})
+    |                                                                   ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {a(){}; constructor(){}; constructor(){}}) 1`] = `
+"SyntaxError [1:45-1:46]: Duplicate constructor method in class
+> 1 | (class A {a(){}; constructor(){}; constructor(){}})
+    |                                              ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async "constructor"(){}}) 1`] = `
+"SyntaxError [1:29-1:30]: Class constructor may not be a accessor
+> 1 | (class A {async "constructor"(){}})
+    |                              ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async *constructor(){}}) 1`] = `
+"SyntaxError [1:28-1:29]: Class constructor may not be a accessor
+> 1 | (class A {async *constructor(){}})
+    |                             ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async constructor(){}}) 1`] = `
+"SyntaxError [1:27-1:28]: Class constructor may not be a accessor
+> 1 | (class A {async constructor(){}})
+    |                            ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async get "foo"(){}}) 1`] = `
+"SyntaxError [1:20-1:25]: Unexpected token: 'string'
+> 1 | (class A {async get "foo"(){}})
+    |                     ^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async get [foo](){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '['
+> 1 | (class A {async get [foo](){}})
+    |                     ^ Unexpected token: '['"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async get 7(){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: 'number'
+> 1 | (class A {async get 7(){}})
+    |                     ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async get foo(){}}) 1`] = `
+"SyntaxError [1:20-1:23]: Unexpected token: 'identifier'
+> 1 | (class A {async get foo(){}})
+    |                     ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async set "foo"(x){}}) 1`] = `
+"SyntaxError [1:20-1:25]: Unexpected token: 'string'
+> 1 | (class A {async set "foo"(x){}})
+    |                     ^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async set 11(x){}}) 1`] = `
+"SyntaxError [1:20-1:22]: Unexpected token: 'number'
+> 1 | (class A {async set 11(x){}})
+    |                     ^^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {async set foo(x){}}) 1`] = `
+"SyntaxError [1:20-1:23]: Unexpected token: 'identifier'
+> 1 | (class A {async set foo(x){}})
+    |                     ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {constructor(){}; constructor(){};}) 1`] = `
+"SyntaxError [1:38-1:39]: Duplicate constructor method in class
+> 1 | (class A {constructor(){}; constructor(){};})
+    |                                       ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {constructor(){}; constructor(){}}) 1`] = `
+"SyntaxError [1:38-1:39]: Duplicate constructor method in class
+> 1 | (class A {constructor(){}; constructor(){}})
+    |                                       ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {foo, bar(){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: ','
+> 1 | (class A {foo, bar(){}})
+    |              ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {get "constructor"(){}}) 1`] = `
+"SyntaxError [1:27-1:28]: Class constructor may not be a accessor
+> 1 | (class A {get "constructor"(){}})
+    |                            ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {get "constructor"(){}}) 2`] = `
+"SyntaxError [1:27-1:28]: Class constructor may not be a accessor
+> 1 | (class A {get "constructor"(){}})
+    |                            ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {get constructor(){}}) 1`] = `
+"SyntaxError [1:25-1:26]: Class constructor may not be a accessor
+> 1 | (class A {get constructor(){}})
+    |                          ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {set constructor(x){}}) 1`] = `
+"SyntaxError [1:25-1:26]: Class constructor may not be a accessor
+> 1 | (class A {set constructor(x){}})
+    |                          ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {set constructor(x){}}) 2`] = `
+"SyntaxError [1:25-1:26]: Class constructor may not be a accessor
+> 1 | (class A {set constructor(x){}})
+    |                          ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A {static constructor(){}; constructor(){}; constructor(){}}) 1`] = `
+"SyntaxError [1:62-1:63]: Duplicate constructor method in class
+> 1 | (class A {static constructor(){}; constructor(){}; constructor(){}})
+    |                                                               ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A extends B { method() { super() } }) 1`] = `
+"SyntaxError [1:37-1:38]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (class A extends B { method() { super() } })
+    |                                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class A extends B { method() { super() } }) 2`] = `
+"SyntaxError [1:37-1:38]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (class A extends B { method() { super() } })
+    |                                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class b ) 1`] = `
+"SyntaxError [1:9-1:10]: Expected '{'
+> 1 | (class b )
+    |          ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class b {#a:}) 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ':'
+> 1 | (class b {#a:})
+    |             ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class b {) 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ')'
+> 1 | (class b {)
+    |           ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class b {-}) 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: '-'
+> 1 | (class b {-})
+    |           ^ Unexpected token: '-'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class b {a:}) 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: ':'
+> 1 | (class b {a:})
+    |            ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class eval {a:0}) 1`] = `
+"SyntaxError [1:7-1:11]: Unexpected eval or arguments in strict mode
+> 1 | (class eval {a:0})
+    |        ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class extends a,b {) 1`] = `
+"SyntaxError [1:16-1:17]: Expected '{'
+> 1 | (class extends a,b {)
+    |                 ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class switch() {}) 1`] = `
+"SyntaxError [1:7-1:13]: Unexpected strict mode reserved word
+> 1 | (class switch() {})
+    |        ^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class v extends.foo {}) 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: '.'
+> 1 | (class v extends.foo {})
+    |                 ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x { \`constructor\`(){} }) 1`] = `
+"SyntaxError [1:11-1:24]: Unexpected token: 'template tail'
+> 1 | (class x { \`constructor\`(){} })
+    |            ^^^^^^^^^^^^^ Unexpected token: 'template tail'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x { async [x]s){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: 'identifier'
+> 1 | (class x { async [x]s){}})
+    |                     ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x {[x]z){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: 'identifier'
+> 1 | (class x {[x]z){}})
+    |              ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x {foo, bar(){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: ','
+> 1 | (class x {foo, bar(){}})
+    |              ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x {foo: x}) 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: ':'
+> 1 | (class x {foo: x})
+    |              ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x extends a = b {}) 1`] = `
+"SyntaxError [1:19-1:20]: Expected '{'
+> 1 | (class x extends a = b {})
+    |                    ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{async *%x(a){}})\`; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid key token
+> 1 | (class x{async *%x(a){}})\`;
+    |                 ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{async *get 8(){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token
+> 1 | (class x{async *get 8(){}})
+    |                     ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{get *"foo"(){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{get *"foo"(){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{get *[x](){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{get *[x](){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{get *555(){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{get *555(){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{get *foo(){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{get *foo(){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{set *"foo"(a){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{set *"foo"(a){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{set *%x(a){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{set *%x(a){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{set *[x](a){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{set *[x](a){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{set *555(a){}}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{set *555(a){}})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{set *foo(a){}) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid key token
+> 1 | (class x{set *foo(a){})
+    |              ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static *%x(){}}) 1`] = `
+"SyntaxError [1:17-1:18]: Invalid key token
+> 1 | (class x{static *%x(){}})
+    |                  ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static *async "x"(){}}) 1`] = `
+"SyntaxError [1:23-1:26]: Unexpected token
+> 1 | (class x{static *async "x"(){}})
+    |                        ^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static *async 8(){}}) 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token
+> 1 | (class x{static *async 8(){}})
+    |                        ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static *get "x"(){}} 1`] = `
+"SyntaxError [1:21-1:24]: Unexpected token
+> 1 | (class x{static *get "x"(){}}
+    |                      ^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static *get 8(){}}) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token
+> 1 | (class x{static *get 8(){}})
+    |                      ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static *set 8(y){}}) 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token
+> 1 | (class x{static *set 8(y){}})
+    |                      ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static async *%x(a){}}) 1`] = `
+"SyntaxError [1:23-1:24]: Invalid key token
+> 1 | (class x{static async *%x(a){}})
+    |                        ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static async *%x(a){}}) 2`] = `
+"SyntaxError [1:23-1:24]: Invalid key token
+> 1 | (class x{static async *%x(a){}})
+    |                        ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static get *"foo"(){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static get *"foo"(){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static get *[x](){}}\`); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static get *[x](){}}\`);
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static get *555(){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static get *555(){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static get *foo(){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static get *foo(){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static set *"foo"(a){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static set *"foo"(a){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static set *%x(a){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static set *%x(a){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static set *[x](a){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static set *[x](a){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static set *555(a){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static set *555(a){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class x{static set *foo(a){}}) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid key token
+> 1 | (class x{static set *foo(a){}})
+    |                     ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > (class yield {a:0}) 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected strict mode reserved word
+> 1 | (class yield {a:0})
+    |        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > 0, class { static method(...a,) {} }; 1`] = `
+"SyntaxError [1:29-1:30]: The binding declaration is not destructible
+> 1 | 0, class { static method(...a,) {} };
+    |                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Class > Expressions - Class > 0, class { static method(...x = []) { } }; 1`] = `
+"SyntaxError [1:34-1:35]: The binding declaration is not destructible
+> 1 | 0, class { static method(...x = []) { } };
+    |                                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Class > Expressions - Class > 0, class { static method(...x = []) {} }; 1`] = `
+"SyntaxError [1:34-1:35]: The binding declaration is not destructible
+> 1 | 0, class { static method(...x = []) {} };
+    |                                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Class > Expressions - Class > C = class let {}; 1`] = `
+"SyntaxError [1:10-1:13]: Unexpected strict mode reserved word
+> 1 | C = class let {};
+    |           ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > None class{}
+/foo/ 1`] = `
+"SyntaxError [1:5-1:10]: Unexpected token: 'class'
+> 1 | None class{}
+    |      ^^^^^ Unexpected token: 'class'
+  2 | /foo/"
+`;
+
+exports[`Expressions - Class > Expressions - Class > async function f() {   class x { [await](){} }   } 1`] = `
+"SyntaxError [1:34-1:39]: cannot use "await" as identifier inside an async function
+> 1 | async function f() {   class x { [await](){} }   }
+    |                                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Class > Expressions - Class > async function f() {   class x { await y(){} }   } 1`] = `
+"SyntaxError [1:39-1:40]: Unexpected token: 'identifier'
+> 1 | async function f() {   class x { await y(){} }   }
+    |                                        ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > async function f(){   (fail = class extends (await x) {}) => {}   } 1`] = `
+"SyntaxError [1:58-1:60]: Await expression not allowed in formal parameter
+> 1 | async function f(){   (fail = class extends (await x) {}) => {}   }
+    |                                                           ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Class > Expressions - Class > async function f(foo = class y extends (await f) {}){} 1`] = `
+"SyntaxError [1:40-1:45]: Await expression not allowed in formal parameter
+> 1 | async function f(foo = class y extends (await f) {}){}
+    |                                         ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A { async* f() { () => yield a; } } 1`] = `
+"SyntaxError [1:29-1:34]: 'yield' may not be used as an identifier in this context
+> 1 | class A { async* f() { () => yield a; } }
+    |                              ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {"x"){}} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ')'
+> 1 | class A {"x"){}}
+    |             ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {"x"{}} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '{'
+> 1 | class A {"x"{}}
+    |             ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {* get [x](){}} 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token
+> 1 | class A {* get [x](){}}
+    |                ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {... 1`] = `
+"SyntaxError [1:9-1:12]: Unexpected token: '...'
+> 1 | class A {...
+    |          ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {async *=f(){}} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid key token
+> 1 | class A {async *=f(){}}
+    |                ^^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {async get [x](){}} 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: '['
+> 1 | class A {async get [x](){}}
+    |                    ^ Unexpected token: '['"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A {async get foo(){}} 1`] = `
+"SyntaxError [1:19-1:22]: Unexpected token: 'identifier'
+> 1 | class A {async get foo(){}}
+    |                    ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class A extends (() => { with (a) {} }) {} 1`] = `
+"SyntaxError [1:30-1:31]: Strict mode code may not include a with statement
+> 1 | class A extends (() => { with (a) {} }) {}
+    |                               ^ Strict mode code may not include a with statement"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends (function B() {
+  with ({});
+  return B;
+}()) {} 1`] = `
+"SyntaxError [2:7-2:8]: Strict mode code may not include a with statement
+  1 | class C extends (function B() {
+> 2 |   with ({});
+    |        ^ Strict mode code may not include a with statement
+  3 |   return B;
+  4 | }()) {}"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends [...x=y] = b {} 1`] = `
+"SyntaxError [1:25-1:26]: Expected '{'
+> 1 | class C extends [...x=y] = b {}
+    |                          ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends --x {} 1`] = `
+"SyntaxError [1:16-1:18]: Unexpected token
+> 1 | class C extends --x {}
+    |                 ^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends a !== b {} 1`] = `
+"SyntaxError [1:18-1:21]: Expected '{'
+> 1 | class C extends a !== b {}
+    |                   ^^^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends a *= b {} 1`] = `
+"SyntaxError [1:18-1:20]: Expected '{'
+> 1 | class C extends a *= b {}
+    |                   ^^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends a => {} {} 1`] = `
+"SyntaxError [1:18-1:20]: Unexpected token
+> 1 | class C extends a => {} {}
+    |                   ^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends a => b {} 1`] = `
+"SyntaxError [1:18-1:20]: Unexpected token
+> 1 | class C extends a => b {}
+    |                   ^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends async a => b {} 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token
+> 1 | class C extends async a => b {}
+    |                       ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends delete x {} 1`] = `
+"SyntaxError [1:16-1:22]: Unexpected token
+> 1 | class C extends delete x {}
+    |                 ^^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends s ** y {} 1`] = `
+"SyntaxError [1:18-1:20]: Expected '{'
+> 1 | class C extends s ** y {}
+    |                   ^^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends super() {} 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C extends super() {}
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends super.foo {} 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | class C extends super.foo {}
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends typeof x {} 1`] = `
+"SyntaxError [1:16-1:22]: Unexpected token
+> 1 | class C extends typeof x {}
+    |                 ^^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends void x {} 1`] = `
+"SyntaxError [1:16-1:20]: Unexpected token
+> 1 | class C extends void x {}
+    |                 ^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class C extends x,y {} 1`] = `
+"SyntaxError [1:17-1:18]: Expected '{'
+> 1 | class C extends x,y {}
+    |                  ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class E0 { 0123() {} } 1`] = `
+"SyntaxError [1:11-1:12]: Octal escape sequences are not allowed in strict mode
+> 1 | class E0 { 0123() {} }
+    |            ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class E0 { static prototype() {} } 1`] = `
+"SyntaxError [1:27-1:28]: Classes may not have a static property named 'prototype'
+> 1 | class E0 { static prototype() {} }
+    |                            ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class E1 { 0123.1() {} } 1`] = `
+"SyntaxError [1:11-1:12]: Octal escape sequences are not allowed in strict mode
+> 1 | class E1 { 0123.1() {} }
+    |            ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class E1 { static get prototype() {} } 1`] = `
+"SyntaxError [1:31-1:32]: Classes may not have a static property named 'prototype'
+> 1 | class E1 { static get prototype() {} }
+    |                                ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class E2 { static set prototype(x) {} } 1`] = `
+"SyntaxError [1:31-1:32]: Classes may not have a static property named 'prototype'
+> 1 | class E2 { static set prototype(x) {} }
+    |                                ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class X {    async constructor() {}   } 1`] = `
+"SyntaxError [1:30-1:31]: Class constructor may not be a accessor
+> 1 | class X {    async constructor() {}   }
+    |                               ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class X extends function(){ with(obj); } {} 1`] = `
+"SyntaxError [1:32-1:33]: Strict mode code may not include a with statement
+> 1 | class X extends function(){ with(obj); } {}
+    |                                 ^ Strict mode code may not include a with statement"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class a { constructor(){      class x extends super() {}    }} 1`] = `
+"SyntaxError [1:51-1:52]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class a { constructor(){      class x extends super() {}    }}
+    |                                                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class a { constructor(){   class x { [super()](){} }    }} 1`] = `
+"SyntaxError [1:43-1:44]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class a { constructor(){   class x { [super()](){} }    }}
+    |                                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class a {**=f(){} 1`] = `
+"SyntaxError [1:9-1:12]: Unexpected token: '**='
+> 1 | class a {**=f(){}
+    |          ^^^ Unexpected token: '**='"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class a {*=f(){}} 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '*='
+> 1 | class a {*=f(){}}
+    |          ^^ Unexpected token: '*='"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class arguments {}; 1`] = `
+"SyntaxError [1:6-1:15]: Unexpected eval or arguments in strict mode
+> 1 | class arguments {};
+    |       ^^^^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class eval { } 1`] = `
+"SyntaxError [1:6-1:10]: Unexpected eval or arguments in strict mode
+> 1 | class eval { }
+    |       ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { "static *async x(){} } 1`] = `
+"SyntaxError [1:12-1:34]: Unterminated string literal
+> 1 | class foo { "static *async x(){} }
+    |             ^^^^^^^^^^^^^^^^^^^^^^ Unterminated string literal"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { *async x(){} } 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token
+> 1 | class foo { *async x(){} }
+    |                    ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { async *(){} } 1`] = `
+"SyntaxError [1:19-1:20]: Invalid key token
+> 1 | class foo { async *(){} }
+    |                    ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { async : 0 } 1`] = `
+"SyntaxError [1:18-1:19]: Invalid key token
+> 1 | class foo { async : 0 }
+    |                   ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { async get x(){} } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'identifier'
+> 1 | class foo { async get x(){} }
+    |                       ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { async set x(y){} } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'identifier'
+> 1 | class foo { async set x(y){} }
+    |                       ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { async static x(){} } 1`] = `
+"SyntaxError [1:25-1:26]: Unexpected token: 'identifier'
+> 1 | class foo { async static x(){} }
+    |                          ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { async x : 0 } 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: ':'
+> 1 | class foo { async x : 0 }
+    |                     ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { static async *(){} } 1`] = `
+"SyntaxError [1:26-1:27]: Invalid key token
+> 1 | class foo { static async *(){} }
+    |                           ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { static async : 0 } 1`] = `
+"SyntaxError [1:25-1:26]: Invalid key token
+> 1 | class foo { static async : 0 }
+    |                          ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { static async get x(){} } 1`] = `
+"SyntaxError [1:29-1:30]: Unexpected token: 'identifier'
+> 1 | class foo { static async get x(){} }
+    |                              ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { static async set x(y){} } 1`] = `
+"SyntaxError [1:29-1:30]: Unexpected token: 'identifier'
+> 1 | class foo { static async set x(y){} }
+    |                              ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class foo { static async x : 0 } 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: ':'
+> 1 | class foo { static async x : 0 }
+    |                            ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class impl\\u0065ments {} 1`] = `
+"SyntaxError [1:6-1:21]: Class declaration must have a name in this context
+> 1 | class impl\\u0065ments {}
+    |       ^^^^^^^^^^^^^^^ Class declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class l\\u0065t { } 1`] = `
+"SyntaxError [1:6-1:14]: Class declaration must have a name in this context
+> 1 | class l\\u0065t { }
+    |       ^^^^^^^^ Class declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class let { } 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected strict mode reserved word
+> 1 | class let { }
+    |       ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class let {}; 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected strict mode reserved word
+> 1 | class let {};
+    |       ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class let {}\`; 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected strict mode reserved word
+> 1 | class let {}\`;
+    |       ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class public {} 1`] = `
+"SyntaxError [1:6-1:12]: Unexpected strict mode reserved word
+> 1 | class public {}
+    |       ^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class static {} 1`] = `
+"SyntaxError [1:6-1:12]: Unexpected strict mode reserved word
+> 1 | class static {}
+    |       ^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class switch() {} 1`] = `
+"SyntaxError [1:6-1:12]: Unexpected strict mode reserved word
+> 1 | class switch() {}
+    |       ^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class w {  t.x(){}  } 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | class w {  t.x(){}  }
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x 
+ /foo/ {} 1`] = `
+"SyntaxError [2:1-2:2]: Expected '{'
+  1 | class x 
+> 2 |  /foo/ {}
+    |  ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {    * * f(){}    } 1`] = `
+"SyntaxError [1:15-1:16]: Invalid key token
+> 1 | class x {    * * f(){}    }
+    |                ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {    set set f(x){}    } 1`] = `
+"SyntaxError [1:21-1:22]: Expected '('
+> 1 | class x {    set set f(x){}    }
+    |                      ^ Expected '('"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {    static prototype(){}    } 1`] = `
+"SyntaxError [1:29-1:30]: Classes may not have a static property named 'prototype'
+> 1 | class x {    static prototype(){}    }
+    |                              ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {    static static f(){}    } 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: 'identifier'
+> 1 | class x {    static static f(){}    }
+    |                            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { [super()](){} } 1`] = `
+"SyntaxError [1:16-1:17]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { [super()](){} }
+    |                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { [yield y](){} } 1`] = `
+"SyntaxError [1:11-1:16]: 'yield' may not be used as an identifier in this context
+> 1 | class x { [yield y](){} }
+    |            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { [yield y](){} } 2`] = `
+"SyntaxError [1:11-1:16]: 'yield' may not be used as an identifier in this context
+> 1 | class x { [yield y](){} }
+    |            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { [yield](){} } 1`] = `
+"SyntaxError [1:11-1:16]: 'yield' may not be used as an identifier in this context
+> 1 | class x { [yield](){} }
+    |            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { [yield](){} } 2`] = `
+"SyntaxError [1:11-1:16]: 'yield' may not be used as an identifier in this context
+> 1 | class x { [yield](){} }
+    |            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { async [x]s){}} 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: 'identifier'
+> 1 | class x { async [x]s){}}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { async get foo(){ }} 1`] = `
+"SyntaxError [1:20-1:23]: Unexpected token: 'identifier'
+> 1 | class x { async get foo(){ }}
+    |                     ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { await y(){} } 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: 'identifier'
+> 1 | class x { await y(){} }
+    |                 ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(x=await y){} } 1`] = `
+"SyntaxError [1:16-1:21]: Await expression not allowed in formal parameter
+> 1 | class x { foo(x=await y){} }
+    |                 ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(x=new (await y)()){} } 1`] = `
+"SyntaxError [1:21-1:26]: Await expression not allowed in formal parameter
+> 1 | class x { foo(x=new (await y)()){} }
+    |                      ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(x=new (await y)()){} } 2`] = `
+"SyntaxError [1:21-1:26]: Await expression not allowed in formal parameter
+> 1 | class x { foo(x=new (await y)()){} }
+    |                      ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(x=new (yield)()){} } 1`] = `
+"SyntaxError [1:21-1:26]: 'yield' may not be used as an identifier in this context
+> 1 | class x { foo(x=new (yield)()){} }
+    |                      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(x=yield y){} } 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | class x { foo(x=yield y){} }
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(x=yield){} } 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | class x { foo(x=yield){} }
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { foo(yield){} } 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected strict mode reserved word
+> 1 | class x { foo(yield){} }
+    |               ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { set 
+ /foo/ } 1`] = `
+"SyntaxError [2:1-2:2]: Invalid key token
+  1 | class x { set 
+> 2 |  /foo/ }
+    |  ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static "prototype"(){} } 1`] = `
+"SyntaxError [1:28-1:29]: Classes may not have a static property named 'prototype'
+> 1 | class x { static "prototype"(){} }
+    |                             ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static *prototype(){} } 1`] = `
+"SyntaxError [1:27-1:28]: Classes may not have a static property named 'prototype'
+> 1 | class x { static *prototype(){} }
+    |                            ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static / foo(){} } 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: '/'
+> 1 | class x { static / foo(){} }
+    |                  ^ Unexpected token: '/'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static async *prot\\u006ftype(){} } 1`] = `
+"SyntaxError [1:38-1:39]: Classes may not have a static property named 'prototype'
+> 1 | class x { static async *prot\\u006ftype(){} }
+    |                                       ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static async *prototype(){} } 1`] = `
+"SyntaxError [1:33-1:34]: Classes may not have a static property named 'prototype'
+> 1 | class x { static async *prototype(){} }
+    |                                  ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static prototype(){} } 1`] = `
+"SyntaxError [1:26-1:27]: Classes may not have a static property named 'prototype'
+> 1 | class x { static prototype(){} }
+    |                           ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { static set prototype(x){} } 1`] = `
+"SyntaxError [1:30-1:31]: Classes may not have a static property named 'prototype'
+> 1 | class x { static set prototype(x){} }
+    |                               ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x 
+ /foo/ } 1`] = `
+"SyntaxError [2:1-2:2]: Unexpected token: '/'
+  1 | class x { x 
+> 2 |  /foo/ }
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a,>() } 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: ','
+> 1 | class x { x = new y<a,>() }
+    |                      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a,>() } 2`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: ','
+> 1 | class x { x = new y<a,>() }
+    |                      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a,>() } 3`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: ','
+> 1 | class x { x = new y<a,>() }
+    |                      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a,b>() } 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: ','
+> 1 | class x { x = new y<a,b>() }
+    |                      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a,b>() } 2`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: ','
+> 1 | class x { x = new y<a,b>() }
+    |                      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a,b>() } 3`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: ','
+> 1 | class x { x = new y<a,b>() }
+    |                      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a>() } 1`] = `
+"SyntaxError [1:25-1:26]: \`=>\` is an invalid assignment target
+> 1 | class x { x = new y<a>() }
+    |                          ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = new y<a>() } 2`] = `
+"SyntaxError [1:25-1:26]: \`=>\` is an invalid assignment target
+> 1 | class x { x = new y<a>() }
+    |                          ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { x = y<a>() } 1`] = `
+"SyntaxError [1:21-1:22]: \`=>\` is an invalid assignment target
+> 1 | class x { x = y<a>() }
+    |                      ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { y()
+ /foo/{} } 1`] = `
+"SyntaxError [2:1-2:2]: Expected '{'
+  1 | class x { y()
+> 2 |  /foo/{} }
+    |  ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { y() {}
+ /foo/ } 1`] = `
+"SyntaxError [2:1-2:2]: Unexpected token: '/'
+  1 | class x { y() {}
+> 2 |  /foo/ }
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x { y(z, 
+ /foo/){} } 1`] = `
+"SyntaxError [2:1-2:2]: Expected ')'
+  1 | class x { y(z, 
+> 2 |  /foo/){} }
+    |  ^ Expected ')'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {[x]z){}} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'identifier'
+> 1 | class x {[x]z){}}
+    |             ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {foo, bar(){}} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | class x {foo, bar(){}}
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x {foo: x} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ':'
+> 1 | class x {foo: x}
+    |             ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends () => x {} 1`] = `
+"SyntaxError [1:19-1:21]: \`=>\` is an invalid assignment target
+> 1 | class x extends () => x {}
+    |                    ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends ()=>1 {} 1`] = `
+"SyntaxError [1:18-1:20]: \`=>\` is an invalid assignment target
+> 1 | class x extends ()=>1 {}
+    |                   ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends a = b {} 1`] = `
+"SyntaxError [1:18-1:19]: Expected '{'
+> 1 | class x extends a = b {}
+    |                   ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends await y { } 1`] = `
+"SyntaxError [1:22-1:23]: Expected '{'
+> 1 | class x extends await y { }
+    |                       ^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends feh(await y) { } 1`] = `
+"SyntaxError [1:26-1:27]: Expected ')'
+> 1 | class x extends feh(await y) { }
+    |                           ^ Expected ')'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends feh(yield y) { } 1`] = `
+"SyntaxError [1:20-1:25]: 'yield' may not be used as an identifier in this context
+> 1 | class x extends feh(yield y) { }
+    |                     ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends feh(yield) { } 1`] = `
+"SyntaxError [1:20-1:25]: 'yield' may not be used as an identifier in this context
+> 1 | class x extends feh(yield) { }
+    |                     ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends super.foo {} 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | class x extends super.foo {}
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends y { [super.foo](){} } 1`] = `
+"SyntaxError [1:26-1:27]: Member access on super must be in a method
+> 1 | class x extends y { [super.foo](){} }
+    |                           ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends yield { } 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | class x extends yield { }
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends yield {} 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | class x extends yield {}
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends yield {} 2`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | class x extends yield {}
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x extends yield y { } 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | class x extends yield y { }
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x{   async static static(){}    } 1`] = `
+"SyntaxError [1:24-1:30]: Unexpected token: 'static'
+> 1 | class x{   async static static(){}    }
+    |                         ^^^^^^ Unexpected token: 'static'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x{*[yield](a){}} 1`] = `
+"SyntaxError [1:10-1:15]: 'yield' may not be used as an identifier in this context
+> 1 | class x{*[yield](a){}}
+    |           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x{[x](a=await y){}} 1`] = `
+"SyntaxError [1:14-1:19]: Await expression not allowed in formal parameter
+> 1 | class x{[x](a=await y){}}
+    |               ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x{[yield](a){}} 1`] = `
+"SyntaxError [1:9-1:14]: 'yield' may not be used as an identifier in this context
+> 1 | class x{[yield](a){}}
+    |          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x{async *%x(a){}} 1`] = `
+"SyntaxError [1:15-1:16]: Invalid key token
+> 1 | class x{async *%x(a){}}
+    |                ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class x{static get *%x(){}} 1`] = `
+"SyntaxError [1:19-1:20]: Invalid key token
+> 1 | class x{static get *%x(){}}
+    |                    ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class yield { } 1`] = `
+"SyntaxError [1:6-1:11]: Unexpected strict mode reserved word
+> 1 | class yield { }
+    |       ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > class yield { } 2`] = `
+"SyntaxError [1:6-1:11]: Unexpected strict mode reserved word
+> 1 | class yield { }
+    |       ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > classfunction yield(yield) { yield: yield (yield + yield(0)); } 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected token: 'yield'
+> 1 | classfunction yield(yield) { yield: yield (yield + yield(0)); }
+    |               ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > for (class x { [a](){} } in c); 1`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in for-in
+> 1 | for (class x { [a](){} } in c);
+    |                          ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Expressions - Class > Expressions - Class > for (class x extends a in b {} in c); 1`] = `
+"SyntaxError [1:23-1:25]: Expected '{'
+> 1 | for (class x extends a in b {} in c);
+    |                        ^^ Expected '{'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function () { class A { constructor() { A = 0; } }; new A(); } 1`] = `
+"SyntaxError [1:9-1:10]: Function declaration must have a name in this context
+> 1 | function () { class A { constructor() { A = 0; } }; new A(); }
+    |          ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function () { class A extends "test"  { } } 1`] = `
+"SyntaxError [1:9-1:10]: Function declaration must have a name in this context
+> 1 | function () { class A extends "test"  { } }
+    |          ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function () { class A extends {}      { } } 1`] = `
+"SyntaxError [1:9-1:10]: Function declaration must have a name in this context
+> 1 | function () { class A extends {}      { } }
+    |          ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function () { class A extends 0       { } } 1`] = `
+"SyntaxError [1:9-1:10]: Function declaration must have a name in this context
+> 1 | function () { class A extends 0       { } }
+    |          ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function () { class A extends undefined { } } 1`] = `
+"SyntaxError [1:9-1:10]: Function declaration must have a name in this context
+> 1 | function () { class A extends undefined { } }
+    |          ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){   class x extends yield {}    } 1`] = `
+"SyntaxError [1:39-1:40]: Invalid left-hand side in assignment
+> 1 | function *f(){   class x extends yield {}    }
+    |                                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class x { foo(x=new (yield)()){} }  } 1`] = `
+"SyntaxError [1:37-1:42]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class x { foo(x=new (yield)()){} }  }
+    |                                      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class x { foo(x=yield y){} }  } 1`] = `
+"SyntaxError [1:32-1:37]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class x { foo(x=yield y){} }  }
+    |                                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class x { foo(x=yield){} }  } 1`] = `
+"SyntaxError [1:32-1:37]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class x { foo(x=yield){} }  }
+    |                                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class x { foo(yield){} }  } 1`] = `
+"SyntaxError [1:30-1:35]: Unexpected strict mode reserved word
+> 1 | function *f(){  class x { foo(yield){} }  }
+    |                               ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class x extends yield { }  } 1`] = `
+"SyntaxError [1:38-1:39]: Invalid left-hand side in assignment
+> 1 | function *f(){  class x extends yield { }  }
+    |                                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class x extends yield y { }  } 1`] = `
+"SyntaxError [1:38-1:39]: Invalid left-hand side in assignment
+> 1 | function *f(){  class x extends yield y { }  }
+    |                                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function *f(){  class yield { }  } 1`] = `
+"SyntaxError [1:22-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class yield { }  }
+    |                       ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function foo() { (class { get [yield]() { return get yield"; }}) } 1`] = `
+"SyntaxError [1:31-1:36]: 'yield' may not be used as an identifier in this context
+> 1 | function foo() { (class { get [yield]() { return get yield"; }}) }
+    |                                ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function foo() { (class { set [yield](param) { yieldSet = param; }} 1`] = `
+"SyntaxError [1:31-1:36]: 'yield' may not be used as an identifier in this context
+> 1 | function foo() { (class { set [yield](param) { yieldSet = param; }}
+    |                                ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function foo() { (class { static *get [x](){}}) } 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected token
+> 1 | function foo() { (class { static *get [x](){}}) }
+    |                                       ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function foo() { (class { static *set [x](y){}}) } 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected token
+> 1 | function foo() { (class { static *set [x](y){}}) }
+    |                                       ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function() { (new (class A { get x() { A = 0; } })).x; } 1`] = `
+"SyntaxError [1:8-1:9]: Function declaration must have a name in this context
+> 1 | function() { (new (class A { get x() { A = 0; } })).x; }
+    |         ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function() { (new (class A { set x(_) { A = 0; } })).x = 15; } 1`] = `
+"SyntaxError [1:8-1:9]: Function declaration must have a name in this context
+> 1 | function() { (new (class A { set x(_) { A = 0; } })).x = 15; }
+    |         ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function() { class A { get x() { A = 0; } }; new A().x; } 1`] = `
+"SyntaxError [1:8-1:9]: Function declaration must have a name in this context
+> 1 | function() { class A { get x() { A = 0; } }; new A().x; }
+    |         ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function() { class A { m() { A = 0; } }; new A().m(); } 1`] = `
+"SyntaxError [1:8-1:9]: Function declaration must have a name in this context
+> 1 | function() { class A { m() { A = 0; } }; new A().m(); }
+    |         ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function() { class A { set x(_) { A = 0; } }; new A().x = 15; } 1`] = `
+"SyntaxError [1:8-1:9]: Function declaration must have a name in this context
+> 1 | function() { class A { set x(_) { A = 0; } }; new A().x = 15; }
+    |         ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > function() { new (class A { m() { A = 0; } }).m(); } 1`] = `
+"SyntaxError [1:8-1:9]: Function declaration must have a name in this context
+> 1 | function() { new (class A { m() { A = 0; } }).m(); }
+    |         ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Class > Expressions - Class > let c = class x { 
+ /foo/ } 1`] = `
+"SyntaxError [2:1-2:6]: Unexpected token: 'regular expression'
+  1 | let c = class x { 
+> 2 |  /foo/ }
+    |  ^^^^^ Unexpected token: 'regular expression'"
+`;
+
+exports[`Expressions - Class > Expressions - Class > let c = class x { get 
+ /foo/ } 1`] = `
+"SyntaxError [2:1-2:2]: Invalid key token
+  1 | let c = class x { get 
+> 2 |  /foo/ }
+    |  ^ Invalid key token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > new class { constructor() {} start() { new class { } } constructor() {}} 1`] = `
+"SyntaxError [1:66-1:67]: Duplicate constructor method in class
+> 1 | new class { constructor() {} start() { new class { } } constructor() {}}
+    |                                                                   ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > new class { constructor() {} start() { new class { constructor() {}}} constructor() {}} 1`] = `
+"SyntaxError [1:81-1:82]: Duplicate constructor method in class
+> 1 | new class { constructor() {} start() { new class { constructor() {}}} constructor() {}}
+    |                                                                                  ^ Duplicate constructor method in class"
+`;
+
+exports[`Expressions - Class > Expressions - Class > super[1]; 1`] = `
+"SyntaxError [1:5-1:6]: Member access on super must be in a method
+> 1 | super[1];
+    |      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Class > Expressions - Class > var C = class { static async *gen() { yield: ; }} 1`] = `
+"SyntaxError [1:43-1:44]: Unexpected strict mode reserved word
+> 1 | var C = class { static async *gen() { yield: ; }}
+    |                                            ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Class > Expressions - Class > var C = class await {}; 1`] = `
+"SyntaxError [1:14-1:19]: Can not use \`await\` as identifier in module or async func
+> 1 | var C = class await {};
+    |               ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Class > Expressions - Class > var foo = (class { static *get [x](){}}) 1`] = `
+"SyntaxError [1:31-1:32]: Unexpected token
+> 1 | var foo = (class { static *get [x](){}})
+    |                                ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > var foo = (class { static *set [x](y){}}) 1`] = `
+"SyntaxError [1:31-1:32]: Unexpected token
+> 1 | var foo = (class { static *set [x](y){}})
+    |                                ^ Unexpected token"
+`;
+
+exports[`Expressions - Class > Expressions - Class > var x = class eval {}; 1`] = `
+"SyntaxError [1:14-1:18]: Unexpected eval or arguments in strict mode
+> 1 | var x = class eval {};
+    |               ^^^^ Unexpected eval or arguments in strict mode"
 `;

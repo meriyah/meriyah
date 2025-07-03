@@ -1,13 +1,8 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Conditional', () => {
-  fail('Expressions - Conditional (fail)', [
-    ['a ? await x : c', Context.None],
-    ['a ? b : await c', Context.None],
-    ['a ? b : yield c', Context.None],
-  ]);
+  fail('Expressions - Conditional (fail)', ['a ? await x : c', 'a ? b : await c', 'a ? b : yield c']);
 
   pass('Expressions - Conditional (pass)', [
     { code: 'foo?.3:0', options: { next: true } },

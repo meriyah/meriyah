@@ -1,24 +1,24 @@
 import { Chars } from '../chars';
-import { Token } from '../token';
 import { Context, Flags } from '../common';
+import { Errors } from '../errors';
 import { type Parser } from '../parser/parser';
-import { report, Errors } from '../errors';
+import { Token } from '../token';
 import { isIDStart } from '../unicode';
+import { CommentType, skipMultiLineComment, skipSingleHTMLComment, skipSingleLineComment } from './comments';
 import {
   advanceChar,
-  LexerState,
-  isExoticECMAScriptWhitespace,
-  NumberKind,
   consumeLineFeed,
-  scanNewLine,
   consumePossibleSurrogatePair,
+  isExoticECMAScriptWhitespace,
+  LexerState,
+  NumberKind,
+  scanNewLine,
 } from './common';
-import { skipSingleLineComment, skipMultiLineComment, skipSingleHTMLComment, CommentType } from './comments';
-import { scanRegularExpression } from './regexp';
-import { scanTemplate } from './template';
+import { scanIdentifier, scanIdentifierSlowCase, scanPrivateIdentifier, scanUnicodeIdentifier } from './identifier';
 import { scanNumber } from './numeric';
+import { scanRegularExpression } from './regexp';
 import { scanString } from './string';
-import { scanIdentifier, scanUnicodeIdentifier, scanIdentifierSlowCase, scanPrivateIdentifier } from './identifier';
+import { scanTemplate } from './template';
 
 /*
  * OneChar:          40,  41,  44,  58,  59,  63,  91,  93,  123, 125, 126:
@@ -34,7 +34,7 @@ import { scanIdentifier, scanUnicodeIdentifier, scanIdentifierSlowCase, scanPriv
  * Template:         96: '`'
  */
 
-export const TokenLookup = [
+const TokenLookup = [
   /*   0 - Null                */ Token.Illegal,
   /*   1 - Start of Heading    */ Token.Illegal,
   /*   2 - Start of Text       */ Token.Illegal,
@@ -184,11 +184,6 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
 
   const { source } = parser;
 
-  // These three are only for HTMLClose comment
-  let startIndex = parser.index;
-  let startLine = parser.line;
-  let startColumn = parser.column;
-
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
     parser.tokenColumn = parser.column;
@@ -281,19 +276,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
               ) {
                 parser.column += 3;
                 parser.currentChar = source.charCodeAt((parser.index += 3));
-                state = skipSingleHTMLComment(
-                  parser,
-                  source,
-                  state,
-                  context,
-                  CommentType.HTMLOpen,
-                  parser.tokenIndex,
-                  parser.tokenLine,
-                  parser.tokenColumn,
-                );
-                startIndex = parser.tokenIndex;
-                startLine = parser.tokenLine;
-                startColumn = parser.tokenColumn;
+                state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLOpen, parser.tokenStart);
                 continue;
               }
               return Token.LessThan;
@@ -396,21 +379,9 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
           if (ch === Chars.Hyphen) {
             advanceChar(parser);
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
-              if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
+              if (!parser.options.webcompat) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
-              state = skipSingleHTMLComment(
-                parser,
-                source,
-                state,
-                context,
-                CommentType.HTMLClose,
-                startIndex,
-                startLine,
-                startColumn,
-              );
-              startIndex = parser.tokenIndex;
-              startLine = parser.tokenLine;
-              startColumn = parser.tokenColumn;
+              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, parser.tokenStart);
               continue;
             }
 
@@ -432,30 +403,16 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             const ch = parser.currentChar;
             if (ch === Chars.Slash) {
               advanceChar(parser);
-              state = skipSingleLineComment(
-                parser,
-                source,
-                state,
-                CommentType.Single,
-                parser.tokenIndex,
-                parser.tokenLine,
-                parser.tokenColumn,
-              );
-              startIndex = parser.tokenIndex;
-              startLine = parser.tokenLine;
-              startColumn = parser.tokenColumn;
+              state = skipSingleLineComment(parser, source, state, CommentType.Single, parser.tokenStart);
               continue;
             }
             if (ch === Chars.Asterisk) {
               advanceChar(parser);
               state = skipMultiLineComment(parser, source, state) as LexerState;
-              startIndex = parser.tokenIndex;
-              startLine = parser.tokenLine;
-              startColumn = parser.tokenColumn;
               continue;
             }
             if (context & Context.AllowRegExp) {
-              return scanRegularExpression(parser, context);
+              return scanRegularExpression(parser);
             }
             if (ch === Chars.EqualSign) {
               advanceChar(parser);
@@ -618,7 +575,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
       }
 
       // Invalid ASCII code point/unit
-      report(parser, Errors.IllegalCharacter, String.fromCodePoint(char));
+      parser.report(Errors.IllegalCharacter, String.fromCodePoint(char));
     }
   }
 

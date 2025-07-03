@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Functions', () => {
   for (const arg of [
@@ -23,15 +23,15 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`(function (${arg}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, undefined, Context.None);
+        parseSource(`(function (${arg}) {})`);
       });
 
       t.throws(() => {
-        parseSource(`const foo = (function (${arg}) {})`, undefined, Context.None);
+        parseSource(`const foo = (function (${arg}) {})`);
       });
 
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, undefined, Context.Strict | Context.Module);
+        parseSource(`(function (${arg}) {})`, { sourceType: 'module' });
       });
     });
   }
@@ -47,25 +47,25 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.None);
+        parseSource(`function foo() { ${arg}}`);
       });
     });
 
     it(`(function foo() { ${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(function foo() { ${arg}})`, undefined, Context.None);
+        parseSource(`(function foo() { ${arg}})`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
@@ -103,7 +103,7 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`(function(${arg}) {})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function(${arg}) {})`, undefined, Context.None);
+        parseSource(`(function(${arg}) {})`);
       });
     });
   }
@@ -130,7 +130,7 @@ describe('Expressions - Functions', () => {
     '(function b2(a, ...b) {})',
     'f( ({...c}=o, c) )',
     '(function fn({a = 1, ...b} = {}) {   return {a, b}; })',
-    `function iceFapper(idiot) {}`,
+    'function iceFapper(idiot) {}',
     '(function([{ u: v, w: x, y: z } = { u: 444, w: 555, y: 666 }] = [{ u: 777, w: 888, y: 999 }]) {})',
     '(function({} = null) {})',
     'function f({foo}){}',
@@ -214,29 +214,29 @@ describe('Expressions - Functions', () => {
     'function f([foo], b){}',
     'function f([foo] = x, b){}',
     'function f([foo], b = y){}',
-    `(function foo(y, z) {{ function x() {} } })(1);`,
+    '(function foo(y, z) {{ function x() {} } })(1);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {} } })(1);`,
+    '(function foo(x = 0) { var x; { function x() {} } })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) {var x; {function x() {} } })([[1]]);`,
+    '(function foo([[x]]) {var x; {function x() {} } })([[1]]);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {}} })(1);`,
+    '(function foo(x = 0) { var x; { function x() {}} })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);`,
+    '(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);',
     // Rest parameter shouldn't be shadowed
-    `(function foo(...x) { var x; {  function x() {}  } })(1);`,
+    '(function foo(...x) { var x; {  function x() {}  } })(1);',
     // Don't shadow complex rest parameter
-    `(function foo(...[x]) { var x; { function x() {} } })(1);`,
+    '(function foo(...[x]) { var x; { function x() {} } })(1);',
     // Hoisting is not affected by other simple parameters
-    `(function foo(y, z) {{function x() {}} })(1);`,
+    '(function foo(y, z) {{function x() {}} })(1);',
     // Hoisting is not affected by other complex parameters
-    ` (function foo([y] = [], z) {{function x() {} } })();`,
+    ' (function foo([y] = [], z) {{function x() {} } })();',
     // Should allow shadowing function names
-    `{(function foo() { { function foo() { return 0; } } })();}`,
-    `{(function foo(...r) { { function foo() { return 0; } } })(); }`,
-    `(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();`,
-    `(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();`,
-    `(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()`,
+    '{(function foo() { { function foo() { return 0; } } })();}',
+    '{(function foo(...r) { { function foo() { return 0; } } })(); }',
+    '(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();',
+    '(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();',
+    '(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()',
     '(function foo(a = 0) { { let y = 3; function f(b = 0) { y = 2; } f(); } })();',
     '(function conditional() {  if (true) { function f() { return 1; } } else {  function f() { return 2; }} if (false) { function g() { return 1; }}  L: {break L;function f() { return 3; } }})();',
     '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',
@@ -249,88 +249,92 @@ describe('Expressions - Functions', () => {
   for (const arg of validSyntax) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
 
   for (const arg of [
-    `(function package() { (function gave_away_the_package() { "use strict"; }) })`,
-    `(function (eval) { (function () { "use strict"; })})`,
+    '(function package() { (function gave_away_the_package() { "use strict"; }) })',
+    '(function (eval) { (function () { "use strict"; })})',
   ]) {
     it(arg, () => {
       t.doesNotThrow(() => {
-        parseSource(arg, undefined, Context.None);
+        parseSource(arg);
       });
     });
   }
 
   fail('Expressions - Functions (fail)', [
-    ['(function foo(007){ "use strict"; })', Context.None],
-    ['(function foo(){ "use strict"; 007 })', Context.None],
-    ['"use strict"; (function foo(){  007 })', Context.None],
-    ['(function break(){})', Context.None],
-    ['(function function(){})', Context.None],
-    ['function f(1, async = 1){}', Context.None],
-    ['function f("abc", async = 1){}', Context.None],
-    ['function f(1, async = b){}', Context.None],
-    ['(function implements(){})', Context.Strict],
-    ['(function public(){})', Context.Strict],
-    ['(function let(){})', Context.Strict],
-    ['(async function await(){})', Context.None],
-    ['(function f([...foo, bar] = obj){})', Context.None],
-    ['function f([...foo,,] = obj){}', Context.None],
-    ['function f([...[a, b],,] = obj){}', Context.None],
-    ['function f([...bar = foo] = obj){}', Context.None],
-    ['function f([... ...foo] = obj){}', Context.None],
-    ['function f([...] = obj){} ', Context.None],
-    ['function f([...,] = obj){}', Context.None],
-    ['function f([.x] = obj){}', Context.None],
-    ['function f([..x] = obj){}', Context.None],
-    ['function f({,} = x){} ', Context.None],
-    ['function f({,,} = x){}', Context.None],
-    ['function f({foo,,} = x){}', Context.None],
-    ['function f({,foo} = x){}', Context.None],
-    ['function f({,,foo} = x){}', Context.None],
-    ['function f({,,async} = await){}', Context.None],
-    ['function f({foo,,bar} = x){}', Context.None],
-    ['function f({...{a: b}}){}', Context.None],
-    ['function f({...a.b}){}', Context.None],
-    [String.raw`function p\u0061ckage() { "use strict"; }`, Context.None],
-    ['function package() { "use strict"; }', Context.None],
+    '(function foo(007){ "use strict"; })',
+    '(function foo(){ "use strict"; 007 })',
+    '"use strict"; (function foo(){  007 })',
+    '(function break(){})',
+    '(function function(){})',
+    'function f(1, async = 1){}',
+    'function f("abc", async = 1){}',
+    'function f(1, async = b){}',
+    { code: '(function implements(){})', options: { impliedStrict: true } },
+    { code: '(function public(){})', options: { impliedStrict: true } },
+    { code: '(function let(){})', options: { impliedStrict: true } },
+    '(async function await(){})',
+    '(function f([...foo, bar] = obj){})',
+    'function f([...foo,,] = obj){}',
+    'function f([...[a, b],,] = obj){}',
+    'function f([...bar = foo] = obj){}',
+    'function f([... ...foo] = obj){}',
+    'function f([...] = obj){} ',
+    'function f([...,] = obj){}',
+    'function f([.x] = obj){}',
+    'function f([..x] = obj){}',
+    'function f({,} = x){} ',
+    'function f({,,} = x){}',
+    'function f({foo,,} = x){}',
+    'function f({,foo} = x){}',
+    'function f({,,foo} = x){}',
+    'function f({,,async} = await){}',
+    'function f({foo,,bar} = x){}',
+    'function f({...{a: b}}){}',
+    'function f({...a.b}){}',
+    String.raw`function p\u0061ckage() { "use strict"; }`,
+    'function package() { "use strict"; }',
   ]);
 
   pass('Expressions - Functions (pass)', [
-    `function f(async = await){}`,
-    `function f([async = await]){}`,
-    `(function () {
+    'function f(async = await){}',
+    'function f([async = await]){}',
+    outdent`
+      (function () {
         let q;
         let w;
         let e;
         if (true) [q, w, e] = [1, 2, 3].map(()=>123);
-      })();`,
+      })();
+    `,
 
-    `function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
+    outdent`
+      function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
 
-        }
+      }
 
-        function unpackObject({title: title, author: author}) {
-          return title + " " + author;
-        }
+      function unpackObject({title: title, author: author}) {
+        return title + " " + author;
+      }
 
-        console.log(unpackObject({title: "title", author: "author"}));
+      console.log(unpackObject({title: "title", author: "author"}));
 
-        var unpackArray = function ([a, b, c], [x, y, z]) {
-          return a+b+c;
-        };
+      var unpackArray = function ([a, b, c], [x, y, z]) {
+        return a+b+c;
+      };
 
-        console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3]));`,
+      console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3]));
+    `,
     'foo(function(){})',
     'foo(function f(){})',
     'foo(function*(){})',
@@ -422,10 +426,12 @@ describe('Expressions - Functions', () => {
     '(function foo([x1 = 1], {y1:y1 = 2}) {})',
     '(function foo({x:x} = {x:1}) {})',
 
-    `function test() {
-        let ID = "1|123456";
-        return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
-    }`,
+    outdent`
+      function test() {
+          let ID = "1|123456";
+          return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
+      }
+    `,
     '(function foo([x] = [1]) {})',
     '(function foo({x:x = 1} = {x:2}) {})',
     '(function foo([x = 1] = [2]) {})',
@@ -444,11 +450,13 @@ describe('Expressions - Functions', () => {
     '( {x1:x1}, [y1]) => x;',
     '( {x}) => x;',
 
-    `if (a && b) {
-      c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
-        return a
-      }));
-    }`,
+    outdent`
+      if (a && b) {
+        c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
+          return a
+        }));
+      }
+    `,
     '(function (eval) { function foo() { "use strict"; }})',
     '(function (eval) { (function () { "use strict"; })})',
     '(function package() { (function gave_away_the_package() { "use strict"; }) })',

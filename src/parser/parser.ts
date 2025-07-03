@@ -1,36 +1,11 @@
-import { convertTokenType } from '../lexer';
-import { Token } from '../token';
+import { type AssignmentKind, type DestructuringKind, Flags, type Location } from '../common';
+import { Errors, ParseError } from '../errors';
 import type * as ESTree from '../estree';
-import {
-  type Location,
-  Flags,
-  type OnComment,
-  type OnInsertedSemicolon,
-  type OnToken,
-  type AssignmentKind,
-  type DestructuringKind,
-} from '../common';
-
-export type ParserOptions = {
-  shouldAddLoc?: boolean;
-  shouldAddRanges?: boolean;
-  /**
-   * Used together with source maps. File containing the code being parsed
-   */
-  sourceFile?: string;
-  /**
-   * Holds either a function or array used on every comment
-   */
-  onComment?: OnComment;
-  /**
-   * Function invoked with the character offset when automatic semicolon insertion occurs
-   */
-  onInsertedSemicolon?: OnInsertedSemicolon;
-  /**
-   * Holds either a function or array used on every token
-   */
-  onToken?: OnToken;
-};
+import { convertTokenType } from '../lexer';
+import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
+import { Token } from '../token';
+import { PrivateScope } from './private-scope';
+import { Scope, type ScopeKind } from './scope';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
@@ -115,13 +90,13 @@ export class Parser {
   /**
    *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
    */
-  exportedNames: Record<string, number> = {};
+  exportedNames = new Set<string>();
 
   /**
    * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
    */
 
-  exportedBindings: Record<string, number> = {};
+  exportedBindings = new Set<string>();
 
   /**
    * Assignable state
@@ -146,7 +121,7 @@ export class Parser {
      * The source code to be parsed
      */
     public readonly source: string,
-    public readonly options: ParserOptions = {},
+    public readonly options: NormalizedOptions = {},
   ) {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
@@ -211,14 +186,14 @@ export class Parser {
   }
 
   finishNode<T extends ESTree.Node>(node: T, start: Location, end: Location | void): T {
-    if (this.options.shouldAddRanges) {
+    if (this.options.ranges) {
       node.start = start.index;
       const endIndex = end ? end.index : this.startIndex;
       node.end = endIndex;
       node.range = [start.index, endIndex];
     }
 
-    if (this.options.shouldAddLoc) {
+    if (this.options.loc) {
       node.loc = {
         start: {
           line: start.line,
@@ -227,46 +202,126 @@ export class Parser {
         end: end ? { line: end.line, column: end.column } : { line: this.startLine, column: this.startColumn },
       };
 
-      if (this.options.sourceFile) {
-        node.loc.source = this.options.sourceFile;
+      if (this.options.source) {
+        node.loc.source = this.options.source;
       }
+    }
+
+    return node;
+  }
+
+  /**
+   * Appends a name to the `ExportedBindings` of the `ExportsList`,
+   *
+   * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)
+   *
+   * @param name Exported binding name
+   */
+  addBindingToExports(name: string): void {
+    this.exportedBindings.add(name);
+  }
+
+  /**
+   * Appends a name to the `ExportedNames` of the `ExportsList`, and checks
+   * for duplicates
+   *
+   * @see [Link](https://tc39.github.io/ecma262/$sec-exports-static-semantics-exportednames)
+   *
+   * @param name Exported name
+   */
+  declareUnboundVariable(name: string): void {
+    const { exportedNames } = this;
+
+    if (exportedNames.has(name)) {
+      this.report(Errors.DuplicateExportBinding, name);
+    }
+
+    exportedNames.add(name);
+  }
+
+  /**
+   * Throws an error
+   *
+   * @export
+   * @param {Errors} type
+   * @param {...string[]} params
+   * @returns {never}
+   */
+  report(type: Errors, ...params: string[]): never {
+    throw new ParseError(this.tokenStart, this.currentLocation, type, ...params);
+  }
+
+  createScopeIfLexical(type?: ScopeKind, parent?: Scope) {
+    if (this.options.lexical) {
+      return this.createScope(type, parent);
+    }
+
+    return undefined;
+  }
+
+  createScope(type?: ScopeKind, parent?: Scope) {
+    return new Scope(this, type, parent);
+  }
+
+  createPrivateScopeIfLexical(parent?: PrivateScope) {
+    if (this.options.lexical) {
+      return new PrivateScope(this, parent);
+    }
+
+    return undefined;
+  }
+
+  cloneIdentifier(original: ESTree.Identifier): ESTree.Identifier {
+    const node: ESTree.Identifier = { ...original };
+
+    if (this.options.ranges) {
+      node.range = [...original.range!];
+    }
+
+    if (this.options.loc) {
+      node.loc = {
+        ...original.loc,
+        start: { ...original.loc!.start },
+        end: { ...original.loc!.end },
+      };
     }
 
     return node;
   }
 }
 
-export function pushComment(comments: ESTree.Comment[], options: ParserOptions): OnComment {
+export function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
   return function (type: ESTree.CommentType, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const comment: ESTree.Comment = {
       type,
       value,
     };
 
-    if (options.shouldAddRanges) {
+    if (options.ranges) {
       comment.start = start;
       comment.end = end;
       comment.range = [start, end];
     }
-    if (options.shouldAddLoc) {
+    if (options.loc) {
       comment.loc = loc;
     }
     comments.push(comment);
   };
 }
 
-export function pushToken(tokens: any[], options: ParserOptions): OnToken {
+export function pushToken(tokens: Token[], options: NormalizedOptions): OnToken {
   return function (type: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const token: any = {
       token: type,
     };
 
-    if (options.shouldAddRanges) {
+    if (options.ranges) {
       token.start = start;
       token.end = end;
       token.range = [start, end];
     }
-    if (options.shouldAddLoc) {
+
+    if (options.loc) {
       token.loc = loc;
     }
     tokens.push(token);

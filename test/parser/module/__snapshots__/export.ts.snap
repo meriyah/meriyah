@@ -1,7 +1,1507 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Module - Export > Module - Export (fail) > ({ set m(x) { export default null; } }); 1`] = `
+"SyntaxError [1:14-1:20]: The export keyword can only be used with the module goal
+> 1 | ({ set m(x) { export default null; } });
+    |               ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > (function() { export default null; }); 1`] = `
+"SyntaxError [1:14-1:20]: The export keyword can only be used with the module goal
+> 1 | (function() { export default null; });
+    |               ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > { export default null; } 1`] = `
+"SyntaxError [1:2-1:8]: The export keyword can only be used with the module goal
+> 1 | { export default null; }
+    |   ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > {export {x};} 1`] = `
+"SyntaxError [1:1-1:7]: The export keyword can only be used with the module goal
+> 1 | {export {x};}
+    |  ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > {export default 3} 1`] = `
+"SyntaxError [1:1-1:7]: The export keyword can only be used with the module goal
+> 1 | {export default 3}
+    |  ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > class A extends B { foo() { (super).foo } } 1`] = `
+"SyntaxError [1:34-1:35]: Unexpected token: 'super'
+> 1 | class A extends B { foo() { (super).foo } }
+    |                                   ^ Unexpected token: 'super'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > class C { method() { export default null; } } 1`] = `
+"SyntaxError [1:21-1:27]: The export keyword can only be used with the module goal
+> 1 | class C { method() { export default null; } }
+    |                      ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > class x { foo(){ export {x}; }} 1`] = `
+"SyntaxError [1:17-1:23]: The export keyword can only be used with the module goal
+> 1 | class x { foo(){ export {x}; }}
+    |                  ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const a = 0; export class a {}; 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+> 1 | const a = 0; export class a {};
+    |                           ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const a = 0; export const a = 1; 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'a'
+> 1 | const a = 0; export const a = 1;
+    |                             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const a = 0; export function a(){}; 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'a'
+> 1 | const a = 0; export function a(){};
+    |                              ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const a = 0; export let a; 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'a'
+> 1 | const a = 0; export let a;
+    |                          ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const a = 1; export {a as "", a as ""} 1`] = `
+"SyntaxError [1:37-1:38]: Cannot export a duplicate name ''
+> 1 | const a = 1; export {a as "", a as ""}
+    |                                      ^ Cannot export a duplicate name ''"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const a = 1; export {a as "a", a as "a"} 1`] = `
+"SyntaxError [1:39-1:40]: Cannot export a duplicate name 'a'
+> 1 | const a = 1; export {a as "a", a as "a"}
+    |                                        ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > const f = foo; export async function f(){}; 1`] = `
+"SyntaxError [1:37-1:38]: Duplicate binding 'f'
+> 1 | const f = foo; export async function f(){};
+    |                                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > do export default null; while (false) 1`] = `
+"SyntaxError [1:3-1:9]: Unexpected token: 'export'
+> 1 | do export default null; while (false)
+    |    ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export  1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'end of source'
+> 1 | export 
+    |       ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export "string_constant"; 1`] = `
+"SyntaxError [1:7-1:24]: Unexpected token: 'string'
+> 1 | export "string_constant";
+    |        ^^^^^^^^^^^^^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as "foo" from "./f"; export { foo }; 1`] = `
+"SyntaxError [1:44-1:45]: Cannot export a duplicate name 'foo'
+> 1 | export * as "foo" from "./f"; export { foo };
+    |                                             ^ Cannot export a duplicate name 'foo'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as ,foo from 'bar' 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | export * as ,foo from 'bar'
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as ,foo from 'bar' 2`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | export * as ,foo from 'bar'
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from "./f"; export { "a" as "foo" } from "./m"; 1`] = `
+"SyntaxError [1:62-1:63]: Cannot export a duplicate name 'foo'
+> 1 | export * as foo from "./f"; export { "a" as "foo" } from "./m";
+    |                                                               ^ Cannot export a duplicate name 'foo'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from "./f"; export { "foo" } from "./m"; 1`] = `
+"SyntaxError [1:55-1:56]: Cannot export a duplicate name 'foo'
+> 1 | export * as foo from "./f"; export { "foo" } from "./m";
+    |                                                        ^ Cannot export a duplicate name 'foo'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from "./f"; export { foo }; 1`] = `
+"SyntaxError [1:42-1:43]: Cannot export a duplicate name 'foo'
+> 1 | export * as foo from "./f"; export { foo };
+    |                                           ^ Cannot export a duplicate name 'foo'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from '; 1`] = `
+"SyntaxError [1:21-1:23]: Unterminated string literal
+> 1 | export * as foo from ';
+    |                      ^^ Unterminated string literal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from '; 2`] = `
+"SyntaxError [1:21-1:23]: Unterminated string literal
+> 1 | export * as foo from ';
+    |                      ^^ Unterminated string literal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from; 1`] = `
+"SyntaxError [1:20-1:21]: Export source must be string
+> 1 | export * as foo from;
+    |                     ^ Export source must be string"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo from; 2`] = `
+"SyntaxError [1:20-1:21]: Export source must be string
+> 1 | export * as foo from;
+    |                     ^ Export source must be string"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as foo; 1`] = `
+"SyntaxError [1:15-1:16]: Expected 'from'
+> 1 | export * as foo;
+    |                ^ Expected 'from'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as; 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: ';'
+> 1 | export * as;
+    |            ^ Unexpected token: ';'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export * as; 2`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: ';'
+> 1 | export * as;
+    |            ^ Unexpected token: ';'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export *; 1`] = `
+"SyntaxError [1:8-1:9]: Expected 'from'
+> 1 | export *;
+    |         ^ Expected 'from'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export *; 2`] = `
+"SyntaxError [1:8-1:9]: Expected 'from'
+> 1 | export *;
+    |         ^ Expected 'from'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export ...x = y 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected token: '...'
+> 1 | export ...x = y
+    |        ^^^ Unexpected token: '...'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { "\\uD83C" as b } from "./foo"; 1`] = `
+"SyntaxError [1:9-1:17]: An export name cannot include a lone surrogate, found ""
+> 1 | export { "\\uD83C" as b } from "./foo";
+    |          ^^^^^^^^ An export name cannot include a lone surrogate, found """
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { "a" as b }; 1`] = `
+"SyntaxError [1:19-1:20]: A string literal cannot be used as an exported binding without \`from\`
+> 1 | export { "a" as b };
+    |                    ^ A string literal cannot be used as an exported binding without \`from\`"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { 1`] = `
+"SyntaxError [1:7-1:8]: Expected '}'
+> 1 | export {
+    |        ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { 2`] = `
+"SyntaxError [1:7-1:8]: Expected '}'
+> 1 | export {
+    |        ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { Q } from; 1`] = `
+"SyntaxError [1:17-1:18]: Export source must be string
+> 1 | export { Q } from;
+    |                  ^ Export source must be string"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { a }; export { "\\u0061" } from "./m"; 1`] = `
+"SyntaxError [1:44-1:45]: Cannot export a duplicate name 'a'
+> 1 | export { a }; export { "\\u0061" } from "./m";
+    |                                             ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { a as "\\uD83C" } from "./foo"; 1`] = `
+"SyntaxError [1:14-1:22]: An export name cannot include a lone surrogate, found ""
+> 1 | export { a as "\\uD83C" } from "./foo";
+    |               ^^^^^^^^ An export name cannot include a lone surrogate, found """
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { arguments } 1`] = `
+"SyntaxError [1:19-1:20]: Exported binding 'arguments' needs to refer to a top-level declared variable
+> 1 | export { arguments }
+    |                    ^ Exported binding 'arguments' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { bar, }; 1`] = `
+"SyntaxError [1:15-1:16]: Exported binding 'bar' needs to refer to a top-level declared variable
+> 1 | export { bar, };
+    |                ^ Exported binding 'bar' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { foo }; 1`] = `
+"SyntaxError [1:14-1:15]: Exported binding 'foo' needs to refer to a top-level declared variable
+> 1 | export { foo };
+    |               ^ Exported binding 'foo' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { foo as foo2, baz } 1`] = `
+"SyntaxError [1:26-1:27]: Exported binding 'foo' needs to refer to a top-level declared variable
+> 1 | export { foo as foo2, baz }
+    |                           ^ Exported binding 'foo' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { foo as foo3, baz as baz2, } 1`] = `
+"SyntaxError [1:35-1:36]: Exported binding 'foo' needs to refer to a top-level declared variable
+> 1 | export { foo as foo3, baz as baz2, }
+    |                                    ^ Exported binding 'foo' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { foo as foo4, bar as bar2, foobar } 1`] = `
+"SyntaxError [1:42-1:43]: Exported binding 'foo' needs to refer to a top-level declared variable
+> 1 | export { foo as foo4, bar as bar2, foobar }
+    |                                           ^ Exported binding 'foo' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { for } 1`] = `
+"SyntaxError [1:13-1:14]: Exported binding 'for' needs to refer to a top-level declared variable
+> 1 | export { for }
+    |              ^ Exported binding 'for' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { for } 2`] = `
+"SyntaxError [1:13-1:14]: Exported binding 'for' needs to refer to a top-level declared variable
+> 1 | export { for }
+    |              ^ Exported binding 'for' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { for as foo } 1`] = `
+"SyntaxError [1:20-1:21]: Exported binding 'for' needs to refer to a top-level declared variable
+> 1 | export { for as foo }
+    |                     ^ Exported binding 'for' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { x as default }; 1`] = `
+"SyntaxError [1:23-1:24]: Exported binding 'x' needs to refer to a top-level declared variable
+> 1 | export { x as default };
+    |                        ^ Exported binding 'x' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export { x as y }; 1`] = `
+"SyntaxError [1:17-1:18]: Exported binding 'x' needs to refer to a top-level declared variable
+> 1 | export { x as y };
+    |                  ^ Exported binding 'x' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {Array} 1`] = `
+"SyntaxError [1:13-1:14]: Exported binding 'Array' needs to refer to a top-level declared variable
+> 1 | export {Array}
+    |              ^ Exported binding 'Array' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a as b}; let b; 1`] = `
+"SyntaxError [1:22-1:23]: Exported binding 'a' needs to refer to a top-level declared variable
+> 1 | export {a as b}; let b;
+    |                       ^ Exported binding 'a' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a as b}; var b; 1`] = `
+"SyntaxError [1:22-1:23]: Exported binding 'a' needs to refer to a top-level declared variable
+> 1 | export {a as b}; var b;
+    |                       ^ Exported binding 'a' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a, a as a}; 1`] = `
+"SyntaxError [1:18-1:19]: Cannot export a duplicate name 'a'
+> 1 | export {a, a as a};
+    |                   ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a, a}; 1`] = `
+"SyntaxError [1:13-1:14]: Cannot export a duplicate name 'a'
+> 1 | export {a, a};
+    |              ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a, b as a}; 1`] = `
+"SyntaxError [1:18-1:19]: Cannot export a duplicate name 'a'
+> 1 | export {a, b as a};
+    |                   ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a,,b} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '}'
+> 1 | export {a,,b}
+    |           ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a}; 1`] = `
+"SyntaxError [1:10-1:11]: Exported binding 'a' needs to refer to a top-level declared variable
+> 1 | export {a};
+    |           ^ Exported binding 'a' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a}; export {b as a}; 1`] = `
+"SyntaxError [1:27-1:28]: Cannot export a duplicate name 'a'
+> 1 | export {a}; export {b as a};
+    |                            ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a}; export {b as a}; 2`] = `
+"SyntaxError [1:27-1:28]: Cannot export a duplicate name 'a'
+> 1 | export {a}; export {b as a};
+    |                            ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a}; export {b as a}; 3`] = `
+"SyntaxError [1:27-1:28]: Cannot export a duplicate name 'a'
+> 1 | export {a}; export {b as a};
+    |                            ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a}; export class a{}; 1`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'a'
+> 1 | export {a}; export class a{};
+    |                          ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {a}; export function a(){}; 1`] = `
+"SyntaxError [1:28-1:29]: Cannot export a duplicate name 'a'
+> 1 | export {a}; export function a(){};
+    |                             ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {aa as bb, x}; 1`] = `
+"SyntaxError [1:20-1:21]: Exported binding 'aa' needs to refer to a top-level declared variable
+> 1 | export {aa as bb, x};
+    |                     ^ Exported binding 'aa' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {b as a}; export {a}; 1`] = `
+"SyntaxError [1:27-1:28]: Cannot export a duplicate name 'a'
+> 1 | export {b as a}; export {a};
+    |                            ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {b as a}; export {a}; 2`] = `
+"SyntaxError [1:27-1:28]: Cannot export a duplicate name 'a'
+> 1 | export {b as a}; export {a};
+    |                            ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {default} + 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: '+'
+> 1 | export {default} +
+    |                  ^ Unexpected token: '+'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {f} export class f {}; 1`] = `
+"SyntaxError [1:11-1:17]: Unexpected token: 'export'
+> 1 | export {f} export class f {};
+    |            ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {f}; export async function f() {} 1`] = `
+"SyntaxError [1:34-1:35]: Cannot export a duplicate name 'f'
+> 1 | export {f}; export async function f() {}
+    |                                   ^ Cannot export a duplicate name 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {f}; export const x = y; 1`] = `
+"SyntaxError [1:30-1:31]: Exported binding 'f' needs to refer to a top-level declared variable
+> 1 | export {f}; export const x = y;
+    |                               ^ Exported binding 'f' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {foo, bar,}; 1`] = `
+"SyntaxError [1:18-1:19]: Exported binding 'foo' needs to refer to a top-level declared variable
+> 1 | export {foo, bar,};
+    |                   ^ Exported binding 'foo' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {foo} 1`] = `
+"SyntaxError [1:11-1:12]: Exported binding 'foo' needs to refer to a top-level declared variable
+> 1 | export {foo}
+    |            ^ Exported binding 'foo' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {foob}; 1`] = `
+"SyntaxError [1:13-1:14]: Exported binding 'foob' needs to refer to a top-level declared variable
+> 1 | export {foob};
+    |              ^ Exported binding 'foob' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {function} from a 1`] = `
+"SyntaxError [1:23-1:24]: Export source must be string
+> 1 | export {function} from a
+    |                        ^ Export source must be string"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {mustExist as canBeUndeclared}; 1`] = `
+"SyntaxError [1:37-1:38]: Exported binding 'mustExist' needs to refer to a top-level declared variable
+> 1 | export {mustExist as canBeUndeclared};
+    |                                      ^ Exported binding 'mustExist' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {x}; export let [...x] = y; 1`] = `
+"SyntaxError [1:28-1:29]: Cannot export a duplicate name 'x'
+> 1 | export {x}; export let [...x] = y;
+    |                             ^ Cannot export a duplicate name 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {x}; export let [x] = y; 1`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'x'
+> 1 | export {x}; export let [x] = y;
+    |                          ^ Cannot export a duplicate name 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export {x}; export let {...x} = y; 1`] = `
+"SyntaxError [1:28-1:29]: Cannot export a duplicate name 'x'
+> 1 | export {x}; export let {...x} = y;
+    |                             ^ Cannot export a duplicate name 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export 3 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: 'number'
+> 1 | export 3
+    |        ^ Unexpected token: 'number'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export 12; 1`] = `
+"SyntaxError [1:7-1:9]: Unexpected token: 'number'
+> 1 | export 12;
+    |        ^^ Unexpected token: 'number'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async () => y 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: '('
+> 1 | export async () => y
+    |              ^ Unexpected token: '('"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected token: 'end of source'
+> 1 | export async
+    |        ^^^^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function *f() {}
+export default function *f() {} 1`] = `
+"SyntaxError [2:25-2:26]: Duplicate binding 'f'
+  1 | export async function *f() {}
+> 2 | export default function *f() {}
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function *f() {}
+export function *f() {} 1`] = `
+"SyntaxError [2:17-2:18]: Duplicate binding 'f'
+  1 | export async function *f() {}
+> 2 | export function *f() {}
+    |                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function a() {}
+export async function a() {} 1`] = `
+"SyntaxError [2:22-2:23]: Duplicate binding 'a'
+  1 | export async function a() {}
+> 2 | export async function a() {}
+    |                       ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function a() {}
+export const a = 1; 1`] = `
+"SyntaxError [2:15-2:16]: Duplicate binding 'a'
+  1 | export async function a() {}
+> 2 | export const a = 1;
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function a() {}
+export function a() {} 1`] = `
+"SyntaxError [2:16-2:17]: Duplicate binding 'a'
+  1 | export async function a() {}
+> 2 | export function a() {}
+    |                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function f(){} foo 1`] = `
+"SyntaxError [1:0-1:6]: The export keyword can only be used with the module goal
+> 1 | export async function f(){} foo
+    | ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function f(){}; class f{}; 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
+> 1 | export async function f(){}; class f{};
+    |                                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function f(){}; const f = foo; 1`] = `
+"SyntaxError [1:37-1:38]: Duplicate binding 'f'
+> 1 | export async function f(){}; const f = foo;
+    |                                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function f(){}; export {f}; 1`] = `
+"SyntaxError [1:39-1:40]: Cannot export a duplicate name 'f'
+> 1 | export async function f(){}; export {f};
+    |                                        ^ Cannot export a duplicate name 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function f(){}; function f(){}; 1`] = `
+"SyntaxError [1:38-1:39]: Duplicate binding 'f'
+> 1 | export async function f(){}; function f(){};
+    |                                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async function(){} 1`] = `
+"SyntaxError [1:21-1:22]: Function declaration must have a name in this context
+> 1 | export async function(){}
+    |                      ^ Function declaration must have a name in this context"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export async; 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ';'
+> 1 | export async;
+    |             ^ Unexpected token: ';'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class { } 1`] = `
+"SyntaxError [1:13-1:14]: Class declaration must have a name in this context
+> 1 | export class { }
+    |              ^ Class declaration must have a name in this context"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class extends C {} 1`] = `
+"SyntaxError [1:0-1:6]: The export keyword can only be used with the module goal
+> 1 | export class extends C {}
+    | ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class f {} export {f}; 1`] = `
+"SyntaxError [1:28-1:29]: Cannot export a duplicate name 'f'
+> 1 | export class f {} export {f};
+    |                             ^ Cannot export a duplicate name 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class f {}; export function f() {} 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
+> 1 | export class f {}; export function f() {}
+    |                                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class f {}; export function f() {} 2`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
+> 1 | export class f {}; export function f() {}
+    |                                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class f() {}
+export function *f() {} 1`] = `
+"SyntaxError [1:14-1:15]: Expected '{'
+> 1 | export class f() {}
+    |               ^ Expected '{'
+  2 | export function *f() {}"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class f{}; async function f(){}; 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | export class f{}; async function f(){};
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class f{}; function f(){}; 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'f'
+> 1 | export class f{}; function f(){};
+    |                            ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class x {} foo 1`] = `
+"SyntaxError [1:0-1:6]: The export keyword can only be used with the module goal
+> 1 | export class x {} foo
+    | ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class x{}; export async function x(){}; 1`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'x'
+> 1 | export class x{}; export async function x(){};
+    |                                         ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export class x{}; export default async function x(){}; 1`] = `
+"SyntaxError [1:48-1:49]: Duplicate binding 'x'
+> 1 | export class x{}; export default async function x(){};
+    |                                                 ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const [x, {x}] = y 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | export const [x, {x}] = y
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const [x, x] = c 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'x'
+> 1 | export const [x, x] = c
+    |                   ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const {x:x, x:x} = c 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+> 1 | export const {x:x, x:x} = c
+    |                       ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const a = 0; export const a = 0; 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'a'
+> 1 | export const a = 0; export const a = 0;
+    |                                    ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const a = b; let a = c 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+> 1 | export const a = b; let a = c
+    |                           ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const const1; 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in const declaration
+> 1 | export const const1;
+    |                    ^ Missing initializer in const declaration"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const x = x, x = y; 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+> 1 | export const x = x, x = y;
+    |                       ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export const x = y; export {f}; 1`] = `
+"SyntaxError [1:30-1:31]: Exported binding 'f' needs to refer to a top-level declared variable
+> 1 | export const x = y; export {f};
+    |                               ^ Exported binding 'f' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default ...x = y 1`] = `
+"SyntaxError [1:15-1:18]: Unexpected token: '...'
+> 1 | export default ...x = y
+    |                ^^^ Unexpected token: '...'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default = 42 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: '='
+> 1 | export default = 42
+    |                ^ Unexpected token: '='"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default 0; export default 0; 1`] = `
+"SyntaxError [1:34-1:35]: Cannot export a duplicate name 'default'
+> 1 | export default 0; export default 0;
+    |                                   ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default 0; export default class a {}; 1`] = `
+"SyntaxError [1:43-1:44]: Cannot export a duplicate name 'default'
+> 1 | export default 0; export default class a {};
+    |                                            ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default 0; export default function f(){}; 1`] = `
+"SyntaxError [1:47-1:48]: Cannot export a duplicate name 'default'
+> 1 | export default 0; export default function f(){};
+    |                                                ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default 1, 2, 3; 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: ','
+> 1 | export default 1, 2, 3;
+    |                 ^ Unexpected token: ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default async function *f() {}
+export function *f() {} 1`] = `
+"SyntaxError [2:17-2:18]: Duplicate binding 'f'
+  1 | export default async function *f() {}
+> 2 | export function *f() {}
+    |                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default async x 
+() => {} 1`] = `
+"SyntaxError [2:0-2:1]: No line break is allowed after '=>'
+  1 | export default async x 
+> 2 | () => {}
+    | ^ No line break is allowed after '=>'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default async x => { let x; }; 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'x'
+> 1 | export default async x => { let x; };
+    |                                  ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default await 1`] = `
+"SyntaxError [1:15-1:20]: Can not use \`await\` as identifier in module or async func
+> 1 | export default await
+    |                ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default class x{}; export async function x(){}; 1`] = `
+"SyntaxError [1:48-1:49]: Duplicate binding 'x'
+> 1 | export default class x{}; export async function x(){};
+    |                                                 ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default class x{}; export default () => {}; 1`] = `
+"SyntaxError [1:49-1:50]: Cannot export a duplicate name 'default'
+> 1 | export default class x{}; export default () => {};
+    |                                                  ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default class x{}; export default async function x(){}; 1`] = `
+"SyntaxError [1:56-1:57]: Duplicate binding 'x'
+> 1 | export default class x{}; export default async function x(){};
+    |                                                         ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default class x{}; export default class x{}; 1`] = `
+"SyntaxError [1:47-1:48]: Duplicate binding 'x'
+> 1 | export default class x{}; export default class x{};
+    |                                                ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default class x{}; export default function(){}; 1`] = `
+"SyntaxError [1:53-1:54]: Cannot export a duplicate name 'default'
+> 1 | export default class x{}; export default function(){};
+    |                                                      ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default default 1`] = `
+"SyntaxError [1:15-1:22]: Unexpected token: 'default'
+> 1 | export default default
+    |                ^^^^^^^ Unexpected token: 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default from "foo" 1`] = `
+"SyntaxError [1:20-1:25]: Unexpected token: 'string'
+> 1 | export default from "foo"
+    |                     ^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function 1`] = `
+"SyntaxError [1:15-1:23]: Unexpected token: 'end of source'
+> 1 | export default function
+    |                ^^^^^^^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function() {} export default function() {} 1`] = `
+"SyntaxError [1:56-1:57]: Cannot export a duplicate name 'default'
+> 1 | export default function() {} export default function() {}
+    |                                                         ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function(){}; export default function(){}; 1`] = `
+"SyntaxError [1:56-1:57]: Cannot export a duplicate name 'default'
+> 1 | export default function(){}; export default function(){};
+    |                                                         ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function([a, a]){} 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'a'
+> 1 | export default function([a, a]){}
+    |                              ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function(a){ const a = 0; } 1`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'a'
+> 1 | export default function(a){ const a = 0; }
+    |                                     ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function(a){ let a; } 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'a'
+> 1 | export default function(a){ let a; }
+    |                                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default function(a, a){} 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'a'
+> 1 | export default function(a, a){}
+    |                             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default let 1`] = `
+"SyntaxError [1:15-1:18]: The identifier 'let' must not be in expression position in strict mode
+> 1 | export default let
+    |                ^^^ The identifier 'let' must not be in expression position in strict mode"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export default x; export {y as default}; 1`] = `
+"SyntaxError [1:39-1:40]: Cannot export a duplicate name 'default'
+> 1 | export default x; export {y as default};
+    |                                        ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export foo 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected token: 'identifier'
+> 1 | export foo
+    |        ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export foo; export bar; class f{}; async function foo(){}; 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected token: 'identifier'
+> 1 | export foo; export bar; class f{}; async function foo(){};
+    |        ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function () {} 1`] = `
+"SyntaxError [1:16-1:17]: Function declaration must have a name in this context
+> 1 | export function () {}
+    |                 ^ Function declaration must have a name in this context"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function a() {}
+export async function a() {} 1`] = `
+"SyntaxError [2:22-2:23]: Duplicate binding 'a'
+  1 | export function a() {}
+> 2 | export async function a() {}
+    |                       ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function a() {} export default function a() {} 1`] = `
+"SyntaxError [1:47-1:48]: Duplicate binding 'a'
+> 1 | export function a() {} export default function a() {}
+    |                                                ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f() {}
+export class f() {} 1`] = `
+"SyntaxError [2:13-2:14]: Duplicate binding 'f'
+  1 | export function f() {}
+> 2 | export class f() {}
+    |              ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f() {}
+export function *f() {} 1`] = `
+"SyntaxError [2:17-2:18]: Duplicate binding 'f'
+  1 | export function f() {}
+> 2 | export function *f() {}
+    |                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f(){}; async function f(){}; 1`] = `
+"SyntaxError [1:38-1:39]: Duplicate binding 'f'
+> 1 | export function f(){}; async function f(){};
+    |                                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f(){}; class f{}; 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | export function f(){}; class f{};
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f(){}; export {f}; 1`] = `
+"SyntaxError [1:33-1:34]: Cannot export a duplicate name 'f'
+> 1 | export function f(){}; export {f};
+    |                                  ^ Cannot export a duplicate name 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f(){}; export {f}; 2`] = `
+"SyntaxError [1:33-1:34]: Cannot export a duplicate name 'f'
+> 1 | export function f(){}; export {f};
+    |                                  ^ Cannot export a duplicate name 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function f(){}; function f(){}; 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | export function f(){}; function f(){};
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function x(){}; export let [x] = y; 1`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'x'
+> 1 | export function x(){}; export let [x] = y;
+    |                                     ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function x(){}; export let [x] = y; 2`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'x'
+> 1 | export function x(){}; export let [x] = y;
+    |                                     ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export function* () { } 1`] = `
+"SyntaxError [1:17-1:18]: Function declaration must have a name in this context
+> 1 | export function* () { }
+    |                  ^ Function declaration must have a name in this context"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let ...x = y 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '...'
+> 1 | export let ...x = y
+    |            ^^^ Unexpected token: '...'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let [x, x] = y; 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'x'
+> 1 | export let [x, x] = y;
+    |                 ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let [x, x] = y; 2`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'x'
+> 1 | export let [x, x] = y;
+    |                 ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let [x] = y; export {x}; 1`] = `
+"SyntaxError [1:30-1:31]: Cannot export a duplicate name 'x'
+> 1 | export let [x] = y; export {x};
+    |                               ^ Cannot export a duplicate name 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let [x] = y; export function x(){}; 1`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'x'
+> 1 | export let [x] = y; export function x(){};
+    |                                     ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let [x] = y; export function x(){}; 2`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'x'
+> 1 | export let [x] = y; export function x(){};
+    |                                     ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let a = 1;
+export async function a() {} 1`] = `
+"SyntaxError [2:22-2:23]: Duplicate binding 'a'
+  1 | export let a = 1;
+> 2 | export async function a() {}
+    |                       ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let a; export let a; 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+> 1 | export let a; export let a;
+    |                           ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let a; export let a; 2`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+> 1 | export let a; export let a;
+    |                           ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let await; 1`] = `
+"SyntaxError [1:11-1:16]: Can not use \`await\` as identifier in module or async func
+> 1 | export let await;
+    |            ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let foo; export let foo; 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'foo'
+> 1 | export let foo; export let foo;
+    |                               ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let x = y, [...x] = y; 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+> 1 | export let x = y, [...x] = y;
+    |                        ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let x = y, [...x] = y; 2`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+> 1 | export let x = y, [...x] = y;
+    |                        ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let x = y, [x] = y; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'x'
+> 1 | export let x = y, [x] = y;
+    |                     ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let x = y, {...x} = y; 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+> 1 | export let x = y, {...x} = y;
+    |                        ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let x = y, {...x} = y; 2`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+> 1 | export let x = y, {...x} = y;
+    |                        ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let x = y; export {f}; 1`] = `
+"SyntaxError [1:28-1:29]: Exported binding 'f' needs to refer to a top-level declared variable
+> 1 | export let x = y; export {f};
+    |                             ^ Exported binding 'f' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export let[a] = 0 export let[b] = 0 1`] = `
+"SyntaxError [1:18-1:24]: Unexpected token: 'export'
+> 1 | export let[a] = 0 export let[b] = 0
+    |                   ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export var a = x, a = y; 1`] = `
+"SyntaxError [1:20-1:21]: Cannot export a duplicate name 'a'
+> 1 | export var a = x, a = y;
+    |                     ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export var a = x, a = y; 2`] = `
+"SyntaxError [1:20-1:21]: Cannot export a duplicate name 'a'
+> 1 | export var a = x, a = y;
+    |                     ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export var a = x, a = y; 3`] = `
+"SyntaxError [1:20-1:21]: Cannot export a duplicate name 'a'
+> 1 | export var a = x, a = y;
+    |                     ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export var a; export var a; 1`] = `
+"SyntaxError [1:26-1:27]: Cannot export a duplicate name 'a'
+> 1 | export var a; export var a;
+    |                           ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export var foo; export let foo; 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'foo'
+> 1 | export var foo; export let foo;
+    |                               ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > export var let = x; 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected strict mode reserved word
+> 1 | export var let = x;
+    |            ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Export > Module - Export (fail) > for (;;) export {x}; 1`] = `
+"SyntaxError [1:9-1:15]: Unexpected token: 'export'
+> 1 | for (;;) export {x};
+    |          ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > for (let y in []) import v from "foo" 1`] = `
+"SyntaxError [1:25-1:26]: Expected '('
+> 1 | for (let y in []) import v from "foo"
+    |                          ^ Expected '('"
+`;
+
+exports[`Module - Export > Module - Export (fail) > for (let y in []) import v from "foo" 2`] = `
+"SyntaxError [1:25-1:26]: Expected '('
+> 1 | for (let y in []) import v from "foo"
+    |                          ^ Expected '('"
+`;
+
+exports[`Module - Export > Module - Export (fail) > for (x = 0; false;) export default null; 1`] = `
+"SyntaxError [1:20-1:26]: Unexpected token: 'export'
+> 1 | for (x = 0; false;) export default null;
+    |                     ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > function foo() { }; export [ foo ]; 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: '['
+> 1 | function foo() { }; export [ foo ];
+    |                            ^ Unexpected token: '['"
+`;
+
+exports[`Module - Export > Module - Export (fail) > function foo() { }; export { foo as 100 }; 1`] = `
+"SyntaxError [1:36-1:39]: Only a identifier or string can be used to indicate alias
+> 1 | function foo() { }; export { foo as 100 };
+    |                                     ^^^ Only a identifier or string can be used to indicate alias"
+`;
+
+exports[`Module - Export > Module - Export (fail) > function foo() { }; export foo; 1`] = `
+"SyntaxError [1:27-1:30]: Unexpected token: 'identifier'
+> 1 | function foo() { }; export foo;
+    |                            ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > function foo() { export default function() { } } 1`] = `
+"SyntaxError [1:17-1:23]: The export keyword can only be used with the module goal
+> 1 | function foo() { export default function() { } }
+    |                  ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > function* g() { export default null; } 1`] = `
+"SyntaxError [1:16-1:22]: The export keyword can only be used with the module goal
+> 1 | function* g() { export default null; }
+    |                 ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > if (true) { } else export default null; 1`] = `
+"SyntaxError [1:19-1:25]: Unexpected token: 'export'
+> 1 | if (true) { } else export default null;
+    |                    ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > if (x) export {x}; 1`] = `
+"SyntaxError [1:7-1:13]: Unexpected token: 'export'
+> 1 | if (x) export {x};
+    |        ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; export {b as a}; 1`] = `
+"SyntaxError [1:22-1:23]: Exported binding 'b' needs to refer to a top-level declared variable
+> 1 | let a; export {b as a};
+    |                       ^ Exported binding 'b' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; export class a {}; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+> 1 | let a; export class a {};
+    |                     ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; export const a = 0; 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'a'
+> 1 | let a; export const a = 0;
+    |                       ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; export function a(){}; 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'a'
+> 1 | let a; export function a(){};
+    |                        ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; export let a; 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'a'
+> 1 | let a; export let a;
+    |                    ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; let a; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | let a; let a;
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let a; var a; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | let a; var a;
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > let x = () => {export {x};} 1`] = `
+"SyntaxError [1:15-1:21]: The export keyword can only be used with the module goal
+> 1 | let x = () => {export {x};}
+    |                ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > switch(0) { case 1: export default null; } 1`] = `
+"SyntaxError [1:20-1:26]: The export keyword can only be used with the module goal
+> 1 | switch(0) { case 1: export default null; }
+    |                     ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > switch(0) { default: export default null; } 1`] = `
+"SyntaxError [1:21-1:27]: The export keyword can only be used with the module goal
+> 1 | switch(0) { default: export default null; }
+    |                      ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > test262: export default null; 1`] = `
+"SyntaxError [1:9-1:15]: Unexpected token: 'export'
+> 1 | test262: export default null;
+    |          ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export { a as , b}; 1`] = `
+"SyntaxError [1:24-1:25]: Only a identifier or string can be used to indicate alias
+> 1 | var a, b; export { a as , b};
+    |                         ^ Only a identifier or string can be used to indicate alias"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {a, a, b} 1`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'a'
+> 1 | var a, b; export {a, a, b}
+    |                          ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {a, b as a} 1`] = `
+"SyntaxError [1:27-1:28]: Cannot export a duplicate name 'a'
+> 1 | var a, b; export {a, b as a}
+    |                            ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {a, b, a} 1`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'a'
+> 1 | var a, b; export {a, b, a}
+    |                          ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {a, b, a} 2`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'a'
+> 1 | var a, b; export {a, b, a}
+    |                          ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {a, b, c} 1`] = `
+"SyntaxError [1:25-1:26]: Exported binding 'c' needs to refer to a top-level declared variable
+> 1 | var a, b; export {a, b, c}
+    |                          ^ Exported binding 'c' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {b, a, a} 1`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'a'
+> 1 | var a, b; export {b, a, a}
+    |                          ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a, b; export {b, a, a} 2`] = `
+"SyntaxError [1:25-1:26]: Cannot export a duplicate name 'a'
+> 1 | var a, b; export {b, a, a}
+    |                          ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a,b; export {a, b}; export {a}; 1`] = `
+"SyntaxError [1:34-1:35]: Cannot export a duplicate name 'a'
+> 1 | var a,b; export {a, b}; export {a};
+    |                                   ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a,b; export {a}; export {a, b}; 1`] = `
+"SyntaxError [1:34-1:35]: Cannot export a duplicate name 'a'
+> 1 | var a,b; export {a}; export {a, b};
+    |                                   ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a,b; export {b, a}; export {a}; 1`] = `
+"SyntaxError [1:34-1:35]: Cannot export a duplicate name 'a'
+> 1 | var a,b; export {b, a}; export {a};
+    |                                   ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a,b; export {b, a}; export {a}; 2`] = `
+"SyntaxError [1:34-1:35]: Cannot export a duplicate name 'a'
+> 1 | var a,b; export {b, a}; export {a};
+    |                                   ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export { a 1`] = `
+"SyntaxError [1:16-1:17]: Expected ','
+> 1 | var a; export { a
+    |                 ^ Expected ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export { a as }; 1`] = `
+"SyntaxError [1:21-1:22]: Only a identifier or string can be used to indicate alias
+> 1 | var a; export { a as };
+    |                      ^ Only a identifier or string can be used to indicate alias"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export { a, ; 1`] = `
+"SyntaxError [1:19-1:20]: Expected '}'
+> 1 | var a; export { a, ;
+    |                    ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export { a, 1`] = `
+"SyntaxError [1:17-1:18]: Expected '}'
+> 1 | var a; export { a,
+    |                  ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export { a, 2`] = `
+"SyntaxError [1:17-1:18]: Expected '}'
+> 1 | var a; export { a,
+    |                  ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export {a, a} 1`] = `
+"SyntaxError [1:19-1:20]: Cannot export a duplicate name 'a'
+> 1 | var a; export {a, a}
+    |                    ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export {a, a} 2`] = `
+"SyntaxError [1:19-1:20]: Cannot export a duplicate name 'a'
+> 1 | var a; export {a, a}
+    |                    ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export {a}; export {a}; 1`] = `
+"SyntaxError [1:29-1:30]: Cannot export a duplicate name 'a'
+> 1 | var a; export {a}; export {a};
+    |                              ^ Cannot export a duplicate name 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export {b as a}; 1`] = `
+"SyntaxError [1:22-1:23]: Exported binding 'b' needs to refer to a top-level declared variable
+> 1 | var a; export {b as a};
+    |                       ^ Exported binding 'b' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export class a {}; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+> 1 | var a; export class a {};
+    |                     ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export const a = 0; 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'a'
+> 1 | var a; export const a = 0;
+    |                       ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export function a(){}; 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'a'
+> 1 | var a; export function a(){};
+    |                        ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; export let a; 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'a'
+> 1 | var a; export let a;
+    |                    ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var a; let a; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | var a; let a;
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var canBeUndeclared; export {mustExist as canBeUndeclared}; 1`] = `
+"SyntaxError [1:58-1:59]: Exported binding 'mustExist' needs to refer to a top-level declared variable
+> 1 | var canBeUndeclared; export {mustExist as canBeUndeclared};
+    |                                                           ^ Exported binding 'mustExist' needs to refer to a top-level declared variable"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo, bar, x; export {{foo: x}} 1`] = `
+"SyntaxError [1:25-1:26]: Expected '}'
+> 1 | var foo, bar, x; export {{foo: x}}
+    |                          ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo, bar; export {[foo]} 1`] = `
+"SyntaxError [1:22-1:23]: Expected '}'
+> 1 | var foo, bar; export {[foo]}
+    |                       ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo, bar; export {{foo}} 1`] = `
+"SyntaxError [1:22-1:23]: Expected '}'
+> 1 | var foo, bar; export {{foo}}
+    |                       ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo, bar; export {foo, ...bar} 1`] = `
+"SyntaxError [1:27-1:30]: Expected '}'
+> 1 | var foo, bar; export {foo, ...bar}
+    |                            ^^^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo; export {*foo(){}} 1`] = `
+"SyntaxError [1:17-1:18]: Expected '}'
+> 1 | var foo; export {*foo(){}}
+    |                  ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo; export {*foo(){}} 2`] = `
+"SyntaxError [1:9-1:15]: The export keyword can only be used with the module goal
+> 1 | var foo; export {*foo(){}}
+    |          ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo; export {[foo](){}} 1`] = `
+"SyntaxError [1:17-1:18]: Expected '}'
+> 1 | var foo; export {[foo](){}}
+    |                  ^ Expected '}'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo; export {async foo(){}} 1`] = `
+"SyntaxError [1:23-1:26]: Expected ','
+> 1 | var foo; export {async foo(){}}
+    |                        ^^^ Expected ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var foo; export {foo(){}} 1`] = `
+"SyntaxError [1:20-1:21]: Expected ','
+> 1 | var foo; export {foo(){}}
+    |                     ^ Expected ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var x, y; export default x; export {y as default}; 1`] = `
+"SyntaxError [1:49-1:50]: Cannot export a duplicate name 'default'
+> 1 | var x, y; export default x; export {y as default};
+    |                                                  ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var x, y; export default x; export {y as default}; 2`] = `
+"SyntaxError [1:49-1:50]: Cannot export a duplicate name 'default'
+> 1 | var x, y; export default x; export {y as default};
+    |                                                  ^ Cannot export a duplicate name 'default'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var x; export { x as z }; export * as z from "string"; 1`] = `
+"SyntaxError [1:38-1:39]: Cannot export a duplicate name 'z'
+> 1 | var x; export { x as z }; export * as z from "string";
+    |                                       ^ Cannot export a duplicate name 'z'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var x; export {x: a} 1`] = `
+"SyntaxError [1:16-1:17]: Expected ','
+> 1 | var x; export {x: a}
+    |                 ^ Expected ','"
+`;
+
+exports[`Module - Export > Module - Export (fail) > var x; export {x: a} 2`] = `
+"SyntaxError [1:7-1:13]: The export keyword can only be used with the module goal
+> 1 | var x; export {x: a}
+    |        ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > while (1) export default 3 1`] = `
+"SyntaxError [1:10-1:16]: Unexpected token: 'export'
+> 1 | while (1) export default 3
+    |           ^^^^^^ Unexpected token: 'export'"
+`;
+
+exports[`Module - Export > Module - Export (fail) > x = { foo(){ export {x}; }} 1`] = `
+"SyntaxError [1:13-1:19]: The export keyword can only be used with the module goal
+> 1 | x = { foo(){ export {x}; }}
+    |              ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Export > Module - Export (fail) > x = { foo(){ export {x}; }} 2`] = `
+"SyntaxError [1:13-1:19]: The export keyword can only be used with the module goal
+> 1 | x = { foo(){ export {x}; }}
+    |              ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
 exports[`Module - Export > Module - Export (pass) > [function* (...{}) {  switch (yield) {}  }]
-        a = (u) => {} 1`] = `
+a = (u) => {} 1`] = `
 {
   "body": [
     {
@@ -90,73 +1590,73 @@ exports[`Module - Export > Module - Export (pass) > [function* (...{}) {  switch
       "type": "ExpressionStatement",
     },
     {
-      "end": 65,
+      "end": 57,
       "expression": {
-        "end": 65,
+        "end": 57,
         "left": {
-          "end": 53,
+          "end": 45,
           "name": "a",
           "range": [
-            52,
-            53,
+            44,
+            45,
           ],
-          "start": 52,
+          "start": 44,
           "type": "Identifier",
         },
         "operator": "=",
         "range": [
-          52,
-          65,
+          44,
+          57,
         ],
         "right": {
           "async": false,
           "body": {
             "body": [],
-            "end": 65,
+            "end": 57,
             "range": [
-              63,
-              65,
+              55,
+              57,
             ],
-            "start": 63,
+            "start": 55,
             "type": "BlockStatement",
           },
-          "end": 65,
+          "end": 57,
           "expression": false,
           "generator": false,
           "params": [
             {
-              "end": 58,
+              "end": 50,
               "name": "u",
               "range": [
-                57,
-                58,
+                49,
+                50,
               ],
-              "start": 57,
+              "start": 49,
               "type": "Identifier",
             },
           ],
           "range": [
-            56,
-            65,
+            48,
+            57,
           ],
-          "start": 56,
+          "start": 48,
           "type": "ArrowFunctionExpression",
         },
-        "start": 52,
+        "start": 44,
         "type": "AssignmentExpression",
       },
       "range": [
-        52,
-        65,
+        44,
+        57,
       ],
-      "start": 52,
+      "start": 44,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 65,
+  "end": 57,
   "range": [
     0,
-    65,
+    57,
   ],
   "sourceType": "module",
   "start": 0,

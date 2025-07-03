@@ -1,34 +1,34 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Public fields', () => {
   fail('Public fields (fail)', [
-    ['class A { "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { "x" = super(); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { x = typeof super(); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = super(); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['var C = class { x = () => arguments); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['var C = class { x = () => eval); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
-    [
-      'class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }',
-      Context.OptionsWebCompat | Context.OptionsNext,
-    ],
-    [
-      'class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } }',
-      Context.OptionsWebCompat | Context.OptionsNext,
-    ],
-    ['class A { a, b }', Context.None],
-    ['class A { a, b }', Context.OptionsNext],
-    ['class A { a b }', Context.None],
-    ['class A { a b }', Context.OptionsNext],
-    ['class A { a b() {} }', Context.OptionsNext],
-    ['class A { a = 1, 2 }', Context.OptionsNext],
-    ['class A { a = 1, b = 2 }', Context.OptionsNext],
+    { code: 'class A { "x" = arguments; }', options: { webcompat: true, next: true } },
+    { code: 'class A { "x" = super(); }', options: { webcompat: true, next: true } },
+    { code: 'class A { x = typeof super(); }', options: { webcompat: true, next: true } },
+    { code: 'class A { static "x" = super(); }', options: { webcompat: true, next: true } },
+    { code: 'class A { static "x" = arguments; }', options: { webcompat: true, next: true } },
+    { code: 'var C = class { x = () => arguments); }', options: { webcompat: true, next: true } },
+    { code: 'var C = class { x = () => eval); }', options: { webcompat: true, next: true } },
+    { code: 'class A { static "x" = arguments; }', options: { webcompat: true, next: true } },
+    {
+      code: 'class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }',
+      options: { webcompat: true, next: true },
+    },
+    {
+      code: 'class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } }',
+      options: { webcompat: true, next: true },
+    },
+    'class A { a, b }',
+    { code: 'class A { a, b }', options: { next: true } },
+    'class A { a b }',
+    { code: 'class A { a b }', options: { next: true } },
+    { code: 'class A { a b() {} }', options: { next: true } },
+    { code: 'class A { a = 1, 2 }', options: { next: true } },
+    { code: 'class A { a = 1, b = 2 }', options: { next: true } },
   ]);
 
   for (const arg of [
@@ -63,7 +63,7 @@ describe('Next - Public fields', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C { ${arg} }`, { next: true });
       });
     });
   }
@@ -127,90 +127,114 @@ describe('Next - Public fields', () => {
     'await;',
     'await = 0;',
     'await;\n a;',
-    `\nx;\ny;\n\n`,
-    `static ['constructor'];`,
-    `constructor(props) {;([super.client] = props);}`,
-    `foo(props) { ;({ client: super.client } = props) }`,
-    `constructor(props) {;([super.client] = props);}`,
-    `constructor(props) {;({ x, ...super.client } = props)}`,
-    `#client
-    constructor(props) {;([this.#client] = props);}`,
-    `constructor(props) {;({ x, ...super.x } = props)}`, //
-    `#x
-    constructor(props) {;([this.#x] = props);}`,
-    `#x
-     constructor(props) {
-      this.#x = 1;
-      ;([this.x = this.#x, this.#x, this.y = this.#x] = props);
-    }`,
-    `#x
-    constructor(props) { ;([this.#x] = props); }
-    getx() { return this.#x; }`,
-    `#x
-    constructor(props) { let x;  ;([x, ...this.#x] = props); }`,
-    `#x
-    constructor(props) {;([x, ...this.#x] = props); }`,
-    `#x
-    constructor(props) {;({ x: this.#x } = props)}`,
-    `#x
-    constructor(props) {;({ x: this.#x } = props)}`,
-    `#x
-    constructor(props) {;([x, ...super.x] = props);}`,
-    `#x
-    constructor(props) {;([super.x] = props);}`,
-    `#x
-    constructor(props) { ;([this.#x] = props); }
-    getx() { this.#x = 'foo'; ;({ x: this.x = this.#x, y: this.#x, z: this.z = this.#x } = props) }`,
+    '\nx;\ny;\n\n',
+    "static ['constructor'];",
+    'constructor(props) {;([super.client] = props);}',
+    'foo(props) { ;({ client: super.client } = props) }',
+    'constructor(props) {;([super.client] = props);}',
+    'constructor(props) {;({ x, ...super.client } = props)}',
+    outdent`
+      #client
+      constructor(props) {;([this.#client] = props);}
+    `,
+    'constructor(props) {;({ x, ...super.x } = props)}', //
+    outdent`
+      #x
+      constructor(props) {;([this.#x] = props);}
+    `,
+    outdent`
+      #x
+      constructor(props) {
+        this.#x = 1;
+        ;([this.x = this.#x, this.#x, this.y = this.#x] = props);
+      }
+    `,
+    outdent`
+      #x
+      constructor(props) { ;([this.#x] = props); }
+      getx() { return this.#x; }
+    `,
+    outdent`
+      #x
+      constructor(props) { let x;  ;([x, ...this.#x] = props); }
+    `,
+    outdent`
+      #x
+      constructor(props) {;([x, ...this.#x] = props); }
+    `,
+    outdent`
+      #x
+      constructor(props) {;({ x: this.#x } = props)}
+    `,
+    outdent`
+      #x
+      constructor(props) {;({ x: this.#x } = props)}
+    `,
+    outdent`
+      #x
+      constructor(props) {;([x, ...super.x] = props);}
+    `,
+    outdent`
+      #x
+      constructor(props) {;([super.x] = props);}
+    `,
+    outdent`
+      #x
+      constructor(props) { ;([this.#x] = props); }
+      getx() { this.#x = 'foo'; ;({ x: this.x = this.#x, y: this.#x, z: this.z = this.#x } = props) }
+    `,
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C { ${arg} }`, { next: true });
       });
     });
   }
 
   pass('Next - Public fields (pass)', [
-    { code: `var C = class { static async #prototype() {} };`, options: { next: true, ranges: true } },
-    { code: `class Foo { x = 1; }`, options: { next: true, ranges: true } },
-    { code: `class A { set; }`, options: { next: true, ranges: true } },
-    { code: `class A { set = get; }`, options: { next: true } },
-    { code: `const createClass = (k) => class { [k()] = 2 };`, options: { next: true, ranges: true } },
-    { code: `class A { a = 0; }`, options: { next: true } },
+    { code: 'var C = class { static async #prototype() {} };', options: { next: true, ranges: true } },
+    { code: 'class Foo { x = 1; }', options: { next: true, ranges: true } },
+    { code: 'class A { set; }', options: { next: true, ranges: true } },
+    { code: 'class A { set = get; }', options: { next: true } },
+    { code: 'const createClass = (k) => class { [k()] = 2 };', options: { next: true, ranges: true } },
+    { code: 'class A { a = 0; }', options: { next: true } },
     {
-      code: `class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }`,
+      code: 'class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }',
       options: { next: true, ranges: true },
     },
-    { code: `{ class X { static p = function() { return arguments[0]; } } }`, options: { next: true, ranges: true } },
-    { code: `class A { ['a'] = 0; b; }`, options: { next: true, ranges: true } },
+    { code: '{ class X { static p = function() { return arguments[0]; } } }', options: { next: true, ranges: true } },
+    { code: "class A { ['a'] = 0; b; }", options: { next: true, ranges: true } },
     { code: 'class Some { render=( )=>{ return null; }}', options: { next: true, ranges: true } },
     {
-      code: `{
-        class X {
-          static p = function() { return arguments[0]; }
-        }
-      }
-
-      {
-        class X {
-          static t = () => {
-            function p() { return arguments[0]; };
-            return p;
+      code: outdent`
+        {
+          class X {
+            static p = function() { return arguments[0]; }
           }
         }
 
-        let p = X.t();
-      }`,
+        {
+          class X {
+            static t = () => {
+              function p() { return arguments[0]; };
+              return p;
+            }
+          }
+
+          let p = X.t();
+        }
+      `,
       options: { next: true, ranges: true },
     },
     { code: 'class X { static p = eval("(function() { return arguments[0]; })(1)"); }', options: { next: true } },
     { code: 'class Some { render=(a,b)=>{ return null; } }', options: { next: true } },
     {
-      code: `class A {  ;;;; ;;;;;;'a'; "b"; 'c' = 39;  "d" = 42;;;;;;;  ;;;; }`,
+      code: 'class A {  ;;;; ;;;;;;\'a\'; "b"; \'c\' = 39;  "d" = 42;;;;;;;  ;;;; }',
       options: { next: true, ranges: true },
     },
-    { code: `class A { foo; }`, options: { next: true, ranges: true } },
-    { code: `class A { a = b = c }`, options: { next: true, ranges: true } },
-    { code: `class A { a = b += c }`, options: { next: true, ranges: true } },
+    { code: 'class A { foo; }', options: { next: true, ranges: true } },
+    { code: 'class A { a = b = c }', options: { next: true, ranges: true } },
+    { code: 'class A { a = b += c }', options: { next: true, ranges: true } },
     { code: 'class C { static x }', options: { ranges: true, loc: true } },
   ]);
 });

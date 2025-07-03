@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -39,31 +38,31 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`'use strict'; (${arg} = {})`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; (${arg} = {})`, undefined, Context.OptionsWebCompat);
+        parseSource(`'use strict'; (${arg} = {})`, { webcompat: true });
       });
     });
 
     it(`'use strict'; for (${arg} of {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} of {}) {}`, undefined, Context.OptionsWebCompat);
+        parseSource(`'use strict'; for (${arg} of {}) {}`, { webcompat: true });
       });
     });
 
     it(`'use strict'; for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} in {}) {}`, undefined, Context.OptionsWebCompat);
+        parseSource(`'use strict'; for (${arg} in {}) {}`, { webcompat: true });
       });
     });
 
     it(`'use strict'; for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} in {}) {}`, undefined, Context.OptionsNext);
+        parseSource(`'use strict'; for (${arg} in {}) {}`, { next: true });
       });
     });
 
     it(`for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`for (${arg} in {}) {}`, undefined, Context.Strict | Context.Module);
+        parseSource(`for (${arg} in {}) {}`, { sourceType: 'module' });
       });
     });
   }
@@ -139,7 +138,7 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
@@ -163,25 +162,25 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`function foo() { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { "use strict";  ${arg} }`, undefined, Context.None);
+        parseSource(`function foo() { "use strict";  ${arg} }`);
       });
     });
 
     it(`() => { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { "use strict";  ${arg} }`, undefined, Context.None);
+        parseSource(`() => { "use strict";  ${arg} }`);
       });
     });
 
     it(`() => { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { "use strict";  ${arg} }`, undefined, Context.OptionsWebCompat);
+        parseSource(`() => { "use strict";  ${arg} }`, { webcompat: true });
       });
     });
   }
@@ -239,20 +238,20 @@ describe('Miscellaneous - Eval and arguments', () => {
     'class C {static set eval(_) {}}',
     'class C {static set arguments(_) {}}',
     'var actual = "" + function ([arguments]) {return arguments;};',
-    `(function ([a, b, arguments, d], [e, f, g]) {return arguments();})`,
+    '(function ([a, b, arguments, d], [e, f, g]) {return arguments();})',
     'var f = function ([arguments]) {return arguments + 1;};',
     'var o = {"arguments": 42};',
     'delete o.arguments;',
     'var arguments = 42;',
-    `var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;`,
-    `function get_arg_2() { return arguments[2]; }`,
+    'var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;',
+    'function get_arg_2() { return arguments[2]; }',
     'var n = arguments.length > 1 ? ToInteger(arguments[1]) + 0 : 0;',
     'var lastIndex = arguments.length - 1, lastArg = arguments[lastIndex];',
     'arguments[0]',
     'arguments[0] /** the image src url */',
     'function foo(){writeLine(typeMap[typeof(arguments)]);}foo(1);',
     'function foo(){var arguments;writeLine(typeMap[typeof(arguments)]);}foo(1);',
-    `eval('arguments="test1"');`,
+    'eval(\'arguments="test1"\');',
     'arguments[0] = "arguments[0]";',
     'write("args[1] : " + arguments[1]);',
     'target.apply(that, arguments);',
@@ -275,24 +274,24 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`, undefined, Context.OptionsWebCompat);
+        parseSource(`function foo() { ${arg} }`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`, undefined, Context.None);
+        parseSource(`function foo() { ${arg} }`);
       });
     });
   }

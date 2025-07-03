@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Arrow', () => {
   for (const arg of [
@@ -15,30 +15,30 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`async ${arg}`, () => {
       t.throws(() => {
-        parseSource(`async ${arg}`, undefined, Context.None);
+        parseSource(`async ${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
   }
@@ -62,31 +62,31 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.None);
+        parseSource(`${arg};`);
       });
     });
 
     it(`async ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg};`, undefined, Context.None);
+        parseSource(`async ${arg};`);
       });
     });
 
     it(`async ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg};`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
+        parseSource(`async ${arg};`, { next: true, webcompat: true });
       });
     });
 
     it(`bar ? (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? (${arg}) : baz;`, undefined, Context.None);
+        parseSource(`bar ? (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : (${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : (${arg});`, undefined, Context.None);
+        parseSource(`bar ? baz : (${arg});`);
       });
     });
   }
@@ -114,25 +114,25 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`(function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, undefined, Context.None);
+        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`);
       });
     });
 
     it(`(function *g(async ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(async ( ${arg} ) => {}) { });`, undefined, Context.None);
+        parseSource(`(function *g(async ( ${arg} ) => {}) { });`);
       });
     });
 
     it(`"use strict"; (function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function *g(z = ( ${arg} ) => {}) { });`, undefined, Context.None);
+        parseSource(`"use strict"; (function *g(z = ( ${arg} ) => {}) { });`);
       });
     });
 
     it(`(function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, undefined, Context.Strict | Context.Module);
+        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, { sourceType: 'module' });
       });
     });
   }
@@ -226,63 +226,63 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, undefined, Context.None);
+        parseSource(`${arg} `);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg} `, { webcompat: true });
       });
     });
     it(`x = ${arg};`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`, undefined, Context.None);
+        parseSource(`x = ${arg};`);
       });
     });
     it(`x = ${arg};`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`, undefined, Context.OptionsNext);
+        parseSource(`x = ${arg};`, { next: true });
       });
     });
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`, undefined, Context.None);
+        parseSource(`bar,  ${arg};`);
       });
     });
 
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`, undefined, Context.OptionsWebCompat);
+        parseSource(`bar,  ${arg};`, { webcompat: true });
       });
     });
 
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`, undefined, Context.Strict | Context.Module);
+        parseSource(`bar,  ${arg};`, { sourceType: 'module' });
       });
     });
 
     it(`bar ? (${arg}) : baz;`, () => {
       t.throws(() => {
-        parseSource(`bar ? (${arg}) : baz;`, undefined, Context.None);
+        parseSource(`bar ? (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : (${arg});`, () => {
       t.throws(() => {
-        parseSource(`bar ? baz : (${arg});`, undefined, Context.None);
+        parseSource(`bar ? baz : (${arg});`);
       });
     });
 
     it(`${arg}, bar;`, () => {
       t.throws(() => {
-        parseSource(`${arg}, bar;`, undefined, Context.None);
+        parseSource(`${arg}, bar;`);
       });
     });
 
     it(`bar[${arg}];`, () => {
       t.throws(() => {
-        parseSource(`bar[${arg}];`, undefined, Context.None);
+        parseSource(`bar[${arg}];`);
       });
     });
   }
@@ -364,55 +364,55 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`v = ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`v = ${arg};`, undefined, Context.None);
+        parseSource(`v = ${arg};`);
       });
     });
 
     it(`v = ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`v = ${arg};`, undefined, Context.OptionsNext);
+        parseSource(`v = ${arg};`, { next: true });
       });
     });
 
     it(`bar,  ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar,  ${arg};`, undefined, Context.None);
+        parseSource(`bar,  ${arg};`);
       });
     });
 
     it(`bar ? (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? (${arg}) : baz;`, undefined, Context.None);
+        parseSource(`bar ? (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : (${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : (${arg});`, undefined, Context.None);
+        parseSource(`bar ? baz : (${arg});`);
       });
     });
 
     it(`${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}, bar;`, undefined, Context.None);
+        parseSource(`${arg}, bar;`);
       });
     });
 
     it(`${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}, bar;`, undefined, Context.OptionsNext);
+        parseSource(`${arg}, bar;`, { next: true });
       });
     });
   }
@@ -437,435 +437,438 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`()${arg} =>{}`, undefined, Context.None);
+        parseSource(`()${arg} =>{}`);
       });
     });
 
     it(`async ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`async ()${arg} =>{}`, undefined, Context.None);
+        parseSource(`async ()${arg} =>{}`);
       });
     });
 
     it(`()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`()${arg} =>{}`, undefined, Context.OptionsWebCompat);
+        parseSource(`()${arg} =>{}`, { webcompat: true });
       });
     });
     it(`()${arg} =>{}:`, () => {
       t.throws(() => {
-        parseSource(`()${arg} =>{};`, undefined, Context.None);
+        parseSource(`()${arg} =>{};`);
       });
     });
 
     it(`var x = ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`var x = ()${arg} =>{}`, undefined, Context.None);
+        parseSource(`var x = ()${arg} =>{}`);
       });
     });
 
     it(`var x = ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`var x = ()${arg} =>{}`, undefined, Context.OptionsNext);
+        parseSource(`var x = ()${arg} =>{}`, { next: true });
       });
     });
 
     it(`"use strict"; var x = ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; var x = ()${arg} =>{}`, undefined, Context.None);
+        parseSource(`"use strict"; var x = ()${arg} =>{}`);
       });
     });
 
     it(`(...a)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`(...a)${arg} =>{}`, undefined, Context.None);
+        parseSource(`(...a)${arg} =>{}`);
       });
     });
 
     it(`var x = (...a)${arg};`, () => {
       t.throws(() => {
-        parseSource(`var x = (...a)${arg} =>{}`, undefined, Context.None);
+        parseSource(`var x = (...a)${arg} =>{}`);
       });
     });
 
     it(`(a,b)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`(a,b)${arg} =>{}`, undefined, Context.None);
+        parseSource(`(a,b)${arg} =>{}`);
       });
     });
 
     it(`var x = (a,b)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`var x = (a,b)${arg} =>{}`, undefined, Context.None);
+        parseSource(`var x = (a,b)${arg} =>{}`);
       });
     });
 
     it(`async (a,b)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`async (a,b)${arg} =>{}`, undefined, Context.None);
+        parseSource(`async (a,b)${arg} =>{}`);
       });
     });
 
     it(`(a,...b)${arg};`, () => {
       t.throws(() => {
-        parseSource(`(a,...b)${arg} =>{}`, undefined, Context.None);
+        parseSource(`(a,...b)${arg} =>{}`);
       });
     });
 
     it(`var x = (a,...b)${arg};`, () => {
       t.throws(() => {
-        parseSource(`var x = (a,...b)${arg} =>{}`, undefined, Context.None);
+        parseSource(`var x = (a,...b)${arg} =>{}`);
       });
     });
   }
 
   fail('Expressions - Array (fail)', [
-    ['"use strict"; let => {}', Context.OptionsLexical],
-    ['let => {}', Context.Strict | Context.Module],
-    ['function *a() { yield => foo }', Context.None],
-    ['yield x => zoo', Context.None],
-    ['foo bar => zoo', Context.None],
-    ['([{x: y.z}]) => b', Context.None],
-    ['([{x: y.z}] = a) => b', Context.None],
-    ['([{x: y.z}] = a) => b', Context.None],
-    ['([{x: y.z} = a]) => b', Context.None],
-    ['async(foo = super()) => {}', Context.None],
-    ['async (x = 1) => {"use strict"}', Context.None],
-    ['async(foo) => { super() };', Context.None],
-    ['async(foo) => { super.prop };', Context.None],
-    [String.raw`\u0061sync () => {}`, Context.None],
-    ['(async (...a,) => {}', Context.None],
-    [String.raw`x = (y = "foo\003bar") => { "use strict"; }`, Context.None],
-    [String.raw`x = (y = "foo\003bar") => { }`, Context.Strict],
-    ['function foo(package) { }', Context.Strict],
-    ['()?c:d=>{}=>{}', Context.None],
-    ['()=c=>{}=>{};', Context.None],
-    ['x = ()+c=>{}', Context.None],
-    ['x = ()c++=>{};', Context.None],
-    ['() => { let [x] }', Context.None],
-    ['() => { let [] }', Context.None],
-    ['a = b\n=> c', Context.None],
-    ['a = b\n=>\nc', Context.None],
-    ['a\n= b\n=> c', Context.None],
-    [String.raw`(p\u0061ckage) => { }`, Context.Strict],
-    [String.raw`(p\u0061ckage, a) => { }`, Context.Strict],
-    [String.raw`(a, p\u0061ckage) => { }`, Context.Strict],
-    [String.raw`(p\u0061ckage) => { "use strict"; }`, Context.None],
-    [String.raw`(p\u0061ckage, a) => { "use strict"; }`, Context.None],
-    [String.raw`(a, p\u0061ckage) => { "use strict"; }`, Context.None],
-    [String.raw`(p\x61ckage) => { }`, Context.None],
-    [String.raw`(p\x61ckage) => { "use strict"; }`, Context.None],
-    [String.raw`(p\141ckage) => { "use strict"; }`, Context.None],
-    ['package => { "use strict"; }', Context.None],
-    [String.raw`p\u0061ckage => { }`, Context.Strict],
-    [String.raw`p\u0061ckage => { "use strict"; }`, Context.None],
-    [String.raw`p\141ckage => { }`, Context.None],
-    [String.raw`p\141ckage => { "use strict"; }`, Context.None],
-    ['()=>{}+a', Context.None],
-    ['()=>{}++', Context.None],
-    ['()=>{}--', Context.None],
-    ['()=>{}\n++x', Context.None],
-    ['()=>{}\n--x', Context.None],
-    ['a?c:d=>{}=>{};', Context.None],
-    ['(...a)`template-head${c}`=>{}', Context.None],
-    ['(...a)?c:d=>{}=>{};', Context.None],
-    ['interface => {}', Context.Strict | Context.Module],
-    ['x = (...a)?c:d=>{}=>{}', Context.None],
-    ['x = (...a)[1]=>{};', Context.None],
-    ['(a,...b)`template-head${c}`=>{}', Context.None],
-    ['(a,...b)`${c}template-tail`=>{};', Context.None],
-    ['x = (a,...b)`${c}template-tail`=>{}', Context.None],
-    ['x = (a,...b)[c]=>{};', Context.None],
-    ['()`template-head${c}template-tail`=>{}', Context.None],
-    ['()?c:d=>{}=>{};', Context.None],
-    ['x = ()[1]=>{}', Context.None],
-    ['x = ()[c]=>{};', Context.None],
-    ['x = (a,b)+c=>{};', Context.None],
-    ['x = a`template-head${c}template-tail`=>{}', Context.None],
-    ['x = ac++=>{};', Context.None],
-    ['(a)`${c}template-tail`=>{}', Context.None],
-    ['(a)`template-head${c}template-tail`=>{};', Context.None],
-    ['x = (a)?c:d=>{}=>{}', Context.None],
-    ['x = (a)`${c}template-tail`=>{};', Context.None],
-    ['a`${c}template-tail`=>{}', Context.None],
-    ['a`template-head${c}template-tail`=>{};', Context.None],
-    ['({x: {x: y}.length})  => {}', Context.None],
-    ['({x: x + y})  => {}', Context.None],
-    ['({x: void x})  => {}', Context.None],
-    ['({x: this})  => {}', Context.None],
-    ['({x: function(){}})  => {}', Context.None],
-    ['({x: async ()=>x})  => {}', Context.None],
-    ['({x: this})  => {}', Context.OptionsWebCompat],
-    ['({x: function(){}})  => {}', Context.OptionsWebCompat],
-    ['({x: async ()=>x})  => {}', Context.OptionsWebCompat],
-    ['0 || () => 0', Context.None],
-    ['0 || x => 0', Context.None],
-    ['0 || (x) => 0', Context.None],
-    ['0 || (x,y) => 0', Context.None],
-    ['!()=>{}', Context.None],
-    ['(x, y)[7] => {}', Context.None],
-    ["eval => { 'use strict'; return eval + 1; }", Context.None],
-    ["arguments => { 'use strict'; return arguments + 2; }", Context.None],
-    ["(e, arguments) => { 'use strict'; return e + arguments; }", Context.None],
-    ['x \n => d;', Context.None],
-    ['(x) \n => d;', Context.None],
-    ['var a = () \n => d;', Context.None],
-    ['var a = (x) \n => { return d };', Context.None],
-    ['var a = {}; a\n.x => d;', Context.None],
-    ['var a = {}; a.x \n => d;', Context.None],
-    ['x = a`c`=>{}', Context.None],
-    ['([(a)]) => {};', Context.None],
-    ['(x, /x/g) => x', Context.None],
-    ['(x, /x/g) => x', Context.None],
-    ['(a=/i/) = /i/', Context.None],
-    ['(x => y) = {}', Context.None],
-    ['(x => y) = {}', Context.None],
-    ['(async x => y) = {}', Context.None],
-    ['((x, z) => y) = {}', Context.None],
-    ['(async (x, z) => y) = {}', Context.None],
-    ['async("foo".bar) => x', Context.None],
-    ['function x(){([(a)]) => {} }', Context.None],
-    ['(a)[1]=>{}', Context.None],
-    ['(a)[c]=>{};', Context.None],
-    ['x = (a)`c`=>{}', Context.None],
-    ['x = (a)-c=>{};', Context.None],
-    ['(...a)`c`=>{}', Context.None],
-    ['(...a)-c=>{};', Context.None],
-    ['x = (...a)+c=>{}', Context.None],
-    ['x = (...a)-c=>{};', Context.None],
-    ['(a,b)+c=>{}', Context.None],
-    ['x = (a,b)", "=>{}', Context.None],
-    ['(a()=0)=>0', Context.None],
-    ['x = (a,b)-c=>{};', Context.None],
-    ['(a,...b)+c=>{}', Context.None],
-    ['(a,...b)+c=>{}', Context.None],
-    ['(a=1 => 42)', Context.None],
-    ['([a, b] => 42)', Context.None],
-    ['({a, b} => 42)', Context.None],
-    ['([a, b] = [] => 42)', Context.None],
-    ['({a, b} = {} => 42)', Context.None],
-    ['(...a => 42)', Context.None],
-    ['32 => {}', Context.None],
-    ['(32) => {}', Context.None],
-    ['(a, 32) => {}', Context.None],
-    ['if => {}', Context.None],
-    ['(if) => {}', Context.None],
-    ['(a, if) => {}', Context.None],
-    ['a + b => {}', Context.None],
-    ['(a + b) => {}', Context.None],
-    ['(a + b, c) => {}', Context.None],
-    ['(a, b - c) => {}', Context.None],
-    ['"a" => {}', Context.None],
-    ['("a") => {}', Context.None],
-    ['("a", b) => {}', Context.None],
-    ['(a, "b") => {}', Context.None],
-    ['-a => {}', Context.None],
-    ['(-a) => {}', Context.None],
-    ['(-a, b) => {}', Context.None],
-    ['(a, -b) => {}', Context.None],
-    ['{} => {}', Context.None],
-    ['a++ => {}', Context.None],
-    ['(a++) => {}', Context.None],
-    ['(a++, b) => {}', Context.None],
-    ['(a, b++) => {}', Context.None],
-    ['[] => {}', Context.None],
-    ['({...[a, b]}) => x', Context.None],
-    ['({...{a, b}}) => x', Context.None],
-    ['(foo ? bar : baz) => {}', Context.None],
-    ['(a, foo ? bar : baz) => {}', Context.None],
-    ['(foo ? bar : baz, a) => {}', Context.None],
-    ['(a.b, c) => {}', Context.None],
-    ['(c, a.b) => {}', Context.None],
-    ["(a['b'], c) => {}", Context.None],
-    ["(c, a['b']) => {}", Context.None],
-    ['(...a = b) => b', Context.None],
-    ["() => {'value': 42}", Context.None],
-    ['enum => 1;', Context.Strict],
-    ['var af = enum => 1;', Context.Strict],
-    ['var af = package => 1;', Context.Strict],
-    ['var af = arguments => 1;', Context.Strict],
-    ['var af = eval => 1;', Context.Strict],
-    ['var af = ...x => x;', Context.None],
-    ['var af = yield => 1;', Context.Strict],
-    ['var af = (yield) => 1;', Context.Strict],
-    [
-      `var af = x
-    => {};`,
-      Context.None,
-    ],
-    ['var f = (a = 0) => { "use strict"; };', Context.None],
-    [')', Context.None],
-    [') => 0', Context.None],
-    ['=> 0', Context.None],
-    ['=>', Context.None],
-    ['=> {}', Context.None],
-    ['([x.y]=z) => z', Context.None],
-    [') => {}', Context.None],
-    ['(()) => 0', Context.None],
-    ['((x)) => 0', Context.None],
-    ['((x, y)) => 0', Context.None],
-    ['(x, (y)) => 0', Context.None],
-    ['((x, y, z)) => 0', Context.None],
-    ['([...x.y]) => z', Context.None],
-    ['([...(x), y] = z) => 0', Context.None],
-    ['((x, y, z)) => 0', Context.None],
-    ['((x, y, z)) => 0', Context.None],
-    ['((x, y, z)) => 0', Context.None],
-    ['([...x.y] = z) => z', Context.None],
-    ['(x, (y, z)) => 0', Context.None],
-    ['((x, y), z) => 0', Context.None],
-    ['(a => a) +', Context.None],
-    ['eval => { "use strict"; 0 }', Context.None],
-    ['arguments => { "use strict"; 0 }', Context.None],
-    ['a => (b => (a + b)', Context.None],
-    [`([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;`, Context.None],
-    [`bar ? (=> 0) : baz;`, Context.None],
-    [`() => {} 1`, Context.None],
-    [`() => {} a`, Context.None],
-    [`(...a, ...b) => {}`, Context.None],
-    [`(...a, ...b) => {}`, Context.None],
-    [`(a, ...b,) => {}`, Context.None],
-    [`(...x,) => x`, Context.None],
-    [`(async (...a, b) => {})`, Context.None],
-    [`(async (...a, ...b) => {})`, Context.None],
-    [`() => {} a()`, Context.None],
-    [`() => {} 1`, Context.None],
-    [`((x, y)) => 0`, Context.None],
-    ['(b = (a,)) => {}', Context.None],
-    [`32 => {}`, Context.None],
-    [`(32) => {}`, Context.None],
-    [`if => {}`, Context.None],
-    [`a++ => {}`, Context.None],
-    [`(a, b++) => {}`, Context.None],
-    [`(a, foo ? bar : baz) => {}`, Context.None],
-    [`(a.b, c) => {}`, Context.None],
-    [`(a['b'], c) => {}`, Context.None],
-    [`(a, (b)) => 42;`, Context.None],
-    [`({get a(){}}) => 0;`, Context.None],
-    [`([a,...b,])=>0;`, Context.None],
-    [`({a:b[0]})=>0`, Context.None],
-    [`({}=>0)`, Context.None],
-    [`({a:b[0]})=>0`, Context.None],
-    [`({}=>0)`, Context.None],
-    [`(a['b'], c) => {}`, Context.None],
-    [`(...a = b) => b`, Context.None],
-    [`(-a) => {}`, Context.None],
-    [`(...rest - a) => b`, Context.None],
-    [`(a, ...b - 10) => b`, Context.None],
-    [`((x, y), z) => 0`, Context.None],
-    ['(a\n=> a)(1)', Context.None],
-    ['(a/*\n*/=> a)(1)', Context.None],
-    ['((a)\n=> a)(1)', Context.None],
-    ['((a)/*\n*/=> a)(1)', Context.None],
-    ['((a, b)\n=> a + b)(1, 2)', Context.None],
-    ['((a, b)/*\n*/=> a + b)(1, 2)', Context.None],
-    [`[]=>0`, Context.None],
-    [`() ? 0`, Context.None],
-    [`(a)\n=> 0`, Context.None],
-    [`1 + ()`, Context.None],
-    [`(a,...a)/*\u2028*/ => 0`, Context.None],
-    [`(a,...a)\n`, Context.None],
-    [`() <= 0`, Context.None],
-    [`(a,...a)/*\u202a*/`, Context.None],
-    [`(a,...a)/*\n*/ => 0`, Context.None],
-    [`left = (aSize.width/2) - ()`, Context.None],
-    [`(10) => 0;`, Context.None],
-    [`"use strict"; (a) => 00;`, Context.None],
-    ['("a", b) => {}', Context.None],
-    ['(a, "b") => {}', Context.None],
-    ['-a => {}', Context.None],
-    ['(-a) => {}', Context.None],
-    ['(-a, b) => {}', Context.None],
-    ['(a, -b) => {}', Context.None],
-    ['{} => {}', Context.None],
-    ['a++ => {}', Context.None],
-    ['(a++) => {}', Context.None],
-    ['(a++, b) => {}', Context.None],
-    ['(a, b++) => {}', Context.None],
-    ['[] => {}', Context.None],
-    ['(foo ? bar : baz) => {}', Context.None],
-    ['(a, foo ? bar : baz) => {}', Context.None],
-    ['(foo ? bar : baz, a) => {}', Context.None],
-    ['(a.b, c) => {}', Context.None],
-    ["(a['b'], c) => {}", Context.None],
-    ["(c, a['b']) => {}", Context.None],
-    ['(...a = b) => b', Context.None],
-    ['(...rest - a) => b', Context.None],
-    ['(a, ...b - 10) => b', Context.None],
-    ['let x = {y=z} => d', Context.None],
-    ['let x = {y=z}', Context.None],
-    ['(..a, ...b) => c', Context.None],
-    ['([0])=>0;', Context.None],
-    ['({0})=>0;', Context.None],
-    ['({a:b[0]}) => x', Context.None],
-    ['f = ([...[x], y] = [1, 2, 3]) => {};', Context.None],
-    ['f = ([...[ x ] = []] = []) => {};', Context.None],
-    ['f = ([...{ x }, y]) => {};', Context.None],
-    ['f = ([...{ x }, y]) => {};', Context.None],
-    ['1 + ()', Context.None],
-    ['((x)) => a', Context.None],
-    ['(function *g(z = ( [x=(yield)]) => {}) { });', Context.None],
-    ['(function *g(z = ( x=yield) => {}) { });', Context.None],
-    ['(x, (y, z)) => a', Context.None],
-    ['((x, y), z) =>  a', Context.None],
-    ['f = ([...{ x } = []]) => {};', Context.None],
-    ['(function *g([x = class extends (a ? null : yield) { }] = [null]) { });', Context.None],
-    ['(function *g(x = class { [y = (yield, 1)]() { } }) { });', Context.None],
-    ['(function *g(x = class extends (yield) { }) { });', Context.None],
-    ['()=c=>{}=>{}', Context.None],
-    ['()[1]=>{}', Context.None],
-    ['()c++=>{}', Context.None],
-    ['()-c=>{}', Context.None],
-    ['(a,b)(c)=>{}', Context.None],
-    ['(a,...b)[c]=>{}', Context.None],
-    ['=> 0', Context.None],
-    ['() =>', Context.None],
-    ['=> {}', Context.None],
-    [', => {}', Context.None],
-    ['() => {"value": 42}', Context.None],
-    ['(()) => 0', Context.None],
-    ['((x, y)) => 0', Context.None],
-    ['(x, (y)) => 0', Context.None],
-    ['(localVar |= defaultValue) => {}', Context.None],
-    ['([{x: y.z}]) => b', Context.None],
-    ['([{x: y.z}] = a) => b', Context.None],
-    ['([{x: y.z} = a]) => b', Context.None],
-    ['({x: y.z} = a) => b', Context.None],
-    ['([{x: y.z}]) => b', Context.None],
-    ['([{x: y.z}] = a) => b', Context.None],
-    ['([{"foo": y.z} = a]) => b', Context.None],
-    ['({"foo": y.z} = a) => b', Context.None],
-    ['([{"foo": y.z}]) => b', Context.None],
-    ['([{"foo": y.z}] = a) => b', Context.None],
-    ['([{1: y.z} = a]) => b', Context.None],
-    ['({333: y.z} = a) => b', Context.None],
+    { code: '"use strict"; let => {}', options: { lexical: true } },
+    { code: 'let => {}', options: { sourceType: 'module' } },
+    'function *a() { yield => foo }',
+    'yield x => zoo',
+    'foo bar => zoo',
+    '([{x: y.z}]) => b',
+    '([{x: y.z}] = a) => b',
+    '([{x: y.z}] = a) => b',
+    '([{x: y.z} = a]) => b',
+    'async(foo = super()) => {}',
+    'async (x = 1) => {"use strict"}',
+    'async(foo) => { super() };',
+    'async(foo) => { super.prop };',
+    String.raw`\u0061sync () => {}`,
+    '(async (...a,) => {}',
+    String.raw`x = (y = "foo\003bar") => { "use strict"; }`,
+    { code: String.raw`x = (y = "foo\003bar") => { }`, options: { impliedStrict: true } },
+    { code: 'function foo(package) { }', options: { impliedStrict: true } },
+    '()?c:d=>{}=>{}',
+    '()=c=>{}=>{};',
+    'x = ()+c=>{}',
+    'x = ()c++=>{};',
+    '() => { let [x] }',
+    '() => { let [] }',
+    'a = b\n=> c',
+    'a = b\n=>\nc',
+    'a\n= b\n=> c',
+    { code: String.raw`(p\u0061ckage) => { }`, options: { impliedStrict: true } },
+    { code: String.raw`(p\u0061ckage, a) => { }`, options: { impliedStrict: true } },
+    { code: String.raw`(a, p\u0061ckage) => { }`, options: { impliedStrict: true } },
+    String.raw`(p\u0061ckage) => { "use strict"; }`,
+    String.raw`(p\u0061ckage, a) => { "use strict"; }`,
+    String.raw`(a, p\u0061ckage) => { "use strict"; }`,
+    String.raw`(p\x61ckage) => { }`,
+    String.raw`(p\x61ckage) => { "use strict"; }`,
+    String.raw`(p\141ckage) => { "use strict"; }`,
+    'package => { "use strict"; }',
+    { code: String.raw`p\u0061ckage => { }`, options: { impliedStrict: true } },
+    String.raw`p\u0061ckage => { "use strict"; }`,
+    String.raw`p\141ckage => { }`,
+    String.raw`p\141ckage => { "use strict"; }`,
+    '()=>{}+a',
+    '()=>{}++',
+    '()=>{}--',
+    '()=>{}\n++x',
+    '()=>{}\n--x',
+    'a?c:d=>{}=>{};',
+    '(...a)`template-head${c}`=>{}',
+    '(...a)?c:d=>{}=>{};',
+    { code: 'interface => {}', options: { sourceType: 'module' } },
+    'x = (...a)?c:d=>{}=>{}',
+    'x = (...a)[1]=>{};',
+    '(a,...b)`template-head${c}`=>{}',
+    '(a,...b)`${c}template-tail`=>{};',
+    'x = (a,...b)`${c}template-tail`=>{}',
+    'x = (a,...b)[c]=>{};',
+    '()`template-head${c}template-tail`=>{}',
+    '()?c:d=>{}=>{};',
+    'x = ()[1]=>{}',
+    'x = ()[c]=>{};',
+    'x = (a,b)+c=>{};',
+    'x = a`template-head${c}template-tail`=>{}',
+    'x = ac++=>{};',
+    '(a)`${c}template-tail`=>{}',
+    '(a)`template-head${c}template-tail`=>{};',
+    'x = (a)?c:d=>{}=>{}',
+    'x = (a)`${c}template-tail`=>{};',
+    'a`${c}template-tail`=>{}',
+    'a`template-head${c}template-tail`=>{};',
+    '({x: {x: y}.length})  => {}',
+    '({x: x + y})  => {}',
+    '({x: void x})  => {}',
+    '({x: this})  => {}',
+    '({x: function(){}})  => {}',
+    '({x: async ()=>x})  => {}',
+    { code: '({x: this})  => {}', options: { webcompat: true } },
+    { code: '({x: function(){}})  => {}', options: { webcompat: true } },
+    { code: '({x: async ()=>x})  => {}', options: { webcompat: true } },
+    '0 || () => 0',
+    '0 || x => 0',
+    '0 || (x) => 0',
+    '0 || (x,y) => 0',
+    '!()=>{}',
+    '(x, y)[7] => {}',
+    "eval => { 'use strict'; return eval + 1; }",
+    "arguments => { 'use strict'; return arguments + 2; }",
+    "(e, arguments) => { 'use strict'; return e + arguments; }",
+    'x \n => d;',
+    '(x) \n => d;',
+    'var a = () \n => d;',
+    'var a = (x) \n => { return d };',
+    'var a = {}; a\n.x => d;',
+    'var a = {}; a.x \n => d;',
+    'x = a`c`=>{}',
+    '([(a)]) => {};',
+    '(x, /x/g) => x',
+    '(x, /x/g) => x',
+    '(a=/i/) = /i/',
+    '(x => y) = {}',
+    '(x => y) = {}',
+    '(async x => y) = {}',
+    '((x, z) => y) = {}',
+    '(async (x, z) => y) = {}',
+    'async("foo".bar) => x',
+    'function x(){([(a)]) => {} }',
+    '(a)[1]=>{}',
+    '(a)[c]=>{};',
+    'x = (a)`c`=>{}',
+    'x = (a)-c=>{};',
+    '(...a)`c`=>{}',
+    '(...a)-c=>{};',
+    'x = (...a)+c=>{}',
+    'x = (...a)-c=>{};',
+    '(a,b)+c=>{}',
+    'x = (a,b)", "=>{}',
+    '(a()=0)=>0',
+    'x = (a,b)-c=>{};',
+    '(a,...b)+c=>{}',
+    '(a,...b)+c=>{}',
+    '(a=1 => 42)',
+    '([a, b] => 42)',
+    '({a, b} => 42)',
+    '([a, b] = [] => 42)',
+    '({a, b} = {} => 42)',
+    '(...a => 42)',
+    '32 => {}',
+    '(32) => {}',
+    '(a, 32) => {}',
+    'if => {}',
+    '(if) => {}',
+    '(a, if) => {}',
+    'a + b => {}',
+    '(a + b) => {}',
+    '(a + b, c) => {}',
+    '(a, b - c) => {}',
+    '"a" => {}',
+    '("a") => {}',
+    '("a", b) => {}',
+    '(a, "b") => {}',
+    '-a => {}',
+    '(-a) => {}',
+    '(-a, b) => {}',
+    '(a, -b) => {}',
+    '{} => {}',
+    'a++ => {}',
+    '(a++) => {}',
+    '(a++, b) => {}',
+    '(a, b++) => {}',
+    '[] => {}',
+    '({...[a, b]}) => x',
+    '({...{a, b}}) => x',
+    '(foo ? bar : baz) => {}',
+    '(a, foo ? bar : baz) => {}',
+    '(foo ? bar : baz, a) => {}',
+    '(a.b, c) => {}',
+    '(c, a.b) => {}',
+    "(a['b'], c) => {}",
+    "(c, a['b']) => {}",
+    '(...a = b) => b',
+    "() => {'value': 42}",
+    { code: 'enum => 1;', options: { impliedStrict: true } },
+    { code: 'var af = enum => 1;', options: { impliedStrict: true } },
+    { code: 'var af = package => 1;', options: { impliedStrict: true } },
+    { code: 'var af = arguments => 1;', options: { impliedStrict: true } },
+    { code: 'var af = eval => 1;', options: { impliedStrict: true } },
+    'var af = ...x => x;',
+    { code: 'var af = yield => 1;', options: { impliedStrict: true } },
+    { code: 'var af = (yield) => 1;', options: { impliedStrict: true } },
+    outdent`
+      var af = x
+      => {};
+    `,
+    'var f = (a = 0) => { "use strict"; };',
+    ')',
+    ') => 0',
+    '=> 0',
+    '=>',
+    '=> {}',
+    '([x.y]=z) => z',
+    ') => {}',
+    '(()) => 0',
+    '((x)) => 0',
+    '((x, y)) => 0',
+    '(x, (y)) => 0',
+    '((x, y, z)) => 0',
+    '([...x.y]) => z',
+    '([...(x), y] = z) => 0',
+    '((x, y, z)) => 0',
+    '((x, y, z)) => 0',
+    '((x, y, z)) => 0',
+    '([...x.y] = z) => z',
+    '(x, (y, z)) => 0',
+    '((x, y), z) => 0',
+    '(a => a) +',
+    'eval => { "use strict"; 0 }',
+    'arguments => { "use strict"; 0 }',
+    'a => (b => (a + b)',
+    '([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;',
+    'bar ? (=> 0) : baz;',
+    '() => {} 1',
+    '() => {} a',
+    '(...a, ...b) => {}',
+    '(...a, ...b) => {}',
+    '(a, ...b,) => {}',
+    '(...x,) => x',
+    '(async (...a, b) => {})',
+    '(async (...a, ...b) => {})',
+    '() => {} a()',
+    '() => {} 1',
+    '((x, y)) => 0',
+    '(b = (a,)) => {}',
+    '32 => {}',
+    '(32) => {}',
+    'if => {}',
+    'a++ => {}',
+    '(a, b++) => {}',
+    '(a, foo ? bar : baz) => {}',
+    '(a.b, c) => {}',
+    "(a['b'], c) => {}",
+    '(a, (b)) => 42;',
+    '({get a(){}}) => 0;',
+    '([a,...b,])=>0;',
+    '({a:b[0]})=>0',
+    '({}=>0)',
+    '({a:b[0]})=>0',
+    '({}=>0)',
+    "(a['b'], c) => {}",
+    '(...a = b) => b',
+    '(-a) => {}',
+    '(...rest - a) => b',
+    '(a, ...b - 10) => b',
+    '((x, y), z) => 0',
+    '(a\n=> a)(1)',
+    '(a/*\n*/=> a)(1)',
+    '((a)\n=> a)(1)',
+    '((a)/*\n*/=> a)(1)',
+    '((a, b)\n=> a + b)(1, 2)',
+    '((a, b)/*\n*/=> a + b)(1, 2)',
+    '[]=>0',
+    '() ? 0',
+    '(a)\n=> 0',
+    '1 + ()',
+    '(a,...a)/*\u2028*/ => 0',
+    '(a,...a)\n',
+    '() <= 0',
+    '(a,...a)/*\u202a*/',
+    '(a,...a)/*\n*/ => 0',
+    'left = (aSize.width/2) - ()',
+    '(10) => 0;',
+    '"use strict"; (a) => 00;',
+    '("a", b) => {}',
+    '(a, "b") => {}',
+    '-a => {}',
+    '(-a) => {}',
+    '(-a, b) => {}',
+    '(a, -b) => {}',
+    '{} => {}',
+    'a++ => {}',
+    '(a++) => {}',
+    '(a++, b) => {}',
+    '(a, b++) => {}',
+    '[] => {}',
+    '(foo ? bar : baz) => {}',
+    '(a, foo ? bar : baz) => {}',
+    '(foo ? bar : baz, a) => {}',
+    '(a.b, c) => {}',
+    "(a['b'], c) => {}",
+    "(c, a['b']) => {}",
+    '(...a = b) => b',
+    '(...rest - a) => b',
+    '(a, ...b - 10) => b',
+    'let x = {y=z} => d',
+    'let x = {y=z}',
+    '(..a, ...b) => c',
+    '([0])=>0;',
+    '({0})=>0;',
+    '({a:b[0]}) => x',
+    'f = ([...[x], y] = [1, 2, 3]) => {};',
+    'f = ([...[ x ] = []] = []) => {};',
+    'f = ([...{ x }, y]) => {};',
+    'f = ([...{ x }, y]) => {};',
+    '1 + ()',
+    '((x)) => a',
+    '(function *g(z = ( [x=(yield)]) => {}) { });',
+    '(function *g(z = ( x=yield) => {}) { });',
+    '(x, (y, z)) => a',
+    '((x, y), z) =>  a',
+    'f = ([...{ x } = []]) => {};',
+    '(function *g([x = class extends (a ? null : yield) { }] = [null]) { });',
+    '(function *g(x = class { [y = (yield, 1)]() { } }) { });',
+    '(function *g(x = class extends (yield) { }) { });',
+    '()=c=>{}=>{}',
+    '()[1]=>{}',
+    '()c++=>{}',
+    '()-c=>{}',
+    '(a,b)(c)=>{}',
+    '(a,...b)[c]=>{}',
+    '=> 0',
+    '() =>',
+    '=> {}',
+    ', => {}',
+    '() => {"value": 42}',
+    '(()) => 0',
+    '((x, y)) => 0',
+    '(x, (y)) => 0',
+    '(localVar |= defaultValue) => {}',
+    '([{x: y.z}]) => b',
+    '([{x: y.z}] = a) => b',
+    '([{x: y.z} = a]) => b',
+    '({x: y.z} = a) => b',
+    '([{x: y.z}]) => b',
+    '([{x: y.z}] = a) => b',
+    '([{"foo": y.z} = a]) => b',
+    '({"foo": y.z} = a) => b',
+    '([{"foo": y.z}]) => b',
+    '([{"foo": y.z}] = a) => b',
+    '([{1: y.z} = a]) => b',
+    '({333: y.z} = a) => b',
   ]);
 
   for (const arg of [
-    `function foo() { }; foo(() => "abc"); foo(() => "abc", 123);`,
-    `({})[x => x]`,
-    `() => () => 0`,
-    `() => x => (a, b, c) => 0`,
-    `y => () => (a) => 0`,
-    `function * foo() { yield ()=>{}; }`,
-    `function foo() { }; foo((x, y) => "abc"); foo(b => "abc", 123);`,
-    `(a, b) => { return a * b; }`,
-    `a = () => {return (3, 4);};`,
-    `"use strict";
-((one, two) => {});`,
-    `([])=>0;`,
-    `(function (x) { return x => x; })(20)(10)`,
-    `(function () { return x => x; })()(10)`,
-    ` (function () {  return x => x; })()(10)`,
-    `() => true ? 1 : (() => false ? 1 : (0))`,
-    `l = async() => true ? 1 : (() => false ? 1 : (0))`,
-    `([,,])=>0`,
-    `([a,...b])=>0;`,
-    `([a,b])=>0;`,
-    `([a]) => [0];`,
-    `({a,b=b,a:c,[a]:[d]})=>0;`,
-    `(() => {}) || true;
-    (() => {}) ? a : b;`,
+    'function foo() { }; foo(() => "abc"); foo(() => "abc", 123);',
+    '({})[x => x]',
+    '() => () => 0',
+    '() => x => (a, b, c) => 0',
+    'y => () => (a) => 0',
+    'function * foo() { yield ()=>{}; }',
+    'function foo() { }; foo((x, y) => "abc"); foo(b => "abc", 123);',
+    '(a, b) => { return a * b; }',
+    'a = () => {return (3, 4);};',
+    outdent`
+      "use strict";
+      ((one, two) => {});
+    `,
+    '([])=>0;',
+    '(function (x) { return x => x; })(20)(10)',
+    '(function () { return x => x; })()(10)',
+    ' (function () {  return x => x; })()(10)',
+    '() => true ? 1 : (() => false ? 1 : (0))',
+    'l = async() => true ? 1 : (() => false ? 1 : (0))',
+    '([,,])=>0',
+    '([a,...b])=>0;',
+    '([a,b])=>0;',
+    '([a]) => [0];',
+    '({a,b=b,a:c,[a]:[d]})=>0;',
+    outdent`
+      (() => {}) || true;
+      (() => {}) ? a : b;
+    `,
     '(() => {}) + 2',
     'new (() => {});',
     'bar ? ( (x) => x ) : baz;',
@@ -882,12 +885,12 @@ describe('Expressions - Arrow', () => {
     '(x = 9) => {}',
     '([x = 0]) => {}',
     '(a, (a, (b, c) => 0))',
-    `a => 0`,
-    `() => () => 0`,
+    'a => 0',
+    '() => () => 0',
     '() => 0, 1',
     '() => 0 + 1',
     '(a,b) => 0 + 1',
-    `(a,b,...c) => 0 + 1`,
+    '(a,b,...c) => 0 + 1',
     '() => (a) = 0',
     'a => b => c => 0',
     '(e) => "test"',
@@ -913,7 +916,7 @@ describe('Expressions - Arrow', () => {
     '([x = 10]) => x',
     '({x = 10, y: { z = 10 }}) => [x, z]',
     '({x = 10}) => x',
-    `([y]) => x;`,
+    '([y]) => x;',
     '1 ? 0 : a => {}, 17, 42;',
     '17, 42, 1 ? 0 : a => {};',
     '({ ...0 ? 1 : a => {} })',
@@ -1013,23 +1016,25 @@ describe('Expressions - Arrow', () => {
     'factorial = x =>  x < 1 ? 1 : x * factorial(x-1)',
     'a => (a + 1)',
     'sum = ( ...nums ) => nums.reduce( ( t, n ) => t + n, 0 );',
-    `'use strict';
-     setTimeout( () => console.log( this ) );
-      function foo () {
+    outdent`
       'use strict';
       setTimeout( () => console.log( this ) );
-    }`,
+        function foo () {
+        'use strict';
+        setTimeout( () => console.log( this ) );
+      }
+    `,
     'new (() => {});',
     'bar ? ( (x) => x ) : baz;',
     '(x = 9) => {}',
     '([x = 0]) => {}',
     '(a, (a, (b, c) => 0))',
-    `a => 0`,
-    `() => () => 0`,
+    'a => 0',
+    '() => () => 0',
     '() => 0, 1',
     '() => 0 + 1',
     '(a,b) => 0 + 1',
-    `(a,b,...c) => 0 + 1`,
+    '(a,b,...c) => 0 + 1',
     '() => (a) = 0',
     'a => b => c => 0',
     '(e) => "test"',
@@ -1052,70 +1057,84 @@ describe('Expressions - Arrow', () => {
     '([x = 10]) => x = ([x = 10]) => x',
     '({x = 10, y: { z = 10 }}) => [x, z]',
     '({x = 10}) => x',
-    `([y]) => x;`,
-    `([y]) => ([y]) => x;`,
+    '([y]) => x;',
+    '([y]) => ([y]) => x;',
     '(x=1) => x * x;',
     '(x=1) => x * (x = y);',
     '(eval = 10) => 42;',
     '(a, b=(c)=>{}) => {}',
     'var double = (x) => x * 2',
     'let Y = F => (x=>F(y=>(x(x))(y)))(x=>F(y=>(x(x))(y)))',
-    `'use strict';
-    setTimeout( () => console.log( this ) );
-     function foo () {
-     'use strict';
-     setTimeout( () => console.log( this ) );
-   }`,
+    outdent`
+      'use strict';
+        setTimeout( () => console.log( this ) );
+        function foo () {
+        'use strict';
+        setTimeout( () => console.log( this ) );
+      }
+    `,
     'var x = a =>{}',
     'async foo => bar',
     '(async foo => bar)',
-    `() => {}`,
-    `() => {(async foo => bar)}`,
-    `a => {}`,
-    `a => {a => {a => {a => {a => {a => {}}}}}}`,
-    `async () => {}`,
-    `async () => {async () => {async () => {async () => {async () => {}}}}}`,
-    `async => {}`,
+    '() => {}',
+    '() => {(async foo => bar)}',
+    'a => {}',
+    'a => {a => {a => {a => {a => {a => {}}}}}}',
+    'async () => {}',
+    'async () => {async () => {async () => {async () => {async () => {}}}}}',
+    'async => {}',
     '({ async foo(a, c, b){} });',
-    `async => {}
-   async => {}`,
-    `() => () => () => {}`,
-    `() => () => ({a = b} = c) => b * c`,
-    `() => () => () => { async(a-vb) }`,
-    `() => {}
-    async()
-    async => {}
-    async => {}
-    a => {}
-    a => {}`,
-    `() => {}`,
-    `() => {}
-    async()
-    async => {}
-    async => {}
-    a => {}
-    a => {}`,
-    `() => {}`,
-    `() => {}
-   async()
-   async => {}
-   async => {}
-   a => {}
-   a => {}`,
-    `() => {}`,
-    `() => {}
-  async()
-  async => {}
-  async => {}
-  a => {}
-  a => {}`,
+    outdent`
+      async => {}
+      async => {}
+    `,
+    '() => () => () => {}',
+    '() => () => ({a = b} = c) => b * c',
+    '() => () => () => { async(a-vb) }',
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
+    '() => {}',
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
+    '() => {}',
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
+    '() => {}',
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
     '(async => async)',
-    `() => {}
-  a()
-  async()`,
-    `(z = [...x.y]) => z`,
-    `a => a => a => async a => a`,
-    `a => a => a => a => a => a => a => a => a => a => a => a => a => a => a => async a => a`,
+    outdent`
+      () => {}
+      a()
+      async()
+    `,
+    '(z = [...x.y]) => z',
+    'a => a => a => async a => a',
+    'a => a => a => a => a => a => a => a => a => a => a => a => a => a => a => async a => a',
     'var f = (function() { return z => arguments[0]; }(5));',
     'async(...{x}) => x',
     'async(...[x]) => x',
@@ -1123,23 +1142,23 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.None);
+        parseSource(`${arg};`);
       });
     });
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsNext);
+        parseSource(`${arg};`, { next: true });
       });
     });
 
     it(`function x(){${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function x(){${arg} }`, undefined, Context.None);
+        parseSource(`function x(){${arg} }`);
       });
     });
   }
@@ -1151,23 +1170,23 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, undefined, Context.None);
+        parseSource(`${arg};`);
       });
     });
     it(`${arg};`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
     it(`${arg};`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsNext);
+        parseSource(`${arg};`, { next: true });
       });
     });
 
     it(`function x(){${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function x(){${arg} }`, undefined, Context.None);
+        parseSource(`function x(){${arg} }`);
       });
     });
   }
@@ -1201,7 +1220,8 @@ describe('Expressions - Arrow', () => {
     { code: '([], a) => {}', options: { ranges: true } },
     '(a = b) => {}',
     {
-      code: `(expect, subject, typeName) => {
+      code: outdent`
+        (expect, subject, typeName) => {
           typeName = /^reg(?:exp?|ular expression)$/.test(typeName)
             ? 'regexp'
             : typeName;
@@ -1217,7 +1237,8 @@ describe('Expressions - Arrow', () => {
                 .jsString(typeName);
             });
           }
-        }`,
+        }
+      `,
       options: { ranges: true },
     },
     { code: '(a, b = c) => {}', options: { ranges: true } },
@@ -1239,7 +1260,7 @@ describe('Expressions - Arrow', () => {
     '(a, ...b) => {}',
     '(...a) => {}',
     '(a = 1) => {}',
-    `async (eval) => "use strict";`,
+    'async (eval) => "use strict";',
     '(x) => { function x() {} }',
     '([x, y] = z) => x;',
     '([...x]) => x',
@@ -1295,20 +1316,24 @@ describe('Expressions - Arrow', () => {
     '([x] = []) => {};',
     '([x = 0]) => {};',
     {
-      code: `(a) => b;  // 1 args
-    (a, b) => c;  // n args
-    () => b;  // 0 args
-    (a) => (b) => c;  // func returns func returns func
-    (a) => ((b) => c);  // So these parens are dropped
-    () => (b,c) => d;  // func returns func returns func
-    a=>{return b;}
-    a => 'e';  // Dropping the parens`,
+      code: outdent`
+        (a) => b;  // 1 args
+        (a, b) => c;  // n args
+        () => b;  // 0 args
+        (a) => (b) => c;  // func returns func returns func
+        (a) => ((b) => c);  // So these parens are dropped
+        () => (b,c) => d;  // func returns func returns func
+        a=>{return b;}
+        a => 'e';  // Dropping the parens
+      `,
       options: { ranges: true },
     },
     { code: 'const a = () => {return (3, 4);};', options: { ranges: true } },
     {
-      code: `(() => {}) || true;
-    (() => {}) ? a : b;`,
+      code: outdent`
+        (() => {}) || true;
+        (() => {}) ? a : b;
+      `,
       options: { ranges: true },
     },
     { code: '(() => {}) + 2', options: { ranges: true } },

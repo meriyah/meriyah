@@ -1,5 +1,5 @@
-import { isIDStart, isIDContinue } from '../unicode';
 import { Chars } from '../chars';
+import { isIDContinue,isIDStart } from '../unicode';
 
 export const enum CharFlags {
   None = 0,
@@ -155,7 +155,7 @@ export const CharTypes = [
   CharFlags.None /* 0x7F */
 ];
 
-export const isIdStart = [
+const isIdStart = [
   0,
   0,
   0,

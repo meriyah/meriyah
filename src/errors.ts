@@ -1,6 +1,5 @@
+import { type Location } from './common';
 import { type _Node, type SourceLocation } from './estree';
-import { type ScopeError, type Location } from './common';
-import { type Parser } from './parser/parser';
 
 export const enum Errors {
   Unexpected,
@@ -183,7 +182,7 @@ export const enum Errors {
   InvalidAwaitInStaticBlock,
 }
 
-export const errorMessages: {
+const errorMessages: {
   [key: string]: string;
 } = {
   [Errors.Unexpected]: 'Unexpected token',
@@ -395,47 +394,4 @@ export class ParseError extends SyntaxError implements _Node {
     };
     this.description = description;
   }
-}
-/**
- * Throws an error
- *
- * @export
- * @param {Parser} state
- * @param {Errors} type
- * @param {...string[]} params
- * @returns {never}
- */
-export function report(parser: Parser, type: Errors, ...params: string[]): never {
-  throw new ParseError(parser.tokenStart, parser.currentLocation, type, ...params);
-}
-
-export function reportScopeError(scope: ScopeError): never {
-  throw new ParseError(scope.start, scope.end, scope.type, ...scope.params);
-}
-
-/**
- * Throws an error at a given position
- *
- * @export
- * @param {Parser} state
- * @param {Location} start
- * @param {Location} end
- * @param {Errors} type
- * @param {...string[]} params
- */
-export function reportMessageAt(start: Location, end: Location, type: Errors, ...params: string[]): never {
-  throw new ParseError(start, end, type, ...params);
-}
-
-/**
- * Throws an error at a given position
- *
- * @export
- * @param {Parser} state
- * @param {Location} start
- * @param {Location} end
- * @param {Errors} type
- */
-export function reportScannerError(start: Location, end: Location, type: Errors): never {
-  throw new ParseError(start, end, type);
 }

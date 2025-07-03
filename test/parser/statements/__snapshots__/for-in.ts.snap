@@ -1,5 +1,839 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for ([ x = yield ] in [[]]) ; 1`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | "use strict"; for ([ x = yield ] in [[]]) ;
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for ([[x[yield]]] in [[[]]]) ; 1`] = `
+"SyntaxError [1:23-1:28]: 'yield' may not be used as an identifier in this context
+> 1 | "use strict"; for ([[x[yield]]] in [[[]]]) ;
+    |                        ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for ([{ x = yield }] in [[{}]]) ; 1`] = `
+"SyntaxError [1:26-1:31]: 'yield' may not be used as an identifier in this context
+> 1 | "use strict"; for ([{ x = yield }] in [[{}]]) ;
+    |                           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for ({ x = yield } in [{}]) ; 1`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | "use strict"; for ({ x = yield } in [{}]) ;
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for (let.x in {}) {} 1`] = `
+"SyntaxError [1:22-1:23]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | "use strict"; for (let.x in {}) {}
+    |                       ^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for (let.x of []) {} 1`] = `
+"SyntaxError [1:22-1:23]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | "use strict"; for (let.x of []) {}
+    |                       ^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for (let.x of []) {} 2`] = `
+"SyntaxError [1:22-1:23]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | "use strict"; for (let.x of []) {}
+    |                       ^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for (var [p]=1 in q); 1`] = `
+"SyntaxError [1:23-1:31]: 'for-in' loop head declarations can not have an initializer
+> 1 | "use strict"; for (var [p]=1 in q);
+    |                        ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for (var {x}=0 in y); 1`] = `
+"SyntaxError [1:23-1:31]: 'for-in' loop head declarations can not have an initializer
+> 1 | "use strict"; for (var {x}=0 in y);
+    |                        ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > "use strict"; for (var i=0 in j); 1`] = `
+"SyntaxError [1:23-1:29]: 'for-in' loop head declarations can not have an initializer
+> 1 | "use strict"; for (var i=0 in j);
+    |                        ^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ("foo" in y); 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in for-in
+> 1 | for ("foo" in y);
+    |            ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ("foo".bar = x in obj); 1`] = `
+"SyntaxError [1:19-1:21]: Expected ';'
+> 1 | for ("foo".bar = x in obj);
+    |                    ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ("foo".x += z in y); 1`] = `
+"SyntaxError [1:18-1:20]: Expected ';'
+> 1 | for ("foo".x += z in y);
+    |                   ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ("foo".x = z in y); 1`] = `
+"SyntaxError [1:17-1:19]: Expected ';'
+> 1 | for ("foo".x = z in y);
+    |                  ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ((()=>x) in y); 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-in
+> 1 | for ((()=>x) in y);
+    |              ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (()=>(x) in y); 1`] = `
+"SyntaxError [1:17-1:18]: Expected ';'
+> 1 | for (()=>(x) in y);
+    |                  ^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (()=>x in y); 1`] = `
+"SyntaxError [1:15-1:16]: Expected ';'
+> 1 | for (()=>x in y);
+    |                ^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ((a--) in c); 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in for-in
+> 1 | for ((a--) in c);
+    |            ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ((x = y) in z) ; 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-in
+> 1 | for ((x = y) in z) ;
+    |              ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (...x in y){} 1`] = `
+"SyntaxError [1:5-1:8]: Unexpected token: '...'
+> 1 | for (...x in y){}
+    |      ^^^ Unexpected token: '...'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([(x, y)] in {}) {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-in
+> 1 | for ([(x, y)] in {}) {}
+    |               ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([...{ get x() {} }] in [[[]]]) ; 1`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in for-in
+> 1 | for ([...{ get x() {} }] in [[[]]]) ;
+    |                          ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([...{ get x() {} }] in [[[]]]) ; 2`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in for-in
+> 1 | for ([...{ get x() {} }] in [[[]]]) ;
+    |                          ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([...{ get x() {} }] in [[[]]]) ; 3`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in for-in
+> 1 | for ([...{ get x() {} }] in [[[]]]) ;
+    |                          ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([...x = 1] in [[]]) ; 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-in
+> 1 | for ([...x = 1] in [[]]) ;
+    |                 ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([...x,] in [[]]) ; 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-in
+> 1 | for ([...x,] in [[]]) ;
+    |              ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([...x,] in [[]]) ; 2`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-in
+> 1 | for ([...x,] in [[]]) ;
+    |              ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([[(x, y)]] in [[[]]]) ; 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-in
+> 1 | for ([[(x, y)]] in [[[]]]) ;
+    |                 ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([]); 1`] = `
+"SyntaxError [1:7-1:8]: Expected ';'
+> 1 | for ([]);
+    |        ^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([].bar = x in obj); 1`] = `
+"SyntaxError [1:16-1:18]: Expected ';'
+> 1 | for ([].bar = x in obj);
+    |                 ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([]=1 in x); 1`] = `
+"SyntaxError [1:10-1:12]: Expected ';'
+> 1 | for ([]=1 in x);
+    |           ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([x + y] = z in obj); 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | for ([x + y] = z in obj);
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([x + y] in obj); 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-in
+> 1 | for ([x + y] in obj);
+    |              ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([x,y,z] = 22 in foo); 1`] = `
+"SyntaxError [1:18-1:20]: Expected ';'
+> 1 | for ([x,y,z] = 22 in foo);
+    |                   ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([x.y] = z in obj); 1`] = `
+"SyntaxError [1:15-1:17]: Expected ';'
+> 1 | for ([x.y] = z in obj);
+    |                ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ([x] = z in obj); 1`] = `
+"SyntaxError [1:13-1:15]: Expected ';'
+> 1 | for ([x] = z in obj);
+    |              ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ eval } in [{}]) ; 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-in
+> 1 | for ({ eval } in [{}]) ;
+    |               ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ eval } in [{}]) ; 2`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-in
+> 1 | for ({ eval } in [{}]) ;
+    |               ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ m() {} } in {}) {} 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-in
+> 1 | for ({ m() {} } in {}) {}
+    |                 ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ m() {} } in {}) {} 2`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-in
+> 1 | for ({ m() {} } in {}) {}
+    |                 ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ x = yield } in [{}]) ; 1`] = `
+"SyntaxError [1:11-1:16]: 'yield' may not be used as an identifier in this context
+> 1 | for ({ x = yield } in [{}]) ;
+    |            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ x: [(x, y)] } in [{ x: [] }]) ; 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in for-in
+> 1 | for ({ x: [(x, y)] } in [{ x: [] }]) ;
+    |                      ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ x: [x = yield] } in [{ x: [] }]) ; 1`] = `
+"SyntaxError [1:15-1:20]: 'yield' may not be used as an identifier in this context
+> 1 | for ({ x: [x = yield] } in [{ x: [] }]) ;
+    |                ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ x: { x = yield } } in [{ x: {} }]) ; 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | for ({ x: { x = yield } } in [{ x: {} }]) ;
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({ yield } in [{}]) ; }); 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: '}'
+> 1 | for ({ yield } in [{}]) ; });
+    |                           ^ Unexpected token: '}'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({...rest, b} in [{}]) ; 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in for-in
+> 1 | for ({...rest, b} in [{}]) ;
+    |                   ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({}.bar = x in obj); 1`] = `
+"SyntaxError [1:16-1:18]: Expected ';'
+> 1 | for ({}.bar = x in obj);
+    |                 ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({a: x + y} = z in obj); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | for ({a: x + y} = z in obj);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({a: x + y} in obj); 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-in
+> 1 | for ({a: x + y} in obj);
+    |                 ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({a: x.y} = z in obj); 1`] = `
+"SyntaxError [1:18-1:20]: Expected ';'
+> 1 | for ({a: x.y} = z in obj);
+    |                   ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({a:x,b:y,c:z} = 22 in foo); 1`] = `
+"SyntaxError [1:24-1:26]: Expected ';'
+> 1 | for ({a:x,b:y,c:z} = 22 in foo);
+    |                         ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for ({x} = z in obj); 1`] = `
+"SyntaxError [1:13-1:15]: Expected ';'
+> 1 | for ({x} = z in obj);
+    |              ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (0 = 0 in {}); 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | for (0 = 0 in {});
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (a=>b in c); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-in
+> 1 | for (a=>b in c);
+    |           ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (const ...x in y){} 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '...'
+> 1 | for (const ...x in y){}
+    |            ^^^ Unexpected token: '...'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (const [x,y,z] = 22 in foo); 1`] = `
+"SyntaxError [1:11-1:26]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const [x,y,z] = 22 in foo);
+    |            ^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (const {a:x,b:y,c:z} = 22 in foo); 1`] = `
+"SyntaxError [1:11-1:32]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const {a:x,b:y,c:z} = 22 in foo);
+    |            ^^^^^^^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (const a = 0 in {}); 1`] = `
+"SyntaxError [1:11-1:19]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const a = 0 in {});
+    |            ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (const x = 0 in {}); 1`] = `
+"SyntaxError [1:11-1:19]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const x = 0 in {});
+    |            ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (const x = 22 in foo); 1`] = `
+"SyntaxError [1:11-1:20]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const x = 22 in foo);
+    |            ^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (function () {} in a) 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in for-in
+> 1 | for (function () {} in a)
+    |                     ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (function(){} in x); 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in for-in
+> 1 | for (function(){} in x);
+    |                   ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (i++ = 0 in {}); 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | for (i++ = 0 in {});
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let + x in y); 1`] = `
+"SyntaxError [1:13-1:15]: Expected ';'
+> 1 | for (let + x in y);
+    |              ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let => {} in y); 1`] = `
+"SyntaxError [1:9-1:11]: Expected ';'
+> 1 | for (let => {} in y);
+    |          ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let [let] in obj); 1`] = `
+"SyntaxError [1:13-1:14]: 'A lexical declaration can't define a 'let' binding
+> 1 | for (let [let] in obj);
+    |              ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let a = 0 in {}); 1`] = `
+"SyntaxError [1:9-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let a = 0 in {});
+    |          ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let a = b => b in c; ;); 1`] = `
+"SyntaxError [1:9-1:22]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let a = b => b in c; ;);
+    |          ^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let in {}) { } 1`] = `
+"SyntaxError [1:9-1:11]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | for (let in {}) { }
+    |          ^^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let in o) { } 1`] = `
+"SyntaxError [1:9-1:11]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | for (let in o) { }
+    |          ^^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x = 0 in {}); 1`] = `
+"SyntaxError [1:9-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let x = 0 in {});
+    |          ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x = 3 in {}) { } 1`] = `
+"SyntaxError [1:9-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let x = 3 in {}) { }
+    |          ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x = 3, y = 4 in {}) { } 1`] = `
+"SyntaxError [1:16-1:24]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let x = 3, y = 4 in {}) { }
+    |                 ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x = 3, y in {}) { } 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in for-in loop: Must have a single binding
+> 1 | for (let x = 3, y in {}) { }
+    |                   ^^ Invalid left-hand side in for-in loop: Must have a single binding"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x in {}) label1: label2: function f() {} 1`] = `
+"SyntaxError [1:34-1:42]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (let x in {}) label1: label2: function f() {}
+    |                                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x in {}) label1: label2: function f() {} 2`] = `
+"SyntaxError [1:34-1:42]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (let x in {}) label1: label2: function f() {}
+    |                                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x in {}) label1: label2: function f() {} 3`] = `
+"SyntaxError [1:34-1:42]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (let x in {}) label1: label2: function f() {}
+    |                                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x, y = 4 in {}) { } 1`] = `
+"SyntaxError [1:12-1:20]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let x, y = 4 in {}) { }
+    |             ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let x, y in {}) { } 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-in loop: Must have a single binding
+> 1 | for (let x, y in {}) { }
+    |               ^^ Invalid left-hand side in for-in loop: Must have a single binding"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let() in y); 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in for-in
+> 1 | for (let() in y);
+    |            ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let, x in y); 1`] = `
+"SyntaxError [1:16-1:17]: Expected ';'
+> 1 | for (let, x in y);
+    |                 ^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (let.x in {}) {} 1`] = `
+"SyntaxError [1:8-1:9]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | for (let.x in {}) {}
+    |         ^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (new F() = 0 in {}); 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | for (new F() = 0 in {});
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (this in {}); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-in
+> 1 | for (this in {});
+    |           ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (this in {}; ;); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-in
+> 1 | for (this in {}; ;);
+    |           ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (true ? 0 : 0 in {}; false; ) ; 1`] = `
+"SyntaxError [1:18-1:20]: Expected ';'
+> 1 | for (true ? 0 : 0 in {}; false; ) ;
+    |                   ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var [a] = 0 in {}); 1`] = `
+"SyntaxError [1:9-1:19]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (var [a] = 0 in {});
+    |          ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var [a] = 0 in {}); 2`] = `
+"SyntaxError [1:9-1:19]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (var [a] = 0 in {});
+    |          ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var {a} = 0 in {}); 1`] = `
+"SyntaxError [1:9-1:19]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (var {a} = 0 in {});
+    |          ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var {x}=0 in y); 1`] = `
+"SyntaxError [1:9-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (var {x}=0 in y);
+    |          ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var a = () => { return "a"} in {}); 1`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: 'in'
+> 1 | for (var a = () => { return "a"} in {});
+    |                                  ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var i, j = void 0 in [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in for-in loop: Must have a single binding
+> 1 | for (var i, j = void 0 in [1, 2, 3]) {}
+    |                        ^^ Invalid left-hand side in for-in loop: Must have a single binding"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var x in {}) function* g() {} 1`] = `
+"SyntaxError [1:18-1:26]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (var x in {}) function* g() {}
+    |                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var x in {}) label1: label2: function f() {} 1`] = `
+"SyntaxError [1:34-1:42]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (var x in {}) label1: label2: function f() {}
+    |                                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (x = 22 in foo); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for (x = 22 in foo);
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (x = y in z) ; 1`] = `
+"SyntaxError [1:11-1:13]: Expected ';'
+> 1 | for (x = y in z) ;
+    |            ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (x in {}) label1: label2: function f() {} 1`] = `
+"SyntaxError [1:30-1:38]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (x in {}) label1: label2: function f() {}
+    |                               ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (x in {}) label1: label2: function f() {} 2`] = `
+"SyntaxError [1:30-1:38]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (x in {}) label1: label2: function f() {}
+    |                               ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for await (let.x of []) {} 1`] = `
+"SyntaxError [1:4-1:9]: Expected '('
+> 1 | for await (let.x of []) {}
+    |     ^^^^^ Expected '('"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for await (let.x of []) {} 2`] = `
+"SyntaxError [1:4-1:9]: Expected '('
+> 1 | for await (let.x of []) {}
+    |     ^^^^^ Expected '('"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(([0]) in 0); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-in
+> 1 | for(([0]) in 0);
+    |           ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(({a: 0}) in 0); 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-in
+> 1 | for(({a: 0}) in 0);
+    |              ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for([,] = 0 in {}); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for([,] = 0 in {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for([...[a]] = 0 in {}); 1`] = `
+"SyntaxError [1:17-1:19]: Expected ';'
+> 1 | for([...[a]] = 0 in {});
+    |                  ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for([...a] = 0 in {}); 1`] = `
+"SyntaxError [1:15-1:17]: Expected ';'
+> 1 | for([...a] = 0 in {});
+    |                ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for([a = 0] = 0 in {}); 1`] = `
+"SyntaxError [1:16-1:18]: Expected ';'
+> 1 | for([a = 0] = 0 in {});
+    |                 ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for([a] = 0 in {}); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for([a] = 0 in {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for([a] = 0 in {}); 2`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for([a] = 0 in {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for({} = 0 in {}); 1`] = `
+"SyntaxError [1:11-1:13]: Expected ';'
+> 1 | for({} = 0 in {});
+    |            ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for({p: x = 0} = 0 in {}); 1`] = `
+"SyntaxError [1:19-1:21]: Expected ';'
+> 1 | for({p: x = 0} = 0 in {});
+    |                    ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for({p: x} = 0 in {}); 1`] = `
+"SyntaxError [1:15-1:17]: Expected ';'
+> 1 | for({p: x} = 0 in {});
+    |                ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for({x = 0} = 0 in {}); 1`] = `
+"SyntaxError [1:16-1:18]: Expected ';'
+> 1 | for({x = 0} = 0 in {});
+    |                 ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for({x} = 0 in {}); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for({x} = 0 in {});
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(const [,] = 0 in {}); 1`] = `
+"SyntaxError [1:10-1:20]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(const [,] = 0 in {});
+    |           ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(const [] = 0 in {}); 1`] = `
+"SyntaxError [1:10-1:19]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(const [] = 0 in {});
+    |           ^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(const [a] = 0 in {}); 1`] = `
+"SyntaxError [1:10-1:20]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(const [a] = 0 in {});
+    |           ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(const {x = 0} = 0 in {}); 1`] = `
+"SyntaxError [1:10-1:24]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(const {x = 0} = 0 in {});
+    |           ^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(const x = 0 in {}); 1`] = `
+"SyntaxError [1:10-1:18]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(const x = 0 in {});
+    |           ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(f() = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | for(f() = 0 in {});
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let ? b : c in 0); 1`] = `
+"SyntaxError [1:16-1:18]: Expected ';'
+> 1 | for(let ? b : c in 0);
+    |                 ^^ Expected ';'"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [,] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [,] = 0 in {});
+    |         ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [...[]] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [...[]] = 0 in {});
+    |         ^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [...[a]] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:23]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [...[a]] = 0 in {});
+    |         ^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [...a] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [...a] = 0 in {});
+    |         ^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [] = 0 in {});
+    |         ^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [a = 0] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [a = 0] = 0 in {});
+    |         ^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let [a] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let [a] = 0 in {});
+    |         ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let {} = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let {} = 0 in {});
+    |         ^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let {p: x = 0} = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:25]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let {p: x = 0} = 0 in {});
+    |         ^^^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let {p: x} = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let {p: x} = 0 in {});
+    |         ^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let {x = 0} = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let {x = 0} = 0 in {});
+    |         ^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let {x} = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:18]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let {x} = 0 in {});
+    |         ^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let x = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:16]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let x = 0 in {});
+    |         ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(let x = 0 in {}); 2`] = `
+"SyntaxError [1:8-1:16]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(let x = 0 in {});
+    |         ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(var [...a] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:21]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(var [...a] = 0 in {});
+    |         ^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(var [a = 0] = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(var [a = 0] = 0 in {});
+    |         ^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for(var {x = 0} = 0 in {}); 1`] = `
+"SyntaxError [1:8-1:22]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(var {x = 0} = 0 in {});
+    |         ^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > function foo() { for (var i, j of {}) {} } 1`] = `
+"SyntaxError [1:31-1:33]: Invalid left-hand side in for-of loop: Must have a single binding
+> 1 | function foo() { for (var i, j of {}) {} }
+    |                                ^^ Invalid left-hand side in for-of loop: Must have a single binding"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > or (var [p]=0 in q); 1`] = `
+"SyntaxError [1:4-1:7]: Unexpected token: 'var'
+> 1 | or (var [p]=0 in q);
+    |     ^^^ Unexpected token: 'var'"
+`;
+
 exports[`Statements - For in > Statements - For in (pass) > 2; for (var b in { x: 0 }) { 3; } 1`] = `
 {
   "body": [
@@ -4016,18 +4850,18 @@ exports[`Statements - For in > Statements - For in (pass) > for (var a=1;;); 1`]
 `;
 
 exports[`Statements - For in > Statements - For in (pass) > for (var p in obj) {
-      if (obj.hasOwnProperty(p)) {
-          if (p === "prop1") {
-              countProp1++;
-          }
-          if (p === "prop2") {
-              countProp2++;
-          }
-          if (p === "prop3") {
-              countProp3++;
-          }
-      }
-  } 1`] = `
+    if (obj.hasOwnProperty(p)) {
+        if (p === "prop1") {
+            countProp1++;
+        }
+        if (p === "prop2") {
+            countProp2++;
+        }
+        if (p === "prop3") {
+            countProp3++;
+        }
+    }
+} 1`] = `
 {
   "body": [
     {

@@ -1,85 +1,93 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - Comments', () => {
   fail('Miscellaneous - Comments (fail)', [
-    ['a /* */ b;', Context.None],
-    [';-->', Context.None],
-    [
-      `// var /*
-    x*/`,
-      Context.None,
-    ],
-    [`<!-`, Context.None],
-    [`</`, Context.None],
-    [`</`, Context.OptionsJSX],
-    [`</*`, Context.OptionsJSX],
+    'a /* */ b;',
+    ';-->',
+    outdent`
+      // var /*
+      x*/
+    `,
+    '<!-',
+    '</',
+    { code: '</', options: { jsx: true } },
+    { code: '</*', options: { jsx: true } },
     //[`<// single`, Context.OptionsJSX],
-    [`</*`, Context.None],
-    [`</*`, Context.OptionsJSX],
-    [`<!-`, Context.OptionsJSX],
-    [`</`, Context.None],
-    [`<*`, Context.None],
-    [`<!-`, Context.None],
-    [`<!`, Context.None],
-    [
-      `/* x */
-    = 1;
-    */`,
-      Context.None,
-    ],
-    [
-      `/*
-    */ the comment should not include these characters, regardless of AnnexB extensions -->`,
-      Context.None,
-    ],
-    [`/*FOO/`, Context.None],
-    [`<!-- HTML comment`, Context.Strict | Context.Module],
-    ['x/* precomment */ --> is eol-comment\nvar y = 37;\n', Context.None],
-    ['var x = a; --> is eol-comment\nvar y = b;\n', Context.None],
-    [`</`, Context.None],
-    [`</`, Context.None],
+    '</*',
+    { code: '</*', options: { jsx: true } },
+    { code: '<!-', options: { jsx: true } },
+    '</',
+    '<*',
+    '<!-',
+    '<!',
+    outdent`
+      /* x */
+      = 1;
+      */
+    `,
+    outdent`
+      /*
+      */ the comment should not include these characters, regardless of AnnexB extensions -->
+    `,
+    '/*FOO/',
+    { code: '<!-- HTML comment', options: { sourceType: 'module' } },
+    'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
+    'var x = a; --> is eol-comment\nvar y = b;\n',
+    '</',
+    '</',
   ]);
 
   for (const arg of [
     'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
     'var x = a; --> is eol-comment\nvar y = b;\n',
     'x --> is eol-comment\nvar y = b;\n',
-    `/*CHECK#1/`,
+    '/*CHECK#1/',
     '#\n/*\n\n*/',
-    `
-    /* var*/
-    x*/`,
-    `/*
-    var
-    /* x */
-    = 1;
-    */`,
-    `// var /*
-    x*/`,
-    `;-->`,
-    `</`,
-    `/* x */
-            = 1;
-            */`,
-    `// var /*
-            x*/`,
+    outdent`
+      /* var*/
+      x*/
+    `,
+    outdent`
+      /*
+      var
+      /* x */
+      = 1;
+      */
+    `,
+    outdent`
+      // var /*
+      x*/
+    `,
+    ';-->',
+    '</',
+    outdent`
+      /* x */
+      = 1;
+      */
+    `,
+    outdent`
+      // var /*
+      x*/
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
 
   for (const arg of [
     // Babylon issue: https://github.com/babel/babel/issues/7802
-    `<!-- test --->`,
-    `a /*
-    */ b;`,
+    '<!-- test --->',
+    outdent`
+      a /*
+      */ b;
+    `,
     '<!-- console.log("foo") -->',
     String.raw`//\u00A0 single line \u00A0 comment \u00A0`,
     '// foo',
@@ -118,24 +126,32 @@ describe('Miscellaneous - Comments', () => {
     'var x = 1<!--foo',
     '<!-- comment',
     ' 	 --> comment',
-    `/**
-    * @type {number}
-    */
-   var a = 5;`,
-    `(/* comment */{
-      /* comment 2 */
-      p1: null
-  })`,
-    '/**/ function a() {function o() {}}',
-    `while (true) {
+    outdent`
       /**
-       * comments in empty block
+       * @type {number}
        */
-    }`,
-    `/*
-    Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
-    For licensing, see LICENSE.md or http://ckeditor.com/license
-   */`,
+      var a = 5;
+    `,
+    outdent`
+      (/* comment */{
+          /* comment 2 */
+          p1: null
+      })
+    `,
+    '/**/ function a() {function o() {}}',
+    outdent`
+      while (true) {
+        /**
+         * comments in empty block
+         */
+      }
+    `,
+    outdent`
+      /*
+        Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+        For licensing, see LICENSE.md or http://ckeditor.com/license
+       */
+    `,
     'let a = () => /* = */ { return "b" }',
     'let a = () => { /* = */ return "b" }',
     'let a = () /* = */ => { return "b" }',
@@ -151,19 +167,19 @@ describe('Miscellaneous - Comments', () => {
     '// /* foo */',
     '\t\t\t\t\t\t\t\t',
     '\t // foo bar${lt}  ',
-    `\t // foo bar\n // baz \n //`,
-    `\t /* foo * /* bar \u2028 */  `,
-    `\t // foo bar\r // baz \r //`,
-    `\t /* foo * /* bar \u2029 */  `,
-    `\t /* foo bar\r *//* baz*/ \r /**/`,
-    `\t <!-- foo bar\t <!-- baz \r <!--`,
-    `\t <!-- foo bar\u2029  `,
+    '\t // foo bar\n // baz \n //',
+    '\t /* foo * /* bar \u2028 */  ',
+    '\t // foo bar\r // baz \r //',
+    '\t /* foo * /* bar \u2029 */  ',
+    '\t /* foo bar\r *//* baz*/ \r /**/',
+    '\t <!-- foo bar\t <!-- baz \r <!--',
+    '\t <!-- foo bar\u2029  ',
     '// foo',
     '/**/ // ',
     '// a /* bcd */ ',
-    `  \t <!-- foo bar\n\r  `,
-    `function x(){ /*Jupiter*/ return; /*Saturn*/}`,
-    `var a; // a`,
+    '  \t <!-- foo bar\n\r  ',
+    'function x(){ /*Jupiter*/ return; /*Saturn*/}',
+    'var a; // a',
     '/**/42',
     '/**/42',
     '//42',
@@ -171,7 +187,7 @@ describe('Miscellaneous - Comments', () => {
     'function x(){ /*foo*/ return; /*bar*/}',
     '0 /*The*/ /*Answer*/',
     'if (x) { // Some comment\ndoThat(); }',
-    `var a; // a`,
+    'var a; // a',
     '{ x\n++y }',
     '{ x\n--y }',
     '{ throw error\nerror; }',
@@ -190,46 +206,64 @@ describe('Miscellaneous - Comments', () => {
     '/* before */class /* a */ A /* b */ extends /* c */ class /* d */ B /* e */ { /* f */ } /* g */ { /* h */ }/* after */',
     'let g = /* before */function /* a */ ( /* b */ x /* c */ , /* d */ y /* e */ ) /* f */ { /* g */ ; /* h */ ; /* i */ }/* after */;',
     '({ /* before */set /* a */ [ /* b */ x /* c */ ] /* d */ ( /* e */ a /* f */ ) /* g */ { /* h */ }/* after */ })',
-    `/*
-    */-->`,
-    `/*
-    */-->the comment extends to these characters`,
-    `/* optional FirstCommentLine
-    */-->the comment extends to these characters`,
-    `/*
-    optional
-    MultiLineCommentChars */-->the comment extends to these characters`,
-    `/*
-    */ /* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
-    `/*
-    */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
-    `0/*
-    */-->`,
-    `0/*
-    */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
+    outdent`
+      /*
+      */-->
+    `,
+    outdent`
+      /*
+      */-->the comment extends to these characters
+    `,
+    outdent`
+      /* optional FirstCommentLine
+      */-->the comment extends to these characters
+    `,
+    outdent`
+      /*
+      optional
+      MultiLineCommentChars */-->the comment extends to these characters
+    `,
+    outdent`
+      /*
+      */ /* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters
+    `,
+    outdent`
+      /*
+      */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters
+    `,
+    outdent`
+      0/*
+      */-->
+    `,
+    outdent`
+      0/*
+      */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters
+    `,
     '<!-- -->',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
       });
     });
   }
 
   pass('Miscellaneous - Comments (pass)', [
     {
-      code: `// Single line comment
-      // Single line comment
-      // Single line comment
-      // Single line comment
-      /**/
-      /* MLC on one line */
-      /*
-      MLC
-      on
-      multiple
-      lines
-      */`,
+      code: outdent`
+        // Single line comment
+        // Single line comment
+        // Single line comment
+        // Single line comment
+        /**/
+        /* MLC on one line */
+        /*
+        MLC
+        on
+        multiple
+        lines
+        */
+      `,
       options: { next: true, loc: true },
     },
     { code: '/**/ --> comment', options: { ranges: true, webcompat: true } },
@@ -247,13 +281,17 @@ describe('Miscellaneous - Comments', () => {
     { code: '\n-->is eol-comment\nvar y = 37;\n', options: { webcompat: true } },
     { code: '-->', options: { webcompat: true, ranges: true } },
     { code: '42 /* block comment 1 */ /* block comment 2 */', options: { ranges: true } },
-    `/* multiline
+    outdent`
+      /* multiline
       comment
       should
       be
-      ignored */ 42`,
-    `// line comment
-      42`,
+      ignored */ 42
+    `,
+    outdent`
+      // line comment
+      42
+    `,
     '//',
     { code: 'if (x) { /* Some comment */ doThat() }', options: { ranges: true } },
     { code: 'function f() { /* infinite */ while (true) { } /* bar */ var each; }', options: { ranges: true } },
@@ -262,11 +300,13 @@ describe('Miscellaneous - Comments', () => {
     { code: 'function a() {}', options: { ranges: true } },
     { code: '/**/ function a() {}', options: { ranges: true } },
     {
-      code: `while (true) {
-        /**
-         * comments in empty block
-         */
-      }`,
+      code: outdent`
+        while (true) {
+          /**
+           * comments in empty block
+           */
+        }
+      `,
       options: { ranges: true },
     },
   ]);

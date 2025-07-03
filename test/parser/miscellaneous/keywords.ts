@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -28,28 +27,28 @@ describe('Miscellaneous - Keywords', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`var ${arg}`, () => {
       t.throws(() => {
-        parseSource(`var ${arg}`, undefined, Context.None);
+        parseSource(`var ${arg}`);
       });
     });
 
     it(`function () { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function () { ${arg} }`, undefined, Context.None);
+        parseSource(`function () { ${arg} }`);
       });
     });
   }
 
   pass('Miscellaneous - Keywords (pass)', [
-    `var foo = {}; foo.if;`,
-    `var foo = {}; foo.super;`,
-    `var foo = {}; foo.arguments;`,
-    `var foo = {}; foo.interface;`,
-    `function *a(){({yi\\u0065ld: 0})}`,
+    'var foo = {}; foo.if;',
+    'var foo = {}; foo.super;',
+    'var foo = {}; foo.arguments;',
+    'var foo = {}; foo.interface;',
+    String.raw`function *a(){({yi\u0065ld: 0})}`,
   ]);
 });

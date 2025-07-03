@@ -1,5 +1,140 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - None > Statements - If (fail) > "use strict"; if (true) function f() {  } else function _f() {} 1`] = `
+"SyntaxError [1:24-1:32]: In strict mode code, functions can only be declared at top level or inside a block
+> 1 | "use strict"; if (true) function f() {  } else function _f() {}
+    |                         ^^^^^^^^ In strict mode code, functions can only be declared at top level or inside a block"
+`;
+
+exports[`Statements - None > Statements - If (fail) > "use strict"; if (true) function f() {  } else function _f() {} 2`] = `
+"SyntaxError [1:24-1:32]: In strict mode code, functions can only be declared at top level or inside a block
+> 1 | "use strict"; if (true) function f() {  } else function _f() {}
+    |                         ^^^^^^^^ In strict mode code, functions can only be declared at top level or inside a block"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (1) let x = 10; 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'identifier'
+> 1 | if (1) let x = 10;
+    |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (a) class A {} 1`] = `
+"SyntaxError [1:7-1:12]: Class declaration can't appear in single-statement context
+> 1 | if (a) class A {}
+    |        ^^^^^ Class declaration can't appear in single-statement context"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (a) function(){} 1`] = `
+"SyntaxError [1:7-1:15]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (a) function(){}
+    |        ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (false) ; else class C {} 1`] = `
+"SyntaxError [1:18-1:23]: Class declaration can't appear in single-statement context
+> 1 | if (false) ; else class C {}
+    |                   ^^^^^ Class declaration can't appear in single-statement context"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (false) ; else function* g() {  } 1`] = `
+"SyntaxError [1:18-1:26]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (false) ; else function* g() {  }
+    |                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (false) ; else function* g() {  } 2`] = `
+"SyntaxError [1:18-1:26]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (false) ; else function* g() {  }
+    |                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (true) class C {} else class D {} 1`] = `
+"SyntaxError [1:10-1:15]: Class declaration can't appear in single-statement context
+> 1 | if (true) class C {} else class D {}
+    |           ^^^^^ Class declaration can't appear in single-statement context"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (true) const x = null; 1`] = `
+"SyntaxError [1:10-1:15]: Unexpected token: 'const'
+> 1 | if (true) const x = null;
+    |           ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (true) function* g() {  } 1`] = `
+"SyntaxError [1:10-1:18]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (true) function* g() {  }
+    |           ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (true) function* g() {  } else ; 1`] = `
+"SyntaxError [1:10-1:18]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (true) function* g() {  } else ;
+    |           ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (true) function* g() {  } else function* _g() {} 1`] = `
+"SyntaxError [1:10-1:18]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (true) function* g() {  } else function* _g() {}
+    |           ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (true) let x; else let y; 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | if (true) let x; else let y;
+    |               ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if (x); else foo: bar: function f(){} 1`] = `
+"SyntaxError [1:23-1:31]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (x); else foo: bar: function f(){}
+    |                        ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if true; 1`] = `
+"SyntaxError [1:3-1:7]: Expected '('
+> 1 | if true;
+    |    ^^^^ Expected '('"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if(!("A")) 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: 'end of source'
+> 1 | if(!("A"))
+    |          ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if(!(1)) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: 'end of source'
+> 1 | if(!(1))
+    |        ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if(!(true)) 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'end of source'
+> 1 | if(!(true))
+    |           ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if(); 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ')'
+> 1 | if();
+    |    ^ Unexpected token: ')'"
+`;
+
+exports[`Statements - None > Statements - If (fail) > if({1})
+{
+  ;
+}else
+{
+  ;
+} 1`] = `
+"SyntaxError [1:5-1:6]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | if({1})
+    |      ^ Object literal keys that are strings or numbers must be a method or have a colon
+  2 | {
+  3 |   ;
+  4 | }else"
+`;
+
 exports[`Statements - None > Statements - If (pass) > function f() { if (1) { return () => { while (true) hi(); } } } 1`] = `
 {
   "body": [

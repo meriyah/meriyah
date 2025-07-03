@@ -1,5 +1,707 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ([...[]?.x] = x); 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ([...[]?.x] = x);
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ([a, b] = f?.x(() => { [a, b?.c] = [d.e, (f.g) = h]; })); 1`] = `
+"SyntaxError [1:35-1:36]: Invalid left-hand side in assignment
+> 1 | ([a, b] = f?.x(() => { [a, b?.c] = [d.e, (f.g) = h]; }));
+    |                                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ([x.y = a] = ([x.y = a?.y] = ([x.y?.y = a] = z))) 1`] = `
+"SyntaxError [1:38-1:39]: Invalid left-hand side in assignment
+> 1 | ([x.y = a] = ([x.y = a?.y] = ([x.y?.y = a] = z)))
+    |                                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ({..."x"?.x} = x); 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ({..."x"?.x} = x);
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ({...[][x?.y]} = (x?.i) = (y)); 1`] = `
+"SyntaxError [1:24-1:25]: Invalid left-hand side in assignment
+> 1 | ({...[][x?.y]} = (x?.i) = (y));
+    |                         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ({0: x?.a, 1: x} = 0) 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | ({0: x?.a, 1: x} = 0)
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ({0: y?.a} = 0) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({0: y?.a} = 0)
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ({a:let?.foo} = 0); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({a:let?.foo} = 0);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ({x: [y]?.a = 0} = 1) 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | ({x: [y]?.a = 0} = 1)
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ?. ?[] ?() ?: 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '?.'
+> 1 | ?. ?[] ?() ?:
+    | ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ?.(a.b.c) 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '?.'
+> 1 | ?.(a.b.c)
+    | ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > ?.a?.b?.c 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '?.'
+> 1 | ?.a?.b?.c
+    | ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [...[{prop: 1}.prop]] = x?.[] 1`] = `
+"SyntaxError [1:28-1:29]: Unexpected token: ']'
+> 1 | [...[{prop: 1}.prop]] = x?.[]
+    |                             ^ Unexpected token: ']'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [...[{prop?.a: 1}.prop]] = [] 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected character after object literal property name
+> 1 | [...[{prop?.a: 1}.prop]] = []
+    |           ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [...[{x?.prop: 1}.prop]] = [] 1`] = `
+"SyntaxError [1:7-1:9]: Unexpected character after object literal property name
+> 1 | [...[{x?.prop: 1}.prop]] = []
+    |        ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [a, ...b?.a] = [1, 2, ...c]; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | [a, ...b?.a] = [1, 2, ...c];
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [a, x?.z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; });  1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | [a, x?.z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); 
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [x?.?.y = 1] 1`] = `
+"SyntaxError [1:4-1:6]: Dot property must be an identifier
+> 1 | [x?.?.y = 1]
+    |     ^^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [x?.x?.y = 1] 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | [x?.x?.y = 1]
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [x?.y = 1] 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | [x?.y = 1]
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > [x?.y = 1] 2`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | [x?.y = 1]
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > {a: 44}?.a 1`] = `
+"SyntaxError [1:7-1:9]: Unexpected token: '?.'
+> 1 | {a: 44}?.a
+    |        ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, [{ set y(val) {}}?.y] = [23]; 1`] = `
+"SyntaxError [1:27-1:28]: Invalid left-hand side in assignment
+> 1 | 0, [{ set y(val) {}}?.y] = [23];
+    |                            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, [{ set y(val) {}}?.y] = [23]; 2`] = `
+"SyntaxError [1:27-1:28]: Invalid left-hand side in assignment
+> 1 | 0, [{ set y(val) {}}?.y] = [23];
+    |                            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, [x?.y = 42] = [23]; 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | 0, [x?.y = 42] = [23];
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, [x?.y] = [23]; 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | 0, [x?.y] = [23];
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, { x: { set y(val) { }}?.y = 42} = {x: 42}; 1`] = `
+"SyntaxError [1:37-1:38]: Invalid left-hand side in assignment
+> 1 | 0, { x: { set y(val) { }}?.y = 42} = {x: 42};
+    |                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, { x: { set y(val) {}}?.y} = {x: 42}; 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | 0, { x: { set y(val) {}}?.y} = {x: 42};
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, { x: { set y(val) {}}?.y} = {x: 42}; 2`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | 0, { x: { set y(val) {}}?.y} = {x: 42};
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, { x: y?.z = 42 } = { x: 23 }; 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | 0, { x: y?.z = 42 } = { x: 23 };
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, { x: y?.z = 42 } = { x: 23 }; 2`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | 0, { x: y?.z = 42 } = { x: 23 };
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, { x: y?.z } = { x: 23 }; 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | 0, { x: y?.z } = { x: 23 };
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a = { x = flag?.[] = true } = value; 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: ']'
+> 1 | a = { x = flag?.[] = true } = value;
+    |                  ^ Unexpected token: ']'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a === null: a?.b.c === undefined 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ':'
+> 1 | a === null: a?.b.c === undefined
+    |           ^ Unexpected token: ':'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a === null: a?.b.c === undefined 2`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ':'
+> 1 | a === null: a?.b.c === undefined
+    |           ^ Unexpected token: ':'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.? (?) [?] 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.? (?) [?]
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?() 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?()
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?() 2`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?()
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?.2 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?.2
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?[b.c].d 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?[b.c].d
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?2.?n 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?2.?n
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?2.3 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?2.3
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?2.3 2`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?2.3
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?2.3 3`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?2.3
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?2.n 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?2.n
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?b.?() 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.?b.?()
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.(a) = c 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | a?.(a) = c
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.{a} = c 1`] = `
+"SyntaxError [1:3-1:4]: Dot property must be an identifier
+> 1 | a?.{a} = c
+    |    ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.{a} = c 2`] = `
+"SyntaxError [1:3-1:4]: Dot property must be an identifier
+> 1 | a?.{a} = c
+    |    ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b = c 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | a?.b = c
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b => (a == null ? a : a.b) 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | a?.b => (a == null ? a : a.b)
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c) 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.fn\`hello\`; 1`] = `
+"SyntaxError [1:5-1:12]: Invalid tagged template on optional chain
+> 1 | a?.fn\`hello\`;
+    |      ^^^^^^^ Invalid tagged template on optional chain"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a[?b[c]] 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '?'
+> 1 | a[?b[c]]
+    |   ^ Unexpected token: '?'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > async(x?.x)=>x?.z 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in async arrow
+> 1 | async(x?.x)=>x?.z
+    |            ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > async?.() = foo 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | async?.() = foo
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > async?.(async?.(), async?.[]) 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: ']'
+> 1 | async?.(async?.(), async?.[])
+    |                            ^ Unexpected token: ']'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > async?.[x] = foo 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | async?.[x] = foo
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > async?.await = foo 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | async?.await = foo
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class A{ b(){ return super?.b; } } 1`] = `
+"SyntaxError [1:26-1:28]: Invalid optional chain from super property
+> 1 | class A{ b(){ return super?.b; } }
+    |                           ^^ Invalid optional chain from super property"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} class D extends C { constructor() { super?.(); } } 1`] = `
+"SyntaxError [1:52-1:54]: Invalid optional chain from super property
+> 1 | class C {} class D extends C { constructor() { super?.(); } }
+    |                                                     ^^ Invalid optional chain from super property"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} class D extends C { foo() { return super?.["bar"]; } } 1`] = `
+"SyntaxError [1:51-1:53]: Invalid optional chain from super property
+> 1 | class C {} class D extends C { foo() { return super?.["bar"]; } }
+    |                                                    ^^ Invalid optional chain from super property"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} class D extends C { foo() { return super?.["bar"]; } 1`] = `
+"SyntaxError [1:51-1:53]: Invalid optional chain from super property
+> 1 | class C {} class D extends C { foo() { return super?.["bar"]; }
+    |                                                    ^^ Invalid optional chain from super property"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} class D extends C { foo() { return super?.bar; } } 1`] = `
+"SyntaxError [1:51-1:53]: Invalid optional chain from super property
+> 1 | class C {} class D extends C { foo() { return super?.bar; } }
+    |                                                    ^^ Invalid optional chain from super property"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} new C?.(); 1`] = `
+"SyntaxError [1:16-1:18]: Invalid optional chain from new expression
+> 1 | class C {} new C?.();
+    |                 ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} new C?.(); 2`] = `
+"SyntaxError [1:16-1:18]: Invalid optional chain from new expression
+> 1 | class C {} new C?.();
+    |                 ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const a = { b(){ return super?.c; } } 1`] = `
+"SyntaxError [1:29-1:31]: Invalid optional chain from super property
+> 1 | const a = { b(){ return super?.c; } }
+    |                              ^^ Invalid optional chain from super property"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const o = { C: class {} }; new o?.["C"](); 1`] = `
+"SyntaxError [1:32-1:34]: Invalid optional chain from new expression
+> 1 | const o = { C: class {} }; new o?.["C"]();
+    |                                 ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const o = { C: class {} }; new o?.["C"](); 2`] = `
+"SyntaxError [1:32-1:34]: Invalid optional chain from new expression
+> 1 | const o = { C: class {} }; new o?.["C"]();
+    |                                 ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const o = { C: class {} }; new o?.C(); 1`] = `
+"SyntaxError [1:32-1:34]: Invalid optional chain from new expression
+> 1 | const o = { C: class {} }; new o?.C();
+    |                                 ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const o = { C: class {} }; new o?.C(); 2`] = `
+"SyntaxError [1:32-1:34]: Invalid optional chain from new expression
+> 1 | const o = { C: class {} }; new o?.C();
+    |                                 ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const o = { tag() {} }; o?.tag\`\` 1`] = `
+"SyntaxError [1:30-1:32]: Invalid tagged template on optional chain
+> 1 | const o = { tag() {} }; o?.tag\`\`
+    |                               ^^ Invalid tagged template on optional chain"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > const o = { tag() {} }; o?.tag\`\`; 1`] = `
+"SyntaxError [1:30-1:32]: Invalid tagged template on optional chain
+> 1 | const o = { tag() {} }; o?.tag\`\`;
+    |                               ^^ Invalid tagged template on optional chain"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > delete ?a.b.c 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '?'
+> 1 | delete ?a.b.c
+    |        ^ Unexpected token: '?'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > delete ?a.b.c 2`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '?'
+> 1 | delete ?a.b.c
+    |        ^ Unexpected token: '?'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > foo?.x?.y?.z?()=>foo; 1`] = `
+"SyntaxError [1:20-1:21]: Expected ':'
+> 1 | foo?.x?.y?.z?()=>foo;
+    |                     ^ Expected ':'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([{ set y(val) { }}?.y] of [[23]]) ; 1`] = `
+"SyntaxError [1:28-1:30]: Invalid left-hand side in for-of
+> 1 | for ([{ set y(val) { }}?.y] of [[23]]) ;
+    |                             ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([{ set y(val) {}}?.y = 42] in [[23]]) ; 1`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | for ([{ set y(val) {}}?.y = 42] in [[23]]) ;
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([{ set y(val) {}}?.y = 42] of [[23]]) ; 1`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | for ([{ set y(val) {}}?.y = 42] of [[23]]) ;
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([{ set y(val) {}}?.y] in [[23]]) ; 1`] = `
+"SyntaxError [1:27-1:29]: Invalid left-hand side in for-in
+> 1 | for ([{ set y(val) {}}?.y] in [[23]]) ;
+    |                            ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([x?.y = 42] in [[23]]) ; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | for ([x?.y = 42] in [[23]]) ;
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([x?.y = 42] in [[23]]) ; 2`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | for ([x?.y = 42] in [[23]]) ;
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([x?.y = 42] of [[23]]) ; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | for ([x?.y = 42] of [[23]]) ;
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([x?.y] in [[23]]) ; 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in for-in
+> 1 | for ([x?.y] in [[23]]) ;
+    |             ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([x?.y] in [[23]]) ; 2`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in for-in
+> 1 | for ([x?.y] in [[23]]) ;
+    |             ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ([x?.y] of [[23]]) ; 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in for-of
+> 1 | for ([x?.y] of [[23]]) ;
+    |             ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: { set y(val) { }}?.y = 42} in [{x: 42}]) ; 1`] = `
+"SyntaxError [1:37-1:39]: Invalid left-hand side in for-in
+> 1 | for ({ x: { set y(val) { }}?.y = 42} in [{x: 42}]) ;
+    |                                      ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: { set y(val) {} }?.y} in [{x: 42}]) ; 1`] = `
+"SyntaxError [1:32-1:34]: Invalid left-hand side in for-in
+> 1 | for ({ x: { set y(val) {} }?.y} in [{x: 42}]) ;
+    |                                 ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: { set y(val) {}}?.y} of [{x: 42}]) ; 1`] = `
+"SyntaxError [1:31-1:33]: Invalid left-hand side in for-of
+> 1 | for ({ x: { set y(val) {}}?.y} of [{x: 42}]) ;
+    |                                ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: {set y(val) { }}?.y = 42} of [{x: 42}]) ; 1`] = `
+"SyntaxError [1:36-1:38]: Invalid left-hand side in for-of
+> 1 | for ({ x: {set y(val) { }}?.y = 42} of [{x: 42}]) ;
+    |                                     ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: y?.z = 42 } in [{ x: 23 }]) ; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | for ({ x: y?.z = 42 } in [{ x: 23 }]) ;
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: y?.z = 42 } of [{ x: 23 }]) ; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | for ({ x: y?.z = 42 } of [{ x: 23 }]) ;
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: y?.z } in [{ x: 23 }]) ; 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-in
+> 1 | for ({ x: y?.z } in [{ x: 23 }]) ;
+    |                  ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: y?.z } of [{ x: 23 }]) ; 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for ({ x: y?.z } of [{ x: 23 }]) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > func:?(...args) 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '?'
+> 1 | func:?(...args)
+    |      ^ Unexpected token: '?'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > function foo() { new?.target; } 1`] = `
+"SyntaxError [1:20-1:22]: Unexpected token: '?.'
+> 1 | function foo() { new?.target; }
+    |                     ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > function tag() {} tag?.\`\` 1`] = `
+"SyntaxError [1:23-1:25]: Dot property must be an identifier
+> 1 | function tag() {} tag?.\`\`
+    |                        ^^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > function tag() {} tag?.\`\`; 1`] = `
+"SyntaxError [1:23-1:25]: Dot property must be an identifier
+> 1 | function tag() {} tag?.\`\`;
+    |                        ^^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > import?.("foo") 1`] = `
+"SyntaxError [1:6-1:8]: The import keyword can only be used with the module goal
+> 1 | import?.("foo")
+    |       ^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > let [...[...[...x?.a]]] = [[[]]]; 1`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | let [...[...[...x?.a]]] = [[[]]];
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > let [...[...[...x?.a]]] = [x?.[[]]]; 1`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | let [...[...[...x?.a]]] = [x?.[[]]];
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > let [...[...[...x]]] = [?.a[[]]]; 1`] = `
+"SyntaxError [1:24-1:26]: Unexpected token: '?.'
+> 1 | let [...[...[...x]]] = [?.a[[]]];
+    |                         ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > let obj = {x:x?.1}; [...obj["x"]] = [10]; 1`] = `
+"SyntaxError [1:17-1:18]: Expected ':'
+> 1 | let obj = {x:x?.1}; [...obj["x"]] = [10];
+    |                  ^ Expected ':'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new C?.b.d() 1`] = `
+"SyntaxError [1:5-1:7]: Invalid optional chain from new expression
+> 1 | new C?.b.d()
+    |      ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new a?.(); 1`] = `
+"SyntaxError [1:5-1:7]: Invalid optional chain from new expression
+> 1 | new a?.();
+    |      ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new new class {}()?.constructor?.(); 1`] = `
+"SyntaxError [1:18-1:20]: Invalid optional chain from new expression
+> 1 | new new class {}()?.constructor?.();
+    |                   ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > o.x?[y]+z 1`] = `
+"SyntaxError [1:8-1:9]: Expected ':'
+> 1 | o.x?[y]+z
+    |         ^ Expected ':'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > o3?.a in () 1`] = `
+"SyntaxError [1:10-1:11]: \`=>\` is an invalid assignment target
+> 1 | o3?.a in ()
+    |           ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > obj:?.prop 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '?.'
+> 1 | obj:?.prop
+    |     ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > obj:?[expr] 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '?'
+> 1 | obj:?[expr]
+    |     ^ Unexpected token: '?'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > obj?.[expr] func?.(...args) new C?.(...args) 1`] = `
+"SyntaxError [1:12-1:16]: Unexpected token: 'identifier'
+> 1 | obj?.[expr] func?.(...args) new C?.(...args)
+    |             ^^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > obj?.a = 33; 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | obj?.a = 33;
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > try {} catch ([e?.a, ...a]) {} 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | try {} catch ([e?.a, ...a]) {}
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > try {} catch (a?.[e]) {} 1`] = `
+"SyntaxError [1:15-1:17]: Expected ')'
+> 1 | try {} catch (a?.[e]) {}
+    |                ^^ Expected ')'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > var b = condition ? a?.x.?y : a?.y?.z; 1`] = `
+"SyntaxError [1:25-1:26]: Dot property must be an identifier
+> 1 | var b = condition ? a?.x.?y : a?.y?.z;
+    |                          ^ Dot property must be an identifier"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > x?.[y] = foo 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | x?.[y] = foo
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > yield?.await = foo 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | yield?.await = foo
+    |              ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Optional chaining > Optional chaining (pass) > ({})?.a["b"] 1`] = `
 {
   "body": [

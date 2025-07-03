@@ -1,56 +1,64 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - For', () => {
   for (const arg of [
-    `for (a,b;;);`,
+    'for (a,b;;);',
     'for (const [,foo] = arr;;);',
     'for (let [[x] = [1]] = []; i < 1; i++) {}',
     'for (var {j}=x; j<10; ++j) { const foo = j }',
-    `        for ("boolean" == typeof a && (l = a, a = arguments[s] ||
-          {}, s++), "object" == typeof a ||
-          g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
-  if (null != (e = arguments[s]))
-      for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
-      (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
-      ? n : [])
-      : o = n && w.isPlainObject(n)
-      ? n : {}, a[t] = w.extend(l, o, r))
-      : void 0 !== r && (a[t] = r));`,
+    outdent`
+      for ("boolean" == typeof a && (l = a, a = arguments[s] ||
+              {}, s++), "object" == typeof a ||
+              g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
+      if (null != (e = arguments[s]))
+          for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
+          (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
+          ? n : [])
+          : o = n && w.isPlainObject(n)
+          ? n : {}, a[t] = w.extend(l, o, r))
+          : void 0 !== r && (a[t] = r));
+    `,
     'for (let m in ((yield))) foo; (r = a) => {}',
-    `for(x, y;;);`,
+    'for(x, y;;);',
     'for (const { x, } = { x: 23 }; a < 1; ) {}; for (const { x, } = { x: 23 }; a < 1; ) {};',
-    `for (let [a]=x;;);
-    for (let [a]=x;;);`,
+    outdent`
+      for (let [a]=x;;);
+      for (let [a]=x;;);
+    `,
     'for (let { x, } = { x: 23 }; a < 1; ) {}; for (let { x, } = { x: 23 }; a < 1; ) {};',
     'for ([] in (class {})) for (;;) continue',
     'for (var o in ((false)) ^ 2.7262799875259632e293) do ; while ((((eval))))',
-    `for(x = 0;;);`,
-    `for(x; x < 0;);`,
-    `for(x; x < 0; x++);`,
+    'for(x = 0;;);',
+    'for(x; x < 0;);',
+    'for(x; x < 0; x++);',
     'for ({x = y} = (z);;) {}',
-    `for(var x = 0;;);`,
-    `for(let x = 0;;);`,
+    'for(var x = 0;;);',
+    'for(let x = 0;;);',
     'for(delete(x in y);;)x',
-    `for(var a = 0;;) { let a; }`,
-    `for (var { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }; a < 1; ) {}`,
-    `for (var [[] = function() { a += 1; }()] = [[23]]; b < 1; ) {}`,
-    `for (let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: '' }; e < 1; ) {}`,
-    `for (let [,] = a(); b < 1; ) {}`,
-    `for (const [ x, ] = y; a < 1; ) {};
-     for (const [ x, ] =  z; a < 1; ) {};`,
-    `for (let i = 0; i < 10; ++i) {
-      console.log(i);
-  }
-  for (let i = 0; i < 10; ++i) {
-      console.log(i);
-  }`,
+    'for(var a = 0;;) { let a; }',
+    'for (var { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }; a < 1; ) {}',
+    'for (var [[] = function() { a += 1; }()] = [[23]]; b < 1; ) {}',
+    "for (let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: '' }; e < 1; ) {}",
+    'for (let [,] = a(); b < 1; ) {}',
+    outdent`
+      for (const [ x, ] = y; a < 1; ) {};
+      for (const [ x, ] =  z; a < 1; ) {};
+    `,
+    outdent`
+      for (let i = 0; i < 10; ++i) {
+          console.log(i);
+      }
+      for (let i = 0; i < 10; ++i) {
+          console.log(i);
+      }
+    `,
     'for (x(x in t);;) x',
     'for (((x)=>{}).x of y);',
-    `for (const {} = obj; a < 1; ) {}`,
+    'for (const {} = obj; a < 1; ) {}',
     'for (j=x; j<10; ++j) { [foo] = [j] }',
     'for (j=x; j<10; ++j) { let foo = j }',
     'for (j=x; j<10; ++j) { function foo() {return j} }',
@@ -89,44 +97,44 @@ describe('Statements - For', () => {
     'for (const [foo=a] of arr);',
     'for (const [foo,,bar] of arr);',
     'for (C = class { get ["x" in empty]() { return "via get"; } }; ; ) { break; }',
-    `for (;;);`,
-    `for (a+b;;) c;`,
-    `for (var x of y);`,
-    `for (var x;;);`,
-    `for (;;);`,
-    `for (x in y);`,
-    `for (x of y);`,
+    'for (;;);',
+    'for (a+b;;) c;',
     'for (var x of y);',
-    `for (var x;;);`,
-    `for (let x of y);`,
-    `for (let x;;);`,
-    `for (let x of y);`,
-    `for ([] + x;;);`,
-    `for (let x of y);`,
-    `for (let [x] in y);`,
-    `for (let {x} of y);`,
-    `for (let x of y);`,
-    `for (let {x} = x;;);`,
-    `for (let [x] = x;;);`,
-    `for (let x;;);`,
-    `for (let {x} of y);`,
-    `for (let [x] in y);`,
-    `for (let in x);`,
-    `for (let in x) {}`,
-    `for (let x of y);`,
-    `for (let[x] in y);`,
-    `for (let[x] of y);`,
-    `for (let , x;;);`,
-    `for (let + x;;);`,
-    `for (let.x;;);`,
-    `for (let.foo in x);`,
-    `for (let();;);`,
-    `for (let().foo in x);`,
-    `for (let=10;;);`,
-    `for (let.foo;;);`,
-    `for (let;;);`,
-    `for (const x of y);`,
-    `for (let.x in y);`,
+    'for (var x;;);',
+    'for (;;);',
+    'for (x in y);',
+    'for (x of y);',
+    'for (var x of y);',
+    'for (var x;;);',
+    'for (let x of y);',
+    'for (let x;;);',
+    'for (let x of y);',
+    'for ([] + x;;);',
+    'for (let x of y);',
+    'for (let [x] in y);',
+    'for (let {x} of y);',
+    'for (let x of y);',
+    'for (let {x} = x;;);',
+    'for (let [x] = x;;);',
+    'for (let x;;);',
+    'for (let {x} of y);',
+    'for (let [x] in y);',
+    'for (let in x);',
+    'for (let in x) {}',
+    'for (let x of y);',
+    'for (let[x] in y);',
+    'for (let[x] of y);',
+    'for (let , x;;);',
+    'for (let + x;;);',
+    'for (let.x;;);',
+    'for (let.foo in x);',
+    'for (let();;);',
+    'for (let().foo in x);',
+    'for (let=10;;);',
+    'for (let.foo;;);',
+    'for (let;;);',
+    'for (const x of y);',
+    'for (let.x in y);',
     'for (const [,] of x);',
     'for (const {a, [x]: y} in obj);',
     'for (const {[x]: y} in obj);',
@@ -165,7 +173,7 @@ describe('Statements - For', () => {
     'for (const [foo,,] in arr);',
     'for (const {x,} in obj);',
     'for (const {x, y} in obj);',
-    `for (const {} in obj);`,
+    'for (const {} in obj);',
     'for (const {x,} = obj;;);',
     'for (const {x} = obj;;);',
     'for (const [foo, ...bar] = obj;;);',
@@ -291,10 +299,10 @@ describe('Statements - For', () => {
     'for ([a.b][foo] of c) d',
     'for (let {j}=x; j<10; ++j) { function foo(){return j} }',
     'for ({}.bar ;;);',
-    `for ({}.bar = x ;;);`,
-    `for ({a: b.c}.foo in d) e`,
-    `for ({}.bar in obj);`,
-    `for ({a: b.c}.foo of d) e`,
+    'for ({}.bar = x ;;);',
+    'for ({a: b.c}.foo in d) e',
+    'for ({}.bar in obj);',
+    'for ({a: b.c}.foo of d) e',
     'while (j) { foo = j }',
     'while (j) { [foo] = [j] }',
     'while (j) { [[foo]=[42]] = [] }',
@@ -334,75 +342,93 @@ describe('Statements - For', () => {
     'for (const [x = 23] = [undefined]; a < 1; ) {}',
     'for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]; a < 1; ) {}',
     'for (const [...[,]] = g(); a < 1; ) {}',
-    `var __str, index, index_n;
-    __str="";
-    outer : for(index=0; index<4; index+=1) {
-        nested : for(index_n=0; index_n<=index; index_n++) {
-      if (index*index_n >= 4)break nested;
-      __str+=""+index+index_n;
-        }
-    }`,
-    `__str="";
-    outer : for(index=0; index<4; index+=1) {
-        nested : for(index_n=0; index_n<=index; index_n++) {
-      if (index*index_n >= 4)break outer;
-      __str+=""+index+index_n;
-        }
-    }`,
-    `__str="";
-    outer : for(index=0; index<4; index+=1) {
-        nested : for(index_n=0; index_n<=index; index_n++) {
-      if (index*index_n >= 4)break ;
-      __str+=""+index+index_n;
-        }
-    }`,
-    `let z = 1;
-    let s = 0;
-    for (const x = 1; z < 2; z++) {
-      s += x + z;
-    }`,
-    `var probeBefore = function() { return x; };
-    var probeTest, probeIncr, probeBody;
-    var run = true;
-    for (
-        var _ = eval('var x = 1;');
-        run && (probeTest = function() { return x; });
-        probeIncr = function() { return x; }
-      )
-      probeBody = function() { return x; }, run = false;
-    var x = 2;`,
-    `let x = 'outside';
-    var probeBefore = function() { return x; };
-    var probeDecl, probeTest, probeIncr, probeBody;
-    var run = true;
-    for (
-        let x = 'inside', _ = probeDecl = function() { return x; };
-        run && (probeTest = function() { return x; });
-        probeIncr = function() { return x; }
-      )
-      probeBody = function() { return x; }, run = false;`,
-    `var probeFirst;
-    var probeSecond = null;
-    for (let x = 'first'; probeSecond === null; x = 'second')
-      if (!probeFirst)
-        probeFirst = function() { return x; };
-      else
-        probeSecond = function() { return x; };`,
+    outdent`
+      var __str, index, index_n;
+      __str="";
+      outer : for(index=0; index<4; index+=1) {
+          nested : for(index_n=0; index_n<=index; index_n++) {
+        if (index*index_n >= 4)break nested;
+        __str+=""+index+index_n;
+          }
+      }
+    `,
+    outdent`
+      __str="";
+      outer : for(index=0; index<4; index+=1) {
+          nested : for(index_n=0; index_n<=index; index_n++) {
+        if (index*index_n >= 4)break outer;
+        __str+=""+index+index_n;
+          }
+      }
+    `,
+    outdent`
+      __str="";
+      outer : for(index=0; index<4; index+=1) {
+          nested : for(index_n=0; index_n<=index; index_n++) {
+        if (index*index_n >= 4)break ;
+        __str+=""+index+index_n;
+          }
+      }
+    `,
+    outdent`
+      let z = 1;
+      let s = 0;
+      for (const x = 1; z < 2; z++) {
+        s += x + z;
+      }
+    `,
+    outdent`
+      var probeBefore = function() { return x; };
+      var probeTest, probeIncr, probeBody;
+      var run = true;
+      for (
+          var _ = eval('var x = 1;');
+          run && (probeTest = function() { return x; });
+          probeIncr = function() { return x; }
+        )
+        probeBody = function() { return x; }, run = false;
+      var x = 2;
+    `,
+    outdent`
+      let x = 'outside';
+      var probeBefore = function() { return x; };
+      var probeDecl, probeTest, probeIncr, probeBody;
+      var run = true;
+      for (
+          let x = 'inside', _ = probeDecl = function() { return x; };
+          run && (probeTest = function() { return x; });
+          probeIncr = function() { return x; }
+        )
+        probeBody = function() { return x; }, run = false;
+    `,
+    outdent`
+      var probeFirst;
+      var probeSecond = null;
+      for (let x = 'first'; probeSecond === null; x = 'second')
+        if (!probeFirst)
+          probeFirst = function() { return x; };
+        else
+          probeSecond = function() { return x; };
+    `,
     'for (var {j}=x; j<10; ++j) { const foo = j }',
-    `        for ("boolean" == typeof a && (l = a, a = arguments[s] ||
-             {}, s++), "object" == typeof a ||
-             g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
-     if (null != (e = arguments[s]))
-         for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
-         (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
-         ? n : [])
-         : o = n && w.isPlainObject(n)
-         ? n : {}, a[t] = w.extend(l, o, r))
-         : void 0 !== r && (a[t] = r));`,
+    outdent`
+      for ("boolean" == typeof a && (l = a, a = arguments[s] ||
+              {}, s++), "object" == typeof a ||
+              g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
+      if (null != (e = arguments[s]))
+          for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
+          (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
+          ? n : [])
+          : o = n && w.isPlainObject(n)
+          ? n : {}, a[t] = w.extend(l, o, r))
+          : void 0 !== r && (a[t] = r));
+    `,
     'for ({j}=x; j<10; ++j) { function foo() {return j} }',
-    `let = 1;
+    outdent`
+      let = 1;
       for ( let; ; )
-        break;`,
+        break;
+    `,
     'for (x of [1,2,3]) {}',
     'for(var a;b;c);',
     'for(var a = 0;;) { let a; }',
@@ -464,332 +490,334 @@ describe('Statements - For', () => {
     'for (a += b;;);',
     'for (((x)=>{}).x in y);',
     'for (((x)=>{}).x of y);',
-    `var let;
+    outdent`
+      var let;
 
-    let = 1;
-    for ( let; ; )
-      break;
+      let = 1;
+      for ( let; ; )
+        break;
 
-    let = 2;
-    for ( let = 3; ; )
-      break;
+      let = 2;
+      for ( let = 3; ; )
+        break;
 
-      let = 4;
-    for ( [let][0]; ; )
-      break;
+        let = 4;
+      for ( [let][0]; ; )
+        break;
     `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
   }
 
   fail('Statements - For (pass)', [
-    ['for ([{__proto__: 1, __proto__: 2}];;);', Context.None],
-    ['for ({__proto__: 1, __proto__: 2};;);', Context.None],
-    [`for ({x=y} ;;) b;`, Context.Strict],
-    ['for({a=0};;);', Context.None],
-    ['for (let=10;;);', Context.Strict],
-    ['for (const a;;);', Context.None],
-    ['for (const a,b,c;;);', Context.None],
-    ['for (var [foo] = arr, [bar] = arr2);', Context.None],
-    ['for (var [foo,,bar] = arr);', Context.None],
-    ['for (var [foo,bar] = arr);', Context.None],
-    ['for (var [,,foo] = arr);', Context.None],
-    ['for (var [,foo] = arr);', Context.None],
-    ['for (var [foo,,] = arr);', Context.None],
-    ['for (var [foo,] = arr);', Context.None],
-    ['for (var [foo] = arr);', Context.None],
-    ['for ([a.b](foo) of c) d', Context.None],
-    ['for ([a.b]`foo` of c) d', Context.None],
-    ['for ([a.b]++ of c) d', Context.None],
-    ['for ({a: b.c}() of d) e', Context.None],
-    ['for ({a: b.c}`z` of d) e', Context.None],
-    ['for ({a: b.c}-- of d) e', Context.None],
-    ['for (let x of a,b) c', Context.None],
-    ['for (var [,,] = x);', Context.None],
-    ['for (let x of y, z) {}', Context.None],
-    ['for (var [,] = x);', Context.None],
-    ['for (var [] = x);', Context.None],
-    ['for (x=>x in y;;);', Context.None],
-    [`for ({}.bar = x in obj);`, Context.None],
-    ['for (yield;;);', Context.Strict],
-    ['function *f(){   for (yield x in y;;);', Context.Strict],
-    ['for ([...{ get x() {} }] in [[[]]]) ;', Context.None],
-    ['for (var [foo] = arr, [bar] = arr2);', Context.None],
-    ['for (var [foo] = arr, bar);', Context.None],
-    ['for (var [foo] = arr, bar = arr2);', Context.None],
-    ['for (var foo = arr, [bar] = arr2);', Context.None],
-    ['for (var [foo=a] = arr);', Context.None],
-    ['for (var [foo=a, bar] = arr);', Context.None],
-    ['for (var [foo, bar=b] = arr);', Context.None],
-    ['for (var [foo=a, bar=b] = arr);', Context.None],
-    ['for (var [foo]);', Context.None],
-    ['for (x of y) foo: bar: function f(){}', Context.None],
-    ['for (x of y) foo: function f(){}', Context.None],
-    ['for (var [foo = x]);', Context.None],
-    ['for (var [foo], bar);', Context.None],
-    ['for (var foo, [bar]);', Context.None],
-    ['for (var [...foo] = obj);', Context.None],
-    ['for (var [foo, ...bar] = obj);', Context.None],
-    ['for (var [...foo, bar] = obj);', Context.None],
-    ['for (var [...foo,] = obj);', Context.None],
-    ['for (var [...foo,,] = obj);', Context.None],
-    ['for (var [...[foo, bar]] = obj);', Context.None],
-    ['for (var [...[foo, bar],] = obj);', Context.None],
-    ['for (var [...[foo, bar],,] = obj);', Context.None],
-    ['for (var [x, ...[foo, bar]] = obj);', Context.None],
-    ['for (var [...bar = foo] = obj);', Context.None],
-    ['for (var [...] = obj);', Context.None],
-    ['for (var {} = obj);', Context.None],
-    ['for (var {,} = obj);', Context.None],
-    ['for (var {,,} = obj);', Context.None],
-    ['for (var {x} = obj);', Context.None],
-    ['for (var {x,} = obj);', Context.None],
-    ['for (var {x,,} = obj);', Context.None],
-    ['for (var {,x} = obj);', Context.None],
-    ['for (var {,,x} = obj);', Context.None],
-    ['for (a, b);', Context.None],
-    ['for (var {,,x} = obj);', Context.None],
-    ['for(delete(x in y) in z)x', Context.None],
-    ['for(delete((1)?y:x in y) in z)x', Context.None],
-    ['for (a + b);', Context.None],
-    ['for (a);', Context.None],
-    ['for ({});', Context.None],
-    ['for (const [z, z]; ; ) ;', Context.None],
-    ['for (const [z]; ; ) ;', Context.None],
-    ['for (const x = 5, y; ; ) ;', Context.None],
-    ['for (const x; ; ) ;', Context.None],
-    ['for (let [z, z]; ; ) ;', Context.None],
-    ['for (var {,,x} = obj);', Context.None],
-    ['for (var {,,x} = obj);', Context.None],
-    ['for (var {x, y} = obj);', Context.None],
-    ['for (var {x,, y} = obj);', Context.None],
-    ['for (var {x} = a, {y} = obj);', Context.None],
-    ['for (var {x} = a, y = obj);', Context.None],
-    ['for (var {x} = a, obj);', Context.None],
-    ['for (var x = a, {y} = obj);', Context.None],
-    ['for (var x, {y} = obj);', Context.None],
-    ['for (var {x = y} = obj);', Context.None],
-    ['for (var {x = y, z} = obj);', Context.None],
-    ['for (var {x, y = z} = obj);', Context.None],
-    ['for (var {x = y, z = a} = obj);', Context.None],
-    ['for (var {x}, {y} = z);', Context.None],
-    ['for (var {x}, y);', Context.None],
-    ['for (var x = y, {z});', Context.None],
-    ['for (var {x}, y);', Context.None],
-    ['for (var {x=y});', Context.None],
-    ['for (var {x:y=z});', Context.None],
-    ['for (var {x:y=z} = obj, {a:b=c});', Context.None],
-    ['for (var {x:y=z}, {a:b=c} = obj);', Context.None],
-    ['for (var {a:=c} = z);', Context.None],
-    ['for (var {[x]: y} = z);', Context.None],
-    ['for (var {[x]} = z);', Context.None],
-    ['for(x of 3)break/', Context.None],
-    ['for(x of 3)continue/', Context.None],
-    ['for(x of 3)p/', Context.None],
-    ['for (var {[x]: y});', Context.None],
-    ['for (var {[x]: y = z});', Context.None],
-    ['for (var {[x]: y = z} = a);', Context.None],
-    ['for (var {a, [x]: y} = a);', Context.None],
-    ['for ({a: x + y} = z;;);', Context.None],
-    ['for ([x + y] = z;;);', Context.None],
-    ['for(index=0; index<10; index+=4; index++; index--) ;', Context.None],
-    ['for({var index=0; index+=1;} index++<=10; index*2;) {	[].add(""+index);};', Context.None],
-    ['for ( ; false; ) class C {}', Context.None],
-    [`for ( ; false; ) function f() {}`, Context.None],
-    ['for ( ; false; ) label1: label2: function f() {}', Context.None],
-    ['for ( ; false; ) label1: label2: function f() {}', Context.None],
-    ['for ((i in {}));', Context.None],
-    ['for (let [];;);', Context.None],
-    ['for (let [a = 0];;);', Context.None],
-    ['for (let a = 0, [];;);', Context.None],
-    ['for (let [] = 0, [];;);', Context.None],
-    ['for (let {};;);', Context.None],
-    ['for (let {a = 0};;);', Context.None],
-    ['for (let a = 0, {};;);', Context.None],
-    ['for (let [] = 0, {};;);', Context.None],
-    ['for (let [...x = []] = []; a < 1; ) {}', Context.None],
-    ['for (let [...{ x } = []] = []; a < 1; ) {}', Context.None],
-    ['for (var a in arr;1;){ break; }', Context.None],
-    ['for ( ; false; ) class C {}', Context.None],
-    ['for ( ; false; ) function f() {}', Context.None],
-    ['for ( ; false; ) function* g() {}', Context.None],
-    ['for (const [...{ x }, y] = [1, 2, 3]; a < 1; ) {}', Context.None],
-    ['for (var [...[ x ] = []] = []; a < 1; ) {}', Context.None],
-    ['for (var a in arr;1;){ break; }', Context.None],
-    ['for (let [...x = []] = []; a < 1; ) {}', Context.None],
-    ['for (a = b of x);', Context.None],
-    ['for (a += b of x);', Context.None],
-    ['for (a ? b : c of x);', Context.None],
-    ['for (a ? b : c of x);', Context.None],
-    ['function *f(){   for (yield x in y of z);   }', Context.None],
-    ['function *f(){   for (yield x of y);   }', Context.None],
-    ['function *f(){   for (yield of y);   }', Context.None],
-    ['function *f(){ for (yield of obj); }', Context.None],
-    ['for ((x)=>{}.x of y);', Context.None],
-    ['for (((x)=>{}) of y);', Context.None],
-    ['for ((x)=>{} of y);', Context.None],
-    ['for (x=>{}.x of y);', Context.None],
-    ['for (x=>{} of y);', Context.None],
-    ['for (const [...[foo, bar],,] = obj);', Context.None],
-    ['for (const [... ...foo] = obj);', Context.Module],
-    ['for (const [...] = obj);', Context.None],
-    ['for (const [...,] = obj);', Context.None],
-    ['for (const [..x] = obj);', Context.None],
-    ['for (const [a=[...b], ...c] = obj);', Context.None],
-    ['for (const {,} = obj);', Context.None],
-    ['for (const {x} = obj);', Context.None],
-    ['for (const {,x} = obj);', Context.None],
-    ['for (const {x,, y} = obj);', Context.None],
-    ['for (const {x, y} = obj);', Context.None],
-    ['for (const {x} = a, y = obj);', Context.None],
-    ['for (const {x} = a, obj);', Context.None],
-    ['for (const {x = y} = obj);', Context.None],
-    ['for (const x, {y} = obj);', Context.None],
-    ['for (const {x = y, z = a} = obj);', Context.None],
-    ['for (const foo;;);', Context.None],
-    ['for (const\nfoo();;);', Context.None],
-    ['for (const foo);', Context.None],
-    ['for (const [...,] = obj;;);', Context.None],
-    ['for (const foo, bar);', Context.None],
-    ['for (const foo = bar, zoo = boo);', Context.None],
-    ['for (const\nfoo);', Context.None],
-    ['for (const foo = bar in x);', Context.None],
-    ['for (const foo = bar, zoo = boo in x);', Context.None],
-    ['for (const foo, bar of x);', Context.None],
-    ['for (let a = b in c) {}', Context.None],
-    ['for (a = b in c) {}', Context.None],
-    ['for (const foo = bar of x);', Context.None],
-    ['for (const foo = bar, zoo = boo of x);', Context.None],
-    ['for (const foo, zoo of x);', Context.None],
-    ['for (const foo, [bar] = arr2;;);', Context.None],
-    ['for (const [foo];;);', Context.None],
-    ['for (const [foo = x];;);', Context.None],
-    ['for (const [foo], bar;;);', Context.None],
-    ['for (const foo, [bar];;);', Context.None],
-    ['for (const [...foo, bar] = obj;;);', Context.None],
-    ['for (const [...foo,] = obj;;);', Context.None],
-    ['for (const [...[foo, bar],,] = obj;;);', Context.None],
-    ['for (const [...[foo, bar],] = obj;;);', Context.None],
-    ['for (const [...bar = foo] = obj;;);', Context.None],
-    ['for (const [... ...foo] = obj;;);', Context.None],
-    ['for (const [...] = obj;;);', Context.None],
-    ['for (const [...,] = obj;;);', Context.None],
-    ['for (const {x : y} = obj);', Context.None],
-    ['for (const {x : y, z : a} = obj);', Context.None],
-    ['for (const {x : y = z} = obj);', Context.None],
-    ['for (const {x : y, z, a : b = c} = obj);', Context.None],
-    ['for (const {x});', Context.None],
-    ['for (const {x}, {y} = z);', Context.None],
-    ['for (const {x}, y);', Context.None],
-    ['for (const {x}, y);', Context.None],
-    ['for (const {x=y});', Context.None],
-    ['for (const {x:y=z} = obj, {a:b=c});', Context.None],
-    ['for (const {x:y=z}, {a:b=c} = obj);', Context.None],
-    ['for (const {a:=c} = z);', Context.None],
-    ['for (const {[x]: y} = z);', Context.None],
-    ['for (const {[x]} = z);', Context.None],
-    ['let {...{a,b}} = foo', Context.None],
-    ['for (const [.x] = obj;;);', Context.None],
-    ['for (const [..x] = obj;;);', Context.None],
-    ['for (const {,} = obj;;);', Context.None],
-    ['for (const {,,} = obj;;);', Context.None],
-    ['for (const {x,,} = obj;;);', Context.None],
-    ['for (const {,x} = obj;;);', Context.None],
-    ['for (const {,,x} = obj;;);', Context.None],
-    ['for (const {x,, y} = obj;;);', Context.None],
-    ['for (const {x} = a, obj;;);', Context.None],
-    ['for (const x, {y} = obj;;);', Context.None],
-    ['for (const {x}, {y} = z;;);', Context.None],
-    ['for (const x, {y};;);', Context.None],
-    ['for (const {x}, y;;);', Context.None],
-    ['for (const x = y, {z};;);', Context.None],
-    ['for (const {x:y};;);', Context.None],
-    ['for (const {x:y=z};;);', Context.None],
-    ['for (const {x:y=z} = obj, {a:b=c};;);', Context.None],
-    ['for (const {x:y=z}, {a:b=c} = obj;;);', Context.None],
-    ['for (const {a:=c} = z;;);', Context.None],
-    ['for (const {[x]} = z;;);', Context.None],
-    ['for (const {[x]};;);', Context.None],
-    ['for (const {[x]: y};;);', Context.None],
-    ['for (const {[x] = y} = z;;);', Context.None],
-    ['for (const {[x]: y = z};;);', Context.None],
-    ['for (const [,,] = x);', Context.None],
-    ['for (const [foo,,] = arr);', Context.None],
-    ['for (const [,foo] = arr);', Context.None],
-    ['for (const [foo,bar] = arr);', Context.None],
-    ['for (const [foo] = arr, bar);', Context.None],
-    ['for (const foo, [bar] = arr2);', Context.None],
-    ['for (const foo = arr, [bar] = arr2);', Context.None],
-    ['for (const [foo=a, bar] = arr);', Context.None],
-    ['for (const [foo = x]);', Context.None],
-    ['for (const [foo]);', Context.None],
-    ['for (const {[x] = y} = z);', Context.None],
-    ['for (const {[x]: y = z});', Context.None],
-    ['for (const [foo], bar in arr);', Context.None],
-    ['for (const foo, [bar] in arr);', Context.None],
-    ['for (const [foo]);', Context.None],
-    ['for (const [foo = x]);', Context.None],
-    ['for (const [foo], bar);', Context.None],
-    ['for (const foo, [bar]);', Context.None],
-    ['for (const [...foo, bar] in obj);', Context.None],
-    ['for (const [...foo,] in obj);', Context.None],
-    ['for (const [...foo,,] in obj);', Context.None],
-    ['for (const [...[foo, bar],] in obj);', Context.None],
-    ['for (const [...[foo, bar],,] in obj);', Context.None],
-    ['for (const [...] in obj);', Context.None],
-    ['for (const [...,] in obj);', Context.None],
-    ['for (const [.x] in obj);', Context.None],
-    ['for (const [..x] in obj);', Context.None],
-    ['for (const {,} in obj);', Context.None],
-    ['for (const {,,} in obj);', Context.None],
-    ['for (const {x,,} in obj);', Context.None],
-    ['for (const {,x} in obj);', Context.None],
-    ['for (const {x,, y} in obj);', Context.None],
-    ['for (const x, {y} in obj);', Context.None],
-    ['for (const {x}, y);', Context.None],
-    ['for (const x = y, {z});', Context.None],
-    ['for (const {x:y});', Context.None],
-    ['for (const {x:y=z});', Context.None],
-    ['for (const {x:y=z} = obj, {a:b=c});', Context.None],
-    ['for (const {x:y=z}, {a:b=c} in obj);', Context.None],
-    ['for (const {[x] = y} in obj);', Context.None],
-    ['for (const foo, [bar] of arr);', Context.None],
-    ['for (const [foo = x]);', Context.None],
-    ['for (const [...foo] = obj);', Context.None],
-    ['for (const [foo, ...bar] = obj);', Context.None],
-    ['for (const [...foo, bar] = obj);', Context.None],
-    ['for (const [...foo,,] = obj);', Context.None],
-    ['for (const [..x] of obj);', Context.None],
-    ['for (const [.x] of obj);', Context.None],
-    ['for (const {,,} of obj);', Context.None],
-    ['for (const {,} of obj);', Context.None],
-    ['for (const {,,x} of obj);', Context.None],
-    ['for (const {x,, y} of obj);', Context.None],
-    ['for (a = b in x);', Context.None],
-    ['for (a ? b : c in x);', Context.None],
-    ['function *f(){   for (yield x in y in z);   }', Context.None],
-    ['for ((x)=>{}.x in y);', Context.None],
-    ['for (((x)=>{}) in y);', Context.None],
-    ['for ((x)=>{} in y);', Context.None],
-    ['for (x=>{}.x in y);', Context.None],
+    'for ([{__proto__: 1, __proto__: 2}];;);',
+    'for ({__proto__: 1, __proto__: 2};;);',
+    { code: 'for ({x=y} ;;) b;', options: { impliedStrict: true } },
+    'for({a=0};;);',
+    { code: 'for (let=10;;);', options: { impliedStrict: true } },
+    'for (const a;;);',
+    'for (const a,b,c;;);',
+    'for (var [foo] = arr, [bar] = arr2);',
+    'for (var [foo,,bar] = arr);',
+    'for (var [foo,bar] = arr);',
+    'for (var [,,foo] = arr);',
+    'for (var [,foo] = arr);',
+    'for (var [foo,,] = arr);',
+    'for (var [foo,] = arr);',
+    'for (var [foo] = arr);',
+    'for ([a.b](foo) of c) d',
+    'for ([a.b]`foo` of c) d',
+    'for ([a.b]++ of c) d',
+    'for ({a: b.c}() of d) e',
+    'for ({a: b.c}`z` of d) e',
+    'for ({a: b.c}-- of d) e',
+    'for (let x of a,b) c',
+    'for (var [,,] = x);',
+    'for (let x of y, z) {}',
+    'for (var [,] = x);',
+    'for (var [] = x);',
+    'for (x=>x in y;;);',
+    'for ({}.bar = x in obj);',
+    { code: 'for (yield;;);', options: { impliedStrict: true } },
+    { code: 'function *f(){   for (yield x in y;;);', options: { impliedStrict: true } },
+    'for ([...{ get x() {} }] in [[[]]]) ;',
+    'for (var [foo] = arr, [bar] = arr2);',
+    'for (var [foo] = arr, bar);',
+    'for (var [foo] = arr, bar = arr2);',
+    'for (var foo = arr, [bar] = arr2);',
+    'for (var [foo=a] = arr);',
+    'for (var [foo=a, bar] = arr);',
+    'for (var [foo, bar=b] = arr);',
+    'for (var [foo=a, bar=b] = arr);',
+    'for (var [foo]);',
+    'for (x of y) foo: bar: function f(){}',
+    'for (x of y) foo: function f(){}',
+    'for (var [foo = x]);',
+    'for (var [foo], bar);',
+    'for (var foo, [bar]);',
+    'for (var [...foo] = obj);',
+    'for (var [foo, ...bar] = obj);',
+    'for (var [...foo, bar] = obj);',
+    'for (var [...foo,] = obj);',
+    'for (var [...foo,,] = obj);',
+    'for (var [...[foo, bar]] = obj);',
+    'for (var [...[foo, bar],] = obj);',
+    'for (var [...[foo, bar],,] = obj);',
+    'for (var [x, ...[foo, bar]] = obj);',
+    'for (var [...bar = foo] = obj);',
+    'for (var [...] = obj);',
+    'for (var {} = obj);',
+    'for (var {,} = obj);',
+    'for (var {,,} = obj);',
+    'for (var {x} = obj);',
+    'for (var {x,} = obj);',
+    'for (var {x,,} = obj);',
+    'for (var {,x} = obj);',
+    'for (var {,,x} = obj);',
+    'for (a, b);',
+    'for (var {,,x} = obj);',
+    'for(delete(x in y) in z)x',
+    'for(delete((1)?y:x in y) in z)x',
+    'for (a + b);',
+    'for (a);',
+    'for ({});',
+    'for (const [z, z]; ; ) ;',
+    'for (const [z]; ; ) ;',
+    'for (const x = 5, y; ; ) ;',
+    'for (const x; ; ) ;',
+    'for (let [z, z]; ; ) ;',
+    'for (var {,,x} = obj);',
+    'for (var {,,x} = obj);',
+    'for (var {x, y} = obj);',
+    'for (var {x,, y} = obj);',
+    'for (var {x} = a, {y} = obj);',
+    'for (var {x} = a, y = obj);',
+    'for (var {x} = a, obj);',
+    'for (var x = a, {y} = obj);',
+    'for (var x, {y} = obj);',
+    'for (var {x = y} = obj);',
+    'for (var {x = y, z} = obj);',
+    'for (var {x, y = z} = obj);',
+    'for (var {x = y, z = a} = obj);',
+    'for (var {x}, {y} = z);',
+    'for (var {x}, y);',
+    'for (var x = y, {z});',
+    'for (var {x}, y);',
+    'for (var {x=y});',
+    'for (var {x:y=z});',
+    'for (var {x:y=z} = obj, {a:b=c});',
+    'for (var {x:y=z}, {a:b=c} = obj);',
+    'for (var {a:=c} = z);',
+    'for (var {[x]: y} = z);',
+    'for (var {[x]} = z);',
+    'for(x of 3)break/',
+    'for(x of 3)continue/',
+    'for(x of 3)p/',
+    'for (var {[x]: y});',
+    'for (var {[x]: y = z});',
+    'for (var {[x]: y = z} = a);',
+    'for (var {a, [x]: y} = a);',
+    'for ({a: x + y} = z;;);',
+    'for ([x + y] = z;;);',
+    'for(index=0; index<10; index+=4; index++; index--) ;',
+    'for({var index=0; index+=1;} index++<=10; index*2;) {	[].add(""+index);};',
+    'for ( ; false; ) class C {}',
+    'for ( ; false; ) function f() {}',
+    'for ( ; false; ) label1: label2: function f() {}',
+    'for ( ; false; ) label1: label2: function f() {}',
+    'for ((i in {}));',
+    'for (let [];;);',
+    'for (let [a = 0];;);',
+    'for (let a = 0, [];;);',
+    'for (let [] = 0, [];;);',
+    'for (let {};;);',
+    'for (let {a = 0};;);',
+    'for (let a = 0, {};;);',
+    'for (let [] = 0, {};;);',
+    'for (let [...x = []] = []; a < 1; ) {}',
+    'for (let [...{ x } = []] = []; a < 1; ) {}',
+    'for (var a in arr;1;){ break; }',
+    'for ( ; false; ) class C {}',
+    'for ( ; false; ) function f() {}',
+    'for ( ; false; ) function* g() {}',
+    'for (const [...{ x }, y] = [1, 2, 3]; a < 1; ) {}',
+    'for (var [...[ x ] = []] = []; a < 1; ) {}',
+    'for (var a in arr;1;){ break; }',
+    'for (let [...x = []] = []; a < 1; ) {}',
+    'for (a = b of x);',
+    'for (a += b of x);',
+    'for (a ? b : c of x);',
+    'for (a ? b : c of x);',
+    'function *f(){   for (yield x in y of z);   }',
+    'function *f(){   for (yield x of y);   }',
+    'function *f(){   for (yield of y);   }',
+    'function *f(){ for (yield of obj); }',
+    'for ((x)=>{}.x of y);',
+    'for (((x)=>{}) of y);',
+    'for ((x)=>{} of y);',
+    'for (x=>{}.x of y);',
+    'for (x=>{} of y);',
+    'for (const [...[foo, bar],,] = obj);',
+    { code: 'for (const [... ...foo] = obj);', options: { sourceType: 'module' } },
+    'for (const [...] = obj);',
+    'for (const [...,] = obj);',
+    'for (const [..x] = obj);',
+    'for (const [a=[...b], ...c] = obj);',
+    'for (const {,} = obj);',
+    'for (const {x} = obj);',
+    'for (const {,x} = obj);',
+    'for (const {x,, y} = obj);',
+    'for (const {x, y} = obj);',
+    'for (const {x} = a, y = obj);',
+    'for (const {x} = a, obj);',
+    'for (const {x = y} = obj);',
+    'for (const x, {y} = obj);',
+    'for (const {x = y, z = a} = obj);',
+    'for (const foo;;);',
+    'for (const\nfoo();;);',
+    'for (const foo);',
+    'for (const [...,] = obj;;);',
+    'for (const foo, bar);',
+    'for (const foo = bar, zoo = boo);',
+    'for (const\nfoo);',
+    'for (const foo = bar in x);',
+    'for (const foo = bar, zoo = boo in x);',
+    'for (const foo, bar of x);',
+    'for (let a = b in c) {}',
+    'for (a = b in c) {}',
+    'for (const foo = bar of x);',
+    'for (const foo = bar, zoo = boo of x);',
+    'for (const foo, zoo of x);',
+    'for (const foo, [bar] = arr2;;);',
+    'for (const [foo];;);',
+    'for (const [foo = x];;);',
+    'for (const [foo], bar;;);',
+    'for (const foo, [bar];;);',
+    'for (const [...foo, bar] = obj;;);',
+    'for (const [...foo,] = obj;;);',
+    'for (const [...[foo, bar],,] = obj;;);',
+    'for (const [...[foo, bar],] = obj;;);',
+    'for (const [...bar = foo] = obj;;);',
+    'for (const [... ...foo] = obj;;);',
+    'for (const [...] = obj;;);',
+    'for (const [...,] = obj;;);',
+    'for (const {x : y} = obj);',
+    'for (const {x : y, z : a} = obj);',
+    'for (const {x : y = z} = obj);',
+    'for (const {x : y, z, a : b = c} = obj);',
+    'for (const {x});',
+    'for (const {x}, {y} = z);',
+    'for (const {x}, y);',
+    'for (const {x}, y);',
+    'for (const {x=y});',
+    'for (const {x:y=z} = obj, {a:b=c});',
+    'for (const {x:y=z}, {a:b=c} = obj);',
+    'for (const {a:=c} = z);',
+    'for (const {[x]: y} = z);',
+    'for (const {[x]} = z);',
+    'let {...{a,b}} = foo',
+    'for (const [.x] = obj;;);',
+    'for (const [..x] = obj;;);',
+    'for (const {,} = obj;;);',
+    'for (const {,,} = obj;;);',
+    'for (const {x,,} = obj;;);',
+    'for (const {,x} = obj;;);',
+    'for (const {,,x} = obj;;);',
+    'for (const {x,, y} = obj;;);',
+    'for (const {x} = a, obj;;);',
+    'for (const x, {y} = obj;;);',
+    'for (const {x}, {y} = z;;);',
+    'for (const x, {y};;);',
+    'for (const {x}, y;;);',
+    'for (const x = y, {z};;);',
+    'for (const {x:y};;);',
+    'for (const {x:y=z};;);',
+    'for (const {x:y=z} = obj, {a:b=c};;);',
+    'for (const {x:y=z}, {a:b=c} = obj;;);',
+    'for (const {a:=c} = z;;);',
+    'for (const {[x]} = z;;);',
+    'for (const {[x]};;);',
+    'for (const {[x]: y};;);',
+    'for (const {[x] = y} = z;;);',
+    'for (const {[x]: y = z};;);',
+    'for (const [,,] = x);',
+    'for (const [foo,,] = arr);',
+    'for (const [,foo] = arr);',
+    'for (const [foo,bar] = arr);',
+    'for (const [foo] = arr, bar);',
+    'for (const foo, [bar] = arr2);',
+    'for (const foo = arr, [bar] = arr2);',
+    'for (const [foo=a, bar] = arr);',
+    'for (const [foo = x]);',
+    'for (const [foo]);',
+    'for (const {[x] = y} = z);',
+    'for (const {[x]: y = z});',
+    'for (const [foo], bar in arr);',
+    'for (const foo, [bar] in arr);',
+    'for (const [foo]);',
+    'for (const [foo = x]);',
+    'for (const [foo], bar);',
+    'for (const foo, [bar]);',
+    'for (const [...foo, bar] in obj);',
+    'for (const [...foo,] in obj);',
+    'for (const [...foo,,] in obj);',
+    'for (const [...[foo, bar],] in obj);',
+    'for (const [...[foo, bar],,] in obj);',
+    'for (const [...] in obj);',
+    'for (const [...,] in obj);',
+    'for (const [.x] in obj);',
+    'for (const [..x] in obj);',
+    'for (const {,} in obj);',
+    'for (const {,,} in obj);',
+    'for (const {x,,} in obj);',
+    'for (const {,x} in obj);',
+    'for (const {x,, y} in obj);',
+    'for (const x, {y} in obj);',
+    'for (const {x}, y);',
+    'for (const x = y, {z});',
+    'for (const {x:y});',
+    'for (const {x:y=z});',
+    'for (const {x:y=z} = obj, {a:b=c});',
+    'for (const {x:y=z}, {a:b=c} in obj);',
+    'for (const {[x] = y} in obj);',
+    'for (const foo, [bar] of arr);',
+    'for (const [foo = x]);',
+    'for (const [...foo] = obj);',
+    'for (const [foo, ...bar] = obj);',
+    'for (const [...foo, bar] = obj);',
+    'for (const [...foo,,] = obj);',
+    'for (const [..x] of obj);',
+    'for (const [.x] of obj);',
+    'for (const {,,} of obj);',
+    'for (const {,} of obj);',
+    'for (const {,,x} of obj);',
+    'for (const {x,, y} of obj);',
+    'for (a = b in x);',
+    'for (a ? b : c in x);',
+    'function *f(){   for (yield x in y in z);   }',
+    'for ((x)=>{}.x in y);',
+    'for (((x)=>{}) in y);',
+    'for ((x)=>{} in y);',
+    'for (x=>{}.x in y);',
   ]);
 
   pass('Statements - For (pass)', [
     'for (let [,] = x;;);',
     'for(()=>{a in b};;);',
-    `let = 4;
+    outdent`
+      let = 4;
       for ( [let][0]; ; )
         break;
-      `,
+    `,
     'for (let\nfoo;;);',
     'for (let [] = x;;);',
     'for (let [foo] = arr, bar;;);',
@@ -906,5 +934,6 @@ describe('Statements - For', () => {
     [ 'for (a in b);', Context.None, {}],*/
 
     'for (a in b);',
+    { code: 'for(\na=1,\nb=2;;);', options: { loc: true, ranges: true } },
   ]);
 });

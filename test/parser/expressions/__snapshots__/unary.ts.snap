@@ -1,5 +1,443 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Unary > Expressions - Unary (fail) > (((x)))
+++; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | (((x)))
+> 2 | ++;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > (((x)))
+--; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | (((x)))
+> 2 | --;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > (async () 
+ ++) 1`] = `
+"SyntaxError [2:1-2:3]: Expected ')'
+  1 | (async () 
+> 2 |  ++)
+    |  ^^ Expected ')'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > (delete (((x))) 
+ x) 1`] = `
+"SyntaxError [2:1-2:2]: Calling delete on expression not allowed in strict mode
+  1 | (delete (((x))) 
+> 2 |  x)
+    |  ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > (foo 
+ ++) 1`] = `
+"SyntaxError [2:1-2:3]: Expected ')'
+  1 | (foo 
+> 2 |  ++)
+    |  ^^ Expected ')'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > (x)
+++; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | (x)
+> 2 | ++;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > (x)
+--; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | (x)
+> 2 | --;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > a
+-- 1`] = `
+"SyntaxError [2:0-2:2]: Unexpected token: 'end of source'
+  1 | a
+> 2 | --
+    | ^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > class X extends Y { constructor() { delete super; } } 1`] = `
+"SyntaxError [1:48-1:49]: Unexpected token: 'super'
+> 1 | class X extends Y { constructor() { delete super; } }
+    |                                                 ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ("x"[(await)]) 1`] = `
+"SyntaxError [1:13-1:18]: Can not use \`await\` as identifier in module or async func
+> 1 | delete ("x"[(await)])
+    |              ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ("x"[(yield)]) 1`] = `
+"SyntaxError [1:13-1:18]: 'yield' may not be used as an identifier in this context
+> 1 | delete ("x"[(yield)])
+    |              ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (((((foo(await)))))).bar 1`] = `
+"SyntaxError [1:16-1:21]: Can not use \`await\` as identifier in module or async func
+> 1 | delete (((((foo(await)))))).bar
+    |                 ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (((((foo(yield)))))).bar 1`] = `
+"SyntaxError [1:16-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | delete (((((foo(yield)))))).bar
+    |                 ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((((true)))=x) 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | delete ((((true)))=x)
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((()=b)) 1`] = `
+"SyntaxError [1:11-1:12]: Expected '=>'
+> 1 | delete ((()=b))
+    |            ^ Expected '=>'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (((foo))); 1`] = `
+"SyntaxError [1:16-1:17]: Calling delete on expression not allowed in strict mode
+> 1 | delete (((foo)));
+    |                 ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (((x)) => x) 1`] = `
+"SyntaxError [1:14-1:16]: Expected ')'
+> 1 | delete (((x)) => x)
+    |               ^^ Expected ')'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((a)) => b) 1`] = `
+"SyntaxError [1:13-1:15]: Calling delete on expression not allowed in strict mode
+> 1 | delete ((a)) => b)
+    |              ^^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((a))=>b) 1`] = `
+"SyntaxError [1:12-1:14]: Calling delete on expression not allowed in strict mode
+> 1 | delete ((a))=>b)
+    |             ^^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((foo) 
+ ++) 1`] = `
+"SyntaxError [2:1-2:3]: Expected ')'
+  1 | delete ((foo) 
+> 2 |  ++)
+    |  ^^ Expected ')'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((true)++) 1`] = `
+"SyntaxError [1:14-1:16]: Invalid increment/decrement operand
+> 1 | delete ((true)++)
+    |               ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ((true)=x) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | delete ((true)=x)
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ()=>bar 1`] = `
+"SyntaxError [1:9-1:11]: \`=>\` is an invalid assignment target
+> 1 | delete ()=>bar
+    |          ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ()=b 1`] = `
+"SyntaxError [1:9-1:10]: \`=>\` is an invalid assignment target
+> 1 | delete ()=b
+    |          ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete ([foo].bar)=>b) 1`] = `
+"SyntaxError [1:18-1:20]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | delete ([foo].bar)=>b)
+    |                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (a + b)=>b) 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | delete (a + b)=>b)
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (async 
+ () => x) 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | delete (async 
+> 2 |  () => x)
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (await=x) 1`] = `
+"SyntaxError [1:8-1:13]: Can not use \`await\` as identifier in module or async func
+> 1 | delete (await=x)
+    |         ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (foo) => x; 1`] = `
+"SyntaxError [1:13-1:15]: \`=>\` is an invalid assignment target
+> 1 | delete (foo) => x;
+    |              ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (foo)=>bar 1`] = `
+"SyntaxError [1:12-1:14]: \`=>\` is an invalid assignment target
+> 1 | delete (foo)=>bar
+    |             ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (x)
+/f/ 1`] = `
+"SyntaxError [2:0-2:1]: Calling delete on expression not allowed in strict mode
+  1 | delete (x)
+> 2 | /f/
+    | ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete (x=await) 1`] = `
+"SyntaxError [1:10-1:15]: Can not use \`await\` as identifier in module or async func
+> 1 | delete (x=await)
+    |           ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete async 
+ (...) => x 1`] = `
+"SyntaxError [2:5-2:6]: The rest operator is missing an argument
+  1 | delete async 
+> 2 |  (...) => x
+    |      ^ The rest operator is missing an argument"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete async (x) => y 1`] = `
+"SyntaxError [1:17-1:19]: \`=>\` is an invalid assignment target
+> 1 | delete async (x) => y
+    |                  ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete async; () => x; 1`] = `
+"SyntaxError [1:12-1:13]: Calling delete on expression not allowed in strict mode
+> 1 | delete async; () => x;
+    |             ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete await.foo 1`] = `
+"SyntaxError [1:7-1:12]: Can not use \`await\` as identifier in module or async func
+> 1 | delete await.foo
+    |        ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete foo => x; 1`] = `
+"SyntaxError [1:11-1:13]: \`=>\` is an invalid assignment target
+> 1 | delete foo => x;
+    |            ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete foo 1`] = `
+"SyntaxError [1:7-1:10]: Calling delete on expression not allowed in strict mode
+> 1 | delete foo
+    |        ^^^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete foo 2`] = `
+"SyntaxError [1:7-1:10]: Calling delete on expression not allowed in strict mode
+> 1 | delete foo
+    |        ^^^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete foo=>bar 1`] = `
+"SyntaxError [1:10-1:12]: \`=>\` is an invalid assignment target
+> 1 | delete foo=>bar
+    |           ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete foo[await x] 1`] = `
+"SyntaxError [1:17-1:18]: Expected ']'
+> 1 | delete foo[await x]
+    |                  ^ Expected ']'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete foo[yield x] 1`] = `
+"SyntaxError [1:11-1:16]: 'yield' may not be used as an identifier in this context
+> 1 | delete foo[yield x]
+    |            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete x
+/f/ 1`] = `
+"SyntaxError [2:0-2:1]: Calling delete on expression not allowed in strict mode
+  1 | delete x
+> 2 | /f/
+    | ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete x
+foo 1`] = `
+"SyntaxError [2:0-2:3]: Calling delete on expression not allowed in strict mode
+  1 | delete x
+> 2 | foo
+    | ^^^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete x
+foo 2`] = `
+"SyntaxError [2:0-2:3]: Calling delete on expression not allowed in strict mode
+  1 | delete x
+> 2 | foo
+    | ^^^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete x = await 1`] = `
+"SyntaxError [1:9-1:10]: Calling delete on expression not allowed in strict mode
+> 1 | delete x = await
+    |          ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete x 1`] = `
+"SyntaxError [1:7-1:8]: Calling delete on expression not allowed in strict mode
+> 1 | delete x
+    |        ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete x 2`] = `
+"SyntaxError [1:7-1:8]: Calling delete on expression not allowed in strict mode
+> 1 | delete x
+    |        ^ Calling delete on expression not allowed in strict mode"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > delete yield.foo 1`] = `
+"SyntaxError [1:7-1:12]: 'yield' may not be used as an identifier in this context
+> 1 | delete yield.foo
+    |        ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > function *f() { delete yield; } 1`] = `
+"SyntaxError [1:28-1:29]: Invalid left-hand side in assignment
+> 1 | function *f() { delete yield; }
+    |                             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > function f(){ return a
+++; } 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | function f(){ return a
+> 2 | ++; }
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > function f(){ return a
+--; } 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | function f(){ return a
+> 2 | --; }
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > if (a
+++
+b); 1`] = `
+"SyntaxError [2:0-2:2]: Expected ')'
+  1 | if (a
+> 2 | ++
+    | ^^ Expected ')'
+  3 | b);"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > if (a
+++b); 1`] = `
+"SyntaxError [2:0-2:2]: Expected ')'
+  1 | if (a
+> 2 | ++b);
+    | ^^ Expected ')'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > if (a
+--); 1`] = `
+"SyntaxError [2:0-2:2]: Expected ')'
+  1 | if (a
+> 2 | --);
+    | ^^ Expected ')'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > if (a) a
+++; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | if (a) a
+> 2 | ++;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > if (a) a
+--; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | if (a) a
+> 2 | --;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > let x = () => a
+--; 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: ';'
+  1 | let x = () => a
+> 2 | --;
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > typeof async({a = 1}); 1`] = `
+"SyntaxError [1:21-1:22]: Invalid shorthand property initializer
+> 1 | typeof async({a = 1});
+    |                      ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > typeof async({a = 1}); 2`] = `
+"SyntaxError [1:21-1:22]: Invalid shorthand property initializer
+> 1 | typeof async({a = 1});
+    |                      ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > typeof async({a = 1}, {b = 2} = {}, {c = 3} = {}); 1`] = `
+"SyntaxError [1:49-1:50]: Invalid shorthand property initializer
+> 1 | typeof async({a = 1}, {b = 2} = {}, {c = 3} = {});
+    |                                                  ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > typeof async({a = 1}, {b = 2} = {}, {c = 3} = {}); 2`] = `
+"SyntaxError [1:49-1:50]: Invalid shorthand property initializer
+> 1 | typeof async({a = 1}, {b = 2} = {}, {c = 3} = {});
+    |                                                  ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > typeof async({a = 1}, {b = 2}, {c = 3} = {}); 1`] = `
+"SyntaxError [1:44-1:45]: Invalid shorthand property initializer
+> 1 | typeof async({a = 1}, {b = 2}, {c = 3} = {});
+    |                                             ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > typeof async({a = 1}, {b = 2}, {c = 3} = {}); 2`] = `
+"SyntaxError [1:44-1:45]: Invalid shorthand property initializer
+> 1 | typeof async({a = 1}, {b = 2}, {c = 3} = {});
+    |                                             ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (fail) > x.foo++.bar 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '.'
+> 1 | x.foo++.bar
+    |        ^ Unexpected token: '.'"
+`;
+
 exports[`Expressions - Unary > Expressions - Unary (pass) > ![] 1`] = `
 {
   "body": [

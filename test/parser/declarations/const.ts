@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Declarations - const', () => {
   // Test keywords
@@ -47,25 +47,25 @@ describe('Declarations - const', () => {
   ]) {
     it(`const ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, undefined, Context.None);
+        parseSource(`var ${arg} = x`);
       });
     });
 
     it(`let ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, undefined, Context.None);
+        parseSource(`var ${arg} = x`);
       });
     });
 
     it(`let ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, undefined, Context.OptionsWebCompat);
+        parseSource(`var ${arg} = x`, { webcompat: true });
       });
     });
 
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, undefined, Context.None);
+        parseSource(`for (const  ${arg}  = x;;);`);
       });
     });
   }
@@ -73,22 +73,18 @@ describe('Declarations - const', () => {
   for (const arg of ['break', 'implements', 'package', 'protected', 'interface', 'private', 'public', 'static']) {
     it(`const ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`const ${arg} = x`, undefined, Context.Strict);
+        parseSource(`const ${arg} = x`, { impliedStrict: true });
       });
     });
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, undefined, Context.Strict);
+        parseSource(`for (const  ${arg}  = x;;);`, { impliedStrict: true });
       });
     });
 
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(
-          `for (const  ${arg}  = x;;);`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsWebCompat,
-        );
+        parseSource(`for (const  ${arg}  = x;;);`, { sourceType: 'module', webcompat: true });
       });
     });
   }
@@ -174,124 +170,124 @@ describe('Declarations - const', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
 
   fail('Declarations - const (fail)', [
-    ['const {foo,,} = x;', Context.None],
-    ['const [.x] = obj;', Context.None],
-    ['const [..x] = obj;', Context.None],
-    ['const [...] = obj;', Context.None],
-    ['const [... ...foo] = obj;', Context.None],
-    ['const [...[a, b],,] = obj;', Context.None],
-    ['const [...foo,] = obj;', Context.None],
-    ['for (const {};;);', Context.None],
-    ['const {};', Context.None],
-    ['const foo;', Context.None],
-    [`do const x = 1; while (false)`, Context.None],
-    ['while (false) const x = 1;', Context.None],
-    ['label: const x;', Context.None],
-    ['while (false) const x;', Context.None],
-    ['const [...x = []] = [];', Context.None],
-    ['const [...[x], y] = [1, 2, 3];', Context.None],
-    ['const x, y = 1;', Context.None],
-    ['do const x = 1; while (false)', Context.None],
-    ['const [...{ x }, y] = [1, 2, 3];', Context.None],
-    ['const [...x, y] = [1, 2, 3];', Context.None],
+    'const {foo,,} = x;',
+    'const [.x] = obj;',
+    'const [..x] = obj;',
+    'const [...] = obj;',
+    'const [... ...foo] = obj;',
+    'const [...[a, b],,] = obj;',
+    'const [...foo,] = obj;',
+    'for (const {};;);',
+    'const {};',
+    'const foo;',
+    'do const x = 1; while (false)',
+    'while (false) const x = 1;',
+    'label: const x;',
+    'while (false) const x;',
+    'const [...x = []] = [];',
+    'const [...[x], y] = [1, 2, 3];',
+    'const x, y = 1;',
+    'do const x = 1; while (false)',
+    'const [...{ x }, y] = [1, 2, 3];',
+    'const [...x, y] = [1, 2, 3];',
     // Babylon PR: https://github.com/babel/babylon/pull/195
-    ['const { foo: enum } = bar();', Context.None],
-    ['function foo({ bar: enum }) {}', Context.None],
-    ['const foo', Context.None],
-    ['const foo, bar;', Context.None],
-    ['const foo, bar', Context.None],
-    ['const\nfoo', Context.None],
-    ['const\nfoo()', Context.None],
-    ['const [foo] = arr, bar;', Context.None],
-    ['const foo, [bar] = arr2;', Context.None],
-    ['const [foo];', Context.None],
-    ['const [foo = x];', Context.None],
-    ['const [foo], bar;', Context.None],
-    ['const foo, [bar];', Context.None],
-    ['const [foo:bar] = obj;', Context.None],
-    ['const [...foo, bar] = obj;', Context.None],
-    ['const [...foo,] = obj;', Context.None],
-    ['const [...foo,,] = obj;', Context.None],
-    ['const [...[foo + bar]] = obj;', Context.None],
-    ['const [...[foo, bar],] = obj;', Context.None],
-    ['const [...[foo, bar],,] = obj;', Context.None],
-    ['const [...bar = foo] = obj;', Context.None],
-    ['const [... ...foo] = obj;', Context.None],
-    ['const [...] = obj;', Context.None],
-    ['const const', Context.None],
-    ['const', Context.None],
-    ['const a = 2,', Context.None],
-    ['const [...,] = obj;', Context.None],
-    ['const [.x] = obj;', Context.None],
-    ['const [..x] = obj;', Context.None],
-    ['const {,} = obj;', Context.None],
-    ['const {,,} = obj;', Context.None],
-    ['const {x,,} = obj;', Context.None],
-    ['const {,x} = obj;', Context.None],
-    ['const {,,x} = obj;', Context.None],
-    ['const {x,, y} = obj;', Context.None],
-    ['const {x} = a, obj;', Context.None],
-    ['const x, {y} = obj;', Context.None],
-    ['const {x};', Context.None],
-    ['const {x}, {y} = z;', Context.None],
-    ['const x, {y};', Context.None],
-    ['const {x}, y;', Context.None],
-    ['const x = y, {z};', Context.None],
-    ['const let = 1;', Context.Strict],
-    ['let let = 1;', Context.Strict],
-    ['const {x=y};', Context.None],
-    ['const {x:y=z};', Context.None],
-    ['const {x:y=z} = obj, {a:b=c};', Context.None],
-    ['const {a:=c} = z;', Context.None],
-    ['const {[x] = y} = z;', Context.None],
-    ['const {[x]: y};', Context.None],
-    ['const {[x]} = z;', Context.None],
-    ['const {[x] = y} = z;', Context.None],
-    ['const {[x]: y = z};', Context.None],
-    ['const {...[a]} = x', Context.OptionsWebCompat],
-    ['const {...{a}} = x', Context.OptionsWebCompat],
-    ['const {...[a]} = x', Context.None],
-    ['const {...{a}} = x', Context.None],
-    ['const {...a=b} = x', Context.None],
-    ['const {...a+b} = x', Context.None],
-    ['const [(x)] = []', Context.None],
-    ['const a, [...x] = y', Context.None],
-    ['const foo;', Context.Module],
-    ['const foo, bar = x;', Context.None],
-    ['const [a)] = [];', Context.None],
-    ['const [[(a)], ((((((([b])))))))] = [[],[]];', Context.None],
-    ['const [a--] = [];', Context.None],
-    ['const [++a] = [];', Context.None],
-    ['const [1, a] = [];', Context.None],
-    ['const [...a, b] = [];', Context.None],
-    ['const foo =x, bar;', Context.None],
-    ['const foo, bar;', Context.Module],
-    ['const [a, let, b] = [1, 2, 3];', Context.None],
-    ['const {let} = 1;', Context.None],
+    'const { foo: enum } = bar();',
+    'function foo({ bar: enum }) {}',
+    'const foo',
+    'const foo, bar;',
+    'const foo, bar',
+    'const\nfoo',
+    'const\nfoo()',
+    'const [foo] = arr, bar;',
+    'const foo, [bar] = arr2;',
+    'const [foo];',
+    'const [foo = x];',
+    'const [foo], bar;',
+    'const foo, [bar];',
+    'const [foo:bar] = obj;',
+    'const [...foo, bar] = obj;',
+    'const [...foo,] = obj;',
+    'const [...foo,,] = obj;',
+    'const [...[foo + bar]] = obj;',
+    'const [...[foo, bar],] = obj;',
+    'const [...[foo, bar],,] = obj;',
+    'const [...bar = foo] = obj;',
+    'const [... ...foo] = obj;',
+    'const [...] = obj;',
+    'const const',
+    'const',
+    'const a = 2,',
+    'const [...,] = obj;',
+    'const [.x] = obj;',
+    'const [..x] = obj;',
+    'const {,} = obj;',
+    'const {,,} = obj;',
+    'const {x,,} = obj;',
+    'const {,x} = obj;',
+    'const {,,x} = obj;',
+    'const {x,, y} = obj;',
+    'const {x} = a, obj;',
+    'const x, {y} = obj;',
+    'const {x};',
+    'const {x}, {y} = z;',
+    'const x, {y};',
+    'const {x}, y;',
+    'const x = y, {z};',
+    { code: 'const let = 1;', options: { impliedStrict: true } },
+    { code: 'let let = 1;', options: { impliedStrict: true } },
+    'const {x=y};',
+    'const {x:y=z};',
+    'const {x:y=z} = obj, {a:b=c};',
+    'const {a:=c} = z;',
+    'const {[x] = y} = z;',
+    'const {[x]: y};',
+    'const {[x]} = z;',
+    'const {[x] = y} = z;',
+    'const {[x]: y = z};',
+    { code: 'const {...[a]} = x', options: { webcompat: true } },
+    { code: 'const {...{a}} = x', options: { webcompat: true } },
+    'const {...[a]} = x',
+    'const {...{a}} = x',
+    'const {...a=b} = x',
+    'const {...a+b} = x',
+    'const [(x)] = []',
+    'const a, [...x] = y',
+    { code: 'const foo;', options: { sourceType: 'module' } },
+    'const foo, bar = x;',
+    'const [a)] = [];',
+    'const [[(a)], ((((((([b])))))))] = [[],[]];',
+    'const [a--] = [];',
+    'const [++a] = [];',
+    'const [1, a] = [];',
+    'const [...a, b] = [];',
+    'const foo =x, bar;',
+    { code: 'const foo, bar;', options: { sourceType: 'module' } },
+    'const [a, let, b] = [1, 2, 3];',
+    'const {let} = 1;',
   ]);
 
   pass('Declarations - const (pass)', [
@@ -308,69 +304,79 @@ describe('Declarations - const', () => {
     'for (const [,] of x);',
     'for (const {a, [x]: y} in obj);',
     { code: 'for (const {x : y, z, a : b = c} in obj);', options: { ranges: true } },
-    `const {
+    outdent`
+      const {
         [({ ...rest }) => {
           let { ...b } = {};
         }]: a,
         [({ ...d } = {})]: c,
-      } = {};`,
-    `const {
-          a = ({ ...rest }) => {
-            let { ...b } = {};
-          },
-          c = ({ ...d } = {}),
-        } = {};`,
+      } = {};
+    `,
+    outdent`
+      const {
+        a = ({ ...rest }) => {
+          let { ...b } = {};
+        },
+        c = ({ ...d } = {}),
+      } = {};
+    `,
     'const { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
     {
-      code: `var z = {};
-            var { ...x } = z;
-            var { ...a } = { a: 1 };
-            var { ...x } = a.b;
-            var { ...x } = a();
-            var {x1, ...y1} = z;
-            x1++;
-            var { [a]: b, ...c } = z;
-            var {x1, ...y1} = z;
-            let {x2, y2, ...z2} = z;
-            const {w3, x3, y3, ...z4} = z;
+      code: outdent`
+        var z = {};
+        var { ...x } = z;
+        var { ...a } = { a: 1 };
+        var { ...x } = a.b;
+        var { ...x } = a();
+        var {x1, ...y1} = z;
+        x1++;
+        var { [a]: b, ...c } = z;
+        var {x1, ...y1} = z;
+        let {x2, y2, ...z2} = z;
+        const {w3, x3, y3, ...z4} = z;
 
-            let {
-              x: { a: xa, [d]: f, ...asdf },
-              y: { ...d },
-              ...g
-            } = complex;
+        let {
+          x: { a: xa, [d]: f, ...asdf },
+          y: { ...d },
+          ...g
+        } = complex;
 
-            let { x4: { ...y4 } } = z;`,
+        let { x4: { ...y4 } } = z;
+      `,
       options: { ranges: true },
     },
-    `let {
-                a: [b, ...arrayRest],
-                c = function(...functionRest){},
-                ...objectRest
-              } = {
-                a: [1, 2, 3, 4],
-                d: "oyez"
-              };`,
+    outdent`
+      let {
+        a: [b, ...arrayRest],
+        c = function(...functionRest){},
+        ...objectRest
+      } = {
+        a: [1, 2, 3, 4],
+        d: "oyez"
+      };
+    `,
     {
-      code: `// ForXStatement
-                for (var {a, ...b} of []) {}
-                for ({a, ...b} of []) {}
-                async function a() {
-                  for await ({a, ...b} of []) {}
-                }
+      code: outdent`
+        // ForXStatement
+        for (var {a, ...b} of []) {}
+        for ({a, ...b} of []) {}
+        async function a() {
+          for await ({a, ...b} of []) {}
+        }
 
-                // skip
-                for ({a} in {}) {}
-                for ({a} of []) {}
-                async function a() {
-                  for await ({a} of []) {}
-                }
+        // skip
+        for ({a} in {}) {}
+        for ({a} of []) {}
+        async function a() {
+          for await ({a} of []) {}
+        }
 
-                for (a in {}) {}
-                for (a of []) {}
-                async function a() {
-                  for await (a of []) {}
-                }`,
+        for (a in {}) {}
+        for (a of []) {}
+        async function a() {
+          for await (a of []) {}
+        }
+      `,
       options: { ranges: true },
     },
     'const foo = bar;',

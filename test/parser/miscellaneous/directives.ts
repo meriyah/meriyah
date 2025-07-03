@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - Directives', () => {
   for (const arg of [
@@ -57,7 +57,7 @@ describe('Miscellaneous - Directives', () => {
     String.raw`"use strict" "\1"`,
     String.raw`"use strict"; "\1";`,
     '"use strict" ++',
-    `function foo() { "use strict"; with (a) b = c; }`,
+    'function foo() { "use strict"; with (a) b = c; }',
     '"use strict"; function foo() { with (a) b = c; }',
     String.raw`"use strict"; function hello() { "\000"; }`,
     String.raw`"use strict"; function hello() { "\00"; }`,
@@ -66,30 +66,34 @@ describe('Miscellaneous - Directives', () => {
     String.raw`function hello() { "use strict"; "\00"; }`,
     String.raw`function hello() { "use strict"; "\0123"; }`,
     String.raw`function hello("\000008") { "use strict"; }`,
-    ` function fun() {
-                "use strict";
-                       var public = 1;
-            }`,
-    ` function fun() {
-              "use strict"
-                     var public = 1;
-          }`,
+    outdent`
+      function fun() {
+          "use strict";
+                var public = 1;
+      }
+    `,
+    outdent`
+      function fun() {
+          "use strict"
+                var public = 1;
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`/* comment in front */ ${arg}`, () => {
       t.throws(() => {
-        parseSource(`/* comment in front */ ${arg}`, undefined, Context.None);
+        parseSource(`/* comment in front */ ${arg}`);
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg} }`, undefined, Context.Strict | Context.Module);
+        parseSource(`function foo() { ${arg} }`, { sourceType: 'module' });
       });
     });
   }
@@ -139,9 +143,9 @@ describe('Miscellaneous - Directives', () => {
     '"use asm" \u2029 "use strict"',
     String.raw`"\n\r\t\v\b\f\\\'\"\0"`,
     String.raw`"Hello\312World"`,
-    `"use strict"; + 1`,
-    `function wrap() { "use strict"\n foo }`,
-    `"\\u0075se strict"`,
+    '"use strict"; + 1',
+    'function wrap() { "use strict"\n foo }',
+    String.raw`"\u0075se strict"`,
     'function wrap() { { "use strict" } foo }',
     String.raw`"Hello\0World"`,
     '("use strict"); foo = 42;',
@@ -152,12 +156,14 @@ describe('Miscellaneous - Directives', () => {
     'function a() { "use strict" } "use strict"; foo;',
     String.raw`function foo() { "use \u0020strict"; with (a) b = c; }`,
     String.raw`"use \u0020strict"; with (a) b = c;`,
-    `function foo()
-    {
-       "bogus directive";
-       "use strict";
-       return (this === undefined);
-    }`,
+    outdent`
+      function foo()
+      {
+         "bogus directive";
+         "use strict";
+         return (this === undefined);
+      }
+    `,
     String.raw`"use strict", "Hello\312World"`,
     String.raw`"use strict" + "Hello\312World"`,
     String.raw`"use strict", "Hello\312World"`,
@@ -170,50 +176,47 @@ describe('Miscellaneous - Directives', () => {
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsRaw);
+        parseSource(`/* comment in front */ ${arg}`, { raw: true });
       });
     });
 
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsRaw);
+        parseSource(`/* comment in front */ ${arg}`, { webcompat: true, raw: true });
       });
     });
   }
 
   for (const arg of ['.foo', '[foo]', '()', '`x`', ' + x', '/f', '/f/g']) {
     t.throws(() => {
-      parseSource(`function f(){ "use strict" \n /* suffix = */   ${arg} ; eval = 1; }`, undefined, Context.Strict);
+      parseSource(`function f(){ "use strict" \n /* suffix = */   ${arg} ; eval = 1; }`, { impliedStrict: true });
     });
   }
 
   for (const arg of ['foo', '++x', '--x', 'function f(){}', '{x}', ';', '25', 'true']) {
     t.throws(() => {
-      parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`, undefined, Context.None);
+      parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`);
     });
   }
 
   fail('Miscellaneous - Directives (fail)', [
-    ['"use strict"; var static;', Context.None],
-    [String.raw`\u0061sync function f(){}`, Context.None],
-    [String.raw`"use strict" "Hello\312World"`, Context.None],
-    ['"use strict" \n "Hello\\312World"', Context.None],
-    [String.raw`function a() { "use strict" "Hello\312World" }`, Context.None],
-    ['function a() { "use strict" \n "Hello\\312World" }', Context.None],
+    '"use strict"; var static;',
+    String.raw`\u0061sync function f(){}`,
+    String.raw`"use strict" "Hello\312World"`,
+    '"use strict" \n "Hello\\312World"',
+    String.raw`function a() { "use strict" "Hello\312World" }`,
+    'function a() { "use strict" \n "Hello\\312World" }',
+    { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true, sourceType: 'module' } },
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
-    {
-      code: String.raw`"use strict" + "Hello\312World"`,
-      options: { ranges: true, raw: true },
-      context: Context.Module,
-    },
-    { code: '("use strict"); foo = 42;', options: { module: true, ranges: true, raw: true } },
+    { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true } },
+    { code: '("use strict"); foo = 42;', options: { sourceType: 'module', ranges: true, raw: true } },
     { code: String.raw`"use strict", "Hello\312World"`, options: { ranges: true, raw: true } },
     { code: '"use asm" \n "use strict"', options: { ranges: true, raw: true } },
     { code: '"use strict"; + 1', options: { ranges: true } },
     { code: '("use strict"); foo = 42;', options: { ranges: true } },
     '"\\u0061b"\n"c\\u0064"',
-    { code: '"\\u0061b"\n"c\\u0064"', options: { module: true } },
+    { code: '"\\u0061b"\n"c\\u0064"', options: { sourceType: 'module' } },
   ]);
 });

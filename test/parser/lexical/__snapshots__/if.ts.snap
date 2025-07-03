@@ -1,0 +1,147 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Lexical - If > Lexical - If (fail) > const x = a; function x(){}; 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+> 1 | const x = a; function x(){};
+    |                       ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > const x = a; function x(){}; 2`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+> 1 | const x = a; function x(){};
+    |                       ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > do async function f(){} while (x); 1`] = `
+"SyntaxError [1:9-1:17]: Async functions can only be declared at the top level or inside a block
+> 1 | do async function f(){} while (x);
+    |          ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 1`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+> 1 | if (x) { if (y) var foo = 1; } let foo = 1;
+    |                                        ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 2`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+> 1 | if (x) { if (y) var foo = 1; } let foo = 1;
+    |                                        ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 3`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+> 1 | if (x) { if (y) var foo = 1; } let foo = 1;
+    |                                        ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 4`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+> 1 | if (x) { if (y) var foo = 1; } let foo = 1;
+    |                                        ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) {} else if (y) {} else var foo = 1; let foo = 1; 1`] = `
+"SyntaxError [1:51-1:52]: Duplicate binding 'foo'
+> 1 | if (x) {} else if (y) {} else var foo = 1; let foo = 1;
+    |                                                    ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) {} else if (y) {} else var foo = 1; let foo = 1; 2`] = `
+"SyntaxError [1:51-1:52]: Duplicate binding 'foo'
+> 1 | if (x) {} else if (y) {} else var foo = 1; let foo = 1;
+    |                                                    ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) {} else var foo = 1; let foo = 1; 1`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+> 1 | if (x) {} else var foo = 1; let foo = 1;
+    |                                     ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) {} else var foo = 1; let foo = 1; 2`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+> 1 | if (x) {} else var foo = 1; let foo = 1;
+    |                                     ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) async function f(){} 1`] = `
+"SyntaxError [1:13-1:21]: Async functions can only be declared at the top level or inside a block
+> 1 | if (x) async function f(){}
+    |              ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; else {} let foo = 1; 1`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; else {} let foo = 1;
+    |                                     ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; else {} let foo = 1; 2`] = `
+"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; else {} let foo = 1;
+    |                                     ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; let foo = 1;
+    |                             ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 2`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; let foo = 1;
+    |                             ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 3`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; let foo = 1;
+    |                             ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 4`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; let foo = 1;
+    |                             ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 5`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+> 1 | if (x) var foo = 1; let foo = 1;
+    |                             ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) x;
+else async function *f(){} 1`] = `
+"SyntaxError [2:11-2:19]: Async functions can only be declared at the top level or inside a block
+  1 | if (x) x;
+> 2 | else async function *f(){}
+    |            ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) x;
+else async function f(){} 1`] = `
+"SyntaxError [2:11-2:19]: Async functions can only be declared at the top level or inside a block
+  1 | if (x) x;
+> 2 | else async function f(){}
+    |            ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) x;
+else function *f(){} 1`] = `
+"SyntaxError [2:5-2:13]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+  1 | if (x) x;
+> 2 | else function *f(){}
+    |      ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - If > Lexical - If (fail) > if (x) x;
+else function(){} 1`] = `
+"SyntaxError [2:5-2:13]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+  1 | if (x) x;
+> 2 | else function(){}
+    |      ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;

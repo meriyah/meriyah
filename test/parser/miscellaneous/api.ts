@@ -1,6 +1,6 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { parseModule, parseScript, parse } from '../../../src/meriyah';
+import { parse, parseModule, parseScript } from '../../../src/meriyah';
 
 describe('Expressions - API', () => {
   it('should parse script code with "parse"', () => {
@@ -10,7 +10,7 @@ describe('Expressions - API', () => {
         globalReturn: true,
         ranges: true,
         webcompat: true,
-        module: true,
+        sourceType: 'module',
         preserveParens: true,
         jsx: true,
         lexical: true,

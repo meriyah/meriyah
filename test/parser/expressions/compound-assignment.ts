@@ -1,26 +1,25 @@
-import { Context } from '../../../src/common';
-import { pass } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { pass } from '../../test-utils';
 
 describe('Expressions - Compound assignment', () => {
   for (const arg of [
-    `[a >>>= a];`,
-    `[a >>>= a += a];`,
-    `[a >>>= (a += a)];`,
-    `[a >>>= (a += (a))];`,
-    `[a >>>= a += {a}];`,
-    `[a >>>= a += {a}];`,
-    `[a >>>= a += a];`,
-    `([a += a] );`,
-    `([...a += a] );`,
-    `[a >>>= (a)];`,
-    `([...a += a += a += (a) >>>= 2]);`,
+    '[a >>>= a];',
+    '[a >>>= a += a];',
+    '[a >>>= (a += a)];',
+    '[a >>>= (a += (a))];',
+    '[a >>>= a += {a}];',
+    '[a >>>= a += {a}];',
+    '[a >>>= a += a];',
+    '([a += a] );',
+    '([...a += a] );',
+    '[a >>>= (a)];',
+    '([...a += a += a += (a) >>>= 2]);',
     '[...a %= (a)];',
-    `obj.prop >>= 20;`,
-    `a |= 2;`,
-    `obj.prop &= 20;`,
+    'obj.prop >>= 20;',
+    'a |= 2;',
+    'obj.prop &= 20;',
     'obj.len ^= 10;',
     'var z = (x += 1);',
     'var z = (x <<= 1);',
@@ -41,12 +40,12 @@ describe('Expressions - Compound assignment', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -57,8 +56,8 @@ describe('Expressions - Compound assignment', () => {
     '({a}) *=	-1',
     '({a} += a);',
     '([a] += a);',
-    `({a} += {a});`,
-    `[a >>>= {a} += {a}];`,
+    '({a} += {a});',
+    '[a >>>= {a} += {a}];',
     '[1 >>>= a];',
     '[a >>>= a] += 1;',
     '[a >>>= a] += a;',
@@ -76,17 +75,17 @@ describe('Expressions - Compound assignment', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`${arg}`, { next: true, sourceType: 'module' });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

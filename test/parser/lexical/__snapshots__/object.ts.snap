@@ -1,0 +1,451 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *foo(x) { const x = 3; } } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'x'
+> 1 | !{ *foo(x) { const x = 3; } }
+    |                      ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *foo(x) { const x = 3; } } 2`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'x'
+> 1 | !{ *foo(x) { const x = 3; } }
+    |                      ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *foo(x) { let x = 3; } } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | !{ *foo(x) { let x = 3; } }
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *foo(x) { let x = 3; } } 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | !{ *foo(x) { let x = 3; } }
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g(){ let a; var a; } }; 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'a'
+> 1 | !{ *g(){ let a; var a; } };
+    |                      ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g([a, a]){} }; 1`] = `
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+> 1 | !{ *g([a, a]){} };
+    |            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g([a, a]){} }; 2`] = `
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+> 1 | !{ *g([a, a]){} };
+    |            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g({a, a}){} }; 1`] = `
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+> 1 | !{ *g({a, a}){} };
+    |            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g({a, a}){} }; 2`] = `
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+> 1 | !{ *g({a, a}){} };
+    |            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g(a, a){} }; 1`] = `
+"SyntaxError [1:10-1:11]: Duplicate binding 'a'
+> 1 | !{ *g(a, a){} };
+    |           ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ *g(a, a){} }; 2`] = `
+"SyntaxError [1:10-1:11]: Duplicate binding 'a'
+> 1 | !{ *g(a, a){} };
+    |           ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f(){ let a; var a; } }; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+> 1 | !{ f(){ let a; var a; } };
+    |                     ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f([a, a]){} }; 1`] = `
+"SyntaxError [1:10-1:11]: Duplicate binding 'a'
+> 1 | !{ f([a, a]){} };
+    |           ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f([a]){ let a; } }; 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+> 1 | !{ f([a]){ let a; } };
+    |                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f([a]){ let a; } }; 2`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+> 1 | !{ f([a]){ let a; } };
+    |                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f({a, a}){} }; 1`] = `
+"SyntaxError [1:10-1:11]: Duplicate binding 'a'
+> 1 | !{ f({a, a}){} };
+    |           ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f({a, a}){} }; 2`] = `
+"SyntaxError [1:10-1:11]: Duplicate binding 'a'
+> 1 | !{ f({a, a}){} };
+    |           ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f({a}){ let a; } }; 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+> 1 | !{ f({a}){ let a; } };
+    |                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f({a}){ let a; } }; 2`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+> 1 | !{ f({a}){ let a; } };
+    |                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f(a) { let a; } }; 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | !{ f(a) { let a; } };
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f(a) { let a; } }; 2`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | !{ f(a) { let a; } };
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ f(a, a){} }; 1`] = `
+"SyntaxError [1:9-1:10]: Duplicate binding 'a'
+> 1 | !{ f(a, a){} };
+    |          ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ get f(){ let a; var a; } }; 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'a'
+> 1 | !{ get f(){ let a; var a; } };
+    |                         ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f([a, a]){} }; 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+> 1 | !{ set f([a, a]){} };
+    |               ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f([a, a]){} }; 2`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+> 1 | !{ set f([a, a]){} };
+    |               ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f([a]){ let a; } }; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+> 1 | !{ set f([a]){ let a; } };
+    |                     ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f({a, a}){} }; 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+> 1 | !{ set f({a, a}){} };
+    |               ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f({a, a}){} }; 2`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+> 1 | !{ set f({a, a}){} };
+    |               ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f({a}){ let a; } }; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+> 1 | !{ set f({a}){ let a; } };
+    |                     ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f(a) { let a; } }; 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'a'
+> 1 | !{ set f(a) { let a; } };
+    |                    ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f(a) { let a; } }; 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'a'
+> 1 | !{ set f(a) { let a; } };
+    |                    ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{ set f(b){ let a; var a; } }; 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'a'
+> 1 | !{ set f(b){ let a; var a; } };
+    |                          ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ const x = y; function x(){} }} 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'x'
+> 1 | !{f(){ const x = y; function x(){} }}
+    |                              ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ const x = y; function x(){} }} 2`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'x'
+> 1 | !{f(){ const x = y; function x(){} }}
+    |                              ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ const x = y; var x; }} 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'x'
+> 1 | !{f(){ const x = y; var x; }}
+    |                          ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ function x(){} const x = y; }} 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'x'
+> 1 | !{f(){ function x(){} const x = y; }}
+    |                               ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ function x(){} const x = y; }} 2`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'x'
+> 1 | !{f(){ function x(){} const x = y; }}
+    |                               ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ function x(){} let x; }} 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'x'
+> 1 | !{f(){ function x(){} let x; }}
+    |                            ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ let x; function x(){} }} 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+> 1 | !{f(){ let x; function x(){} }}
+    |                        ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ let x; var x; }} 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | !{f(){ let x; var x; }}
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ let x; var x; }} 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | !{f(){ let x; var x; }}
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ var x; const x = y; }} 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+> 1 | !{f(){ var x; const x = y; }}
+    |                       ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ var x; let x; }} 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | !{f(){ var x; let x; }}
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(){ var x; let x; }} 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
+> 1 | !{f(){ var x; let x; }}
+    |                    ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([a, a, b]) {}} 1`] = `
+"SyntaxError [1:9-1:10]: Duplicate binding 'a'
+> 1 | !{f([a, a, b]) {}}
+    |          ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([a, a]) {}} 1`] = `
+"SyntaxError [1:9-1:10]: Duplicate binding 'a'
+> 1 | !{f([a, a]) {}}
+    |          ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([a, b, a]) {}} 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | !{f([a, b, a]) {}}
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a, a]) {}} 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | !{f([b, a, a]) {}}
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a, b, a]) {}} 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | !{f([b, a, b, a]) {}}
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], ...b) {}} 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'b'
+> 1 | !{f([b, a], ...b) {}}
+    |                 ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], ...b) {}} 2`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'b'
+> 1 | !{f([b, a], ...b) {}}
+    |                 ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], {b}) {}} 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'b'
+> 1 | !{f([b, a], {b}) {}}
+    |               ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], {b}) {}} 2`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'b'
+> 1 | !{f([b, a], {b}) {}}
+    |               ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], b) {}} 1`] = `
+"SyntaxError [1:13-1:14]: Duplicate binding 'b'
+> 1 | !{f([b, a], b) {}}
+    |              ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], b=x) {}} 1`] = `
+"SyntaxError [1:13-1:14]: Duplicate binding 'b'
+> 1 | !{f([b, a], b=x) {}}
+    |              ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], b=x) {}} 2`] = `
+"SyntaxError [1:13-1:14]: Duplicate binding 'b'
+> 1 | !{f([b, a], b=x) {}}
+    |              ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({"a": b}, ...b) {}} 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'b'
+> 1 | !{f({"a": b}, ...b) {}}
+    |                   ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({[a]: b}, ...b) {}} 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'b'
+> 1 | !{f({[a]: b}, ...b) {}}
+    |                   ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({[a]: b}, ...b) {}} 2`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'b'
+> 1 | !{f({[a]: b}, ...b) {}}
+    |                   ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({[a]: b}, ...b) {}} 3`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'b'
+> 1 | !{f({[a]: b}, ...b) {}}
+    |                   ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({[x]: b}, b = ((b) => {}) ) {}} 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'b'
+> 1 | !{f({[x]: b}, b = ((b) => {}) ) {}}
+    |                 ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({2: b}, ...b) {}} 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'b'
+> 1 | !{f({2: b}, ...b) {}}
+    |                 ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({a = b}, ...a) {}} 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | !{f({a = b}, ...a) {}}
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({a: b}, ...b) {}} 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'b'
+> 1 | !{f({a: b}, ...b) {}}
+    |                 ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f({b}, ...b) {}} 1`] = `
+"SyntaxError [1:13-1:14]: Duplicate binding 'b'
+> 1 | !{f({b}, ...b) {}}
+    |              ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(a, a) {}} 1`] = `
+"SyntaxError [1:8-1:9]: Duplicate binding 'a'
+> 1 | !{f(a, a) {}}
+    |         ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(a, a, b) {}} 1`] = `
+"SyntaxError [1:8-1:9]: Duplicate binding 'a'
+> 1 | !{f(a, a, b) {}}
+    |         ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(a, b, a) {}} 1`] = `
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+> 1 | !{f(a, b, a) {}}
+    |            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, a) {}} 1`] = `
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+> 1 | !{f(b, a, a) {}}
+    |            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, ...a) {}} 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | !{f(b, a, b, ...a) {}}
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, a = x) {}} 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | !{f(b, a, b, a = x) {}}
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, a) {}} 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+> 1 | !{f(b, a, b, a) {}}
+    |               ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, a, [fine]) {}} 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+> 1 | !{f(b, a, b, a, [fine]) {}}
+    |               ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(x) { const x = y }} 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'x'
+> 1 | !{f(x) { const x = y }}
+    |                  ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Object > Lexical - Object (fail) > !{f(x) { let x }} 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'x'
+> 1 | !{f(x) { let x }}
+    |                ^ Duplicate binding 'x'"
+`;

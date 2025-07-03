@@ -1,10 +1,10 @@
+import { Chars } from '../chars';
 import { Context, Flags } from '../common';
+import { Errors } from '../errors';
 import { type Parser } from '../parser/parser';
 import { Token } from '../token';
-import { Chars } from '../chars';
-import { report, Errors } from '../errors';
-import { toHex, advanceChar } from './common';
-import { CharTypes, CharFlags } from './charClassifier';
+import { CharFlags, CharTypes } from './charClassifier';
+import { advanceChar, toHex } from './common';
 // Intentionally negative
 export const enum Escape {
   Empty = -1,
@@ -28,7 +28,7 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
     if (char === quote) {
       ret += parser.source.slice(marker, parser.index);
       advanceChar(parser); // skip closing quote
-      if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(start, parser.index);
+      if (parser.options.raw) parser.tokenRaw = parser.source.slice(start, parser.index);
       parser.tokenValue = ret;
       return Token.StringLiteral;
     }
@@ -45,14 +45,17 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
         ret += String.fromCodePoint(char);
       }
       marker = parser.index + 1;
+    } else if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
+      parser.column = -1;
+      parser.line++;
     }
 
-    if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
+    if (parser.index >= parser.end) parser.report(Errors.UnterminatedString);
 
     char = advanceChar(parser);
   }
 
-  report(parser, Errors.UnterminatedString);
+  parser.report(Errors.UnterminatedString);
 }
 
 // TODO! Use table lookup
@@ -215,8 +218,7 @@ export function parseEscape(parser: Parser, context: Context, first: number, isT
     // `8`, `9` (invalid escapes)
     case Chars.Eight:
     case Chars.Nine:
-      if (isTemplate || (context & Context.OptionsWebCompat) === 0 || context & Context.Strict)
-        return Escape.EightOrNine;
+      if (isTemplate || !parser.options.webcompat || context & Context.Strict) return Escape.EightOrNine;
       parser.flags |= Flags.EightAndNine;
     // fallthrough
     default:
@@ -224,22 +226,22 @@ export function parseEscape(parser: Parser, context: Context, first: number, isT
   }
 }
 
-export function handleStringError(state: Parser, code: Escape, isTemplate: 0 | 1): void {
+export function handleStringError(parser: Parser, code: Escape, isTemplate: 0 | 1): void {
   switch (code) {
     case Escape.Empty:
       return;
 
     case Escape.StrictOctal:
-      report(state, isTemplate ? Errors.TemplateOctalLiteral : Errors.StrictOctalEscape);
+      parser.report(isTemplate ? Errors.TemplateOctalLiteral : Errors.StrictOctalEscape);
 
     case Escape.EightOrNine:
-      report(state, isTemplate ? Errors.TemplateEightAndNine : Errors.InvalidEightAndNine);
+      parser.report(isTemplate ? Errors.TemplateEightAndNine : Errors.InvalidEightAndNine);
 
     case Escape.InvalidHex:
-      report(state, Errors.InvalidHexEscapeSequence);
+      parser.report(Errors.InvalidHexEscapeSequence);
 
     case Escape.OutOfRange:
-      report(state, Errors.UnicodeOverflow);
+      parser.report(Errors.UnicodeOverflow);
 
     // No default
   }

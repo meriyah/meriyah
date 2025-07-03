@@ -1,5 +1,23 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Block > Expressions - Array (fail) > { let [] } 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | { let [] }
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Expressions - Block > Expressions - Array (fail) > { let {} } 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | { let {} }
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Expressions - Block > Expressions - Array (fail) > { let {x} } 1`] = `
+"SyntaxError [1:10-1:11]: Missing initializer in destructuring declaration
+> 1 | { let {x} }
+    |           ^ Missing initializer in destructuring declaration"
+`;
+
 exports[`Expressions - Block > Expressions - Block (pass) > {
   debugger;
 } 1`] = `

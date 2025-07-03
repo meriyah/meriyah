@@ -1,8 +1,7 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Exponentiation', () => {
   for (const arg of [
@@ -42,47 +41,43 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.throws(() => {
-        parseSource(
-          `let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
-          undefined,
-          Context.OptionsNext | Context.Module,
-        );
+        parseSource(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true, sourceType: 'module' });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; ; (${arg})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, undefined, Context.OptionsNext | Context.Strict);
+        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, { next: true, impliedStrict: true });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; foo(${arg})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, undefined, Context.OptionsWebCompat);
+        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, { webcompat: true });
       });
     });
   }
 
   fail('Expressions - Exponentiation (fail)', [
-    ['+1 ** 2;', Context.None],
-    ['-3 ** 2;', Context.None],
-    ['!1 ** 2;', Context.None],
-    ['delete o.p ** 2;', Context.None],
-    ['~3 ** 2;', Context.None],
-    ['(a * +a ** a ** 3)', Context.None],
-    ['typeof 3 ** 2;', Context.None],
-    ['delete 3 ** 2;', Context.None],
-    ['!3 ** 2;', Context.None],
-    ['-x ** 2;', Context.None],
-    ['+x ** 2;', Context.None],
-    ['(~3 ** 2)', Context.None],
-    ['(typeof 3 ** 2)', Context.None],
-    ['(delete 3 ** 2)', Context.None],
-    ['(!3 ** 2)', Context.None],
-    ['(+x ** 2)', Context.None],
-    ['(a * +a ** a ** 3)', Context.None],
-    ['for (var import.meta of [1]) {}', Context.None],
-    ['async function f() { await 2 ** 2; }', Context.None],
+    '+1 ** 2;',
+    '-3 ** 2;',
+    '!1 ** 2;',
+    'delete o.p ** 2;',
+    '~3 ** 2;',
+    '(a * +a ** a ** 3)',
+    'typeof 3 ** 2;',
+    'delete 3 ** 2;',
+    '!3 ** 2;',
+    '-x ** 2;',
+    '+x ** 2;',
+    '(~3 ** 2)',
+    '(typeof 3 ** 2)',
+    '(delete 3 ** 2)',
+    '(!3 ** 2)',
+    '(+x ** 2)',
+    '(a * +a ** a ** 3)',
+    'for (var import.meta of [1]) {}',
+    'async function f() { await 2 ** 2; }',
   ]);
 
   for (const arg of [
@@ -125,23 +120,19 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
-          undefined,
-          Context.OptionsNext | Context.Module,
-        );
+        parseSource(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true, sourceType: 'module' });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; ; (${arg})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, undefined, Context.OptionsNext | Context.Strict);
+        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, { next: true, impliedStrict: true });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; foo(${arg})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, undefined, Context.OptionsWebCompat);
+        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, { webcompat: true });
       });
     });
   }

@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -19,25 +18,25 @@ describe('Expressions - Rest', () => {
   ]) {
     it(`x = ${arg}`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`, undefined, Context.None);
+        parseSource(`x = ${arg};`);
       });
     });
 
     it(`function fn() { 'use strict';${arg}} fn();`, () => {
       t.throws(() => {
-        parseSource(`function fn() { 'use strict';${arg}} fn();`, undefined, Context.None);
+        parseSource(`function fn() { 'use strict';${arg}} fn();`);
       });
     });
 
     it(`function fn() { ${arg}} fn();`, () => {
       t.throws(() => {
-        parseSource(`function fn() { ${arg}} fn();`, undefined, Context.None);
+        parseSource(`function fn() { ${arg}} fn();`);
       });
     });
 
     it(`"use strict"; x = ${arg}`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`, undefined, Context.None);
+        parseSource(`x = ${arg};`);
       });
     });
   }
@@ -47,19 +46,19 @@ describe('Expressions - Rest', () => {
   for (const arg of ['[...]', '[a, ...]', '[..., ]', '[..., ...]', '[ (...a)]']) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg};`, { webcompat: true, lexical: true });
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg};`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg};`);
       });
     });
   }
@@ -95,23 +94,23 @@ describe('Expressions - Rest', () => {
   ]) {
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, undefined, Context.None);
+        parseSource(`x = ${arg};`);
       });
     });
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, undefined, Context.OptionsLexical);
+        parseSource(`x = ${arg};`, { lexical: true });
       });
     });
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`x = ${arg};`, { next: true, sourceType: 'module' });
       });
     });
 
     it(`"use strict"; x = ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, undefined, Context.None);
+        parseSource(`x = ${arg};`);
       });
     });
   }

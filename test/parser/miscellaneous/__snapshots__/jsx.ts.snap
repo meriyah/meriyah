@@ -1,5 +1,503 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) >  < .a > ; 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token
+> 1 |  < .a > ;
+    |    ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) >  > ; 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '>'
+> 1 |  > ;
+    |  ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < > 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | < >
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < > 2`] = `
+"SyntaxError [1:3-1:3]: Unexpected token
+> 1 | < >
+    |    ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < 2`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | <
+    | ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <.a></.a> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <.a></.a>
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <.abc /> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <.abc />
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > </> 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </>
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > </> 2`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '/'
+> 1 | </>
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > </> 3`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '/'
+> 1 | </>
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <:a />; 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <:a />;
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <:path /> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <:path />
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <> 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <>
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <> 2`] = `
+"SyntaxError [1:2-1:2]: Unexpected token
+> 1 | <>
+    |   ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <><//> 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <><//>
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <><//> 2`] = `
+"SyntaxError [1:6-1:6]: Unexpected token
+> 1 | <><//>
+    |       ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <{...b} {...a }>{...b}</{...b}> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <{...b} {...a }>{...b}</{...b}>
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <1/> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <1/>
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <Foo></Bar> 1`] = `
+"SyntaxError [1:10-1:11]: Expected corresponding JSX closing tag for Bar
+> 1 | <Foo></Bar>
+    |           ^ Expected corresponding JSX closing tag for Bar"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b=: /> 1`] = `
+"SyntaxError [1:5-1:6]: JSX value should be either an expression or a quoted JSX text
+> 1 | <a b=: />
+    |      ^ JSX value should be either an expression or a quoted JSX text"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b={}>; 1`] = `
+"SyntaxError [1:6-1:7]: JSX attributes must only be assigned a non-empty 'expression'
+> 1 | <a b={}>;
+    |       ^ JSX attributes must only be assigned a non-empty 'expression'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b=}>; 1`] = `
+"SyntaxError [1:5-1:6]: JSX value should be either an expression or a quoted JSX text
+> 1 | <a b=}>;
+    |      ^ JSX value should be either an expression or a quoted JSX text"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b></b>; 1`] = `
+"SyntaxError [1:9-1:10]: Expected corresponding JSX closing tag for b
+> 1 | <a b></b>;
+    |          ^ Expected corresponding JSX closing tag for b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a foo="bar; 1`] = `
+"SyntaxError [1:7-1:12]: Unterminated string literal
+> 1 | <a foo="bar;
+    |        ^^^^^ Unterminated string literal"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a.></a.> 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: '>'
+> 1 | <a.></a.>
+    |    ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a.b.c></a>; 1`] = `
+"SyntaxError [1:11-1:12]: Expected corresponding JSX closing tag for a
+> 1 | <a.b.c></a>;
+    |            ^ Expected corresponding JSX closing tag for a"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a.b:c></a.b:c>; 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ':'
+> 1 | <a.b:c></a.b:c>;
+    |     ^ Unexpected token: ':'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a/! 1`] = `
+"SyntaxError [1:3-1:4]: Expected '>'
+> 1 | <a/!
+    |    ^ Expected '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a: />; 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '/'
+> 1 | <a: />;
+    |     ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b></b>; 1`] = `
+"SyntaxError [1:9-1:10]: Expected corresponding JSX closing tag for b
+> 1 | <a:b></b>;
+    |          ^ Expected corresponding JSX closing tag for b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>;</>; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '>'
+> 1 | <a>;</>;
+    |       ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a></b> 1`] = `
+"SyntaxError [1:6-1:7]: Expected corresponding JSX closing tag for b
+> 1 | <a></b>
+    |       ^ Expected corresponding JSX closing tag for b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a><</a> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token
+> 1 | <a><</a>
+    |     ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>></a> 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '>>'
+> 1 | <a>></a>
+    |   ^^ Unexpected token: '>>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>></a>; 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '>>'
+> 1 | <a>></a>;
+    |   ^^ Unexpected token: '>>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a["foo"]></a["foo"]>; 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '['
+> 1 | <a["foo"]></a["foo"]>;
+    |   ^ Unexpected token: '['"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a[foo]></a[foo]>; 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '['
+> 1 | <a[foo]></a[foo]>;
+    |   ^ Unexpected token: '['"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <chinese:alladinfoo.bar></foo.baz> 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: '.'
+> 1 | <chinese:alladinfoo.bar></foo.baz>
+    |                    ^ Unexpected token: '.'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <dd><e></e></dddd>; 1`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for dddd
+> 1 | <dd><e></e></dddd>;
+    |                   ^ Expected corresponding JSX closing tag for dddd"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div =""></div> 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '='
+> 1 | <div =""></div>
+    |      ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div =/> 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '='
+> 1 | <div =/>
+    |      ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {...props}>stuff</div {...props}> 1`] = `
+"SyntaxError [1:27-1:28]: Expected '>'
+> 1 | <div {...props}>stuff</div {...props}>
+    |                            ^ Expected '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {...props}>stuff</div {...props}>; 1`] = `
+"SyntaxError [1:27-1:28]: Expected '>'
+> 1 | <div {...props}>stuff</div {...props}>;
+    |                            ^ Expected '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {props} /> 1`] = `
+"SyntaxError [1:6-1:11]: Expected '...'
+> 1 | <div {props} />
+    |       ^^^^^ Expected '...'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {props} />; 1`] = `
+"SyntaxError [1:6-1:11]: Expected '...'
+> 1 | <div {props} />;
+    |       ^^^^^ Expected '...'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div className"app"> 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected token: 'string'
+> 1 | <div className"app">
+    |               ^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div id={}></div> 1`] = `
+"SyntaxError [1:9-1:10]: JSX attributes must only be assigned a non-empty 'expression'
+> 1 | <div id={}></div>
+    |          ^ JSX attributes must only be assigned a non-empty 'expression'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=""></div> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=""></div>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=+-%&([)]}.../> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=+-%&([)]}.../>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=/> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=/>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=/> 2`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=/>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=-/> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=-/>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=1></div> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=1></div>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=div></div> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=div></div>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>one</div><div>two</div> 1`] = `
+"SyntaxError [1:23-1:28]: Unterminated regular expression
+> 1 | <div>one</div><div>two</div>
+    |                        ^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <f><g/></ff>; 1`] = `
+"SyntaxError [1:12-1:13]: Expected corresponding JSX closing tag for ff
+> 1 | <f><g/></ff>;
+    |             ^ Expected corresponding JSX closing tag for ff"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <foo
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo.bar></foo.baz> 1`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for foo.baz
+> 1 | <foo.bar></foo.baz>
+    |                   ^ Expected corresponding JSX closing tag for foo.baz"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo.bar></foo.baz> 2`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for foo.baz
+> 1 | <foo.bar></foo.baz>
+    |                   ^ Expected corresponding JSX closing tag for foo.baz"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo:bar.baz></foo.baz:bar> 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: '.'
+> 1 | <foo:bar.baz></foo.baz:bar>
+    |         ^ Unexpected token: '.'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo:bar></foo.baz> 1`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for foo.baz
+> 1 | <foo:bar></foo.baz>
+    |                   ^ Expected corresponding JSX closing tag for foo.baz"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <img src={}> 1`] = `
+"SyntaxError [1:10-1:11]: JSX attributes must only be assigned a non-empty 'expression'
+> 1 | <img src={}>
+    |           ^ JSX attributes must only be assigned a non-empty 'expression'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p> 1`] = `
+"SyntaxError [1:3-1:3]: Unexpected token
+> 1 | <p>
+    |    ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p></> 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '>'
+> 1 | <p></>
+    |      ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p></q> 1`] = `
+"SyntaxError [1:6-1:7]: Expected corresponding JSX closing tag for q
+> 1 | <p></q>
+    |       ^ Expected corresponding JSX closing tag for q"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p><q></p> 1`] = `
+"SyntaxError [1:10-1:10]: Expected corresponding JSX closing tag for p
+> 1 | <p><q></p>
+    |           ^ Expected corresponding JSX closing tag for p"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p>{/}</p> 1`] = `
+"SyntaxError [1:4-1:8]: Unexpected regular expression flag
+> 1 | <p>{/}</p>
+    |     ^^^^ Unexpected regular expression flag"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <path></svg:path> 1`] = `
+"SyntaxError [1:16-1:17]: Expected corresponding JSX closing tag for [object Object]:[object Object]
+> 1 | <path></svg:path>
+    |                 ^ Expected corresponding JSX closing tag for [object Object]:[object Object]"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <tag \${"className"}="tag"></tag> 1`] = `
+"SyntaxError [1:7-1:18]: Expected '...'
+> 1 | <tag \${"className"}="tag"></tag>
+    |        ^^^^^^^^^^^ Expected '...'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <tag className=></tag> 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | <tag className=></tag>
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <xyz. /> 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '/'
+> 1 | <xyz. />
+    |       ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > > 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '>'
+> 1 | >
+    | ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > > 2`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '>'
+> 1 | >
+    | ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 2`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 3`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 4`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 5`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > a > ; 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ';'
+> 1 | a > ;
+    |     ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div> /* intervening comment */ <div>two</div>; 1`] = `
+"SyntaxError [1:58-1:64]: Unterminated regular expression
+> 1 | var x = <div>one</div> /* intervening comment */ <div>two</div>;
+    |                                                           ^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div>, <div>two</div>; 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected token: '<'
+> 1 | var x = <div>one</div>, <div>two</div>;
+    |                         ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div><div>two</div>; 1`] = `
+"SyntaxError [1:31-1:37]: Unterminated regular expression
+> 1 | var x = <div>one</div><div>two</div>;
+    |                                ^^^^^^ Unterminated regular expression"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > "use strict"; <async /> 1`] = `
 {
   "body": [
@@ -327,12 +825,12 @@ a
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
-     <>
-       <>
-         super deep
-       </>
-     </>
-   </> 1`] = `
+  <>
+    <>
+      super deep
+    </>
+  </>
+</> 1`] = `
 {
   "body": [
     {
@@ -341,22 +839,22 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
           {
             "type": "JSXText",
             "value": "
-     ",
+  ",
           },
           {
             "children": [
               {
                 "type": "JSXText",
                 "value": "
-       ",
+    ",
               },
               {
                 "children": [
                   {
                     "type": "JSXText",
                     "value": "
-         super deep
-       ",
+      super deep
+    ",
                   },
                 ],
                 "closingFragment": {
@@ -370,7 +868,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
               {
                 "type": "JSXText",
                 "value": "
-     ",
+  ",
               },
             ],
             "closingFragment": {
@@ -384,7 +882,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
           {
             "type": "JSXText",
             "value": "
-   ",
+",
           },
         ],
         "closingFragment": {
@@ -404,12 +902,12 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
-     <>
-       <>
-        Ghost!
-       </>
-     </>
-   </> 1`] = `
+  <>
+    <>
+     Ghost!
+    </>
+  </>
+</> 1`] = `
 {
   "body": [
     {
@@ -418,22 +916,22 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
           {
             "type": "JSXText",
             "value": "
-     ",
+  ",
           },
           {
             "children": [
               {
                 "type": "JSXText",
                 "value": "
-       ",
+    ",
               },
               {
                 "children": [
                   {
                     "type": "JSXText",
                     "value": "
-        Ghost!
-       ",
+     Ghost!
+    ",
                   },
                 ],
                 "closingFragment": {
@@ -447,7 +945,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
               {
                 "type": "JSXText",
                 "value": "
-     ",
+  ",
               },
             ],
             "closingFragment": {
@@ -461,7 +959,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <>
           {
             "type": "JSXText",
             "value": "
-   ",
+",
           },
         ],
         "closingFragment": {
@@ -1130,14 +1628,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <A.B.C.D.E.foo-bar /
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <Basic>
-       <BasicChild>
-         <BasicChild>
-           <BasicChild>
-             Title 2
-           </BasicChild>
-         </BasicChild>
-       </BasicChild>
-     </Basic> 1`] = `
+  <BasicChild>
+    <BasicChild>
+      <BasicChild>
+        Title 2
+      </BasicChild>
+    </BasicChild>
+  </BasicChild>
+</Basic> 1`] = `
 {
   "body": [
     {
@@ -1146,29 +1644,29 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <Basic>
           {
             "type": "JSXText",
             "value": "
-       ",
+  ",
           },
           {
             "children": [
               {
                 "type": "JSXText",
                 "value": "
-         ",
+    ",
               },
               {
                 "children": [
                   {
                     "type": "JSXText",
                     "value": "
-           ",
+      ",
                   },
                   {
                     "children": [
                       {
                         "type": "JSXText",
                         "value": "
-             Title 2
-           ",
+        Title 2
+      ",
                       },
                     ],
                     "closingElement": {
@@ -1192,7 +1690,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <Basic>
                   {
                     "type": "JSXText",
                     "value": "
-         ",
+    ",
                   },
                 ],
                 "closingElement": {
@@ -1216,7 +1714,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <Basic>
               {
                 "type": "JSXText",
                 "value": "
-       ",
+  ",
               },
             ],
             "closingElement": {
@@ -1240,7 +1738,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <Basic>
           {
             "type": "JSXText",
             "value": "
-     ",
+",
           },
         ],
         "closingElement": {
@@ -5252,9 +5750,9 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div id={function(){
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-     <h1>Move the mouse around!</h1>
-     <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
-   </div> 1`] = `
+  <h1>Move the mouse around!</h1>
+  <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+</div> 1`] = `
 {
   "body": [
     {
@@ -5263,7 +5761,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height
           {
             "type": "JSXText",
             "value": "
-     ",
+  ",
           },
           {
             "children": [
@@ -5293,7 +5791,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height
           {
             "type": "JSXText",
             "value": "
-     ",
+  ",
           },
           {
             "children": [
@@ -5379,7 +5877,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height
           {
             "type": "JSXText",
             "value": "
-   ",
+",
           },
         ],
         "closingElement": {
@@ -5534,14 +6032,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{color: 
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>
-     one
-     <div>
-       two
-       <span>
-         three
-       </span>
-     </div>
-   </div> 1`] = `
+  one
+  <div>
+    two
+    <span>
+      three
+    </span>
+  </div>
+</div> 1`] = `
 {
   "body": [
     {
@@ -5550,24 +6048,24 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>
           {
             "type": "JSXText",
             "value": "
-     one
-     ",
+  one
+  ",
           },
           {
             "children": [
               {
                 "type": "JSXText",
                 "value": "
-       two
-       ",
+    two
+    ",
               },
               {
                 "children": [
                   {
                     "type": "JSXText",
                     "value": "
-         three
-       ",
+      three
+    ",
                   },
                 ],
                 "closingElement": {
@@ -5591,7 +6089,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>
               {
                 "type": "JSXText",
                 "value": "
-     ",
+  ",
               },
             ],
             "closingElement": {
@@ -5615,7 +6113,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>
           {
             "type": "JSXText",
             "value": "
-   ",
+",
           },
         ],
         "closingElement": {
@@ -6726,13 +7224,13 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>hi hi hi!</div>
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
-     {props.items.map(item => (
-       <React.Fragment key={item.id}>
-         <dt>{item.term}</dt>
-         <dd>{item.description}</dd>
-       </React.Fragment>
-     ))}
-   </dl> 1`] = `
+  {props.items.map(item => (
+    <React.Fragment key={item.id}>
+      <dt>{item.term}</dt>
+      <dd>{item.description}</dd>
+    </React.Fragment>
+  ))}
+</dl> 1`] = `
 {
   "body": [
     {
@@ -6741,7 +7239,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
           {
             "type": "JSXText",
             "value": "
-     ",
+  ",
           },
           {
             "expression": {
@@ -6753,7 +7251,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                       {
                         "type": "JSXText",
                         "value": "
-         ",
+      ",
                       },
                       {
                         "children": [
@@ -6795,7 +7293,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                       {
                         "type": "JSXText",
                         "value": "
-         ",
+      ",
                       },
                       {
                         "children": [
@@ -6837,7 +7335,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                       {
                         "type": "JSXText",
                         "value": "
-       ",
+    ",
                       },
                     ],
                     "closingElement": {
@@ -6937,7 +7435,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
           {
             "type": "JSXText",
             "value": "
-   ",
+",
           },
         ],
         "closingElement": {
@@ -6967,10 +7465,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <em>
-     One
-     Two
-     Three
-     </em> 1`] = `
+One
+Two
+Three
+</em> 1`] = `
 {
   "body": [
     {
@@ -6979,10 +7477,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <em>
           {
             "type": "JSXText",
             "value": "
-     One
-     Two
-     Three
-     ",
+One
+Two
+Three
+",
           },
         ],
         "closingElement": {
@@ -7012,10 +7510,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <em>
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <em>
-     One
-     Two
-     Three
-     </em> 2`] = `
+One
+Two
+Three
+</em> 2`] = `
 {
   "body": [
     {
@@ -7024,10 +7522,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <em>
           {
             "type": "JSXText",
             "value": "
-     One
-     Two
-     Three
-     ",
+One
+Two
+Three
+",
           },
         ],
         "closingElement": {
@@ -7125,9 +7623,9 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <foo bar=<baz.zoo></
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <h1>
-     Hello {name}
-     !
-   </h1> 1`] = `
+  Hello {name}
+  !
+</h1> 1`] = `
 {
   "body": [
     {
@@ -7136,7 +7634,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <h1>
           {
             "type": "JSXText",
             "value": "
-     Hello ",
+  Hello ",
           },
           {
             "expression": {
@@ -7148,8 +7646,8 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <h1>
           {
             "type": "JSXText",
             "value": "
-     !
-   ",
+  !
+",
           },
         ],
         "closingElement": {
@@ -8549,9 +9047,9 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <日本語></日本�
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > ReactDOM.render(
-        <CommentBox url="/api/comments" pollInterval={2000} />,
-        document.getElementById('content')
-      ); 1`] = `
+  <CommentBox url="/api/comments" pollInterval={2000} />,
+  document.getElementById('content')
+); 1`] = `
 {
   "body": [
     {
@@ -8713,15 +9211,15 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class C {  static a 
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extends React.Component {
-        render() {
-          return (
-            <>
-              <td>Hello</td>
-              <td>World</td>
-            </>
-          );
-        }
-      } 1`] = `
+  render() {
+    return (
+      <>
+        <td>Hello</td>
+        <td>World</td>
+      </>
+    );
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -8729,43 +9227,43 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
         "body": [
           {
             "computed": false,
-            "end": 189,
+            "end": 141,
             "key": {
-              "end": 54,
+              "end": 48,
               "loc": {
                 "end": {
-                  "column": 14,
+                  "column": 8,
                   "line": 2,
                 },
                 "start": {
-                  "column": 8,
+                  "column": 2,
                   "line": 2,
                 },
               },
               "name": "render",
               "range": [
+                42,
                 48,
-                54,
               ],
-              "start": 48,
+              "start": 42,
               "type": "Identifier",
             },
             "kind": "method",
             "loc": {
               "end": {
-                "column": 9,
+                "column": 3,
                 "line": 9,
               },
               "start": {
-                "column": 8,
+                "column": 2,
                 "line": 2,
               },
             },
             "range": [
-              48,
-              189,
+              42,
+              141,
             ],
-            "start": 48,
+            "start": 42,
             "static": false,
             "type": "MethodDefinition",
             "value": {
@@ -8776,431 +9274,431 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
                     "argument": {
                       "children": [
                         {
-                          "end": 107,
+                          "end": 83,
                           "loc": {
                             "end": {
-                              "column": 14,
+                              "column": 8,
                               "line": 5,
                             },
                             "start": {
-                              "column": 14,
+                              "column": 8,
                               "line": 4,
                             },
                           },
                           "range": [
-                            92,
-                            107,
+                            74,
+                            83,
                           ],
-                          "start": 92,
+                          "start": 74,
                           "type": "JSXText",
                           "value": "
-              ",
+        ",
                         },
                         {
                           "children": [
                             {
-                              "end": 116,
+                              "end": 92,
                               "loc": {
                                 "end": {
-                                  "column": 23,
+                                  "column": 17,
                                   "line": 5,
                                 },
                                 "start": {
-                                  "column": 18,
+                                  "column": 12,
                                   "line": 5,
                                 },
                               },
                               "range": [
-                                111,
-                                116,
+                                87,
+                                92,
                               ],
-                              "start": 111,
+                              "start": 87,
                               "type": "JSXText",
                               "value": "Hello",
                             },
                           ],
                           "closingElement": {
-                            "end": 121,
+                            "end": 97,
                             "loc": {
                               "end": {
-                                "column": 28,
+                                "column": 22,
                                 "line": 5,
                               },
                               "start": {
-                                "column": 23,
+                                "column": 17,
                                 "line": 5,
                               },
                             },
                             "name": {
-                              "end": 120,
+                              "end": 96,
                               "loc": {
                                 "end": {
-                                  "column": 27,
+                                  "column": 21,
                                   "line": 5,
                                 },
                                 "start": {
-                                  "column": 25,
+                                  "column": 19,
                                   "line": 5,
                                 },
                               },
                               "name": "td",
                               "range": [
-                                118,
-                                120,
+                                94,
+                                96,
                               ],
-                              "start": 118,
+                              "start": 94,
                               "type": "JSXIdentifier",
                             },
                             "range": [
-                              116,
-                              121,
+                              92,
+                              97,
                             ],
-                            "start": 116,
+                            "start": 92,
                             "type": "JSXClosingElement",
                           },
-                          "end": 121,
+                          "end": 97,
                           "loc": {
                             "end": {
-                              "column": 28,
+                              "column": 22,
                               "line": 5,
                             },
                             "start": {
-                              "column": 14,
+                              "column": 8,
                               "line": 5,
                             },
                           },
                           "openingElement": {
                             "attributes": [],
-                            "end": 111,
+                            "end": 87,
                             "loc": {
                               "end": {
-                                "column": 18,
+                                "column": 12,
                                 "line": 5,
                               },
                               "start": {
-                                "column": 14,
+                                "column": 8,
                                 "line": 5,
                               },
                             },
                             "name": {
-                              "end": 110,
+                              "end": 86,
                               "loc": {
                                 "end": {
-                                  "column": 17,
+                                  "column": 11,
                                   "line": 5,
                                 },
                                 "start": {
-                                  "column": 15,
+                                  "column": 9,
                                   "line": 5,
                                 },
                               },
                               "name": "td",
                               "range": [
-                                108,
-                                110,
+                                84,
+                                86,
                               ],
-                              "start": 108,
+                              "start": 84,
                               "type": "JSXIdentifier",
                             },
                             "range": [
-                              107,
-                              111,
+                              83,
+                              87,
                             ],
                             "selfClosing": false,
-                            "start": 107,
+                            "start": 83,
                             "type": "JSXOpeningElement",
                           },
                           "range": [
-                            107,
-                            121,
+                            83,
+                            97,
                           ],
-                          "start": 107,
+                          "start": 83,
                           "type": "JSXElement",
                         },
                         {
-                          "end": 136,
+                          "end": 106,
                           "loc": {
                             "end": {
-                              "column": 14,
+                              "column": 8,
                               "line": 6,
                             },
                             "start": {
-                              "column": 28,
+                              "column": 22,
                               "line": 5,
                             },
                           },
                           "range": [
-                            121,
-                            136,
+                            97,
+                            106,
                           ],
-                          "start": 121,
+                          "start": 97,
                           "type": "JSXText",
                           "value": "
-              ",
+        ",
                         },
                         {
                           "children": [
                             {
-                              "end": 145,
+                              "end": 115,
                               "loc": {
                                 "end": {
-                                  "column": 23,
+                                  "column": 17,
                                   "line": 6,
                                 },
                                 "start": {
-                                  "column": 18,
+                                  "column": 12,
                                   "line": 6,
                                 },
                               },
                               "range": [
-                                140,
-                                145,
+                                110,
+                                115,
                               ],
-                              "start": 140,
+                              "start": 110,
                               "type": "JSXText",
                               "value": "World",
                             },
                           ],
                           "closingElement": {
-                            "end": 150,
+                            "end": 120,
                             "loc": {
                               "end": {
-                                "column": 28,
+                                "column": 22,
                                 "line": 6,
                               },
                               "start": {
-                                "column": 23,
+                                "column": 17,
                                 "line": 6,
                               },
                             },
                             "name": {
-                              "end": 149,
+                              "end": 119,
                               "loc": {
                                 "end": {
-                                  "column": 27,
+                                  "column": 21,
                                   "line": 6,
                                 },
                                 "start": {
-                                  "column": 25,
+                                  "column": 19,
                                   "line": 6,
                                 },
                               },
                               "name": "td",
                               "range": [
-                                147,
-                                149,
+                                117,
+                                119,
                               ],
-                              "start": 147,
+                              "start": 117,
                               "type": "JSXIdentifier",
                             },
                             "range": [
-                              145,
-                              150,
+                              115,
+                              120,
                             ],
-                            "start": 145,
+                            "start": 115,
                             "type": "JSXClosingElement",
                           },
-                          "end": 150,
+                          "end": 120,
                           "loc": {
                             "end": {
-                              "column": 28,
+                              "column": 22,
                               "line": 6,
                             },
                             "start": {
-                              "column": 14,
+                              "column": 8,
                               "line": 6,
                             },
                           },
                           "openingElement": {
                             "attributes": [],
-                            "end": 140,
+                            "end": 110,
                             "loc": {
                               "end": {
-                                "column": 18,
+                                "column": 12,
                                 "line": 6,
                               },
                               "start": {
-                                "column": 14,
+                                "column": 8,
                                 "line": 6,
                               },
                             },
                             "name": {
-                              "end": 139,
+                              "end": 109,
                               "loc": {
                                 "end": {
-                                  "column": 17,
+                                  "column": 11,
                                   "line": 6,
                                 },
                                 "start": {
-                                  "column": 15,
+                                  "column": 9,
                                   "line": 6,
                                 },
                               },
                               "name": "td",
                               "range": [
-                                137,
-                                139,
+                                107,
+                                109,
                               ],
-                              "start": 137,
+                              "start": 107,
                               "type": "JSXIdentifier",
                             },
                             "range": [
-                              136,
-                              140,
+                              106,
+                              110,
                             ],
                             "selfClosing": false,
-                            "start": 136,
+                            "start": 106,
                             "type": "JSXOpeningElement",
                           },
                           "range": [
-                            136,
-                            150,
+                            106,
+                            120,
                           ],
-                          "start": 136,
+                          "start": 106,
                           "type": "JSXElement",
                         },
                         {
-                          "end": 163,
+                          "end": 127,
                           "loc": {
                             "end": {
-                              "column": 12,
+                              "column": 6,
                               "line": 7,
                             },
                             "start": {
-                              "column": 28,
+                              "column": 22,
                               "line": 6,
                             },
                           },
                           "range": [
-                            150,
-                            163,
+                            120,
+                            127,
                           ],
-                          "start": 150,
+                          "start": 120,
                           "type": "JSXText",
                           "value": "
-            ",
+      ",
                         },
                       ],
                       "closingFragment": {
-                        "end": 166,
+                        "end": 130,
                         "loc": {
                           "end": {
-                            "column": 15,
+                            "column": 9,
                             "line": 7,
                           },
                           "start": {
-                            "column": 12,
+                            "column": 6,
                             "line": 7,
                           },
                         },
                         "range": [
-                          163,
-                          166,
+                          127,
+                          130,
                         ],
-                        "start": 163,
+                        "start": 127,
                         "type": "JSXClosingFragment",
                       },
-                      "end": 166,
+                      "end": 130,
                       "loc": {
                         "end": {
-                          "column": 15,
+                          "column": 9,
                           "line": 7,
                         },
                         "start": {
-                          "column": 12,
+                          "column": 6,
                           "line": 4,
                         },
                       },
                       "openingFragment": {
-                        "end": 92,
+                        "end": 74,
                         "loc": {
                           "end": {
-                            "column": 14,
+                            "column": 8,
                             "line": 4,
                           },
                           "start": {
-                            "column": 12,
+                            "column": 6,
                             "line": 4,
                           },
                         },
                         "range": [
-                          90,
-                          92,
+                          72,
+                          74,
                         ],
-                        "start": 90,
+                        "start": 72,
                         "type": "JSXOpeningFragment",
                       },
                       "range": [
-                        90,
-                        166,
+                        72,
+                        130,
                       ],
-                      "start": 90,
+                      "start": 72,
                       "type": "JSXFragment",
                     },
-                    "end": 179,
+                    "end": 137,
                     "loc": {
                       "end": {
-                        "column": 12,
+                        "column": 6,
                         "line": 8,
                       },
                       "start": {
-                        "column": 10,
+                        "column": 4,
                         "line": 3,
                       },
                     },
                     "range": [
-                      69,
-                      179,
+                      57,
+                      137,
                     ],
-                    "start": 69,
+                    "start": 57,
                     "type": "ReturnStatement",
                   },
                 ],
-                "end": 189,
+                "end": 141,
                 "loc": {
                   "end": {
-                    "column": 9,
+                    "column": 3,
                     "line": 9,
                   },
                   "start": {
-                    "column": 17,
+                    "column": 11,
                     "line": 2,
                   },
                 },
                 "range": [
-                  57,
-                  189,
+                  51,
+                  141,
                 ],
-                "start": 57,
+                "start": 51,
                 "type": "BlockStatement",
               },
-              "end": 189,
+              "end": 141,
               "generator": false,
               "id": null,
               "loc": {
                 "end": {
-                  "column": 9,
+                  "column": 3,
                   "line": 9,
                 },
                 "start": {
-                  "column": 14,
+                  "column": 8,
                   "line": 2,
                 },
               },
               "params": [],
               "range": [
-                54,
-                189,
+                48,
+                141,
               ],
-              "start": 54,
+              "start": 48,
               "type": "FunctionExpression",
             },
           },
         ],
-        "end": 197,
+        "end": 143,
         "loc": {
           "end": {
-            "column": 7,
+            "column": 1,
             "line": 10,
           },
           "start": {
@@ -9210,12 +9708,12 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
         },
         "range": [
           38,
-          197,
+          143,
         ],
         "start": 38,
         "type": "ClassBody",
       },
-      "end": 197,
+      "end": 143,
       "id": {
         "end": 13,
         "loc": {
@@ -9238,7 +9736,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
       },
       "loc": {
         "end": {
-          "column": 7,
+          "column": 1,
           "line": 10,
         },
         "start": {
@@ -9248,7 +9746,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
       },
       "range": [
         0,
-        197,
+        143,
       ],
       "start": 0,
       "superClass": {
@@ -9315,10 +9813,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
       "type": "ClassDeclaration",
     },
   ],
-  "end": 197,
+  "end": 143,
   "loc": {
     "end": {
-      "column": 7,
+      "column": 1,
       "line": 10,
     },
     "start": {
@@ -9328,7 +9826,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
   },
   "range": [
     0,
-    197,
+    143,
   ],
   "sourceType": "script",
   "start": 0,
@@ -9337,24 +9835,24 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {message: 'Hello!'};
-        // This line is important!
-        this.handleClick = this.handleClick.bind(this);
-      }
-      handleClick() {
-        alert(this.state.message);
-      }
-      render() {
-        // Because "this.handleClick" is bound, we can use it as an event handler.
-        return (
-          <button onClick={this.handleClick}>
-            Say hello
-          </button>
-        );
-      }
-    } 1`] = `
+  constructor(props) {
+    super(props);
+    this.state = {message: 'Hello!'};
+    // This line is important!
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    alert(this.state.message);
+  }
+  render() {
+    // Because "this.handleClick" is bound, we can use it as an event handler.
+    return (
+      <button onClick={this.handleClick}>
+        Say hello
+      </button>
+    );
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -9566,8 +10064,8 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                         {
                           "type": "JSXText",
                           "value": "
-            Say hello
-          ",
+        Say hello
+      ",
                         },
                       ],
                       "closingElement": {
@@ -10896,9 +11394,9 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > function* test() { y
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > import React from 'react'
-     const Component = () => (
-       <div>Hello, World</div>
-     ) 1`] = `
+const Component = () => (
+  <div>Hello, World</div>
+) 1`] = `
 {
   "body": [
     {
@@ -11652,11 +12150,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var component = <Com
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
-      <div className='foo'>
-        <img src='foo.gif'/>
-        <img src='bar.gif'/>
-      </div>
-    ); 1`] = `
+  <div className='foo'>
+    <img src='foo.gif'/>
+    <img src='bar.gif'/>
+  </div>
+); 1`] = `
 {
   "body": [
     {
@@ -11671,7 +12169,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
               {
                 "type": "JSXText",
                 "value": "
-        ",
+    ",
               },
               {
                 "children": [],
@@ -11702,7 +12200,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
               {
                 "type": "JSXText",
                 "value": "
-        ",
+    ",
               },
               {
                 "children": [],
@@ -11733,7 +12231,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
               {
                 "type": "JSXText",
                 "value": "
-      ",
+  ",
               },
             ],
             "closingElement": {
@@ -11779,10 +12277,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
-      <div>
-        { images.map( src => <img src={src}/> ) }
-      </div>
-    ); 1`] = `
+  <div>
+    { images.map( src => <img src={src}/> ) }
+  </div>
+); 1`] = `
 {
   "body": [
     {
@@ -11797,7 +12295,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
               {
                 "type": "JSXText",
                 "value": "
-        ",
+    ",
               },
               {
                 "expression": {
@@ -11865,7 +12363,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
               {
                 "type": "JSXText",
                 "value": "
-      ",
+  ",
               },
             ],
             "closingElement": {

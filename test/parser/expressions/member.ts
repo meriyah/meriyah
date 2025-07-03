@@ -1,15 +1,9 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 describe('Expressions - Member', () => {
-  fail('Expressions - Member (fail)', [
-    ['abc.123', Context.None],
-    ['a.[b].c().d.toString()', Context.None],
-    ['abc.£', Context.None],
-    ['abc???.£', Context.None],
-  ]);
+  fail('Expressions - Member (fail)', ['abc.123', 'a.[b].c().d.toString()', 'abc.£', 'abc???.£']);
 
   for (const arg of [
     'let f = () => { import("foo"); };',
@@ -30,19 +24,19 @@ describe('Expressions - Member', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.OptionsNext | Context.Module | Context.Strict);
+        parseSource(`${arg}`, { next: true, sourceType: 'module' });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
   }
 
   pass('Expressions - Member (pass)', [
     'abc.package',
-    { code: 'abc.package', options: { module: true } },
+    { code: 'abc.package', options: { sourceType: 'module' } },
     { code: 'x[a, b]', options: { ranges: true } },
     { code: '(2[x,x],x)>x', options: { ranges: true } },
     'foo.bar',

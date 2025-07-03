@@ -1,5 +1,130 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > export foo, { foo2 } from './foo.json' with { "type": 'json' }; 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected token: 'identifier'
+> 1 | export foo, { foo2 } from './foo.json' with { "type": 'json' };
+    |        ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { 1: "foo" }; 1`] = `
+"SyntaxError [1:29-1:30]: Unexpected token: 'number'
+> 1 | import foo from "bar" with { 1: "foo" };
+    |                              ^ Unexpected token: 'number'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type:  1`] = `
+"SyntaxError [1:34-1:35]: Unexpected token: 'end of source'
+> 1 | import foo from "bar" with { type: 
+    |                                   ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: "json",  1`] = `
+"SyntaxError [1:42-1:43]: Unexpected token: 'end of source'
+> 1 | import foo from "bar" with { type: "json", 
+    |                                           ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: "json", "data-type":  1`] = `
+"SyntaxError [1:55-1:56]: Unexpected token: 'end of source'
+> 1 | import foo from "bar" with { type: "json", "data-type": 
+    |                                                        ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: "json", "data-type": "json"  1`] = `
+"SyntaxError [1:62-1:63]: Expected ','
+> 1 | import foo from "bar" with { type: "json", "data-type": "json" 
+    |                                                               ^ Expected ','"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: "json", "data-type": "json" 1`] = `
+"SyntaxError [1:56-1:62]: Expected ','
+> 1 | import foo from "bar" with { type: "json", "data-type": "json"
+    |                                                         ^^^^^^ Expected ','"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: "json", foo: {} }; 1`] = `
+"SyntaxError [1:48-1:49]: Unexpected token: '{'
+> 1 | import foo from "bar" with { type: "json", foo: {} };
+    |                                                 ^ Unexpected token: '{'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: [1] }; 1`] = `
+"SyntaxError [1:35-1:36]: Unexpected token: '['
+> 1 | import foo from "bar" with { type: [1] };
+    |                                    ^ Unexpected token: '['"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: 1 }; 1`] = `
+"SyntaxError [1:35-1:36]: Unexpected token: 'number'
+> 1 | import foo from "bar" with { type: 1 };
+    |                                    ^ Unexpected token: 'number'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: null }; 1`] = `
+"SyntaxError [1:35-1:39]: Unexpected token: 'null'
+> 1 | import foo from "bar" with { type: null };
+    |                                    ^^^^ Unexpected token: 'null'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { type: undefined }; 1`] = `
+"SyntaxError [1:35-1:44]: Unexpected token: 'identifier'
+> 1 | import foo from "bar" with { type: undefined };
+    |                                    ^^^^^^^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import x from './import-attribute-1_FIXTURE.js' with {
+  type: 'json',
+  'type': ''
+}; 1`] = `
+"SyntaxError [4:0-4:1]: Duplicate binding 'type'
+  2 |   type: 'json',
+  3 |   'type': ''
+> 4 | };
+    | ^ Duplicate binding 'type'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", ...extra) 1`] = `
+"SyntaxError [1:17-1:20]: Unexpected token: '...'
+> 1 | import("module", ...extra)
+    |                  ^^^ Unexpected token: '...'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", { type: "json" }, "extra") 1`] = `
+"SyntaxError [1:35-1:42]: Expected ')'
+> 1 | import("module", { type: "json" }, "extra")
+    |                                    ^^^^^^^ Expected ')'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", { type: "json" }, "extra") 2`] = `
+"SyntaxError [1:35-1:42]: Expected ')'
+> 1 | import("module", { type: "json" }, "extra")
+    |                                    ^^^^^^^ Expected ')'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", { type: "json" }, "extra") 3`] = `
+"SyntaxError [1:35-1:42]: Expected ')'
+> 1 | import("module", { type: "json" }, "extra")
+    |                                    ^^^^^^^ Expected ')'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", { type: "json", "extra": "value"  1`] = `
+"SyntaxError [1:49-1:50]: Expected '}'
+> 1 | import("module", { type: "json", "extra": "value" 
+    |                                                  ^ Expected '}'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", { type: "json", "extra": "value" }, "another") 1`] = `
+"SyntaxError [1:53-1:62]: Expected ')'
+> 1 | import("module", { type: "json", "extra": "value" }, "another")
+    |                                                      ^^^^^^^^^ Expected ')'"
+`;
+
+exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", { type: "json", "extra": }) 1`] = `
+"SyntaxError [1:42-1:43]: Unexpected token: '}'
+> 1 | import("module", { type: "json", "extra": })
+    |                                           ^ Unexpected token: '}'"
+`;
+
 exports[`Next - Import Attributes > Import Attributes (pass) > async function load() { return import('module', { type: 'json' }); } 1`] = `
 {
   "body": [

@@ -1,5 +1,783 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Declarations - Var > Declarations - Var (fail) >  var {,foo} = x;  1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: ','
+> 1 |  var {,foo} = x; 
+    |       ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > (function a([{var}]) { }) 1`] = `
+"SyntaxError [1:17-1:18]: Invalid keyword
+> 1 | (function a([{var}]) { })
+    |                  ^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > (function a({ 0: [var]}) { }) 1`] = `
+"SyntaxError [1:18-1:21]: Unexpected token: 'var'
+> 1 | (function a({ 0: [var]}) { })
+    |                   ^^^ Unexpected token: 'var'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > (function a({ hello: {var}}) { }) 1`] = `
+"SyntaxError [1:25-1:26]: Invalid keyword
+> 1 | (function a({ hello: {var}}) { })
+    |                          ^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > (function a(var) { }) 1`] = `
+"SyntaxError [1:12-1:15]: Invalid keyword
+> 1 | (function a(var) { })
+    |             ^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > [var] = obj 1`] = `
+"SyntaxError [1:1-1:4]: Unexpected token: 'var'
+> 1 | [var] = obj
+    |  ^^^ Unexpected token: 'var'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > class foo { method() { var [super()] = []; } } 1`] = `
+"SyntaxError [1:33-1:34]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class foo { method() { var [super()] = []; } }
+    |                                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > class var { } 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected strict mode reserved word
+> 1 | class var { }
+    |       ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > const var = 1; 1`] = `
+"SyntaxError [1:6-1:9]: Invalid keyword
+> 1 | const var = 1;
+    |       ^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > function a({var}) { } 1`] = `
+"SyntaxError [1:15-1:16]: Invalid keyword
+> 1 | function a({var}) { }
+    |                ^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > function foo() { return {}; }; var [foo().x] = []; 1`] = `
+"SyntaxError [1:45-1:46]: The binding declaration is not destructible
+> 1 | function foo() { return {}; }; var [foo().x] = [];
+    |                                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > function foo() { return {}; }; var [foo()] = []; 1`] = `
+"SyntaxError [1:43-1:44]: The binding declaration is not destructible
+> 1 | function foo() { return {}; }; var [foo()] = [];
+    |                                            ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > function var() { } 1`] = `
+"SyntaxError [1:9-1:12]: Invalid keyword
+> 1 | function var() { }
+    |          ^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var
+foo() 1`] = `
+"SyntaxError [2:3-2:4]: Unexpected token: '('
+  1 | var
+> 2 | foo()
+    |    ^ Unexpected token: '('"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var
+foo() 2`] = `
+"SyntaxError [2:3-2:4]: Unexpected token: '('
+  1 | var
+> 2 | foo()
+    |    ^ Unexpected token: '('"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [((((a)))), b] = []; 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | var [((((a)))), b] = [];
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [((a)] = []; 1`] = `
+"SyntaxError [1:9-1:10]: Expected ')'
+> 1 | var [((a)] = [];
+    |          ^ Expected ')'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [++a] = []; 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | var [++a] = [];
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [... ...foo] = obj; 1`] = `
+"SyntaxError [1:9-1:12]: Unexpected token: '...'
+> 1 | var [... ...foo] = obj;
+    |          ^^^ Unexpected token: '...'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...[ x ] = []] = []; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | var [...[ x ] = []] = [];
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...[foo, bar],,] = obj; 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | var [...[foo, bar],,] = obj;
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...[foo, bar],,] = obj; 2`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | var [...[foo, bar],,] = obj;
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...[foo, bar],] = obj; 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | var [...[foo, bar],] = obj;
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...{ x } = []] = []; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | var [...{ x } = []] = [];
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...{ x }, y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | var [...{ x }, y] = [1, 2, 3];
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...a = 1] = []; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | var [...a = 1] = [];
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...a, ...b] = []; 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | var [...a, ...b] = [];
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...bar = foo] = obj; 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | var [...bar = foo] = obj;
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...foo, bar] = obj; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | var [...foo, bar] = obj;
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...foo, bar] = obj; 2`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | var [...foo, bar] = obj;
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...foo,,] = obj; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | var [...foo,,] = obj;
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...foo,,] = obj; 2`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | var [...foo,,] = obj;
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...foo,] = obj; 1`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | var [...foo,] = obj;
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...foo,] = obj; 2`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | var [...foo,] = obj;
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [...x, y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | var [...x, y] = [1, 2, 3];
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [..x] = obj; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '.'
+> 1 | var [..x] = obj;
+    |      ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [..x] = obj; 2`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '.'
+> 1 | var [..x] = obj;
+    |      ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [.x] = obj; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '.'
+> 1 | var [.x] = obj;
+    |      ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [.x] = obj; 2`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '.'
+> 1 | var [.x] = obj;
+    |      ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [.x] = obj; 3`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '.'
+> 1 | var [.x] = obj;
+    |      ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [[(a)], ((((((([b])))))))] = [[],[]]; 1`] = `
+"SyntaxError [1:31-1:32]: The binding declaration is not destructible
+> 1 | var [[(a)], ((((((([b])))))))] = [[],[]];
+    |                                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var []; 1`] = `
+"SyntaxError [1:6-1:7]: Missing initializer in destructuring declaration
+> 1 | var [];
+    |       ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [1, a] = []; 1`] = `
+"SyntaxError [1:11-1:12]: The binding declaration is not destructible
+> 1 | var [1, a] = [];
+    |            ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [1] = []; 1`] = `
+"SyntaxError [1:8-1:9]: The binding declaration is not destructible
+> 1 | var [1] = [];
+    |         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a + 1] = []; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | var [a + 1] = [];
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a a, b] = c; 1`] = `
+"SyntaxError [1:7-1:8]: Expected ']'
+> 1 | var [a a, b] = c;
+    |        ^ Expected ']'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a)] = []; 1`] = `
+"SyntaxError [1:6-1:7]: Expected ']'
+> 1 | var [a)] = [];
+    |       ^ Expected ']'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a, ...rest, b] = c; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | var [a, ...rest, b] = c;
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a, b 1`] = `
+"SyntaxError [1:8-1:9]: Expected ']'
+> 1 | var [a, b
+    |         ^ Expected ']'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a]; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in destructuring declaration
+> 1 | var [a];
+    |        ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [a--] = []; 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | var [a--] = [];
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo = x]; 1`] = `
+"SyntaxError [1:13-1:14]: Missing initializer in destructuring declaration
+> 1 | var [foo = x];
+    |              ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo = x]; 2`] = `
+"SyntaxError [1:13-1:14]: Missing initializer in destructuring declaration
+> 1 | var [foo = x];
+    |              ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo:bar] = obj; 1`] = `
+"SyntaxError [1:8-1:9]: Expected ']'
+> 1 | var [foo:bar] = obj;
+    |         ^ Expected ']'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo:bar] = obj; 2`] = `
+"SyntaxError [1:8-1:9]: Expected ']'
+> 1 | var [foo:bar] = obj;
+    |         ^ Expected ']'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo], bar; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | var [foo], bar;
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo], bar; 2`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | var [foo], bar;
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [foo]; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | var [foo];
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var [var] = obj 1`] = `
+"SyntaxError [1:5-1:8]: Unexpected token: 'var'
+> 1 | var [var] = obj
+    |      ^^^ Unexpected token: 'var'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var _𖫵 = 11; 1`] = `
+"SyntaxError [1:4-1:5]: Illegal character '𖫵'
+> 1 | var _𖫵 = 11;
+    |     ^ Illegal character '𖫵'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {  ...y, ...y } = {} 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | var {  ...y, ...y } = {}
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {  get yield() { }  } = {} 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | var {  get yield() { }  } = {}
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { "foo": 123 } = {} 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | var { "foo": 123 } = {}
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { *static() {} } = {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | var { *static() {} } = {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { ...{ x = 5 } } = {x : 1}; 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | var { ...{ x = 5 } } = {x : 1};
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { ...{x =5 } } = {x : 1}; console.log(x); 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | var { ...{x =5 } } = {x : 1}; console.log(x);
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { async *method([[,] = g()]) {} } = {} 1`] = `
+"SyntaxError [1:38-1:39]: The binding declaration is not destructible
+> 1 | var { async *method([[,] = g()]) {} } = {}
+    |                                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { async *method({ w: [x, y, z] = [4, 5, 6] } = {}) {} } = {} 1`] = `
+"SyntaxError [1:60-1:61]: The binding declaration is not destructible
+> 1 | var { async *method({ w: [x, y, z] = [4, 5, 6] } = {}) {} } = {}
+    |                                                             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { foo: 1, "foo": 2 } = {} 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | var { foo: 1, "foo": 2 } = {}
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { foo: 1, get "foo"() {} } = {} 1`] = `
+"SyntaxError [1:31-1:32]: The binding declaration is not destructible
+> 1 | var { foo: 1, get "foo"() {} } = {}
+    |                                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { foo: 1, set bar(v) {} } = {} 1`] = `
+"SyntaxError [1:30-1:31]: The binding declaration is not destructible
+> 1 | var { foo: 1, set bar(v) {} } = {}
+    |                               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { foo: true / false } = {} 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | var { foo: true / false } = {}
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { key: await /foo/g } = {} 1`] = `
+"SyntaxError [1:17-1:23]: Expected '}'
+> 1 | var { key: await /foo/g } = {}
+    |                  ^^^^^^ Expected '}'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { key: bar + x } = {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | var { key: bar + x } = {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { key: bar/x } = {} 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | var { key: bar/x } = {}
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { set foo(_) {}, set foo(v) {} } = {} 1`] = `
+"SyntaxError [1:37-1:38]: The binding declaration is not destructible
+> 1 | var { set foo(_) {}, set foo(v) {} } = {}
+    |                                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { set: 1, set: 2 } = {} 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | var { set: 1, set: 2 } = {}
+    |                        ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { static(){} } = {} 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | var { static(){} } = {}
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var { true : 1 } = {} 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | var { true : 1 } = {}
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {,,} = obj; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,,} = obj;
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {,,foo} = x; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,,foo} = x;
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {,,x} = obj; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,,x} = obj;
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {,} = obj; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,} = obj;
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {,} = x; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,} = x;
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {,x} = obj; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,x} = obj;
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {...[]} = {} 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | var {...[]} = {}
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {...{z}} = { z: 1}; 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | var {...{z}} = { z: 1};
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {...a.b} = 0 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | var {...a.b} = 0
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {...x = 1} = {} 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | var {...x = 1} = {}
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo,,} = x; 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ','
+> 1 | var {foo,,} = x;
+    |          ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo,,bar} = x; 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ','
+> 1 | var {foo,,bar} = x;
+    |          ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo:a=b} 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | var {foo:a=b}
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo:a} 1`] = `
+"SyntaxError [1:10-1:11]: Missing initializer in destructuring declaration
+> 1 | var {foo:a}
+    |           ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo=a} 1`] = `
+"SyntaxError [1:10-1:11]: Missing initializer in destructuring declaration
+> 1 | var {foo=a}
+    |           ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo} 1`] = `
+"SyntaxError [1:8-1:9]: Missing initializer in destructuring declaration
+> 1 | var {foo}
+    |         ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo}, bar 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | var {foo}, bar
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {foo}; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in destructuring declaration
+> 1 | var {foo};
+    |          ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {x,, y} = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | var {x,, y} = obj;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {x,, y} = obj; 2`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | var {x,, y} = obj;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {x}, {y} = z; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in destructuring declaration
+> 1 | var {x}, {y} = z;
+    |        ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var {x}; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in destructuring declaration
+> 1 | var {x};
+    |        ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var --x; 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '--'
+> 1 | var --x;
+    |     ^^ Unexpected token: '--'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a, b; ({a:({a}), b:((({b})))} = {a:{}, b:{}} ); 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | var a, b; ({a:({a}), b:((({b})))} = {a:{}, b:{}} );
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a, b; [([a]), (((([b]))))] = [[], []]; 1`] = `
+"SyntaxError [1:33-1:34]: Invalid left-hand side in assignment
+> 1 | var a, b; [([a]), (((([b]))))] = [[], []];
+    |                                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a, b; [({a}), (((({b}))))] = [{}, {}]; 1`] = `
+"SyntaxError [1:33-1:34]: Invalid left-hand side in assignment
+> 1 | var a, b; [({a}), (((({b}))))] = [{}, {}];
+    |                                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a, b; [...a, ...b] = []; 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | var a, b; [...a, ...b] = [];
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a, b; [...a, b] = []; 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | var a, b; [...a, b] = [];
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a.b; 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '.'
+> 1 | var a.b;
+    |      ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [((a)] = [] 1`] = `
+"SyntaxError [1:12-1:13]: Expected ')'
+> 1 | var a; [((a)] = []
+    |             ^ Expected ')'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [([a])] = [[]];"); } 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | var a; [([a])] = [[]];"); }
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [++a] = []; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | var a; [++a] = [];
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [...a = 1] = []; 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | var a; [...a = 1] = [];
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [1, a] = []; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | var a; [1, a] = [];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [a)] = []; 1`] = `
+"SyntaxError [1:9-1:10]: Expected ']'
+> 1 | var a; [a)] = [];
+    |          ^ Expected ']'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var a; [a--] = []; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | var a; [a--] = [];
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var foo, [bar]; 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | var foo, [bar];
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var foo, [bar]; 2`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | var foo, [bar];
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var foo, {bar} 1`] = `
+"SyntaxError [1:13-1:14]: Missing initializer in destructuring declaration
+> 1 | var foo, {bar}
+    |              ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var s = "\\37" 1`] = `
+"SyntaxError [1:8-1:10]: Octal escape sequences are not allowed in strict mode
+> 1 | var s = "\\37"
+    |         ^^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var t4 = ++await 1; 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: 'number'
+> 1 | var t4 = ++await 1;
+    |                  ^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var t5 = --await 1; 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: 'number'
+> 1 | var t5 = --await 1;
+    |                  ^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var var = 2000000; 1`] = `
+"SyntaxError [1:4-1:7]: Invalid keyword
+> 1 | var var = 2000000;
+    |     ^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var var 1`] = `
+"SyntaxError [1:4-1:7]: Invalid keyword
+> 1 | var var
+    |     ^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var x && 1; 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '&&'
+> 1 | var x && 1;
+    |       ^^ Unexpected token: '&&'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var x += 1; 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '+='
+> 1 | var x += 1;
+    |       ^^ Unexpected token: '+='"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var x | true; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '|'
+> 1 | var x | true;
+    |       ^ Unexpected token: '|'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var x in []; 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: 'in'
+> 1 | var x in [];
+    |       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var x>>1; 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '>>'
+> 1 | var x>>1;
+    |      ^^ Unexpected token: '>>'"
+`;
+
+exports[`Declarations - Var > Declarations - Var (fail) > var 𫠞_ = 12;} 1`] = `
+"SyntaxError [1:4-1:4]: Illegal character '𫠞'
+> 1 | var 𫠞_ = 12;}
+    |     ^ Illegal character '𫠞'"
+`;
+
 exports[`Declarations - Var > Declarations - Var (pass) > "use strict"; let x = 0; { let x = 6; } 1`] = `
 {
   "body": [
@@ -941,7 +1719,7 @@ foo 1`] = `
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list
-  [ b, a ] = [ a, b ] 1`] = `
+[ b, a ] = [ a, b ] 1`] = `
 {
   "body": [
     {
@@ -1091,7 +1869,7 @@ exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list 
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list;
-      [ b, a ] = [ a, b ] 1`] = `
+[ b, a ] = [ a, b ] 1`] = `
 {
   "body": [
     {
@@ -1158,91 +1936,91 @@ exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list;
       "type": "VariableDeclaration",
     },
     {
-      "end": 48,
+      "end": 42,
       "expression": {
-        "end": 48,
+        "end": 42,
         "left": {
           "elements": [
             {
-              "end": 32,
+              "end": 26,
               "name": "b",
               "range": [
-                31,
-                32,
+                25,
+                26,
               ],
-              "start": 31,
+              "start": 25,
               "type": "Identifier",
             },
             {
-              "end": 35,
+              "end": 29,
               "name": "a",
               "range": [
-                34,
-                35,
+                28,
+                29,
               ],
-              "start": 34,
+              "start": 28,
               "type": "Identifier",
             },
           ],
-          "end": 37,
+          "end": 31,
           "range": [
-            29,
-            37,
+            23,
+            31,
           ],
-          "start": 29,
+          "start": 23,
           "type": "ArrayPattern",
         },
         "operator": "=",
         "range": [
-          29,
-          48,
+          23,
+          42,
         ],
         "right": {
           "elements": [
             {
-              "end": 43,
+              "end": 37,
               "name": "a",
               "range": [
-                42,
-                43,
+                36,
+                37,
               ],
-              "start": 42,
+              "start": 36,
               "type": "Identifier",
             },
             {
-              "end": 46,
+              "end": 40,
               "name": "b",
               "range": [
-                45,
-                46,
+                39,
+                40,
               ],
-              "start": 45,
+              "start": 39,
               "type": "Identifier",
             },
           ],
-          "end": 48,
+          "end": 42,
           "range": [
-            40,
-            48,
+            34,
+            42,
           ],
-          "start": 40,
+          "start": 34,
           "type": "ArrayExpression",
         },
-        "start": 29,
+        "start": 23,
         "type": "AssignmentExpression",
       },
       "range": [
-        29,
-        48,
+        23,
+        42,
       ],
-      "start": 29,
+      "start": 23,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 48,
+  "end": 42,
   "range": [
     0,
-    48,
+    42,
   ],
   "sourceType": "script",
   "start": 0,
@@ -3007,20 +3785,20 @@ exports[`Declarations - Var > Declarations - Var (pass) > var await = { await } 
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var f0 = function (a, b = a, c = b) {
-        return [a, b, c];
-      };
+  return [a, b, c];
+};
 
-      expect(f0(1)).toEqual([1, 1, 1]);
+expect(f0(1)).toEqual([1, 1, 1]);
 
-      var f1 = function ({a}, b = a, c = b) {
-        return [a, b, c];
-      };
+var f1 = function ({a}, b = a, c = b) {
+  return [a, b, c];
+};
 
-      expect(f1({a: 1})).toEqual([1, 1, 1]);
+expect(f1({a: 1})).toEqual([1, 1, 1]);
 
-      var f2 = function ({a}, b = a, c = a) {
-        return [a, b, c];
-      }; 1`] = `
+var f2 = function ({a}, b = a, c = a) {
+  return [a, b, c];
+}; 1`] = `
 {
   "body": [
     {

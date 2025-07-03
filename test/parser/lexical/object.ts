@@ -1,86 +1,85 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Object', () => {
   fail('Lexical - Object (fail)', [
-    ['!{ f(){ let a; var a; } };', Context.OptionsLexical],
-    ['!{ *g(){ let a; var a; } };', Context.OptionsLexical],
-    ['!{ get f(){ let a; var a; } };', Context.OptionsLexical],
-    ['!{ set f(b){ let a; var a; } };', Context.OptionsLexical],
-    ['!{ f(a, a){} };', Context.OptionsLexical],
-    ['!{ f([a, a]){} };', Context.OptionsLexical],
-    ['!{ f({a, a}){} };', Context.OptionsLexical],
-    ['!{ *g(a, a){} };', Context.OptionsLexical],
-    ['!{ *g([a, a]){} };', Context.OptionsLexical],
-    ['!{ *g({a, a}){} };', Context.OptionsLexical],
-    ['!{ f(a) { let a; } };', Context.OptionsLexical],
-    ['!{ f([a]){ let a; } };', Context.OptionsLexical],
-    ['!{ f({a}){ let a; } };', Context.OptionsLexical],
-    ['!{ set f({a, a}){} };', Context.OptionsLexical],
-    ['!{ set f([a, a]){} };', Context.OptionsLexical],
-    ['!{ set f(a) { let a; } };', Context.OptionsLexical],
-    ['!{ f({a, a}){} };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ *g(a, a){} };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ *g([a, a]){} };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ *g({a, a}){} };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ f(a) { let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ f([a]){ let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ f({a}){ let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ set f({a, a}){} };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ set f([a, a]){} };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ set f(a) { let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{ set f([a]){ let a; } };', Context.OptionsLexical],
-    ['!{ set f({a}){ let a; } };', Context.OptionsLexical],
-    ['!{f(x) { let x }}', Context.OptionsLexical],
-    ['!{f(x) { const x = y }}', Context.OptionsLexical],
-    ['!{f(a, a) {}}', Context.OptionsLexical],
-    ['!{f(a, b, a) {}}', Context.OptionsLexical],
-    ['!{f(b, a, a) {}}', Context.Module | Context.OptionsLexical],
-    ['!{f(a, a, b) {}}', Context.OptionsLexical],
-    ['!{f(b, a, b, a) {}}', Context.OptionsLexical],
-    ['!{f(b, a, b, a, [fine]) {}}', Context.OptionsLexical],
-    ['!{f(b, a, b, a = x) {}}', Context.OptionsLexical],
-    ['!{f(b, a, b, ...a) {}}', Context.OptionsLexical],
-    ['!{f([a, a]) {}}', Context.OptionsLexical],
-    ['!{f([a, b, a]) {}}', Context.OptionsLexical],
-    ['!{f([b, a, a]) {}}', Context.OptionsLexical],
-    ['!{f([a, a, b]) {}}', Context.OptionsLexical],
-    ['!{f([b, a, b, a]) {}}', Context.OptionsLexical],
-    ['!{f([b, a], b) {}}', Context.OptionsLexical],
-    ['!{f([b, a], {b}) {}}', Context.OptionsLexical],
-    ['!{f([b, a], b=x) {}}', Context.OptionsLexical],
-    ['!{f([b, a], ...b) {}}', Context.OptionsLexical],
-    ['!{f(){ let x; var x; }}', Context.OptionsLexical],
-    ['!{f(){ var x; let x; }}', Context.OptionsLexical],
-    ['!{f([b, a], {b}) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{f([b, a], b=x) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['!{f([b, a], ...b) {}}', Context.OptionsLexical | Context.Strict],
-    ['!{f(){ let x; var x; }}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['!{f(){ var x; let x; }}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['!{f(){ const x = y; var x; }}', Context.OptionsLexical],
-    ['!{f(){ var x; const x = y; }}', Context.OptionsLexical],
-    ['!{f(){ let x; function x(){} }}', Context.OptionsLexical],
-    ['!{f(){ function x(){} let x; }}', Context.OptionsLexical],
-    ['!{f(){ const x = y; function x(){} }}', Context.OptionsLexical],
-    ['!{f(){ function x(){} const x = y; }}', Context.OptionsLexical],
-    ['!{ *foo(x) { let x = 3; } }', Context.OptionsLexical],
-    ['!{ *foo(x) { const x = 3; } }', Context.OptionsLexical],
-    ['!{f(){ const x = y; function x(){} }}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['!{f(){ function x(){} const x = y; }}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['!{ *foo(x) { let x = 3; } }', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['!{ *foo(x) { const x = 3; } }', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['!{f({b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({a: b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({"a": b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({2: b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({a = b}, ...a) {}}', Context.OptionsLexical],
-    ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({[x]: b}, b = ((b) => {}) ) {}}', Context.OptionsLexical],
-    ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical],
+    { code: '!{ f(){ let a; var a; } };', options: { lexical: true } },
+    { code: '!{ *g(){ let a; var a; } };', options: { lexical: true } },
+    { code: '!{ get f(){ let a; var a; } };', options: { lexical: true } },
+    { code: '!{ set f(b){ let a; var a; } };', options: { lexical: true } },
+    { code: '!{ f(a, a){} };', options: { lexical: true } },
+    { code: '!{ f([a, a]){} };', options: { lexical: true } },
+    { code: '!{ f({a, a}){} };', options: { lexical: true } },
+    { code: '!{ *g(a, a){} };', options: { lexical: true } },
+    { code: '!{ *g([a, a]){} };', options: { lexical: true } },
+    { code: '!{ *g({a, a}){} };', options: { lexical: true } },
+    { code: '!{ f(a) { let a; } };', options: { lexical: true } },
+    { code: '!{ f([a]){ let a; } };', options: { lexical: true } },
+    { code: '!{ f({a}){ let a; } };', options: { lexical: true } },
+    { code: '!{ set f({a, a}){} };', options: { lexical: true } },
+    { code: '!{ set f([a, a]){} };', options: { lexical: true } },
+    { code: '!{ set f(a) { let a; } };', options: { lexical: true } },
+    { code: '!{ f({a, a}){} };', options: { webcompat: true, lexical: true } },
+    { code: '!{ *g(a, a){} };', options: { webcompat: true, lexical: true } },
+    { code: '!{ *g([a, a]){} };', options: { webcompat: true, lexical: true } },
+    { code: '!{ *g({a, a}){} };', options: { webcompat: true, lexical: true } },
+    { code: '!{ f(a) { let a; } };', options: { webcompat: true, lexical: true } },
+    { code: '!{ f([a]){ let a; } };', options: { webcompat: true, lexical: true } },
+    { code: '!{ f({a}){ let a; } };', options: { webcompat: true, lexical: true } },
+    { code: '!{ set f({a, a}){} };', options: { webcompat: true, lexical: true } },
+    { code: '!{ set f([a, a]){} };', options: { webcompat: true, lexical: true } },
+    { code: '!{ set f(a) { let a; } };', options: { webcompat: true, lexical: true } },
+    { code: '!{ set f([a]){ let a; } };', options: { lexical: true } },
+    { code: '!{ set f({a}){ let a; } };', options: { lexical: true } },
+    { code: '!{f(x) { let x }}', options: { lexical: true } },
+    { code: '!{f(x) { const x = y }}', options: { lexical: true } },
+    { code: '!{f(a, a) {}}', options: { lexical: true } },
+    { code: '!{f(a, b, a) {}}', options: { lexical: true } },
+    { code: '!{f(b, a, a) {}}', options: { lexical: true, sourceType: 'module' } },
+    { code: '!{f(a, a, b) {}}', options: { lexical: true } },
+    { code: '!{f(b, a, b, a) {}}', options: { lexical: true } },
+    { code: '!{f(b, a, b, a, [fine]) {}}', options: { lexical: true } },
+    { code: '!{f(b, a, b, a = x) {}}', options: { lexical: true } },
+    { code: '!{f(b, a, b, ...a) {}}', options: { lexical: true } },
+    { code: '!{f([a, a]) {}}', options: { lexical: true } },
+    { code: '!{f([a, b, a]) {}}', options: { lexical: true } },
+    { code: '!{f([b, a, a]) {}}', options: { lexical: true } },
+    { code: '!{f([a, a, b]) {}}', options: { lexical: true } },
+    { code: '!{f([b, a, b, a]) {}}', options: { lexical: true } },
+    { code: '!{f([b, a], b) {}}', options: { lexical: true } },
+    { code: '!{f([b, a], {b}) {}}', options: { lexical: true } },
+    { code: '!{f([b, a], b=x) {}}', options: { lexical: true } },
+    { code: '!{f([b, a], ...b) {}}', options: { lexical: true } },
+    { code: '!{f(){ let x; var x; }}', options: { lexical: true } },
+    { code: '!{f(){ var x; let x; }}', options: { lexical: true } },
+    { code: '!{f([b, a], {b}) {}}', options: { webcompat: true, lexical: true } },
+    { code: '!{f([b, a], b=x) {}}', options: { webcompat: true, lexical: true } },
+    { code: '!{f([b, a], ...b) {}}', options: { impliedStrict: true, lexical: true } },
+    { code: '!{f(){ let x; var x; }}', options: { sourceType: 'module', lexical: true } },
+    { code: '!{f(){ var x; let x; }}', options: { sourceType: 'module', lexical: true } },
+    { code: '!{f(){ const x = y; var x; }}', options: { lexical: true } },
+    { code: '!{f(){ var x; const x = y; }}', options: { lexical: true } },
+    { code: '!{f(){ let x; function x(){} }}', options: { lexical: true } },
+    { code: '!{f(){ function x(){} let x; }}', options: { lexical: true } },
+    { code: '!{f(){ const x = y; function x(){} }}', options: { lexical: true } },
+    { code: '!{f(){ function x(){} const x = y; }}', options: { lexical: true } },
+    { code: '!{ *foo(x) { let x = 3; } }', options: { lexical: true } },
+    { code: '!{ *foo(x) { const x = 3; } }', options: { lexical: true } },
+    { code: '!{f(){ const x = y; function x(){} }}', options: { sourceType: 'module', lexical: true } },
+    { code: '!{f(){ function x(){} const x = y; }}', options: { sourceType: 'module', lexical: true } },
+    { code: '!{ *foo(x) { let x = 3; } }', options: { sourceType: 'module', lexical: true } },
+    { code: '!{ *foo(x) { const x = 3; } }', options: { sourceType: 'module', lexical: true } },
+    { code: '!{f({b}, ...b) {}}', options: { lexical: true } },
+    { code: '!{f({a: b}, ...b) {}}', options: { lexical: true } },
+    { code: '!{f({"a": b}, ...b) {}}', options: { lexical: true } },
+    { code: '!{f({2: b}, ...b) {}}', options: { lexical: true } },
+    { code: '!{f({a = b}, ...a) {}}', options: { lexical: true } },
+    { code: '!{f({[a]: b}, ...b) {}}', options: { lexical: true } },
+    { code: '!{f({[x]: b}, b = ((b) => {}) ) {}}', options: { lexical: true } },
+    { code: '!{f({[a]: b}, ...b) {}}', options: { lexical: true } },
+    { code: '!{f({[a]: b}, ...b) {}}', options: { lexical: true } },
   ]);
 
   for (const arg of [
@@ -91,19 +90,19 @@ describe('Lexical - Object', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -117,13 +116,13 @@ describe('Lexical - Object', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

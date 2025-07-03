@@ -1,24 +1,24 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Declarations - Function', () => {
   for (const arg of ['package', 'public', 'instanceof']) {
     it(`function foo(${arg}) { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function foo(${arg}) { "use strict"; }`, undefined, Context.None);
+        parseSource(`function foo(${arg}) { "use strict"; }`);
       });
     });
     it(`function ${arg}() { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function ${arg}() { "use strict"; }`, undefined, Context.None);
+        parseSource(`function ${arg}() { "use strict"; }`);
       });
     });
     it(`(function ${arg}() { 'use strict'; })`, () => {
       t.throws(() => {
-        parseSource(`(function ${arg}() { 'use strict'; })`, undefined, Context.None);
+        parseSource(`(function ${arg}() { 'use strict'; })`);
       });
     });
   }
@@ -86,25 +86,25 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { 'use strict';${arg}})()`, undefined, Context.None);
+        parseSource(`(function() { 'use strict';${arg}})()`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { 'use strict'; {${arg}}})()`, undefined, Context.None);
+        parseSource(`(function() { 'use strict'; {${arg}}})()`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { ;${arg}})()`, undefined, Context.None);
+        parseSource(`(function() { ;${arg}})()`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { ;${arg}})()`, undefined, Context.OptionsLexical);
+        parseSource(`(function() { ;${arg}})()`, { lexical: true });
       });
     });
   }
@@ -120,93 +120,93 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() {${arg}})()`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`(function() {${arg}})()`, { webcompat: true, lexical: true });
       });
     });
   }
 
   fail('Declarations - Functions (fail)', [
-    ['function a({x: {x: y}.length}){}', Context.None],
-    ['function a({x: {}.length}){}', Context.None],
-    ['function a({x: void x}){}', Context.None],
-    ['function a({x: typeof x}){}', Context.None],
-    ['function a({x: null}){}', Context.None],
-    ['function a({x: false}){}', Context.None],
-    ['function a({x: class{}}){}', Context.None],
-    ['"use strict"; function eval() {}', Context.None],
-    ['function eval() {"use strict";}', Context.None],
-    ['function arguments() {"use strict";}', Context.None],
-    ['function super() {"use strict";}', Context.None],
-    ['function f(,,){}', Context.None],
-    ['function f(x = package = 10) {}', Context.Strict],
-    ['function f(x = let = 10) {}', Context.Strict],
-    ['function f(x = yield = 10) {}', Context.Strict],
-    ['function f(x = package = 10) { "use strict"; }', Context.None],
-    ['function f(x= package =10){ "use strict"; }', Context.None],
-    ['f = function f(x=package=10){ "use strict"; }', Context.None],
-    ['f(x=package=10) => { "use strict"; }', Context.None],
-    ['f(x = eval = 10) => { "use strict"; }', Context.None],
-    ['o = {foo(x=package=y){ "use strict"; }}', Context.None],
-    ['class c {foo(x=package=y){ "use strict"; }}', Context.None],
-    ['o = {foo(x = package = y){ "use strict"; }}', Context.None],
-    ['o = {foo(x = let = y){ "use strict"; }}', Context.None],
-    ['o = {foo(x = implements = y){ "use strict"; }}', Context.None],
-    ['o = {foo(x= eval = y){ "use strict"; }}', Context.None],
-    ['function f(async function() {}) { }', Context.None],
-    ['function await() {}', Context.Strict | Context.Module],
-    ['function *await() {}', Context.Strict | Context.Module],
-    ['function foo(package) { "use strict"; }', Context.None],
-    [String.raw`function foo(p\x61ckage) { }`, Context.None],
-    [String.raw`function foo(p\x61ckage) { "use strict"; }`, Context.None],
-    [String.raw`function foo(p\141ckage) { }`, Context.None],
-    ['function test({...x = 1}) {}', Context.None],
-    ['function test({...[]}) {}', Context.None],
-    ['function test({...x = 1}) {}', Context.None],
-    ['function test({...{}}) {}', Context.None],
-    ['function w(casecase){y:j:function casecase(){}}', Context.None],
-    ['function test({...x = 1}) {}', Context.None],
-    ['function foo() { "use strict"; 00004; }', Context.Strict],
-    ['function foo() { 00004; }', Context.Strict],
-    ['function 00004() { "use strict"; 00004; }', Context.None],
-    ['function foo(001, 003) { "use strict"; }', Context.None],
-    ['function f([x=x()=x]){}', Context.None],
-    ['function foo(001, 003) { "use strict"; }', Context.None],
-    ['function f() { class await { }   }', Context.Strict | Context.Module],
-    ['function f() { class x extends await { }   }', Context.Strict | Context.Module],
-    ['function f() { class x extends await y { }   }', Context.None],
-    ['function f() { class x extends foo(await y) { }   }', Context.None],
-    ['function f() { class x { foo(await y){} }   }', Context.None],
-    ['function f() { class x { foo(x=await y){} }   }', Context.None],
-    ['function *f(){ class x { foo(x=new (yield)()){} }  }', Context.None],
-    ['function *f(){ class x { foo(x=yield y){} }  }', Context.None],
-    ['function *f(){ class x { foo(x=yield){} }  }', Context.None],
-    ['function *f(){ class x { foo(yield){} }  }', Context.None],
-    ['function *f(){ class x extends yield y { }  }', Context.None],
-    ['function *f(){ class x extends yield { }  }', Context.None],
-    ['function *f(){ class yield { }  }', Context.None],
-    ['function f(){ class x { [yield y](){} }  }', Context.None],
-    ['function f(){ class x { [yield](){} }  }', Context.None],
-    ['function f(){ class x { foo(x=new (yield)()){} }  }', Context.None],
-    ['function f(){ class x { foo(x=yield y){} }  }', Context.None],
-    ['function f(){ class x { foo(x=yield){} }  }', Context.None],
-    ['function f(){ class x { foo(yield){} }  }', Context.None],
-    ['function f(){ class x extends foo(yield y) { }  }', Context.None],
-    ['function f(){ class x extends foo(yield) { }  }', Context.None],
-    ['function f(){ class x extends yield y { }  }', Context.None],
-    ['function f(){ class x extends yield { }  }', Context.None],
-    ['function f(){ class yield { }  }', Context.None],
-    ['function f(){ class yield { }  }', Context.None],
-    ['function f(){ class x extends yield { }  }', Context.None],
-    ['function f(){ class x extends yield y { }  }', Context.None],
-    ['function f(){ class x extends foo(yield) { }  }', Context.None],
-    ['function f(){ class x extends foo(yield y) { }  }', Context.None],
-    ['function f(){ class x { foo(yield){} }  }', Context.None],
-    ['function f(){ class x { foo(x=yield){} }  }', Context.None],
-    ['function f(){ class x { foo(x=yield y){} }  }', Context.None],
-    ['function f(){ class x { foo(x=new (yield)()){} }  }', Context.None],
-    ['function f(){ class x { [yield](){} }  }', Context.None],
-    ['function f(){ class x { [yield y](){} }  }', Context.None],
-    [String.raw`function foo(p\u0061ckage) { "use strict"; }`, Context.None],
+    'function a({x: {x: y}.length}){}',
+    'function a({x: {}.length}){}',
+    'function a({x: void x}){}',
+    'function a({x: typeof x}){}',
+    'function a({x: null}){}',
+    'function a({x: false}){}',
+    'function a({x: class{}}){}',
+    '"use strict"; function eval() {}',
+    'function eval() {"use strict";}',
+    'function arguments() {"use strict";}',
+    'function super() {"use strict";}',
+    'function f(,,){}',
+    { code: 'function f(x = package = 10) {}', options: { impliedStrict: true } },
+    { code: 'function f(x = let = 10) {}', options: { impliedStrict: true } },
+    { code: 'function f(x = yield = 10) {}', options: { impliedStrict: true } },
+    'function f(x = package = 10) { "use strict"; }',
+    'function f(x= package =10){ "use strict"; }',
+    'f = function f(x=package=10){ "use strict"; }',
+    'f(x=package=10) => { "use strict"; }',
+    'f(x = eval = 10) => { "use strict"; }',
+    'o = {foo(x=package=y){ "use strict"; }}',
+    'class c {foo(x=package=y){ "use strict"; }}',
+    'o = {foo(x = package = y){ "use strict"; }}',
+    'o = {foo(x = let = y){ "use strict"; }}',
+    'o = {foo(x = implements = y){ "use strict"; }}',
+    'o = {foo(x= eval = y){ "use strict"; }}',
+    'function f(async function() {}) { }',
+    { code: 'function await() {}', options: { sourceType: 'module' } },
+    { code: 'function *await() {}', options: { sourceType: 'module' } },
+    'function foo(package) { "use strict"; }',
+    String.raw`function foo(p\x61ckage) { }`,
+    String.raw`function foo(p\x61ckage) { "use strict"; }`,
+    String.raw`function foo(p\141ckage) { }`,
+    'function test({...x = 1}) {}',
+    'function test({...[]}) {}',
+    'function test({...x = 1}) {}',
+    'function test({...{}}) {}',
+    'function w(casecase){y:j:function casecase(){}}',
+    'function test({...x = 1}) {}',
+    { code: 'function foo() { "use strict"; 00004; }', options: { impliedStrict: true } },
+    { code: 'function foo() { 00004; }', options: { impliedStrict: true } },
+    'function 00004() { "use strict"; 00004; }',
+    'function foo(001, 003) { "use strict"; }',
+    'function f([x=x()=x]){}',
+    'function foo(001, 003) { "use strict"; }',
+    { code: 'function f() { class await { }   }', options: { sourceType: 'module' } },
+    { code: 'function f() { class x extends await { }   }', options: { sourceType: 'module' } },
+    'function f() { class x extends await y { }   }',
+    'function f() { class x extends foo(await y) { }   }',
+    'function f() { class x { foo(await y){} }   }',
+    'function f() { class x { foo(x=await y){} }   }',
+    'function *f(){ class x { foo(x=new (yield)()){} }  }',
+    'function *f(){ class x { foo(x=yield y){} }  }',
+    'function *f(){ class x { foo(x=yield){} }  }',
+    'function *f(){ class x { foo(yield){} }  }',
+    'function *f(){ class x extends yield y { }  }',
+    'function *f(){ class x extends yield { }  }',
+    'function *f(){ class yield { }  }',
+    'function f(){ class x { [yield y](){} }  }',
+    'function f(){ class x { [yield](){} }  }',
+    'function f(){ class x { foo(x=new (yield)()){} }  }',
+    'function f(){ class x { foo(x=yield y){} }  }',
+    'function f(){ class x { foo(x=yield){} }  }',
+    'function f(){ class x { foo(yield){} }  }',
+    'function f(){ class x extends foo(yield y) { }  }',
+    'function f(){ class x extends foo(yield) { }  }',
+    'function f(){ class x extends yield y { }  }',
+    'function f(){ class x extends yield { }  }',
+    'function f(){ class yield { }  }',
+    'function f(){ class yield { }  }',
+    'function f(){ class x extends yield { }  }',
+    'function f(){ class x extends yield y { }  }',
+    'function f(){ class x extends foo(yield) { }  }',
+    'function f(){ class x extends foo(yield y) { }  }',
+    'function f(){ class x { foo(yield){} }  }',
+    'function f(){ class x { foo(x=yield){} }  }',
+    'function f(){ class x { foo(x=yield y){} }  }',
+    'function f(){ class x { foo(x=new (yield)()){} }  }',
+    'function f(){ class x { [yield](){} }  }',
+    'function f(){ class x { [yield y](){} }  }',
+    String.raw`function foo(p\u0061ckage) { "use strict"; }`,
   ]);
 
   for (const arg of [
@@ -366,16 +366,16 @@ describe('Declarations - Function', () => {
     'function f([foo,bar=b]){}',
     'function f([foo,bar=b] = x){}',
     'function f([foo=a,bar=b]){}',
-    `function bar() {foo = 42}; ext(bar); ext(foo)`,
-    `function bar() { }`,
-    `function a(b, c) { }`,
-    `function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 1; else return Math.floor(x); };`,
-    `function foo () {"use strict";}`,
-    `function __decl(){return 1;}`,
-    `function __func__2(){b};`,
-    `function x(...{ a }){}`,
-    `function santa() { function package() {} function evdal() { "use strict"; }}`,
-    `function foo(bar, eval) { function bar() { "use strict"; } }`,
+    'function bar() {foo = 42}; ext(bar); ext(foo)',
+    'function bar() { }',
+    'function a(b, c) { }',
+    'function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 1; else return Math.floor(x); };',
+    'function foo () {"use strict";}',
+    'function __decl(){return 1;}',
+    'function __func__2(){b};',
+    'function x(...{ a }){}',
+    'function santa() { function package() {} function evdal() { "use strict"; }}',
+    'function foo(bar, eval) { function bar() { "use strict"; } }',
     '(function(){})',
     'function test() { "use strict" + 42; }',
     'function test(t, t) { }',
@@ -448,10 +448,12 @@ describe('Declarations - Function', () => {
     'function arguments(eval) { eval = arguments; function foo() { "use strict"; } }',
     'function arguments(eval) { eval = arguments; function foo() { "use strict"; } "use strict"; }',
     'function arguments(eval) { function foo() { "use strict"; } eval = arguments;  }',
-    `function a() {
-      return 'hello \
-          world';
-    }`,
+    outdent`
+      function a() {
+        return 'hello \
+            world';
+      }
+    `,
     'function f([x]) {}',
     'function f([[,] = g()]) {}',
     'function f([[...x] = function() {}()]) {}',
@@ -465,63 +467,69 @@ describe('Declarations - Function', () => {
     'function f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: { x: undefined, z: 7 } }) {}',
     'function f({ x, }) {}',
     'function f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {}',
-    `function
-    x
-    (
-    )
-    {
-    }
-    ;`,
-    `function                                                    y                                   (                                          )                                              {};
-    y();
+    outdent`
+      function
+      x
+      (
+      )
+      {
+      }
+      ;
     `,
-    `function
-    z
-    (
-    )
-    {
-    }
-    ;
+    outdent`
+      function                                                    y                                   (                                          )                                              {};
+      y();
     `,
-    `function __func__3(){1};`,
-    `function __func__4(){1+c};`,
-    `function __func__5(){inc(d)};`,
-    `function foo (a, b, c) { }`,
-    `function __gunc(){return true};`,
-    `function f(x = x) {}`,
-    `function f([x] = []) {}`,
-    `function f([{ x }] = [null]) {}`,
-    `function f({ w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] }) {}`,
-    `function test(t, t) { }`,
-    `function arguments() { }`,
-    `function a() { function a() {} function a() {} }`,
-    `function j(...a) {}
-    function k() {}
-    var l = function () {};
-    var m = function (a = 1, b, c) {};
-    function* o() {
-      yield 42;
-    }
-    function* p() {
-      yield 42;
-      yield 7;
-      return "answer";
-    }
-    let q = function* () {};
-    let r = a => a;
-    let s = (a, b) => a + b;
-    let t = (a, b = 0) => a + b;
-    let u = (a, b) => {};
-    let v = () => {};
-    let w = () => ({});
-    let x = () => {
-      let a = 42;
-      return a;
-    };
-    let y = () => ({
-      a: 1,
-      b: 2
-    });`,
+    outdent`
+      function
+      z
+      (
+      )
+      {
+      }
+      ;
+    `,
+    'function __func__3(){1};',
+    'function __func__4(){1+c};',
+    'function __func__5(){inc(d)};',
+    'function foo (a, b, c) { }',
+    'function __gunc(){return true};',
+    'function f(x = x) {}',
+    'function f([x] = []) {}',
+    'function f([{ x }] = [null]) {}',
+    'function f({ w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] }) {}',
+    'function test(t, t) { }',
+    'function arguments() { }',
+    'function a() { function a() {} function a() {} }',
+    outdent`
+      function j(...a) {}
+      function k() {}
+      var l = function () {};
+      var m = function (a = 1, b, c) {};
+      function* o() {
+        yield 42;
+      }
+      function* p() {
+        yield 42;
+        yield 7;
+        return "answer";
+      }
+      let q = function* () {};
+      let r = a => a;
+      let s = (a, b) => a + b;
+      let t = (a, b = 0) => a + b;
+      let u = (a, b) => {};
+      let v = () => {};
+      let w = () => ({});
+      let x = () => {
+        let a = 42;
+        return a;
+      };
+      let y = () => ({
+        a: 1,
+        b: 2
+      });
+    `,
     'function ref(a,) {}',
     'function eval() { }',
     'function interface() { }',
@@ -568,13 +576,13 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -583,29 +591,33 @@ describe('Declarations - Function', () => {
     { code: 'function w(casecase){y:j:function casecase(){}}', options: { webcompat: true, ranges: true } },
     'function* x() { for (const [j = yield] in (x) => {}) {} }',
     '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
-    `function foo(package) {}`,
+    'function foo(package) {}',
     {
-      code: `function compareArray(a, b) {
-        if (b.length !== a.length) {
-            return;
+      code: outdent`
+        function compareArray(a, b) {
+            if (b.length !== a.length) {
+                return;
+            }
+            for (var i = 0; i < a.length; i++) {
+                b[0];
+            }
         }
-        for (var i = 0; i < a.length; i++) {
-            b[0];
-        }
-    }`,
+      `,
       options: { ranges: true, raw: true },
     },
     {
-      code: `function shouldThrow(func, errorMessage) {
-          var errorThrown = false;
-          var error = null;
-          try {
-              func();
-          } catch (e) {
-              errorThrown = true;
-              error = e;
-          }
-      }`,
+      code: outdent`
+        function shouldThrow(func, errorMessage) {
+            var errorThrown = false;
+            var error = null;
+            try {
+                func();
+            } catch (e) {
+                errorThrown = true;
+                error = e;
+            }
+        }
+      `,
       options: { ranges: true, raw: true },
     },
     { code: 'function f([foo,,bar] = x){}', options: { loc: true } },

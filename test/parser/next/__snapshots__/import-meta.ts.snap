@@ -1,5 +1,281 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x in [import.meta = 1] = {}); 1`] = `
+"SyntaxError [1:50-1:51]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x in [import.meta = 1] = {});
+    |                                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x in [import.meta] = {}); 1`] = `
+"SyntaxError [1:53-1:54]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x in [import.meta] = {});
+    |                                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x in { x: import.meta } = {}); 1`] = `
+"SyntaxError [1:58-1:59]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x in { x: import.meta } = {});
+    |                                                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x of [import.meta = 1] = {}); 1`] = `
+"SyntaxError [1:50-1:51]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x of [import.meta = 1] = {});
+    |                                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x of [import.meta] = {}); 1`] = `
+"SyntaxError [1:53-1:54]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x of [import.meta] = {});
+    |                                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x of { x: import.meta } = {}); 1`] = `
+"SyntaxError [1:58-1:59]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x of { x: import.meta } = {});
+    |                                                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > ([import.meta] = [1]) 1`] = `
+"SyntaxError [1:8-1:9]: Cannot use "import.meta" outside a module
+> 1 | ([import.meta] = [1])
+    |         ^ Cannot use "import.meta" outside a module"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > ({...import.meta} = {}); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({...import.meta} = {});
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > ({a: import.meta} = {}); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({a: import.meta} = {});
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > (import.meta([1 = ()](x = 123))) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | (import.meta([1 = ()](x = 123)))
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > (import?.meta) 1`] = `
+"SyntaxError [1:7-1:9]: Expected '('
+> 1 | (import?.meta)
+    |        ^^ Expected '('"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > [...import.meta] = []; 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | [...import.meta] = [];
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > [import.meta] = []; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | [import.meta] = [];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > [import.meta] = []; 2`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | [import.meta] = [];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > async function* f() { for await (import.meta of null) ; } 1`] = `
+"SyntaxError [1:45-1:47]: Invalid left-hand side in for-await
+> 1 | async function* f() { for await (import.meta of null) ; }
+    |                                              ^^ Invalid left-hand side in for-await"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta in null) ; 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-in
+> 1 | for (import.meta in null) ;
+    |                  ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 2`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 3`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 4`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 5`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 6`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 7`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 8`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 9`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 10`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 11`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > for (var import.meta of [1]) {} 1`] = `
+"SyntaxError [1:9-1:15]: Invalid keyword
+> 1 | for (var import.meta of [1]) {}
+    |          ^^^^^^ Invalid keyword"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.(meta([0](x = 123))) 1`] = `
+"SyntaxError [1:7-1:8]: The only valid meta property for import is 'import.meta'
+> 1 | import.(meta([0](x = 123)))
+    |        ^ The only valid meta property for import is 'import.meta'"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.\\u006deta; 1`] = `
+"SyntaxError [1:7-1:16]: 'import.meta' must not contain escaped characters
+> 1 | import.\\u006deta;
+    |        ^^^^^^^^^ 'import.meta' must not contain escaped characters"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.m\\u0065ta; 1`] = `
+"SyntaxError [1:7-1:16]: 'import.meta' must not contain escaped characters
+> 1 | import.m\\u0065ta;
+    |        ^^^^^^^^^ 'import.meta' must not contain escaped characters"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.meta = 0; 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | import.meta = 0;
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.meta++; 1`] = `
+"SyntaxError [1:11-1:13]: Invalid increment/decrement operand
+> 1 | import.meta++;
+    |            ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.meta++; 2`] = `
+"SyntaxError [1:11-1:13]: Invalid increment/decrement operand
+> 1 | import.meta++;
+    |            ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.meta[0]() = 123 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | import.meta[0]() = 123
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.meta2; 1`] = `
+"SyntaxError [1:7-1:12]: The only valid meta property for import is 'import.meta'
+> 1 | import.meta2;
+    |        ^^^^^ The only valid meta property for import is 'import.meta'"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import?.meta 1`] = `
+"SyntaxError [1:6-1:8]: The import keyword can only be used with the module goal
+> 1 | import?.meta
+    |       ^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import?.meta 2`] = `
+"SyntaxError [1:6-1:8]: The import keyword can only be used with the module goal
+> 1 | import?.meta
+    |       ^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > import?.meta 3`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '?.'
+> 1 | import?.meta
+    |       ^^ Unexpected token: '?.'"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var import.meta 1`] = `
+"SyntaxError [1:4-1:10]: Invalid keyword
+> 1 | var import.meta
+    |     ^^^^^^ Invalid keyword"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var import.meta 2`] = `
+"SyntaxError [1:4-1:10]: Invalid keyword
+> 1 | var import.meta
+    |     ^^^^^^ Invalid keyword"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( [import.meta = 1] = {}); 1`] = `
+"SyntaxError [1:28-1:29]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( [import.meta = 1] = {});
+    |                             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( [import.meta] = {}); 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( [import.meta] = {});
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( { import.meta } = {}); 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected character after object literal property name
+> 1 | var x, y, z; ( { import.meta } = {});
+    |                        ^ Unexpected character after object literal property name"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( { x: import.meta = 1 } = {}); 1`] = `
+"SyntaxError [1:32-1:33]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( { x: import.meta = 1 } = {});
+    |                                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( { x: import.meta } = {}); 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( { x: import.meta } = {});
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Next - Import Meta > Next - Import Meta (pass) > "use strict"; ({m() { while (0) { import.meta } }}) 1`] = `
 {
   "body": [

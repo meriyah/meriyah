@@ -1,5 +1,2487 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > "(async()["foo21"] () => 1) 1`] = `
+"SyntaxError [1:11-1:16]: Unexpected token: 'identifier'
+> 1 | "(async()["foo21"] () => 1)
+    |            ^^^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > "use strict"; async(x = await) => {  } 1`] = `
+"SyntaxError [1:31-1:33]: Await expression not allowed in formal parameter
+> 1 | "use strict"; async(x = await) => {  }
+    |                                ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > 'use strict'; async (yield) => X 1`] = `
+"SyntaxError [1:21-1:26]: 'yield' may not be used as an identifier in this context
+> 1 | 'use strict'; async (yield) => X
+    |                      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > 'use strict'; async X => yield 1`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | 'use strict'; async X => yield
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > 'use strict'; async yield => X 1`] = `
+"SyntaxError [1:20-1:25]: Yield expression not allowed in formal parameter
+> 1 | 'use strict'; async yield => X
+    |                     ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > () => {1} ? a : b 1`] = `
+"SyntaxError [1:10-1:11]: Block body arrows can not be immediately accessed without a group
+> 1 | () => {1} ? a : b
+    |           ^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (...a, b) => { let a; } 1`] = `
+"SyntaxError [1:5-1:6]: Invalid rest argument
+> 1 | (...a, b) => { let a; }
+    |      ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (...await) => {} 1`] = `
+"SyntaxError [1:4-1:9]: Can not use \`await\` as identifier in module or async func
+> 1 | (...await) => {}
+    |     ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ([x].foo) => x 1`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([x].foo) => x
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({ async
+f(){} }) 1`] = `
+"SyntaxError [2:0-2:1]: Async methods are a restricted production and cannot have a newline following it
+  1 | ({ async
+> 2 | f(){} })
+    | ^ Async methods are a restricted production and cannot have a newline following it"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({ async get a(){} }) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({ async get a(){} })
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({ async get a(){} }) 2`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({ async get a(){} })
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({async foo() { return {await} }}) 1`] = `
+"SyntaxError [1:29-1:30]: Can not use \`await\` as identifier in module or async func
+> 1 | ({async foo() { return {await} }})
+    |                              ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({async foo() { var await }}) 1`] = `
+"SyntaxError [1:20-1:25]: cannot use "await" as identifier inside an async function
+> 1 | ({async foo() { var await }})
+    |                     ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({async foo(await) { }}) 1`] = `
+"SyntaxError [1:12-1:17]: cannot use "await" as identifier inside an async function
+> 1 | ({async foo(await) { }})
+    |             ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({async get foo() { }}) 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async get foo() { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > ({async set foo(value) { }}) 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async set foo(value) { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a = (...await) => {}) => {} 1`] = `
+"SyntaxError [1:9-1:14]: Can not use \`await\` as identifier in module or async func
+> 1 | (a = (...await) => {}) => {}
+    |          ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a = (b, ...await) => {}) => {} 1`] = `
+"SyntaxError [1:12-1:17]: Can not use \`await\` as identifier in module or async func
+> 1 | (a = (b, ...await) => {}) => {}
+    |             ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a = async(...await) => {}) => {} 1`] = `
+"SyntaxError [1:21-1:23]: Await expression not allowed in formal parameter
+> 1 | (a = async(...await) => {}) => {}
+    |                      ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a = async(...await) => {}) => {} 2`] = `
+"SyntaxError [1:21-1:23]: Await expression not allowed in formal parameter
+> 1 | (a = async(...await) => {}) => {}
+    |                      ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a = async(b = await/r/g) => {}) => {} 1`] = `
+"SyntaxError [1:20-1:24]: Expected ')'
+> 1 | (a = async(b = await/r/g) => {}) => {}
+    |                     ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a = async(b, ...await) => {}) => {} 1`] = `
+"SyntaxError [1:24-1:26]: Await expression not allowed in formal parameter
+> 1 | (a = async(b, ...await) => {}) => {}
+    |                         ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a, ...await) => {} 1`] = `
+"SyntaxError [1:7-1:12]: Can not use \`await\` as identifier in module or async func
+> 1 | (a, ...await) => {}
+    |        ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (a, async (a) => 0) => 0 1`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, async (a) => 0) => 0
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async 
+ => async) 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | (async 
+> 2 |  => async)
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async (...a,) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | (async (...a,) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async (...x = []) => {}); 1`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in async arrow
+> 1 | (async (...x = []) => {});
+    |                    ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async (x) => {}) /= 1 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in assignment
+> 1 | (async (x) => {}) /= 1
+    |                   ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function foo3() { } () => 1) 1`] = `
+"SyntaxError [1:30-1:32]: Expected ')'
+> 1 | (async function foo3() { } () => 1)
+    |                               ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function foo4() { } => 1) 1`] = `
+"SyntaxError [1:27-1:29]: Expected ')'
+> 1 | (async function foo4() { } => 1)
+    |                            ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function foo4() { } => 1) 2`] = `
+"SyntaxError [1:27-1:29]: Expected ')'
+> 1 | (async function foo4() { } => 1)
+    |                            ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function() { } () => 1) 1`] = `
+"SyntaxError [1:25-1:27]: Expected ')'
+> 1 | (async function() { } () => 1)
+    |                          ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function() { } () => 1) 2`] = `
+"SyntaxError [1:25-1:27]: Expected ')'
+> 1 | (async function() { } () => 1)
+    |                          ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function() { } => 1) 1`] = `
+"SyntaxError [1:22-1:24]: Expected ')'
+> 1 | (async function() { } => 1)
+    |                       ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function() { } foo5 => 1) 1`] = `
+"SyntaxError [1:22-1:26]: Expected ')'
+> 1 | (async function() { } foo5 => 1)
+    |                       ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async function() { } foo5 => 1) 2`] = `
+"SyntaxError [1:22-1:26]: Expected ')'
+> 1 | (async function() { } foo5 => 1)
+    |                       ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async((a), ...(b) = xxx) => x) 1`] = `
+"SyntaxError [1:12-1:15]: Unexpected token: '...'
+> 1 | (async((a), ...(b) = xxx) => x)
+    |             ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async((a), ...(b)) => x) 1`] = `
+"SyntaxError [1:12-1:15]: Unexpected token: '...'
+> 1 | (async((a), ...(b)) => x)
+    |             ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async((a), ...[b] = xxx) => x) 1`] = `
+"SyntaxError [1:12-1:15]: Unexpected token: '...'
+> 1 | (async((a), ...[b] = xxx) => x)
+    |             ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async((a), ...{b} = xxx) => x) 1`] = `
+"SyntaxError [1:12-1:15]: Unexpected token: '...'
+> 1 | (async((a), ...{b} = xxx) => x)
+    |             ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async((a), ...{b} = xxx)) 1`] = `
+"SyntaxError [1:12-1:15]: Unexpected token: '...'
+> 1 | (async((a), ...{b} = xxx))
+    |             ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async().foo10 => 1) 1`] = `
+"SyntaxError [1:15-1:17]: Expected ')'
+> 1 | (async().foo10 => 1)
+    |                ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async().foo13 () => 1) 1`] = `
+"SyntaxError [1:18-1:20]: Expected ')'
+> 1 | (async().foo13 () => 1)
+    |                   ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async().foo13 () => 1) 2`] = `
+"SyntaxError [1:18-1:20]: Expected ')'
+> 1 | (async().foo13 () => 1)
+    |                   ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async()["foo18"] => 1) 1`] = `
+"SyntaxError [1:18-1:20]: Expected ')'
+> 1 | (async()["foo18"] => 1)
+    |                   ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async()["foo18"] => 1) 2`] = `
+"SyntaxError [1:18-1:20]: Expected ')'
+> 1 | (async()["foo18"] => 1)
+    |                   ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async()["foo19"] foo20 => 1) 1`] = `
+"SyntaxError [1:18-1:23]: Expected ')'
+> 1 | (async()["foo19"] foo20 => 1)
+    |                   ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async(...a, ...b) => x) 1`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in async arrow
+> 1 | (async(...a, ...b) => x)
+    |                    ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async(...b = y, ...d) => x) 1`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | (async(...b = y, ...d) => x)
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async(...b = y, d) => x) 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | (async(...b = y, d) => x)
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async(a, ...(b)) => x) 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | (async(a, ...(b)) => x)
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async(a, ...b = y) => x) 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | (async(a, ...b = y) => x)
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async.foo6 => 1) 1`] = `
+"SyntaxError [1:12-1:14]: Expected ')'
+> 1 | (async.foo6 => 1)
+    |             ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async.foo7 foo8 => 1) 1`] = `
+"SyntaxError [1:12-1:16]: Expected ')'
+> 1 | (async.foo7 foo8 => 1)
+    |             ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async.foo9 () => 1) 1`] = `
+"SyntaxError [1:15-1:17]: Expected ')'
+> 1 | (async.foo9 () => 1)
+    |                ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async["foo14"] => 1) 1`] = `
+"SyntaxError [1:16-1:18]: Expected ')'
+> 1 | (async["foo14"] => 1)
+    |                 ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async["foo15"] foo16 => 1) 1`] = `
+"SyntaxError [1:16-1:21]: Expected ')'
+> 1 | (async["foo15"] foo16 => 1)
+    |                 ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async["foo15"] foo16 => 1) 2`] = `
+"SyntaxError [1:16-1:21]: Expected ')'
+> 1 | (async["foo15"] foo16 => 1)
+    |                 ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async["foo15"] foo16 => 1) 3`] = `
+"SyntaxError [1:16-1:21]: Expected ')'
+> 1 | (async["foo15"] foo16 => 1)
+    |                 ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async["foo17"] () => 1) 1`] = `
+"SyntaxError [1:19-1:21]: Expected ')'
+> 1 | (async["foo17"] () => 1)
+    |                    ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo22\` => 1) 1`] = `
+"SyntaxError [1:14-1:16]: Expected ')'
+> 1 | (async\`foo22\` => 1)
+    |               ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo23\` foo24 => 1) 1`] = `
+"SyntaxError [1:14-1:19]: Expected ')'
+> 1 | (async\`foo23\` foo24 => 1)
+    |               ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo25\` () => 1) 1`] = `
+"SyntaxError [1:17-1:19]: Expected ')'
+> 1 | (async\`foo25\` () => 1)
+    |                  ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo26\`.bar27 => 1) 1`] = `
+"SyntaxError [1:20-1:22]: Expected ')'
+> 1 | (async\`foo26\`.bar27 => 1)
+    |                     ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo28\`.bar29 foo30 => 1) 1`] = `
+"SyntaxError [1:20-1:25]: Expected ')'
+> 1 | (async\`foo28\`.bar29 foo30 => 1)
+    |                     ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo28\`.bar29 foo30 => 1) 2`] = `
+"SyntaxError [1:20-1:25]: Expected ')'
+> 1 | (async\`foo28\`.bar29 foo30 => 1)
+    |                     ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo31\`.bar32 () => 1) 1`] = `
+"SyntaxError [1:23-1:25]: Expected ')'
+> 1 | (async\`foo31\`.bar32 () => 1)
+    |                        ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (async\`foo31\`.bar32 () => 1) 2`] = `
+"SyntaxError [1:23-1:25]: Expected ')'
+> 1 | (async\`foo31\`.bar32 () => 1)
+    |                        ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > (class { async get a(){} }) 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: 'identifier'
+> 1 | (class { async get a(){} })
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > [async 
+ () => x] 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | [async 
+> 2 |  () => x]
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > \\u0061sync () => {} 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | \\u0061sync () => {}
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > a + async () => {} 1`] = `
+"SyntaxError [1:13-1:15]: \`=>\` is an invalid assignment target
+> 1 | a + async () => {}
+    |              ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > a + async b => {} 1`] = `
+"SyntaxError [1:12-1:14]: \`=>\` is an invalid assignment target
+> 1 | a + async b => {}
+    |             ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > a = (b = await/r/g) => {}) => {} 1`] = `
+"SyntaxError [1:14-1:18]: Expected ')'
+> 1 | a = (b = await/r/g) => {}) => {}
+    |               ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > a.x => {}; 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '=>'
+> 1 | a.x => {};
+    |     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async
+(a, b) => {} 1`] = `
+"SyntaxError [2:7-2:9]: No line break is allowed after '=>'
+  1 | async
+> 2 | (a, b) => {}
+    |        ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ () 
+ => {} 1`] = `
+"SyntaxError [3:1-3:3]: No line break is allowed after '=>'
+  1 | async 
+  2 |  () 
+> 3 |  => {}
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ () 
+ => {} 2`] = `
+"SyntaxError [3:1-3:3]: No line break is allowed after '=>'
+  1 | async 
+  2 |  () 
+> 3 |  => {}
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ () => {} 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | async 
+> 2 |  () => {}
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ () => {} 2`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | async 
+> 2 |  () => {}
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ (x) 
+ => x 1`] = `
+"SyntaxError [3:1-3:3]: No line break is allowed after '=>'
+  1 | async 
+  2 |  (x) 
+> 3 |  => x
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ (x) => x 1`] = `
+"SyntaxError [2:5-2:7]: No line break is allowed after '=>'
+  1 | async 
+> 2 |  (x) => x
+    |      ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ => async 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async 
+> 2 |  => async
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 
+ x 
+ => x 1`] = `
+"SyntaxError [3:1-3:3]: No line break is allowed after '=>'
+  1 | async 
+  2 |  x 
+> 3 |  => x
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async  ...x => x; 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected token: '...'
+> 1 | async  ...x => x;
+    |        ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async "a" => {} 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected token: 'string'
+> 1 | async "a" => {}
+    |       ^^^ Unexpected token: 'string'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async "use strict"; (a) => 00; 1`] = `
+"SyntaxError [1:6-1:18]: Unexpected token: 'string'
+> 1 | async "use strict"; (a) => 00;
+    |       ^^^^^^^^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ("a") => {} 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async ("a") => {}
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ("a", b) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async ("a", b) => {}
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ("a", b) => {} 2`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async ("a", b) => {}
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (()) => 0 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | async (()) => 0
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (()) => 0 2`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | async (()) => 0
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((a)) => {} 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async ((a)) => {}
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((a)) => {} 2`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async ((a)) => {}
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((x)) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async ((x)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((x)) => a 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async ((x)) => a
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((x, y)) => 0 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async ((x, y)) => 0
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((x, y)) => 0 2`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async ((x, y)) => 0
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((x, y), z) => 0 1`] = `
+"SyntaxError [1:18-1:20]: Unexpected token: '=>'
+> 1 | async ((x, y), z) => 0
+    |                   ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ((x, y, z)) => 0 1`] = `
+"SyntaxError [1:18-1:20]: Unexpected token: '=>'
+> 1 | async ((x, y, z)) => 0
+    |                   ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async () 
+ => {} 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async () 
+> 2 |  => {}
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async () 
+ => {} 2`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async () 
+> 2 |  => {}
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async () => { await => { }; } 1`] = `
+"SyntaxError [1:14-1:26]: cannot use "await" as identifier inside an async function
+> 1 | async () => { await => { }; }
+    |               ^^^^^^^^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async () => {'value': 42} 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: ':'
+> 1 | async () => {'value': 42}
+    |                     ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async () => {1} ? a : b 1`] = `
+"SyntaxError [1:16-1:17]: Block body arrows can not be immediately accessed without a group
+> 1 | async () => {1} ? a : b
+    |                 ^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ()c++=>{}; 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: 'identifier'
+> 1 | async ()c++=>{};
+    |         ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (,) => b; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | async (,) => b;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a = b) => b 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in async arrow
+> 1 | async (...a = b) => b
+    |                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a = b) => b 2`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in async arrow
+> 1 | async (...a = b) => b
+    |                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a)?c:d=>{}=>{} 1`] = `
+"SyntaxError [1:20-1:22]: Unexpected token: '=>'
+> 1 | async (...a)?c:d=>{}=>{}
+    |                     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a)[1]=>{}; 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async (...a)[1]=>{};
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a,) => {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in async arrow
+> 1 | async (...a,) => {}
+    |               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a,) => {} 2`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in async arrow
+> 1 | async (...a,) => {}
+    |               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...a,) => {} 3`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in async arrow
+> 1 | async (...a,) => {}
+    |               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...await) => 1 1`] = `
+"SyntaxError [1:17-1:19]: Await expression not allowed in formal parameter
+> 1 | async (...await) => 1
+    |                  ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...rest - a) => b 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | async (...rest - a) => b
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...x = []) => {} 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async (...x = []) => {}
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (...x = []) => {} 2`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async (...x = []) => {}
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (..a, ...b) => c 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '.'
+> 1 | async (..a, ...b) => c
+    |        ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (/foo/) => bar 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | async (/foo/) => bar
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([...[ x ] = []] = []) => {}; 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | async ([...[ x ] = []] = []) => {};
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([...{ x }, y]) => {}; 1`] = `
+"SyntaxError [1:22-1:24]: Invalid left-hand side in async arrow
+> 1 | async ([...{ x }, y]) => {};
+    |                       ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([...{ x }, y]) => {}; 2`] = `
+"SyntaxError [1:22-1:24]: Invalid left-hand side in async arrow
+> 1 | async ([...{ x }, y]) => {};
+    |                       ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([...await]) => 1 1`] = `
+"SyntaxError [1:19-1:21]: Await expression not allowed in formal parameter
+> 1 | async ([...await]) => 1
+    |                    ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{"foo": y.z} = a]) => b 1`] = `
+"SyntaxError [1:27-1:29]: Invalid left-hand side in async arrow
+> 1 | async ([{"foo": y.z} = a]) => b
+    |                            ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{"foo": y.z}]) => b 1`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{"foo": y.z}]) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z} = a]) => b 1`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z} = a]) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z} = a]) => b 2`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z} = a]) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z}] = a) => b 1`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z}] = a) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z}] = a) => b 2`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z}] = a) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z}] = a) => b 3`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z}] = a) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z}] = a) => b 4`] = `
+"SyntaxError [1:23-1:25]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z}] = a) => b
+    |                        ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z}]) => b 1`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z}]) => b
+    |                    ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([{x: y.z}]) => b 2`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in async arrow
+> 1 | async ([{x: y.z}]) => b
+    |                    ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([0])=>0; 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in async arrow
+> 1 | async ([0])=>0;
+    |            ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([a=await 1]) => 1 1`] = `
+"SyntaxError [1:16-1:17]: Expected ']'
+> 1 | async ([a=await 1]) => 1
+    |                 ^ Expected ']'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([a=await]) => 1 1`] = `
+"SyntaxError [1:18-1:20]: Await expression not allowed in formal parameter
+> 1 | async ([a=await]) => 1
+    |                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([await]) => 1 1`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async ([await]) => 1
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([await]) => 1 2`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async ([await]) => 1
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([x.y]=z) => z 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in async arrow
+> 1 | async ([x.y]=z) => z
+    |                 ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ([x].foo) => x 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in async arrow
+> 1 | async ([x].foo) => x
+    |                 ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({"foo": y.z} = a) => b 1`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in async arrow
+> 1 | async ({"foo": y.z} = a) => b
+    |                          ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({...[a, b]}) => x 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | async ({...[a, b]}) => x
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({...{a, b}}) => x 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | async ({...{a, b}}) => x
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({0})=>0; 1`] = `
+"SyntaxError [1:9-1:10]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | async ({0})=>0;
+    |          ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({a: await}) => 1 1`] = `
+"SyntaxError [1:19-1:21]: Await expression not allowed in formal parameter
+> 1 | async ({a: await}) => 1
+    |                    ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({a:b[0]}) => x 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in async arrow
+> 1 | async ({a:b[0]}) => x
+    |                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({a=await 1}) => 1 1`] = `
+"SyntaxError [1:16-1:17]: Expected '}'
+> 1 | async ({a=await 1}) => 1
+    |                 ^ Expected '}'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({a=await}) => 1 1`] = `
+"SyntaxError [1:18-1:20]: Await expression not allowed in formal parameter
+> 1 | async ({a=await}) => 1
+    |                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({await}) => 1 1`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async ({await}) => 1
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({await}) => 1 2`] = `
+"SyntaxError [1:13-1:14]: Can not use \`await\` as identifier in module or async func
+> 1 | async ({await}) => 1
+    |              ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({await}) => 1 3`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async ({await}) => 1
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: {x: y}.length})  => {} 1`] = `
+"SyntaxError [1:28-1:30]: Invalid left-hand side in async arrow
+> 1 | async ({x: {x: y}.length})  => {}
+    |                             ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: async ()=>x})  => {} 1`] = `
+"SyntaxError [1:26-1:28]: Invalid left-hand side in async arrow
+> 1 | async ({x: async ()=>x})  => {}
+    |                           ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: function(){}})  => {} 1`] = `
+"SyntaxError [1:27-1:29]: Invalid left-hand side in async arrow
+> 1 | async ({x: function(){}})  => {}
+    |                            ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: this})  => {} 1`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in async arrow
+> 1 | async ({x: this})  => {}
+    |                    ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: void x})  => {} 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async ({x: void x})  => {}
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: x + y})  => {} 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | async ({x: x + y})  => {}
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ({x: y.z} = a) => b 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async ({x: y.z} = a) => b
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (-a) => {} 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: '=>'
+> 1 | async (-a) => {}
+    |            ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (-a, b) => {} 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | async (-a, b) => {}
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (1) => {} 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | async (1) => {}
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (1) => {} 2`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | async (1) => {}
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (1) => {}() 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | async (1) => {}()
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (1) => {}() 2`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | async (1) => {}()
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (10) => 0; 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: '=>'
+> 1 | async (10) => 0;
+    |            ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (32) => {} 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: '=>'
+> 1 | async (32) => {}
+    |            ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a + b) => {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in async arrow
+> 1 | async (a + b) => {}
+    |               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a + b, c) => {} 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in async arrow
+> 1 | async (a + b, c) => {}
+    |                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a = (await) => {}) => {} 1`] = `
+"SyntaxError [1:26-1:28]: Await expression not allowed in formal parameter
+> 1 | async (a = (await) => {}) => {}
+    |                           ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a = await => {}) => {} 1`] = `
+"SyntaxError [1:24-1:26]: Await expression not allowed in formal parameter
+> 1 | async (a = await => {}) => {}
+    |                         ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a++) => {} 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in async arrow
+> 1 | async (a++) => {}
+    |             ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a++, b) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async (a++, b) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, "b") => {} 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async (a, "b") => {}
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, "b") => {} 2`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | async (a, "b") => {}
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, ...b - 10) => b 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b - 10) => b
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, ...b, ...c) => {} 1`] = `
+"SyntaxError [1:22-1:24]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b, ...c) => {}
+    |                       ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, ...b, ...c) => {} 2`] = `
+"SyntaxError [1:22-1:24]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b, ...c) => {}
+    |                       ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, -b) => {} 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | async (a, -b) => {}
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, 32) => {} 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | async (a, 32) => {}
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, async (1) => 0) 1`] = `
+"SyntaxError [1:20-1:22]: Expected ')'
+> 1 | async (a, async (1) => 0)
+    |                     ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, async (async (a) => 0) => 0) 1`] = `
+"SyntaxError [1:33-1:35]: Invalid left-hand side in async arrow
+> 1 | async (a, async (async (a) => 0) => 0)
+    |                                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, await) => { } 1`] = `
+"SyntaxError [1:17-1:19]: Await expression not allowed in formal parameter
+> 1 | async (a, await) => { }
+    |                  ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, b = await 1) => {} 1`] = `
+"SyntaxError [1:20-1:21]: Expected ')'
+> 1 | async (a, b = await 1) => {}
+    |                     ^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, b = await 1) => {} 2`] = `
+"SyntaxError [1:20-1:21]: Expected ')'
+> 1 | async (a, b = await 1) => {}
+    |                     ^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, b - c) => {} 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in async arrow
+> 1 | async (a, b - c) => {}
+    |                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, b++) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async (a, b++) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, foo ? bar : baz) => {} 1`] = `
+"SyntaxError [1:27-1:29]: Invalid left-hand side in async arrow
+> 1 | async (a, foo ? bar : baz) => {}
+    |                            ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a, if) => {} 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: 'if'
+> 1 | async (a, if) => {}
+    |           ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a,...b)[c]=>{}; 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async (a,...b)[c]=>{};
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a,...b)\`\${c}template-tail\`=>{} 1`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: '=>'
+> 1 | async (a,...b)\`\${c}template-tail\`=>{}
+    |                                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a,...b)\`\${c}template-tail\`=>{}; 1`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: '=>'
+> 1 | async (a,...b)\`\${c}template-tail\`=>{};
+    |                                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a,...b)\`template-head\${c}\`=>{} 1`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: '=>'
+> 1 | async (a,...b)\`template-head\${c}\`=>{}
+    |                                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a.b, c) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async (a.b, c) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a=await 1) => 1 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | async (a=await 1) => 1
+    |                ^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a=await) => 1 1`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async (a=await) => 1
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a['b'], c) => {} 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async (a['b'], c) => {}
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (a['b'], c) => {} 2`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async (a['b'], c) => {}
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (async ()  => a)  => a 1`] = `
+"SyntaxError [1:24-1:26]: Invalid left-hand side in async arrow
+> 1 | async (async ()  => a)  => a
+    |                         ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (await) => 1 1`] = `
+"SyntaxError [1:14-1:16]: Await expression not allowed in formal parameter
+> 1 | async (await) => 1
+    |               ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (await) => 1 2`] = `
+"SyntaxError [1:14-1:16]: Await expression not allowed in formal parameter
+> 1 | async (await) => 1
+    |               ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (await, b = async () => {}) => 1 1`] = `
+"SyntaxError [1:34-1:36]: Await expression not allowed in formal parameter
+> 1 | async (await, b = async () => {}) => 1
+    |                                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (await, b = async () => {}) => 1 2`] = `
+"SyntaxError [1:34-1:36]: Await expression not allowed in formal parameter
+> 1 | async (await, b = async () => {}) => 1
+    |                                   ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (await, b = async()) => 2 1`] = `
+"SyntaxError [1:27-1:29]: Await expression not allowed in formal parameter
+> 1 | async (await, b = async()) => 2
+    |                            ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (b = (await) => {}) => 1 1`] = `
+"SyntaxError [1:26-1:28]: Await expression not allowed in formal parameter
+> 1 | async (b = (await) => {}) => 1
+    |                           ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (b = [...await]) => 1 1`] = `
+"SyntaxError [1:23-1:25]: Await expression not allowed in formal parameter
+> 1 | async (b = [...await]) => 1
+    |                        ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (b = [await]) => 1 1`] = `
+"SyntaxError [1:20-1:22]: Await expression not allowed in formal parameter
+> 1 | async (b = [await]) => 1
+    |                     ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (b = {a: await}) => 1 1`] = `
+"SyntaxError [1:23-1:25]: Await expression not allowed in formal parameter
+> 1 | async (b = {a: await}) => 1
+    |                        ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (b = {await}) => 1 1`] = `
+"SyntaxError [1:20-1:22]: Await expression not allowed in formal parameter
+> 1 | async (b = {await}) => 1
+    |                     ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (b = class await {}) => 1 1`] = `
+"SyntaxError [1:27-1:29]: Await expression not allowed in formal parameter
+> 1 | async (b = class await {}) => 1
+    |                            ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (c, a.b) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async (c, a.b) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (c, a.b) => {} 2`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async (c, a.b) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (c, a['b']) => {} 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async (c, a['b']) => {}
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (c, a['b']) => {} 2`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async (c, a['b']) => {}
+    |                   ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (foo = super.foo) => { } 1`] = `
+"SyntaxError [1:18-1:19]: Member access on super must be in a method
+> 1 | async (foo = super.foo) => { }
+    |                   ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (foo ? bar : baz) => {} 1`] = `
+"SyntaxError [1:24-1:26]: Invalid left-hand side in async arrow
+> 1 | async (foo ? bar : baz) => {}
+    |                         ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (foo ? bar : baz, a) => {} 1`] = `
+"SyntaxError [1:27-1:29]: Invalid left-hand side in async arrow
+> 1 | async (foo ? bar : baz, a) => {}
+    |                            ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (if) => {} 1`] = `
+"SyntaxError [1:7-1:9]: Unexpected token: 'if'
+> 1 | async (if) => {}
+    |        ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (var x) => {}; 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected token: 'var'
+> 1 | async (var x) => {};
+    |        ^^^ Unexpected token: 'var'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x = (x) += await f) => {} 1`] = `
+"SyntaxError [1:24-1:25]: Expected ')'
+> 1 | async (x = (x) += await f) => {}
+    |                         ^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x = 1) => {"use strict"} 1`] = `
+"SyntaxError [1:18-1:31]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | async (x = 1) => {"use strict"}
+    |                   ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) 
+ => x 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async (x) 
+> 2 |  => x
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) 
+ => x 2`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async (x) 
+> 2 |  => x
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) => {} + 2 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: '+'
+> 1 | async (x) => {} + 2
+    |                 ^ Unexpected token: '+'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) => {} / 1 1`] = `
+"SyntaxError [1:16-1:19]: Unterminated regular expression
+> 1 | async (x) => {} / 1
+    |                 ^^^ Unterminated regular expression"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) => {} 1 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: 'number'
+> 1 | async (x) => {} 1
+    |                 ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) => {} a() 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: 'identifier'
+> 1 | async (x) => {} a()
+    |                 ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) => {}a 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: 'identifier'
+> 1 | async (x) => {}a
+    |                ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x, y)[7] => {} 1`] = `
+"SyntaxError [1:16-1:18]: Unexpected token: '=>'
+> 1 | async (x, y)[7] => {}
+    |                 ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (yield) => 1; 1`] = `
+"SyntaxError [1:7-1:12]: 'yield' may not be used as an identifier in this context
+> 1 | async (yield) => 1;
+    |        ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async ) => {} 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: ')'
+> 1 | async ) => {}
+    |       ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async => ; 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ';'
+> 1 | async => ;
+    |          ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async [] => {} 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ']'
+> 1 | async [] => {}
+    |        ^ Unexpected token: ']'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async [a, b] => 1 1`] = `
+"SyntaxError [1:13-1:15]: Unexpected token: '=>'
+> 1 | async [a, b] => 1
+    |              ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async [a] => 1 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | async [a] => 1
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async {} => {} 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '{'
+> 1 | async {} => {}
+    |       ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async {a: b} => 1 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '{'
+> 1 | async {a: b} => 1
+    |       ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async {a} => 1 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '{'
+> 1 | async {a} => 1
+    |       ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async {y=z} => d 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '{'
+> 1 | async {y=z} => d
+    |       ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async {y=z} 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '{'
+> 1 | async {y=z}
+    |       ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async -a => {} 1`] = `
+"SyntaxError [1:9-1:11]: \`=>\` is an invalid assignment target
+> 1 | async -a => {}
+    |          ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 1 + () 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'number'
+> 1 | async 1 + ()
+    |       ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 1 => ; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'number'
+> 1 | async 1 => ;
+    |       ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 1 => b; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'number'
+> 1 | async 1 => b;
+    |       ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async 32 => {} 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: 'number'
+> 1 | async 32 => {}
+    |       ^^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a + b => {} 1`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | async a + b => {}
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => {} () 1`] = `
+"SyntaxError [1:14-1:15]: Block body arrows can not be immediately invoked without a group
+> 1 | async a => {} ()
+    |               ^ Block body arrows can not be immediately invoked without a group"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => {} () 2`] = `
+"SyntaxError [1:14-1:15]: Block body arrows can not be immediately invoked without a group
+> 1 | async a => {} ()
+    |               ^ Block body arrows can not be immediately invoked without a group"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => async b 1`] = `
+"SyntaxError [1:17-1:18]: Expected '=>'
+> 1 | async a => async b
+    |                  ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => async function 1`] = `
+"SyntaxError [1:17-1:25]: Expected '('
+> 1 | async a => async function
+    |                  ^^^^^^^^ Expected '('"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => async function() 1`] = `
+"SyntaxError [1:26-1:27]: Expected '{'
+> 1 | async a => async function()
+    |                           ^ Expected '{'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => await 1`] = `
+"SyntaxError [1:11-1:16]: cannot use "await" as identifier inside an async function
+> 1 | async a => await
+    |            ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a => await await 1`] = `
+"SyntaxError [1:17-1:22]: cannot use "await" as identifier inside an async function
+> 1 | async a => await await
+    |                  ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a++ => {} 1`] = `
+"SyntaxError [1:7-1:9]: Expected '=>'
+> 1 | async a++ => {}
+    |        ^^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async a?c:d=>{}=>{}; 1`] = `
+"SyntaxError [1:7-1:8]: Expected '=>'
+> 1 | async a?c:d=>{}=>{};
+    |        ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async await => { } 1`] = `
+"SyntaxError [1:6-1:11]: Await expression not allowed in formal parameter
+> 1 | async await => { }
+    |       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async await => {} 1`] = `
+"SyntaxError [1:6-1:11]: Await expression not allowed in formal parameter
+> 1 | async await => {}
+    |       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async await => 0 1`] = `
+"SyntaxError [1:6-1:11]: Await expression not allowed in formal parameter
+> 1 | async await => 0
+    |       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async await => 1 1`] = `
+"SyntaxError [1:6-1:11]: Await expression not allowed in formal parameter
+> 1 | async await => 1
+    |       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async enum => 1; 1`] = `
+"SyntaxError [1:6-1:10]: Unexpected token: 'enum'
+> 1 | async enum => 1;
+    |       ^^^^ Unexpected token: 'enum'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async foo ? bar : baz => {} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async foo ? bar : baz => {}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async foo bar => zoo 1`] = `
+"SyntaxError [1:10-1:13]: Expected '=>'
+> 1 | async foo bar => zoo
+    |           ^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function a() { async function b([k = await 3]) {} } 1`] = `
+"SyntaxError [1:43-1:48]: Await expression not allowed in formal parameter
+> 1 | async function a() { async function b([k = await 3]) {} }
+    |                                            ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function a() { async function b({k = [await 3]}) {} } 1`] = `
+"SyntaxError [1:44-1:49]: Await expression not allowed in formal parameter
+> 1 | async function a() { async function b({k = [await 3]}) {} }
+    |                                             ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function a(k = await 3) {} 1`] = `
+"SyntaxError [1:21-1:26]: Await expression not allowed in formal parameter
+> 1 | async function a(k = await 3) {}
+    |                      ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { [ await ] = 1; } 1`] = `
+"SyntaxError [1:23-1:28]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { [ await ] = 1; }
+    |                        ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { { await } = 1; } 1`] = `
+"SyntaxError [1:23-1:28]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { { await } = 1; }
+    |                        ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { O = { async [await](a, a) {} } } 1`] = `
+"SyntaxError [1:34-1:39]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { O = { async [await](a, a) {} } }
+    |                                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { await = 1; } 1`] = `
+"SyntaxError [1:21-1:26]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { await = 1; }
+    |                      ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { e = (await = 42) } 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { e = (await = 42) }
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { e = (await); } 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { e = (await); }
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { e = (await, f); } 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { e = (await, f); }
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { e = [await];  } 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { e = [await];  }
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { e = {await}; } 1`] = `
+"SyntaxError [1:31-1:32]: Can not use \`await\` as identifier in module or async func
+> 1 | async function f() { e = {await}; }
+    |                                ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { f = (...await) => 42; } 1`] = `
+"SyntaxError [1:29-1:34]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { f = (...await) => 42; }
+    |                              ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { f = (await) => 42; } 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { f = (await) => 42; }
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { f = (await, a) => 42; } 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { f = (await, a) => 42; }
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { f = await => 42; } 1`] = `
+"SyntaxError [1:25-1:36]: cannot use "await" as identifier inside an async function
+> 1 | async function f() { f = await => 42; }
+    |                          ^^^^^^^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { function await() {} } 1`] = `
+"SyntaxError [1:30-1:35]: Can not use \`await\` as identifier in module or async func
+> 1 | async function f() { function await() {} }
+    |                               ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { return {await = 0} = {}; } 1`] = `
+"SyntaxError [1:35-1:36]: Can not use \`await\` as identifier in module or async func
+> 1 | async function f() { return {await = 0} = {}; }
+    |                                    ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function f() { return {await}; } 1`] = `
+"SyntaxError [1:34-1:35]: Can not use \`await\` as identifier in module or async func
+> 1 | async function f() { return {await}; }
+    |                                   ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function x({await}) { return 1 } 1`] = `
+"SyntaxError [1:23-1:24]: Can not use \`await\` as identifier in module or async func
+> 1 | async function x({await}) { return 1 }
+    |                        ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async if => {} 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: 'if'
+> 1 | async if => {}
+    |       ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async left = (aSize.width/2) - () 1`] = `
+"SyntaxError [1:11-1:12]: Expected '=>'
+> 1 | async left = (aSize.width/2) - ()
+    |            ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x 
+ => x 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async x 
+> 2 |  => x
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x 
+ => x 2`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | async x 
+> 2 |  => x
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => (await) = 1 1`] = `
+"SyntaxError [1:12-1:17]: cannot use "await" as identifier inside an async function
+> 1 | async x => (await) = 1
+    |             ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => (break) = 1 1`] = `
+"SyntaxError [1:12-1:17]: Unexpected token: 'break'
+> 1 | async x => (break) = 1
+    |             ^^^^^ Unexpected token: 'break'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => (case) = 1 1`] = `
+"SyntaxError [1:12-1:16]: Unexpected token: 'case'
+> 1 | async x => (case) = 1
+    |             ^^^^ Unexpected token: 'case'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => (catch) = 1 1`] = `
+"SyntaxError [1:12-1:17]: Unexpected token: 'catch'
+> 1 | async x => (catch) = 1
+    |             ^^^^^ Unexpected token: 'catch'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => (in) = 1 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: 'in'
+> 1 | async x => (in) = 1
+    |             ^^ Unexpected token: 'in'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => const = 1 1`] = `
+"SyntaxError [1:11-1:16]: Unexpected token: 'const'
+> 1 | async x => const = 1
+    |            ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => do = 1 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: 'do'
+> 1 | async x => do = 1
+    |            ^^ Unexpected token: 'do'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => else = 1 1`] = `
+"SyntaxError [1:11-1:15]: Unexpected token: 'else'
+> 1 | async x => else = 1
+    |            ^^^^ Unexpected token: 'else'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => for = 1 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: 'for'
+> 1 | async x => for = 1
+    |            ^^^ Unexpected token: 'for'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async x => function = 1 1`] = `
+"SyntaxError [1:20-1:21]: Expected '('
+> 1 | async x => function = 1
+    |                     ^ Expected '('"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async yield => 1; 1`] = `
+"SyntaxError [1:6-1:11]: Yield expression not allowed in formal parameter
+> 1 | async yield => 1;
+    |       ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async yield x => zoo 1`] = `
+"SyntaxError [1:12-1:13]: Expected '=>'
+> 1 | async yield x => zoo
+    |             ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async("foo".bar) => x 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async("foo".bar) => x
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async("foo".bar) => x 2`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async("foo".bar) => x
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async() => ((async(x = await 1) => x)(); 1`] = `
+"SyntaxError [1:32-1:34]: Await expression not allowed in formal parameter
+> 1 | async() => ((async(x = await 1) => x)();
+    |                                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async() => { (a = await/r/g) => {} }; 1`] = `
+"SyntaxError [1:29-1:31]: Await expression not allowed in formal parameter
+> 1 | async() => { (a = await/r/g) => {} };
+    |                              ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async() => { (a = await/r/g) => {} }; 2`] = `
+"SyntaxError [1:29-1:31]: Await expression not allowed in formal parameter
+> 1 | async() => { (a = await/r/g) => {} };
+    |                              ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async() => await 1`] = `
+"SyntaxError [1:11-1:16]: cannot use "await" as identifier inside an async function
+> 1 | async() => await
+    |            ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async().foo10 => 1 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | async().foo10 => 1
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async().foo10 => 1 2`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | async().foo10 => 1
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async().foo13 () => 1 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async().foo13 () => 1
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(,) 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: ','
+> 1 | async(,)
+    |       ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a = b) => b 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in async arrow
+> 1 | async(...a = b) => b
+    |                 ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a = b) => b 2`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in async arrow
+> 1 | async(...a = b) => b
+    |                 ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a = b) => b 3`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in async arrow
+> 1 | async(...a = b) => b
+    |                 ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a)?c:d=>{}=>{}; 1`] = `
+"SyntaxError [1:19-1:21]: Unexpected token: '=>'
+> 1 | async(...a)?c:d=>{}=>{};
+    |                    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a)\`template-head\${c}\`=>{} 1`] = `
+"SyntaxError [1:30-1:32]: Unexpected token: '=>'
+> 1 | async(...a)\`template-head\${c}\`=>{}
+    |                               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a, b) => b 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a, b) => b 2`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a, b) => b 3`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a, b) => b 4`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a, b) => b 5`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a, b) => b 6`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a,) => b 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in async arrow
+> 1 | async(...a,) => b
+    |              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a,) => b 2`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in async arrow
+> 1 | async(...a,) => b
+    |              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a,) => b 3`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in async arrow
+> 1 | async(...a,) => b
+    |              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...a,) => b 4`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in async arrow
+> 1 | async(...a,) => b
+    |              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...await) => {} 1`] = `
+"SyntaxError [1:16-1:18]: Await expression not allowed in formal parameter
+> 1 | async(...await) => {}
+    |                 ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...x,) => x 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in async arrow
+> 1 | async(...x,) => x
+    |              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(...x,b) => x 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in async arrow
+> 1 | async(...x,b) => x
+    |               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async({a = 1}, {b = 2} = {}, {c = 3} = {}) 1`] = `
+"SyntaxError [1:41-1:42]: Invalid shorthand property initializer
+> 1 | async({a = 1}, {b = 2} = {}, {c = 3} = {})
+    |                                          ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(1, a) => x 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async(1, a) => x
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(1,2,3) => x 1`] = `
+"SyntaxError [1:13-1:15]: Unexpected token: '=>'
+> 1 | async(1,2,3) => x
+    |              ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = (...await) => {}) => {} 1`] = `
+"SyntaxError [1:28-1:30]: Await expression not allowed in formal parameter
+> 1 | async(a = (...await) => {}) => {}
+    |                             ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = (b = await/r/g) => {}) => {} 1`] = `
+"SyntaxError [1:20-1:24]: Expected ')'
+> 1 | async(a = (b = await/r/g) => {}) => {}
+    |                     ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = (b, ...await) => {}) => {} 1`] = `
+"SyntaxError [1:31-1:33]: Await expression not allowed in formal parameter
+> 1 | async(a = (b, ...await) => {}) => {}
+    |                                ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = async(...await) => {}) => {} 1`] = `
+"SyntaxError [1:26-1:28]: Await expression not allowed in formal parameter
+> 1 | async(a = async(...await) => {}) => {}
+    |                           ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = async(b = await/r/g) => {}) => {} 1`] = `
+"SyntaxError [1:25-1:29]: Expected ')'
+> 1 | async(a = async(b = await/r/g) => {}) => {}
+    |                          ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = async(b, ...await) => {}) => {} 1`] = `
+"SyntaxError [1:29-1:31]: Await expression not allowed in formal parameter
+> 1 | async(a = async(b, ...await) => {}) => {}
+    |                              ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = await x) => x 1`] = `
+"SyntaxError [1:16-1:17]: Expected ')'
+> 1 | async(a = await x) => x
+    |                 ^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a = await/r/g) => {} 1`] = `
+"SyntaxError [1:15-1:19]: Expected ')'
+> 1 | async(a = await/r/g) => {}
+    |                ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a, ...await) => {} 1`] = `
+"SyntaxError [1:19-1:21]: Await expression not allowed in formal parameter
+> 1 | async(a, ...await) => {}
+    |                    ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(a, 1) => x 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | async(a, 1) => x
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(async() () => {})(async() () => {})(async() () => {})(async() () => {})(async() () => {}) 1`] = `
+"SyntaxError [1:17-1:19]: Expected ')'
+> 1 | async(async() () => {})(async() () => {})(async() () => {})(async() () => {})(async() () => {})
+    |                  ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(async() () => {})(async() () => {})(y)(n)(c) 1`] = `
+"SyntaxError [1:17-1:19]: Expected ')'
+> 1 | async(async() () => {})(async() () => {})(y)(n)(c)
+    |                  ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(await) => {  } 1`] = `
+"SyntaxError [1:13-1:15]: Await expression not allowed in formal parameter
+> 1 | async(await) => {  }
+    |              ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo = super()) => {} 1`] = `
+"SyntaxError [1:17-1:18]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo = super()) => {}
+    |                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo = super()) => {} 2`] = `
+"SyntaxError [1:17-1:18]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo = super()) => {}
+    |                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo = super()) => {} 3`] = `
+"SyntaxError [1:17-1:18]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo = super()) => {}
+    |                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo) => { super() }; 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo) => { super() };
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo) => { super.prop }; 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | async(foo) => { super.prop };
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo) => { super.prop }; 2`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | async(foo) => { super.prop };
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(foo) => { super.prop }; 3`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | async(foo) => { super.prop };
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(x = await) => {  } 1`] = `
+"SyntaxError [1:17-1:19]: Await expression not allowed in formal parameter
+> 1 | async(x = await) => {  }
+    |                  ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > asyncFn = async await => await + 'test'; 1`] = `
+"SyntaxError [1:16-1:21]: Await expression not allowed in formal parameter
+> 1 | asyncFn = async await => await + 'test';
+    |                 ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > break async 
+ () => x 1`] = `
+"SyntaxError [2:1-2:2]: Undefined label 'async'
+  1 | break async 
+> 2 |  () => x
+    |  ^ Undefined label 'async'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > class x extends async 
+ () => x {} 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | class x extends async 
+> 2 |  () => x {}
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > f = async
+(g) => g 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | f = async
+> 2 | (g) => g
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > f = async
+function g(){await x} 1`] = `
+"SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
+  1 | f = async
+> 2 | function g(){await x}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > f = async
+g => await g 1`] = `
+"SyntaxError [2:11-2:12]: Unexpected token: 'identifier'
+  1 | f = async
+> 2 | g => await g
+    |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > f = async ((x)) => x 1`] = `
+"SyntaxError [1:16-1:18]: Unexpected token: '=>'
+> 1 | f = async ((x)) => x
+    |                 ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > f(async
+()=>c) 1`] = `
+"SyntaxError [2:2-2:4]: No line break is allowed after '=>'
+  1 | f(async
+> 2 | ()=>c)
+    |   ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > for (;async 
+ () => x;) x 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | for (;async 
+> 2 |  () => x;) x
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > for (async 
+ () => x;;) x 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | for (async 
+> 2 |  () => x;;) x
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > for (x of async 
+ () => x) x 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | for (x of async 
+> 2 |  () => x) x
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function () { a = async await => { } } 1`] = `
+"SyntaxError [1:9-1:10]: Function declaration must have a name in this context
+> 1 | function () { a = async await => { } }
+    |          ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function *a() { async yield => foo } 1`] = `
+"SyntaxError [1:22-1:27]: Unexpected token: 'yield'
+> 1 | function *a() { async yield => foo }
+    |                       ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function f(x = async 
+ () => x){} 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | function f(x = async 
+> 2 |  () => x){}
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* a(){ async (yield) => {}; } 1`] = `
+"SyntaxError [1:29-1:31]: Invalid left-hand side in async arrow
+> 1 | function* a(){ async (yield) => {}; }
+    |                              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* a(){ async (yield) => {}; } 2`] = `
+"SyntaxError [1:29-1:31]: Invalid left-hand side in async arrow
+> 1 | function* a(){ async (yield) => {}; }
+    |                              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* a(){ async (yield) => {}; } 3`] = `
+"SyntaxError [1:29-1:31]: Invalid left-hand side in async arrow
+> 1 | function* a(){ async (yield) => {}; }
+    |                              ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* a(){ async yield => {}; } 1`] = `
+"SyntaxError [1:21-1:26]: Unexpected token: 'yield'
+> 1 | function* a(){ async yield => {}; }
+    |                      ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* a(){ async yield => {}; } 2`] = `
+"SyntaxError [1:21-1:26]: Unexpected token: 'yield'
+> 1 | function* a(){ async yield => {}; }
+    |                      ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async ([yield]) => X } 1`] = `
+"SyntaxError [1:32-1:34]: Invalid left-hand side in async arrow
+> 1 | function* g() { async ([yield]) => X }
+    |                                 ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async ({yield}) => X } 1`] = `
+"SyntaxError [1:29-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function* g() { async ({yield}) => X }
+    |                              ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async ({yield}) => X } 2`] = `
+"SyntaxError [1:29-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function* g() { async ({yield}) => X }
+    |                              ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async (yield) => X } 1`] = `
+"SyntaxError [1:30-1:32]: Invalid left-hand side in async arrow
+> 1 | function* g() { async (yield) => X }
+    |                               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async (yield) => X } 2`] = `
+"SyntaxError [1:30-1:32]: Invalid left-hand side in async arrow
+> 1 | function* g() { async (yield) => X }
+    |                               ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async yield => X } 1`] = `
+"SyntaxError [1:22-1:27]: Unexpected token: 'yield'
+> 1 | function* g() { async yield => X }
+    |                       ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g() { async yield => X } 2`] = `
+"SyntaxError [1:22-1:27]: Unexpected token: 'yield'
+> 1 | function* g() { async yield => X }
+    |                       ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > if (x) async 
+ () => x else y 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | if (x) async 
+> 2 |  () => x else y
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > interface => {} 1`] = `
+"SyntaxError [1:0-1:9]: Unexpected token: 'interface'
+> 1 | interface => {}
+    | ^^^^^^^^^ Unexpected token: 'interface'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > let f = a + b + async()=>d 1`] = `
+"SyntaxError [1:23-1:25]: \`=>\` is an invalid assignment target
+> 1 | let f = a + b + async()=>d
+    |                        ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > let f = async
+(g) => g 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | let f = async
+> 2 | (g) => g
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > let f = async
+(g) => g 2`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | let f = async
+> 2 | (g) => g
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > new async() => {} 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | new async() => {}
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > try {} catch(e = async 
+ () => x) {} 1`] = `
+"SyntaxError [1:15-1:16]: Catch clause parameter does not support default values
+> 1 | try {} catch(e = async 
+    |                ^ Catch clause parameter does not support default values
+  2 |  () => x) {}"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var aaf = async
+(x, y) => { }; 1`] = `
+"SyntaxError [2:7-2:9]: No line break is allowed after '=>'
+  1 | var aaf = async
+> 2 | (x, y) => { };
+    |        ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var af = arguments => 1; 1`] = `
+"SyntaxError [1:19-1:21]: Unexpected eval or arguments in strict mode
+> 1 | var af = arguments => 1;
+    |                    ^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var af = package => 1; 1`] = `
+"SyntaxError [1:9-1:16]: Unexpected token: 'package'
+> 1 | var af = package => 1;
+    |          ^^^^^^^ Unexpected token: 'package'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var asyncFn = async () => var await = 'test'; 1`] = `
+"SyntaxError [1:26-1:29]: Unexpected token: 'var'
+> 1 | var asyncFn = async () => var await = 'test';
+    |                           ^^^ Unexpected token: 'var'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var asyncFn = async await => await + 'test'; 1`] = `
+"SyntaxError [1:20-1:25]: Await expression not allowed in formal parameter
+> 1 | var asyncFn = async await => await + 'test';
+    |                     ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var f = async() => ((async(x = await 1) => x)(); 1`] = `
+"SyntaxError [1:40-1:42]: Await expression not allowed in formal parameter
+> 1 | var f = async() => ((async(x = await 1) => x)();
+    |                                         ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var x = 1 y => y 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'identifier'
+> 1 | var x = 1 y => y
+    |           ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > var x = async 
+ () => x, y 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | var x = async 
+> 2 |  () => x, y
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > with (async 
+ () => x) {} 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | with (async 
+> 2 |  () => x) {}
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > with({}) async function f(){}; 1`] = `
+"SyntaxError [1:15-1:23]: Async functions can only be declared at the top level or inside a block
+> 1 | with({}) async function f(){};
+    |                ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > x = async 
+ () => x, y 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | x = async 
+> 2 |  () => x, y
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > x(async 
+ () => x) 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | x(async 
+> 2 |  () => x)
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > x(async 
+ () => x); 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | x(async 
+> 2 |  () => x);
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > x={x: async 
+ () => x} 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | x={x: async 
+> 2 |  () => x}
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > x[async 
+ () => x]; 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | x[async 
+> 2 |  () => x];
+    |     ^^ No line break is allowed after '=>'"
+`;
+
 exports[`Expressions - Async arrow > Expressions - Async arrow > ({async foo () 
  {}}) 1`] = `
 {
@@ -143,37 +2625,37 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > ({x: async (y,w
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {})
-      (async () => {})
-      (async () => {})
-      (async () => {})
-      (async () => {}) 1`] = `
+(async () => {})
+(async () => {})
+(async () => {})
+(async () => {}) 1`] = `
 {
   "body": [
     {
-      "end": 108,
+      "end": 84,
       "expression": {
         "arguments": [
           {
             "async": true,
             "body": {
               "body": [],
-              "end": 107,
+              "end": 83,
               "range": [
-                105,
-                107,
+                81,
+                83,
               ],
-              "start": 105,
+              "start": 81,
               "type": "BlockStatement",
             },
-            "end": 107,
+            "end": 83,
             "expression": false,
             "generator": false,
             "params": [],
             "range": [
-              93,
-              107,
+              69,
+              83,
             ],
-            "start": 93,
+            "start": 69,
             "type": "ArrowFunctionExpression",
           },
         ],
@@ -183,23 +2665,23 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
               "async": true,
               "body": {
                 "body": [],
-                "end": 84,
+                "end": 66,
                 "range": [
-                  82,
-                  84,
+                  64,
+                  66,
                 ],
-                "start": 82,
+                "start": 64,
                 "type": "BlockStatement",
               },
-              "end": 84,
+              "end": 66,
               "expression": false,
               "generator": false,
               "params": [],
               "range": [
-                70,
-                84,
+                52,
+                66,
               ],
-              "start": 70,
+              "start": 52,
               "type": "ArrowFunctionExpression",
             },
           ],
@@ -209,23 +2691,23 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
                 "async": true,
                 "body": {
                   "body": [],
-                  "end": 61,
+                  "end": 49,
                   "range": [
-                    59,
-                    61,
+                    47,
+                    49,
                   ],
-                  "start": 59,
+                  "start": 47,
                   "type": "BlockStatement",
                 },
-                "end": 61,
+                "end": 49,
                 "expression": false,
                 "generator": false,
                 "params": [],
                 "range": [
-                  47,
-                  61,
+                  35,
+                  49,
                 ],
-                "start": 47,
+                "start": 35,
                 "type": "ArrowFunctionExpression",
               },
             ],
@@ -235,23 +2717,23 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
                   "async": true,
                   "body": {
                     "body": [],
-                    "end": 38,
+                    "end": 32,
                     "range": [
-                      36,
-                      38,
+                      30,
+                      32,
                     ],
-                    "start": 36,
+                    "start": 30,
                     "type": "BlockStatement",
                   },
-                  "end": 38,
+                  "end": 32,
                   "expression": false,
                   "generator": false,
                   "params": [],
                   "range": [
-                    24,
-                    38,
+                    18,
+                    32,
                   ],
-                  "start": 24,
+                  "start": 18,
                   "type": "ArrowFunctionExpression",
                 },
               ],
@@ -278,54 +2760,54 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
                 "start": 1,
                 "type": "ArrowFunctionExpression",
               },
-              "end": 39,
+              "end": 33,
               "optional": false,
               "range": [
                 0,
-                39,
+                33,
               ],
               "start": 0,
               "type": "CallExpression",
             },
-            "end": 62,
+            "end": 50,
             "optional": false,
             "range": [
               0,
-              62,
+              50,
             ],
             "start": 0,
             "type": "CallExpression",
           },
-          "end": 85,
+          "end": 67,
           "optional": false,
           "range": [
             0,
-            85,
+            67,
           ],
           "start": 0,
           "type": "CallExpression",
         },
-        "end": 108,
+        "end": 84,
         "optional": false,
         "range": [
           0,
-          108,
+          84,
         ],
         "start": 0,
         "type": "CallExpression",
       },
       "range": [
         0,
-        108,
+        84,
       ],
       "start": 0,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 108,
+  "end": 84,
   "range": [
     0,
-    108,
+    84,
   ],
   "sourceType": "script",
   "start": 0,

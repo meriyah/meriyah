@@ -1,74 +1,74 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Private methods', () => {
   fail('Private methods (fail)', [
-    ['class A { #a b() {} }', Context.None],
-    ['class A { #a b }', Context.None],
-    ['class A { #a #b }', Context.None],
-    ['class A { a #b }', Context.None],
-    ['a = { #ab() {} }', Context.None],
-    ['class A { [{#ab() {}}]() {} }', Context.None],
-    ['class A{ # a() {}}', Context.None],
-    ['class C{ #method() { super(); } }', Context.None],
-    ['var o = { #m() {} };', Context.None],
-    ['var o = { async #m() {} };', Context.None],
-    ['var o = { *#m() {} };', Context.None],
-    ['class A { constructor = 4 }', Context.None],
-    ['class A { #constructor = 4 }', Context.None],
-    ['class A { a = () => super() }', Context.None],
-    ['class A { # a }', Context.None],
-    ['class A { #a; a() { this.# a } }', Context.None],
-    ['class A {  #x; g = this.f; x = delete (g().#m); }', Context.None],
-    ['class A {  #x; x = delete (this.#m); }', Context.None],
-    ['class A {  #x; g = this.f; x = delete (g().#m); }', Context.None],
-    ['class A {  #x; x = delete (g().#m); async *#m() {} }', Context.None],
-    ['class A {  #x; x() { var g = this.f; delete g().#x; } }', Context.None],
-    ['class A {  #x; x() { delete ((this.#m ));  } async #m() {} }', Context.None],
-    ['class A { # x }', Context.None],
-    [String.raw`class A { #\u0000; }`, Context.None],
-    ['class A { * # m() {} }', Context.None],
-    ['class A { # x; }', Context.None],
-    ['class A { #x; m() { this.# x; }}', Context.None],
-    ['class A { # m() {} }', Context.None],
-    ['class A { static get # m() {} }', Context.None],
-    ['class A { * method() { super(); } }', Context.None],
-    ['class A { static async * prototype() {} }', Context.None],
-    ['class A { static async #method() { super(); } }', Context.None],
-    [String.raw`class A { method() { this.\u0023field; } }`, Context.None],
-    ['class C { static #x = super(); }', Context.None],
-    [String.raw`class C { async \u0023m() {} } }`, Context.None],
-    ['class C { static async *#gen() { var await; } }', Context.None],
-    ['class C { static async *#gen() { void await; } }', Context.None],
-    ['class C { static async *#gen() { var yield; } }', Context.None],
-    ['class C { static async *#gen() { void yield; } }', Context.None],
-    ['class C { static async *#gen() { yield: ; } }', Context.None],
-    [String.raw`class C { static async *#gen() {  void \u0061wait; } }`, Context.None],
-    [String.raw`class C { async \u0023m() {} } }`, Context.None],
-    [String.raw`class C { #method() { a() { foo().\u0023field; } } }`, Context.None],
-    [String.raw`class C { #method() { \u0023field; } }`, Context.None],
-    [String.raw`class C {  async \u0023m() {} }`, Context.None],
-    ['var C = class { x = 42  *gen() {} }', Context.None],
-    ['class Spaces { #  wrongSpaces() { return fail(); } }', Context.None],
-    ['class C{ #method() { #[m] = 1} }', Context.None],
-    ['class C{ #method() { #"p" = x } }', Context.None],
-    ['class C{ #method() { super(); } }', Context.None],
-    ['(class C extends Base { async #*a() { } })', Context.None],
-    ['class C{ #method() { super(); } }', Context.None],
-    ['class C{ #method() { super(); } }', Context.None],
-    ['class C{ #method() { super(); } }', Context.None],
-    ['class C { #x = () => arguments; }', Context.None],
-    ['class A { #x; #x }', Context.OptionsLexical],
-    ['class A { get #x() {} get #x() {} }', Context.OptionsLexical],
-    ['class A { set #x(v) {} set #x(v) {} }', Context.OptionsLexical],
-    ['class A { static get #x() {} static get #x() {} }', Context.OptionsLexical],
-    ['class A { static set #x(v) {} static set #x(v) {} }', Context.OptionsLexical],
-    ['class A { #x; fn() { return this.#y } }', Context.OptionsLexical],
-    ['class A { #x } function fn() { return this.#y }', Context.OptionsLexical],
-    ['class A extends B { #x() {} method() { super.#x() }  }', Context.OptionsLexical],
+    'class A { #a b() {} }',
+    'class A { #a b }',
+    'class A { #a #b }',
+    'class A { a #b }',
+    'a = { #ab() {} }',
+    'class A { [{#ab() {}}]() {} }',
+    'class A{ # a() {}}',
+    'class C{ #method() { super(); } }',
+    'var o = { #m() {} };',
+    'var o = { async #m() {} };',
+    'var o = { *#m() {} };',
+    'class A { constructor = 4 }',
+    'class A { #constructor = 4 }',
+    'class A { a = () => super() }',
+    'class A { # a }',
+    'class A { #a; a() { this.# a } }',
+    'class A {  #x; g = this.f; x = delete (g().#m); }',
+    'class A {  #x; x = delete (this.#m); }',
+    'class A {  #x; g = this.f; x = delete (g().#m); }',
+    'class A {  #x; x = delete (g().#m); async *#m() {} }',
+    'class A {  #x; x() { var g = this.f; delete g().#x; } }',
+    'class A {  #x; x() { delete ((this.#m ));  } async #m() {} }',
+    'class A { # x }',
+    String.raw`class A { #\u0000; }`,
+    'class A { * # m() {} }',
+    'class A { # x; }',
+    'class A { #x; m() { this.# x; }}',
+    'class A { # m() {} }',
+    'class A { static get # m() {} }',
+    'class A { * method() { super(); } }',
+    'class A { static async * prototype() {} }',
+    'class A { static async #method() { super(); } }',
+    String.raw`class A { method() { this.\u0023field; } }`,
+    'class C { static #x = super(); }',
+    String.raw`class C { async \u0023m() {} } }`,
+    'class C { static async *#gen() { var await; } }',
+    'class C { static async *#gen() { void await; } }',
+    'class C { static async *#gen() { var yield; } }',
+    'class C { static async *#gen() { void yield; } }',
+    'class C { static async *#gen() { yield: ; } }',
+    String.raw`class C { static async *#gen() {  void \u0061wait; } }`,
+    String.raw`class C { async \u0023m() {} } }`,
+    String.raw`class C { #method() { a() { foo().\u0023field; } } }`,
+    String.raw`class C { #method() { \u0023field; } }`,
+    String.raw`class C {  async \u0023m() {} }`,
+    'var C = class { x = 42  *gen() {} }',
+    'class Spaces { #  wrongSpaces() { return fail(); } }',
+    'class C{ #method() { #[m] = 1} }',
+    'class C{ #method() { #"p" = x } }',
+    'class C{ #method() { super(); } }',
+    '(class C extends Base { async #*a() { } })',
+    'class C{ #method() { super(); } }',
+    'class C{ #method() { super(); } }',
+    'class C{ #method() { super(); } }',
+    'class C { #x = () => arguments; }',
+    { code: 'class A { #x; #x }', options: { lexical: true } },
+    { code: 'class A { get #x() {} get #x() {} }', options: { lexical: true } },
+    { code: 'class A { set #x(v) {} set #x(v) {} }', options: { lexical: true } },
+    { code: 'class A { static get #x() {} static get #x() {} }', options: { lexical: true } },
+    { code: 'class A { static set #x(v) {} static set #x(v) {} }', options: { lexical: true } },
+    { code: 'class A { #x; fn() { return this.#y } }', options: { lexical: true } },
+    { code: 'class A { #x } function fn() { return this.#y }', options: { lexical: true } },
+    { code: 'class A extends B { #x() {} method() { super.#x() }  }', options: { lexical: true } },
   ]);
 
   for (const arg of [
@@ -121,25 +121,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`);
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
+        parseSource(`class C extends Base { ${arg} }`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`);
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C extends Base { ${arg} })`);
       });
     });
   }
@@ -218,25 +218,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`);
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
+        parseSource(`class C extends Base { ${arg} }`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`);
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C extends Base { ${arg} })`);
       });
     });
   }
@@ -257,7 +257,8 @@ describe('Next - Private methods', () => {
     'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
     'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
     '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
-    `{
+    outdent`
+      {
       {\n
         class A {\n
           #a() { return 1; }\n
@@ -276,27 +277,30 @@ describe('Next - Private methods', () => {
       \n
         new D;\n
         new E;\n
-      }\n}`,
+      }
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
   pass('Next - Private methods (pass)', [
-    `class A { #key; }`,
-    `class A { static async #_(value) { return await value;} }`,
-    { code: `class A { #a; #b; }`, options: { ranges: true } },
-    { code: `class A { #yield = b[c]; }`, options: { ranges: true } },
-    { code: `class A { #yield = foo + bar; }`, options: { ranges: true } },
-    { code: `class A { #yield; }`, options: { ranges: true } },
-    `class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }`,
-    `class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`,
-    `class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`,
-    `class C { #m() { return 42; } get ref() { return this.#m; } }`,
-    `class A { #foo = bar; }`,
-    `class Cl {
+    'class A { #key; }',
+    'class A { static async #_(value) { return await value;} }',
+    { code: 'class A { #a; #b; }', options: { ranges: true } },
+    { code: 'class A { #yield = b[c]; }', options: { ranges: true } },
+    { code: 'class A { #yield = foo + bar; }', options: { ranges: true } },
+    { code: 'class A { #yield; }', options: { ranges: true } },
+    'class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }',
+    'class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }',
+    'class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };',
+    'class C { #m() { return 42; } get ref() { return this.#m; } }',
+    'class A { #foo = bar; }',
+    outdent`
+      class Cl {
         #privateField = "top secret string";
 
         constructor() {
@@ -342,72 +346,84 @@ describe('Next - Private methods', () => {
           this.#privateFieldValue = -(this.#privateFieldValue ** this.#privateFieldValue);
           this.publicFieldValue = -(this.publicFieldValue ** this.publicFieldValue);
         }
-      }`,
-    `class Cl {
-          #privateField = 0;
+      }
+    `,
+    outdent`
+      class Cl {
+        #privateField = 0;
 
-          get #privateFieldValue() {
-            return this.#privateField;
-          }
+        get #privateFieldValue() {
+          return this.#privateField;
+        }
 
-          constructor() {
-            this.#privateFieldValue = 1;
-          }
-        }`,
-    `class Cl {
-            #privateField = "top secret string";
+        constructor() {
+          this.#privateFieldValue = 1;
+        }
+      }
+    `,
+    outdent`
+      class Cl {
+        #privateField = "top secret string";
 
-            constructor() {
-              this.publicField = "not secret string";
-            }
+        constructor() {
+          this.publicField = "not secret string";
+        }
 
-            get #privateFieldValue() {
-              return this.#privateField;
-            }
+        get #privateFieldValue() {
+          return this.#privateField;
+        }
 
-            set #privateFieldValue(newValue) {
-              this.#privateField = newValue;
-            }
+        set #privateFieldValue(newValue) {
+          this.#privateField = newValue;
+        }
 
-            publicGetPrivateField() {
-              return this.#privateFieldValue;
-            }
+        publicGetPrivateField() {
+          return this.#privateFieldValue;
+        }
 
-            publicSetPrivateField(newValue) {
-              this.#privateFieldValue = newValue;
-            }
-          } `,
-    `class A { #key() {} }`,
-    `class A { #yield\n = 0; }`,
-    `class A { #foo() { #bar } }`,
-    `class A { static #key; }`,
-    `class A { static #foo(bar) {} }`,
-    `class A { m() {} #a; }`,
-    `class A {  #a; m() {} }`,
-    `class A {  #a; m() {} #b; }`,
-    `class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }`,
-    `class A { #foo = () => 'bar';  method() {
+        publicSetPrivateField(newValue) {
+          this.#privateFieldValue = newValue;
+        }
+      }
+    `,
+    'class A { #key() {} }',
+    'class A { #yield\n = 0; }',
+    'class A { #foo() { #bar } }',
+    'class A { static #key; }',
+    'class A { static #foo(bar) {} }',
+    'class A { m() {} #a; }',
+    'class A {  #a; m() {} }',
+    'class A {  #a; m() {} #b; }',
+    'class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }',
+    outdent`
+      class A { #foo = () => 'bar';  method() {
         return this.#foo();
-      } }`,
-    `class B { #x = 0; #y = 1; }`,
-    `class A {
-          static #x;
-          static #y = 1;
-        }`,
-    `class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }`,
-    `class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }`,
-    `class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }`,
-    `class A { #$_; #℘_; }`,
-    `class A { $(value) { this.#$_ = value; return this.#$; } }`,
-    `var C = class {
+      } }
+    `,
+    'class B { #x = 0; #y = 1; }',
+    outdent`
+      class A {
+        static #x;
+        static #y = 1;
+      }
+    `,
+    "class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }",
+    "class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }",
+    'class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }',
+    'class A { #$_; #℘_; }',
+    'class A { $(value) { this.#$_ = value; return this.#$; } }',
+    outdent`
+      var C = class {
         static *m() { return 42; } #$_; #__;  #℘_;   set #$(value) { this.#$_ = value;
         }
         set #_(value) {
           this.#__ = value;
         }
-      }`,
-    `class A { get #foo/*{ declareWith }*/() {} }`,
-    `var C = class {
+      }
+    `,
+    'class A { get #foo/*{ declareWith }*/() {} }',
+    outdent`
+      var C = class {
         static async *m() { return 42; } #$_; #__;
 
         get #_() {
@@ -422,16 +438,20 @@ describe('Next - Private methods', () => {
           return this.#_;
         }
 
-      }`,
-    `class Hotel {
+      }
+    `,
+    outdent`
+      class Hotel {
         get #evil() {
           return ohNo();
         }
         set #evil(x) {
           return makeEvil(x);
         }
-      }`,
-    `var C = class {
+      }
+    `,
+    outdent`
+      var C = class {
         ;;;;
         ;;;;;;;;;;;;;
         ;;;;
@@ -447,9 +467,10 @@ describe('Next - Private methods', () => {
         static y() {
           return this.#y(43);
         }
-      } `,
-    `class A { static set #foo/*{ declareWith }*/(param) {} }`,
-    `class A { #\\u{61}\nstatic #\\u0062() {} }`,
+      }
+    `,
+    'class A { static set #foo/*{ declareWith }*/(param) {} }',
+    'class A { #\\u{61}\nstatic #\\u0062() {} }',
     { code: 'class a {#𐌭人}', options: { ranges: true } },
     { code: 'class a {#人}', options: { ranges: true } },
     { code: 'class a {#𐌭}', options: { ranges: true } },

@@ -1,62 +1,61 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Arrows', () => {
   fail('Lexical - Arrows (fail)', [
-    [`async (ā,食,食) => { /* 𢭃 */ }`, Context.OptionsLexical],
-    ['(x) => { let x }', Context.OptionsLexical],
-    ['(x) => { const x = y }', Context.OptionsLexical],
-    ['([a,b,c]) => { const c = x; }', Context.OptionsLexical],
-    ['(a, a) => {}', Context.OptionsLexical],
-    ['(a, b, a) => {}', Context.OptionsLexical],
-    ['(b, a, a) => {}', Context.OptionsLexical],
-    ['(a, a, b) => {}', Context.OptionsLexical],
-    ['(b, a, b, a) => {}', Context.OptionsLexical],
-    ['(b, a, b, a, [fine]) => {}', Context.OptionsLexical],
-    ['(b, a, b, a = x) => {}', Context.OptionsLexical],
-    ['(b, a, b, ...a) => {}', Context.OptionsLexical],
-    ['([a, a]) => {}', Context.OptionsLexical],
-    ['([a, b, a]) => {}', Context.OptionsLexical],
-    ['([b, a, a]) => {}', Context.OptionsLexical],
-    ['([a, a, b]) => {}', Context.OptionsLexical],
-    ['([b, a, b, a]) => {}', Context.OptionsLexical],
-    ['([b, a], b) => {}', Context.OptionsLexical],
-    ['([b, a], {b}) => {}', Context.OptionsLexical],
-    ['([b, a], b=x) => {}', Context.OptionsLexical],
-    ['([a], a, ...b) => {}', Context.OptionsLexical],
-    ['a(async a => { let a; })', Context.OptionsLexical],
-    ['a(async (a, a) => { let a; })', Context.OptionsLexical],
-    ['a(async (a, [a]) => { let a; })', Context.OptionsLexical],
-    ['async a => { let a; }', Context.OptionsLexical],
-    ['async => { let async; }', Context.OptionsLexical],
-    ['async (x) => { let x }', Context.OptionsLexical],
-    ['async (x) => { const x = y }', Context.OptionsLexical],
-    ['async ([a,b,c]) => { const c = x; }', Context.OptionsLexical],
-    ['async (a, a) => {}', Context.OptionsLexical],
-    ['async (b, a, a) => {}', Context.OptionsLexical],
-    ['async (b, a, b, a, [fine]) => {}', Context.OptionsLexical],
-    ['async ([b, a, b, a]) => {}', Context.OptionsLexical],
-    ['async ([b, a], ...b) => {}', Context.OptionsLexical],
-    ['async ({"x": x, x: x}) => a', Context.OptionsLexical],
-    ['async ({x: y, "x": x = y}) => { let y; }', Context.OptionsLexical],
-    ['async ({3: x, 4: x}) => a', Context.OptionsLexical],
-    ['async ({x: x, x: x}) => a', Context.OptionsLexical],
-    ['async ({x: y, "x": x = y}) => { let y; }', Context.OptionsLexical],
-    ['([a,b,c]) => { const c = x; }', Context.OptionsLexical],
-    ['async b => { let b; }', Context.OptionsLexical],
-    ['async => { let async; }', Context.OptionsLexical],
-    ['x = async => { let async; }', Context.OptionsLexical],
-    ['async (a = b => { let b; })', Context.OptionsLexical],
-    ['async yield => { let yield; }', Context.OptionsLexical],
-    ['x = async yield => { let yield; }', Context.OptionsLexical],
-    ['async await => { let await; }', Context.OptionsLexical],
-    ['(async => { let async; })', Context.OptionsLexical],
-    ['(async (a = b => { let b; }))', Context.OptionsLexical],
-    ['(async yield => { let yield; })', Context.OptionsLexical],
-    ['(async await => { let await; })', Context.OptionsLexical],
+    { code: 'async (ā,食,食) => { /* 𢭃 */ }', options: { lexical: true } },
+    { code: '(x) => { let x }', options: { lexical: true } },
+    { code: '(x) => { const x = y }', options: { lexical: true } },
+    { code: '([a,b,c]) => { const c = x; }', options: { lexical: true } },
+    { code: '(a, a) => {}', options: { lexical: true } },
+    { code: '(a, b, a) => {}', options: { lexical: true } },
+    { code: '(b, a, a) => {}', options: { lexical: true } },
+    { code: '(a, a, b) => {}', options: { lexical: true } },
+    { code: '(b, a, b, a) => {}', options: { lexical: true } },
+    { code: '(b, a, b, a, [fine]) => {}', options: { lexical: true } },
+    { code: '(b, a, b, a = x) => {}', options: { lexical: true } },
+    { code: '(b, a, b, ...a) => {}', options: { lexical: true } },
+    { code: '([a, a]) => {}', options: { lexical: true } },
+    { code: '([a, b, a]) => {}', options: { lexical: true } },
+    { code: '([b, a, a]) => {}', options: { lexical: true } },
+    { code: '([a, a, b]) => {}', options: { lexical: true } },
+    { code: '([b, a, b, a]) => {}', options: { lexical: true } },
+    { code: '([b, a], b) => {}', options: { lexical: true } },
+    { code: '([b, a], {b}) => {}', options: { lexical: true } },
+    { code: '([b, a], b=x) => {}', options: { lexical: true } },
+    { code: '([a], a, ...b) => {}', options: { lexical: true } },
+    { code: 'a(async a => { let a; })', options: { lexical: true } },
+    { code: 'a(async (a, a) => { let a; })', options: { lexical: true } },
+    { code: 'a(async (a, [a]) => { let a; })', options: { lexical: true } },
+    { code: 'async a => { let a; }', options: { lexical: true } },
+    { code: 'async => { let async; }', options: { lexical: true } },
+    { code: 'async (x) => { let x }', options: { lexical: true } },
+    { code: 'async (x) => { const x = y }', options: { lexical: true } },
+    { code: 'async ([a,b,c]) => { const c = x; }', options: { lexical: true } },
+    { code: 'async (a, a) => {}', options: { lexical: true } },
+    { code: 'async (b, a, a) => {}', options: { lexical: true } },
+    { code: 'async (b, a, b, a, [fine]) => {}', options: { lexical: true } },
+    { code: 'async ([b, a, b, a]) => {}', options: { lexical: true } },
+    { code: 'async ([b, a], ...b) => {}', options: { lexical: true } },
+    { code: 'async ({"x": x, x: x}) => a', options: { lexical: true } },
+    { code: 'async ({x: y, "x": x = y}) => { let y; }', options: { lexical: true } },
+    { code: 'async ({3: x, 4: x}) => a', options: { lexical: true } },
+    { code: 'async ({x: x, x: x}) => a', options: { lexical: true } },
+    { code: 'async ({x: y, "x": x = y}) => { let y; }', options: { lexical: true } },
+    { code: '([a,b,c]) => { const c = x; }', options: { lexical: true } },
+    { code: 'async b => { let b; }', options: { lexical: true } },
+    { code: 'async => { let async; }', options: { lexical: true } },
+    { code: 'x = async => { let async; }', options: { lexical: true } },
+    { code: 'async (a = b => { let b; })', options: { lexical: true } },
+    { code: 'async yield => { let yield; }', options: { lexical: true } },
+    { code: 'x = async yield => { let yield; }', options: { lexical: true } },
+    { code: 'async await => { let await; }', options: { lexical: true } },
+    { code: '(async => { let async; })', options: { lexical: true } },
+    { code: '(async (a = b => { let b; }))', options: { lexical: true } },
+    { code: '(async yield => { let yield; })', options: { lexical: true } },
+    { code: '(async await => { let await; })', options: { lexical: true } },
   ]);
 
   for (const arg of [
@@ -69,7 +68,7 @@ describe('Lexical - Arrows', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
   }
@@ -84,7 +83,7 @@ describe('Lexical - Arrows', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
   }

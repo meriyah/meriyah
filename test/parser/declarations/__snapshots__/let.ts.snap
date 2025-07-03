@@ -1,5 +1,1107 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; const [let] = []; 1`] = `
+"SyntaxError [1:24-1:25]: The identifier 'let' must not be in expression position in strict mode
+> 1 | "use strict"; const [let] = [];
+    |                         ^ The identifier 'let' must not be in expression position in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; const { let } = {}; 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected strict mode reserved word
+> 1 | "use strict"; const { let } = {};
+    |                           ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; const let = 1; 1`] = `
+"SyntaxError [1:20-1:23]: Unexpected strict mode reserved word
+> 1 | "use strict"; const let = 1;
+    |                     ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; let [let] = []; 1`] = `
+"SyntaxError [1:22-1:23]: The identifier 'let' must not be in expression position in strict mode
+> 1 | "use strict"; let [let] = [];
+    |                       ^ The identifier 'let' must not be in expression position in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; let { let } = {}; 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected strict mode reserved word
+> 1 | "use strict"; let { let } = {};
+    |                         ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; let(100) 1`] = `
+"SyntaxError [1:17-1:18]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | "use strict"; let(100)
+    |                  ^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; let, let, let, let 1`] = `
+"SyntaxError [1:17-1:18]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | "use strict"; let, let, let, let
+    |                  ^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > "use strict"; let: 34 1`] = `
+"SyntaxError [1:17-1:18]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | "use strict"; let: 34
+    |                  ^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > ([(x().foo)]) => x 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([(x().foo)]) => x
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > ([(x)]) => x 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([(x)]) => x
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > ([x().foo]) => x 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([x().foo]) => x
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > ([x()]) => x 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([x()]) => x
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > (let {"a": a = 1} of []) 1`] = `
+"SyntaxError [1:5-1:6]: Expected ')'
+> 1 | (let {"a": a = 1} of [])
+    |      ^ Expected ')'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > (o.f=1)=>0 1`] = `
+"SyntaxError [1:7-1:9]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (o.f=1)=>0
+    |        ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > [x()] = x 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | [x()] = x
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > const [a, let, b] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:13-1:14]: 'A lexical declaration can't define a 'let' binding
+> 1 | const [a, let, b] = [1, 2, 3];
+    |              ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > const [let] = []; 1`] = `
+"SyntaxError [1:10-1:11]: 'A lexical declaration can't define a 'let' binding
+> 1 | const [let] = [];
+    |           ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > const { let } = {}; 1`] = `
+"SyntaxError [1:12-1:13]: 'A lexical declaration can't define a 'let' binding
+> 1 | const { let } = {};
+    |             ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > const let = 1, test = 2; 1`] = `
+"SyntaxError [1:6-1:9]: 'A lexical declaration can't define a 'let' binding
+> 1 | const let = 1, test = 2;
+    |       ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > const let 1`] = `
+"SyntaxError [1:6-1:9]: 'A lexical declaration can't define a 'let' binding
+> 1 | const let
+    |       ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > do let
+[x] = 0
+while (false); 1`] = `
+"SyntaxError [2:0-2:1]: \`let 
+ [\` is a restricted production at the start of a statement
+  1 | do let
+> 2 | [x] = 0
+    | ^ \`let 
+ [\` is a restricted production at the start of a statement
+  3 | while (false);"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > do let [] while (a); 1`] = `
+"SyntaxError [1:7-1:8]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | do let [] while (a);
+    |        ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > do let [x] = 0; while (false); 1`] = `
+"SyntaxError [1:7-1:8]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | do let [x] = 0; while (false);
+    |        ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > do let x = 1; while (false) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: 'identifier'
+> 1 | do let x = 1; while (false)
+    |        ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > do let x; while (false) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: 'identifier'
+> 1 | do let x; while (false)
+    |        ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > do let x; while (false) 2`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: 'identifier'
+> 1 | do let x; while (false)
+    |        ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (;false;) let x = 1; 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: 'identifier'
+> 1 | for (;false;) let x = 1;
+    |                   ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let
+foo() in x); 1`] = `
+"SyntaxError [2:3-2:4]: Expected ';'
+  1 | for (let
+> 2 | foo() in x);
+    |    ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let
+foo()); 1`] = `
+"SyntaxError [2:3-2:4]: Expected ';'
+  1 | for (let
+> 2 | foo());
+    |    ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let
+foo();;); 1`] = `
+"SyntaxError [2:3-2:4]: Expected ';'
+  1 | for (let
+> 2 | foo();;);
+    |    ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let
+foo); 1`] = `
+"SyntaxError [2:3-2:4]: Expected ';'
+  1 | for (let
+> 2 | foo);
+    |    ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [...,] = obj); 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: ','
+> 1 | for (let [...,] = obj);
+    |              ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [...foo,,] = obj;;); 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | for (let [...foo,,] = obj;;);
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [] = x); 1`] = `
+"SyntaxError [1:15-1:16]: Expected ';'
+> 1 | for (let [] = x);
+    |                ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [foo = x];;); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in destructuring declaration
+> 1 | for (let [foo = x];;);
+    |                   ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [foo,,bar] = arr); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (let [foo,,bar] = arr);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [foo], bar); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | for (let [foo], bar);
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [foo], bar;;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | for (let [foo], bar;;);
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [foo];;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | for (let [foo];;);
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [let];;;) {} 1`] = `
+"SyntaxError [1:13-1:14]: 'A lexical declaration can't define a 'let' binding
+> 1 | for (let [let];;;) {}
+    |              ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {,x} = obj;;); 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (let {,x} = obj;;);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {[x]} = z;;); 1`] = `
+"SyntaxError [1:13-1:14]: A computed property name must be followed by a colon or paren
+> 1 | for (let {[x]} = z;;);
+    |              ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {[x]};;); 1`] = `
+"SyntaxError [1:13-1:14]: A computed property name must be followed by a colon or paren
+> 1 | for (let {[x]};;);
+    |              ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x : y, z} = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (let {x : y, z} = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x : y} = obj); 1`] = `
+"SyntaxError [1:22-1:23]: Expected ';'
+> 1 | for (let {x : y} = obj);
+    |                       ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x = y, z = a} = obj); 1`] = `
+"SyntaxError [1:29-1:30]: Expected ';'
+> 1 | for (let {x = y, z = a} = obj);
+    |                              ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x, y : z} = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (let {x, y : z} = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x,,} = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (let {x,,} = obj;;);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x} = a, {y} = obj); 1`] = `
+"SyntaxError [1:27-1:28]: Expected ';'
+> 1 | for (let {x} = a, {y} = obj);
+    |                            ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x} = a, y = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (let {x} = a, y = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x}, {y} in z); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | for (let {x}, {y} in z);
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x}, y); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | for (let {x}, y);
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let {x}, y); 2`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | for (let {x}, y);
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo = bar in x); 1`] = `
+"SyntaxError [1:9-1:21]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let foo = bar in x);
+    |          ^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo = bar); 1`] = `
+"SyntaxError [1:18-1:19]: Expected ';'
+> 1 | for (let foo = bar);
+    |                   ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo = bar, zoo = boo in x); 1`] = `
+"SyntaxError [1:20-1:32]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let foo = bar, zoo = boo in x);
+    |                     ^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo = bar, zoo = boo of x); 1`] = `
+"SyntaxError [1:20-1:32]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (let foo = bar, zoo = boo of x);
+    |                     ^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo = bar, zoo = boo); 1`] = `
+"SyntaxError [1:29-1:30]: Expected ';'
+> 1 | for (let foo = bar, zoo = boo);
+    |                              ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo); 1`] = `
+"SyntaxError [1:12-1:13]: Expected ';'
+> 1 | for (let foo);
+    |             ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo, bar in x); 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in for-in loop: Must have a single binding
+> 1 | for (let foo, bar in x);
+    |                   ^^ Invalid left-hand side in for-in loop: Must have a single binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let foo, bar); 1`] = `
+"SyntaxError [1:17-1:18]: Expected ';'
+> 1 | for (let foo, bar);
+    |                  ^ Expected ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for (let x, y, z, let = 1;;;) {} 1`] = `
+"SyntaxError [1:18-1:21]: 'A lexical declaration can't define a 'let' binding
+> 1 | for (let x, y, z, let = 1;;;) {}
+    |                   ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > for(let let in { }) { }; 1`] = `
+"SyntaxError [1:8-1:11]: 'A lexical declaration can't define a 'let' binding
+> 1 | for(let let in { }) { };
+    |         ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > function foo() { return {}; }; [foo()] = []; 1`] = `
+"SyntaxError [1:41-1:42]: Invalid left-hand side in assignment
+> 1 | function foo() { return {}; }; [foo()] = [];
+    |                                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > function foo() { return {}; }; let [foo().x] = []; 1`] = `
+"SyntaxError [1:45-1:46]: The binding declaration is not destructible
+> 1 | function foo() { return {}; }; let [foo().x] = [];
+    |                                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (1) let x = 10; 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'identifier'
+> 1 | if (1) let x = 10;
+    |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (true) {} else let x = 1; 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'identifier'
+> 1 | if (true) {} else let x = 1;
+    |                       ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (true) {} else let x; 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'identifier'
+> 1 | if (true) {} else let x;
+    |                       ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (true) {} else let x; 2`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'identifier'
+> 1 | if (true) {} else let x;
+    |                       ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (true) let x = 1; 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | if (true) let x = 1;
+    |               ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (true) let x = 1; 2`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | if (true) let x = 1;
+    |               ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (true) let x; 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | if (true) let x;
+    |               ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (x) let [x] = y; else x; 1`] = `
+"SyntaxError [1:11-1:12]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | if (x) let [x] = y; else x;
+    |            ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > if (x) let: y; 1`] = `
+"SyntaxError [1:10-1:11]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | if (x) let: y;
+    |           ^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > label: let x; 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'identifier'
+> 1 | label: let x;
+    |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > label: let x; 2`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'identifier'
+> 1 | label: let x;
+    |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let
+[let; 1`] = `
+"SyntaxError [2:4-2:5]: 'A lexical declaration can't define a 'let' binding
+  1 | let
+> 2 | [let;
+    |     ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let
+eval(foo) 1`] = `
+"SyntaxError [2:4-2:5]: Unexpected token: '('
+  1 | let
+> 2 | eval(foo)
+    |     ^ Unexpected token: '('"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let
+let 1`] = `
+"SyntaxError [2:0-2:3]: 'A lexical declaration can't define a 'let' binding
+  1 | let
+> 2 | let
+    | ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let
+yield 0 1`] = `
+"SyntaxError [2:6-2:7]: Unexpected token: 'number'
+  1 | let
+> 2 | yield 0
+    |       ^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let  // start of a LexicalDeclaration, *not* an ASI opportunity
+[let = "irrelevant initializer"; 1`] = `
+"SyntaxError [2:5-2:6]: 'A lexical declaration can't define a 'let' binding
+  1 | let  // start of a LexicalDeclaration, *not* an ASI opportunity
+> 2 | [let = "irrelevant initializer";
+    |      ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [((((a)))), b] = []; 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let [((((a)))), b] = [];
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [((a)] = []; 1`] = `
+"SyntaxError [1:9-1:10]: Expected ')'
+> 1 | let [((a)] = [];
+    |          ^ Expected ')'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [((a)] = []; 2`] = `
+"SyntaxError [1:9-1:10]: Expected ')'
+> 1 | let [((a)] = [];
+    |          ^ Expected ')'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [({x: 1}) = y] = []; 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | let [({x: 1}) = y] = [];
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [({x: 1})] = []; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let [({x: 1})] = [];
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [(x().foo)] = x 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let [(x().foo)] = x
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [(x) = y] = []; 1`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | let [(x) = y] = [];
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [(x)] = []; 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | let [(x)] = [];
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [(x)] = x 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | let [(x)] = x
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [++a] = []; 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | let [++a] = [];
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...[ x ] = []] = []; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | let [...[ x ] = []] = [];
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...[ x ] = []] = []; 2`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | let [...[ x ] = []] = [];
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...{ x } = []] = []; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | let [...{ x } = []] = [];
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...{ x }, y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | let [...{ x }, y] = [1, 2, 3];
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...a = 1] = []; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let [...a = 1] = [];
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...a, ...b] = []; 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | let [...a, ...b] = [];
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...a, b] = []; 1`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | let [...a, b] = [];
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...a,] = 0 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | let [...a,] = 0
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...x = []] = []; 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let [...x = []] = [];
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...x = []] = []; 2`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let [...x = []] = [];
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [...x, y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | let [...x, y] = [1, 2, 3];
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [[(a)], ((((((([b])))))))] = [[],[]]; 1`] = `
+"SyntaxError [1:31-1:32]: The binding declaration is not destructible
+> 1 | let [[(a)], ((((((([b])))))))] = [[],[]];
+    |                                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [1, a] = []; 1`] = `
+"SyntaxError [1:11-1:12]: The binding declaration is not destructible
+> 1 | let [1, a] = [];
+    |            ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [1] = []; 1`] = `
+"SyntaxError [1:8-1:9]: The binding declaration is not destructible
+> 1 | let [1] = [];
+    |         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a + 1] = []; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | let [a + 1] = [];
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a + 1] = []; 2`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | let [a + 1] = [];
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a)] = []; 1`] = `
+"SyntaxError [1:6-1:7]: Expected ']'
+> 1 | let [a)] = [];
+    |       ^ Expected ']'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a, let, b] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:11-1:12]: 'A lexical declaration can't define a 'let' binding
+> 1 | let [a, let, b] = [1, 2, 3];
+    |            ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a, let, b] = [1, 2, 3]; 2`] = `
+"SyntaxError [1:11-1:12]: 'A lexical declaration can't define a 'let' binding
+> 1 | let [a, let, b] = [1, 2, 3];
+    |            ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a]; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in destructuring declaration
+> 1 | let [a];
+    |        ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [a--] = []; 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | let [a--] = [];
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [let] = []; 1`] = `
+"SyntaxError [1:8-1:9]: 'A lexical declaration can't define a 'let' binding
+> 1 | let [let] = [];
+    |         ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [o.x=1]=[] 1`] = `
+"SyntaxError [1:11-1:12]: The binding declaration is not destructible
+> 1 | let [o.x=1]=[]
+    |            ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [x().foo] = x 1`] = `
+"SyntaxError [1:14-1:15]: The binding declaration is not destructible
+> 1 | let [x().foo] = x
+    |               ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [x()] = x 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | let [x()] = x
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let { ...x, y, z } = obj; 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let { ...x, y, z } = obj;
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let { let } = {}; 1`] = `
+"SyntaxError [1:10-1:11]: 'A lexical declaration can't define a 'let' binding
+> 1 | let { let } = {};
+    |           ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let { x, ...y, ...z } = obj; 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | let { x, ...y, ...z } = obj;
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...(a,b)} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...(a,b)} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...(obj)} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...(obj)} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...[a,b]} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...[a,b]} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...{}} = {}; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | let {...{}} = {};
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...{a,b}} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...{a,b}} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...{a,b}} = foo 2`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...{a,b}} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...let} = {a: 1, b: 2}; 1`] = `
+"SyntaxError [1:11-1:12]: 'A lexical declaration can't define a 'let' binding
+> 1 | let {...let} = {a: 1, b: 2};
+    |            ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...let} = {a: 1, b: 2}; 2`] = `
+"SyntaxError [1:11-1:12]: The identifier 'let' must not be in expression position in strict mode
+> 1 | let {...let} = {a: 1, b: 2};
+    |            ^ The identifier 'let' must not be in expression position in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...obj1,...obj2} = foo 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | let {...obj1,...obj2} = foo
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...obj1,} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...obj1,} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {...obj1,a} = foo 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let {...obj1,a} = foo
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {[Symbol.iterator]: a} of [] 1`] = `
+"SyntaxError [1:27-1:29]: Unexpected token: 'of'
+> 1 | let {[Symbol.iterator]: a} of []
+    |                            ^^ Unexpected token: 'of'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {[x]: y = z}; 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
+> 1 | let {[x]: y = z};
+    |                 ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {[x]: y}; 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | let {[x]: y};
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {[x]} = z; 1`] = `
+"SyntaxError [1:8-1:9]: A computed property name must be followed by a colon or paren
+> 1 | let {[x]} = z;
+    |         ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {[x]}; 1`] = `
+"SyntaxError [1:8-1:9]: A computed property name must be followed by a colon or paren
+> 1 | let {[x]};
+    |         ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {0: a = 1} of [] 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: 'of'
+> 1 | let {0: a = 1} of []
+    |                ^^ Unexpected token: 'of'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {0: a} of [] 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: 'of'
+> 1 | let {0: a} of []
+    |            ^^ Unexpected token: 'of'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {a: o.a} = obj; 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | let {a: o.a} = obj;
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {a:=c} = z; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '='
+> 1 | let {a:=c} = z;
+    |        ^ Unexpected token: '='"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {x:o.f=1}={x:1} 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | let {x:o.f=1}={x:1}
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {x:y=z}, {a:b=c} = obj; 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in destructuring declaration
+> 1 | let {x:y=z}, {a:b=c} = obj;
+    |            ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {x:y=z}; 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in destructuring declaration
+> 1 | let {x:y=z};
+    |            ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {x}; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in destructuring declaration
+> 1 | let {x};
+    |        ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a, b; [...a, b] = []; 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | let a, b; [...a, b] = [];
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [((a)] = []; 1`] = `
+"SyntaxError [1:12-1:13]: Expected ')'
+> 1 | let a; [((a)] = [];
+    |             ^ Expected ')'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [((a)] = []; 2`] = `
+"SyntaxError [1:12-1:13]: Expected ')'
+> 1 | let a; [((a)] = [];
+    |             ^ Expected ')'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [++a] = []; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | let a; [++a] = [];
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [...a = 1] = []; 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | let a; [...a = 1] = [];
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [...a = 1] = []; 2`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | let a; [...a = 1] = [];
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [...a,] = []; 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | let a; [...a,] = [];
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [1, a] = []; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | let a; [1, a] = [];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [a)] = []; 1`] = `
+"SyntaxError [1:9-1:10]: Expected ']'
+> 1 | let a; [a)] = [];
+    |          ^ Expected ']'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let a; [a--] = []; 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | let a; [a--] = [];
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let arguments.length 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: '.'
+> 1 | let arguments.length
+    |              ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let await 0 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'number'
+> 1 | let await 0
+    |           ^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let b = async () => []; for (a in await b()); 1`] = `
+"SyntaxError [1:40-1:41]: Expected ')'
+> 1 | let b = async () => []; for (a in await b());
+    |                                         ^ Expected ')'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let const 1`] = `
+"SyntaxError [1:4-1:9]: Invalid keyword
+> 1 | let const
+    |     ^^^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let default 1`] = `
+"SyntaxError [1:4-1:11]: Invalid keyword
+> 1 | let default
+    |     ^^^^^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let eval(foo) 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: '('
+> 1 | let eval(foo)
+    |         ^ Unexpected token: '('"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let let 1`] = `
+"SyntaxError [1:4-1:7]: 'A lexical declaration can't define a 'let' binding
+> 1 | let let
+    |     ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let let 2`] = `
+"SyntaxError [1:4-1:7]: 'A lexical declaration can't define a 'let' binding
+> 1 | let let
+    |     ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let let x; 1`] = `
+"SyntaxError [1:4-1:7]: 'A lexical declaration can't define a 'let' binding
+> 1 | let let x;
+    |     ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let let; 1`] = `
+"SyntaxError [1:4-1:7]: 'A lexical declaration can't define a 'let' binding
+> 1 | let let;
+    |     ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let test = 2, let = 1; 1`] = `
+"SyntaxError [1:14-1:17]: 'A lexical declaration can't define a 'let' binding
+> 1 | let test = 2, let = 1;
+    |               ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let test = 2, let = 1; 2`] = `
+"SyntaxError [1:14-1:17]: 'A lexical declaration can't define a 'let' binding
+> 1 | let test = 2, let = 1;
+    |               ^^^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let x = ...y; 1`] = `
+"SyntaxError [1:8-1:11]: Unexpected token: '...'
+> 1 | let x = ...y;
+    |         ^^^ Unexpected token: '...'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let x = {y=z} => d 1`] = `
+"SyntaxError [1:14-1:16]: Invalid shorthand property initializer
+> 1 | let x = {y=z} => d
+    |               ^^ Invalid shorthand property initializer"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let x = {y=z} 1`] = `
+"SyntaxError [1:12-1:13]: Invalid shorthand property initializer
+> 1 | let x = {y=z}
+    |             ^ Invalid shorthand property initializer"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let x = y, {z}; 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | let x = y, {z};
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let x, {y}; 1`] = `
+"SyntaxError [1:10-1:11]: Missing initializer in destructuring declaration
+> 1 | let x, {y};
+    |           ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let x,; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: ';'
+> 1 | let x,;
+    |       ^ Unexpected token: ';'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let: foo 1`] = `
+"SyntaxError [1:3-1:4]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | let: foo
+    |    ^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > var [({x: 1}) = y] = []; 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | var [({x: 1}) = y] = [];
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > var [({x: 1})] = []; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | var [({x: 1})] = [];
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > var [(x)] = []; 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | var [(x)] = [];
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > while (false) let
+[a] 1`] = `
+"SyntaxError [2:0-2:1]: \`let 
+ [\` is a restricted production at the start of a statement
+  1 | while (false) let
+> 2 | [a]
+    | ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > while (false) let x; 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: 'identifier'
+> 1 | while (false) let x;
+    |                   ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > while (true) let: continue let; 1`] = `
+"SyntaxError [1:16-1:17]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | while (true) let: continue let;
+    |                 ^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
 exports[`Declarations - Let > Declarations - Let (pass) > [x = true] = y 1`] = `
 {
   "body": [
@@ -80,7 +1182,7 @@ exports[`Declarations - Let > Declarations - Let (pass) > _ => { let: foo; } 1`]
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > a = let;
-      [] 1`] = `
+[] 1`] = `
 {
   "body": [
     {
@@ -1810,9 +2912,9 @@ exports[`Declarations - Let > Declarations - Let (pass) > for (let;;); 1`] = `
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
-          L: let // ASI
-          x = 1;
-      } 1`] = `
+    L: let // ASI
+    x = 1;
+} 1`] = `
 {
   "body": [
     {
@@ -1864,9 +2966,9 @@ exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
-        L: let // ASI
-        x = 1;
-    } 1`] = `
+    L: let // ASI
+    x = 1;
+} 2`] = `
 {
   "body": [
     {
@@ -1918,9 +3020,9 @@ exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
-      L: let // ASI
-      x = 1;
-  } 1`] = `
+    L: let // ASI
+    x = 1;
+} 3`] = `
 {
   "body": [
     {

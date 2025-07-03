@@ -1,191 +1,198 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Block', () => {
   fail('Lexical - Block (fail)', [
-    ['{ function f(){} function f(){} }', Context.OptionsLexical],
-    ['{ async function f(){} function f(){} }', Context.OptionsLexical],
-    ['{ async function f(){} async function f(){} }', Context.OptionsLexical],
-    ['{ function f(){} async function f(){} }', Context.OptionsLexical],
-    ['var x = a; function x(){};', Context.Module | Context.OptionsLexical],
-    ['let x; { var x; }', Context.OptionsLexical],
-    ['{ var x; } let x;', Context.OptionsLexical],
-    ['let x; var x;', Context.OptionsLexical],
-    ['var x; let x;', Context.OptionsLexical],
-    ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
-    ['{ { var f; } function* f() {}; }', Context.OptionsLexical],
+    { code: '{ function f(){} function f(){} }', options: { lexical: true } },
+    { code: '{ async function f(){} function f(){} }', options: { lexical: true } },
+    { code: '{ async function f(){} async function f(){} }', options: { lexical: true } },
+    { code: '{ function f(){} async function f(){} }', options: { lexical: true } },
+    { code: 'var x = a; function x(){};', options: { lexical: true, sourceType: 'module' } },
+    { code: 'let x; { var x; }', options: { lexical: true } },
+    { code: '{ var x; } let x;', options: { lexical: true } },
+    { code: 'let x; var x;', options: { lexical: true } },
+    { code: 'var x; let x;', options: { lexical: true } },
+    { code: '{ async function f() {} async function f() {} }', options: { lexical: true } },
+    { code: '{ { var f; } function* f() {}; }', options: { lexical: true } },
 
-    ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
-    ['{ async function f() {} class f {} }', Context.OptionsLexical],
-    ['{ async function f() {} function f() {} }', Context.OptionsLexical],
-    ['{ async function f() {} function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function f() {} function* f() {} }', Context.OptionsLexical],
-    ['{ async function f() {} function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ const f = 0; function* f() {} }', Context.OptionsLexical],
-    ['function x() { { async function* f() {}; var f; } }', Context.OptionsLexical],
-    ['function x() { { const f = 0; var f; } }', Context.OptionsLexical],
-    ['{ { var f; } let f; }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ let f; { var f; } }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ let f; function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function f() {} let f }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function f() {} var f }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function* f() {} const f = 0 }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ { var f; } async function f() {}; }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ { var f; } class f {}; }', Context.OptionsLexical | Context.OptionsWebCompat | Context.Strict],
-    ['{ { var f; } let f; }', Context.OptionsLexical],
-    ['{ let f; { var f; } }', Context.OptionsLexical],
-    ['{ let f; function* f() {} }', Context.OptionsLexical],
-    ['{ async function f() {} let f }', Context.OptionsLexical],
-    ['{ async function f() {} var f }', Context.OptionsLexical],
-    ['{ function a(){} function a(){} }', Context.OptionsLexical],
-    ['{ function f() {} async function* f() {} }', Context.OptionsLexical],
-    ['{ function f() {} async function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function* f() {} async function* f() {} }', Context.OptionsLexical],
-    ['{ async function* f() {} const f = 0 }', Context.OptionsLexical],
-    ['{ { var f; } async function f() {}; }', Context.OptionsLexical],
-    ['{ { var f; } class f {}; }', Context.OptionsLexical],
-    ['{ class f {} async function f() {} }', Context.OptionsLexical],
-    ['{ const f = 0; { var f; } }', Context.OptionsLexical],
-    ['{ const f = 0; const f = 0 }', Context.OptionsLexical],
-    ['{ const f = 0; { var f; } }', Context.OptionsLexical | Context.OptionsWebCompat | Context.Strict],
-    ['{ const f = 0; const f = 0 }', Context.OptionsLexical | Context.OptionsWebCompat | Context.Strict],
-    ['{ class f {} function f() {} }', Context.OptionsLexical],
-    ['{ class f {} var f }', Context.OptionsLexical],
-    ['{ const f = 0; async function* f() {} }', Context.OptionsLexical],
-    ['{ const f = 0; async function* f() {} }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ const f = 0; class f {} }', Context.OptionsLexical],
-    ['{ const f = 0; let f }', Context.OptionsLexical],
-    ['{ const f = 0; var f }', Context.OptionsLexical],
-    ['{ function f() {} async function f() {} }', Context.OptionsLexical],
-    ['{ function f() {} function f() {} }', Context.Strict | Context.OptionsLexical],
-    ['{ function f() {} let f }', Context.OptionsLexical],
-    ['{ { var f; } function f() {} }', Context.OptionsLexical],
-    ['{ { var f; } async function* f() {}; }', Context.OptionsLexical],
-    ['{ { var f; } const f = 0; }', Context.OptionsLexical],
-    ['{ let f; class f {} }', Context.OptionsLexical],
-    ['{ let f; function f() {} }', Context.OptionsLexical],
-    ['{ let f; let f }', Context.OptionsLexical],
-    ['{ var f; async function* f() {} }', Context.OptionsLexical],
-    ['{ var f; const f = 0 }', Context.OptionsLexical],
-    ['{ var f; function* f() {} }', Context.OptionsLexical],
-    ['{ async function f() {}; var f; }', Context.OptionsLexical],
-    ['{ class f {}; var f; }', Context.OptionsLexical],
-    ['{ function* f() {}; var f; }', Context.OptionsLexical],
-    ['{ let f; var f; }', Context.OptionsLexical],
-    ['{ class f {}; var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ function* f() {}; var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ let f; var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['for (const x in {}) { var x; }', Context.OptionsLexical],
-    ['{ async function f() {} let f }', Context.OptionsLexical],
-    ['{ async function* f() {} async function f() {} }', Context.OptionsLexical],
-    ['{ async function* f() {} async function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function* f() {} var f }', Context.OptionsLexical],
-    ['{ class f {} const f = 0 }', Context.OptionsLexical],
-    ['{ const f = 0; async function f() {} }', Context.OptionsLexical],
-    ['{ function* f() {} let f }', Context.OptionsLexical],
-    ['{ function* f() {} class f {} }', Context.OptionsLexical],
-    ['{ for (var x;;); const x = 1 }', Context.OptionsLexical],
-    ['{ function* f() {} async function f() {} }', Context.OptionsLexical],
-    ['{ function* f() {} async function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['function g() { { function f() {} { var f; } }}', Context.OptionsLexical],
-    ['function x() { { function* f() {}; var f; } }', Context.OptionsLexical],
-    ['function x() { { async function* f() {}; var f; } }', Context.OptionsLexical],
-    ['function x() { { async function f() {}; var f; } }', Context.OptionsLexical],
-    ['{ const f = 0; function f() {} }', Context.OptionsLexical],
-    ['{ function foo() {} var foo = 1; }', Context.OptionsLexical],
-    ['{ function foo() {} function foo() {} }', Context.OptionsLexical],
-    ['{ let a; { var a; } }', Context.OptionsLexical],
-    ['{ async function f() {} async function* f() {} }', Context.OptionsLexical],
-    ['{ async function f() {} async function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function f() {} const f = 0 }', Context.OptionsLexical],
-    ['{ async function* f() {} function f() {} }', Context.OptionsLexical],
-    ['{ async function* f() {} function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function* f() {} let f }', Context.OptionsLexical],
-    ['{ async function* f() {} let f }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ async function* f() {}; var f; }', Context.OptionsLexical],
-    ['{ let f; var f }', Context.OptionsLexical],
-    [' { function a() {} } { let a; function a() {}; }', Context.OptionsLexical],
-    ['function f(){ var f = 123; if (true) function f(){} }', Context.OptionsLexical],
-    ['{ var f = 123; if (true) function f(){} }', Context.OptionsLexical],
-    ['{ if (x) function f() {} ; function f() {} }', Context.OptionsLexical],
-    ['{ function f() {} ; function f() {} }', Context.OptionsLexical],
-    ['{ let a; class a {} }', Context.OptionsLexical],
-    ['{ async function a() {} async function a() {} }', Context.OptionsLexical],
-    ['switch (0) { case 1: function* a() {} break; default: var a; }', Context.OptionsLexical],
-    ['for (let x; false; ) { var x; }', Context.OptionsLexical],
-    ['{ async function f() {} const f = 0; }', Context.OptionsLexical],
-    ['{ async function f() {} const f = 0; }', Context.OptionsLexical],
-    ['{ async function f() {} var f; }', Context.OptionsLexical],
-    ['{ async function* f() {} async function f() {} }', Context.OptionsLexical],
-    ['{ async function* f() {} function* f() {} }', Context.OptionsLexical],
-    ['{ class f {} class f {}; }', Context.OptionsLexical],
-    ['{ class f {} const f = 0; }', Context.OptionsLexical],
-    ['{ class f {} function* f() {} }', Context.OptionsLexical],
-    ['{ class f {} let f; }', Context.OptionsLexical],
-    ['{ class f {} var f; }', Context.OptionsLexical],
-    ['{ function* f() {} class f {}; }', Context.OptionsLexical],
-    ['{ function* f() {} function f() {} }', Context.OptionsLexical],
-    ['{ function* f() {} function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ function *foo() {}; function *foo() {}; }', Context.OptionsLexical],
-    ['{ function *foo() {}; function *bar() {}; function *foo() {}; }', Context.OptionsLexical],
-    ['{ function* f() {} function* f() {} }', Context.OptionsLexical],
-    ['{ function* f() {} function* f() {} }', Context.OptionsLexical | Context.Strict],
-    ['{ function* f() {} function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['{ function* f() {} let f; }', Context.OptionsLexical],
-    ['{ function* f() {} var f; }', Context.OptionsLexical],
-    ['{ function f(){} function f(){} }', Context.OptionsLexical],
-    ['for (let x of []) { var x;  }', Context.OptionsLexical],
-    ['for (const x in {}) { var x; }', Context.OptionsLexical],
-    ['{ let a; function a() {}; }', Context.OptionsLexical],
-    ['{ let f = 123; if (false) ; else function f() {} }', Context.OptionsLexical],
-    ['{ let f = 123; if (false) ; else function f() {  }}', Context.OptionsLexical],
-    ['try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }', Context.OptionsLexical],
-    ['{ async function* f() {}; { var f; } }', Context.OptionsLexical],
-    ['{ async function f() {}; { var f; } }', Context.OptionsLexical],
-    ['{ class f {}; { var f; } }', Context.OptionsLexical],
-    ['{ function f() {} var f; }', Context.OptionsLexical],
-    ['{ const a = 1; function a(){} }', Context.OptionsLexical],
-    ['{ async function *f(){} class f {} }', Context.OptionsLexical],
-    ['{ function f(){} class f {} }', Context.OptionsLexical],
-    ['{ function *f(){} class f {} }', Context.OptionsLexical],
-    ['{ async function *f(){} const f = x }', Context.OptionsLexical],
-    ['{ class f {} async function f(){} }', Context.OptionsLexical],
-    ['{ class f {} function *f(){} }', Context.OptionsLexical],
-    ['{ const f = x; async function f(){} }', Context.OptionsLexical],
-    ['{ const f = x; async function *f(){} }', Context.OptionsLexical],
-    ['{ const f = x; function *f(){} }', Context.OptionsLexical],
-    ['async function *f(){} async function *f(){} }', Context.OptionsLexical],
-    ['{ let f; async function f(){} }', Context.OptionsLexical],
-    ['{ let f; async function *f(){} }', Context.OptionsLexical],
-    ['{ let f; function f(){} }', Context.OptionsLexical],
-    ['{ var f; async function f(){} }', Context.OptionsLexical],
-    ['{ var f; function *f(){} }', Context.OptionsLexical],
-    ['{ const a = 1; function a(){} }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
-    [
-      `{
-      for (var x;;);
-      const x = 1
-    }`,
-      Context.OptionsWebCompat | Context.OptionsLexical,
-    ],
-    [
-      `function f(){
-      for (var x;;);
-      const x = 1
-    }`,
-      Context.OptionsWebCompat | Context.OptionsLexical,
-    ],
-    [`# { # }`, Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ # } #', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['try { # var f } catch (e) {}', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['try { } catch (e) { # # }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ async function *f(){} let f }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
+    { code: '{ async function f() {} async function f() {} }', options: { lexical: true } },
+    { code: '{ async function f() {} class f {} }', options: { lexical: true } },
+    { code: '{ async function f() {} function f() {} }', options: { lexical: true } },
+    { code: '{ async function f() {} function f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function f() {} function* f() {} }', options: { lexical: true } },
+    { code: '{ async function f() {} function* f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ const f = 0; function* f() {} }', options: { lexical: true } },
+    { code: 'function x() { { async function* f() {}; var f; } }', options: { lexical: true } },
+    { code: 'function x() { { const f = 0; var f; } }', options: { lexical: true } },
+    { code: '{ { var f; } let f; }', options: { webcompat: true, lexical: true } },
+    { code: '{ let f; { var f; } }', options: { webcompat: true, lexical: true } },
+    { code: '{ let f; function* f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function f() {} let f }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function f() {} var f }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function* f() {} const f = 0 }', options: { webcompat: true, lexical: true } },
+    { code: '{ { var f; } async function f() {}; }', options: { webcompat: true, lexical: true } },
+    { code: '{ { var f; } class f {}; }', options: { impliedStrict: true, webcompat: true, lexical: true } },
+    { code: '{ { var f; } let f; }', options: { lexical: true } },
+    { code: '{ let f; { var f; } }', options: { lexical: true } },
+    { code: '{ let f; function* f() {} }', options: { lexical: true } },
+    { code: '{ async function f() {} let f }', options: { lexical: true } },
+    { code: '{ async function f() {} var f }', options: { lexical: true } },
+    { code: '{ function a(){} function a(){} }', options: { lexical: true } },
+    { code: '{ function f() {} async function* f() {} }', options: { lexical: true } },
+    { code: '{ function f() {} async function* f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function* f() {} async function* f() {} }', options: { lexical: true } },
+    { code: '{ async function* f() {} const f = 0 }', options: { lexical: true } },
+    { code: '{ { var f; } async function f() {}; }', options: { lexical: true } },
+    { code: '{ { var f; } class f {}; }', options: { lexical: true } },
+    { code: '{ class f {} async function f() {} }', options: { lexical: true } },
+    { code: '{ const f = 0; { var f; } }', options: { lexical: true } },
+    { code: '{ const f = 0; const f = 0 }', options: { lexical: true } },
+    { code: '{ const f = 0; { var f; } }', options: { impliedStrict: true, webcompat: true, lexical: true } },
+    { code: '{ const f = 0; const f = 0 }', options: { impliedStrict: true, webcompat: true, lexical: true } },
+    { code: '{ class f {} function f() {} }', options: { lexical: true } },
+    { code: '{ class f {} var f }', options: { lexical: true } },
+    { code: '{ const f = 0; async function* f() {} }', options: { lexical: true } },
+    { code: '{ const f = 0; async function* f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ const f = 0; class f {} }', options: { lexical: true } },
+    { code: '{ const f = 0; let f }', options: { lexical: true } },
+    { code: '{ const f = 0; var f }', options: { lexical: true } },
+    { code: '{ function f() {} async function f() {} }', options: { lexical: true } },
+    { code: '{ function f() {} function f() {} }', options: { impliedStrict: true, lexical: true } },
+    { code: '{ function f() {} let f }', options: { lexical: true } },
+    { code: '{ { var f; } function f() {} }', options: { lexical: true } },
+    { code: '{ { var f; } async function* f() {}; }', options: { lexical: true } },
+    { code: '{ { var f; } const f = 0; }', options: { lexical: true } },
+    { code: '{ let f; class f {} }', options: { lexical: true } },
+    { code: '{ let f; function f() {} }', options: { lexical: true } },
+    { code: '{ let f; let f }', options: { lexical: true } },
+    { code: '{ var f; async function* f() {} }', options: { lexical: true } },
+    { code: '{ var f; const f = 0 }', options: { lexical: true } },
+    { code: '{ var f; function* f() {} }', options: { lexical: true } },
+    { code: '{ async function f() {}; var f; }', options: { lexical: true } },
+    { code: '{ class f {}; var f; }', options: { lexical: true } },
+    { code: '{ function* f() {}; var f; }', options: { lexical: true } },
+    { code: '{ let f; var f; }', options: { lexical: true } },
+    { code: '{ class f {}; var f; }', options: { webcompat: true, lexical: true } },
+    { code: '{ function* f() {}; var f; }', options: { webcompat: true, lexical: true } },
+    { code: '{ let f; var f; }', options: { webcompat: true, lexical: true } },
+    { code: 'for (const x in {}) { var x; }', options: { lexical: true } },
+    { code: '{ async function f() {} let f }', options: { lexical: true } },
+    { code: '{ async function* f() {} async function f() {} }', options: { lexical: true } },
+    { code: '{ async function* f() {} async function f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function* f() {} var f }', options: { lexical: true } },
+    { code: '{ class f {} const f = 0 }', options: { lexical: true } },
+    { code: '{ const f = 0; async function f() {} }', options: { lexical: true } },
+    { code: '{ function* f() {} let f }', options: { lexical: true } },
+    { code: '{ function* f() {} class f {} }', options: { lexical: true } },
+    { code: '{ for (var x;;); const x = 1 }', options: { lexical: true } },
+    { code: '{ function* f() {} async function f() {} }', options: { lexical: true } },
+    { code: '{ function* f() {} async function f() {} }', options: { webcompat: true, lexical: true } },
+    { code: 'function g() { { function f() {} { var f; } }}', options: { lexical: true } },
+    { code: 'function x() { { function* f() {}; var f; } }', options: { lexical: true } },
+    { code: 'function x() { { async function* f() {}; var f; } }', options: { lexical: true } },
+    { code: 'function x() { { async function f() {}; var f; } }', options: { lexical: true } },
+    { code: '{ const f = 0; function f() {} }', options: { lexical: true } },
+    { code: '{ function foo() {} var foo = 1; }', options: { lexical: true } },
+    { code: '{ function foo() {} function foo() {} }', options: { lexical: true } },
+    { code: '{ let a; { var a; } }', options: { lexical: true } },
+    { code: '{ async function f() {} async function* f() {} }', options: { lexical: true } },
+    { code: '{ async function f() {} async function* f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function f() {} const f = 0 }', options: { lexical: true } },
+    { code: '{ async function* f() {} function f() {} }', options: { lexical: true } },
+    { code: '{ async function* f() {} function f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function* f() {} let f }', options: { lexical: true } },
+    { code: '{ async function* f() {} let f }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function* f() {}; var f; }', options: { lexical: true } },
+    { code: '{ let f; var f }', options: { lexical: true } },
+    { code: ' { function a() {} } { let a; function a() {}; }', options: { lexical: true } },
+    { code: 'function f(){ var f = 123; if (true) function f(){} }', options: { lexical: true } },
+    { code: '{ var f = 123; if (true) function f(){} }', options: { lexical: true } },
+    { code: '{ if (x) function f() {} ; function f() {} }', options: { lexical: true } },
+    { code: '{ function f() {} ; function f() {} }', options: { lexical: true } },
+    { code: '{ let a; class a {} }', options: { lexical: true } },
+    { code: '{ async function a() {} async function a() {} }', options: { lexical: true } },
+    { code: 'switch (0) { case 1: function* a() {} break; default: var a; }', options: { lexical: true } },
+    { code: 'for (let x; false; ) { var x; }', options: { lexical: true } },
+    { code: '{ async function f() {} const f = 0; }', options: { lexical: true } },
+    { code: '{ async function f() {} const f = 0; }', options: { lexical: true } },
+    { code: '{ async function f() {} var f; }', options: { lexical: true } },
+    { code: '{ async function* f() {} async function f() {} }', options: { lexical: true } },
+    { code: '{ async function* f() {} function* f() {} }', options: { lexical: true } },
+    { code: '{ class f {} class f {}; }', options: { lexical: true } },
+    { code: '{ class f {} const f = 0; }', options: { lexical: true } },
+    { code: '{ class f {} function* f() {} }', options: { lexical: true } },
+    { code: '{ class f {} let f; }', options: { lexical: true } },
+    { code: '{ class f {} var f; }', options: { lexical: true } },
+    { code: '{ function* f() {} class f {}; }', options: { lexical: true } },
+    { code: '{ function* f() {} function f() {} }', options: { lexical: true } },
+    { code: '{ function* f() {} function f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ function *foo() {}; function *foo() {}; }', options: { lexical: true } },
+    { code: '{ function *foo() {}; function *bar() {}; function *foo() {}; }', options: { lexical: true } },
+    { code: '{ function* f() {} function* f() {} }', options: { lexical: true } },
+    { code: '{ function* f() {} function* f() {} }', options: { impliedStrict: true, lexical: true } },
+    { code: '{ function* f() {} function* f() {} }', options: { webcompat: true, lexical: true } },
+    { code: '{ function* f() {} let f; }', options: { lexical: true } },
+    { code: '{ function* f() {} var f; }', options: { lexical: true } },
+    { code: '{ function f(){} function f(){} }', options: { lexical: true } },
+    { code: 'for (let x of []) { var x;  }', options: { lexical: true } },
+    { code: 'for (const x in {}) { var x; }', options: { lexical: true } },
+    { code: '{ let a; function a() {}; }', options: { lexical: true } },
+    { code: '{ let f = 123; if (false) ; else function f() {} }', options: { lexical: true } },
+    { code: '{ let f = 123; if (false) ; else function f() {  }}', options: { lexical: true } },
+    {
+      code: 'try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }',
+      options: { lexical: true },
+    },
+    { code: '{ async function* f() {}; { var f; } }', options: { lexical: true } },
+    { code: '{ async function f() {}; { var f; } }', options: { lexical: true } },
+    { code: '{ class f {}; { var f; } }', options: { lexical: true } },
+    { code: '{ function f() {} var f; }', options: { lexical: true } },
+    { code: '{ const a = 1; function a(){} }', options: { lexical: true } },
+    { code: '{ async function *f(){} class f {} }', options: { lexical: true } },
+    { code: '{ function f(){} class f {} }', options: { lexical: true } },
+    { code: '{ function *f(){} class f {} }', options: { lexical: true } },
+    { code: '{ async function *f(){} const f = x }', options: { lexical: true } },
+    { code: '{ class f {} async function f(){} }', options: { lexical: true } },
+    { code: '{ class f {} function *f(){} }', options: { lexical: true } },
+    { code: '{ const f = x; async function f(){} }', options: { lexical: true } },
+    { code: '{ const f = x; async function *f(){} }', options: { lexical: true } },
+    { code: '{ const f = x; function *f(){} }', options: { lexical: true } },
+    { code: 'async function *f(){} async function *f(){} }', options: { lexical: true } },
+    { code: '{ let f; async function f(){} }', options: { lexical: true } },
+    { code: '{ let f; async function *f(){} }', options: { lexical: true } },
+    { code: '{ let f; function f(){} }', options: { lexical: true } },
+    { code: '{ var f; async function f(){} }', options: { lexical: true } },
+    { code: '{ var f; function *f(){} }', options: { lexical: true } },
+    { code: '{ const a = 1; function a(){} }', options: { webcompat: true, lexical: true } },
+    { code: '{ class async {}; { var async; } }', options: { webcompat: true, lexical: true } },
+    {
+      code: outdent`
+        {
+          for (var x;;);
+          const x = 1
+        }
+      `,
+      options: { webcompat: true, lexical: true },
+    },
+    {
+      code: outdent`
+        function f(){
+          for (var x;;);
+          const x = 1
+        }
+      `,
+      options: { webcompat: true, lexical: true },
+    },
+    { code: '# { # }', options: { webcompat: true, lexical: true } },
+    { code: '{ # } #', options: { webcompat: true, lexical: true } },
+    { code: 'try { # var f } catch (e) {}', options: { webcompat: true, lexical: true } },
+    { code: '{ class async {}; { var async; } }', options: { webcompat: true, lexical: true } },
+    { code: 'try { } catch (e) { # # }', options: { webcompat: true, lexical: true } },
+    { code: '{ async function *f(){} let f }', options: { webcompat: true, lexical: true } },
+    { code: '{ class async {}; { var async; } }', options: { webcompat: true, lexical: true } },
   ]);
 
   for (const arg of [
@@ -203,7 +210,7 @@ describe('Lexical - Block', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
   }
@@ -216,62 +223,74 @@ describe('Lexical - Block', () => {
     '{ var f = 123; if (true) function f(){} }',
     '{ async function f(){} } async function f(){}',
     '{ async function *f(){} } async function *f(){}',
-    `{ function f(){} } function f(){}
-    { function f(){} } function f(){}`,
-    `{ let foo = 1; { let foo = 2; } }
-    { let foo = 1; { let foo = 2; } }`,
+    outdent`
+      { function f(){} } function f(){}
+      { function f(){} } function f(){}
+    `,
+    outdent`
+      { let foo = 1; { let foo = 2; } }
+      { let foo = 1; { let foo = 2; } }
+    `,
     '{ function f(){} } function f(){}',
     '{ function *f(){} } function *f(){}',
     '{ async function f(){} } async function f(){}',
     '{ async function f(){} } async function f(){}',
     '{ async function f(){} } async function f(){}',
     '{ let foo = 1; { let foo = 2; } }',
-    `function f() {}  var f;
-    function f() {}  var f;`,
+    outdent`
+      function f() {}  var f;
+      function f() {}  var f;
+    `,
     '{ function f() { a = f; f = 123; b = f; return x; } }',
     '{ let f = 123; { function f() {  } } }',
     '{ let f = 123; if (false) ; else function f() {  } }',
     'try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }',
     'try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }',
-    `try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
-    try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }`,
+    outdent`
+      try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
+      try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
+    `,
     'let f = 123; switch (1) { default: function f() {  }  }',
     '{ let x; } var x',
     '{ var f; var f; }',
-    `{ var f; var f; }
-    { var f; var f; }`,
+    outdent`
+      { var f; var f; }
+      { var f; var f; }
+    `,
     'function f() {}  var f;',
     '{ function a(){} function a(){} }',
     '{ var a; { let a; } }',
-    `{
-      let result;
-      let x = 1;
-      switch (x) {
-        case 1:
-          let x = 2;
-          result = x;
-          break;
-        default:
-          result = 0;
-          break;
+    outdent`
+      {
+        let result;
+        let x = 1;
+        switch (x) {
+          case 1:
+            let x = 2;
+            result = x;
+            break;
+          default:
+            result = 0;
+            break;
+        }
       }
-    }`,
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

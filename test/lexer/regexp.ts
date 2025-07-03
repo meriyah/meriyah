@@ -1,13 +1,14 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../src/common';
-import { Token } from '../../src/token';
-import { Parser } from '../../src/parser/parser';
-import { scanSingleToken } from '../../src/lexer/scan';
 import { regexFeatures } from '../../scripts/shared.mjs';
+import { Context } from '../../src/common';
+import { scanSingleToken } from '../../src/lexer/scan';
+import { Parser } from '../../src/parser/parser';
+import { Token } from '../../src/token';
+import { type NormalizedOptions } from './../../src/options';
 
 describe('Lexer - Regular expressions', () => {
-  const tokens: [Context, string, string, string][] = [
+  const tokens: ([Context, string, string, string] | [Context, string, string, string, NormalizedOptions])[] = [
     // None unicode regular expression
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
@@ -116,7 +117,7 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/[^-J]/g', '[^-J]', 'g'],
     [Context.AllowRegExp, String.raw`/[abc\D]/`, String.raw`[abc\D]`, ''],
     [Context.AllowRegExp, String.raw`/[\dabcd]/`, String.raw`[\dabcd]`, ''],
-    [Context.AllowRegExp | Context.OptionsRaw, String.raw`/[\$]/`, String.raw`[\$]`, ''],
+    [Context.AllowRegExp, String.raw`/[\$]/`, String.raw`[\$]`, '', { raw: true }],
     [Context.AllowRegExp, String.raw`/[abc\$]/`, String.raw`[abc\$]`, ''],
     [Context.AllowRegExp, String.raw`/[\?def]/`, String.raw`[\?def]`, ''],
     [Context.AllowRegExp, String.raw`/[\cT]/`, String.raw`[\cT]`, ''],
@@ -144,19 +145,14 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/.*/m', '.*', 'm'],
     [Context.AllowRegExp, '/.*/y', '.*', 'y'],
     [Context.AllowRegExp, String.raw`/\%([0-9]*)\[(\^)?(\]?[^\]]*)\]/`, String.raw`\%([0-9]*)\[(\^)?(\]?[^\]]*)\]`, ''],
+    [Context.AllowRegExp, String.raw`/[\u{FDD0}-\u{FDEF}]/v`, String.raw`[\u{FDD0}-\u{FDEF}]`, 'v'],
+    [
+      Context.AllowRegExp,
+      String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
+      String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
+      'v',
+    ],
   ];
-
-  if (regexFeatures.unicodeSets) {
-    tokens.push(
-      [Context.AllowRegExp, String.raw`/[\u{FDD0}-\u{FDEF}]/v`, String.raw`[\u{FDD0}-\u{FDEF}]`, 'v'],
-      [
-        Context.AllowRegExp,
-        String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
-        String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
-        'v',
-      ],
-    );
-  }
 
   if (regexFeatures.modifiers) {
     tokens.push(
@@ -177,17 +173,17 @@ describe('Lexer - Regular expressions', () => {
     );
   }
 
-  for (const [ctx, op, value, flags] of tokens) {
+  for (const [ctx, op, value, flags, options] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(op, options);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          value: (state.tokenRegExp as any).pattern,
-          flags: (state.tokenRegExp as any).flags,
+          hasNext: parser.index < parser.source.length,
+          value: (parser.tokenRegExp as any).pattern,
+          flags: (parser.tokenRegExp as any).flags,
         },
         {
           token: Token.RegularExpression,
@@ -201,8 +197,8 @@ describe('Lexer - Regular expressions', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = new Parser(source);
-      t.throws(() => scanSingleToken(state, context, 0));
+      const parser = new Parser(source);
+      t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
   fail('fails on "/\\\n/"', '/\\\n/', Context.AllowRegExp);

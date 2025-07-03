@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
+import { Context } from '../../../src/common';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Template', () => {
   for (const arg of [
@@ -157,21 +157,21 @@ describe('Expressions - Template', () => {
     "'use strict'; `template-head${a}template-tail`",
     "'use strict'; `${a}${b}${c}`",
     "function foo(){ 'use strict';`a${a}b${b}c${c}`}",
-    `\`\\\${a}\``,
-    `\`$a\``,
-    `\`\${a}\${b}\``,
-    `\`a\${a}\${b}\``,
-    `\`\${a}a\${b}\``,
-    `\`a\${a}a\${b}\``,
+    '`\\${a}`',
+    '`$a`',
+    '`${a}${b}`',
+    '`a${a}${b}`',
+    '`${a}a${b}`',
+    '`a${a}a${b}`',
     'a`\\${a}`',
-    `\`\${a}\${b}a\``,
-    `\`\${a}a\${b}a\``,
-    `\`a\${a}a\${b}a\``,
-    `\`\${\`\${a}\`}\``,
-    `\`\${\`a\${a}\`}\``,
-    `\`\${\`\${a}a\`}\``,
-    `\`\${\`a\${a}a\`}\``,
-    `\`\${\`\${\`\${a}\`}\`}\``,
+    '`${a}${b}a`',
+    '`${a}a${b}a`',
+    '`a${a}a${b}a`',
+    '`${`${a}`}`',
+    '`${`a${a}`}`',
+    '`${`${a}a`}`',
+    '`${`a${a}a`}`',
+    '`${`${`${a}`}`}`',
     'tag`\\xg`',
     'tag`\\xg${0}right`',
     'tag`left${0}\\xg`',
@@ -373,18 +373,18 @@ describe('Expressions - Template', () => {
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true }, Context.TaggedTemplate);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true }, Context.TaggedTemplate);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`${arg}`, { next: true, lexical: true }, Context.TaggedTemplate);
       });
     });
 
@@ -396,67 +396,67 @@ describe('Expressions - Template', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.TaggedTemplate);
+        parseSource(`${arg}`, { webcompat: true }, Context.TaggedTemplate);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.TaggedTemplate);
+        parseSource(`${arg}`, { sourceType: 'module' }, Context.TaggedTemplate);
       });
     });
   }
 
   fail('Expressions - Template (fail)', [
-    ['`', Context.Strict],
-    ['x = `1 ${ yield } 2`', Context.Strict],
-    ['x = `1 ${ yield } 2 ${ 3 } 4`', Context.Strict],
-    ['x = `1 ${ yield } 2`', Context.Strict],
-    ['x = `1 ${ yield x } 2`', Context.Strict],
-    ['x = `1 ${ yield x } 2 ${ 3 } 4`', Context.Strict],
-    ['`foo ${a b} bar`', Context.Strict],
-    ['x`foo ${a b} bar`', Context.Strict],
-    ['[`${""}`] = {}', Context.None],
+    { code: '`', options: { impliedStrict: true } },
+    { code: 'x = `1 ${ yield } 2`', options: { impliedStrict: true } },
+    { code: 'x = `1 ${ yield } 2 ${ 3 } 4`', options: { impliedStrict: true } },
+    { code: 'x = `1 ${ yield } 2`', options: { impliedStrict: true } },
+    { code: 'x = `1 ${ yield x } 2`', options: { impliedStrict: true } },
+    { code: 'x = `1 ${ yield x } 2 ${ 3 } 4`', options: { impliedStrict: true } },
+    { code: '`foo ${a b} bar`', options: { impliedStrict: true } },
+    { code: 'x`foo ${a b} bar`', options: { impliedStrict: true } },
+    '[`${""}`] = {}',
     //['`a\\u{d}c`', Context.None],
-    ['[`${""}`] = {}', Context.None],
-    ['[`${""}`] = {}', Context.None],
-    ['[z``] = {}', Context.None],
-    ['[`${"a"}`] = {}', Context.None],
-    ['[`${""}`] = {}', Context.None],
-    ['`\\7`', Context.None],
-    ['`\\10`', Context.None],
-    ['`\\01`', Context.None],
-    ['`\\30`', Context.None],
-    ['`\\001`', Context.None],
+    '[`${""}`] = {}',
+    '[`${""}`] = {}',
+    '[z``] = {}',
+    '[`${"a"}`] = {}',
+    '[`${""}`] = {}',
+    '`\\7`',
+    '`\\10`',
+    '`\\01`',
+    '`\\30`',
+    '`\\001`',
 
-    ['`\\xg`;', Context.None],
-    ['`\\xg ${x}`;', Context.None],
-    ['`${x} \\xg ${x}`;', Context.None],
-    ['`${x} \\xg`;', Context.None],
-    ['`\\001`', Context.None],
-    ['`\\001`', Context.None],
-    ['`\\001`', Context.None],
-    ['`\\001`', Context.None],
-    ['`a${await foo}d`', Context.None],
-    ['`\\u{g}`', Context.None],
-    ['`\\u00g0`', Context.None],
-    ['`\\ufffg${', Context.None],
-    ['`\\uAA`', Context.None],
-    ['`\\u11${', Context.None],
-    ['`\\u{g}`', Context.None],
-    ['`\\u{110000}${', Context.None],
-    ['`\\u{11ffff}${', Context.None],
-    ['x`\\u{0${`\\8`}`', Context.None],
-    ['`\\01`', Context.None],
-    ['`\\1`', Context.None],
-    ['`\\2`', Context.None],
-    ['`\\3`', Context.None],
-    ['`\\4`', Context.None],
-    ['`\\5`', Context.None],
-    ['`\\6`', Context.None],
-    ['`\\7`', Context.None],
-    ['`\\8`', Context.None],
-    ['`\\9`', Context.None],
+    '`\\xg`;',
+    '`\\xg ${x}`;',
+    '`${x} \\xg ${x}`;',
+    '`${x} \\xg`;',
+    '`\\001`',
+    '`\\001`',
+    '`\\001`',
+    '`\\001`',
+    '`a${await foo}d`',
+    '`\\u{g}`',
+    '`\\u00g0`',
+    '`\\ufffg${',
+    '`\\uAA`',
+    '`\\u11${',
+    '`\\u{g}`',
+    '`\\u{110000}${',
+    '`\\u{11ffff}${',
+    'x`\\u{0${`\\8`}`',
+    '`\\01`',
+    '`\\1`',
+    '`\\2`',
+    '`\\3`',
+    '`\\4`',
+    '`\\5`',
+    '`\\6`',
+    '`\\7`',
+    '`\\8`',
+    '`\\9`',
   ]);
   pass('Expressions - Template (pass)', [
     'var await = `simple template`;',

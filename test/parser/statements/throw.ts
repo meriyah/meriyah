@@ -1,17 +1,14 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - Throw', () => {
-  const inValids: [string, Context][] = [
-    [
-      `throw
-    x;`,
-      Context.None,
-    ],
-  ];
-
-  fail('Statements - Throw', inValids);
+  fail('Statements - Throw', [
+    outdent`
+      throw
+      x;
+    `,
+  ]);
 
   pass('Statements - Throw (pass)', [
     'throw ((((((d = null)))) ? (((--r))) : ((/|[--]*||[^\u2B7a+-?]+|(?!)/giy))));',

@@ -1,8 +1,7 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Declarations - Async Generator', () => {
   for (const arg of [
@@ -88,49 +87,49 @@ describe('Declarations - Async Generator', () => {
   ]) {
     it(`async function * gen() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * gen() { ${arg} }`, undefined, Context.None);
+        parseSource(`async function * gen() { ${arg} }`);
       });
     });
 
     it(`(async function * () { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () { ${arg} })`, undefined, Context.None);
+        parseSource(`(async function * () { ${arg} })`);
       });
     });
 
     it(`(async function * () { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () { ${arg} })`, undefined, Context.OptionsWebCompat);
+        parseSource(`(async function * () { ${arg} })`, { webcompat: true });
       });
     });
 
     it(`(async function * gen() { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * gen() { ${arg} })`, undefined, Context.None);
+        parseSource(`(async function * gen() { ${arg} })`);
       });
     });
 
     it(`({ async * gen () { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () { ${arg} } })`, undefined, Context.None);
+        parseSource(`({ async * gen () { ${arg} } })`);
       });
     });
 
     it(`(async function * () {${arg} }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () {${arg} }) `, undefined, Context.None);
+        parseSource(`(async function * () {${arg} }) `);
       });
     });
 
     it(`({ async * gen () {${arg} } }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () {${arg} } }) `, undefined, Context.None);
+        parseSource(`({ async * gen () {${arg} } }) `);
       });
     });
 
     it(`({ async * gen () {${arg} } }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () {${arg} } }) `, undefined, Context.OptionsWebCompat);
+        parseSource(`({ async * gen () {${arg} } }) `, { webcompat: true });
       });
     });
   }
@@ -206,60 +205,60 @@ describe('Declarations - Async Generator', () => {
   ]) {
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, undefined, Context.None);
+        parseSource(`async function * gen() { ${arg} } `);
       });
     });
 
     it(`"use strict"; async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`"use strict"; async function * gen() { ${arg} } `, undefined, Context.None);
+        parseSource(`"use strict"; async function * gen() { ${arg} } `);
       });
     });
 
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, undefined, Context.Strict | Context.Module);
+        parseSource(`async function * gen() { ${arg} } `, { sourceType: 'module' });
       });
     });
 
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, undefined, Context.Strict | Context.Module);
+        parseSource(`async function * gen() { ${arg} } `, { sourceType: 'module' });
       });
     });
 
     it(`(async function * () {${arg} }) `, () => {
       t.throws(() => {
-        parseSource(`(async function * () {${arg} }) `, undefined, Context.None);
+        parseSource(`(async function * () {${arg} }) `);
       });
     });
 
     it(`({ async * gen () {${arg} } }) `, () => {
       t.throws(() => {
-        parseSource(`({ async * gen () {${arg} } }) `, undefined, Context.None);
+        parseSource(`({ async * gen () {${arg} } }) `);
       });
     });
   }
 
   fail('Declarations - const (fail)', [
-    ['({ yield })', Context.Strict],
-    ['({async\n    foo() { }})', Context.None],
-    [String.raw`void \u0061sync function* f(){};`, Context.None],
-    ['for ( ; false; ) async function* g() {}', Context.None],
-    ['class A { async* f() { () => await a; } }', Context.None],
-    ['class A { async* f() { () => yield a; } }', Context.None],
-    ['class A { *async f() {} }', Context.None],
-    ['obj = { *async f() {}', Context.None],
-    ['obj = { *async* f() {}', Context.None],
-    ['obj = { async* f() { () => await a; } }', Context.None],
-    ['obj = { async* f() { () => yield a; } }', Context.None],
-    ['f = async function*() { () => yield a; }', Context.None],
-    ['f = async function*() { () => await a; }', Context.None],
-    ['async function* f([...x = []]) {  }', Context.None],
-    ['async function* f([...x, y]) {}', Context.None],
-    ['async function* f([...{ x }, y]) {}', Context.None],
-    ['async function* f([...[x], y]) {}', Context.None],
-    ['f = async function*() { () => await a; }', Context.None],
+    { code: '({ yield })', options: { impliedStrict: true } },
+    '({async\n    foo() { }})',
+    String.raw`void \u0061sync function* f(){};`,
+    'for ( ; false; ) async function* g() {}',
+    'class A { async* f() { () => await a; } }',
+    'class A { async* f() { () => yield a; } }',
+    'class A { *async f() {} }',
+    'obj = { *async f() {}',
+    'obj = { *async* f() {}',
+    'obj = { async* f() { () => await a; } }',
+    'obj = { async* f() { () => yield a; } }',
+    'f = async function*() { () => yield a; }',
+    'f = async function*() { () => await a; }',
+    'async function* f([...x = []]) {  }',
+    'async function* f([...x, y]) {}',
+    'async function* f([...{ x }, y]) {}',
+    'async function* f([...[x], y]) {}',
+    'f = async function*() { () => await a; }',
   ]);
 
   pass('Declarations - const (pass)', [

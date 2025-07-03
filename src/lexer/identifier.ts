@@ -1,10 +1,10 @@
-import { Context } from '../common';
-import { type Parser } from '../parser/parser';
-import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
+import { Context, getOwnProperty } from '../common';
+import { Errors, ParseError } from '../errors';
+import { type Parser } from '../parser/parser';
+import { descKeywordTable, Token } from './../token';
+import { CharFlags, CharTypes, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
-import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
-import { report, reportScannerError, Errors } from '../errors';
 
 /**
  * Scans identifier
@@ -19,7 +19,7 @@ export function scanIdentifier(parser: Parser, context: Context, isValidAsKeywor
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
 
   return parser.currentChar !== Chars.Backslash && parser.currentChar <= 0x7e
-    ? descKeywordTable[parser.tokenValue] || Token.Identifier
+    ? (getOwnProperty(descKeywordTable, parser.tokenValue) ?? Token.Identifier)
     : scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
 }
 
@@ -32,7 +32,7 @@ export function scanIdentifier(parser: Parser, context: Context, isValidAsKeywor
  */
 export function scanUnicodeIdentifier(parser: Parser, context: Context): Token {
   const cookedChar = scanIdentifierUnicodeEscape(parser);
-  if (!isIdentifierStart(cookedChar)) report(parser, Errors.InvalidUnicodeEscapeSequence);
+  if (!isIdentifierStart(cookedChar)) parser.report(Errors.InvalidUnicodeEscapeSequence);
   parser.tokenValue = String.fromCodePoint(cookedChar);
   return scanIdentifierSlowCase(parser, context, /* hasEscape */ 1, CharTypes[cookedChar] & CharFlags.KeywordCandidate);
 }
@@ -58,7 +58,7 @@ export function scanIdentifierSlowCase(
       parser.tokenValue += parser.source.slice(start, parser.index);
       hasEscape = 1;
       const code = scanIdentifierUnicodeEscape(parser);
-      if (!isIdentifierPart(code)) report(parser, Errors.InvalidUnicodeEscapeSequence);
+      if (!isIdentifierPart(code)) parser.report(Errors.InvalidUnicodeEscapeSequence);
       isValidAsKeyword = isValidAsKeyword && CharTypes[code] & CharFlags.KeywordCandidate;
       parser.tokenValue += String.fromCodePoint(code);
       start = parser.index;
@@ -66,7 +66,7 @@ export function scanIdentifierSlowCase(
       const merged = consumePossibleSurrogatePair(parser);
       if (merged > 0) {
         if (!isIdentifierPart(merged)) {
-          report(parser, Errors.IllegalCharacter, String.fromCodePoint(merged));
+          parser.report(Errors.IllegalCharacter, String.fromCodePoint(merged));
         }
         parser.currentChar = merged;
         parser.index++;
@@ -85,7 +85,7 @@ export function scanIdentifierSlowCase(
 
   const { length } = parser.tokenValue;
   if (isValidAsKeyword && length >= 2 && length <= 11) {
-    const token: Token | undefined = descKeywordTable[parser.tokenValue];
+    const token = getOwnProperty(descKeywordTable, parser.tokenValue);
     if (token === void 0) return Token.Identifier | (hasEscape ? Token.IsEscaped : 0);
     if (!hasEscape) return token;
 
@@ -158,7 +158,7 @@ export function scanPrivateIdentifier(parser: Parser): Token {
 
   const merged = consumePossibleSurrogatePair(parser);
   if (merged) char = merged;
-  if (!isIdentifierStart(char)) report(parser, Errors.MissingPrivateIdentifier);
+  if (!isIdentifierStart(char)) parser.report(Errors.MissingPrivateIdentifier);
 
   return Token.PrivateField;
 }
@@ -168,13 +168,14 @@ export function scanPrivateIdentifier(parser: Parser): Token {
  *
  * @param parser  Parser object
  */
-export function scanIdentifierUnicodeEscape(parser: Parser): number {
+function scanIdentifierUnicodeEscape(parser: Parser): number {
   // Check for Unicode escape of the form '\uXXXX'
   // and return code point value if valid Unicode escape is found.
   if (parser.source.charCodeAt(parser.index + 1) !== Chars.LowerU) {
-    report(parser, Errors.InvalidUnicodeEscapeSequence);
+    parser.report(Errors.InvalidUnicodeEscapeSequence);
   }
   parser.currentChar = parser.source.charCodeAt((parser.index += 2));
+  parser.column += 2;
   return scanUnicodeEscape(parser);
 }
 
@@ -183,7 +184,7 @@ export function scanIdentifierUnicodeEscape(parser: Parser): number {
  *
  * @param parser  Parser object
  */
-export function scanUnicodeEscape(parser: Parser): number {
+function scanUnicodeEscape(parser: Parser): number {
   // Accept both \uXXXX and \u{XXXXXX}
   let codePoint = 0;
   const char = parser.currentChar;
@@ -193,7 +194,7 @@ export function scanUnicodeEscape(parser: Parser): number {
     while (CharTypes[advanceChar(parser)] & CharFlags.Hex) {
       codePoint = (codePoint << 4) | toHex(parser.currentChar);
       if (codePoint > Chars.NonBMPMax)
-        reportScannerError(
+        throw new ParseError(
           { index: begin, line: parser.line, column: parser.column },
           parser.currentLocation,
           Errors.UnicodeOverflow,
@@ -202,7 +203,7 @@ export function scanUnicodeEscape(parser: Parser): number {
 
     // At least 4 characters have to be read
     if ((parser.currentChar as number) !== Chars.RightBrace) {
-      reportScannerError(
+      throw new ParseError(
         { index: begin, line: parser.line, column: parser.column },
         parser.currentLocation,
         Errors.InvalidHexEscapeSequence,
@@ -212,18 +213,18 @@ export function scanUnicodeEscape(parser: Parser): number {
     return codePoint;
   }
 
-  if ((CharTypes[char] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence); // first one is mandatory
+  if ((CharTypes[char] & CharFlags.Hex) === 0) parser.report(Errors.InvalidHexEscapeSequence); // first one is mandatory
 
   const char2 = parser.source.charCodeAt(parser.index + 1);
-  if ((CharTypes[char2] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
+  if ((CharTypes[char2] & CharFlags.Hex) === 0) parser.report(Errors.InvalidHexEscapeSequence);
   const char3 = parser.source.charCodeAt(parser.index + 2);
-  if ((CharTypes[char3] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
+  if ((CharTypes[char3] & CharFlags.Hex) === 0) parser.report(Errors.InvalidHexEscapeSequence);
   const char4 = parser.source.charCodeAt(parser.index + 3);
-  if ((CharTypes[char4] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
+  if ((CharTypes[char4] & CharFlags.Hex) === 0) parser.report(Errors.InvalidHexEscapeSequence);
 
   codePoint = (toHex(char) << 12) | (toHex(char2) << 8) | (toHex(char3) << 4) | toHex(char4);
 
   parser.currentChar = parser.source.charCodeAt((parser.index += 4));
-
+  parser.column += 4;
   return codePoint;
 }

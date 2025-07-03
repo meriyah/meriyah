@@ -1,0 +1,1015 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Lexical - Block > Lexical - Block (fail) >  { function a() {} } { let a; function a() {}; } 1`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'a'
+> 1 |  { function a() {} } { let a; function a() {}; }
+    |                                        ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > # { # } 1`] = `
+"SyntaxError [1:0-1:1]: '#' not followed by identifier
+> 1 | # { # }
+    | ^ '#' not followed by identifier"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > {
+  for (var x;;);
+  const x = 1
+} 1`] = `
+"SyntaxError [3:10-3:11]: Duplicate binding 'x'
+  1 | {
+  2 |   for (var x;;);
+> 3 |   const x = 1
+    |           ^ Duplicate binding 'x'
+  4 | }"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { # } # 1`] = `
+"SyntaxError [1:2-1:3]: '#' not followed by identifier
+> 1 | { # } #
+    |   ^ '#' not followed by identifier"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } async function f() {}; } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+> 1 | { { var f; } async function f() {}; }
+    |                             ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } async function f() {}; } 2`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+> 1 | { { var f; } async function f() {}; }
+    |                             ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } async function* f() {}; } 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | { { var f; } async function* f() {}; }
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } class f {}; } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { { var f; } class f {}; }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } class f {}; } 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { { var f; } class f {}; }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } const f = 0; } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { { var f; } const f = 0; }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } function f() {} } 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'f'
+> 1 | { { var f; } function f() {} }
+    |                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } function* f() {}; } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { { var f; } function* f() {}; }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } let f; } 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'f'
+> 1 | { { var f; } let f; }
+    |                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { { var f; } let f; } 2`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'f'
+> 1 | { { var f; } let f; }
+    |                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function *f(){} class f {} } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function *f(){} class f {} }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function *f(){} const f = x } 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { async function *f(){} const f = x }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function *f(){} let f } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function *f(){} let f }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function a() {} async function a() {} } 1`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'a'
+> 1 | { async function a() {} async function a() {} }
+    |                                        ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} async function f() {} } 1`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'f'
+> 1 | { async function f() {} async function f() {} }
+    |                                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} async function f() {} } 2`] = `
+"SyntaxError [1:39-1:40]: Duplicate binding 'f'
+> 1 | { async function f() {} async function f() {} }
+    |                                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} async function* f() {} } 1`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | { async function f() {} async function* f() {} }
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} async function* f() {} } 2`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | { async function f() {} async function* f() {} }
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} class f {} } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {} class f {} }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} const f = 0 } 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { async function f() {} const f = 0 }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} const f = 0; } 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { async function f() {} const f = 0; }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} const f = 0; } 2`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { async function f() {} const f = 0; }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} function f() {} } 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | { async function f() {} function f() {} }
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} function f() {} } 2`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | { async function f() {} function f() {} }
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} function* f() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { async function f() {} function* f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} function* f() {} } 2`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { async function f() {} function* f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} let f } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {} let f }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} let f } 2`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {} let f }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} let f } 3`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {} let f }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} var f } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {} var f }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} var f } 2`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {} var f }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {} var f; } 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | { async function f() {} var f; }
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {}; { var f; } } 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { async function f() {}; { var f; } }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f() {}; var f; } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { async function f() {}; var f; }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f(){} async function f(){} } 1`] = `
+"SyntaxError [1:38-1:39]: Duplicate binding 'f'
+> 1 | { async function f(){} async function f(){} }
+    |                                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function f(){} function f(){} } 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { async function f(){} function f(){} }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} async function f() {} } 1`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | { async function* f() {} async function f() {} }
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} async function f() {} } 2`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | { async function* f() {} async function f() {} }
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} async function f() {} } 3`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | { async function* f() {} async function f() {} }
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} async function* f() {} } 1`] = `
+"SyntaxError [1:41-1:42]: Duplicate binding 'f'
+> 1 | { async function* f() {} async function* f() {} }
+    |                                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} const f = 0 } 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | { async function* f() {} const f = 0 }
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} const f = 0 } 2`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | { async function* f() {} const f = 0 }
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} function f() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { async function* f() {} function f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} function f() {} } 2`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { async function* f() {} function f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} function* f() {} } 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
+> 1 | { async function* f() {} function* f() {} }
+    |                                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} let f } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { async function* f() {} let f }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} let f } 2`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { async function* f() {} let f }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {} var f } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { async function* f() {} var f }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {}; { var f; } } 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | { async function* f() {}; { var f; } }
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { async function* f() {}; var f; } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { async function* f() {}; var f; }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class async {}; { var async; } } 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'async'
+> 1 | { class async {}; { var async; } }
+    |                              ^ Duplicate binding 'async'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class async {}; { var async; } } 2`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'async'
+> 1 | { class async {}; { var async; } }
+    |                              ^ Duplicate binding 'async'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class async {}; { var async; } } 3`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'async'
+> 1 | { class async {}; { var async; } }
+    |                              ^ Duplicate binding 'async'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} async function f() {} } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+> 1 | { class f {} async function f() {} }
+    |                             ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} async function f(){} } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+> 1 | { class f {} async function f(){} }
+    |                             ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} class f {}; } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { class f {} class f {}; }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} const f = 0 } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { class f {} const f = 0 }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} const f = 0; } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { class f {} const f = 0; }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} function *f(){} } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { class f {} function *f(){} }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} function f() {} } 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'f'
+> 1 | { class f {} function f() {} }
+    |                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} function* f() {} } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { class f {} function* f() {} }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} let f; } 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'f'
+> 1 | { class f {} let f; }
+    |                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} var f } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { class f {} var f }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {} var f; } 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'f'
+> 1 | { class f {} var f; }
+    |                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {}; { var f; } } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { class f {}; { var f; } }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {}; var f; } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { class f {}; var f; }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { class f {}; var f; } 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { class f {}; var f; }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const a = 1; function a(){} } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'a'
+> 1 | { const a = 1; function a(){} }
+    |                         ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const a = 1; function a(){} } 2`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'a'
+> 1 | { const a = 1; function a(){} }
+    |                         ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; { var f; } } 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'f'
+> 1 | { const f = 0; { var f; } }
+    |                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; { var f; } } 2`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'f'
+> 1 | { const f = 0; { var f; } }
+    |                       ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; async function f() {} } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { const f = 0; async function f() {} }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; async function* f() {} } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { const f = 0; async function* f() {} }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; async function* f() {} } 2`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { const f = 0; async function* f() {} }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; class f {} } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { const f = 0; class f {} }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; const f = 0 } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { const f = 0; const f = 0 }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; const f = 0 } 2`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { const f = 0; const f = 0 }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; function f() {} } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { const f = 0; function f() {} }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; function* f() {} } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { const f = 0; function* f() {} }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; let f } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { const f = 0; let f }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = 0; var f } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'f'
+> 1 | { const f = 0; var f }
+    |                      ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = x; async function *f(){} } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
+> 1 | { const f = x; async function *f(){} }
+    |                                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = x; async function f(){} } 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'f'
+> 1 | { const f = x; async function f(){} }
+    |                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { const f = x; function *f(){} } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { const f = x; function *f(){} }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { for (var x;;); const x = 1 } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'x'
+> 1 | { for (var x;;); const x = 1 }
+    |                          ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function *f(){} class f {} } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { function *f(){} class f {} }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function *foo() {}; function *bar() {}; function *foo() {}; } 1`] = `
+"SyntaxError [1:52-1:55]: Duplicate binding 'foo'
+> 1 | { function *foo() {}; function *bar() {}; function *foo() {}; }
+    |                                                     ^^^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function *foo() {}; function *foo() {}; } 1`] = `
+"SyntaxError [1:32-1:35]: Duplicate binding 'foo'
+> 1 | { function *foo() {}; function *foo() {}; }
+    |                                 ^^^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function a(){} function a(){} } 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+> 1 | { function a(){} function a(){} }
+    |                           ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} ; function f() {} } 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | { function f() {} ; function f() {} }
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} async function f() {} } 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+> 1 | { function f() {} async function f() {} }
+    |                                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} async function* f() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { function f() {} async function* f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} async function* f() {} } 2`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { function f() {} async function* f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} function f() {} } 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'f'
+> 1 | { function f() {} function f() {} }
+    |                            ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} let f } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { function f() {} let f }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f() {} var f; } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { function f() {} var f; }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f(){} async function f(){} } 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
+> 1 | { function f(){} async function f(){} }
+    |                                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f(){} class f {} } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'f'
+> 1 | { function f(){} class f {} }
+    |                        ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f(){} function f(){} } 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'f'
+> 1 | { function f(){} function f(){} }
+    |                           ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function f(){} function f(){} } 2`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'f'
+> 1 | { function f(){} function f(){} }
+    |                           ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function foo() {} function foo() {} } 1`] = `
+"SyntaxError [1:29-1:32]: Duplicate binding 'foo'
+> 1 | { function foo() {} function foo() {} }
+    |                              ^^^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function foo() {} var foo = 1; } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+> 1 | { function foo() {} var foo = 1; }
+    |                             ^ Duplicate binding 'foo'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} async function f() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { function* f() {} async function f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} async function f() {} } 2`] = `
+"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+> 1 | { function* f() {} async function f() {} }
+    |                                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} class f {} } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { function* f() {} class f {} }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} class f {}; } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { function* f() {} class f {}; }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} function f() {} } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+> 1 | { function* f() {} function f() {} }
+    |                             ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} function f() {} } 2`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+> 1 | { function* f() {} function f() {} }
+    |                             ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} function* f() {} } 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | { function* f() {} function* f() {} }
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} function* f() {} } 2`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | { function* f() {} function* f() {} }
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} function* f() {} } 3`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'f'
+> 1 | { function* f() {} function* f() {} }
+    |                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} let f } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { function* f() {} let f }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} let f; } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { function* f() {} let f; }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {} var f; } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { function* f() {} var f; }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {}; var f; } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { function* f() {}; var f; }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { function* f() {}; var f; } 2`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { function* f() {}; var f; }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { if (x) function f() {} ; function f() {} } 1`] = `
+"SyntaxError [1:9-1:17]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | { if (x) function f() {} ; function f() {} }
+    |          ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let a; { var a; } } 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+> 1 | { let a; { var a; } }
+    |                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let a; class a {} } 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | { let a; class a {} }
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let a; function a() {}; } 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'a'
+> 1 | { let a; function a() {}; }
+    |                   ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f = 123; if (false) ; else function f() {  }} 1`] = `
+"SyntaxError [1:33-1:41]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | { let f = 123; if (false) ; else function f() {  }}
+    |                                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f = 123; if (false) ; else function f() {} } 1`] = `
+"SyntaxError [1:33-1:41]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | { let f = 123; if (false) ; else function f() {} }
+    |                                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; { var f; } } 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'f'
+> 1 | { let f; { var f; } }
+    |                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; { var f; } } 2`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'f'
+> 1 | { let f; { var f; } }
+    |                 ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; async function *f(){} } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { let f; async function *f(){} }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; async function f(){} } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { let f; async function f(){} }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; class f {} } 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'f'
+> 1 | { let f; class f {} }
+    |                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; function f() {} } 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'f'
+> 1 | { let f; function f() {} }
+    |                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; function f(){} } 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'f'
+> 1 | { let f; function f(){} }
+    |                   ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; function* f() {} } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { let f; function* f() {} }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; function* f() {} } 2`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { let f; function* f() {} }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; let f } 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'f'
+> 1 | { let f; let f }
+    |                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; var f } 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'f'
+> 1 | { let f; var f }
+    |                ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; var f; } 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'f'
+> 1 | { let f; var f; }
+    |               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { let f; var f; } 2`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'f'
+> 1 | { let f; var f; }
+    |               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var f = 123; if (true) function f(){} } 1`] = `
+"SyntaxError [1:25-1:33]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | { var f = 123; if (true) function f(){} }
+    |                          ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var f; async function f(){} } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'f'
+> 1 | { var f; async function f(){} }
+    |                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var f; async function* f() {} } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
+> 1 | { var f; async function* f() {} }
+    |                          ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var f; const f = 0 } 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'f'
+> 1 | { var f; const f = 0 }
+    |                  ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var f; function *f(){} } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { var f; function *f(){} }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var f; function* f() {} } 1`] = `
+"SyntaxError [1:19-1:20]: Duplicate binding 'f'
+> 1 | { var f; function* f() {} }
+    |                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > { var x; } let x; 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'x'
+> 1 | { var x; } let x;
+    |                 ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > async function *f(){} async function *f(){} } 1`] = `
+"SyntaxError [1:44-1:45]: Unexpected token: '}'
+> 1 | async function *f(){} async function *f(){} }
+    |                                             ^ Unexpected token: '}'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > for (const x in {}) { var x; } 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'x'
+> 1 | for (const x in {}) { var x; }
+    |                            ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > for (const x in {}) { var x; } 2`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'x'
+> 1 | for (const x in {}) { var x; }
+    |                            ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > for (let x of []) { var x;  } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'x'
+> 1 | for (let x of []) { var x;  }
+    |                          ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > for (let x; false; ) { var x; } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'x'
+> 1 | for (let x; false; ) { var x; }
+    |                             ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function f(){
+  for (var x;;);
+  const x = 1
+} 1`] = `
+"SyntaxError [3:10-3:11]: Duplicate binding 'x'
+  1 | function f(){
+  2 |   for (var x;;);
+> 3 |   const x = 1
+    |           ^ Duplicate binding 'x'
+  4 | }"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function f(){ var f = 123; if (true) function f(){} } 1`] = `
+"SyntaxError [1:37-1:45]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | function f(){ var f = 123; if (true) function f(){} }
+    |                                      ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function g() { { function f() {} { var f; } }} 1`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | function g() { { function f() {} { var f; } }}
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function x() { { async function f() {}; var f; } } 1`] = `
+"SyntaxError [1:45-1:46]: Duplicate binding 'f'
+> 1 | function x() { { async function f() {}; var f; } }
+    |                                              ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function x() { { async function* f() {}; var f; } } 1`] = `
+"SyntaxError [1:46-1:47]: Duplicate binding 'f'
+> 1 | function x() { { async function* f() {}; var f; } }
+    |                                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function x() { { async function* f() {}; var f; } } 2`] = `
+"SyntaxError [1:46-1:47]: Duplicate binding 'f'
+> 1 | function x() { { async function* f() {}; var f; } }
+    |                                               ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function x() { { const f = 0; var f; } } 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
+> 1 | function x() { { const f = 0; var f; } }
+    |                                    ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > function x() { { function* f() {}; var f; } } 1`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'f'
+> 1 | function x() { { function* f() {}; var f; } }
+    |                                         ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > let x; { var x; } 1`] = `
+"SyntaxError [1:14-1:15]: Duplicate binding 'x'
+> 1 | let x; { var x; }
+    |               ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > let x; var x; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+> 1 | let x; var x;
+    |             ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > switch (0) { case 1: function* a() {} break; default: var a; } 1`] = `
+"SyntaxError [1:59-1:60]: Duplicate binding 'a'
+> 1 | switch (0) { case 1: function* a() {} break; default: var a; }
+    |                                                            ^ Duplicate binding 'a'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > try { # var f } catch (e) {} 1`] = `
+"SyntaxError [1:6-1:7]: '#' not followed by identifier
+> 1 | try { # var f } catch (e) {}
+    |       ^ '#' not followed by identifier"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > try { } catch (e) { # # } 1`] = `
+"SyntaxError [1:20-1:21]: '#' not followed by identifier
+> 1 | try { } catch (e) { # # }
+    |                     ^ '#' not followed by identifier"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > try { throw null; } catch (f) { if (false) ; else function f() { return 123; } } 1`] = `
+"SyntaxError [1:50-1:58]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }
+    |                                                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > var x = a; function x(){}; 1`] = `
+"SyntaxError [1:20-1:21]: Duplicate binding 'x'
+> 1 | var x = a; function x(){};
+    |                     ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - Block > Lexical - Block (fail) > var x; let x; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+> 1 | var x; let x;
+    |             ^ Duplicate binding 'x'"
+`;

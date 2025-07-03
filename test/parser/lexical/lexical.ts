@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Lexical', () => {
   const letbinds = [
@@ -27,7 +27,7 @@ describe('Lexical - Lexical', () => {
       const case1 = letbinds[l] + varbinds[v];
       it(case1, () => {
         t.throws(() => {
-          parseSource(case1, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+          parseSource(case1, { webcompat: true, lexical: true });
         });
       });
 
@@ -35,7 +35,7 @@ describe('Lexical - Lexical', () => {
 
       it(case2, () => {
         t.throws(() => {
-          parseSource(case2, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+          parseSource(case2, { webcompat: true, lexical: true });
         });
       });
 
@@ -43,11 +43,7 @@ describe('Lexical - Lexical', () => {
 
       it(case3, () => {
         t.throws(() => {
-          parseSource(
-            letbinds[l] + '{' + varbinds[v] + '}',
-            undefined,
-            Context.OptionsWebCompat | Context.OptionsLexical,
-          );
+          parseSource(letbinds[l] + '{' + varbinds[v] + '}', { webcompat: true, lexical: true });
         });
       });
 
@@ -55,7 +51,7 @@ describe('Lexical - Lexical', () => {
 
       it(case4, () => {
         t.throws(() => {
-          parseSource(case4, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+          parseSource(case4, { webcompat: true, lexical: true });
         });
       });
 
@@ -63,7 +59,7 @@ describe('Lexical - Lexical', () => {
 
       it(case5, () => {
         t.throws(() => {
-          parseSource(case5, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+          parseSource(case5, { webcompat: true, lexical: true });
         });
       });
     }
@@ -74,13 +70,13 @@ describe('Lexical - Lexical', () => {
 
       it(case6, () => {
         t.throws(() => {
-          parseSource(case6, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+          parseSource(case6, { webcompat: true, lexical: true });
         });
       });
 
       it(case6, () => {
         t.doesNotThrow(() => {
-          parseSource(case6, undefined, Context.OptionsWebCompat);
+          parseSource(case6, { webcompat: true });
         });
       });
 
@@ -88,199 +84,215 @@ describe('Lexical - Lexical', () => {
 
       it(case7, () => {
         t.throws(() => {
-          parseSource(case7, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+          parseSource(case7, { webcompat: true, lexical: true });
         });
       });
     }
   }
 
   fail('Lexical - Lexical (fail)', [
-    ['let x; var x;', Context.OptionsLexical],
-    [
-      `var x; let x;
-    var x; let x;`,
-      Context.OptionsLexical,
-    ],
-    [
-      `let x; { var x }
-    let x; { var x }`,
-      Context.OptionsLexical,
-    ],
-    ['var x; let x;', Context.OptionsLexical],
-    ['let x; { var x }', Context.OptionsLexical | Context.Module | Context.Strict],
-    ['var x; let x;', Context.OptionsLexical | Context.Module | Context.Strict],
-    ['let x; { var x }', Context.OptionsLexical | Context.Module | Context.Strict],
-    ['{ var x } let x;', Context.OptionsLexical],
-    ['for (let x;;) { var x; }', Context.OptionsLexical],
-    ['let x; for (;;) { var x; }', Context.OptionsLexical],
-    ['for (;;) { var x; } let x;', Context.OptionsLexical],
-    ['function f(){let i; class i{}}', Context.OptionsLexical],
-    ['let a, a', Context.OptionsLexical],
-    ['let a; let a;', Context.OptionsLexical],
-    [
-      `let a; let a;
-    let a; let a;`,
-      Context.OptionsLexical,
-    ],
-    ['const a = 1, a = 2', Context.OptionsLexical],
-    ['const a = 1; const a = 2', Context.OptionsLexical],
-    ['let a = 1; const a = 2', Context.OptionsLexical],
-    ['const a = 1; let a = 2', Context.OptionsLexical],
-    ['let a; export function a(){};', Context.OptionsLexical | Context.Module | Context.Strict],
-    ['let foo = 1; { var foo = 1; } ', Context.OptionsLexical],
-    ['let foo = 1; function x(foo) {} { var foo = 1; }', Context.OptionsLexical],
-    ['var foo = 1; function x() {} let foo = 1;', Context.OptionsLexical],
-    ['var foo = 1; let foo = 1;', Context.OptionsLexical],
-    ['let foo = 1; var foo = 1;', Context.OptionsLexical],
-    ['var [foo] = [1]; let foo = 1;', Context.OptionsLexical],
-    ['var [{ bar: [foo] }] = x; let {foo} = 1;', Context.OptionsLexical],
-    ['let test = 2, let = 1;', Context.OptionsLexical],
-    ['let {a:a, a:a} = {};', Context.OptionsLexical],
-    ['const {a:a, a:a} = {};', Context.OptionsLexical],
-    ['let {...(a,b)} = foo', Context.OptionsLexical],
-    ['let {...(a,b)} = foo', Context.OptionsLexical],
-    ['let {...[a,b]} = foo', Context.OptionsLexical],
-    ['let {...{a,b}} = foo', Context.OptionsLexical],
-    ['let {...{a,b}} = foo', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let {...(obj)} = foo', Context.OptionsLexical],
-    ['let {...(a,b)} = foo', Context.OptionsLexical],
-    ['let {...[a,b]} = foo', Context.OptionsLexical],
-    ['let {...{a,b}} = foo', Context.OptionsLexical],
-    ['let {...(obj)} = foo', Context.OptionsLexical],
-    ['let {...(a,b)} = foo', Context.OptionsLexical | Context.OptionsNext],
-    ['let {...(a,b)} = foo', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let {...[a,b]} = foo', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let {...{a,b}} = foo', Context.OptionsLexical | Context.OptionsWebCompat | Context.OptionsNext],
-    ['let {...(obj)} = foo', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let {...(a,b)} = foo', Context.OptionsLexical | Context.OptionsWebCompat | Context.OptionsNext],
-    ['let {...[a,b]} = foo', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let {...{a,b}} = foo', Context.OptionsLexical | Context.OptionsWebCompat | Context.OptionsNext],
-    ['let {...(obj)} = foo', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['var x; let x;', Context.OptionsLexical],
-    ['{ var f; let f; }', Context.OptionsLexical],
-    ['{ var f; function f() {} }', Context.OptionsLexical],
-    ['let {[a]: x, b: x} = obj', Context.OptionsLexical],
-    ['let {[a]: x, [b]: x} = obj', Context.OptionsLexical],
-    ['let {a: x, b: x} = obj', Context.OptionsLexical],
-    ['let {a: x, b: x} = obj', Context.OptionsLexical],
-    ['let {x, x} = obj', Context.OptionsLexical],
-    ['let {a: x, c: {b: x}} = obj', Context.OptionsLexical],
-    ['let x, {a: {b: x}} = obj', Context.OptionsLexical],
-    ['let x, {a: {x}} = obj', Context.OptionsLexical],
-    ['let {a: x, ...{x}} = obj', Context.OptionsLexical],
-    ['let {a: x, ...x} = obj', Context.OptionsLexical],
-    ['let x, {x} = obj', Context.OptionsLexical],
-    ['let x, {a: x} = obj', Context.OptionsLexical],
-    ['let {a: x, ...{x}} = obj', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['let {a: x, ...x} = obj', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['let x, {x} = obj', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['let x, {a: x} = obj', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['let {b, b} = {};', Context.OptionsLexical],
-    ['const a = 0, a = 1;', Context.OptionsLexical],
-    ['let a, [a];', Context.OptionsLexical],
-    ['let [a, ...a];', Context.OptionsLexical],
-    ['{ let a; { var a; } }', Context.OptionsLexical],
-    ['{ let a; let a; }', Context.OptionsLexical],
-    ['let {x:c, y:c} = {};', Context.OptionsLexical],
-    ['const {x:c, y:c} = {};', Context.OptionsLexical],
-    ['const [a, let, b] = [1, 2, 3];', Context.OptionsLexical],
-    ['for(let let in { }) { };', Context.OptionsLexical],
-    ['let [a, a] = [];', Context.OptionsLexical],
-    ['const a = 1; let a = 2', Context.OptionsLexical],
-    ['const a = 1; let a = 2', Context.OptionsLexical],
-    ['(function() { let a; var a; })();', Context.OptionsLexical],
-    ['const a = b, a = c', Context.OptionsLexical],
-    ['const a = b; const a = c', Context.OptionsLexical],
-    ['const a = b; const a = c', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['let a = b; const a = c', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const x = x, x = y;', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const [x, x] = c', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const [x, {x}] = y', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const {x:x, x:x} = c', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const a = b; let a = c', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const x = a; const x = b;', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let x = a; const x = b;', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['var x = a; const x = b;', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['const x; { let x; var y; }', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['var x = a; let x = b;', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['var x = a; const x = b;', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['let a = b; const a = c', Context.OptionsLexical],
-    ['const x = x, x = y;', Context.OptionsLexical],
-    ['const [x, x] = c', Context.OptionsLexical],
-    ['const [x, {x}] = y', Context.OptionsLexical],
-    ['const {x:x, x:x} = c', Context.OptionsLexical],
-    ['const a = b; let a = c', Context.OptionsLexical],
-    ['const x = a; const x = b;', Context.OptionsLexical],
-    ['let x = a; const x = b;', Context.OptionsLexical],
-    ['var x = a; const x = b;', Context.OptionsLexical],
-    ['const x; { let x; var y; }', Context.OptionsLexical],
-    ['var x = a; let x = b;', Context.OptionsLexical],
-    ['var x = a; const x = b;', Context.OptionsLexical],
-    ['let x = a; let x = b;', Context.OptionsLexical],
-    ['let x = a; const x = b;', Context.OptionsLexical],
-    ['var x; let x;', Context.OptionsLexical],
-    ['let x; var x;', Context.OptionsLexical],
-    ['let x; { var x; }', Context.OptionsLexical],
-    ['let x; {var x}', Context.OptionsLexical],
-    ['let x; {var x}', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['let foo = 1; function x(foo) {} { var foo = 1; }', Context.OptionsLexical],
-    ['var foo = 1; function x() {} let foo = 1;', Context.OptionsLexical],
-    ['var foo = 1; function x(a) { let a; } ', Context.OptionsLexical],
-    ['var x = a; let x = b;', Context.OptionsLexical],
-    ['var x = a; const x = b;', Context.OptionsLexical],
-    ['var x = a; function x(){};', Context.Module | Context.OptionsLexical],
-    ['let x = a; let x = b;', Context.OptionsLexical],
-    ['let x = a; const x = b;', Context.OptionsLexical],
-    ['let x = a; function x(){};', Context.OptionsLexical],
-    ['const x = a; const x = b;', Context.OptionsLexical],
-    ['const x = a; function x(){};', Context.OptionsLexical],
-    ['let x; { var x }', Context.OptionsLexical],
-    ['{ var x; } let x', Context.OptionsLexical],
+    { code: 'let x; var x;', options: { lexical: true } },
+    {
+      code: outdent`
+        var x; let x;
+        var x; let x;
+      `,
+      options: { lexical: true },
+    },
+    {
+      code: outdent`
+        let x; { var x }
+        let x; { var x }
+      `,
+      options: { lexical: true },
+    },
+    { code: 'var x; let x;', options: { lexical: true } },
+    { code: 'let x; { var x }', options: { sourceType: 'module', lexical: true } },
+    { code: 'var x; let x;', options: { sourceType: 'module', lexical: true } },
+    { code: 'let x; { var x }', options: { sourceType: 'module', lexical: true } },
+    { code: '{ var x } let x;', options: { lexical: true } },
+    { code: 'for (let x;;) { var x; }', options: { lexical: true } },
+    { code: 'let x; for (;;) { var x; }', options: { lexical: true } },
+    { code: 'for (;;) { var x; } let x;', options: { lexical: true } },
+    { code: 'function f(){let i; class i{}}', options: { lexical: true } },
+    { code: 'let a, a', options: { lexical: true } },
+    { code: 'let a; let a;', options: { lexical: true } },
+    {
+      code: outdent`
+        let a; let a;
+        let a; let a;
+      `,
+      options: { lexical: true },
+    },
+    { code: 'const a = 1, a = 2', options: { lexical: true } },
+    { code: 'const a = 1; const a = 2', options: { lexical: true } },
+    { code: 'let a = 1; const a = 2', options: { lexical: true } },
+    { code: 'const a = 1; let a = 2', options: { lexical: true } },
+    { code: 'let a; export function a(){};', options: { sourceType: 'module', lexical: true } },
+    { code: 'let foo = 1; { var foo = 1; } ', options: { lexical: true } },
+    { code: 'let foo = 1; function x(foo) {} { var foo = 1; }', options: { lexical: true } },
+    { code: 'var foo = 1; function x() {} let foo = 1;', options: { lexical: true } },
+    { code: 'var foo = 1; let foo = 1;', options: { lexical: true } },
+    { code: 'let foo = 1; var foo = 1;', options: { lexical: true } },
+    { code: 'var [foo] = [1]; let foo = 1;', options: { lexical: true } },
+    { code: 'var [{ bar: [foo] }] = x; let {foo} = 1;', options: { lexical: true } },
+    { code: 'let test = 2, let = 1;', options: { lexical: true } },
+    { code: 'let {a:a, a:a} = {};', options: { lexical: true } },
+    { code: 'const {a:a, a:a} = {};', options: { lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { lexical: true } },
+    { code: 'let {...[a,b]} = foo', options: { lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { webcompat: true, lexical: true } },
+    { code: 'let {...(obj)} = foo', options: { lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { lexical: true } },
+    { code: 'let {...[a,b]} = foo', options: { lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { lexical: true } },
+    { code: 'let {...(obj)} = foo', options: { lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { next: true, lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { webcompat: true, lexical: true } },
+    { code: 'let {...[a,b]} = foo', options: { webcompat: true, lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'let {...(obj)} = foo', options: { webcompat: true, lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'let {...[a,b]} = foo', options: { webcompat: true, lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'let {...(obj)} = foo', options: { webcompat: true, lexical: true } },
+    { code: 'var x; let x;', options: { lexical: true } },
+    { code: '{ var f; let f; }', options: { lexical: true } },
+    { code: '{ var f; function f() {} }', options: { lexical: true } },
+    { code: 'let {[a]: x, b: x} = obj', options: { lexical: true } },
+    { code: 'let {[a]: x, [b]: x} = obj', options: { lexical: true } },
+    { code: 'let {a: x, b: x} = obj', options: { lexical: true } },
+    { code: 'let {a: x, b: x} = obj', options: { lexical: true } },
+    { code: 'let {x, x} = obj', options: { lexical: true } },
+    { code: 'let {a: x, c: {b: x}} = obj', options: { lexical: true } },
+    { code: 'let x, {a: {b: x}} = obj', options: { lexical: true } },
+    { code: 'let x, {a: {x}} = obj', options: { lexical: true } },
+    { code: 'let {a: x, ...{x}} = obj', options: { lexical: true } },
+    { code: 'let {a: x, ...x} = obj', options: { lexical: true } },
+    { code: 'let x, {x} = obj', options: { lexical: true } },
+    { code: 'let x, {a: x} = obj', options: { lexical: true } },
+    { code: 'let {a: x, ...{x}} = obj', options: { sourceType: 'module', lexical: true } },
+    { code: 'let {a: x, ...x} = obj', options: { sourceType: 'module', lexical: true } },
+    { code: 'let x, {x} = obj', options: { sourceType: 'module', lexical: true } },
+    { code: 'let x, {a: x} = obj', options: { sourceType: 'module', lexical: true } },
+    { code: 'let {b, b} = {};', options: { lexical: true } },
+    { code: 'const a = 0, a = 1;', options: { lexical: true } },
+    { code: 'let a, [a];', options: { lexical: true } },
+    { code: 'let [a, ...a];', options: { lexical: true } },
+    { code: '{ let a; { var a; } }', options: { lexical: true } },
+    { code: '{ let a; let a; }', options: { lexical: true } },
+    { code: 'let {x:c, y:c} = {};', options: { lexical: true } },
+    { code: 'const {x:c, y:c} = {};', options: { lexical: true } },
+    { code: 'const [a, let, b] = [1, 2, 3];', options: { lexical: true } },
+    { code: 'for(let let in { }) { };', options: { lexical: true } },
+    { code: 'let [a, a] = [];', options: { lexical: true } },
+    { code: 'const a = 1; let a = 2', options: { lexical: true } },
+    { code: 'const a = 1; let a = 2', options: { lexical: true } },
+    { code: '(function() { let a; var a; })();', options: { lexical: true } },
+    { code: 'const a = b, a = c', options: { lexical: true } },
+    { code: 'const a = b; const a = c', options: { lexical: true } },
+    { code: 'const a = b; const a = c', options: { sourceType: 'module', lexical: true } },
+    { code: 'let a = b; const a = c', options: { webcompat: true, lexical: true } },
+    { code: 'const x = x, x = y;', options: { webcompat: true, lexical: true } },
+    { code: 'const [x, x] = c', options: { webcompat: true, lexical: true } },
+    { code: 'const [x, {x}] = y', options: { webcompat: true, lexical: true } },
+    { code: 'const {x:x, x:x} = c', options: { webcompat: true, lexical: true } },
+    { code: 'const a = b; let a = c', options: { webcompat: true, lexical: true } },
+    { code: 'const x = a; const x = b;', options: { webcompat: true, lexical: true } },
+    { code: 'let x = a; const x = b;', options: { webcompat: true, lexical: true } },
+    { code: 'var x = a; const x = b;', options: { webcompat: true, lexical: true } },
+    { code: 'const x; { let x; var y; }', options: { webcompat: true, lexical: true } },
+    { code: 'var x = a; let x = b;', options: { webcompat: true, lexical: true } },
+    { code: 'var x = a; const x = b;', options: { webcompat: true, lexical: true } },
+    { code: 'let a = b; const a = c', options: { lexical: true } },
+    { code: 'const x = x, x = y;', options: { lexical: true } },
+    { code: 'const [x, x] = c', options: { lexical: true } },
+    { code: 'const [x, {x}] = y', options: { lexical: true } },
+    { code: 'const {x:x, x:x} = c', options: { lexical: true } },
+    { code: 'const a = b; let a = c', options: { lexical: true } },
+    { code: 'const x = a; const x = b;', options: { lexical: true } },
+    { code: 'let x = a; const x = b;', options: { lexical: true } },
+    { code: 'var x = a; const x = b;', options: { lexical: true } },
+    { code: 'const x; { let x; var y; }', options: { lexical: true } },
+    { code: 'var x = a; let x = b;', options: { lexical: true } },
+    { code: 'var x = a; const x = b;', options: { lexical: true } },
+    { code: 'let x = a; let x = b;', options: { lexical: true } },
+    { code: 'let x = a; const x = b;', options: { lexical: true } },
+    { code: 'var x; let x;', options: { lexical: true } },
+    { code: 'let x; var x;', options: { lexical: true } },
+    { code: 'let x; { var x; }', options: { lexical: true } },
+    { code: 'let x; {var x}', options: { lexical: true } },
+    { code: 'let x; {var x}', options: { webcompat: true, lexical: true } },
+    { code: 'let foo = 1; function x(foo) {} { var foo = 1; }', options: { lexical: true } },
+    { code: 'var foo = 1; function x() {} let foo = 1;', options: { lexical: true } },
+    { code: 'var foo = 1; function x(a) { let a; } ', options: { lexical: true } },
+    { code: 'var x = a; let x = b;', options: { lexical: true } },
+    { code: 'var x = a; const x = b;', options: { lexical: true } },
+    { code: 'var x = a; function x(){};', options: { lexical: true, sourceType: 'module' } },
+    { code: 'let x = a; let x = b;', options: { lexical: true } },
+    { code: 'let x = a; const x = b;', options: { lexical: true } },
+    { code: 'let x = a; function x(){};', options: { lexical: true } },
+    { code: 'const x = a; const x = b;', options: { lexical: true } },
+    { code: 'const x = a; function x(){};', options: { lexical: true } },
+    { code: 'let x; { var x }', options: { lexical: true } },
+    { code: '{ var x; } let x', options: { lexical: true } },
   ]);
 
   for (const arg of [
     'var x; for (;;) { let x; }',
-    `var x; for (;;) { let x; }
-    var x; for (;;) { let x; }`,
-    `for (;;) { let x; } var x;
-    for (;;) { let x; } var x;`,
-    `for (var x;;) { let x; }
-    for (var x;;) { let x; }`,
+    outdent`
+      var x; for (;;) { let x; }
+      var x; for (;;) { let x; }
+    `,
+    outdent`
+      for (;;) { let x; } var x;
+      for (;;) { let x; } var x;
+    `,
+    outdent`
+      for (var x;;) { let x; }
+      for (var x;;) { let x; }
+    `,
     'for (;;) { let x; } var x;',
     'for (var x;;) { let x; }',
     '{ let x } var x;',
     'var foo, foo;',
     'let x = 1; x = 2;',
-    `{ var {foo} = {foo: a}; };
-    { var {foo} = {foo: a}; };`,
-    `{ var {foo=a} = {}; };`,
-    `{ var foo = a; };`,
-    `{ var {foo} = {foo: a}; };`,
-    `try{
-      try {
-        var intry__intry__var;
-      } catch (e) {
-        var intry__incatch__var;
-      }
-  }catch(e){
-      try {
-        var incatch__intry__var;
-      } catch (e) {
-          var incatch__incatch__var;
-      }
-  };`,
+    outdent`
+      { var {foo} = {foo: a}; };
+      { var {foo} = {foo: a}; };
+    `,
+    '{ var {foo=a} = {}; };',
+    '{ var foo = a; };',
+    '{ var {foo} = {foo: a}; };',
+    outdent`
+      try{
+          try {
+            var intry__intry__var;
+          } catch (e) {
+            var intry__incatch__var;
+          }
+      }catch(e){
+          try {
+            var incatch__intry__var;
+          } catch (e) {
+              var incatch__incatch__var;
+          }
+      };
+    `,
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
     'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -290,28 +302,30 @@ describe('Lexical - Lexical', () => {
     'for (;;) { let x; } var x;',
     'for (var x;;) { let x; }',
     '{ let x } var x;',
-    `{ var {foo=a} = {}; };`,
-    `{ var foo = a; };`,
-    `{ var {foo} = {foo: a}; };`,
+    '{ var {foo=a} = {}; };',
+    '{ var foo = a; };',
+    '{ var {foo} = {foo: a}; };',
     'let a; ({a:a, a:a} = {});',
     'var [a, a] = [];',
     'var foo, foo;',
     'let a; [a, a] = [];',
     'var a; [a, a] = [];',
     'let x = 1; x = 2;',
-    `try{
-      try {
-        var intry__intry__var;
-      } catch (e) {
-        var intry__incatch__var;
-      }
-  }catch(e){
-      try {
-        var incatch__intry__var;
-      } catch (e) {
-          var incatch__incatch__var;
-      }
-  };`,
+    outdent`
+      try{
+          try {
+            var intry__intry__var;
+          } catch (e) {
+            var intry__incatch__var;
+          }
+      }catch(e){
+          try {
+            var incatch__intry__var;
+          } catch (e) {
+              var incatch__incatch__var;
+          }
+      };
+    `,
     'let { x : x0 = 0, y : { z : z1 = 1 }, x : x1 = 5} = o;',
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
     'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',
@@ -320,12 +334,12 @@ describe('Lexical - Lexical', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

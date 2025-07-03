@@ -1,5 +1,1864 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Group > Expressions - Group (fail) > "use strict"; ({ arguments } = a); 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | "use strict"; ({ arguments } = a);
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > "use strict"; (a, arguments) => {} 1`] = `
+"SyntaxError [1:29-1:31]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | "use strict"; (a, arguments) => {}
+    |                              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > "use strict"; (arguments = a) => {} 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | "use strict"; (arguments = a) => {}
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > "use strict"; (arguments = a) 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | "use strict"; (arguments = a)
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > "use strict"; (arguments) => {} 1`] = `
+"SyntaxError [1:26-1:28]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | "use strict"; (arguments) => {}
+    |                           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > '(...(...('z')) 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'identifier'
+> 1 | '(...(...('z'))
+    |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > '(...(...1)) 1`] = `
+"SyntaxError [1:0-1:12]: Unterminated string literal
+> 1 | '(...(...1))
+    | ^^^^^^^^^^^^ Unterminated string literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > '(...(...z)) 1`] = `
+"SyntaxError [1:0-1:12]: Unterminated string literal
+> 1 | '(...(...z))
+    | ^^^^^^^^^^^^ Unterminated string literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ( ({x: 1}) ) => {}; 1`] = `
+"SyntaxError [1:13-1:15]: Unexpected token: '=>'
+> 1 | ( ({x: 1}) ) => {};
+    |              ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ( ({x: 1}) = y ) => {} 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ( ({x: 1}) = y ) => {}
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ( (x) ) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | ( (x) ) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ( (x) = y ) => {} 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ( (x) = y ) => {}
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ( { get x() {} } = 0) 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | ( { get x() {} } = 0)
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ("a") = "b" 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ("a") = "b"
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (()) => 0 1`] = `
+"SyntaxError [1:3-1:4]: Expected '=>'
+> 1 | (()) => 0
+    |    ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((...'z')) 1`] = `
+"SyntaxError [1:8-1:9]: Invalid rest argument
+> 1 | ((...'z'))
+    |         ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((...z)) 1`] = `
+"SyntaxError [1:7-1:8]: Expected '=>'
+> 1 | ((...z))
+    |        ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (([x])=y in z); 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | (([x])=y in z);
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (({x:y}) += x) 1`] = `
+"SyntaxError [1:9-1:11]: Invalid left-hand side in assignment
+> 1 | (({x:y}) += x)
+    |          ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x)) => 0 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | ((x)) => 0
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x, y)) => 0 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | ((x, y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x, y), z) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y), z) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x, y), z) => 0 2`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y), z) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x, y, z)) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x, z) => y) = {} 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ((x, z) => y) = {}
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ((x={15: (await foo)}) => x 1`] = `
+"SyntaxError [1:16-1:19]: Expected ')'
+> 1 | ((x={15: (await foo)}) => x
+    |                 ^^^ Expected ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ()
+ 1`] = `
+"SyntaxError [1:2-2:0]: No line break is allowed after '=>'
+> 1 | ()
+    |   ^
+> 2 |
+    | ^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ()
+=> 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | ()
+> 2 | =>
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ()
+=>a 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | ()
+> 2 | =>a
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > () 1`] = `
+"SyntaxError [1:1-1:2]: Expected '=>'
+> 1 | ()
+    |  ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > () 2`] = `
+"SyntaxError [1:1-1:2]: Expected '=>'
+> 1 | ()
+    |  ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (); 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ();
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (++x) => x; 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | (++x) => x;
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (++x, y) => x 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (++x, y) => x
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (,) => {} 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: ','
+> 1 | (,) => {}
+    |  ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...); 1`] = `
+"SyntaxError [1:4-1:5]: The rest operator is missing an argument
+> 1 | (...);
+    |     ^ The rest operator is missing an argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (..., x) 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ','
+> 1 | (..., x)
+    |     ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...[a) = a 1`] = `
+"SyntaxError [1:6-1:7]: Expected ']'
+> 1 | (...[a) = a
+    |       ^ Expected ']'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...[a]) = a 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | (...[a]) = a
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...[a]) =>  1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'end of source'
+> 1 | (...[a]) => 
+    |            ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...[a]) 1`] = `
+"SyntaxError [1:7-1:8]: Expected '=>'
+> 1 | (...[a])
+    |        ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...[a],) 1`] = `
+"SyntaxError [1:7-1:8]: Invalid rest argument
+> 1 | (...[a],)
+    |        ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...[a]a) = a 1`] = `
+"SyntaxError [1:7-1:8]: Invalid rest argument
+> 1 | (...[a]a) = a
+    |        ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...{a: b}.c = []) 1`] = `
+"SyntaxError [1:17-1:18]: Expected '=>'
+> 1 | (...{a: b}.c = [])
+    |                  ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...a = b) => b 1`] = `
+"SyntaxError [1:9-1:10]: Invalid rest argument
+> 1 | (...a = b) => b
+    |          ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...a) = a 1`] = `
+"SyntaxError [1:7-1:8]: Expected '=>'
+> 1 | (...a) = a
+    |        ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...rest - a) => b 1`] = `
+"SyntaxError [1:12-1:13]: Invalid rest argument
+> 1 | (...rest - a) => b
+    |             ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...x = y) => x 1`] = `
+"SyntaxError [1:9-1:10]: Invalid rest argument
+> 1 | (...x = y) => x
+    |          ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...x); 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | (...x);
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...x); 2`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | (...x);
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (...x, y) => x 1`] = `
+"SyntaxError [1:5-1:6]: Invalid rest argument
+> 1 | (...x, y) => x
+    |      ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (/x/) => x 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | (/x/) => x
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (/x/) => x 2`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | (/x/) => x
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([...[[][][]] = x); 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ']'
+> 1 | ([...[[][][]] = x);
+    |          ^ Unexpected token: ']'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([...{a = b} = c]) => d; 1`] = `
+"SyntaxError [1:19-1:21]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([...{a = b} = c]) => d;
+    |                    ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([...a, ,] = [...a, ,]) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ([...a, ,] = [...a, ,])
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([...a.b]) => c 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([...a.b]) => c
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([...x.y]) => z 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([...x.y]) => z
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0 1`] = `
+"SyntaxError [1:50-1:52]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0
+    |                                                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([[].length]) => x; 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([[].length]) => x;
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{a:b[0]}])=>0 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{a:b[0]}])=>0
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}.z] = obj) 1`] = `
+"SyntaxError [1:9-1:10]: Invalid destructuring assignment target
+> 1 | ([{x = y}.z] = obj)
+    |          ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}.z]) 1`] = `
+"SyntaxError [1:9-1:10]: Invalid destructuring assignment target
+> 1 | ([{x = y}.z])
+    |          ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}.z]) 2`] = `
+"SyntaxError [1:9-1:10]: Invalid destructuring assignment target
+> 1 | ([{x = y}.z])
+    |          ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}]) 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | ([{x = y}])
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}]).z 1`] = `
+"SyntaxError [1:11-1:12]: Expected '=>'
+> 1 | ([{x = y}]).z
+    |            ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}].z = obj) 1`] = `
+"SyntaxError [1:10-1:11]: Pattern can not have a tail
+> 1 | ([{x = y}].z = obj)
+    |           ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}].z) => obj 1`] = `
+"SyntaxError [1:10-1:11]: Pattern can not have a tail
+> 1 | ([{x = y}].z) => obj
+    |           ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([{x = y}].z) 1`] = `
+"SyntaxError [1:10-1:11]: Pattern can not have a tail
+> 1 | ([{x = y}].z)
+    |           ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a 
+/b/]); 1`] = `
+"SyntaxError [2:3-2:4]: Unexpected token: ']'
+  1 | ([a 
+> 2 | /b/]);
+    |    ^ Unexpected token: ']'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a + b] = x) => a; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ([a + b] = x) => a;
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a + b] = x); 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ([a + b] = x);
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a.a]) => 42 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([a.a]) => 42
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a]) = [] 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([a]) = []
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a]) = 0 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([a]) = 0
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([a]) = x 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([a]) = x
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([b]) = b; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([b]) = b;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([b]) = b; 2`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([b]) = b;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([x, y]) = z; 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ([x, y]) = z;
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([x.y = a] = (...z)) 1`] = `
+"SyntaxError [1:19-1:20]: Expected '=>'
+> 1 | ([x.y = a] = (...z))
+    |                    ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([x.y]=z) => z 1`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([x.y]=z) => z
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([x]++) 1`] = `
+"SyntaxError [1:4-1:6]: Invalid increment/decrement operand
+> 1 | ([x]++)
+    |     ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([x]=await y)=>z 1`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | ([x]=await y)=>z
+    |            ^ Expected ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ([x]=await y)=>z 2`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | ([x]=await y)=>z
+    |            ^ Expected ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (\`a\`) => b; 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | (\`a\`) => b;
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ (x = yield) = {}; }) 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: '('
+> 1 | ({ (x = yield) = {}; })
+    |    ^ Unexpected token: '('"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ ...{a} } = {}) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({ ...{a} } = {})
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ a: (a = d) } = {}) 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | ({ a: (a = d) } = {})
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ if } = a); 1`] = `
+"SyntaxError [1:6-1:7]: Invalid keyword
+> 1 | ({ if } = a);
+    |       ^ Invalid keyword"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ obj:20 }) = 42 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({ obj:20 }) = 42
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ x = 123 }); 1`] = `
+"SyntaxError [1:13-1:14]: Expected '=>'
+> 1 | ({ x = 123 });
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ x: f() } = a); 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({ x: f() } = a);
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ x: new f } = a); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({ x: new f } = a);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ x: x }) = a; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({ x: x }) = a;
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({"a"} = 0) 1`] = `
+"SyntaxError [1:5-1:6]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({"a"} = 0)
+    |      ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({"foo": [x].foo()}=y); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({"foo": [x].foo()}=y);
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({(a)} = 0) 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '('
+> 1 | ({(a)} = 0)
+    |   ^ Unexpected token: '('"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({**=f(){}}) 1`] = `
+"SyntaxError [1:2-1:5]: Unexpected token: '**='
+> 1 | ({**=f(){}})
+    |   ^^^ Unexpected token: '**='"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({**f(){}}) 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '**'
+> 1 | ({**f(){}})
+    |   ^^ Unexpected token: '**'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({*=f(){}}) 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '*='
+> 1 | ({*=f(){}})
+    |   ^^ Unexpected token: '*='"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({*ident x(){}}) 1`] = `
+"SyntaxError [1:9-1:10]: 'identifier' can not be generator method
+> 1 | ({*ident x(){}})
+    |          ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({*ident: x}) 1`] = `
+"SyntaxError [1:8-1:9]: 'identifier' can not be generator method
+> 1 | ({*ident: x})
+    |         ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({*set x(){}}) 1`] = `
+"SyntaxError [1:7-1:8]: 'set' can not be generator method
+> 1 | ({*set x(){}})
+    |        ^ 'set' can not be generator method"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({,a,} = 0) 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: ','
+> 1 | ({,a,} = 0)
+    |   ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({...(x) }) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...(x) }) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({...[x] }) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...[x] }) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({...{x} }) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...{x} }) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({...x.y} = z) => z 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...x.y} = z) => z
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({...x.y}) => z 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...x.y}) => z
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({[foo]() {}} = y) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({[foo]() {}} = y)
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({[foo]: a + b} = baz) 1`] = `
+"SyntaxError [1:18-1:21]: Invalid left-hand side in assignment
+> 1 | ({[foo]: a + b} = baz)
+    |                   ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({[foo]: a + b}) => baz 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({[foo]: a + b}) => baz
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({[foo]: bar()} = baz) 1`] = `
+"SyntaxError [1:18-1:21]: Invalid left-hand side in assignment
+> 1 | ({[foo]: bar()} = baz)
+    |                   ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({[foo]: bar()}) => baz 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({[foo]: bar()}) => baz
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({[x](){}} = z); 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({[x](){}} = z);
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({0} = 0) 1`] = `
+"SyntaxError [1:3-1:4]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({0} = 0)
+    |    ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({15: 15.foo()}=x) 1`] = `
+"SyntaxError [1:6-1:9]: No identifiers allowed directly after numeric literal
+> 1 | ({15: 15.foo()}=x)
+    |       ^^^ No identifiers allowed directly after numeric literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({15: 15.foo}=x) 1`] = `
+"SyntaxError [1:6-1:9]: No identifiers allowed directly after numeric literal
+> 1 | ({15: 15.foo}=x)
+    |       ^^^ No identifiers allowed directly after numeric literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a = 0}); 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | ({a = 0});
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a = 0}, {a = 0}, 0) => 0 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '=>'
+> 1 | ({a = 0}, {a = 0}, 0) => 0
+    |                       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a = 5}) 1`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | ({a = 5})
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a, ...b, c} = {}) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({a, ...b, c} = {})
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a, b}) = {a: 1, b:2}; 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({a, b}) = {a: 1, b:2};
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a,,} = 0) 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ','
+> 1 | ({a,,} = 0)
+    |     ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a,,a} = 0) 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ','
+> 1 | ({a,,a} = 0)
+    |     ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a,b}) = {a:2,b:3} 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | ({a,b}) = {a:2,b:3}
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a.b} = 0) 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected character after object literal property name
+> 1 | ({a.b} = 0)
+    |    ^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: (1) = x }) 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({a: (1) = x })
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = "y"}}).z 1`] = `
+"SyntaxError [1:16-1:17]: Expected '=>'
+> 1 | ({a: {x = "y"}}).z
+    |                 ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = y}.z}) 1`] = `
+"SyntaxError [1:12-1:13]: Invalid destructuring assignment target
+> 1 | ({a: {x = y}.z})
+    |             ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = y}}) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '=>'
+> 1 | ({a: {x = y}})
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = y}}).z 1`] = `
+"SyntaxError [1:14-1:15]: Expected '=>'
+> 1 | ({a: {x = y}}).z
+    |               ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = y}}.z = obj) 1`] = `
+"SyntaxError [1:13-1:14]: Pattern can not have a tail
+> 1 | ({a: {x = y}}.z = obj)
+    |              ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = y}}.z) => obj 1`] = `
+"SyntaxError [1:13-1:14]: Pattern can not have a tail
+> 1 | ({a: {x = y}}.z) => obj
+    |              ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: {x = y}}.z) 1`] = `
+"SyntaxError [1:13-1:14]: Pattern can not have a tail
+> 1 | ({a: {x = y}}.z)
+    |              ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: 1 = x }) 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | ({a: 1 = x })
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: 1} = []); 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({a: 1} = []);
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: b += 0} = {}) 1`] = `
+"SyntaxError [1:15-1:16]: Invalid destructuring assignment target
+> 1 | ({a: b += 0} = {})
+    |                ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a: this} = 0); 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({a: this} = 0);
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a:(a,y) = 0} = 1) 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({a:(a,y) = 0} = 1)
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a:(b = 0)} = 1) 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ({a:(b = 0)} = 1)
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a:b[0]})=>0 1`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({a:b[0]})=>0
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a:for} = 0) 1`] = `
+"SyntaxError [1:4-1:7]: Unexpected token: 'for'
+> 1 | ({a:for} = 0)
+    |     ^^^ Unexpected token: 'for'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a:function} = 0) 1`] = `
+"SyntaxError [1:12-1:13]: Expected '('
+> 1 | ({a:function} = 0)
+    |             ^ Expected '('"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a:this}=0) 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({a:this}=0)
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a} += 0); 1`] = `
+"SyntaxError [1:5-1:7]: Invalid left-hand side in assignment
+> 1 | ({a} += 0);
+    |      ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a}) = 0 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({a}) = 0
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a}) = 1 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({a}) = 1
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({a}) = 2; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({a}) = 2;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({async **=f(){}}) 1`] = `
+"SyntaxError [1:8-1:11]: Unexpected character after object literal property name
+> 1 | ({async **=f(){}})
+    |         ^^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({async *=f(){}}) 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected character after object literal property name
+> 1 | ({async *=f(){}})
+    |         ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({b, c, d, ...{a} } = {}) 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | ({b, c, d, ...{a} } = {})
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({b}) = b; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({b}) = b;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({foo: {} += x}) 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: {} += x})
+    |           ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({foo: {}.bar() + x} = x) 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | ({foo: {}.bar() + x} = x)
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({foo: {}.bar()} = x) 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | ({foo: {}.bar()} = x)
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({foo: {x:y} += x}) 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in assignment
+> 1 | ({foo: {x:y} += x})
+    |              ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({function} = 0) 1`] = `
+"SyntaxError [1:10-1:11]: Invalid keyword
+> 1 | ({function} = 0)
+    |           ^ Invalid keyword"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({get a(){}})=0 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({get a(){}})=0
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({get p(...[]) {}}) 1`] = `
+"SyntaxError [1:8-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get p(...[]) {}})
+    |         ^^^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: [foo, bar] += x}) 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in assignment
+> 1 | ({ident: [foo, bar] += x})
+    |                     ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: [foo, bar] += x}) 2`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in assignment
+> 1 | ({ident: [foo, bar] += x})
+    |                     ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: [foo, bar].join("")}) => x 1`] = `
+"SyntaxError [1:31-1:33]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ident: [foo, bar].join("")}) => x
+    |                                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: [foo, bar]/x/g}) => x 1`] = `
+"SyntaxError [1:26-1:28]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ident: [foo, bar]/x/g}) => x
+    |                           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: [foo, bar]/x}) => x 1`] = `
+"SyntaxError [1:24-1:26]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ident: [foo, bar]/x}) => x
+    |                         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: {x}.join("")}) => x 1`] = `
+"SyntaxError [1:24-1:26]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ident: {x}.join("")}) => x
+    |                         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: {x}/x/g}) => x 1`] = `
+"SyntaxError [1:19-1:21]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ident: {x}/x/g}) => x
+    |                    ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({ident: {x}/x}) => x 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ident: {x}/x}) => x
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({set p(...[]) {}}) 1`] = `
+"SyntaxError [1:8-1:11]: Setter function argument must not be a rest parameter
+> 1 | ({set p(...[]) {}})
+    |         ^^^ Setter function argument must not be a rest parameter"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({var} = 0) 1`] = `
+"SyntaxError [1:5-1:6]: Invalid keyword
+> 1 | ({var} = 0)
+    |      ^ Invalid keyword"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x = y}) 1`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | ({x = y})
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x = y}).z 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | ({x = y}).z
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x = y}.z = obj) 1`] = `
+"SyntaxError [1:8-1:9]: Pattern can not have a tail
+> 1 | ({x = y}.z = obj)
+    |         ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x = y}.z) => obj 1`] = `
+"SyntaxError [1:8-1:9]: Pattern can not have a tail
+> 1 | ({x = y}.z) => obj
+    |         ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x = y}.z) 1`] = `
+"SyntaxError [1:8-1:9]: Pattern can not have a tail
+> 1 | ({x = y}.z)
+    |         ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x, y}) = {} 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({x, y}) = {}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x, y}) = z; 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({x, y}) = z;
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x: 15.foo()} = x) 1`] = `
+"SyntaxError [1:5-1:8]: No identifiers allowed directly after numeric literal
+> 1 | ({x: 15.foo()} = x)
+    |      ^^^ No identifiers allowed directly after numeric literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x: 15.foo} = x) 1`] = `
+"SyntaxError [1:5-1:8]: No identifiers allowed directly after numeric literal
+> 1 | ({x: 15.foo} = x)
+    |      ^^^ No identifiers allowed directly after numeric literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x:{1:y()=x},x:{7:3}})>x 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({x:{1:y()=x},x:{7:3}})>x
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x:y} += x) 1`] = `
+"SyntaxError [1:7-1:9]: Invalid left-hand side in assignment
+> 1 | ({x:y} += x)
+    |        ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x}) = {x: 1}; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({x}) = {x: 1};
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ({x})=y 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | ({x})=y
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (-a, b) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (-a, b) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (0, {a = 0}) = 0 1`] = `
+"SyntaxError [1:11-1:12]: Invalid shorthand property initializer
+> 1 | (0, {a = 0}) = 0
+    |            ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (1) = (y) = x 1`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | (1) = (y) = x
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (1) = x 1`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | (1) = x
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (1) = x 2`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | (1) = x
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (1) = y = x 1`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | (1) = y = x
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (32) => {} 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (32) => {}
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a 
+/b/); 1`] = `
+"SyntaxError [2:3-2:4]: Unexpected token: ')'
+  1 | (a 
+> 2 | /b/);
+    |    ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a + b) => {} 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a + b) => {}
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a + b, c) => {} 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a + b, c) => {}
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a = b) = c; 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (a = b) = c;
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a = b)++; 1`] = `
+"SyntaxError [1:7-1:9]: Invalid increment/decrement operand
+> 1 | (a = b)++;
+    |        ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a++) => {} 1`] = `
+"SyntaxError [1:6-1:8]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a++) => {}
+    |       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a++, b) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a++, b) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, (b)) => 42 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (a, (b)) => 42
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, ...b - 10) => b 1`] = `
+"SyntaxError [1:13-1:14]: Invalid rest argument
+> 1 | (a, ...b - 10) => b
+    |              ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, -b) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (a, -b) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, 32) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (a, 32) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, b) = c 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | (a, b) = c
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, b++) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, b++) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, foo ? bar : baz) => {} 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, foo ? bar : baz) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a, if) => {} 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: 'if'
+> 1 | (a, if) => {}
+    |     ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a,b)+=2 1`] = `
+"SyntaxError [1:5-1:7]: Invalid left-hand side in assignment
+> 1 | (a,b)+=2
+    |      ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a,b)=(c,d); 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | (a,b)=(c,d);
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a,b)=2 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | (a,b)=2
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a.b, c) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a.b, c) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a=/i/) = /i/ 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (a=/i/) = /i/
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a=1)+=2 1`] = `
+"SyntaxError [1:5-1:7]: Invalid left-hand side in assignment
+> 1 | (a=1)+=2
+    |      ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (a=1)=2 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | (a=1)=2
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (async (x, z) => y) = {} 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | (async (x, z) => y) = {}
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (async x => y) = {} 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | (async x => y) = {}
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (await) = 1 1`] = `
+"SyntaxError [1:1-1:6]: Can not use \`await\` as identifier in module or async func
+> 1 | (await) = 1
+    |  ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (c, a.b) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (c, a.b) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (c, a['b']) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (c, a['b']) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (c, a['b']) => {} 2`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (c, a['b']) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (foo ? bar : baz) => {} 1`] = `
+"SyntaxError [1:18-1:20]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (foo ? bar : baz) => {}
+    |                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (foo ? bar : baz, a) => {} 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (foo ? bar : baz, a) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (if) => {} 1`] = `
+"SyntaxError [1:1-1:3]: Unexpected token: 'if'
+> 1 | (if) => {}
+    |  ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x = (await) = f) => {} 1`] = `
+"SyntaxError [1:6-1:11]: Can not use \`await\` as identifier in module or async func
+> 1 | (x = (await) = f) => {}
+    |       ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x = (yield) = f) => {} 1`] = `
+"SyntaxError [1:6-1:11]: 'yield' may not be used as an identifier in this context
+> 1 | (x = (yield) = f) => {}
+    |       ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x = delete ((yield) = f)) => {} 1`] = `
+"SyntaxError [1:14-1:19]: 'yield' may not be used as an identifier in this context
+> 1 | (x = delete ((yield) = f)) => {}
+    |               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x = x) = x; 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (x = x) = x;
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x = y) = z;  1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (x = y) = z; 
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x => y) = {} 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | (x => y) = {}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x) = (1) = z 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | (x) = (1) = z
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, (y)) => 0 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (x, (y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, (y, z)) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | (x, (y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, ...); 1`] = `
+"SyntaxError [1:7-1:8]: The rest operator is missing an argument
+> 1 | (x, ...);
+    |        ^ The rest operator is missing an argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, ...y, z) => x 1`] = `
+"SyntaxError [1:8-1:9]: Invalid rest argument
+> 1 | (x, ...y, z) => x
+    |         ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, ...y, z) => x 2`] = `
+"SyntaxError [1:8-1:9]: Invalid rest argument
+> 1 | (x, ...y, z) => x
+    |         ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, /x/g) => x 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | (x, /x/g) => x
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x, /x/g) => x 2`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | (x, /x/g) => x
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x={"y": await z}) => t 1`] = `
+"SyntaxError [1:15-1:16]: Expected '}'
+> 1 | (x={"y": await z}) => t
+    |                ^ Expected '}'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x={200: await z}) => t 1`] = `
+"SyntaxError [1:15-1:16]: Expected '}'
+> 1 | (x={200: await z}) => t
+    |                ^ Expected '}'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x={a:await f})=>x 1`] = `
+"SyntaxError [1:12-1:13]: Expected '}'
+> 1 | (x={a:await f})=>x
+    |             ^ Expected '}'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x--) => x; 1`] = `
+"SyntaxError [1:6-1:8]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (x--) => x;
+    |       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (x--, y) => x; 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (x--, y) => x;
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (y) = (1) = x 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | (y) = (1) = x
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > (yield) = 1; 1`] = `
+"SyntaxError [1:1-1:6]: 'yield' may not be used as an identifier in this context
+> 1 | (yield) = 1;
+    |  ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ) => {} 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: ')'
+> 1 | ) => {}
+    | ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > , => {} 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: ','
+> 1 | , => {}
+    | ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > ...x => x 1`] = `
+"SyntaxError [1:0-1:3]: Unexpected token: '...'
+> 1 | ...x => x
+    | ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > => {} 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | => {}
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > => 0 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | => 0
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > => 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | =>
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [({x: 1}) = y] = []; 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | [({x: 1}) = y] = [];
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [(a = 0)] = 1 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | [(a = 0)] = 1
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [[1]] = []; 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | [[1]] = [];
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [] => {} 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | [] => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{"x" = y}].z = obj 1`] = `
+"SyntaxError [1:6-1:7]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | [{"x" = y}].z = obj
+    |       ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = "y"}].z = obj 1`] = `
+"SyntaxError [1:11-1:12]: Invalid shorthand property initializer
+> 1 | [{x = "y"}].z = obj
+    |            ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}.z] = obj 1`] = `
+"SyntaxError [1:8-1:9]: Invalid destructuring assignment target
+> 1 | [{x = y}.z] = obj
+    |         ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}] 1`] = `
+"SyntaxError [1:8-1:9]: Invalid shorthand property initializer
+> 1 | [{x = y}]
+    |         ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}] in z 1`] = `
+"SyntaxError [1:10-1:12]: Invalid shorthand property initializer
+> 1 | [{x = y}] in z
+    |           ^^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}].z = "obj" 1`] = `
+"SyntaxError [1:9-1:10]: Invalid shorthand property initializer
+> 1 | [{x = y}].z = "obj"
+    |          ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}].z = obj 1`] = `
+"SyntaxError [1:9-1:10]: Invalid shorthand property initializer
+> 1 | [{x = y}].z = obj
+    |          ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}].z => obj 1`] = `
+"SyntaxError [1:9-1:10]: Invalid shorthand property initializer
+> 1 | [{x = y}].z => obj
+    |          ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [{x = y}].z 1`] = `
+"SyntaxError [1:9-1:10]: Invalid shorthand property initializer
+> 1 | [{x = y}].z
+    |          ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > [a += b] = [] 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | [a += b] = []
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > \`a\` = b; 1`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | \`a\` = b;
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > \`a\`++; 1`] = `
+"SyntaxError [1:3-1:5]: Invalid increment/decrement operand
+> 1 | \`a\`++;
+    |    ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > {} => {} 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | {} => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > {a, b} = {a: 1, b: 2} 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '='
+> 1 | {a, b} = {a: 1, b: 2}
+    |        ^ Unexpected token: '='"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > {x, y} = z; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '='
+> 1 | {x, y} = z;
+    |        ^ Unexpected token: '='"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > -(5) ** 6; 1`] = `
+"SyntaxError [1:5-1:7]: Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses
+> 1 | -(5) ** 6;
+    |      ^^ Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > 0, {a = 0}) => 0 1`] = `
+"SyntaxError [1:10-1:11]: Invalid shorthand property initializer
+> 1 | 0, {a = 0}) => 0
+    |           ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > 32 => {} 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | 32 => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a (...[a]) = a 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | a (...[a]) = a
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a + b => {} 1`] = `
+"SyntaxError [1:6-1:8]: \`=>\` is an invalid assignment target
+> 1 | a + b => {}
+    |       ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a = (...[a]) = 1`] = `
+"SyntaxError [1:13-1:14]: Expected '=>'
+> 1 | a = (...[a]) =
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a = (...[a]) = 2`] = `
+"SyntaxError [1:13-1:14]: Expected '=>'
+> 1 | a = (...[a]) =
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a = (...[a]) = a 1`] = `
+"SyntaxError [1:13-1:14]: Expected '=>'
+> 1 | a = (...[a]) = a
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a = (...[a]) 1`] = `
+"SyntaxError [1:11-1:12]: Expected '=>'
+> 1 | a = (...[a])
+    |            ^ Expected '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > a++ => {} 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '=>'
+> 1 | a++ => {}
+    |     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async ({} + 1) => x; 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async ({} + 1) => x;
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async (a, ...b=fail) => a; 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b=fail) => a;
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async (foo = yield x) => foo 1`] = `
+"SyntaxError [1:19-1:20]: Expected ')'
+> 1 | async (foo = yield x) => foo
+    |                    ^ Expected ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async (foo = yield x) 1`] = `
+"SyntaxError [1:19-1:20]: Expected ')'
+> 1 | async (foo = yield x)
+    |                    ^ Expected ')'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async (x = (await) = f) => {} 1`] = `
+"SyntaxError [1:24-1:26]: Await expression not allowed in formal parameter
+> 1 | async (x = (await) = f) => {}
+    |                         ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async("foo".bar) => x 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async("foo".bar) => x
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async("foo".bar) => x 2`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async("foo".bar) => x
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > async([].x) => x; 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in async arrow
+> 1 | async([].x) => x;
+    |             ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > for (([x])=y in z); 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | for (([x])=y in z);
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > for ([{x = y}] ;;); 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in for-loop
+> 1 | for ([{x = y}] ;;);
+    |                ^ Invalid left-hand side in for-loop"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > for (\`a\` of b); 1`] = `
+"SyntaxError [1:9-1:11]: Invalid left-hand side in for-of
+> 1 | for (\`a\` of b);
+    |          ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > for (new.target in b); 1`] = `
+"SyntaxError [1:9-1:15]: new.target only allowed within functions or static blocks
+> 1 | for (new.target in b);
+    |          ^^^^^^ new.target only allowed within functions or static blocks"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > function *f(){ (yield) = 1; } 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | function *f(){ (yield) = 1; }
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > function *f(){ yield = 1; } 1`] = `
+"SyntaxError [1:21-1:22]: Invalid left-hand side in assignment
+> 1 | function *f(){ yield = 1; }
+    |                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > function *f(x = (yield) = f) {} 1`] = `
+"SyntaxError [1:22-1:23]: Yield expression not allowed in formal parameter
+> 1 | function *f(x = (yield) = f) {}
+    |                       ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > function *f(x = delete ((yield) = f)) {} 1`] = `
+"SyntaxError [1:30-1:31]: Yield expression not allowed in formal parameter
+> 1 | function *f(x = delete ((yield) = f)) {}
+    |                               ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > if => {} 1`] = `
+"SyntaxError [1:3-1:5]: Expected '('
+> 1 | if => {}
+    |    ^^ Expected '('"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > let [({x: 1}) = y] = []; 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | let [({x: 1}) = y] = [];
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > let [({x: 1})] = []; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let [({x: 1})] = [];
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > return => {} 1`] = `
+"SyntaxError [1:0-1:6]: Illegal return statement
+> 1 | return => {}
+    | ^^^^^^ Illegal return statement"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > var [({x: 1}) = y] = []; 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | var [({x: 1}) = y] = [];
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > var [({x: 1})] = []; 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | var [({x: 1})] = [];
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > var {(a)} = 0 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '('
+> 1 | var {(a)} = 0
+    |      ^ Unexpected token: '('"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > var {a:(b)} = 0 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | var {a:(b)} = 0
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > x = ({}) = b 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | x = ({}) = b
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > x = {x: 15.foo()} = x 1`] = `
+"SyntaxError [1:8-1:11]: No identifiers allowed directly after numeric literal
+> 1 | x = {x: 15.foo()} = x
+    |         ^^^ No identifiers allowed directly after numeric literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > x = {x: 15.foo} = x 1`] = `
+"SyntaxError [1:8-1:11]: No identifiers allowed directly after numeric literal
+> 1 | x = {x: 15.foo} = x
+    |         ^^^ No identifiers allowed directly after numeric literal"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > x, [foo + y, bar] = doo; 1`] = `
+"SyntaxError [1:20-1:23]: Invalid left-hand side in assignment
+> 1 | x, [foo + y, bar] = doo;
+    |                     ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > x, {a: {a: 1} = []}; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | x, {a: {a: 1} = []};
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > y = (1) = x 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | y = (1) = x
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Group > Expressions - Group (fail) > y, ...x => x 1`] = `
+"SyntaxError [1:3-1:6]: Unexpected token: '...'
+> 1 | y, ...x => x
+    |    ^^^ Unexpected token: '...'"
+`;
+
 exports[`Expressions - Group > Expressions - Group (pass) >  async(...[destruct]) => x 1`] = `
 {
   "body": [
@@ -2952,13 +4811,13 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([x].length) = y 1`]
 `;
 
 exports[`Expressions - Group > Expressions - Group (pass) > ({
-      a,
-      a:a,
-      a:a=a,
-      [a]:{a},
-      a:some_call()[a],
-      a:this.a
-  } = 0); 1`] = `
+    a,
+    a:a,
+    a:a=a,
+    [a]:{a},
+    a:some_call()[a],
+    a:this.a
+} = 0); 1`] = `
 {
   "body": [
     {
@@ -16070,9 +17929,9 @@ exports[`Expressions - Group > Expressions - Group (pass) > test = { a: 1 } 1`] 
 `;
 
 exports[`Expressions - Group > Expressions - Group (pass) > var a;
-    (a) = {};
-    (a.b) = {};
-    (a['c']) = {}; 1`] = `
+(a) = {};
+(a.b) = {};
+(a['c']) = {}; 1`] = `
 {
   "body": [
     {
@@ -16108,169 +17967,169 @@ exports[`Expressions - Group > Expressions - Group (pass) > var a;
       "type": "VariableDeclaration",
     },
     {
-      "end": 20,
+      "end": 16,
       "expression": {
-        "end": 19,
+        "end": 15,
         "left": {
-          "end": 13,
+          "end": 9,
           "name": "a",
           "range": [
-            12,
-            13,
+            8,
+            9,
           ],
-          "start": 12,
+          "start": 8,
           "type": "Identifier",
         },
         "operator": "=",
         "range": [
-          11,
-          19,
+          7,
+          15,
         ],
         "right": {
-          "end": 19,
+          "end": 15,
           "properties": [],
           "range": [
-            17,
-            19,
+            13,
+            15,
           ],
-          "start": 17,
+          "start": 13,
           "type": "ObjectExpression",
         },
-        "start": 11,
+        "start": 7,
         "type": "AssignmentExpression",
       },
       "range": [
-        11,
-        20,
+        7,
+        16,
       ],
-      "start": 11,
+      "start": 7,
       "type": "ExpressionStatement",
     },
     {
-      "end": 36,
+      "end": 28,
       "expression": {
-        "end": 35,
+        "end": 27,
         "left": {
           "computed": false,
-          "end": 29,
+          "end": 21,
           "object": {
-            "end": 27,
+            "end": 19,
             "name": "a",
             "range": [
-              26,
-              27,
+              18,
+              19,
             ],
-            "start": 26,
+            "start": 18,
             "type": "Identifier",
           },
           "optional": false,
           "property": {
-            "end": 29,
+            "end": 21,
             "name": "b",
             "range": [
-              28,
-              29,
+              20,
+              21,
             ],
-            "start": 28,
+            "start": 20,
             "type": "Identifier",
           },
           "range": [
-            26,
-            29,
+            18,
+            21,
           ],
-          "start": 26,
+          "start": 18,
           "type": "MemberExpression",
         },
         "operator": "=",
         "range": [
-          25,
-          35,
+          17,
+          27,
         ],
         "right": {
-          "end": 35,
+          "end": 27,
           "properties": [],
           "range": [
-            33,
-            35,
+            25,
+            27,
           ],
-          "start": 33,
+          "start": 25,
           "type": "ObjectExpression",
         },
-        "start": 25,
+        "start": 17,
         "type": "AssignmentExpression",
       },
       "range": [
-        25,
-        36,
+        17,
+        28,
       ],
-      "start": 25,
+      "start": 17,
       "type": "ExpressionStatement",
     },
     {
-      "end": 55,
+      "end": 43,
       "expression": {
-        "end": 54,
+        "end": 42,
         "left": {
           "computed": true,
-          "end": 48,
+          "end": 36,
           "object": {
-            "end": 43,
+            "end": 31,
             "name": "a",
             "range": [
-              42,
-              43,
+              30,
+              31,
             ],
-            "start": 42,
+            "start": 30,
             "type": "Identifier",
           },
           "optional": false,
           "property": {
-            "end": 47,
+            "end": 35,
             "range": [
-              44,
-              47,
+              32,
+              35,
             ],
-            "start": 44,
+            "start": 32,
             "type": "Literal",
             "value": "c",
           },
           "range": [
-            42,
-            48,
+            30,
+            36,
           ],
-          "start": 42,
+          "start": 30,
           "type": "MemberExpression",
         },
         "operator": "=",
         "range": [
-          41,
-          54,
+          29,
+          42,
         ],
         "right": {
-          "end": 54,
+          "end": 42,
           "properties": [],
           "range": [
-            52,
-            54,
+            40,
+            42,
           ],
-          "start": 52,
+          "start": 40,
           "type": "ObjectExpression",
         },
-        "start": 41,
+        "start": 29,
         "type": "AssignmentExpression",
       },
       "range": [
-        41,
-        55,
+        29,
+        43,
       ],
-      "start": 41,
+      "start": 29,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 55,
+  "end": 43,
   "range": [
     0,
-    55,
+    43,
   ],
   "sourceType": "script",
   "start": 0,

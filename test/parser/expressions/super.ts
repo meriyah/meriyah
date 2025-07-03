@@ -1,74 +1,73 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Super', () => {
   for (const arg of ['new super;', 'new super();', '() => new super;', '() => new super();']) {
     it(`class C { method() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { method() { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { method() { ${arg} } }`);
       });
     });
 
     it(`class C { *method() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { *method() { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { *method() { ${arg} } }`);
       });
     });
 
     it(`class C { get x() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { get x() { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { get x() { ${arg} } }`);
       });
     });
 
     it(`class C { get x() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { get x() { ${arg} } }`, undefined, Context.OptionsLexical);
+        parseSource(`class C { get x() { ${arg} } }`, { lexical: true });
       });
     });
 
     it(`class C { set x(_) { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { set x(_) { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { set x(_) { ${arg} } }`);
       });
     });
 
     it(`({ method() { ${arg} } })`, () => {
       t.throws(() => {
-        parseSource(`({ method() { ${arg} } })`, undefined, Context.None);
+        parseSource(`({ method() { ${arg} } })`);
       });
     });
 
     it(`(function() { ${arg} } )`, () => {
       t.throws(() => {
-        parseSource(`(function() { ${arg} } )`, undefined, Context.None);
+        parseSource(`(function() { ${arg} } )`);
       });
     });
 
     it(`var f = function() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`var f = function() { ${arg} }`, undefined, Context.None);
+        parseSource(`var f = function() { ${arg} }`);
       });
     });
 
     it(`({ f: function*() {${arg} } })`, () => {
       t.throws(() => {
-        parseSource(`({ f: function*() { ${arg} } })`, undefined, Context.None);
+        parseSource(`({ f: function*() { ${arg} } })`);
       });
     });
 
     it(`(function*() { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(function*() { ${arg} })`, undefined, Context.None);
+        parseSource(`(function*() { ${arg} })`);
       });
     });
 
     it(`var f = function*() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`var f = function*() { ${arg} }`, undefined, Context.None);
+        parseSource(`var f = function*() { ${arg} }`);
       });
     });
   }
@@ -77,49 +76,49 @@ describe('Expressions - Super', () => {
   for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
     it(`class C { constructor() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { constructor() {${arg}}}`, undefined, Context.None);
+        parseSource(`class C { constructor() {${arg}}}`);
       });
     });
 
     it(`class C { *method() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *method() {${arg}}}`, undefined, Context.None);
+        parseSource(`class C { *method() {${arg}}}`);
       });
     });
 
     it(`({ method() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ method() {${arg}}})`, undefined, Context.None);
+        parseSource(`({ method() {${arg}}})`);
       });
     });
 
     it(`({ *method() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ *method() {${arg}}})`, undefined, Context.None);
+        parseSource(`({ *method() {${arg}}})`);
       });
     });
 
     it(`({ get x() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ get x() {${arg}}})`, undefined, Context.None);
+        parseSource(`({ get x() {${arg}}})`);
       });
     });
 
     it(`({ set x(_) {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ set x(_) {${arg}}})`, undefined, Context.None);
+        parseSource(`({ set x(_) {${arg}}})`);
       });
     });
 
     it(`class C { set x(_) {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { set x(_) {${arg}}}`, undefined, Context.None);
+        parseSource(`class C { set x(_) {${arg}}}`);
       });
     });
 
     it(`class C { get x() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { get x() {${arg}}}`, undefined, Context.None);
+        parseSource(`class C { get x() {${arg}}}`);
       });
     });
   }
@@ -143,55 +142,55 @@ describe('Expressions - Super', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`parseSource = ${arg}`, () => {
       t.throws(() => {
-        parseSource(`parseSource = ${arg}`, undefined, Context.None);
+        parseSource(`parseSource = ${arg}`);
       });
     });
 
     it(`foo(${arg})`, () => {
       t.throws(() => {
-        parseSource(`foo(${arg})`, undefined, Context.None);
+        parseSource(`foo(${arg})`);
       });
     });
 
     it(`if (${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`if (${arg}) {}`, undefined, Context.None);
+        parseSource(`if (${arg}) {}`);
       });
     });
 
     it(`if (false) {} else {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`if (false) {} else {${arg}}`, undefined, Context.None);
+        parseSource(`if (false) {} else {${arg}}`);
       });
     });
 
     it(`class C { m() { function f() {${arg}} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { function f() {${arg}} } }`, undefined, Context.None);
+        parseSource(`class C { m() { function f() {${arg}} } }`);
       });
     });
 
     it(`({ m() { function f() {${arg}} } })`, () => {
       t.throws(() => {
-        parseSource(`({ m() { function f() {${arg}} } })`, undefined, Context.None);
+        parseSource(`({ m() { function f() {${arg}} } })`);
       });
     });
 
     it(`while (true) {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`while (true) {${arg}}`, undefined, Context.None);
+        parseSource(`while (true) {${arg}}`);
       });
     });
 
     it(`class C extends (${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`class C extends (${arg}) {}`, undefined, Context.None);
+        parseSource(`class C extends (${arg}) {}`);
       });
     });
   }
@@ -216,7 +215,7 @@ describe('Expressions - Super', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -268,13 +267,13 @@ describe('Expressions - Super', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -293,25 +292,25 @@ describe('Expressions - Super', () => {
   ]) {
     it(`class C { m() { ${arg}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { ${arg}; } }`, undefined, Context.None);
+        parseSource(`class C { m() { ${arg}; } }`);
       });
     });
 
     it(`class C { m() { k = ${arg}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { k = ${arg}; } }`, undefined, Context.None);
+        parseSource(`class C { m() { k = ${arg}; } }`);
       });
     });
 
     it(`class C { m() { foo(${arg}); } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { foo(${arg}); } }`, undefined, Context.None);
+        parseSource(`class C { m() { foo(${arg}); } }`);
       });
     });
 
     it(`class C { m() { () => ${arg}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { () => ${arg}; } }`, undefined, Context.None);
+        parseSource(`class C { m() { () => ${arg}; } }`);
       });
     });
   }
@@ -319,49 +318,49 @@ describe('Expressions - Super', () => {
   for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
     it(`class C { constructor() { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { constructor() { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { constructor() { ${arg} } }`);
       });
     });
 
     it(`class C { *method() { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *method() { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { *method() { ${arg} } }`);
       });
     });
 
     it(`class C { get x() { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { get x() { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { get x() { ${arg} } }`);
       });
     });
 
     it(`class C { set x(_) { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { set x(_) { ${arg} } }`, undefined, Context.None);
+        parseSource(`class C { set x(_) { ${arg} } }`);
       });
     });
 
     it(`({ method() { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ method() { ${arg} } })`, undefined, Context.None);
+        parseSource(`({ method() { ${arg} } })`);
       });
     });
 
     it(`({ *method() { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ *method() { ${arg} } })`, undefined, Context.None);
+        parseSource(`({ *method() { ${arg} } })`);
       });
     });
 
     it(`(class C { get x() { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { get x() { ${arg} } })`, undefined, Context.None);
+        parseSource(`(class C { get x() { ${arg} } })`);
       });
     });
 
     it(`(class C { set x(_) { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { set x(_) { ${arg} } })`, undefined, Context.None);
+        parseSource(`(class C { set x(_) { ${arg} } })`);
       });
     });
   }
@@ -377,242 +376,242 @@ describe('Expressions - Super', () => {
   ]) {
     it(`class C { m() { ${arg}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { ${arg}; } }`, undefined, Context.None);
+        parseSource(`class C { m() { ${arg}; } }`);
       });
     });
 
     it(`class C { m() { k = ${arg}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { k = ${arg}; } }`, undefined, Context.None);
+        parseSource(`class C { m() { k = ${arg}; } }`);
       });
     });
 
     it(`class C { m() { foo(${arg}); } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { foo(${arg}); } }`, undefined, Context.None);
+        parseSource(`class C { m() { foo(${arg}); } }`);
       });
     });
 
     it(`class C { m() { () => ${arg}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { () => ${arg}; } }`, undefined, Context.None);
+        parseSource(`class C { m() { () => ${arg}; } }`);
       });
     });
   }
 
   fail('Expressions - Super (fail)', [
-    ['super', Context.None],
-    ['super[]', Context.None],
-    ['super()', Context.None],
-    ['async function* x() { super(); }', Context.None],
-    ['ref = async function*() { super(); }', Context.None],
-    ['(async function*() { super(); })', Context.None],
-    ['var gen = { async *method() { super(); } }', Context.None],
-    ['var C = class { async *method() { super(); } }', Context.None],
-    ['var C = class { static async *method() { var x = function () { super(); } } }', Context.None],
-    ['async function* x() { var x = { y: function () { super(); } } }', Context.None],
-    ['var gen = { async *method() { var x = { y: function () { super(); } } } }', Context.None],
-    ['var C = class { async *method() { var x = { y: function () { super(); } } } }', Context.None],
-    ['var C = class { static async *method() { var x = { y: function () { super(); } } } }', Context.None],
-    ['let f = (a=super.foo) => a;', Context.None],
-    ['let f = () => super.foo;', Context.None],
-    ['x={ foo(){ return () => () => super(); }}', Context.None],
-    ['x={ dsda(){ return (a=super()) => a; }}', Context.None],
-    ['x={ fo(){ return () => super(); }}', Context.None],
-    ['class x extends y { foo(){ return () => () => super(); }}', Context.None],
-    ['class x extends y { dsda(){ return (a=super()) => a; }}', Context.None],
-    ['class x extends y { fo(){ return () => super(); }}', Context.None],
-    ['class x { constructor(){ return () => () => super(); }}', Context.None],
-    ['let f = (a=super()) => a;', Context.None],
-    ['let f = () => super();', Context.None],
-    ['var foo = function*(a = 1 + (yield 2)) { super.foo() ', Context.None],
-    ['function* foo(a = 1 + (yield 2)) { super.foo() }', Context.None],
-    ['function x(){function x(){super();}}', Context.None],
-    ['class A extends B { *g2(a = 1 + (yield 2)) { } }', Context.None],
-    ['class x { foo(){ function f(){ super.foo; } }}', Context.None],
-    ['class x { constructor(){ function f(){ super.foo; } }}', Context.None],
-    ['x = function(){ super.foo; }', Context.None],
-    ['super.foo;', Context.None],
-    ['function f(x=super.foo){ }', Context.None],
-    ['function f(){ super.foo; }', Context.None],
-    ['class super { }', Context.None],
-    ['class x extends super { }', Context.None],
-    ['class x extends super y { }', Context.None],
-    ['class x extends foo(super) { }', Context.None],
-    ['class x extends foo(super y) { }', Context.None],
-    ['class x { foo(super){} }', Context.None],
-    ['class x { foo(x=super){} }', Context.None],
-    ['class x { foo(x=super y){} }', Context.None],
-    ['class x { foo(x=new (super)()){} }', Context.None],
-    ['class x { [super](){} }', Context.None],
-    ['class x { [super y](){} }', Context.None],
-    ['class f { constructor(){  class super { }  }}', Context.None],
-    ['class f { constructor(){  class x extends super { }  }}', Context.None],
-    ['class f { constructor(){  class x extends super y { }  }}', Context.None],
-    ['class f { constructor(){  class x extends feh(super) { }  }}', Context.None],
-    ['class f { constructor(){  class x extends feh(super y) { }  }}', Context.None],
-    ['class f { constructor(){  class x { foo(super){} }  }}', Context.None],
-    ['class f { constructor(){  class x { foo(x=super){} }  }}', Context.None],
-    ['class f { constructor(){  class x { foo(x=super y){} }  }}', Context.None],
-    ['class f { constructor(){  class x { foo(x=new (super)()){} }  }}', Context.None],
-    ['class f { constructor(){  class x { [super](){} }  }}', Context.None],
-    ['class f { constructor(){  class x { [super y](){} }  }}', Context.None],
-    ['class f { bar(){ class super {} }}', Context.None],
-    ['class f { bar(){ class x extends super { }  }}', Context.None],
-    ['class f { bar(){ class x extends super y { }  }}', Context.None],
-    ['class f { bar(){ class x extends feh(super) { }  }}', Context.None],
-    ['class f { bar(){ class x extends feh(super y) { }  }}', Context.None],
-    ['class f { bar(){ class x { foo(super){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=super){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=super y){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=new (super)()){} }  }}', Context.None],
-    ['class f { bar(){ class x { [super](){} }  }}', Context.None],
-    ['class f { bar(){ class x { [super y](){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class super { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends super { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends super y { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends feh(super) { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends feh(super y) { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(super){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(x=super){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(x=super y){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(x=new (super)()){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { [super](){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { [super y](){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class super {} }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends super { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends super y { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends feh(super) { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends feh(super y) { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(super){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(x=super){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(x=super y){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(x=new (super)()){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { [super](){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { [super y](){} }  }}', Context.None],
-    ['class super.foo { }', Context.None],
-    ['class x extends super.foo { }', Context.None],
-    ['class x extends super.foo y { }', Context.None],
-    ['class x extends feh(super.foo) { }', Context.None],
-    ['class x extends feh(super.foo y) { }', Context.None],
-    ['class x { foo(super.foo){} }', Context.None],
-    ['class x { super.foo(){} }', Context.None],
-    ['class x { [super.foo](){} }', Context.None],
-    ['class x { [super.foo y](){} }', Context.None],
-    ['class f { constructor(){ class super.foo { }  }}', Context.None],
-    ['class f { constructor(){ class x extends super.foo y { }  }}', Context.None],
-    ['class f { constructor(){ class x extends feh(super.foo y) { }  }}', Context.None],
-    ['class f { constructor(){ class x { foo(super.foo){} }  }}', Context.None],
-    ['x={ foo: function(){ super.foo; }}', Context.None],
-    ['g=function f(x = super()){ }', Context.None],
-    ['g={f: function f(){ super() }]', Context.None],
-    ['x={constructor(){ super(); }}', Context.None],
-    ['function f(x = super()){ }', Context.None],
-    ['function f(){ super(); }', Context.None],
-    ['const x = 5 + super();', Context.None],
-    ['let x = { foo(){ super(); } }', Context.None],
-    ['class x { foo(){ super(); } }', Context.None],
-    ['class x extends y { foo(){ super(); } }', Context.None],
-    ['async(foo) => { super.prop };', Context.None],
-    ['!{ a() { !function* (a = super.b()){} } };', Context.None],
-    ['async(foo) => { super() };', Context.None],
-    ['super.property;', Context.None],
-    ['(async function*() { super(); });', Context.None],
-    ['function* a(b){ super.c }', Context.None],
-    ['class A extends B { constructor() { (super)() } }', Context.None],
-    ['function wrap() { function foo(a = super(), b = super.foo()) {}}', Context.None],
-    ['({ a() { (super).b(); } });', Context.None],
-    ['class X { x(){class X { constructor(){super();} }} }', Context.None],
-    ['!{ a() { !function* (a = super.b()){} } };', Context.None],
-    ['({ f: function*() {() => new super; } })', Context.None],
-    ['async function* x() { super(); }', Context.None],
-    ['var C = class { static async *method() { var x = function () { super(); } } }', Context.None],
-    ['var C = class { async *method() { var x = { y: function () { super(); } } } }', Context.None],
-    ['let x = { foo(){ super(); } }', Context.None],
-    ['function* a(b){ super.c }', Context.None],
-    ['class C { constructor() { super(); } }', Context.None],
-    ['class C { method() { () => super(); } }', Context.None],
-    ['({ get x() { super(); } })', Context.None],
-    ['({ set x(_) { super(); } })', Context.None],
-    ['({ f: function() { super(); } })', Context.None],
-    ['(function() { super(); })', Context.None],
-    ['({ f: function*() { super(); } })', Context.None],
-    ['(function*() { super(); })', Context.None],
-    ['var f = function*() { super(); }', Context.None],
-    ['class f { constructor(){ class x { foo(x=super.foo y){} } }}', Context.None],
-    ['class f { constructor(){ class x { super.foo(){} } }}', Context.None],
-    ['class f { constructor(){ class x { [super.foo y](){} } }}', Context.None],
-    ['class f { bar(){ class super.foo { } }}', Context.None],
-    ['class f { bar(){ class x extends super.foo y {} }}', Context.None],
-    ['class f { bar(){ class x extends feh(super.foo y) {} }}', Context.None],
-    ['class f { bar(){ class x { foo(super.foo){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=super.foo y){} }  }}', Context.None],
-    ['class f { bar(){ class x { super.foo(){} }  }}', Context.None],
-    ['class f { bar(){ class x { [super.foo y](){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class super.foo { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends super.foo y { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends feh(super.foo y) { }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(super.foo){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(x=super.foo y){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { super.foo(){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class x { [super.foo y](){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class super.foo { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends super.foo y { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends feh(super.foo y) { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(x=super.foo y){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { super.foo(){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { [super.foo y](){} }  }}', Context.None],
-    ['class x extends super() { }', Context.None],
-    ['class x { foo(x=new (super)()){} }', Context.None],
-    ['class x extends super() y { }', Context.None],
-    ['class x extends feh(super()) { }', Context.None],
-    ['class x extends feh(super() y) { }', Context.None],
-    ['class x { foo(super()){} }', Context.None],
-    ['class x { foo(x=super()){} }', Context.None],
-    ['class x { foo(x=super() y){} }', Context.None],
-    ['class x { foo(x=new (super())()){} }', Context.None],
-    ['class x { super()(){} }', Context.None],
-    ['class x { [super()](){} }', Context.None],
-    ['class x { [super() y](){} }', Context.None],
-    ['class f { constructor(){ class super() { } }}', Context.None],
-    ['class f { constructor(){ class x extends super() {} }}', Context.None],
-    ['class f { constructor(){ class x extends super() y {} }}', Context.None],
-    ['class f { constructor(){ class x { foo(super()){} } }}', Context.None],
-    ['class f { constructor(){ class x { foo(x=super()){} } }}', Context.None],
-    ['class f { constructor(){ class x { foo(x=super() y){} } }}', Context.None],
-    ['class f { constructor(){ class x { foo(x=new (super())()){} } }}', Context.None],
-    ['class f { constructor(){ class x { super()(){} } }}', Context.None],
-    ['class f { constructor(){ class x { [super()](){} } }}', Context.None],
-    ['class f { constructor(){ class x { [super() y](){} } }}', Context.None],
-    ['class f { bar(){ class super() {}  }}', Context.None],
-    ['class f { bar(){ class x extends super() {} }}', Context.None],
-    ['class f { bar(){ class x extends super() y {} }}', Context.None],
-    ['class f { bar(){ class x extends feh(super()) {} }}', Context.None],
-    ['class f { bar(){ class x extends feh(super() y) {} }}', Context.None],
-    ['class f { bar(){ class x { foo(super()){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=super()){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=super() y){} }  }}', Context.None],
-    ['class f { bar(){ class x { foo(x=new (super())()){} } }}', Context.None],
-    ['class f { bar(){ class x { [super()](){} }  }}', Context.None],
-    ['class f extends bar { constructor(){ class super() {} }}', Context.None],
-    ['class f extends bar { constructor(){ class x extends super() y {} }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(super()){} } }}', Context.None],
-    ['class f extends bar { constructor(){ class x { foo(x=super()){} } }}', Context.None],
-    ['class f extends bar { constructor(){ class x { super()(){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class super() {} }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends super() { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends super() y { }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends feh(super()) {} }}', Context.None],
-    ['class f extends bar { xxx(){ class x extends feh(super() y) { } }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(super()){} }  }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(x=super() y){} } }}', Context.None],
-    ['class f extends bar { xxx(){ class x { foo(x=new (super())()){} } }}', Context.None],
-    ['class f extends bar { xxx(){ class x { super()(){} } }}', Context.None],
-    ['class f extends bar { xxx(){ class x { [super()](){} } }}', Context.None],
-    ['class f extends bar { xxx(){ class x { [super() y](){} } }}', Context.None],
-    ['super', Context.None],
-    ['super[]', Context.None],
-    ['super()', Context.None],
+    'super',
+    'super[]',
+    'super()',
+    'async function* x() { super(); }',
+    'ref = async function*() { super(); }',
+    '(async function*() { super(); })',
+    'var gen = { async *method() { super(); } }',
+    'var C = class { async *method() { super(); } }',
+    'var C = class { static async *method() { var x = function () { super(); } } }',
+    'async function* x() { var x = { y: function () { super(); } } }',
+    'var gen = { async *method() { var x = { y: function () { super(); } } } }',
+    'var C = class { async *method() { var x = { y: function () { super(); } } } }',
+    'var C = class { static async *method() { var x = { y: function () { super(); } } } }',
+    'let f = (a=super.foo) => a;',
+    'let f = () => super.foo;',
+    'x={ foo(){ return () => () => super(); }}',
+    'x={ dsda(){ return (a=super()) => a; }}',
+    'x={ fo(){ return () => super(); }}',
+    'class x extends y { foo(){ return () => () => super(); }}',
+    'class x extends y { dsda(){ return (a=super()) => a; }}',
+    'class x extends y { fo(){ return () => super(); }}',
+    'class x { constructor(){ return () => () => super(); }}',
+    'let f = (a=super()) => a;',
+    'let f = () => super();',
+    'var foo = function*(a = 1 + (yield 2)) { super.foo() ',
+    'function* foo(a = 1 + (yield 2)) { super.foo() }',
+    'function x(){function x(){super();}}',
+    'class A extends B { *g2(a = 1 + (yield 2)) { } }',
+    'class x { foo(){ function f(){ super.foo; } }}',
+    'class x { constructor(){ function f(){ super.foo; } }}',
+    'x = function(){ super.foo; }',
+    'super.foo;',
+    'function f(x=super.foo){ }',
+    'function f(){ super.foo; }',
+    'class super { }',
+    'class x extends super { }',
+    'class x extends super y { }',
+    'class x extends foo(super) { }',
+    'class x extends foo(super y) { }',
+    'class x { foo(super){} }',
+    'class x { foo(x=super){} }',
+    'class x { foo(x=super y){} }',
+    'class x { foo(x=new (super)()){} }',
+    'class x { [super](){} }',
+    'class x { [super y](){} }',
+    'class f { constructor(){  class super { }  }}',
+    'class f { constructor(){  class x extends super { }  }}',
+    'class f { constructor(){  class x extends super y { }  }}',
+    'class f { constructor(){  class x extends feh(super) { }  }}',
+    'class f { constructor(){  class x extends feh(super y) { }  }}',
+    'class f { constructor(){  class x { foo(super){} }  }}',
+    'class f { constructor(){  class x { foo(x=super){} }  }}',
+    'class f { constructor(){  class x { foo(x=super y){} }  }}',
+    'class f { constructor(){  class x { foo(x=new (super)()){} }  }}',
+    'class f { constructor(){  class x { [super](){} }  }}',
+    'class f { constructor(){  class x { [super y](){} }  }}',
+    'class f { bar(){ class super {} }}',
+    'class f { bar(){ class x extends super { }  }}',
+    'class f { bar(){ class x extends super y { }  }}',
+    'class f { bar(){ class x extends feh(super) { }  }}',
+    'class f { bar(){ class x extends feh(super y) { }  }}',
+    'class f { bar(){ class x { foo(super){} }  }}',
+    'class f { bar(){ class x { foo(x=super){} }  }}',
+    'class f { bar(){ class x { foo(x=super y){} }  }}',
+    'class f { bar(){ class x { foo(x=new (super)()){} }  }}',
+    'class f { bar(){ class x { [super](){} }  }}',
+    'class f { bar(){ class x { [super y](){} }  }}',
+    'class f extends bar { constructor(){ class super { }  }}',
+    'class f extends bar { constructor(){ class x extends super { }  }}',
+    'class f extends bar { constructor(){ class x extends super y { }  }}',
+    'class f extends bar { constructor(){ class x extends feh(super) { }  }}',
+    'class f extends bar { constructor(){ class x extends feh(super y) { }  }}',
+    'class f extends bar { constructor(){ class x { foo(super){} }  }}',
+    'class f extends bar { constructor(){ class x { foo(x=super){} }  }}',
+    'class f extends bar { constructor(){ class x { foo(x=super y){} }  }}',
+    'class f extends bar { constructor(){ class x { foo(x=new (super)()){} }  }}',
+    'class f extends bar { constructor(){ class x { [super](){} }  }}',
+    'class f extends bar { constructor(){ class x { [super y](){} }  }}',
+    'class f extends bar { xxx(){ class super {} }}',
+    'class f extends bar { xxx(){ class x extends super { }  }}',
+    'class f extends bar { xxx(){ class x extends super y { }  }}',
+    'class f extends bar { xxx(){ class x extends feh(super) { }  }}',
+    'class f extends bar { xxx(){ class x extends feh(super y) { }  }}',
+    'class f extends bar { xxx(){ class x { foo(super){} }  }}',
+    'class f extends bar { xxx(){ class x { foo(x=super){} }  }}',
+    'class f extends bar { xxx(){ class x { foo(x=super y){} }  }}',
+    'class f extends bar { xxx(){ class x { foo(x=new (super)()){} }  }}',
+    'class f extends bar { xxx(){ class x { [super](){} }  }}',
+    'class f extends bar { xxx(){ class x { [super y](){} }  }}',
+    'class super.foo { }',
+    'class x extends super.foo { }',
+    'class x extends super.foo y { }',
+    'class x extends feh(super.foo) { }',
+    'class x extends feh(super.foo y) { }',
+    'class x { foo(super.foo){} }',
+    'class x { super.foo(){} }',
+    'class x { [super.foo](){} }',
+    'class x { [super.foo y](){} }',
+    'class f { constructor(){ class super.foo { }  }}',
+    'class f { constructor(){ class x extends super.foo y { }  }}',
+    'class f { constructor(){ class x extends feh(super.foo y) { }  }}',
+    'class f { constructor(){ class x { foo(super.foo){} }  }}',
+    'x={ foo: function(){ super.foo; }}',
+    'g=function f(x = super()){ }',
+    'g={f: function f(){ super() }]',
+    'x={constructor(){ super(); }}',
+    'function f(x = super()){ }',
+    'function f(){ super(); }',
+    'const x = 5 + super();',
+    'let x = { foo(){ super(); } }',
+    'class x { foo(){ super(); } }',
+    'class x extends y { foo(){ super(); } }',
+    'async(foo) => { super.prop };',
+    '!{ a() { !function* (a = super.b()){} } };',
+    'async(foo) => { super() };',
+    'super.property;',
+    '(async function*() { super(); });',
+    'function* a(b){ super.c }',
+    'class A extends B { constructor() { (super)() } }',
+    'function wrap() { function foo(a = super(), b = super.foo()) {}}',
+    '({ a() { (super).b(); } });',
+    'class X { x(){class X { constructor(){super();} }} }',
+    '!{ a() { !function* (a = super.b()){} } };',
+    '({ f: function*() {() => new super; } })',
+    'async function* x() { super(); }',
+    'var C = class { static async *method() { var x = function () { super(); } } }',
+    'var C = class { async *method() { var x = { y: function () { super(); } } } }',
+    'let x = { foo(){ super(); } }',
+    'function* a(b){ super.c }',
+    'class C { constructor() { super(); } }',
+    'class C { method() { () => super(); } }',
+    '({ get x() { super(); } })',
+    '({ set x(_) { super(); } })',
+    '({ f: function() { super(); } })',
+    '(function() { super(); })',
+    '({ f: function*() { super(); } })',
+    '(function*() { super(); })',
+    'var f = function*() { super(); }',
+    'class f { constructor(){ class x { foo(x=super.foo y){} } }}',
+    'class f { constructor(){ class x { super.foo(){} } }}',
+    'class f { constructor(){ class x { [super.foo y](){} } }}',
+    'class f { bar(){ class super.foo { } }}',
+    'class f { bar(){ class x extends super.foo y {} }}',
+    'class f { bar(){ class x extends feh(super.foo y) {} }}',
+    'class f { bar(){ class x { foo(super.foo){} }  }}',
+    'class f { bar(){ class x { foo(x=super.foo y){} }  }}',
+    'class f { bar(){ class x { super.foo(){} }  }}',
+    'class f { bar(){ class x { [super.foo y](){} }  }}',
+    'class f extends bar { constructor(){ class super.foo { }  }}',
+    'class f extends bar { constructor(){ class x extends super.foo y { }  }}',
+    'class f extends bar { constructor(){ class x extends feh(super.foo y) { }  }}',
+    'class f extends bar { constructor(){ class x { foo(super.foo){} }  }}',
+    'class f extends bar { constructor(){ class x { foo(x=super.foo y){} }  }}',
+    'class f extends bar { constructor(){ class x { super.foo(){} }  }}',
+    'class f extends bar { constructor(){ class x { [super.foo y](){} }  }}',
+    'class f extends bar { xxx(){ class super.foo { }  }}',
+    'class f extends bar { xxx(){ class x extends super.foo y { }  }}',
+    'class f extends bar { xxx(){ class x extends feh(super.foo y) { }  }}',
+    'class f extends bar { xxx(){ class x { foo(x=super.foo y){} }  }}',
+    'class f extends bar { xxx(){ class x { super.foo(){} }  }}',
+    'class f extends bar { xxx(){ class x { [super.foo y](){} }  }}',
+    'class x extends super() { }',
+    'class x { foo(x=new (super)()){} }',
+    'class x extends super() y { }',
+    'class x extends feh(super()) { }',
+    'class x extends feh(super() y) { }',
+    'class x { foo(super()){} }',
+    'class x { foo(x=super()){} }',
+    'class x { foo(x=super() y){} }',
+    'class x { foo(x=new (super())()){} }',
+    'class x { super()(){} }',
+    'class x { [super()](){} }',
+    'class x { [super() y](){} }',
+    'class f { constructor(){ class super() { } }}',
+    'class f { constructor(){ class x extends super() {} }}',
+    'class f { constructor(){ class x extends super() y {} }}',
+    'class f { constructor(){ class x { foo(super()){} } }}',
+    'class f { constructor(){ class x { foo(x=super()){} } }}',
+    'class f { constructor(){ class x { foo(x=super() y){} } }}',
+    'class f { constructor(){ class x { foo(x=new (super())()){} } }}',
+    'class f { constructor(){ class x { super()(){} } }}',
+    'class f { constructor(){ class x { [super()](){} } }}',
+    'class f { constructor(){ class x { [super() y](){} } }}',
+    'class f { bar(){ class super() {}  }}',
+    'class f { bar(){ class x extends super() {} }}',
+    'class f { bar(){ class x extends super() y {} }}',
+    'class f { bar(){ class x extends feh(super()) {} }}',
+    'class f { bar(){ class x extends feh(super() y) {} }}',
+    'class f { bar(){ class x { foo(super()){} }  }}',
+    'class f { bar(){ class x { foo(x=super()){} }  }}',
+    'class f { bar(){ class x { foo(x=super() y){} }  }}',
+    'class f { bar(){ class x { foo(x=new (super())()){} } }}',
+    'class f { bar(){ class x { [super()](){} }  }}',
+    'class f extends bar { constructor(){ class super() {} }}',
+    'class f extends bar { constructor(){ class x extends super() y {} }}',
+    'class f extends bar { constructor(){ class x { foo(super()){} } }}',
+    'class f extends bar { constructor(){ class x { foo(x=super()){} } }}',
+    'class f extends bar { constructor(){ class x { super()(){} }  }}',
+    'class f extends bar { xxx(){ class super() {} }}',
+    'class f extends bar { xxx(){ class x extends super() { }  }}',
+    'class f extends bar { xxx(){ class x extends super() y { }  }}',
+    'class f extends bar { xxx(){ class x extends feh(super()) {} }}',
+    'class f extends bar { xxx(){ class x extends feh(super() y) { } }}',
+    'class f extends bar { xxx(){ class x { foo(super()){} }  }}',
+    'class f extends bar { xxx(){ class x { foo(x=super() y){} } }}',
+    'class f extends bar { xxx(){ class x { foo(x=new (super())()){} } }}',
+    'class f extends bar { xxx(){ class x { super()(){} } }}',
+    'class f extends bar { xxx(){ class x { [super()](){} } }}',
+    'class f extends bar { xxx(){ class x { [super() y](){} } }}',
+    'super',
+    'super[]',
+    'super()',
   ]);
 
   pass('Expressions - Super (pass)', [

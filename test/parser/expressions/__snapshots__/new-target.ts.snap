@@ -1735,3 +1735,177 @@ exports[`Expressions - New target > Expressions - New target (pass) > function f
   "type": "Program",
 }
 `;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function foo() { function parent(x) { new x();}; function child(){ with(new.target) {toString();}}; parent(child); } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "callee": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "type": "NewExpression",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": {
+              "name": "parent",
+              "type": "Identifier",
+            },
+            "params": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+            ],
+            "type": "FunctionDeclaration",
+          },
+          {
+            "type": "EmptyStatement",
+          },
+          {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "arguments": [],
+                          "callee": {
+                            "name": "toString",
+                            "type": "Identifier",
+                          },
+                          "optional": false,
+                          "type": "CallExpression",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "object": {
+                    "meta": {
+                      "name": "new",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "target",
+                      "type": "Identifier",
+                    },
+                    "type": "MetaProperty",
+                  },
+                  "type": "WithStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": {
+              "name": "child",
+              "type": "Identifier",
+            },
+            "params": [],
+            "type": "FunctionDeclaration",
+          },
+          {
+            "type": "EmptyStatement",
+          },
+          {
+            "expression": {
+              "arguments": [
+                {
+                  "name": "child",
+                  "type": "Identifier",
+                },
+              ],
+              "callee": {
+                "name": "parent",
+                "type": "Identifier",
+              },
+              "optional": false,
+              "type": "CallExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function foo(){with({}) {new.target;}} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [
+                {
+                  "expression": {
+                    "meta": {
+                      "name": "new",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "target",
+                      "type": "Identifier",
+                    },
+                    "type": "MetaProperty",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "object": {
+              "properties": [],
+              "type": "ObjectExpression",
+            },
+            "type": "WithStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

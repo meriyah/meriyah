@@ -1,5 +1,153 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /*
+*/ the comment should not include these characters, regardless of AnnexB extensions --> 1`] = `
+"SyntaxError [2:7-2:14]: Unexpected token: 'identifier'
+  1 | /*
+> 2 | */ the comment should not include these characters, regardless of AnnexB extensions -->
+    |        ^^^^^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /* x */
+= 1;
+*/ 1`] = `
+"SyntaxError [2:0-2:1]: Unexpected token: '='
+  1 | /* x */
+> 2 | = 1;
+    | ^ Unexpected token: '='
+  3 | */"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /*FOO/ 1`] = `
+"SyntaxError [1:0-1:6]: Multiline comment was not closed properly
+> 1 | /*FOO/
+    | ^^^^^^ Multiline comment was not closed properly"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > // var /*
+x*/ 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: '/'
+  1 | // var /*
+> 2 | x*/
+    |   ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > ;--> 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: '>'
+> 1 | ;-->
+    |    ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <! 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <!
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <!- 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <!-
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <!- 2`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <!-
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <!- 3`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <!-
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <!-- HTML comment 1`] = `
+"SyntaxError [1:0-1:4]: Unexpected token
+> 1 | <!-- HTML comment
+    | ^^^^ Unexpected token"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <* 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <*
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </ 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </ 2`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '/'
+> 1 | </
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </ 3`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </ 4`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </ 5`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </* 1`] = `
+"SyntaxError [1:1-1:3]: Multiline comment was not closed properly
+> 1 | </*
+    |  ^^ Multiline comment was not closed properly"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </* 2`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </*
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > </* 3`] = `
+"SyntaxError [1:1-1:3]: Multiline comment was not closed properly
+> 1 | </*
+    |  ^^ Multiline comment was not closed properly"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > a /* */ b; 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: 'identifier'
+> 1 | a /* */ b;
+    |         ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > var x = a; --> is eol-comment
+var y = b;
+ 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: '>'
+> 1 | var x = a; --> is eol-comment
+    |              ^ Unexpected token: '>'
+  2 | var y = b;
+  3 |"
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > x/* precomment */ --> is eol-comment
+var y = 37;
+ 1`] = `
+"SyntaxError [1:25-1:28]: Unexpected token: 'identifier'
+> 1 | x/* precomment */ --> is eol-comment
+    |                          ^^^ Unexpected token: 'identifier'
+  2 | var y = 37;
+  3 |"
+`;
+
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > 
 /*precomment*/-->eol-comment
 var y = 37;
@@ -163,10 +311,10 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* before 
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* multiline
-      comment
-      should
-      be
-      ignored */ 42 1`] = `
+comment
+should
+be
+ignored */ 42 1`] = `
 {
   "body": [
     {
@@ -252,22 +400,22 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // 1`] = `
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // Single line comment
-      // Single line comment
-      // Single line comment
-      // Single line comment
-      /**/
-      /* MLC on one line */
-      /*
-      MLC
-      on
-      multiple
-      lines
-      */ 1`] = `
+// Single line comment
+// Single line comment
+// Single line comment
+/**/
+/* MLC on one line */
+/*
+MLC
+on
+multiple
+lines
+*/ 1`] = `
 {
   "body": [],
   "loc": {
     "end": {
-      "column": 8,
+      "column": 2,
       "line": 12,
     },
     "start": {
@@ -281,7 +429,7 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // Single 
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // line comment
-      42 1`] = `
+42 1`] = `
 {
   "body": [
     {
@@ -857,27 +1005,27 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (i--
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (true) {
-        /**
-         * comments in empty block
-         */
-      } 1`] = `
+  /**
+   * comments in empty block
+   */
+} 1`] = `
 {
   "body": [
     {
       "body": {
         "body": [],
-        "end": 81,
+        "end": 57,
         "range": [
           13,
-          81,
+          57,
         ],
         "start": 13,
         "type": "BlockStatement",
       },
-      "end": 81,
+      "end": 57,
       "range": [
         0,
-        81,
+        57,
       ],
       "start": 0,
       "test": {
@@ -893,10 +1041,10 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (tru
       "type": "WhileStatement",
     },
   ],
-  "end": 81,
+  "end": 57,
   "range": [
     0,
-    81,
+    57,
   ],
   "sourceType": "script",
   "start": 0,

@@ -1,8 +1,7 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 describe('Expressions - Rest', () => {
   for (const arg of [
     'let { ...x = y } = z;',
@@ -47,19 +46,19 @@ describe('Expressions - Rest', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -82,7 +81,7 @@ describe('Expressions - Rest', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -90,7 +89,7 @@ describe('Expressions - Rest', () => {
   for (const arg of ['function f(a, ...b, c) {}']) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -132,42 +131,42 @@ describe('Expressions - Rest', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
   }
 
   fail('Expressions - Rest (fail)', [
-    ['function foo(...[a], ...b) {}', Context.None],
-    ['function foo(...a, ...[b]) {}', Context.None],
-    ['function foo(a, ...b, c) => {}', Context.None],
-    ['function foo(a, ...[b], c) => {}', Context.None],
-    ['var obj = class { method(a, b = 1, ...c = [2,3]) {} };', Context.None],
-    ['function f(a, ...b) { "use strict"; }', Context.None],
-    ['function f(a, ...[b]) { "use strict"; }', Context.None],
-    ['var x = { set setter(...[x]) {} }', Context.None],
-    ['var x = class { set setter(...x) {} }', Context.None],
-    ['var x = class { set setter(...[x]) {} }', Context.None],
-    ['(a = ...NaN, b = [...[1,2,3]], ...rest) => {};', Context.None],
-    ['(a = (...NaN), ...b = [...[1,2,3]], rest) => {};', Context.None],
-    ['(a = [...NaN], ...b = [...[1,2,3]], rest) => {};', Context.None],
-    ['(a, ...b, ...rest) => {};', Context.None],
-    ['(...rest = ...NaN) => {};', Context.None],
-    ['[...x,] = [1,2,3];', Context.None],
-    ['[...x, y] = [1,2,3];', Context.None],
-    ['function foo(...[a],) {}', Context.None],
+    'function foo(...[a], ...b) {}',
+    'function foo(...a, ...[b]) {}',
+    'function foo(a, ...b, c) => {}',
+    'function foo(a, ...[b], c) => {}',
+    'var obj = class { method(a, b = 1, ...c = [2,3]) {} };',
+    'function f(a, ...b) { "use strict"; }',
+    'function f(a, ...[b]) { "use strict"; }',
+    'var x = { set setter(...[x]) {} }',
+    'var x = class { set setter(...x) {} }',
+    'var x = class { set setter(...[x]) {} }',
+    '(a = ...NaN, b = [...[1,2,3]], ...rest) => {};',
+    '(a = (...NaN), ...b = [...[1,2,3]], rest) => {};',
+    '(a = [...NaN], ...b = [...[1,2,3]], rest) => {};',
+    '(a, ...b, ...rest) => {};',
+    '(...rest = ...NaN) => {};',
+    '[...x,] = [1,2,3];',
+    '[...x, y] = [1,2,3];',
+    'function foo(...[a],) {}',
   ]);
 
   pass('Expressions - Rest (pass)', [

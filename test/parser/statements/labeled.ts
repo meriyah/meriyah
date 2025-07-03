@@ -1,8 +1,7 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - Labeled', () => {
   for (const arg of [
@@ -45,73 +44,73 @@ describe('Statements - Labeled', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.None);
+        parseSource(`${arg} : x`);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.OptionsLexical);
+        parseSource(`${arg} : x`, { lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg} : x`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.Strict);
+        parseSource(`${arg} : x`, { impliedStrict: true });
       });
     });
   }
 
   fail('Statements - Labeled (fail)', [
-    ['label: class C {};', Context.None],
-    ['label: let x;', Context.None],
-    ['a: async function* a(){}', Context.None],
-    ['if (false) label1: label2: function test262() {} else ;', Context.None],
-    ['label: function* g() {}', Context.None],
-    ['label: const x = null;', Context.None],
-    ['label: function g() {}', Context.Strict],
-    ['label: let x;', Context.None],
-    ['await: 1;', Context.Module],
-    ['bar: function* x() {}', Context.None],
-    ['await: 1;', Context.Strict | Context.Module],
-    ['yield: 1;', Context.Strict],
-    ['foo:for;', Context.None],
-    ['super: while(true) { break super; }"', Context.None],
-    ['function test_func() { super: while(true) { break super; }}"', Context.None],
-    ['() => {super: while(true) { break super; }}"', Context.None],
-    ['do { test262: { continue test262; } } while (false)', Context.None],
-    ['"use strict"; super: while(true) { break super; }', Context.None],
-    ['"use strict"; package: while(true) { break package; }', Context.None],
-    ['false: ;', Context.None],
-    ['true: ;', Context.None],
-    ['(async function*() { yield: 1; });', Context.None],
-    ['function *gen() { yield: ;}', Context.None],
-    ['function *gen() { yield: ;}', Context.Strict],
-    ['var obj = { *method() { yield: ; } };', Context.None],
-    ['var obj = { *method() { yield: ; } };', Context.Strict],
-    ['foo: function f() {}', Context.None],
-    [String.raw`async () => { \u{61}wait: x }`, Context.None],
-    [String.raw`async () => { aw\u{61}it: x }`, Context.None],
-    [String.raw`async () => { \u{61}wait: x }`, Context.Strict | Context.Module],
-    [String.raw`async () => { aw\u{61}it: x }`, Context.None],
-    ['function *f(){ await: x; }', Context.Module],
-    ['await: x', Context.Strict | Context.Module],
-    ['await: 1;', Context.Strict | Context.Module],
-    ['false: x', Context.None],
-    ['implements: x', Context.Strict],
-    ['package: x', Context.Strict],
-    ['let: x', Context.Strict],
-    ['yield: x', Context.Strict],
-    ['function *f(){ yield: x; }', Context.Strict],
-    ['yield: { function *f(){ break await; } }', Context.Strict],
-    ['bar: foo: ding: foo: x', Context.None],
-    ['foo: bar: foo: x', Context.None],
-    ['a: { a: x }', Context.None],
-    ['yield: { function *f(){ break await; } }', Context.None],
-    ['yield: { function *f(){ break await; } }', Context.None],
+    'label: class C {};',
+    'label: let x;',
+    'a: async function* a(){}',
+    'if (false) label1: label2: function test262() {} else ;',
+    'label: function* g() {}',
+    'label: const x = null;',
+    { code: 'label: function g() {}', options: { impliedStrict: true } },
+    'label: let x;',
+    { code: 'await: 1;', options: { sourceType: 'module' } },
+    'bar: function* x() {}',
+    { code: 'await: 1;', options: { sourceType: 'module' } },
+    { code: 'yield: 1;', options: { impliedStrict: true } },
+    'foo:for;',
+    'super: while(true) { break super; }"',
+    'function test_func() { super: while(true) { break super; }}"',
+    '() => {super: while(true) { break super; }}"',
+    'do { test262: { continue test262; } } while (false)',
+    '"use strict"; super: while(true) { break super; }',
+    '"use strict"; package: while(true) { break package; }',
+    'false: ;',
+    'true: ;',
+    '(async function*() { yield: 1; });',
+    'function *gen() { yield: ;}',
+    { code: 'function *gen() { yield: ;}', options: { impliedStrict: true } },
+    'var obj = { *method() { yield: ; } };',
+    { code: 'var obj = { *method() { yield: ; } };', options: { impliedStrict: true } },
+    'foo: function f() {}',
+    String.raw`async () => { \u{61}wait: x }`,
+    String.raw`async () => { aw\u{61}it: x }`,
+    { code: String.raw`async () => { \u{61}wait: x }`, options: { sourceType: 'module' } },
+    String.raw`async () => { aw\u{61}it: x }`,
+    { code: 'function *f(){ await: x; }', options: { sourceType: 'module' } },
+    { code: 'await: x', options: { sourceType: 'module' } },
+    { code: 'await: 1;', options: { sourceType: 'module' } },
+    'false: x',
+    { code: 'implements: x', options: { impliedStrict: true } },
+    { code: 'package: x', options: { impliedStrict: true } },
+    { code: 'let: x', options: { impliedStrict: true } },
+    { code: 'yield: x', options: { impliedStrict: true } },
+    { code: 'function *f(){ yield: x; }', options: { impliedStrict: true } },
+    { code: 'yield: { function *f(){ break await; } }', options: { impliedStrict: true } },
+    'bar: foo: ding: foo: x',
+    'foo: bar: foo: x',
+    'a: { a: x }',
+    'yield: { function *f(){ break await; } }',
+    'yield: { function *f(){ break await; } }',
   ]);
 
   pass('Statements - Labeled (pass)', [

@@ -1,5 +1,197 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Functions > Expressions - Functions (fail) > "use strict"; (function foo(){  007 }) 1`] = `
+"SyntaxError [1:32-1:33]: Octal escape sequences are not allowed in strict mode
+> 1 | "use strict"; (function foo(){  007 })
+    |                                 ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (async function await(){}) 1`] = `
+"SyntaxError [1:16-1:21]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function await(){})
+    |                 ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function break(){}) 1`] = `
+"SyntaxError [1:10-1:15]: Invalid keyword
+> 1 | (function break(){})
+    |           ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function f([...foo, bar] = obj){}) 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | (function f([...foo, bar] = obj){})
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function foo(){ "use strict"; 007 }) 1`] = `
+"SyntaxError [1:31-1:32]: Octal escape sequences are not allowed in strict mode
+> 1 | (function foo(){ "use strict"; 007 })
+    |                                ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function foo(007){ "use strict"; }) 1`] = `
+"SyntaxError [1:14-1:17]: Unexpected token: 'number'
+> 1 | (function foo(007){ "use strict"; })
+    |               ^^^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function function(){}) 1`] = `
+"SyntaxError [1:10-1:18]: Invalid keyword
+> 1 | (function function(){})
+    |           ^^^^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function implements(){}) 1`] = `
+"SyntaxError [1:10-1:20]: Unexpected strict mode reserved word
+> 1 | (function implements(){})
+    |           ^^^^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function let(){}) 1`] = `
+"SyntaxError [1:10-1:13]: Unexpected strict mode reserved word
+> 1 | (function let(){})
+    |           ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > (function public(){}) 1`] = `
+"SyntaxError [1:10-1:16]: Unexpected strict mode reserved word
+> 1 | (function public(){})
+    |           ^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f("abc", async = 1){} 1`] = `
+"SyntaxError [1:11-1:16]: Unexpected token: 'string'
+> 1 | function f("abc", async = 1){}
+    |            ^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([... ...foo] = obj){} 1`] = `
+"SyntaxError [1:16-1:19]: Unexpected token: '...'
+> 1 | function f([... ...foo] = obj){}
+    |                 ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([...,] = obj){} 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | function f([...,] = obj){}
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([...[a, b],,] = obj){} 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | function f([...[a, b],,] = obj){}
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([...] = obj){}  1`] = `
+"SyntaxError [1:15-1:16]: The rest operator is missing an argument
+> 1 | function f([...] = obj){} 
+    |                ^ The rest operator is missing an argument"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([...bar = foo] = obj){} 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | function f([...bar = foo] = obj){}
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([...foo,,] = obj){} 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | function f([...foo,,] = obj){}
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([..x] = obj){} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | function f([..x] = obj){}
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f([.x] = obj){} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | function f([.x] = obj){}
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({,,} = x){} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | function f({,,} = x){}
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({,,async} = await){} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | function f({,,async} = await){}
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({,,foo} = x){} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | function f({,,foo} = x){}
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({,} = x){}  1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | function f({,} = x){} 
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({,foo} = x){} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | function f({,foo} = x){}
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({...{a: b}}){} 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | function f({...{a: b}}){}
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({...a.b}){} 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | function f({...a.b}){}
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({foo,,} = x){} 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: ','
+> 1 | function f({foo,,} = x){}
+    |                 ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f({foo,,bar} = x){} 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: ','
+> 1 | function f({foo,,bar} = x){}
+    |                 ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f(1, async = 1){} 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'number'
+> 1 | function f(1, async = 1){}
+    |            ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function f(1, async = b){} 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'number'
+> 1 | function f(1, async = b){}
+    |            ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function p\\u0061ckage() { "use strict"; } 1`] = `
+"SyntaxError [1:40-1:41]: Function name may not contain any reserved words or be eval or arguments in strict mode
+> 1 | function p\\u0061ckage() { "use strict"; }
+    |                                         ^ Function name may not contain any reserved words or be eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (fail) > function package() { "use strict"; } 1`] = `
+"SyntaxError [1:35-1:36]: Function name may not contain any reserved words or be eval or arguments in strict mode
+> 1 | function package() { "use strict"; }
+    |                                    ^ Function name may not contain any reserved words or be eval or arguments in strict mode"
+`;
+
 exports[`Expressions - Functions > Expressions - Functions (pass) >  f = function yield() {} 1`] = `
 {
   "body": [
@@ -328,11 +520,11 @@ exports[`Expressions - Functions > Expressions - Functions (pass) > (async funct
 `;
 
 exports[`Expressions - Functions > Expressions - Functions (pass) > (function () {
-        let q;
-        let w;
-        let e;
-        if (true) [q, w, e] = [1, 2, 3].map(()=>123);
-      })(); 1`] = `
+  let q;
+  let w;
+  let e;
+  if (true) [q, w, e] = [1, 2, 3].map(()=>123);
+})(); 1`] = `
 {
   "body": [
     {
@@ -3273,19 +3465,19 @@ exports[`Expressions - Functions > Expressions - Functions (pass) > function f(a
 
 exports[`Expressions - Functions > Expressions - Functions (pass) > function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
 
-        }
+}
 
-        function unpackObject({title: title, author: author}) {
-          return title + " " + author;
-        }
+function unpackObject({title: title, author: author}) {
+  return title + " " + author;
+}
 
-        console.log(unpackObject({title: "title", author: "author"}));
+console.log(unpackObject({title: "title", author: "author"}));
 
-        var unpackArray = function ([a, b, c], [x, y, z]) {
-          return a+b+c;
-        };
+var unpackArray = function ([a, b, c], [x, y, z]) {
+  return a+b+c;
+};
 
-        console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3])); 1`] = `
+console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3])); 1`] = `
 {
   "body": [
     {
@@ -3719,9 +3911,9 @@ exports[`Expressions - Functions > Expressions - Functions (pass) > function som
 `;
 
 exports[`Expressions - Functions > Expressions - Functions (pass) > function test() {
-        let ID = "1|123456";
-        return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
-    } 1`] = `
+    let ID = "1|123456";
+    return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
+} 1`] = `
 {
   "body": [
     {
@@ -3878,10 +4070,10 @@ exports[`Expressions - Functions > Expressions - Functions (pass) > function tes
 `;
 
 exports[`Expressions - Functions > Expressions - Functions (pass) > if (a && b) {
-      c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
-        return a
-      }));
-    } 1`] = `
+  c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
+    return a
+  }));
+} 1`] = `
 {
   "body": [
     {

@@ -1,0 +1,67 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > { if (x) function f() {} ; function f() {} } 1`] = `
+"SyntaxError [1:9-1:17]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | { if (x) function f() {} ; function f() {} }
+    |          ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > { var f = 123; if (true) function f(){} } 1`] = `
+"SyntaxError [1:25-1:33]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | { var f = 123; if (true) function f(){} }
+    |                          ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > { var f = 123; if (true) function f2(){} } 1`] = `
+"SyntaxError [1:25-1:33]: In strict mode code, functions can only be declared at top level or inside a block
+> 1 | { var f = 123; if (true) function f2(){} }
+    |                          ^^^^^^^^ In strict mode code, functions can only be declared at top level or inside a block"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > function f() {} ; function f() {} 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'f'
+> 1 | function f() {} ; function f() {}
+    |                            ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > function f() {} ; function f() {} 2`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'f'
+> 1 | function f() {} ; function f() {}
+    |                            ^ Duplicate binding 'f'"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > function f(){ var f = 123; if (true) function f(){} } 1`] = `
+"SyntaxError [1:37-1:45]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | function f(){ var f = 123; if (true) function f(){} }
+    |                                      ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > function f(){ var f = 123; if (true) function f2(){} } 1`] = `
+"SyntaxError [1:37-1:45]: In strict mode code, functions can only be declared at top level or inside a block
+> 1 | function f(){ var f = 123; if (true) function f2(){} }
+    |                                      ^^^^^^^^ In strict mode code, functions can only be declared at top level or inside a block"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > let x; var x; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+> 1 | let x; var x;
+    |             ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+> 1 | var x; let x;
+    |             ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 2`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+> 1 | var x; let x;
+    |             ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 3`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+> 1 | var x; let x;
+    |             ^ Duplicate binding 'x'"
+`;

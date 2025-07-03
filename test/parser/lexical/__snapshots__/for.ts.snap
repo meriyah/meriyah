@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > {
+  for (var x;;);
+  const x = 1
+} 1`] = `
+"SyntaxError [3:10-3:11]: Duplicate binding 'x'
+  1 | {
+  2 |   for (var x;;);
+> 3 |   const x = 1
+    |           ^ Duplicate binding 'x'
+  4 | }"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (const [x, x] in {}) {} 1`] = `
+"SyntaxError [1:16-1:17]: Duplicate binding 'x'
+> 1 | for (const [x, x] in {}) {}
+    |                 ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (const x = y;;) { var x; } 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'x'
+> 1 | for (const x = y;;) { var x; }
+    |                            ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (const x = y;;) { var x; } 2`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'x'
+> 1 | for (const x = y;;) { var x; }
+    |                            ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (const x in {}) { var x; } 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate binding 'x'
+> 1 | for (const x in {}) { var x; }
+    |                            ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (const x in y) { var x; } 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'x'
+> 1 | for (const x in y) { var x; }
+    |                           ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (const x of y) { var x; } 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'x'
+> 1 | for (const x of y) { var x; }
+    |                           ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (let a, b, x, d;;) { var foo; var bar; { var doo, x, ee; } } 1`] = `
+"SyntaxError [1:55-1:56]: Duplicate binding 'x'
+> 1 | for (let a, b, x, d;;) { var foo; var bar; { var doo, x, ee; } }
+    |                                                        ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (let x in y) { var x;  1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'x'
+> 1 | for (let x in y) { var x; 
+    |                         ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (let x of []) { var x;  } 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'x'
+> 1 | for (let x of []) { var x;  }
+    |                          ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (let x of y) { var x; } 1`] = `
+"SyntaxError [1:24-1:25]: Duplicate binding 'x'
+> 1 | for (let x of y) { var x; }
+    |                         ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (let x;;) { var x; } 1`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'x'
+> 1 | for (let x;;) { var x; }
+    |                      ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (let x;;) { var x; } 2`] = `
+"SyntaxError [1:21-1:22]: Duplicate binding 'x'
+> 1 | for (let x;;) { var x; }
+    |                      ^ Duplicate binding 'x'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > for (var a;;) { var b; let b; } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate binding 'b'
+> 1 | for (var a;;) { var b; let b; }
+    |                             ^ Duplicate binding 'b'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > function f(){
+  for (var x;;);
+  const x = 1
+} 1`] = `
+"SyntaxError [3:10-3:11]: Duplicate binding 'x'
+  1 | function f(){
+  2 |   for (var x;;);
+> 3 |   const x = 1
+    |           ^ Duplicate binding 'x'
+  4 | }"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > function f(){let i; class i{}} 1`] = `
+"SyntaxError [1:26-1:27]: Duplicate binding 'i'
+> 1 | function f(){let i; class i{}}
+    |                           ^ Duplicate binding 'i'"
+`;
+
+exports[`Lexical - For statement > Lexical - For statement (fail) > let x; for (;;) { var x; } 1`] = `
+"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+> 1 | let x; for (;;) { var x; }
+    |                        ^ Duplicate binding 'x'"
+`;

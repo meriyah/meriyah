@@ -1,54 +1,53 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Class', () => {
   fail('Lexical - Class (fail)', [
-    ['class C {} class C {}', Context.OptionsLexical],
-    ['class A { static f(a, a){} }', Context.OptionsLexical],
-    ['class A { static f([a, a]){} }', Context.OptionsLexical],
-    ['class A { static f({a, a}){} }', Context.OptionsLexical],
-    ['class foo {}; class foo {};', Context.OptionsLexical],
-    ['class foo {}; const foo = 1;', Context.OptionsLexical],
-    ['class foo {}; function foo () {};', Context.OptionsLexical],
-    ['class foo {}; let foo = 1;', Context.OptionsLexical],
-    ['class foo {}; var foo;', Context.OptionsLexical],
-    ['class o {f(x) { let x }}', Context.OptionsLexical],
-    ['class o {f(x) { let x }}', Context.OptionsLexical],
-    ['class o {f(x) { const x = y }}', Context.OptionsLexical],
-    ['class o {f(a, a) {}}', Context.OptionsLexical],
-    ['class o {f(a, b, a) {}}', Context.OptionsLexical],
-    ['class o {f(b, a, a) {}}', Context.OptionsLexical],
-    ['class o {f(a, a, b) {}}', Context.OptionsLexical],
-    ['class o {f(b, a, b, a) {}}', Context.OptionsLexical],
-    ['class o {f(b, a, b, a, [fine]) {}}', Context.OptionsLexical],
-    ['class o {f(b, a, b, a = x) {}}', Context.OptionsLexical],
-    ['class o {f(b, a, b, ...a) {}}', Context.OptionsLexical],
-    ['class o {f(a, b, a) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['class o {f(b, a, a) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['class o {f(a, a, b) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['class o {f(b, a, b, a) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['class o {f(b, a, b, a, [fine]) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['class o {f(b, a, b, a = x) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
-    ['class o {f([a, a]) {}}', Context.OptionsLexical],
-    ['class o {f([a, b, a]) {}}', Context.OptionsLexical],
-    ['class o {f([b, a, a]) {}}', Context.OptionsLexical],
-    ['class o {f([b, a, b, a]) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], b) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], {b}) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], b=x) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], ...b) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], b) {}}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['class o {f([b, a], {b}) {}}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['class o {f([b, a], b=x) {}}', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['class o {f(){ let x; var x; }}', Context.OptionsLexical],
-    ['class o {f(){ var x; let x; }}', Context.OptionsLexical],
-    ['class o {f(){ const x = y; var x; }}', Context.OptionsLexical],
-    ['class o {f(){ var x; const x = y; }}', Context.OptionsLexical],
-    ['class o {f(){ let x; function x(){} }}', Context.OptionsLexical],
-    ['class o {f(){ function x(){} let x; }}', Context.OptionsLexical],
+    { code: 'class C {} class C {}', options: { lexical: true } },
+    { code: 'class A { static f(a, a){} }', options: { lexical: true } },
+    { code: 'class A { static f([a, a]){} }', options: { lexical: true } },
+    { code: 'class A { static f({a, a}){} }', options: { lexical: true } },
+    { code: 'class foo {}; class foo {};', options: { lexical: true } },
+    { code: 'class foo {}; const foo = 1;', options: { lexical: true } },
+    { code: 'class foo {}; function foo () {};', options: { lexical: true } },
+    { code: 'class foo {}; let foo = 1;', options: { lexical: true } },
+    { code: 'class foo {}; var foo;', options: { lexical: true } },
+    { code: 'class o {f(x) { let x }}', options: { lexical: true } },
+    { code: 'class o {f(x) { let x }}', options: { lexical: true } },
+    { code: 'class o {f(x) { const x = y }}', options: { lexical: true } },
+    { code: 'class o {f(a, a) {}}', options: { lexical: true } },
+    { code: 'class o {f(a, b, a) {}}', options: { lexical: true } },
+    { code: 'class o {f(b, a, a) {}}', options: { lexical: true } },
+    { code: 'class o {f(a, a, b) {}}', options: { lexical: true } },
+    { code: 'class o {f(b, a, b, a) {}}', options: { lexical: true } },
+    { code: 'class o {f(b, a, b, a, [fine]) {}}', options: { lexical: true } },
+    { code: 'class o {f(b, a, b, a = x) {}}', options: { lexical: true } },
+    { code: 'class o {f(b, a, b, ...a) {}}', options: { lexical: true } },
+    { code: 'class o {f(a, b, a) {}}', options: { webcompat: true, lexical: true } },
+    { code: 'class o {f(b, a, a) {}}', options: { webcompat: true, lexical: true } },
+    { code: 'class o {f(a, a, b) {}}', options: { webcompat: true, lexical: true } },
+    { code: 'class o {f(b, a, b, a) {}}', options: { webcompat: true, lexical: true } },
+    { code: 'class o {f(b, a, b, a, [fine]) {}}', options: { webcompat: true, lexical: true } },
+    { code: 'class o {f(b, a, b, a = x) {}}', options: { webcompat: true, lexical: true } },
+    { code: 'class o {f([a, a]) {}}', options: { lexical: true } },
+    { code: 'class o {f([a, b, a]) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a, a]) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a, b, a]) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a], b) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a], {b}) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a], b=x) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a], ...b) {}}', options: { lexical: true } },
+    { code: 'class o {f([b, a], b) {}}', options: { sourceType: 'module', lexical: true } },
+    { code: 'class o {f([b, a], {b}) {}}', options: { sourceType: 'module', lexical: true } },
+    { code: 'class o {f([b, a], b=x) {}}', options: { sourceType: 'module', lexical: true } },
+    { code: 'class o {f(){ let x; var x; }}', options: { lexical: true } },
+    { code: 'class o {f(){ var x; let x; }}', options: { lexical: true } },
+    { code: 'class o {f(){ const x = y; var x; }}', options: { lexical: true } },
+    { code: 'class o {f(){ var x; const x = y; }}', options: { lexical: true } },
+    { code: 'class o {f(){ let x; function x(){} }}', options: { lexical: true } },
+    { code: 'class o {f(){ function x(){} let x; }}', options: { lexical: true } },
   ]);
 
   for (const arg of [
@@ -68,19 +67,19 @@ describe('Lexical - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
   }
@@ -102,13 +101,13 @@ describe('Lexical - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

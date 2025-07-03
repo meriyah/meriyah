@@ -1,9 +1,9 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
-import { Token } from '../../src/token';
-import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
+import { Parser } from '../../src/parser/parser';
+import { Token } from '../../src/token';
 
 describe('src/lexer/scan', () => {
   const tokens: [Context, Token, string][] = [
@@ -68,14 +68,14 @@ describe('src/lexer/scan', () => {
 
   for (const [ctx, token, op] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(op);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          index: state.index,
+          hasNext: parser.index < parser.source.length,
+          index: parser.index,
         },
         {
           token: token,
@@ -86,14 +86,14 @@ describe('src/lexer/scan', () => {
     });
 
     it(`scans '${op}' with more to go`, () => {
-      const state = new Parser(`${op} rest`);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(`${op} rest`);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          index: state.index,
+          hasNext: parser.index < parser.source.length,
+          index: parser.index,
         },
         {
           token: token,

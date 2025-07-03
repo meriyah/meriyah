@@ -1,5 +1,101 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - While > Statements - While (fail) > while "hood" break; 1`] = `
+"SyntaxError [1:6-1:12]: Expected '('
+> 1 | while "hood" break;
+    |       ^^^^^^ Expected '('"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while '' break; 1`] = `
+"SyntaxError [1:6-1:8]: Expected '('
+> 1 | while '' break;
+    |       ^^ Expected '('"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while '' break; 2`] = `
+"SyntaxError [1:6-1:8]: Expected '('
+> 1 | while '' break;
+    |       ^^ Expected '('"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while (false) async function f() {} 1`] = `
+"SyntaxError [1:20-1:28]: Async functions can only be declared at the top level or inside a block
+> 1 | while (false) async function f() {}
+    |                     ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while (false) const x = null; 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected token: 'const'
+> 1 | while (false) const x = null;
+    |               ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while (false) function f() {} 1`] = `
+"SyntaxError [1:14-1:22]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | while (false) function f() {}
+    |               ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while (false) function* g() {} 1`] = `
+"SyntaxError [1:14-1:22]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | while (false) function* g() {}
+    |               ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while (false) label1: label2: function f() {} 1`] = `
+"SyntaxError [1:30-1:38]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | while (false) label1: label2: function f() {}
+    |                               ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while (false) let x = 1; 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: 'identifier'
+> 1 | while (false) let x = 1;
+    |                   ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while 1 break; 1`] = `
+"SyntaxError [1:6-1:7]: Expected '('
+> 1 | while 1 break;
+    |       ^ Expected '('"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while 1 break; 2`] = `
+"SyntaxError [1:6-1:7]: Expected '('
+> 1 | while 1 break;
+    |       ^ Expected '('"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while true break; 1`] = `
+"SyntaxError [1:6-1:10]: Expected '('
+> 1 | while true break;
+    |       ^^^^ Expected '('"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while({1}){ break ; }; 1`] = `
+"SyntaxError [1:8-1:9]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | while({1}){ break ; };
+    |         ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while({1}){ break ; }; 2`] = `
+"SyntaxError [1:8-1:9]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | while({1}){ break ; };
+    |         ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while(0) !function(){ break; }; 1`] = `
+"SyntaxError [1:27-1:28]: Illegal break statement
+> 1 | while(0) !function(){ break; };
+    |                            ^ Illegal break statement"
+`;
+
+exports[`Statements - While > Statements - While (fail) > while(0) { function f(){ break; } } 1`] = `
+"SyntaxError [1:30-1:31]: Illegal break statement
+> 1 | while(0) { function f(){ break; } }
+    |                               ^ Illegal break statement"
+`;
+
 exports[`Statements - While > Statements - While (pass) > a: while (true) continue a; 1`] = `
 {
   "body": [
@@ -31,14 +127,14 @@ exports[`Statements - While > Statements - While (pass) > a: while (true) contin
 `;
 
 exports[`Statements - While > Statements - While (pass) > var i = 0;
-      woohoo:{
-        while(true){
-          i++;
-          if ( i == 10 ) {
-            break woohoo;
-          }
-        }
-      } 1`] = `
+woohoo:{
+  while(true){
+    i++;
+    if ( i == 10 ) {
+      break woohoo;
+    }
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -156,7 +252,35 @@ exports[`Statements - While > Statements - While (pass) > while (1) /foo/ 1`] = 
 `;
 
 exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
-      x = 1; 1`] = `
+{} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "WhileStatement",
+    },
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
+x = 1; 1`] = `
 {
   "body": [
     {
@@ -187,34 +311,6 @@ exports[`Statements - While > Statements - While (pass) > while (false) let // A
         "type": "AssignmentExpression",
       },
       "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
-  {} 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "expression": {
-          "name": "let",
-          "type": "Identifier",
-        },
-        "type": "ExpressionStatement",
-      },
-      "test": {
-        "type": "Literal",
-        "value": false,
-      },
-      "type": "WhileStatement",
-    },
-    {
-      "body": [],
-      "type": "BlockStatement",
     },
   ],
   "sourceType": "script",

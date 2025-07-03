@@ -1,5 +1,5 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 
@@ -13,12 +13,16 @@ describe('Miscellaneous - Failure', () => {
     '(package) => {"use strict";}',
     'a: let {}',
     'a = let {}',
-    `a = let
-    []`,
+    outdent`
+      a = let
+      []
+    `,
     '(break) => {"use strict";}',
     '(break) => {}',
-    ` for await (a of b) let
-    [] = y`,
+    outdent`
+      for await (a of b) let
+      [] = y
+    `,
     'for (a of b) let [x] = y',
     '({1: ({}) += (1)});',
     '({1: ({}) = (1)});',
@@ -61,16 +65,26 @@ describe('Miscellaneous - Failure', () => {
     'switch (a) { case b: let [x] }',
     'switch (a) { case b: let {} }',
     'switch (a) { case b: let {x} }',
-    `do let [x]
-    while (a);`,
-    `do let [x] = y
-    while (a);`,
-    `do let {}
-    while (a);`,
-    `do let {} = y
-    while (a);`,
-    `do let {x}
-    while (a);`,
+    outdent`
+      do let [x]
+      while (a);
+    `,
+    outdent`
+      do let [x] = y
+      while (a);
+    `,
+    outdent`
+      do let {}
+      while (a);
+    `,
+    outdent`
+      do let {} = y
+      while (a);
+    `,
+    outdent`
+      do let {x}
+      while (a);
+    `,
     'do let [] = y while (a);',
     'do let [x] while (a);',
     'do let {} while (a);',
@@ -121,26 +135,28 @@ describe('Miscellaneous - Failure', () => {
     'for(const let = 0;;);',
     '{ const a; }',
     'function f(){ const a; }',
-    `for (let a of (function*() {
-      for (var b of (function*() {
-              for (var c of (function*() {
-                      for (var d of (function*() {
-                              for (var e of (function*() {
-                                      for (var f of (function*() {
-                                              for (var g of (x = (yield * 2)) => (1)) {
-                                              }
-                                      })()) {
-                                      }
-                              })()) {
-                              }
-                      })()) {
-                      }
-              })()) {
-              }
+    outdent`
+      for (let a of (function*() {
+        for (var b of (function*() {
+                for (var c of (function*() {
+                        for (var d of (function*() {
+                                for (var e of (function*() {
+                                        for (var f of (function*() {
+                                                for (var g of (x = (yield * 2)) => (1)) {
+                                                }
+                                        })()) {
+                                        }
+                                })()) {
+                                }
+                        })()) {
+                        }
+                })()) {
+                }
+        })()) {
+        }
       })()) {
       }
-    })()) {
-    }`,
+    `,
     'for(const a = 0;;) label: function f(){}',
     'for(;;) labelA: labelB: labelC: function f(){}',
     'for(;;) labelA: labelB: labelC: function f(){}',
@@ -162,19 +178,19 @@ describe('Miscellaneous - Failure', () => {
     'async arguments => {"use strict";}',
     'function f(x=(yield z)=y){}',
     // '`a${await foo}d`',
-    `for (a+b in c) d;`,
-    `for (a+b of c) d;`,
+    'for (a+b in c) d;',
+    'for (a+b of c) d;',
     'for ({x = y} ;;) {}',
     'for ({x = y} ;1 ;) {}',
     'for ({x = y} ;1 ;1) {}',
-    `for ({a=b};;);`,
-    `({*[expr](){}} = x)`,
+    'for ({a=b};;);',
+    '({*[expr](){}} = x)',
     '({*[expr](){}}) = x',
     '({a: {a=b}.x}) => x',
     String.raw`class K extends {} {;async\n async *1(){}}`,
-    `for (a,b of c) d;`,
-    `for (a, b of c);`,
-    `for (a,b of c) d;`,
+    'for (a,b of c) d;',
+    'for (a, b of c);',
+    'for (a,b of c) d;',
     '"use strict"; (1, eval)++',
     '"use strict"; ++(1, 2, 3, eval)',
     '"use strict"; (1, eval)--',
@@ -190,17 +206,19 @@ describe('Miscellaneous - Failure', () => {
     '"use strict"; (package) => {}',
     '"use strict"; async (package) => {}',
     'async (package) => { "use strict"; }',
-    `do x
-    while ({ [y = [yy]]: { x = (y)} ? null : false  })`,
+    outdent`
+      do x
+      while ({ [y = [yy]]: { x = (y)} ? null : false  })
+    `,
     '"use strict"; for (let in x);',
-    `function* f(){ yield↵/foo }`,
-    `wrap({get 123: x});`,
+    'function* f(){ yield↵/foo }',
+    'wrap({get 123: x});',
     'for (let {x}.y of x);',
     'for (let {x}.y in x);',
     'for (let[a+b] in x);',
     'for (let() in x);',
-    `function *g() { async yield => {}; }`,
-    `function *g() { async yield = {}; }`,
+    'function *g() { async yield => {}; }',
+    'function *g() { async yield = {}; }',
     'function f(eval) { "use strict"; }',
     'function f(a, eval) { "use strict"; }',
     'let [o.x=1]=[]',
@@ -249,30 +267,30 @@ describe('Miscellaneous - Failure', () => {
     'for(let.a of 0);',
     '(a, arguments) => { "use strict"; }',
     'function f(a, arguments) { "use strict"; }',
-    `for (const x;;);`,
-    `for (let of x) y`,
-    `"use strict"; for (let.x in y);`,
-    `"use strict"; for (let() of y);`,
-    `for (let() of y);`,
-    `for (let[x];;);`,
-    `for (let of y);`,
-    `for (let().foo of x);`,
-    `for (let() in x);`,
-    `for (let.foo of x);`,
-    `for (let() of x);`,
-    `for(let.a of 0);`,
-    `for (let.a of x);`,
-    `function *f(){ for (yield of obj); }`,
-    `for (let.x of y);`,
-    `for (let() of y);`,
-    `for (let + of y);`,
-    `for (let + in y);`,
-    `for (let() in y);`,
-    `"use strict"; for (let + of y);`,
-    `async ({} + 1) => x;`,
-    `({x: y}.length) => x;`,
-    `({x = y}.z) => obj`,
-    `({a: {x = y}}.z) => obj`,
+    'for (const x;;);',
+    'for (let of x) y',
+    '"use strict"; for (let.x in y);',
+    '"use strict"; for (let() of y);',
+    'for (let() of y);',
+    'for (let[x];;);',
+    'for (let of y);',
+    'for (let().foo of x);',
+    'for (let() in x);',
+    'for (let.foo of x);',
+    'for (let() of x);',
+    'for(let.a of 0);',
+    'for (let.a of x);',
+    'function *f(){ for (yield of obj); }',
+    'for (let.x of y);',
+    'for (let() of y);',
+    'for (let + of y);',
+    'for (let + in y);',
+    'for (let() in y);',
+    '"use strict"; for (let + of y);',
+    'async ({} + 1) => x;',
+    '({x: y}.length) => x;',
+    '({x = y}.z) => obj',
+    '({a: {x = y}}.z) => obj',
     'for (var i = 20 of b) { }',
     'for (var {i} = 20 of b) { }',
     'for (var [i] = 20 of b) { }',
@@ -318,7 +336,7 @@ describe('Miscellaneous - Failure', () => {
     'var a = :)',
     'var a = b ? c, b',
     'const a = b : c',
-    `({x} = await bar) => {}`,
+    '({x} = await bar) => {}',
     'function foo(a, ...b, c) { }',
     'function foo(a, ...b, ) { }',
     'function foo(a, ...[b], ) { }',
@@ -406,7 +424,7 @@ describe('Miscellaneous - Failure', () => {
     'let foo = (foo, bar, baz, ...rest) => { "a"; "use strict"; }',
     'let foo = (a = function() { }) => { "use strict"; a(); }',
     'let foo = (a = function() { }) => { "a"; "use strict"; a(); }',
-    `async ({} + 1) => x;`,
+    'async ({} + 1) => x;',
     '({a=b}.x) => x',
     '({a=b}[x]) => x',
     '({a=b}(x)) => x',
@@ -418,29 +436,29 @@ describe('Miscellaneous - Failure', () => {
     'var {(x)} = v;',
     'const [(x)] = v;',
     'const {(x)} = v;',
-    `(a,b,)`,
+    '(a,b,)',
     'x = {x=y}',
     'for (let()() in y);',
-    `(a = b,)`,
-    `([x],)`,
-    `({a},)`,
-    `([x] = y,)`,
-    `({a} = b,)`,
-    `(a,) = x`,
-    `(a,b,) = x`,
-    `(a = b,) = x`,
-    `([x],) = x`,
-    `({a},) = x`,
-    `([x] = y,) = x`,
-    `({a} = b,) = x`,
-    `(...x);`,
-    `(a,b,)`,
-    `([{a=b}.x]) => x`,
-    `({a: {a=b}.x}) => x`,
-    `[...[x].map(y, z)] = a;`,
-    `({ident: {x}.join("")}) => x`,
-    `({"x": [y].slice(0)} = x)`,
-    `({"x": [y].slice(0)}) => x`,
+    '(a = b,)',
+    '([x],)',
+    '({a},)',
+    '([x] = y,)',
+    '({a} = b,)',
+    '(a,) = x',
+    '(a,b,) = x',
+    '(a = b,) = x',
+    '([x],) = x',
+    '({a},) = x',
+    '([x] = y,) = x',
+    '({a} = b,) = x',
+    '(...x);',
+    '(a,b,)',
+    '([{a=b}.x]) => x',
+    '({a: {a=b}.x}) => x',
+    '[...[x].map(y, z)] = a;',
+    '({ident: {x}.join("")}) => x',
+    '({"x": [y].slice(0)} = x)',
+    '({"x": [y].slice(0)}) => x',
     'let z = async ({x} = await bar) => {}',
     'async (x=(await)=y)=>z',
     'async function f(x=(await)=y){}',
@@ -454,8 +472,8 @@ describe('Miscellaneous - Failure', () => {
     '(x=(yield z)=y)',
     'function *f(x=(yield)=y){}',
     'function *f(x=(yield z)=y){}',
-    `(a,)`,
-    `(a = b,)`,
+    '(a,)',
+    '(a = b,)',
     '(a',
     'a[5',
     'a[5 + 6',
@@ -752,21 +770,21 @@ describe('Miscellaneous - Failure', () => {
     'if a {}',
     'if (a',
     'function f() { else {} }',
-    `while 1 break;`,
-    `while true break;`,
-    `var x += 1;`,
+    'while 1 break;',
+    'while true break;',
+    'var x += 1;',
     'foo--.toString();',
     'foo++.toString();',
     'while(true)break 5+5;',
     'while(true)continue 5+5;',
     '({ "x" = true } = y);',
-    `\\`,
-    `\\x`,
-    `\\o`,
-    `\\u1`,
-    `\\u12`,
-    `a\\uz`,
-    `a\\o`,
+    '\\',
+    String.raw`\x`,
+    String.raw`\o`,
+    String.raw`\u1`,
+    String.raw`\u12`,
+    String.raw`a\uz`,
+    String.raw`a\o`,
     ',',
     ',,',
     ',,,',
@@ -905,19 +923,19 @@ describe('Miscellaneous - Failure', () => {
     '(class {foo(...a,) {}})',
     '(class {static foo(...a,) {}})',
     '(x, ...) => ...',
-    `＊`,
-    `\\uD800\\x62`,
+    '＊',
+    String.raw`\uD800\x62`,
     'function f() { (new.target)--; }',
     'function *a() { ({b = yield}) => {} }',
     '[a, ...(b = c)] = 0',
     '[(a = 0)] = 1',
-    `"use strict"; label: function f(){}`,
-    `"use strict"; if (0) function f(){}`,
-    `"use strict";  if (0) function f(){} else;`,
-    `"use strict"; if (0); else function f(){}`,
-    `"use strict"; label foo: function f(){}`,
-    `while(true) function a(){}`,
-    `with(true) function a(){}`,
+    '"use strict"; label: function f(){}',
+    '"use strict"; if (0) function f(){}',
+    '"use strict";  if (0) function f(){} else;',
+    '"use strict"; if (0); else function f(){}',
+    '"use strict"; label foo: function f(){}',
+    'while(true) function a(){}',
+    'with(true) function a(){}',
     'for (let a = 0 in {});',
     '"use strict"; for (var a = 0 in {});',
     'for (var {a} = 0 in {});',
@@ -925,7 +943,7 @@ describe('Miscellaneous - Failure', () => {
     'for (var [a] = 0 in {});',
     'for (const a = 0 in {});',
     // Esprima issue>  https://github.com/jquery/esprima/issues/1719
-    `if (false) L: async function l() {}`,
+    'if (false) L: async function l() {}',
     '({ src: ([dest]) } = obj)',
     'function f([x] = [1]) { "use strict" }',
     '(async function*() { } = 1);',
@@ -950,33 +968,39 @@ describe('Miscellaneous - Failure', () => {
     '//\r\n]',
     '//\n\r]',
     '//\r \n]',
-    `function foo() {
-      'use strict';
-      function f() {
-        var o = {};
-        with (o) {};
+    outdent`
+      function foo() {
+        'use strict';
+        function f() {
+          var o = {};
+          with (o) {};
+        }
       }
-    }`,
-    `function foo() {
+    `,
+    outdent`
+      function foo() {
+        function f() {
+          'use strict';
+          var o = {};
+          with (o) {};
+        }
+      }
+    `,
+    outdent`
       function f() {
         'use strict';
         var o = {};
         with (o) {};
-      }
-    }`,
-    `function f() {
-      'use strict';
-      var o = {};
-      with (o) {};`,
-    `try{};catch{};finally{}`,
-    `try{};finally{}`,
-    `if{};else{}`,
-    `if{};else if{}`,
-    `if{};else if{};else{}`,
-    `do{};while()`,
-    `({a({e: a.b}){}})`,
-    `(function *(x, ...yield){})`,
-    `async function *isiah(){ await yield x}`,
+    `,
+    'try{};catch{};finally{}',
+    'try{};finally{}',
+    'if{};else{}',
+    'if{};else if{}',
+    'if{};else if{};else{}',
+    'do{};while()',
+    '({a({e: a.b}){}})',
+    '(function *(x, ...yield){})',
+    'async function *isiah(){ await yield x}',
     String.raw`function hello() { 'use strict'; ({ "\1": 42 }); }`,
     "function hello() { 'use strict'; 021; }",
     String.raw`function hello() { 'use strict'; "\000"; }`,
@@ -1024,12 +1048,12 @@ describe('Miscellaneous - Failure', () => {
     'for ([] + b in obj);',
     'for (a + b in obj);',
     'for (eval instanceof this; new 2e308;)',
-    `([...x.y]) => z`,
-    `([...x.y] = z) => z`,
-    `for (a);`,
+    '([...x.y]) => z',
+    '([...x.y] = z) => z',
+    'for (a);',
     '(((x)))\n++;',
     '(((x)))\n--;',
-    `[...(x), y] = z`,
+    '[...(x), y] = z',
     'function* g() { async function yield() {} }',
     'async function k() { function a() { await 4; } }',
     'function* a() { await 4; }',
@@ -1046,23 +1070,23 @@ describe('Miscellaneous - Failure', () => {
     'for (let x = 3 in {}; ; ) break;',
     'for (let x, y = 3 in {}; ; ) break;',
     'for (let x = 2, y = 3 in {}; ; ) break;',
-    `({async async: 0})`,
-    `({async async})`,
-    `({async async, })`,
-    `({async async = 0} = {})`,
+    '({async async: 0})',
+    '({async async})',
+    '({async async, })',
+    '({async async = 0} = {})',
     'var this = 10;',
-    `
-    "use strict";
-    function f() {
-        var {yield} = {};
-    }
-`,
-    `
-    "use strict";
-    function f() {
-        var {yield = 0} = {};
-    }
-`,
+    outdent`
+      "use strict";
+      function f() {
+          var {yield} = {};
+      }
+    `,
+    outdent`
+      "use strict";
+      function f() {
+          var {yield = 0} = {};
+      }
+    `,
     '[...a()] = []',
     '[...a=b] = []',
     '[a, ...b, c] = []',
@@ -1077,60 +1101,60 @@ describe('Miscellaneous - Failure', () => {
     'switch (x) { something }',
     'function *f(){ return 5 + yield x; }',
     '(x=1)=2',
-    `function *f(){ return function(x = yield y){}; }`,
+    'function *f(){ return function(x = yield y){}; }',
     'yield (await foo)',
     'delete (foo)=>bar',
-    `async function f(){ return await => {}; }`,
+    'async function f(){ return await => {}; }',
     'if (true) function* g() {  } else function* _g() {}',
     'if (true) function* g() {  } else ;',
     'if (true) function* g() {  }',
     'if (false) ; else function* g() {  }',
     'foo: function* g() {  }',
     // '`x${await x}y`',
-    `async () \n => x`,
-    `(async () \n => x)`,
-    `1.a`,
-    `1.e+`,
-    `08a`,
+    'async () \n => x',
+    '(async () \n => x)',
+    '1.a',
+    '1.e+',
+    '08a',
     "'use strict'; `\\00`;",
-    `0o1a`,
-    `x \n isnt y`,
-    `function default() {}`,
-    `var default`,
-    `for (let x = 42 in list) process(x);`,
-    `for (let x = 42 of list) process(x);`,
-    `'use strict'; let + 1`,
-    `let let`,
-    `'use strict'; let let`,
-    `(([a, ...b = 0]) => {})`,
-    `[a, ...b = 0] = []`,
-    `[...a, b] = c`,
-    `if (b,...a, );`,
-    `switch (cond) { case 10: let a = 20; `,
-    `obj = {x = 0}`,
-    `f({x = 0})`,
-    `(localVar |= defaultValue) => {}`,
-    `if (1) let x = 10;`,
-    `function* y({yield}) {}`,
-    `let y = () => new.target`,
-    `x = { method() 42 }`,
-    `x = { get method() 42 }`,
-    `x = { set method(val) v = val }`,
-    `class A { set prop(x, y) {} }`,
-    `[...x in y] = []`,
-    `function foo() { 'use strict'; return {yield} }`,
-    `function* wrap() { function* foo(a = 1 + (yield)) {} }`,
-    `function* wrap() { return (a = 1 + (yield)) => a }`,
-    `(function* g() {\nfor (yield '' in {}; ; ) ;\n }`,
-    `(function* yield() {})`,
-    `function* wrap() {\nfunction* yield() {}\n}`,
-    `function* foo(a = yield b) {}`,
-    `(class {*foo(a = yield b) {}})`,
-    `function* foo(a = class extends (yield b) {}) {}`,
-    `function* wrap() {\n(a = yield b) => a\n}`,
-    `class B { constructor(a = super()) { return a }}`,
-    `({*foo: 1})`,
-    `for (let [...foo, bar] in qux);`,
+    '0o1a',
+    'x \n isnt y',
+    'function default() {}',
+    'var default',
+    'for (let x = 42 in list) process(x);',
+    'for (let x = 42 of list) process(x);',
+    "'use strict'; let + 1",
+    'let let',
+    "'use strict'; let let",
+    '(([a, ...b = 0]) => {})',
+    '[a, ...b = 0] = []',
+    '[...a, b] = c',
+    'if (b,...a, );',
+    'switch (cond) { case 10: let a = 20; ',
+    'obj = {x = 0}',
+    'f({x = 0})',
+    '(localVar |= defaultValue) => {}',
+    'if (1) let x = 10;',
+    'function* y({yield}) {}',
+    'let y = () => new.target',
+    'x = { method() 42 }',
+    'x = { get method() 42 }',
+    'x = { set method(val) v = val }',
+    'class A { set prop(x, y) {} }',
+    '[...x in y] = []',
+    "function foo() { 'use strict'; return {yield} }",
+    'function* wrap() { function* foo(a = 1 + (yield)) {} }',
+    'function* wrap() { return (a = 1 + (yield)) => a }',
+    "(function* g() {\nfor (yield '' in {}; ; ) ;\n }",
+    '(function* yield() {})',
+    'function* wrap() {\nfunction* yield() {}\n}',
+    'function* foo(a = yield b) {}',
+    '(class {*foo(a = yield b) {}})',
+    'function* foo(a = class extends (yield b) {}) {}',
+    'function* wrap() {\n(a = yield b) => a\n}',
+    'class B { constructor(a = super()) { return a }}',
+    '({*foo: 1})',
+    'for (let [...foo, bar] in qux);',
     '(class A extends B { method() { super() } })',
     'for(;;) function a(){}',
     'for(a in b) function c(){}',
@@ -1148,23 +1172,23 @@ describe('Miscellaneous - Failure', () => {
     'with(true) let a',
     'with(true) class a {}',
     'a: let a',
-    `3in[]`,
-    `3x0`,
-    `\\ua`,
+    '3in[]',
+    '3x0',
+    String.raw`\ua`,
     'continue',
     'break',
     'if (x) continue y',
-    `1 + { t:t `,
-    `1 + {`,
-    `i #= 0`,
+    '1 + { t:t ',
+    '1 + {',
+    'i #= 0',
     'function a({e: a.b}) {}',
-    `\n\n\n{`,
-    `{ get 2 }`,
+    '\n\n\n{',
+    '{ get 2 }',
     '{ set 1 }',
-    `function t(if) { }`,
-    `\u200C = []`,
-    `do { x } *`,
-    `var`,
+    'function t(if) { }',
+    '\u200C = []',
+    'do { x } *',
+    'var',
     '0B',
     '0B1a',
     '0B9',
@@ -1174,60 +1198,60 @@ describe('Miscellaneous - Failure', () => {
     'let [this] = [10]',
     'let {this} = x',
     'let [function] = [10]',
-    `\\u{FFFF`,
+    String.raw`\u{FFFF`,
     //`("\\u{}")`,
-    `/./a`,
-    `enum : 0`,
-    `({get +:3})`,
-    `if.a;`,
-    `a if`,
-    `"\\ux";`,
-    `0O`,
-    `0O1a`,
-    `/test`,
-    `3 = 4`,
-    `var x = "`,
-    `({[a,b]:0})`,
-    `function t(false) { }`,
-    `if(false) doThis(); else`,
-    `async function foo(await) { }`,
-    `async function foo() { return {await} }`,
-    `(async\nfunction foo() { })`,
-    `(async function await() { })`,
-    `(async function foo(await) { })`,
-    `(async function foo() { return {await} })`,
-    `[a += b] = []`,
-    `({async get foo() { }})`,
-    `({async foo() { var await }})`,
-    `class A {async get foo() { }}`,
-    `class A {async foo() { return {await} }}`,
+    '/./a',
+    'enum : 0',
+    '({get +:3})',
+    'if.a;',
+    'a if',
+    String.raw`"\ux";`,
+    '0O',
+    '0O1a',
+    '/test',
+    '3 = 4',
+    'var x = "',
+    '({[a,b]:0})',
+    'function t(false) { }',
+    'if(false) doThis(); else',
+    'async function foo(await) { }',
+    'async function foo() { return {await} }',
+    '(async\nfunction foo() { })',
+    '(async function await() { })',
+    '(async function foo(await) { })',
+    '(async function foo() { return {await} })',
+    '[a += b] = []',
+    '({async get foo() { }})',
+    '({async foo() { var await }})',
+    'class A {async get foo() { }}',
+    'class A {async foo() { return {await} }}',
     // `await a`,
-    `async () => await`,
-    `async function foo(a = await b) {}`,
-    `([a.a]) => 42`,
-    `function *g() { (x = yield) => {} }`,
-    `( { get x() {} } = 0)`,
-    `for (let x = 42 in list) process(x);`,
-    `yield v`,
-    `let [this] = [10]`,
-    `([function] = [10])`,
-    `({this} = x)`,
-    `var x = {this}`,
-    `class A extends yield B { }`,
-    `function* foo(a = class extends (yield b) {}) {}`,
-    `class A { get constructor() {} }`,
-    `(function ({ a(){} }) {})`,
-    `class A extends B { constructor() { super } }`,
-    `\\u{110000}`,
-    `(function () { yield 10 })`,
-    `function* f([...{ x }, y] = [1, 2, 3]) {};`,
-    `0 = 0;`,
-    `[a] *= 0;`,
-    `for([0] of 0);`,
-    `\\u{FFFFFFF}")`,
-    `for(const a = 0, b;;);`,
-    `for (var x of []) function* g() {}`,
-    `let [...x = []] = [];`,
+    'async () => await',
+    'async function foo(a = await b) {}',
+    '([a.a]) => 42',
+    'function *g() { (x = yield) => {} }',
+    '( { get x() {} } = 0)',
+    'for (let x = 42 in list) process(x);',
+    'yield v',
+    'let [this] = [10]',
+    '([function] = [10])',
+    '({this} = x)',
+    'var x = {this}',
+    'class A extends yield B { }',
+    'function* foo(a = class extends (yield b) {}) {}',
+    'class A { get constructor() {} }',
+    '(function ({ a(){} }) {})',
+    'class A extends B { constructor() { super } }',
+    String.raw`\u{110000}`,
+    '(function () { yield 10 })',
+    'function* f([...{ x }, y] = [1, 2, 3]) {};',
+    '0 = 0;',
+    '[a] *= 0;',
+    'for([0] of 0);',
+    String.raw`\u{FFFFFFF}")`,
+    'for(const a = 0, b;;);',
+    'for (var x of []) function* g() {}',
+    'let [...x = []] = [];',
     ' for(([a]) of 0);',
     ' (function*yield(){})',
     'class A extends a + b {}',
@@ -1279,20 +1303,22 @@ describe('Miscellaneous - Failure', () => {
     ' var super',
     ' const x = 0,',
     '(0, {a = 0}) => 0',
-    `var x = /[a-z
-    ]/\\ux`,
+    outdent`
+      var x = /[a-z
+      ]/\\ux
+    `,
     '"use strict";function foo(){"use strict";}function bar(){var v = 015}',
     ' class A {a(){},b(){}}',
     ' new f(..g);',
     ' for(let a = 0 of b);',
     ' var if = 0',
     ' [a, ...(b = c)] = 0',
-    `if (false) ; else const x = null;`,
-    `class A { static set prototype() {} }`,
-    `function* g(){ ([a = yield]) => 0; }`,
-    `for(let a;;) label: function f(){}`,
+    'if (false) ; else const x = null;',
+    'class A { static set prototype() {} }',
+    'function* g(){ ([a = yield]) => 0; }',
+    'for(let a;;) label: function f(){}',
     'for (;;) const x = 10;',
-    `x = { set f(...y) {} }`,
+    'x = { set f(...y) {} }',
     'if (x) async function f() {}',
     'async function wrapper() {\nasync (a = await b) => {}\n}',
     '({async foo(a = await b) {}})',
@@ -1323,15 +1349,17 @@ describe('Miscellaneous - Failure', () => {
     'async function foo(a = await b) {}',
     '(async function foo(a = await b) {})',
     'async (a = await b) => {}',
-    `for (let [...foo, bar] in qux);`,
-    `();`,
-    `for (let x of y, z) {}`,
-    `(a, ...b);`,
-    `[ a -= 12 ] = 12;`,
-    `class A {static static static(){}}`,
-    `(function*() {
-      function*(x = yield 3) {}
-  })`,
+    'for (let [...foo, bar] in qux);',
+    '();',
+    'for (let x of y, z) {}',
+    '(a, ...b);',
+    '[ a -= 12 ] = 12;',
+    'class A {static static static(){}}',
+    outdent`
+      (function*() {
+          function*(x = yield 3) {}
+      })
+    `,
     '0O18',
     '"use strict"; `${test}\\02`;',
     '0x3in[]',
@@ -1339,18 +1367,20 @@ describe('Miscellaneous - Failure', () => {
     'var if = 42',
     '\\',
     "'use strict'; 07",
-    `(((a, ...b)))`,
+    '(((a, ...b)))',
     '((a)) => 42',
     '({a.b} = 0)',
     'function *g(yield){}',
-    `throw
-10;`,
+    outdent`
+      throw
+      10;
+    `,
     '({ set prop(x, y) {} })',
-    `(((...a)))`,
-    `for(const let = 0;;);`,
-    `super`,
-    `"use strict"; bar: function x() {}`,
-    `{ ;  ;  `,
+    '(((...a)))',
+    'for(const let = 0;;);',
+    'super',
+    '"use strict"; bar: function x() {}',
+    '{ ;  ;  ',
     'var x,',
     'function *g() { let yield; }',
     String.raw`('\u{2028')`,
@@ -1361,26 +1391,28 @@ describe('Miscellaneous - Failure', () => {
     'class A;',
     'for (const x = 1 of y);',
     'class;',
-    `var x = /[a-z
-    ]/\\ux`,
-    `a b`,
-    `try { } catch() {}`,
-    `/*\r\n*/]`,
-    `//\r\n]`,
-    `\r]`,
-    `/*hello`,
-    `try {} catch (answer()) {} `,
-    `for(;;)`,
-    `for (let [] = 0, {};;);`,
-    `for (let [];;);`,
-    `for (var i, i2 in {});`,
+    outdent`
+      var x = /[a-z
+      ]/\\ux
+    `,
+    'a b',
+    'try { } catch() {}',
+    '/*\r\n*/]',
+    '//\r\n]',
+    '\r]',
+    '/*hello',
+    'try {} catch (answer()) {} ',
+    'for(;;)',
+    'for (let [] = 0, {};;);',
+    'for (let [];;);',
+    'for (var i, i2 in {});',
     '([this] = [10])',
     '({this} = x)',
     'var x = {this}',
-    `**`,
-    `#=`,
+    '**',
+    '#=',
     'function* g() { (a = yield) => {} }',
-    `\\u{}`,
+    String.raw`\u{}`,
     '"use strict"; (a) => 00',
     '() <= 42',
     'eq(o) { return this.#x === o.#x; }',
@@ -1398,9 +1430,9 @@ describe('Miscellaneous - Failure', () => {
     '({ obj:20 }) = 42',
     '[2] = 42',
     String.raw`"\u{FFZ}"`,
-    `function({b = !b}) { })({})`,
-    `function([b = !b]) { })([])`,
-    `function(...[b = !b]) { }`,
+    'function({b = !b}) { })({})',
+    'function([b = !b]) { })([])',
+    'function(...[b = !b]) { }',
     String.raw`"\u{FFFF"`,
     '([function] = [10])',
     'while(true)break if;',
@@ -1642,8 +1674,8 @@ describe('Miscellaneous - Failure', () => {
     '/a[b',
     '/[x]\n/',
     '3in {}',
-    `let {[foo]: a + b} = baz`,
-    `let {[foo]: bar()} = baz`,
+    'let {[foo]: a + b} = baz',
+    'let {[foo]: bar()} = baz',
     '5 = 10;',
     'null = 10;',
     'true = 10;',
@@ -1996,7 +2028,7 @@ describe('Miscellaneous - Failure', () => {
     'function f([... ...foo]){}',
     'function f([... ...foo] = obj){}',
     'function f(){ 5 + yield x + y; }',
-    `function* g() { yield 3 + yield 4; }`,
+    'function* g() { yield 3 + yield 4; }',
     'function*g({yield}){}',
     '({[a,b]:0})',
     'try { }',
@@ -2013,7 +2045,7 @@ describe('Miscellaneous - Failure', () => {
     'for (;b\n++c);',
     'yield x + y',
     'a b;',
-    `do {  test262: {  continue test262; } } while (a)`,
+    'do {  test262: {  continue test262; } } while (a)',
     String.raw`('\x0')`,
     '({a: b += 0} = {})',
     '[...{a = b} = c] = x',
@@ -2024,13 +2056,13 @@ describe('Miscellaneous - Failure', () => {
     'var [a], {b}, c, d; // error',
     'function a({while}) { }',
     '([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;',
-    `({x}) = {x: 1};`,
+    '({x}) = {x: 1};',
     '3ea',
     'var v = (a, b) = c',
     'if (x) {}}dsadsa',
     'for (;;) {}}dsadsa',
-    `function f() { for (new.target = 0 in {}); }`,
-    `class C extends D { constructor() { for (super() = 0 in {}); } }`,
+    'function f() { for (new.target = 0 in {}); }',
+    'class C extends D { constructor() { for (super() = 0 in {}); } }',
     'var x = `abc${ yield 10 }def`;',
     'async function fn() { for await (var x = 1 of []) {} }',
     'async function fn() { for await (var {x} = 1 of []) {} }',
@@ -2057,38 +2089,38 @@ describe('Miscellaneous - Failure', () => {
     'let y = typeof async x => await x',
     '++x => b',
     '++(x) => b',
-    `(x) = (1) = z`,
-    `(x) = (1) += z`,
-    `(x) += (1) = z`,
+    '(x) = (1) = z',
+    '(x) = (1) += z',
+    '(x) += (1) = z',
     'const ([a] = b) = c;',
-    `[(a = x)] = x`,
-    `[...{a: function=x} = c]`,
-    `({foo = 10})`,
+    '[(a = x)] = x',
+    '[...{a: function=x} = c]',
+    '({foo = 10})',
     'class x extends ()=>{} {}',
     'class x extends ()=>1 {}',
-    `async (x = (await) = f) => {}`,
-    `async (x = (x) = await f) => {}`,
-    `async (x = (x) += await f) => {}`,
+    'async (x = (await) = f) => {}',
+    'async (x = (x) = await f) => {}',
+    'async (x = (x) += await f) => {}',
     'await ()=>x',
-    `new await x()`,
-    `new b++c;`,
-    `5+yield x`,
-    `function *f(){ return 5 + yield x; }`,
-    `new await x()()`,
-    `delete foo=>bar`,
-    `new foo=>bar`,
-    `await foo=>bar`,
-    `()=>{}.foo`,
-    `()=>{}[foo]`,
-    `()=>{}(foo)`,
+    'new await x()',
+    'new b++c;',
+    '5+yield x',
+    'function *f(){ return 5 + yield x; }',
+    'new await x()()',
+    'delete foo=>bar',
+    'new foo=>bar',
+    'await foo=>bar',
+    '()=>{}.foo',
+    '()=>{}[foo]',
+    '()=>{}(foo)',
     '()=>{}`foo`',
-    `()=>{}++`,
-    `()=>{}--`,
-    `function *f(){ ~yield }`,
-    `class x extends ()=>{} {}`,
-    `class x extends ()=>{} 1`,
-    `for (b++c;;);`,
-    `function *f{ (x = x + yield); }`,
+    '()=>{}++',
+    '()=>{}--',
+    'function *f(){ ~yield }',
+    'class x extends ()=>{} {}',
+    'class x extends ()=>{} 1',
+    'for (b++c;;);',
+    'function *f{ (x = x + yield); }',
     '(x)\n++;',
     '(((x)))\n++;',
     'if (a) a\n++;',
@@ -2121,27 +2153,27 @@ describe('Miscellaneous - Failure', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
@@ -2154,12 +2186,12 @@ describe('Miscellaneous - Failure', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }

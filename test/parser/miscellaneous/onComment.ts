@@ -1,13 +1,13 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { type SourceLocation } from '../../../src/estree';
-import { parseScript } from '../../../src/meriyah';
+import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - onComment', () => {
   it('should extract single line comment', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('// Single line comment', {
+      parseSource('// Single line comment', {
         ranges: true,
         loc: true,
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
@@ -41,7 +41,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract single line empty comment', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('//\n', {
+      parseSource('//\n', {
         ranges: true,
         loc: true,
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
@@ -75,7 +75,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract single line comment with trailing new line', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('// Single line comment\n', {
+      parseSource('// Single line comment\n', {
         ranges: true,
         loc: true,
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
@@ -109,7 +109,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract single line comment with trailing new line and leading new line', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('a;\n// Single line comment\n', {
+      parseSource('a;\n// Single line comment\n', {
         ranges: true,
         loc: true,
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
@@ -177,7 +177,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract multiline line comment', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('/* Multi line comment */', {
+      parseSource('/* Multi line comment */', {
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
           t.deepEqual(type, 'MultiLine');
           t.deepEqual(value, ' Multi line comment ');
@@ -202,7 +202,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract empty multiline line comment', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('/**/', {
+      parseSource('/**/', {
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
           t.deepEqual(type, 'MultiLine');
           t.deepEqual(value, '');
@@ -227,7 +227,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract multiline line comment', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('a;\n/* Multi line comment */\nb;\n', {
+      parseSource('a;\n/* Multi line comment */\nb;\n', {
         ranges: true,
         loc: true,
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
@@ -327,7 +327,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract multiline line comment in array', () => {
     const arr: any[] = [];
-    parseScript('/* Multi line comment */', {
+    parseSource('/* Multi line comment */', {
       onComment: arr,
     });
     t.deepEqual(arr, [
@@ -340,7 +340,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract multiline line comment in array with ranges', () => {
     const arr: any[] = [];
-    parseScript('/* Multi line comment */', {
+    parseSource('/* Multi line comment */', {
       ranges: true,
       onComment: arr,
     });
@@ -357,7 +357,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract multiple multiline line comment in array with ranges and loc', () => {
     const arr: any[] = [];
-    parseScript('/* a */ function /*b*/foo(/*c*//*d*/) { /* Multi line comment */ } // The end', {
+    parseSource('/* a */ function /*b*/foo(/*c*//*d*/) { /* Multi line comment */ } // The end', {
       ranges: true,
       loc: true,
       onComment: arr,
@@ -434,7 +434,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract html comments in array', () => {
     const arr: any[] = [];
-    parseScript('<!--comment #1\n--> comment #2', {
+    parseSource('<!--comment #1\n--> comment #2', {
       ranges: true,
       loc: true,
       onComment: arr,
@@ -455,11 +455,11 @@ describe('Miscellaneous - onComment', () => {
       {
         type: 'HTMLClose',
         value: ' comment #2',
-        start: 14,
+        start: 15,
         end: 29,
-        range: [14, 29],
+        range: [15, 29],
         loc: {
-          start: { line: 1, column: 14 },
+          start: { line: 2, column: 0 },
           end: { line: 2, column: 14 },
         },
       },
@@ -468,7 +468,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract htmlclose comment on first line', () => {
     const arr: any[] = [];
-    parseScript('--> comment #2\n', {
+    parseSource('--> comment #2\n', {
       ranges: true,
       loc: true,
       onComment: arr,
@@ -491,7 +491,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract htmlclose comment', () => {
     const arr: any[] = [];
-    parseScript('a;\n--> comment #2\n', {
+    parseSource('a;\n--> comment #2\n', {
       ranges: true,
       loc: true,
       onComment: arr,
@@ -501,11 +501,11 @@ describe('Miscellaneous - onComment', () => {
       {
         type: 'HTMLClose',
         value: ' comment #2',
-        start: 2,
+        start: 3,
         end: 17,
-        range: [2, 17],
+        range: [3, 17],
         loc: {
-          start: { line: 1, column: 2 },
+          start: { line: 2, column: 0 },
           end: { line: 2, column: 14 },
         },
       },
@@ -514,7 +514,7 @@ describe('Miscellaneous - onComment', () => {
 
   it('should extract htmlclose comment after multiline comment', () => {
     const arr: any[] = [];
-    parseScript('/*\na\n*/\n--> comment #2\n', {
+    parseSource('/*\na\n*/\n--> comment #2\n', {
       ranges: true,
       loc: true,
       onComment: arr,
@@ -535,11 +535,11 @@ describe('Miscellaneous - onComment', () => {
       {
         type: 'HTMLClose',
         value: ' comment #2',
-        start: 7,
+        start: 8,
         end: 22,
-        range: [7, 22],
+        range: [8, 22],
         loc: {
-          start: { line: 3, column: 2 },
+          start: { line: 4, column: 0 },
           end: { line: 4, column: 14 },
         },
       },
@@ -549,7 +549,7 @@ describe('Miscellaneous - onComment', () => {
   it('should extract hashbang comment with next flag', () => {
     let onCommentCount = 0;
     t.deepEqual(
-      parseScript('#!/usr/bin/env node\n"use strict";\n', {
+      parseSource('#!/usr/bin/env node\n"use strict";\n', {
         next: true,
         ranges: true,
         loc: true,

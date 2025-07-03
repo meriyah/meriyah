@@ -1,20 +1,25 @@
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - AnnexB', () => {
   fail('Lexical - AnnexB (fail)', [
-    ['function f() {} ; function f() {}', Context.Module | Context.OptionsLexical],
-    ['function f(){ var f = 123; if (true) function f(){} }', Context.Module | Context.OptionsLexical],
-    ['{ var f = 123; if (true) function f(){} }', Context.Module | Context.OptionsLexical],
-    ['function f() {} ; function f() {}', Context.Module | Context.OptionsLexical],
-    ['{ if (x) function f() {} ; function f() {} }', Context.None | Context.OptionsLexical],
-    ['let x; var x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
-    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
+    { code: 'function f() {} ; function f() {}', options: { lexical: true, sourceType: 'module' } },
+    { code: 'function f(){ var f = 123; if (true) function f(){} }', options: { lexical: true } },
+    {
+      code: 'function f(){ var f = 123; if (true) function f2(){} }',
+      options: { lexical: true, sourceType: 'module' },
+    },
+    { code: '{ var f = 123; if (true) function f(){} }', options: { lexical: true } },
+    { code: '{ var f = 123; if (true) function f2(){} }', options: { lexical: true, sourceType: 'module' } },
+    { code: 'function f() {} ; function f() {}', options: { lexical: true, sourceType: 'module' } },
+    { code: '{ if (x) function f() {} ; function f() {} }', options: { lexical: true } },
+    { code: 'let x; var x;', options: { lexical: true } },
+    { code: 'var x; let x;', options: { lexical: true } },
+    { code: 'var x; let x;', options: { next: true, lexical: true } },
+    { code: 'var x; let x;', options: { next: true, lexical: true } },
   ]);
 
   for (const arg of [
@@ -56,74 +61,93 @@ describe('Lexical - AnnexB', () => {
     'if (true) function f() { initialBV = f; f = 123; currentBV = f; return x; }',
     'try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }',
     'for (let f in { key: 0 }) { if (false) function _f() {} else function f() {  } }',
-    `(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());`,
-    `(function() {      {        function f() { return 'inner declaration'; }
-      }
-      function f() {
-        return 'outer declaration';
-      }
-    }());
+    "(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());",
+    outdent`
+      (function() {      {        function f() { return 'inner declaration'; }
+        }
+        function f() {
+          return 'outer declaration';
+        }
+      }());
     `,
-    ` init = f;
-    f = 123;
-    changed = f;
-    {
-      function f() {  }
-    }`,
-    `let f = 123;
-    init = f;
-    {
-      function f() {  }
-    }`,
-    `  try {
-      f;
-    } catch (exception) {
-      err1 = exception;
-    }
-    {
-      function f() {  }
-    }
-    try {
-      f;
-    } catch (exception) {
-      err2 = exception;
-    }`,
-    ` for (let f of [0]) {
-      if (true) function f() {  } else function _f() {}
-      }`,
-    ` for (let f in { key: 0 }) {
-      if (true) function f() {  } else function _f() {}
-      }`,
-    `  {
-      function f() {
-        return 'first declaration';
+    outdent`
+      init = f;
+      f = 123;
+      changed = f;
+      {
+        function f() {  }
       }
-    }
-    if (false) function _f() {} else function f() { return 'second declaration'; }`,
-    ` for (let f in { key: 0 }) {
+    `,
+    outdent`
+      let f = 123;
+      init = f;
+      {
+        function f() {  }
+      }
+    `,
+    outdent`
+      try {
+        f;
+      } catch (exception) {
+        err1 = exception;
+      }
+      {
+        function f() {  }
+      }
+      try {
+        f;
+      } catch (exception) {
+        err2 = exception;
+      }
+    `,
+    outdent`
+      for (let f of [0]) {
+      if (true) function f() {  } else function _f() {}
+      }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
+      if (true) function f() {  } else function _f() {}
+      }
+    `,
+    outdent`
+      {
+        function f() {
+          return 'first declaration';
+        }
+      }
+      if (false) function _f() {} else function f() { return 'second declaration'; }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
       if (false) function _f() {} else function f() {  }
-      }`,
-    ` init = f;
-    if (false) function _f() {} else function f() {  }
-  `,
-    `init = f;
-    f = 123;
-    changed = f;
-    if (true) function f() {  } else ;
-  `,
-    ` for (let f of [0]) {
+      }
+    `,
+    outdent`
+      init = f;
+      if (false) function _f() {} else function f() {  }
+    `,
+    outdent`
+      init = f;
+      f = 123;
+      changed = f;
       if (true) function f() {  } else ;
-      }`,
+    `,
+    outdent`
+      for (let f of [0]) {
+      if (true) function f() {  } else ;
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

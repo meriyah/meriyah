@@ -169,3 +169,11 @@ exports[`Statements - Throw > Statements - Throw (pass) > throw x * y 1`] = `
   "type": "Program",
 }
 `;
+
+exports[`Statements - Throw > Statements - Throw > throw
+x; 1`] = `
+"SyntaxError [2:0-2:1]: Illegal newline after throw
+  1 | throw
+> 2 | x;
+    | ^ Illegal newline after throw"
+`;

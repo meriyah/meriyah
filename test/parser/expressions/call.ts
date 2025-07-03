@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Call', () => {
   for (const arg of [
@@ -14,7 +14,7 @@ describe('Expressions - Call', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -22,23 +22,23 @@ describe('Expressions - Call', () => {
   for (const arg of ['(...[1, 2, 3])', '......[1,2,3]']) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.throws(() => {
-        parseSource(`function fn() { 'use strict';} fn(${arg});`, undefined, Context.None);
+        parseSource(`function fn() { 'use strict';} fn(${arg});`);
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.throws(() => {
-        parseSource(`function fn() { } fn(${arg});`, undefined, Context.None);
+        parseSource(`function fn() { } fn(${arg});`);
       });
     });
   }
 
   for (const arg of [
-    `a()(a)`,
-    `async()()`,
-    `async(a)()`,
-    `async()(b)`,
-    `async(a)(b)`,
+    'a()(a)',
+    'async()()',
+    'async(a)()',
+    'async()(b)',
+    'async(a)(b)',
     '...([1, 2, 3])',
     "...'123', ...'456'",
     '...new Set([1, 2, 3]), 4',
@@ -52,25 +52,25 @@ describe('Expressions - Call', () => {
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { 'use strict';} fn(${arg});`, undefined, Context.None);
+        parseSource(`function fn() { 'use strict';} fn(${arg});`);
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, undefined, Context.None);
+        parseSource(`function fn() { } fn(${arg});`);
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, undefined, Context.OptionsWebCompat);
+        parseSource(`function fn() { } fn(${arg});`, { webcompat: true });
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, undefined, Context.Module | Context.Strict);
+        parseSource(`function fn() { } fn(${arg});`, { sourceType: 'module' });
       });
     });
   }
@@ -145,18 +145,18 @@ describe('Expressions - Call', () => {
     "(function(obj) {}({...{a: 2, b: 3, c: 4, e: undefined, f: null, g: false}, a: 1, b: 7, d: 5, h: -0, i: Symbol('foo'), j: {a: 2, b: 3, c: 4, e: undefined, f: null, g: false}}));",
     '(function(obj) {}({...undefined}));',
     '(function(obj) {}(...target = [2, 3, 4]));',
-    `a(String, 2).v(123).length;`,
-    `a(b,c).abc(1).def`,
-    `a(b,c).abc(1)`,
-    `a(b,c).abc`,
-    `a(b,c)`,
-    `foo(bar, baz)`,
+    'a(String, 2).v(123).length;',
+    'a(b,c).abc(1).def',
+    'a(b,c).abc(1)',
+    'a(b,c).abc',
+    'a(b,c)',
+    'foo(bar, baz)',
     'async (...a, ...b);',
     'async (...a, b);',
-    `(    foo  )()`,
-    `f(...a)`,
-    `f(...a, ...b)`,
-    `f(...a, ...b)`,
+    '(    foo  )()',
+    'f(...a)',
+    'f(...a, ...b)',
+    'f(...a, ...b)',
     'f();',
     'foo(...[1.1, 2.2, 3.3, 4.4, 5.5])',
     'foo(...[1])',
@@ -169,12 +169,14 @@ describe('Expressions - Call', () => {
     'foo(...(function*() { })())',
     'foo(...[1, 2, 3], 4)',
     'foo(...new Set([1, 2, 3, 4]))',
-    `foo(...(function*() {
-      yield 1;
-      yield 2;
-      yield 3;
-      yield 4;
-    })())`,
+    outdent`
+      foo(...(function*() {
+        yield 1;
+        yield 2;
+        yield 3;
+        yield 4;
+      })())
+    `,
     'foo(0, ...[1], 2, 3, ...[4, 5], 6, 7, 8, ...[9])',
     'foo(0, ...[1], 2, 3, ...[4, 5], 6, 7, 8)',
     'foo.bar(...[1, 2, 3, 4, 5, 6])',
@@ -204,69 +206,73 @@ describe('Expressions - Call', () => {
     '(async(a, ...b = y))',
     '(async(...b = y, d))',
     '(async(...b = y, ...d))',
-    `foo();
-     foo("foo");
-     foo("foo", "bar");
-     foo(bar());
-     foo(bar("test"));`,
+    outdent`
+      foo();
+      foo("foo");
+      foo("foo", "bar");
+      foo(bar());
+      foo(bar("test"));
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
-      });
-    });
-
-    it(`"use strict"; ${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`"use strict"; ${arg}`, { webcompat: true });
+      });
+    });
+
+    it(`"use strict"; ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`"use strict"; ${arg}`, { sourceType: 'module' });
       });
     });
   }
 
   fail('Expressions - Call (pass)', [
-    ['a.b( c() ).d.e().().f.g.();', Context.None],
-    ['a.b( c() ).d.e(()).f.g', Context.None],
-    ['foo({a=1})', Context.None],
-    ['foo({a=1}. {b=2}, {c=3} = {}))', Context.None],
-    ['async({a=1})', Context.None],
-    ['async({a=1}. {b=2}, {c=3} = {}))', Context.None],
-    ['yield({a=1})', Context.None],
-    ['yield({a=1}. {b=2}, {c=3} = {}))', Context.None],
-    ['yield({c=3} = {})', Context.Strict],
-    ['yield({a})', Context.Strict],
-    ['(async((a), ...(b) = xxx))', Context.None],
-    ['(async((a), ...[b] = xxx))', Context.None],
-    ['foo(,)', Context.None],
+    'a.b( c() ).d.e().().f.g.();',
+    'a.b( c() ).d.e(()).f.g',
+    'foo({a=1})',
+    'foo({a=1}. {b=2}, {c=3} = {}))',
+    'async({a=1})',
+    'async({a=1}. {b=2}, {c=3} = {}))',
+    'yield({a=1})',
+    'yield({a=1}. {b=2}, {c=3} = {}))',
+    { code: 'yield({c=3} = {})', options: { impliedStrict: true } },
+    { code: 'yield({a})', options: { impliedStrict: true } },
+    '(async((a), ...(b) = xxx))',
+    '(async((a), ...[b] = xxx))',
+    'foo(,)',
     //['(async(a, ...(b)))', Context.None],
-    ['(async((a), ...(b)))', Context.None],
-    ['foo(a,b,,)', Context.None],
-    ['foo()["bar"', Context.None],
-    ['foo().bar.', Context.None],
-    ['foo()`bar', Context.None],
-    ['foo(', Context.None],
-    ['foo(...)', Context.None],
+    '(async((a), ...(b)))',
+    'foo(a,b,,)',
+    'foo()["bar"',
+    'foo().bar.',
+    'foo()`bar',
+    'foo(',
+    'foo(...)',
   ]);
 
   pass('Expressions - Call (pass)', [
     {
-      code: ` obj
-                          .foo
-                              ["bar"]
-                                  .baz()
-                                      .foo
-                                          ["bar"]()
-                                              .baz()()`,
+      code: outdent`
+        obj
+          .foo
+              ["bar"]
+                  .baz()
+                      .foo
+                          ["bar"]()
+                              .baz()()
+      `,
       options: { ranges: true },
     },
     'async(x,) => x',

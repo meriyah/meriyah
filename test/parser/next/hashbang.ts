@@ -1,31 +1,30 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
-import { fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Next - Hashbang grammar', () => {
   fail('Next - Hashbang grammar (fail)', [
-    ['\x20#!', Context.None],
-    ['\r\n#!\n', Context.None],
-    ['\r#!\n', Context.None],
-    ['\n#!', Context.None],
-    [String.raw`\u0023!`, Context.OptionsWebCompat],
-    ['#\\u0021\n', Context.None],
-    ['#\\u{21}\n', Context.None],
-    ['#\\041\n', Context.None],
-    [String.raw`#\u{21}`, Context.None],
-    [String.raw`\x23!`, Context.None],
-    [`#!\n#!`, Context.None],
-    ['/*\n*/#!', Context.None],
-    ['"use strict"\n#!', Context.None],
-    [String.raw`\u0023\u0021`, Context.None],
-    [';#!', Context.None],
-    ['//\n#!', Context.None],
-    ['{ #! }', Context.None],
-    ['#\n/*\n\n*/', Context.None],
-    ['function fn(a = #\\u0021\n) {}', Context.None],
-    ['() => #\n/*\n\n*/', Context.None],
+    '\x20#!',
+    '\r\n#!\n',
+    '\r#!\n',
+    '\n#!',
+    { code: String.raw`\u0023!`, options: { webcompat: true } },
+    '#\\u0021\n',
+    '#\\u{21}\n',
+    '#\\041\n',
+    String.raw`#\u{21}`,
+    String.raw`\x23!`,
+    '#!\n#!',
+    '/*\n*/#!',
+    '"use strict"\n#!',
+    String.raw`\u0023\u0021`,
+    ';#!',
+    '//\n#!',
+    '{ #! }',
+    '#\n/*\n\n*/',
+    'function fn(a = #\\u0021\n) {}',
+    '() => #\n/*\n\n*/',
   ]);
 
   for (const arg of [
@@ -46,7 +45,7 @@ describe('Next - Hashbang grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
@@ -54,7 +53,7 @@ describe('Next - Hashbang grammar', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }

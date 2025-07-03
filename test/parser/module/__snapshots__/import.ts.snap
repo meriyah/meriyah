@@ -1449,3 +1449,783 @@ exports[`Module - Import > Module - Export > import x, * as ns from "foo" 1`] = 
   "type": "Program",
 }
 `;
+
+exports[`Module - Import > Module - Import (fail) > () => { import arrow from ""; } 1`] = `
+"SyntaxError [1:15-1:20]: The import keyword can only be used with the module goal
+> 1 | () => { import arrow from ""; }
+    |                ^^^^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > { export default null; } 1`] = `
+"SyntaxError [1:2-1:8]: The export keyword can only be used with the module goal
+> 1 | { export default null; }
+    |   ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > { export default null; } 2`] = `
+"SyntaxError [1:2-1:8]: The export keyword can only be used with the module goal
+> 1 | { export default null; }
+    |   ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > { export default null; } 3`] = `
+"SyntaxError [1:2-1:8]: The export keyword can only be used with the module goal
+> 1 | { export default null; }
+    |   ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > { import in_block from ""; } 1`] = `
+"SyntaxError [1:9-1:17]: The import keyword can only be used with the module goal
+> 1 | { import in_block from ""; }
+    |          ^^^^^^^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > {import {x} from "y";} 1`] = `
+"SyntaxError [1:8-1:9]: The import keyword can only be used with the module goal
+> 1 | {import {x} from "y";}
+    |         ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > {import {x} from "y";} 2`] = `
+"SyntaxError [1:8-1:9]: The import keyword can only be used with the module goal
+> 1 | {import {x} from "y";}
+    |         ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > const foo = 12; import { foo } from "string"; 1`] = `
+"SyntaxError [1:29-1:30]: Duplicate binding 'foo'
+> 1 | const foo = 12; import { foo } from "string";
+    |                              ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > do import {x} from "y"; while (x); 1`] = `
+"SyntaxError [1:10-1:11]: Expected '('
+> 1 | do import {x} from "y"; while (x);
+    |           ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > do import {x} from "y"; while (x); 2`] = `
+"SyntaxError [1:10-1:11]: Expected '('
+> 1 | do import {x} from "y"; while (x);
+    |           ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > for (;;) import {x} from "y"; 1`] = `
+"SyntaxError [1:16-1:17]: Expected '('
+> 1 | for (;;) import {x} from "y";
+    |                 ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > for(var i=0; i<1; i++) import { default } from "module"; 1`] = `
+"SyntaxError [1:30-1:31]: Expected '('
+> 1 | for(var i=0; i<1; i++) import { default } from "module";
+    |                               ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > function f(){import {x} from "y";} 1`] = `
+"SyntaxError [1:20-1:21]: The import keyword can only be used with the module goal
+> 1 | function f(){import {x} from "y";}
+    |                     ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > function f(){import {x} from "y";} 2`] = `
+"SyntaxError [1:20-1:21]: The import keyword can only be used with the module goal
+> 1 | function f(){import {x} from "y";}
+    |                     ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > function foo() { }; import { foo } from "string"; 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'foo'
+> 1 | function foo() { }; import { foo } from "string";
+    |                                  ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > if (false) import { default } from "module"; 1`] = `
+"SyntaxError [1:18-1:19]: Expected '('
+> 1 | if (false) import { default } from "module";
+    |                   ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > if (x) import {x} from "y"; 1`] = `
+"SyntaxError [1:14-1:15]: Expected '('
+> 1 | if (x) import {x} from "y";
+    |               ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > if (x); else import {x} from "y"; 1`] = `
+"SyntaxError [1:20-1:21]: Expected '('
+> 1 | if (x); else import {x} from "y";
+    |                     ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * As a from 'a' 1`] = `
+"SyntaxError [1:9-1:11]: Expected 'as'
+> 1 | import * As a from 'a'
+    |          ^^ Expected 'as'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as "foo" from "./f"; import { foo } from "./m"; 1`] = `
+"SyntaxError [1:7-1:17]: Unexpected token: 'string'
+> 1 | import * as "foo" from "./f"; import { foo } from "./m";
+    |        ^^^^^^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as a in b from "foo"; 1`] = `
+"SyntaxError [1:14-1:16]: Expected 'from'
+> 1 | import * as a in b from "foo";
+    |               ^^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as b, a from 'a' 1`] = `
+"SyntaxError [1:13-1:14]: Expected 'from'
+> 1 | import * as b, a from 'a'
+    |              ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as foo from "./f"; import { foo } from "./m"; 1`] = `
+"SyntaxError [1:41-1:42]: Duplicate binding 'foo'
+> 1 | import * as foo from "./f"; import { foo } from "./m";
+    |                                          ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as from 1`] = `
+"SyntaxError [1:12-1:16]: Expected 'from'
+> 1 | import * as from
+    |             ^^^^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as x 1`] = `
+"SyntaxError [1:12-1:13]: Expected 'from'
+> 1 | import * as x
+    |             ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * from "foo" 1`] = `
+"SyntaxError [1:9-1:13]: Expected 'as'
+> 1 | import * from "foo"
+    |          ^^^^ Expected 'as'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import *= from 'foo'; 1`] = `
+"SyntaxError [1:7-1:9]: Unexpected token: '*='
+> 1 | import *= from 'foo';
+    |        ^^ Unexpected token: '*='"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import / as a from 'a' 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '/'
+> 1 | import / as a from 'a'
+    |        ^ Unexpected token: '/'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import [ foo ] from "foo.js"; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '['
+> 1 | import [ foo ] from "foo.js";
+    |        ^ Unexpected token: '['"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import [ foo ] from "string"; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '['
+> 1 | import [ foo ] from "string";
+    |        ^ Unexpected token: '['"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { !d } from 'foo'; 1`] = `
+"SyntaxError [1:9-1:10]: Expected '}'
+> 1 | import { !d } from 'foo';
+    |          ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { , foo } from "string"; 1`] = `
+"SyntaxError [1:9-1:10]: Expected '}'
+> 1 | import { , foo } from "string";
+    |          ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { [123] } from 'foo'; 1`] = `
+"SyntaxError [1:9-1:10]: Expected '}'
+> 1 | import { [123] } from 'foo';
+    |          ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { {} } from 'foo'; 1`] = `
+"SyntaxError [1:9-1:10]: Expected '}'
+> 1 | import { {} } from 'foo';
+    |          ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { 1`] = `
+"SyntaxError [1:7-1:8]: Expected '}'
+> 1 | import {
+    |        ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { 123 } from 'foo'; 1`] = `
+"SyntaxError [1:9-1:12]: Expected '}'
+> 1 | import { 123 } from 'foo';
+    |          ^^^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { a } from; 1`] = `
+"SyntaxError [1:17-1:18]: Import source must be string
+> 1 | import { a } from;
+    |                  ^ Import source must be string"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { b as foo } from "./f"; import { "a" as foo } from "./m"; 1`] = `
+"SyntaxError [1:52-1:53]: Duplicate binding 'foo'
+> 1 | import { b as foo } from "./f"; import { "a" as foo } from "./m";
+    |                                                     ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo } from "./f"; import { foo } from "./m"; 1`] = `
+"SyntaxError [1:40-1:41]: Duplicate binding 'foo'
+> 1 | import { foo } from "./f"; import { foo } from "./m";
+    |                                         ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo } from "string 1`] = `
+"SyntaxError [1:20-1:27]: Unterminated string literal
+> 1 | import { foo } from "string
+    |                     ^^^^^^^ Unterminated string literal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo }, * as ns1 from "foo.js"; 1`] = `
+"SyntaxError [1:14-1:15]: Expected 'from'
+> 1 | import { foo }, * as ns1 from "foo.js";
+    |               ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo }, * as ns1 from "string"; 1`] = `
+"SyntaxError [1:14-1:15]: Expected 'from'
+> 1 | import { foo }, * as ns1 from "string";
+    |               ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo }, from "string"; 1`] = `
+"SyntaxError [1:14-1:15]: Expected 'from'
+> 1 | import { foo }, from "string";
+    |               ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo 1`] = `
+"SyntaxError [1:9-1:12]: Expected ','
+> 1 | import { foo
+    |          ^^^ Expected ','"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as  1`] = `
+"SyntaxError [1:15-1:16]: Expected ','
+> 1 | import { foo as 
+    |                ^ Expected ','"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as  2`] = `
+"SyntaxError [1:15-1:16]: Expected ','
+> 1 | import { foo as 
+    |                ^ Expected ','"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as bar  1`] = `
+"SyntaxError [1:19-1:20]: Expected ','
+> 1 | import { foo as bar 
+    |                    ^ Expected ','"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as bar,  1`] = `
+"SyntaxError [1:20-1:21]: Expected '}'
+> 1 | import { foo as bar, 
+    |                     ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as bar, bar } from "string"; 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'bar'
+> 1 | import { foo as bar, bar } from "string";
+    |                          ^ Duplicate binding 'bar'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as switch } from "module"; 1`] = `
+"SyntaxError [1:16-1:22]: Invalid keyword
+> 1 | import { foo as switch } from "module";
+    |                 ^^^^^^ Invalid keyword"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo as switch } from "module"; 2`] = `
+"SyntaxError [1:16-1:22]: Invalid keyword
+> 1 | import { foo as switch } from "module";
+    |                 ^^^^^^ Invalid keyword"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo bar } from "module"; 1`] = `
+"SyntaxError [1:13-1:16]: Expected ','
+> 1 | import { foo bar } from "module";
+    |              ^^^ Expected ','"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo, , } from "module"; 1`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | import { foo, , } from "module";
+    |               ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo, , } from "module"; 2`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | import { foo, , } from "module";
+    |               ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo, bar as foo } from "string"; 1`] = `
+"SyntaxError [1:25-1:26]: Duplicate binding 'foo'
+> 1 | import { foo, bar as foo } from "string";
+    |                          ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { foo, foo } from "string"; 1`] = `
+"SyntaxError [1:18-1:19]: Duplicate binding 'foo'
+> 1 | import { foo, foo } from "string";
+    |                   ^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { implements } from "null" 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected strict mode reserved word
+> 1 | import { implements } from "null"
+    |                     ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { null } from "null" 1`] = `
+"SyntaxError [1:14-1:15]: Invalid keyword
+> 1 | import { null } from "null"
+    |               ^ Invalid keyword"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { switch } from "module"; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid keyword
+> 1 | import { switch } from "module";
+    |                 ^ Invalid keyword"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import { x, y, x } from "foo"; 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'x'
+> 1 | import { x, y, x } from "foo";
+    |                  ^ Duplicate binding 'x'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {,} from 'a'; 1`] = `
+"SyntaxError [1:8-1:9]: Expected '}'
+> 1 | import {,} from 'a';
+    |         ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {,} from 'a'; 2`] = `
+"SyntaxError [1:8-1:9]: Expected '}'
+> 1 | import {,} from 'a';
+    |         ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {} 1`] = `
+"SyntaxError [1:8-1:9]: Expected 'from'
+> 1 | import {}
+    |         ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {} from; 1`] = `
+"SyntaxError [1:14-1:15]: Import source must be string
+> 1 | import {} from;
+    |               ^ Import source must be string"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a b} from "foo"; 1`] = `
+"SyntaxError [1:10-1:11]: Expected ','
+> 1 | import {a b} from "foo";
+    |           ^ Expected ','"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, a as a} from "foo" 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | import {a, a as a} from "foo"
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, a, b} from "foo" 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | import {a, a, b} from "foo"
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, a} from "foo" 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | import {a, a} from "foo"
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, a} from "foo"; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | import {a, a} from "foo";
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, b as a} from "foo" 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | import {a, b as a} from "foo"
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, b as a} from "foo"; 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | import {a, b as a} from "foo";
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a, b, a} from "foo" 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | import {a, b, a} from "foo"
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {a as a} from "foo" 1`] = `
+"SyntaxError [1:37-1:38]: Duplicate binding 'a'
+> 1 | import {a} from "foo"; import {a as a} from "foo"
+    |                                      ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {a} from "foo"; 1`] = `
+"SyntaxError [1:32-1:33]: Duplicate binding 'a'
+> 1 | import {a} from "foo"; import {a} from "foo";
+    |                                 ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {b as a} from "foo" 1`] = `
+"SyntaxError [1:37-1:38]: Duplicate binding 'a'
+> 1 | import {a} from "foo"; import {b as a} from "foo"
+    |                                      ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {b as a} from "foo" 2`] = `
+"SyntaxError [1:37-1:38]: Duplicate binding 'a'
+> 1 | import {a} from "foo"; import {b as a} from "foo"
+    |                                      ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {b, a} from "foo" 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'a'
+> 1 | import {a} from "foo"; import {b, a} from "foo"
+    |                                    ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import a from "foo" 1`] = `
+"SyntaxError [1:30-1:31]: Duplicate binding 'a'
+> 1 | import {a} from "foo"; import a from "foo"
+    |                               ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {await} from "foo"; 1`] = `
+"SyntaxError [1:13-1:14]: Can not use \`await\` as identifier in module or async func
+> 1 | import {await} from "foo";
+    |              ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {b as a, c as a} from "foo"; 1`] = `
+"SyntaxError [1:22-1:23]: Duplicate binding 'a'
+> 1 | import {b as a, c as a} from "foo";
+    |                       ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {b, a, a} from "foo" 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | import {b, a, a} from "foo"
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {b,,} from 'a'; 1`] = `
+"SyntaxError [1:10-1:11]: Expected '}'
+> 1 | import {b,,} from 'a';
+    |           ^ Expected '}'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {eval} from 'x' 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected eval or arguments in strict mode
+> 1 | import {eval} from 'x'
+    |             ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import {foo as await} from "foo"; 1`] = `
+"SyntaxError [1:15-1:20]: Can not use \`await\` as identifier in module or async func
+> 1 | import {foo as await} from "foo";
+    |                ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import 1`] = `
+"SyntaxError [1:0-1:6]: Unexpected token: 'end of source'
+> 1 | import
+    | ^^^^^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a from "foo"; import * as a from "foo" 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'a'
+> 1 | import a from "foo"; import * as a from "foo"
+    |                                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, * as a from "foo" 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | import a, * as a from "foo"
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, * as a from "foo"; 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+> 1 | import a, * as a from "foo";
+    |                ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, ** from 'foo'; 1`] = `
+"SyntaxError [1:10-1:12]: Only '*' or '{...}' can be imported after default
+> 1 | import a, ** from 'foo';
+    |           ^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, **= from 'foo'; 1`] = `
+"SyntaxError [1:10-1:13]: Only '*' or '{...}' can be imported after default
+> 1 | import a, **= from 'foo';
+    |           ^^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, *= from 'foo'; 1`] = `
+"SyntaxError [1:10-1:12]: Only '*' or '{...}' can be imported after default
+> 1 | import a, *= from 'foo';
+    |           ^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, {a} from "foo" 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | import a, {a} from "foo"
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, {a} from "foo"; 1`] = `
+"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+> 1 | import a, {a} from "foo";
+    |             ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, {b as a} from "foo" 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | import a, {b as a} from "foo"
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import a, {b as a} from "foo"; 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
+> 1 | import a, {b as a} from "foo";
+    |                  ^ Duplicate binding 'a'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import arguments, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:16]: Unexpected eval or arguments in strict mode
+> 1 | import arguments, {x, y, z} from "foo";
+    |        ^^^^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import await from 'foo' 1`] = `
+"SyntaxError [1:7-1:12]: The import keyword can only be used with the module goal
+> 1 | import await from 'foo'
+    |        ^^^^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import await, * as foo from "foo"; 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected strict mode reserved word
+> 1 | import await, * as foo from "foo";
+    |        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import await, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected strict mode reserved word
+> 1 | import await, {x, y, z} from "foo";
+    |        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import await, {x, y, z} from "foo"; 2`] = `
+"SyntaxError [1:7-1:12]: Unexpected strict mode reserved word
+> 1 | import await, {x, y, z} from "foo";
+    |        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import cherow from ; 1`] = `
+"SyntaxError [1:19-1:20]: Import source must be string
+> 1 | import cherow from ;
+    |                    ^ Import source must be string"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import cherow from [] 1`] = `
+"SyntaxError [1:19-1:20]: Import source must be string
+> 1 | import cherow from []
+    |                    ^ Import source must be string"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import cherow from 12 1`] = `
+"SyntaxError [1:19-1:21]: Import source must be string
+> 1 | import cherow from 12
+    |                    ^^ Import source must be string"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import enum, * as foo from "foo"; 1`] = `
+"SyntaxError [1:7-1:11]: Unexpected strict mode reserved word
+> 1 | import enum, * as foo from "foo";
+    |        ^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import enum, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:11]: Unexpected strict mode reserved word
+> 1 | import enum, {x, y, z} from "foo";
+    |        ^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import eval, * as foo from "foo"; 1`] = `
+"SyntaxError [1:7-1:11]: Unexpected eval or arguments in strict mode
+> 1 | import eval, * as foo from "foo";
+    |        ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import eval, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:11]: Unexpected eval or arguments in strict mode
+> 1 | import eval, {x, y, z} from "foo";
+    |        ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo 1`] = `
+"SyntaxError [1:7-1:10]: Expected 'from'
+> 1 | import foo
+    |        ^^^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo from "bar" 1`] = `
+"SyntaxError [1:7-1:10]: The import keyword can only be used with the module goal
+> 1 | import foo from "bar"
+    |        ^^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo from "string"; import foo from "string"; 1`] = `
+"SyntaxError [1:33-1:36]: Duplicate binding 'foo'
+> 1 | import foo from "string"; import foo from "string";
+    |                                  ^^^ Duplicate binding 'foo'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo, bar from "foo.js"; 1`] = `
+"SyntaxError [1:12-1:15]: Only '*' or '{...}' can be imported after default
+> 1 | import foo, bar from "foo.js";
+    |             ^^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo, bar from "string"; 1`] = `
+"SyntaxError [1:12-1:15]: Only '*' or '{...}' can be imported after default
+> 1 | import foo, bar from "string";
+    |             ^^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo, from "bar"; 1`] = `
+"SyntaxError [1:12-1:16]: Only '*' or '{...}' can be imported after default
+> 1 | import foo, from "bar";
+    |             ^^^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import foo, from "bar"; 2`] = `
+"SyntaxError [1:12-1:16]: Only '*' or '{...}' can be imported after default
+> 1 | import foo, from "bar";
+    |             ^^^^ Only '*' or '{...}' can be imported after default"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import implements, * as foo from "foo"; 1`] = `
+"SyntaxError [1:7-1:17]: Unexpected strict mode reserved word
+> 1 | import implements, * as foo from "foo";
+    |        ^^^^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import implements, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:17]: Unexpected strict mode reserved word
+> 1 | import implements, {x, y, z} from "foo";
+    |        ^^^^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import package, * as foo from "foo"; 1`] = `
+"SyntaxError [1:7-1:14]: Unexpected strict mode reserved word
+> 1 | import package, * as foo from "foo";
+    |        ^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import package, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:14]: Unexpected strict mode reserved word
+> 1 | import package, {x, y, z} from "foo";
+    |        ^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import protected, * as foo from "foo"; 1`] = `
+"SyntaxError [1:7-1:16]: Unexpected strict mode reserved word
+> 1 | import protected, * as foo from "foo";
+    |        ^^^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import protected, {x, y, z} from "foo"; 1`] = `
+"SyntaxError [1:7-1:16]: Unexpected strict mode reserved word
+> 1 | import protected, {x, y, z} from "foo";
+    |        ^^^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: ';'
+> 1 | import;
+    |       ^ Unexpected token: ';'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > let x = () => {import {x} from "y";} 1`] = `
+"SyntaxError [1:22-1:23]: The import keyword can only be used with the module goal
+> 1 | let x = () => {import {x} from "y";}
+    |                       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > let x = () => import {x} from "y" 1`] = `
+"SyntaxError [1:21-1:22]: Expected '('
+> 1 | let x = () => import {x} from "y"
+    |                      ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > mport { foo }, bar from "string"; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '{'
+> 1 | mport { foo }, bar from "string";
+    |       ^ Unexpected token: '{'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > switch (x) { case x: import {x} from "y"; } 1`] = `
+"SyntaxError [1:28-1:29]: The import keyword can only be used with the module goal
+> 1 | switch (x) { case x: import {x} from "y"; }
+    |                             ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > switch (x) { default: import {x} from "y"; } 1`] = `
+"SyntaxError [1:29-1:30]: The import keyword can only be used with the module goal
+> 1 | switch (x) { default: import {x} from "y"; }
+    |                              ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > switch (x) { import {x} from "y"; } 1`] = `
+"SyntaxError [1:13-1:19]: Expected 'default'
+> 1 | switch (x) { import {x} from "y"; }
+    |              ^^^^^^ Expected 'default'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > try { } finally { import {x} from "y"; } 1`] = `
+"SyntaxError [1:25-1:26]: The import keyword can only be used with the module goal
+> 1 | try { } finally { import {x} from "y"; }
+    |                          ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Module - Import > Module - Import (fail) > with (x) import {x} from "y"; 1`] = `
+"SyntaxError [1:16-1:17]: Expected '('
+> 1 | with (x) import {x} from "y";
+    |                 ^ Expected '('"
+`;
+
+exports[`Module - Import > Module - Import (fail) > x = { foo(){ import {x} from "y"; }} 1`] = `
+"SyntaxError [1:20-1:21]: The import keyword can only be used with the module goal
+> 1 | x = { foo(){ import {x} from "y"; }}
+    |                     ^ The import keyword can only be used with the module goal"
+`;

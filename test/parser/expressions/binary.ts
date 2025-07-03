@@ -1,8 +1,7 @@
-import { Context } from '../../../src/common';
-import { pass } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { pass } from '../../test-utils';
 describe('Expressions - Binary', () => {
   for (const arg of [
     '(-1) = a',
@@ -48,17 +47,17 @@ describe('Expressions - Binary', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -256,17 +255,17 @@ describe('Expressions - Binary', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -289,6 +288,6 @@ describe('Expressions - Binary', () => {
     { code: 'a || b && c', options: { loc: true } },
     { code: 'a ^ b | c', options: { loc: true } },
     { code: 'a == b != c === d !== e', options: { ranges: true } },
-    { code: `var a = {b: 'u' + 1 }`, options: { ranges: true, loc: true } },
+    { code: "var a = {b: 'u' + 1 }", options: { ranges: true, loc: true } },
   ]);
 });

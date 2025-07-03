@@ -1,5 +1,113 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Rest > Expressions - Rest (fail) > (...rest = ...NaN) => {}; 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '...'
+> 1 | (...rest = ...NaN) => {};
+    |            ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > (a = (...NaN), ...b = [...[1,2,3]], rest) => {}; 1`] = `
+"SyntaxError [1:13-1:14]: Expected '=>'
+> 1 | (a = (...NaN), ...b = [...[1,2,3]], rest) => {};
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > (a = ...NaN, b = [...[1,2,3]], ...rest) => {}; 1`] = `
+"SyntaxError [1:5-1:8]: Unexpected token: '...'
+> 1 | (a = ...NaN, b = [...[1,2,3]], ...rest) => {};
+    |      ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > (a = [...NaN], ...b = [...[1,2,3]], rest) => {}; 1`] = `
+"SyntaxError [1:34-1:35]: Invalid rest argument
+> 1 | (a = [...NaN], ...b = [...[1,2,3]], rest) => {};
+    |                                   ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > (a, ...b, ...rest) => {}; 1`] = `
+"SyntaxError [1:8-1:9]: Invalid rest argument
+> 1 | (a, ...b, ...rest) => {};
+    |         ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > [...x, y] = [1,2,3]; 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | [...x, y] = [1,2,3];
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > [...x,] = [1,2,3]; 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | [...x,] = [1,2,3];
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function f(a, ...[b]) { "use strict"; } 1`] = `
+"SyntaxError [1:24-1:37]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | function f(a, ...[b]) { "use strict"; }
+    |                         ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function f(a, ...b) { "use strict"; } 1`] = `
+"SyntaxError [1:22-1:35]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | function f(a, ...b) { "use strict"; }
+    |                       ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function foo(...[a], ...b) {} 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | function foo(...[a], ...b) {}
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function foo(...[a],) {} 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | function foo(...[a],) {}
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function foo(...a, ...[b]) {} 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | function foo(...a, ...[b]) {}
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function foo(a, ...[b], c) => {} 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | function foo(a, ...[b], c) => {}
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > function foo(a, ...b, c) => {} 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | function foo(a, ...b, c) => {}
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > var obj = class { method(a, b = 1, ...c = [2,3]) {} }; 1`] = `
+"SyntaxError [1:47-1:48]: The binding declaration is not destructible
+> 1 | var obj = class { method(a, b = 1, ...c = [2,3]) {} };
+    |                                                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > var x = { set setter(...[x]) {} } 1`] = `
+"SyntaxError [1:21-1:24]: Setter function argument must not be a rest parameter
+> 1 | var x = { set setter(...[x]) {} }
+    |                      ^^^ Setter function argument must not be a rest parameter"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > var x = class { set setter(...[x]) {} } 1`] = `
+"SyntaxError [1:27-1:30]: Setter function argument must not be a rest parameter
+> 1 | var x = class { set setter(...[x]) {} }
+    |                            ^^^ Setter function argument must not be a rest parameter"
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (fail) > var x = class { set setter(...x) {} } 1`] = `
+"SyntaxError [1:27-1:30]: Setter function argument must not be a rest parameter
+> 1 | var x = class { set setter(...x) {} }
+    |                            ^^^ Setter function argument must not be a rest parameter"
+`;
+
 exports[`Expressions - Rest > Expressions - Rest (pass) > class restClass { method(a, b, c, ...[d]) { arguments; return [a, b, c, d]; } }; 1`] = `
 {
   "body": [

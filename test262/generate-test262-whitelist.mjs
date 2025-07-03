@@ -2,11 +2,14 @@
 import childProcess from 'node:child_process';
 import fs from 'node:fs/promises';
 
-const WHITELIST_FILE = new URL('../test/test262-parser-tests/whitelist.txt', import.meta.url);
+const WHITELIST_FILE = new URL('./whitelist.txt', import.meta.url);
 
 await fs.writeFile(WHITELIST_FILE, '');
 
-const stdout = childProcess.execSync('node ./scripts/run-test262-cli.mjs', { encoding: 'utf8' });
+const stdout = childProcess.execSync('node ./run-test262-cli.mjs', {
+  encoding: 'utf8',
+  cwd: new URL('./', import.meta.url),
+});
 
 const lines = stdout
   .split('\n')
@@ -16,4 +19,4 @@ const lines = stdout
 
 await fs.writeFile(WHITELIST_FILE, lines.join('\n') + '\n');
 
-console.log(`✅ test262 whitelist updated.`);
+console.log('✅ test262 whitelist updated.');
