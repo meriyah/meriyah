@@ -57,8 +57,6 @@ export interface Options {
   onInsertedSemicolon?: OnInsertedSemicolon;
   // Allows token extraction. Accepts either a callback function or an array
   onToken?: Token[] | OnToken;
-  // Creates unique key for in ObjectPattern when key value are same
-  uniqueKeyInPattern?: boolean;
 }
 
 export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
