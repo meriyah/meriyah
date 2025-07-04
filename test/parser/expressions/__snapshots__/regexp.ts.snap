@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RegExp > /\\B*/u 1`] = `
+"SyntaxError [1:0-1:6]: Unterminated regular expression
+> 1 | /\\B*/u
+    | ^^^^^^ Unterminated regular expression"
+`;
+
+exports[`RegExp > /\\B*/u 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "regex": {
+          "flags": "u",
+          "pattern": "\\B*",
+        },
+        "type": "Literal",
+        "value": null,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

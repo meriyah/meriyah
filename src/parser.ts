@@ -31,7 +31,7 @@ import type * as ESTree from './estree';
 import { nextToken, skipHashBang } from './lexer';
 import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx';
 import { scanTemplateTail } from './lexer/template';
-import { normalizeOptions, type Options } from './options';
+import { type Options } from './options';
 import { Parser } from './parser/parser';
 import { type PrivateScope } from './parser/private-scope';
 import { createArrowHeadParsingScope, type Scope, ScopeKind } from './parser/scope';
@@ -41,15 +41,12 @@ import { KeywordDescTable, Token } from './token';
  * Consumes a sequence of tokens and produces an syntax tree
  */
 export function parseSource(source: string, rawOptions: Options = {}, context: Context = Context.None): ESTree.Program {
-  const options = normalizeOptions(rawOptions);
-
-  if (options.sourceType === 'module') context |= Context.Module | Context.Strict;
-  // Turn on return context in global
-  if (options.sourceType === 'commonjs') context |= Context.InReturnContext | Context.AllowNewTarget;
-  if (options.impliedStrict) context |= Context.Strict;
-
   // Initialize parser state
-  const parser = new Parser(source, options);
+  const parser = new Parser(source, rawOptions);
+
+  if (parser.options.sourceType === 'module') context |= Context.Module | Context.Strict;
+  if (parser.options.sourceType === 'commonjs') context |= Context.InReturnContext | Context.AllowNewTarget;
+  if (parser.options.impliedStrict) context |= Context.Strict;
 
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);

@@ -4,10 +4,10 @@ import { Context } from '../../src/common';
 import { scanSingleToken } from '../../src/lexer/scan';
 import { Parser } from '../../src/parser/parser';
 import { Token } from '../../src/token';
-import { type NormalizedOptions } from './../../src/options';
+import { type Options } from './../../src/options';
 
 describe('Lexer - String', () => {
-  const tokens: ([Context, Token, string, string] | [Context, Token, string, string, NormalizedOptions])[] = [
+  const tokens: ([Context, Token, string, string] | [Context, Token, string, string, Options])[] = [
     [Context.None, Token.StringLiteral, '"foo"', 'foo'],
     [Context.None, Token.StringLiteral, '"foo "', 'foo '],
     [Context.None, Token.StringLiteral, '"foo "', 'foo '],
@@ -199,7 +199,7 @@ describe('Lexer - String', () => {
     });
   }
 
-  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
+  function fail(name: string, source: string, context: Context, options: Options = {}) {
     it(name, () => {
       const parser = new Parser(source, options);
       t.throws(() => scanSingleToken(parser, context, 0));
