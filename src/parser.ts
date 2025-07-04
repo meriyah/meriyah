@@ -168,7 +168,7 @@ function parseModuleItemList(parser: Parser, context: Context, scope: Scope | un
  * @param scope Scope object
  */
 
-export function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement {
+function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement {
   if (parser.getToken() === Token.Decorator) {
     Object.assign(parser.leadingDecorators, {
       start: parser.tokenStart,
@@ -871,7 +871,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
  * @param start Start pos of node
  */
 
-export function parseDirective(
+function parseDirective(
   parser: Parser,
   context: Context,
   expression: ESTree.ArgumentExpression | ESTree.SequenceExpression | ESTree.Expression,
