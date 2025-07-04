@@ -4586,22 +4586,18 @@ function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree
   const start = parser.tokenStart;
   const raw = KeywordDescTable[parser.getToken() & Token.Type];
   const value = parser.getToken() === Token.NullKeyword ? null : raw === 'true';
+  const node: ESTree.NullLiteral | ESTree.BooleanLiteral = {
+    type: 'Literal',
+    value,
+  };
+
+  if (parser.options.raw) {
+    node.raw = raw;
+  }
 
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
-  return parser.finishNode(
-    parser.options.raw
-      ? {
-          type: 'Literal',
-          value,
-          raw,
-        }
-      : {
-          type: 'Literal',
-          value,
-        },
-    start,
-  );
+  return parser.finishNode(node, start);
 }
 
 /**

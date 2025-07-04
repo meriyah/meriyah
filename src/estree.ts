@@ -641,7 +641,7 @@ export interface BigIntLiteral extends _LiteralBase {
 }
 
 export interface RegExpLiteral extends _LiteralBase {
-  value: RegExp;
+  value: RegExp | null;
   regex: {
     pattern: string;
     flags: string;
