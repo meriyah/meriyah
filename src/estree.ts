@@ -307,6 +307,10 @@ export interface BigIntLiteral extends Literal {
   bigint: string;
 }
 
+export interface StringLiteral extends Literal {
+  value: string;
+}
+
 export interface BinaryExpression extends _Node {
   type: 'BinaryExpression';
   operator: string;
@@ -440,8 +444,8 @@ export interface ExportNamedDeclaration extends _Node {
 
 export interface ExportSpecifier extends _Node {
   type: 'ExportSpecifier';
-  local: Identifier | Literal;
-  exported: Identifier | Literal;
+  local: Identifier | StringLiteral;
+  exported: Identifier | StringLiteral;
 }
 
 export interface ExpressionStatement extends _Node {
@@ -519,7 +523,7 @@ export interface ImportNamespaceSpecifier extends _Node {
 export interface ImportSpecifier extends _Node {
   type: 'ImportSpecifier';
   local: Identifier;
-  imported: Identifier | Literal;
+  imported: Identifier | StringLiteral;
 }
 
 export interface JSXNamespacedName extends _Node {

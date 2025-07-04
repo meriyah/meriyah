@@ -272,8 +272,14 @@ export class Parser {
   }
 
   cloneIdentifier(original: ESTree.Identifier): ESTree.Identifier {
-    const node: ESTree.Identifier = { ...original };
+    return this.cloneLocationInformation({ ...original }, original);
+  }
 
+  cloneStringLiteral(original: ESTree.StringLiteral): ESTree.StringLiteral {
+    return this.cloneLocationInformation({ ...original }, original);
+  }
+
+  private cloneLocationInformation<T extends ESTree.Node>(node: T, original: T) {
     if (this.options.ranges) {
       node.range = [...original.range!];
     }
