@@ -364,7 +364,7 @@ const errorMessages: {
   [Errors.OptionalChainingNoNew]: 'Invalid optional chain from new expression',
   [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module',
   [Errors.InvalidLeadingDecorator]: 'Leading decorators must be attached to a class declaration',
-  [Errors.InvalidExportName]: 'An export name cannot include a lone surrogate, found %0',
+  [Errors.InvalidExportName]: 'An export name cannot include a lone surrogate',
   [Errors.InvalidExportReference]: 'A string literal cannot be used as an exported binding without `from`',
   [Errors.InvalidSuperPrivate]: "Private fields can't be accessed on super",
   [Errors.InvalidImportMeta]: "The only valid meta property for import is 'import.meta'",

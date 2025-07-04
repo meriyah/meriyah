@@ -1,4 +1,3 @@
-import { Chars } from './chars';
 import {
   AssignmentKind,
   BindingKind,
@@ -4214,25 +4213,6 @@ function parseIdentifierOrStringLiteral(parser: Parser, context: Context): ESTre
   }
 }
 
-/**
- * Checks IsStringWellFormedUnicode, same as String.prototype.isWellFormed
- *
- * @param str string to check
- * @returns void when passed the check
- */
-function validateStringWellFormed(parser: Parser, str: string): void {
-  const len = str.length;
-  for (let i = 0; i < len; i++) {
-    const code = str.charCodeAt(i);
-    // Single UTF-16 unit
-    if ((code & 0xfc00) !== Chars.LeadSurrogateMin) continue;
-    // unpaired surrogate
-    if (code > Chars.LeadSurrogateMax || ++i >= len || (str.charCodeAt(i) & 0xfc00) !== Chars.TrailSurrogateMin) {
-      parser.report(Errors.InvalidExportName, JSON.stringify(str.charAt(i--)));
-    }
-  }
-}
-
 function parseModuleExportName(parser: Parser, context: Context): ESTree.Identifier | ESTree.StringLiteral {
   // ModuleExportName :
   //   IdentifierName
@@ -4243,7 +4223,10 @@ function parseModuleExportName(parser: Parser, context: Context): ESTree.Identif
   //   StringLiteral) is false.
 
   if (parser.getToken() === Token.StringLiteral) {
-    validateStringWellFormed(parser, parser.tokenValue as string);
+    const value = parser.tokenValue as string;
+    if (!value.isWellFormed()) {
+      parser.report(Errors.InvalidExportName);
+    }
     return parseLiteral<ESTree.StringLiteral>(parser, context);
   } else if (parser.getToken() & Token.IsIdentifier) {
     return parseIdentifier(parser, context);

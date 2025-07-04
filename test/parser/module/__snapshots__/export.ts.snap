@@ -205,9 +205,9 @@ exports[`Module - Export > Module - Export (fail) > export ...x = y 1`] = `
 `;
 
 exports[`Module - Export > Module - Export (fail) > export { "\\uD83C" as b } from "./foo"; 1`] = `
-"SyntaxError [1:9-1:17]: An export name cannot include a lone surrogate, found ""
+"SyntaxError [1:9-1:17]: An export name cannot include a lone surrogate
 > 1 | export { "\\uD83C" as b } from "./foo";
-    |          ^^^^^^^^ An export name cannot include a lone surrogate, found """
+    |          ^^^^^^^^ An export name cannot include a lone surrogate"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export { "a" as b }; 1`] = `
@@ -241,9 +241,9 @@ exports[`Module - Export > Module - Export (fail) > export { a }; export { "\\u0
 `;
 
 exports[`Module - Export > Module - Export (fail) > export { a as "\\uD83C" } from "./foo"; 1`] = `
-"SyntaxError [1:14-1:22]: An export name cannot include a lone surrogate, found ""
+"SyntaxError [1:14-1:22]: An export name cannot include a lone surrogate
 > 1 | export { a as "\\uD83C" } from "./foo";
-    |               ^^^^^^^^ An export name cannot include a lone surrogate, found """
+    |               ^^^^^^^^ An export name cannot include a lone surrogate"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export { arguments } 1`] = `
