@@ -12,28 +12,10 @@ exports[`Statements - Return > Statements - Return (fail) > *() => {return} 1`] 
     | ^ Unexpected token: '*'"
 `;
 
-exports[`Statements - Return > Statements - Return (fail) > class X { static { return; } } 1`] = `
-"SyntaxError [1:19-1:25]: Illegal return statement
-> 1 | class X { static { return; } }
-    |                    ^^^^^^ Illegal return statement"
-`;
-
-exports[`Statements - Return > Statements - Return (fail) > new.target 1`] = `
-"SyntaxError [1:4-1:10]: new.target only allowed within functions or static blocks
-> 1 | new.target
-    |     ^^^^^^ new.target only allowed within functions or static blocks"
-`;
-
 exports[`Statements - Return > Statements - Return (fail) > return 1`] = `
 "SyntaxError [1:0-1:6]: Illegal return statement
 > 1 | return
     | ^^^^^^ Illegal return statement"
-`;
-
-exports[`Statements - Return > Statements - Return (fail) > using foo = null 1`] = `
-"SyntaxError [1:6-1:9]: Unexpected token: 'identifier'
-> 1 | using foo = null
-    |       ^^^ Unexpected token: 'identifier'"
 `;
 
 exports[`Statements - Return > Statements - Return (pass) > () => {return} 1`] = `

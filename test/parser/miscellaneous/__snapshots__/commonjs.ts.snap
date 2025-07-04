@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Return > Commonjs (fail) > class X { static { return; } } 1`] = `
+"SyntaxError [1:19-1:25]: Illegal return statement
+> 1 | class X { static { return; } }
+    |                    ^^^^^^ Illegal return statement"
+`;
+
+exports[`Statements - Return > Commonjs (fail) > new.target 1`] = `
+"SyntaxError [1:4-1:10]: new.target only allowed within functions or static blocks
+> 1 | new.target
+    |     ^^^^^^ new.target only allowed within functions or static blocks"
+`;
+
+exports[`Statements - Return > Commonjs (fail) > return 1`] = `
+"SyntaxError [1:0-1:6]: Illegal return statement
+> 1 | return
+    | ^^^^^^ Illegal return statement"
+`;
+
+exports[`Statements - Return > Commonjs (fail) > using foo = null 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected token: 'identifier'
+> 1 | using foo = null
+    |       ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - Return > Commonjs (pass) > new.target 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "meta": {
+          "name": "new",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "target",
+          "type": "Identifier",
+        },
+        "type": "MetaProperty",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Commonjs (pass) > return 1`] = `
+{
+  "body": [
+    {
+      "argument": null,
+      "type": "ReturnStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

@@ -47,7 +47,6 @@ export type Node =
   | AssignmentExpression
   | AssignmentPattern
   | AwaitExpression
-  | BigIntLiteral
   | BinaryExpression
   | BlockStatement
   | BreakStatement
@@ -110,7 +109,6 @@ export type Node =
   | PrivateIdentifier
   | Program
   | Property
-  | RegExpLiteral
   | RestElement
   | ReturnStatement
   | SequenceExpression
@@ -303,14 +301,6 @@ export interface AwaitExpression extends _Node {
   argument: Expression;
 }
 
-export interface BigIntLiteral extends Literal {
-  bigint: string;
-}
-
-export interface StringLiteral extends Literal {
-  value: string;
-}
-
 export interface BinaryExpression extends _Node {
   type: 'BinaryExpression';
   operator: string;
@@ -424,8 +414,8 @@ export interface EmptyStatement extends _Node {
 
 export interface ExportAllDeclaration extends _Node {
   type: 'ExportAllDeclaration';
-  source: Literal;
-  exported: Identifier | Literal | null;
+  source: StringLiteral;
+  exported: Identifier | StringLiteral | null;
   attributes: ImportAttribute[];
 }
 
@@ -438,7 +428,7 @@ export interface ExportNamedDeclaration extends _Node {
   type: 'ExportNamedDeclaration';
   declaration: ExportDeclaration | null;
   specifiers: ExportSpecifier[];
-  source: Literal | null;
+  source: StringLiteral | null;
   attributes: ImportAttribute[];
 }
 
@@ -499,15 +489,15 @@ export interface IfStatement extends _Node {
 
 export interface ImportDeclaration extends _Node {
   type: 'ImportDeclaration';
-  source: Literal;
+  source: StringLiteral;
   specifiers: ImportClause[];
   attributes: ImportAttribute[];
 }
 
 export interface ImportAttribute extends _Node {
   type: 'ImportAttribute';
-  key: Identifier | Literal;
-  value: Literal;
+  key: Identifier | StringLiteral;
+  value: StringLiteral;
 }
 
 export interface ImportDefaultSpecifier extends _Node {
@@ -623,10 +613,39 @@ export interface LabeledStatement extends _Node {
   body: Statement;
 }
 
-export interface Literal extends _Node {
+export type Literal = StringLiteral | NumericLiteral | BooleanLiteral | NullLiteral | BigIntLiteral | RegExpLiteral;
+
+export interface _LiteralBase extends _Node {
   type: 'Literal';
-  value: boolean | number | string | null | RegExp | bigint;
   raw?: string;
+}
+
+export interface StringLiteral extends _LiteralBase {
+  value: string;
+}
+
+export interface NumericLiteral extends _LiteralBase {
+  value: number;
+}
+export interface BooleanLiteral extends _LiteralBase {
+  value: boolean;
+}
+
+export interface NullLiteral extends _LiteralBase {
+  value: null;
+}
+
+export interface BigIntLiteral extends _LiteralBase {
+  value: bigint;
+  bigint: string;
+}
+
+export interface RegExpLiteral extends _LiteralBase {
+  value: RegExp | null;
+  regex: {
+    pattern: string;
+    flags: string;
+  };
 }
 
 export interface LogicalExpression extends _Node {
@@ -697,13 +716,6 @@ export interface Property extends _Node {
   method: boolean;
   shorthand: boolean;
   kind: 'init' | 'get' | 'set';
-}
-
-export interface RegExpLiteral extends Literal {
-  regex: {
-    pattern: string;
-    flags: string;
-  };
 }
 
 export interface RestElement extends _Node {

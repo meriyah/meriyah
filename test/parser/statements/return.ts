@@ -3,17 +3,7 @@ import { describe } from 'vitest';
 import { fail, pass } from '../../test-utils';
 
 describe('Statements - Return', () => {
-  fail('Statements - Return (fail)', [
-    'return',
-    '() => return',
-    '*() => {return}',
-    // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960924476
-    { code: 'class X { static { return; } }', options: { sourceType: 'commonjs' } },
-    // The following should be allowed in CommonJS
-    // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960396571
-    { code: 'new.target', options: { sourceType: 'commonjs' } },
-    { code: 'using foo = null', options: { sourceType: 'commonjs', next: true } },
-  ]);
+  fail('Statements - Return (fail)', ['return', '() => return', '*() => {return}']);
 
   pass('Statements - Return (pass)', [
     { code: 'function a() { return a, b, c; }', options: { ranges: true } },
