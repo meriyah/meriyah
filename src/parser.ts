@@ -45,8 +45,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   const parser = new Parser(source, rawOptions);
 
   if (parser.options.sourceType === 'module') context |= Context.Module | Context.Strict;
-  // Turn on return context in global
-  if (parser.options.sourceType === 'commonjs') context |= Context.InReturnContext;
+  if (parser.options.sourceType === 'commonjs') context |= Context.InReturnContext | Context.AllowNewTarget;
   if (parser.options.impliedStrict) context |= Context.Strict;
 
   // See: https://github.com/tc39/proposal-hashbang
