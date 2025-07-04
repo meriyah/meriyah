@@ -52,7 +52,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
 
   const scope = parser.createScopeIfLexical();
 
-  let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
+  let body: ESTree.Statement[] = [];
 
   // https://tc39.es/ecma262/#sec-scripts
   // https://tc39.es/ecma262/#sec-modules
@@ -130,11 +130,7 @@ function parseStatementList(parser: Parser, context: Context, scope: Scope | und
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseModuleItemList(
-  parser: Parser,
-  context: Context,
-  scope: Scope | undefined,
-): ReturnType<typeof parseDirective | typeof parseModuleItem>[] {
+function parseModuleItemList(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement[] {
   // ecma262/#prod-Module
   // Module :
   //    ModuleBody?
@@ -145,7 +141,7 @@ function parseModuleItemList(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const statements: ReturnType<typeof parseDirective | typeof parseModuleItem>[] = [];
+  const statements: ESTree.Statement[] = [];
 
   while (parser.getToken() === Token.StringLiteral) {
     const { tokenStart } = parser;
@@ -171,7 +167,7 @@ function parseModuleItemList(
  * @param scope Scope object
  */
 
-export function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefined): any {
+function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement {
   if (parser.getToken() === Token.Decorator) {
     Object.assign(parser.leadingDecorators, {
       start: parser.tokenStart,
@@ -218,7 +214,7 @@ function parseStatementListItem(
   privateScope: PrivateScope | undefined,
   origin: Origin,
   labels: ESTree.Labels,
-): ESTree.Statement | ESTree.Decorator[] {
+): ESTree.Statement {
   // ECMA 262 10th Edition
   // StatementListItem[Yield, Return] :
   //   Statement[?Yield, ?Return]
@@ -874,7 +870,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
  * @param start Start pos of node
  */
 
-export function parseDirective(
+function parseDirective(
   parser: Parser,
   context: Context,
   expression: ESTree.ArgumentExpression | ESTree.SequenceExpression | ESTree.Expression,
@@ -2548,15 +2544,7 @@ function parseExportDeclaration(
                 flags,
                 tokenStart,
               );
-              declaration = parseMemberOrUpdateExpression(
-                parser,
-                context,
-                undefined,
-                declaration as any,
-                0,
-                0,
-                tokenStart,
-              );
+              declaration = parseMemberOrUpdateExpression(parser, context, undefined, declaration, 0, 0, tokenStart);
               declaration = parseAssignmentExpression(parser, context, undefined, 0, 0, tokenStart, declaration as any);
             } else if (parser.getToken() & Token.IsIdentifier) {
               if (scope) scope = createArrowHeadParsingScope(parser, context, parser.tokenValue);
@@ -2971,7 +2959,7 @@ function parseAssignmentExpressionOrPattern(
   isPattern: 0 | 1,
   start: Location,
   left: any,
-): any {
+): ESTree.AssignmentPattern | ESTree.AssignmentExpression {
   const token = parser.getToken();
 
   nextToken(parser, context | Context.AllowRegExp);
@@ -2980,23 +2968,23 @@ function parseAssignmentExpressionOrPattern(
 
   left = parser.finishNode(
     isPattern
-      ? {
+      ? ({
           type: 'AssignmentPattern',
           left,
           right,
-        }
+        } as ESTree.AssignmentPattern)
       : ({
           type: 'AssignmentExpression',
           left,
           operator: KeywordDescTable[token & Token.Type],
           right,
-        } as any),
+        } as ESTree.AssignmentExpression),
     start,
   );
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return left as ESTree.Expression;
+  return left;
 }
 
 /**
