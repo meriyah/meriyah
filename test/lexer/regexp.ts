@@ -5,10 +5,10 @@ import { Context } from '../../src/common';
 import { scanSingleToken } from '../../src/lexer/scan';
 import { Parser } from '../../src/parser/parser';
 import { Token } from '../../src/token';
-import { type NormalizedOptions } from './../../src/options';
+import { type Options } from './../../src/options';
 
 describe('Lexer - Regular expressions', () => {
-  const tokens: ([Context, string, string, string] | [Context, string, string, string, NormalizedOptions])[] = [
+  const tokens: ([Context, string, string, string] | [Context, string, string, string, Options])[] = [
     // None unicode regular expression
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],

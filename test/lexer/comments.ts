@@ -4,10 +4,10 @@ import { Context } from '../../src/common';
 import { scanSingleToken } from '../../src/lexer/scan';
 import { Parser } from '../../src/parser/parser';
 import { Token } from '../../src/token';
-import { type NormalizedOptions } from './../../src/options';
+import { type Options } from './../../src/options';
 
 describe('Lexer - Comments', () => {
-  const tokens: [NormalizedOptions, Token, string, string][] = [
+  const tokens: [Options, Token, string, string][] = [
     [{ webcompat: true }, Token.EOF, '//', ''],
     [{ webcompat: true }, Token.EOF, '// foo', ''],
     [{ webcompat: true }, Token.EOF, '// foo\n', ''],

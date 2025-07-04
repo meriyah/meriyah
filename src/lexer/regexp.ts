@@ -157,13 +157,12 @@ function validate(parser: Parser, pattern: string, flags: string): RegExp | null
   try {
     return new RegExp(pattern, flags);
   } catch {
-    try {
-      // Some JavaScript engine has not supported flag "v". They will fail.
-      new RegExp(pattern, flags);
-      // Use null as tokenValue according to ESTree spec
+    // Use null as tokenValue according to ESTree spec
+    // https://github.com/estree/estree/blob/a27003adf4fd7bfad44de9cef372a2eacd527b1c/es5.md#regexpliteral
+    if (!parser.options.validateRegex) {
       return null;
-    } catch {
-      parser.report(Errors.UnterminatedRegExp);
     }
+
+    parser.report(Errors.UnterminatedRegExp);
   }
 }

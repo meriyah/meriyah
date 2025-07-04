@@ -4,7 +4,7 @@ import { Context } from '../../src/common';
 import { scanSingleToken } from '../../src/lexer/scan';
 import { Parser } from '../../src/parser/parser';
 import { Token } from '../../src/token';
-import { type NormalizedOptions } from './../../src/options';
+import { type Options } from './../../src/options';
 
 describe('Lexer - Identifiers', () => {
   const tokens: [Context, Token, string, string][] = [
@@ -190,7 +190,7 @@ describe('Lexer - Identifiers', () => {
     });
   }
 
-  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
+  function fail(name: string, source: string, context: Context, options: Options = {}) {
     it(name, () => {
       const parser = new Parser(source, options);
       t.throws(() => scanSingleToken(parser, context, 0));

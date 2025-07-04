@@ -57,6 +57,8 @@ export interface Options {
   onInsertedSemicolon?: OnInsertedSemicolon;
   // Allows token extraction. Accepts either a callback function or an array
   onToken?: Token[] | OnToken;
+  // Throw errors for invalid regexps
+  validateRegex?: boolean;
 
   // Allow module code
   /** @deprecated Use `sourceType` instead. */
@@ -66,13 +68,17 @@ export interface Options {
   globalReturn?: boolean;
 }
 
-export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
+export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken'> & {
+  validateRegex: boolean;
   onComment?: OnComment;
   onToken?: OnToken;
 };
 
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
-  const options = { ...rawOptions } as NormalizedOptions;
+  const options = {
+    validateRegex: true,
+    ...rawOptions,
+  } as NormalizedOptions;
 
   if (options.module && !options.sourceType) {
     options.sourceType = 'module';
