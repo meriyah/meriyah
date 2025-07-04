@@ -103,7 +103,7 @@ function parseStatementList(parser: Parser, context: Context, scope: Scope | und
     // "use strict" must be the exact literal without escape sequences or line continuation.
     const { index, tokenValue, tokenStart, tokenIndex } = parser;
     const token = parser.getToken();
-    const expr = parseLiteral(parser, context);
+    const expr = parseLiteral<ESTree.StringLiteral>(parser, context);
     if (isValidStrictMode(parser, index, tokenIndex, tokenValue)) {
       context |= Context.Strict;
 
@@ -152,7 +152,9 @@ function parseModuleItemList(
   while (parser.getToken() === Token.StringLiteral) {
     const { tokenStart } = parser;
     const token = parser.getToken();
-    statements.push(parseDirective(parser, context, parseLiteral(parser, context), token, tokenStart));
+    statements.push(
+      parseDirective(parser, context, parseLiteral<ESTree.StringLiteral>(parser, context), token, tokenStart),
+    );
   }
 
   while (parser.getToken() !== Token.EOF) {
@@ -2141,7 +2143,7 @@ function parseImportDeclaration(
 
   nextToken(parser, context);
 
-  let source: ESTree.Literal | null = null;
+  let source: ESTree.StringLiteral | null = null;
 
   const { tokenStart } = parser;
 
@@ -2149,7 +2151,7 @@ function parseImportDeclaration(
 
   // 'import' ModuleSpecifier ';'
   if (parser.getToken() === Token.StringLiteral) {
-    source = parseLiteral(parser, context);
+    source = parseLiteral<ESTree.StringLiteral>(parser, context);
   } else {
     if (parser.getToken() & Token.IsIdentifier) {
       const local = parseRestrictedIdentifier(parser, context, scope);
@@ -2262,13 +2264,13 @@ function parseImportNamespaceSpecifier(
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseModuleSpecifier(parser: Parser, context: Context): ESTree.Literal {
+function parseModuleSpecifier(parser: Parser, context: Context): ESTree.StringLiteral {
   // ModuleSpecifier :
   //   StringLiteral
   consume(parser, context, Token.FromKeyword);
   if (parser.getToken() !== Token.StringLiteral) parser.report(Errors.InvalidExportImportSource, 'Import');
 
-  return parseLiteral(parser, context);
+  return parseLiteral<ESTree.StringLiteral>(parser, context);
 }
 
 function parseImportSpecifierOrNamedImports(
@@ -2483,7 +2485,7 @@ function parseExportDeclaration(
   const specifiers: ESTree.ExportSpecifier[] = [];
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
-  let source: ESTree.Literal | null = null;
+  let source: ESTree.StringLiteral | null = null;
   let attributes: ESTree.ImportAttribute[] = [];
 
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword)) {
@@ -2603,7 +2605,7 @@ function parseExportDeclaration(
       // See: https://github.com/tc39/ecma262/pull/1174
       nextToken(parser, context); // Skips: '*'
 
-      let exported: ESTree.Identifier | ESTree.Literal | null = null;
+      let exported: ESTree.Identifier | ESTree.StringLiteral | null = null;
       const isNamedDeclaration = consumeOpt(parser, context, Token.AsKeyword);
 
       if (isNamedDeclaration) {
@@ -2615,7 +2617,7 @@ function parseExportDeclaration(
 
       if (parser.getToken() !== Token.StringLiteral) parser.report(Errors.InvalidExportImportSource, 'Export');
 
-      source = parseLiteral(parser, context);
+      source = parseLiteral<ESTree.StringLiteral>(parser, context);
 
       const attributes = parseImportAttributes(parser, context);
 
@@ -2702,7 +2704,7 @@ function parseExportDeclaration(
         // 'from' keyword since it references a local binding.
         if (parser.getToken() !== Token.StringLiteral) parser.report(Errors.InvalidExportImportSource, 'Export');
 
-        source = parseLiteral(parser, context);
+        source = parseLiteral<ESTree.StringLiteral>(parser, context);
 
         attributes = parseImportAttributes(parser, context);
 
@@ -3400,7 +3402,7 @@ function parseFunctionBody(
     while (parser.getToken() === Token.StringLiteral) {
       const { index, tokenStart, tokenIndex, tokenValue } = parser;
       const token = parser.getToken();
-      const expr = parseLiteral(parser, context);
+      const expr = parseLiteral<ESTree.StringLiteral>(parser, context);
       if (isValidStrictMode(parser, index, tokenIndex, tokenValue)) {
         context |= Context.Strict;
         // TC39 deemed "use strict" directives to be an error when occurring
@@ -4160,7 +4162,7 @@ function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportA
   consume(parser, context, Token.LeftBrace);
 
   const attributes: ESTree.ImportAttribute[] = [];
-  const keysContent = new Set<ESTree.Literal['value'] | ESTree.Identifier['name']>();
+  const keysContent = new Set<ESTree.StringLiteral['value'] | ESTree.Identifier['name']>();
 
   while (parser.getToken() !== Token.RightBrace) {
     const start = parser.tokenStart;
@@ -4195,17 +4197,17 @@ function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportA
   return attributes;
 }
 
-function parseStringLiteral(parser: Parser, context: Context): ESTree.Literal {
+function parseStringLiteral(parser: Parser, context: Context): ESTree.StringLiteral {
   if (parser.getToken() === Token.StringLiteral) {
-    return parseLiteral(parser, context);
+    return parseLiteral<ESTree.StringLiteral>(parser, context);
   } else {
     parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 }
 
-function parseIdentifierOrStringLiteral(parser: Parser, context: Context): ESTree.Identifier | ESTree.Literal {
+function parseIdentifierOrStringLiteral(parser: Parser, context: Context): ESTree.Identifier | ESTree.StringLiteral {
   if (parser.getToken() === Token.StringLiteral) {
-    return parseLiteral(parser, context);
+    return parseLiteral<ESTree.StringLiteral>(parser, context);
   } else if (parser.getToken() & Token.IsIdentifier) {
     return parseIdentifier(parser, context);
   } else {
@@ -4243,7 +4245,7 @@ function parseModuleExportName(parser: Parser, context: Context): ESTree.Identif
 
   if (parser.getToken() === Token.StringLiteral) {
     validateStringWellFormed(parser, parser.tokenValue as string);
-    return parseLiteral(parser, context) as ESTree.StringLiteral;
+    return parseLiteral<ESTree.StringLiteral>(parser, context);
   } else if (parser.getToken() & Token.IsIdentifier) {
     return parseIdentifier(parser, context);
   } else {
@@ -4552,27 +4554,29 @@ function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
+function parseLiteral<
+  T extends ESTree.StringLiteral | ESTree.BigIntLiteral | ESTree.NumericLiteral =
+    | ESTree.StringLiteral
+    | ESTree.BigIntLiteral
+    | ESTree.NumericLiteral,
+>(parser: Parser, context: Context): T {
   const { tokenValue, tokenRaw, tokenStart } = parser;
   if (parser.getToken() === Token.BigIntLiteral) {
-    return parseBigIntLiteral(parser, context);
+    return parseBigIntLiteral(parser, context) as T;
+  }
+
+  const node: ESTree.StringLiteral | ESTree.NumericLiteral = {
+    type: 'Literal',
+    value: tokenValue,
+  };
+  if (parser.options.raw) {
+    node.raw = tokenRaw;
   }
 
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
-  return parser.finishNode(
-    parser.options.raw
-      ? {
-          type: 'Literal',
-          value: tokenValue,
-          raw: tokenRaw,
-        }
-      : {
-          type: 'Literal',
-          value: tokenValue,
-        },
-    tokenStart,
-  );
+
+  return parser.finishNode(node, tokenStart) as T;
 }
 
 /**
@@ -4581,7 +4585,7 @@ function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree.Literal {
+function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree.NullLiteral | ESTree.BooleanLiteral {
   const start = parser.tokenStart;
   const raw = KeywordDescTable[parser.getToken() & Token.Type];
   const value = parser.getToken() === Token.NullKeyword ? null : raw === 'true';
@@ -8777,7 +8781,7 @@ function parseJsxAttribute(
     const token = scanJSXAttributeValue(parser, context);
     switch (token) {
       case Token.StringLiteral:
-        value = parseLiteral(parser, context);
+        value = parseLiteral<ESTree.StringLiteral>(parser, context);
         break;
       case Token.LessThan:
         value = parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0, parser.tokenStart)!;
