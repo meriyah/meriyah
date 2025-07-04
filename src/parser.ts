@@ -4548,18 +4548,15 @@ function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
   );
 }
 
+type StringOrNumberLiteral = ESTree.StringLiteral | ESTree.BigIntLiteral | ESTree.NumericLiteral;
+
 /**
  * Parses an literal expression such as string literal
  *
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseLiteral<
-  T extends ESTree.StringLiteral | ESTree.BigIntLiteral | ESTree.NumericLiteral =
-    | ESTree.StringLiteral
-    | ESTree.BigIntLiteral
-    | ESTree.NumericLiteral,
->(parser: Parser, context: Context): T {
+function parseLiteral<T extends StringOrNumberLiteral = StringOrNumberLiteral>(parser: Parser, context: Context): T {
   const { tokenValue, tokenRaw, tokenStart } = parser;
   if (parser.getToken() === Token.BigIntLiteral) {
     return parseBigIntLiteral(parser, context) as T;
