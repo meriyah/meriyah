@@ -128,6 +128,16 @@ export class Parser {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
     this.options = normalizeOptions(rawOptions);
+
+    // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
+    if (Array.isArray(this.options.onComment)) {
+      this.options.onComment = pushComment(this.options.onComment, this.options);
+    }
+
+    // Accepts either a callback function to be invoked or an array to collect tokens
+    if (Array.isArray(this.options.onToken)) {
+      this.options.onToken = pushToken(this.options.onToken, this.options);
+    }
   }
 
   /**
