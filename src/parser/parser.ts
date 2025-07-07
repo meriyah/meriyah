@@ -309,7 +309,7 @@ export class Parser {
   }
 }
 
-export function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
+function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
   return function (type: ESTree.CommentType, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const comment: ESTree.Comment = {
       type,
@@ -328,7 +328,7 @@ export function pushComment(comments: ESTree.Comment[], options: NormalizedOptio
   };
 }
 
-export function pushToken(tokens: Token[], options: NormalizedOptions): OnToken {
+function pushToken(tokens: Token[], options: NormalizedOptions): OnToken {
   return function (type: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const token: any = {
       token: type,

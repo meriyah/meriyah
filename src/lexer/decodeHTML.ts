@@ -1,4 +1,4 @@
-import { getOwnProperty } from './../common';
+import { getOwnProperty } from './../utilities';
 
 // https://html.spec.whatwg.org/entities.json
 /* spellchecker: disable */
