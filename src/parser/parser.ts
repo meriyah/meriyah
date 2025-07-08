@@ -128,6 +128,16 @@ export class Parser {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
     this.options = normalizeOptions(rawOptions);
+
+    // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
+    if (Array.isArray(this.options.onComment)) {
+      this.options.onComment = pushComment(this.options.onComment, this.options);
+    }
+
+    // Accepts either a callback function to be invoked or an array to collect tokens
+    if (Array.isArray(this.options.onToken)) {
+      this.options.onToken = pushToken(this.options.onToken, this.options);
+    }
   }
 
   /**
@@ -299,7 +309,7 @@ export class Parser {
   }
 }
 
-export function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
+function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
   return function (type: ESTree.CommentType, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const comment: ESTree.Comment = {
       type,
@@ -318,7 +328,7 @@ export function pushComment(comments: ESTree.Comment[], options: NormalizedOptio
   };
 }
 
-export function pushToken(tokens: Token[], options: NormalizedOptions): OnToken {
+function pushToken(tokens: Token[], options: NormalizedOptions): OnToken {
   return function (type: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const token: any = {
       token: type,

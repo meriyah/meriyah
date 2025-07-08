@@ -1,5 +1,4 @@
 import type * as ESTree from './estree';
-import { pushComment, pushToken } from './parser/parser';
 import { type Token } from './token';
 
 /**
@@ -86,16 +85,6 @@ export function normalizeOptions(rawOptions: Options): NormalizedOptions {
 
   if (options.globalReturn && (!options.sourceType || options.sourceType === 'script')) {
     options.sourceType = 'commonjs';
-  }
-
-  // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
-  if (options.onComment) {
-    options.onComment = Array.isArray(options.onComment) ? pushComment(options.onComment, options) : options.onComment;
-  }
-
-  // Accepts either a callback function to be invoked or an array to collect tokens
-  if (options.onToken) {
-    options.onToken = Array.isArray(options.onToken) ? pushToken(options.onToken, options) : options.onToken;
   }
 
   return options;

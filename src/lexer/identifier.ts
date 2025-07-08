@@ -1,7 +1,8 @@
 import { Chars } from '../chars';
-import { Context, getOwnProperty } from '../common';
+import { Context } from '../common';
 import { Errors, ParseError } from '../errors';
 import { type Parser } from '../parser/parser';
+import { getOwnProperty } from '../utilities';
 import { descKeywordTable, Token } from './../token';
 import { CharFlags, CharTypes, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
