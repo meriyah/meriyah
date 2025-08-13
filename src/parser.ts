@@ -72,7 +72,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
     body = parseStatementList(parser, context | Context.InGlobal, scope);
   }
 
-  return parser.finishNode<ESTree.Program>(
+  const ast = parser.finishNode<ESTree.Program>(
     {
       type: 'Program',
       sourceType,
@@ -81,6 +81,10 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
     { index: 0, line: 1, column: 0 },
     parser.currentLocation,
   );
+
+  parser.callPluginVisitors(ast);
+  parser.callPluginFinalize(ast);
+  return ast;
 }
 
 /**

@@ -1,4 +1,5 @@
 import type * as ESTree from './estree';
+import type { Plugin } from './plugin';
 import { type Token } from './token';
 
 /**
@@ -58,6 +59,7 @@ export interface Options {
   onToken?: Token[] | OnToken;
   // Throw errors for invalid regexps
   validateRegex?: boolean;
+  plugins?: Plugin[];
 
   // Allow module code
   /** @deprecated Use `sourceType` instead. */

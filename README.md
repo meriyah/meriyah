@@ -119,6 +119,9 @@ The available options:
 
   // Validate regular expressions with runtime, default `true`
   validateRegex: boolean;
+
+  // Array of plugins to extend parser functionality, default `undefined`
+  plugins: Plugin[];
 }
 ```
 
@@ -142,6 +145,34 @@ If a function callback is supplied, the signature must be
 
 ```ts
 declare function onInsertedSemicolon(position: number): void;
+```
+
+### plugins
+
+Plugins allow extending the parser's functionality through hooks. Each plugin can provide:
+
+```ts
+interface Plugin {
+  name: string;
+  init?: (source: string, options: any) => void;
+  onNode?: (node: ESTree.Node, parent: ESTree.Node | null) => void;
+  finalize?: (ast: ESTree.Program) => void;
+}
+```
+
+Example usage:
+
+```js
+const validatePlugin = {
+  name: 'no-var',
+  onNode: (node) => {
+    if (node.type === 'VariableDeclaration' && node.kind === 'var') {
+      throw new SyntaxError('var declarations are not allowed');
+    }
+  },
+};
+
+parse(code, { plugins: [validatePlugin] });
 ```
 
 ## Example usage
