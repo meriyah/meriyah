@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import packageJson from '../package.json' with { type: 'json' };
 
@@ -8,6 +9,7 @@ const VectorMask = VectorSize - 1;
 const VectorBitCount = 32 - Math.clz32(VectorMask);
 const VectorByteSize = UnicodeCodeCount / VectorSize;
 const FILE = new URL('../src/unicode.ts', import.meta.url);
+const isCheck = process.argv.includes('--check');
 
 const UNICODE_PACKAGE_PREFIX = '@unicode/unicode-';
 const unicodePackageName = Object.keys(packageJson.devDependencies).find((name) =>
@@ -147,9 +149,7 @@ async function generate(exports) {
 
   compressorEnd(compress);
 
-  await fs.writeFile(
-    FILE,
-    `
+  const content = `
 // Unicode v${UNICODE_VERSION} support
 
 const unicodeLookup = ${makeDecompress(compress)};
@@ -160,8 +160,15 @@ ${specifiers
       `export const ${specifier} = (code: number) => (unicodeLookup[(code >>> ${VectorBitCount}) + ${index * VectorByteSize}] >>> code & ${VectorMask} & 1) !== 0;`,
   )
   .join('\n')}
-`.trimStart(),
-  );
+`.trimStart();
+
+  if (isCheck) {
+    const expected = await fs.readFile(FILE);
+    assert.equal(expected, content);
+    return;
+  }
+
+  await fs.writeFile(FILE, content);
 }
 
 await generate({

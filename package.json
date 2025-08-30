@@ -65,6 +65,7 @@
     "fix:prettier": "prettier . --write",
     "test": "vitest",
     "test:watch": "vitest --watch",
+    "test:unicode": "node scripts/generate-unicode.mjs --check",
     "production-test": "npm run build && cross-env PRODUCTION_TEST=1 vitest test/production/production-tests.ts",
     "prepare-nightly": "node scripts/bump-dev-version.mjs",
     "coverage": "vitest --coverage",
