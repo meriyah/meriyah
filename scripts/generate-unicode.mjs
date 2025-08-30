@@ -163,7 +163,7 @@ ${specifiers
 `.trimStart();
 
   if (isCheck) {
-    const expected = await fs.readFile(FILE);
+    const expected = await fs.readFile(FILE, 'utf8');
     assert.equal(expected, content);
     return;
   }
