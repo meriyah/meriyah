@@ -41,6 +41,7 @@ jobs:
       - run: yarn
       - run: npm run build
       - run: npm run test
+      - run: npm run test:unicode
       - run: npm run lint
 
   preview:
