@@ -81,6 +81,9 @@ export default [
           ],
         },
       ],
+
+      // `eslint-plugin-unicorn`
+      'unicorn/prefer-bigint-literals': 'error',
       'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
       'unicorn/template-indent': 'error',
 
