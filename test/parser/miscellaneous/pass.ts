@@ -4432,9 +4432,9 @@ if (a) {
     '({a = 1}, {}) => (2);',
     '[a, a, , ...a] = (1);',
     'eval = (1);',
-    `function a() {
+    String.raw`function a() {
       "use strict";
-      "\\0";
+      "\0";
     }`,
     '(a = (b("100"))) <= a;',
     'function a([b] = [1]) {}',
@@ -4657,10 +4657,10 @@ if (a) {
     // And label is not used, then label also should be removed.
     a: while(true) continue a;`,
     'a(...b, ...c, ...d);',
-    `a["b"] = "c";
+    String.raw`a["b"] = "c";
     a["if"] = "if";
     a["*"] = "d";
-    a["\\u0EB3"] = "e";
+    a["\u0EB3"] = "e";
     a[""] = "f";`,
     `(function () {
       ((a) ? 1 : b) != null;
@@ -4834,8 +4834,8 @@ if (a) {
 function continueWithinLoop() {
     for (var key in [(1.2)]) {  }
 };`,
-    `try {
-  eval("/foo/\\u0069")
+    String.raw`try {
+  eval("/foo/\u0069")
 } catch (e) {
   assertEquals(
       "SyntaxError: Invalid regular expression flags",
@@ -5157,12 +5157,12 @@ testEscapes("\\/\\/", r);`,
     '() => (([b = !b]) => { })([])',
     `assertTrue(/(?:text)/.test("text"));
 assertEquals(["text"], /(?:text)/.exec("text"));`,
-    `for (var i = 0; i < 10000; i++){
-  (i + "\\0").split(/(.)\\1/i);
+    String.raw`for (var i = 0; i < 10000; i++){
+  (i + "\0").split(/(.)\1/i);
 }
 
 for (var i = 0; i < 10000; i++){
-  (i + "\\u1234\\0").split(/(.)\\1/i);
+  (i + "\u1234\0").split(/(.)\1/i);
 }`,
     '//foo!@#^&$1234\nbar;',
     '/* abcd!@#@$* { } && null*/;',
@@ -11461,7 +11461,7 @@ awaitImm(1).then(v => {
       HASH_NAME(char, 0x0007E83E, 0x0007E83E)
     `,
     String.raw`var reResult2=('.*8#^' + '.)1vc5$]').split(/\b\S|(?=[蒤7])|(?!\b.)|(\S)/imyu,3);`,
-    `
+    String.raw`
 function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 100; else return Math.floor(x) & 0xffff; };;
 function leaf() { return 100; };
 class module1BaseClass { };;
@@ -11490,7 +11490,7 @@ var func3 = function(argMath182,argMath183,argMath184 = ((b === argMath182)&&(d 
   var uniqobj34 = [''];
   var uniqobj35 = uniqobj34[__counter%uniqobj34.length];
   uniqobj35.toString();
-  var reResult2=('.*8#^' + '.)1vc5$]').split(/\\b\\S|(?=[蒤7])|(?!\\b.)|(\\S)/imyu,3);
+  var reResult2=('.*8#^' + '.)1vc5$]').split(/\b\S|(?=[蒤7])|(?!\b.)|(\S)/imyu,3);
 (Object.defineProperty(arrObj0, 'prop4', {writable: true, enumerable: false, configurable: true }));
   arrObj0.prop4 = (obj1.prop0 = ('method1' in arrObj0));
   return func1.call(obj1 );
