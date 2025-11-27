@@ -1,3 +1,21 @@
+# [7.0.0](https://github.com/meriyah/meriyah/compare/v6.1.4...v7.0.0) (2025-11-27)
+
+
+### Bug Fixes
+
+* allow `new.target` in `commonjs` module root ([#524](https://github.com/meriyah/meriyah/issues/524)) ([5053d99](https://github.com/meriyah/meriyah/commit/5053d99dce77ea86edfc0ee33c94654078dd25ab))
+* fix start location of `HTMLClose` comment ([#522](https://github.com/meriyah/meriyah/issues/522)) ([5ea7b96](https://github.com/meriyah/meriyah/commit/5ea7b96fab1f47a7aac39eaf69ba9c973108874e))
+* **parser:** generate unique location info for shorthand pattern ([#515](https://github.com/meriyah/meriyah/issues/515)) ([42bb9bc](https://github.com/meriyah/meriyah/commit/42bb9bcc4fdbb3b384d98643890c8864cb557f8a))
+* remove misspelled `ForInitialiser` in ESTree ([#520](https://github.com/meriyah/meriyah/issues/520)) ([2349d2c](https://github.com/meriyah/meriyah/commit/2349d2c901e03faf735c62eaf04aad2d3b0cd14a))
+
+
+### Features
+
+* allow skip regular expression validation ([#346](https://github.com/meriyah/meriyah/issues/346)) ([224d167](https://github.com/meriyah/meriyah/commit/224d167a3d3361d360a16f2b63a6a2ca1ea694b0))
+* support unicode 17 ([#532](https://github.com/meriyah/meriyah/issues/532)) ([de36a18](https://github.com/meriyah/meriyah/commit/de36a1894c8098695f2a80bd1092dc627ded6dec))
+
+
+
 ## [6.1.4](https://github.com/meriyah/meriyah/compare/v6.1.3...v6.1.4) (2025-07-02)
 
 
