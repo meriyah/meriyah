@@ -66,7 +66,6 @@ Meriyah generates `AST` according to [ESTree AST format](https://github.com/estr
 The `parse` method exposed by meriyah takes an optional `options` object which allows you to specify whether to parse in [`script`](https://tc39.github.io/ecma262/#sec-parse-script) mode (the default) or in [`module`](https://tc39.github.io/ecma262/#sec-parsemodule) mode.
 
 ```js
-// There are also "parseScript" and "parseModule" exported.
 import { parse } from 'meriyah';
 const result = parse('let some = "code";', { ranges: true });
 ```
