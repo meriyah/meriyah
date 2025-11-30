@@ -15,6 +15,15 @@
 * support unicode 17 ([#532](https://github.com/meriyah/meriyah/issues/532)) ([de36a18](https://github.com/meriyah/meriyah/commit/de36a1894c8098695f2a80bd1092dc627ded6dec))
 
 
+### BREAKING CHANGES
+
+- drop support of Node.js below v20 (#518)
+- remove `uniqueKeyInpattern` option, nodes are always unique in shorthand pattern (#519)
+- add `sourceType`, deprecate `module` option (#521)
+- add `sourceType: 'commonjs'`, deprecate `globalReturn` option (#523)
+- forbid passing option `sourceType` in `parseScript` and `parseModule` APIs (#465)
+
+
 
 ## [6.1.4](https://github.com/meriyah/meriyah/compare/v6.1.3...v6.1.4) (2025-07-02)
 
