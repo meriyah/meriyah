@@ -143,6 +143,24 @@ If a function callback is supplied, the signature must be
 declare function onInsertedSemicolon(position: number): void;
 ```
 
+### `isParseError`
+
+Exposed for error instance checking.
+
+```js
+import { parse, isParseError } from './meriyah';
+
+try {
+  parse('invalid code');
+} catch (error) {
+  if (isParseError(error)) {
+    console.error(error.description);
+  } else {
+    throw error;
+  }
+}
+```
+
 ## Example usage
 
 ```js
