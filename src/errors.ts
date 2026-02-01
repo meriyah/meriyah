@@ -395,3 +395,5 @@ export class ParseError extends SyntaxError implements _Node {
     this.description = description;
   }
 }
+
+export const isParseError = (error: unknown): error is ParseError => error instanceof ParseError;

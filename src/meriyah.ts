@@ -34,3 +34,4 @@ export function parse(source: string, options?: Options): Program {
 
 export { type Options, version };
 export type * as ESTree from './estree';
+export { isParseError, type ParseError } from './errors';
