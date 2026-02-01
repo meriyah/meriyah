@@ -28,13 +28,13 @@ jobs:
     name: Node.js ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: 'yarn'
           cache-dependency-path: ./package.json
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: test262/test262
           key: ${{ hashFiles('test262/test262-commit-hash') }}

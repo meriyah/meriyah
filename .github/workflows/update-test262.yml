@@ -15,8 +15,8 @@ jobs:
     if: github.event_name != 'schedule' || github.repository == 'meriyah/meriyah'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
       - name: Update test262 commit hash
@@ -27,9 +27,10 @@ jobs:
           key: ${{ hashFiles('test262/test262-commit-hash') }}
       - run: yarn
       - run: npm run generate-test262-whitelist
-      - uses: peter-evans/create-pull-request@v7
+      - run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
+      - uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: 'test: update test262'
-          branch: automated-update-test262
+          title: 'test: update test262(${{ env.CURRENT_DATE }})'
+          commit-message: 'test: update test262(${{ env.CURRENT_DATE }})'
+          branch: automated-update-test262-${{ env.CURRENT_DATE }}
           branch-suffix: timestamp
-          title: 'test: update test262'

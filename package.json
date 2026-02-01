@@ -70,10 +70,9 @@
     "prepare-nightly": "node scripts/bump-dev-version.mjs",
     "coverage": "vitest --coverage",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
-    "prepublishOnly": "npm run build",
     "preversion": "npm test",
     "version": "standard-changelog && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags && npm publish",
+    "postversion": "git push && git push --tags",
     "prepare": "husky",
     "generate-unicode": "node scripts/generate-unicode.mjs",
     "generate-test262-whitelist": "npm run build && node test262/generate-test262-whitelist.mjs"
