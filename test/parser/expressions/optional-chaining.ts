@@ -384,7 +384,7 @@ describe('Optional chaining', () => {
     { code: 'a.?()', options: { webcompat: true } },
     { code: 'a?.b = c', options: { webcompat: true } },
     { code: 'a?.{a} = c', options: { webcompat: true } },
-    { code: 'a?.(a) = c', options: { webcompat: true } },
+    { code: 'a?.(a) = c', options: { webcompat: false } },
     { code: 'o3?.a in ()', options: { webcompat: true } },
     { code: 'a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)', options: { webcompat: true } },
     // FIXME: current implementation does not invalidate destructuring.
@@ -419,5 +419,6 @@ describe('Optional chaining', () => {
     { code: 'a?.()', options: { webcompat: true, ranges: true } },
     { code: 'a?.b[3].c?.(x).d', options: { webcompat: true, ranges: true } },
     { code: '({})?.a["b"]', options: { webcompat: true, ranges: true } },
+    { code: 'a?.(a) = c', options: { webcompat: true, ranges: true } },
   ]);
 });

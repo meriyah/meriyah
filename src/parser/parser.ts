@@ -1,4 +1,4 @@
-import { type AssignmentKind, type DestructuringKind, Flags, type Location } from '../common';
+import { AssignmentTargetKind, DestructuringKind, Flags, type Location } from '../common';
 import { Errors, ParseError } from '../errors';
 import type * as ESTree from '../estree';
 import { convertTokenType } from '../lexer';
@@ -103,12 +103,12 @@ export class Parser {
   /**
    * Assignable state
    */
-  assignable: AssignmentKind | DestructuringKind = 1;
+  assignable = AssignmentTargetKind.None;
 
   /**
    * Destructuring state
    */
-  destructible: AssignmentKind | DestructuringKind = 0;
+  destructible = DestructuringKind.None;
 
   /**
    * Holds leading decorators before "export" or "class" keywords
