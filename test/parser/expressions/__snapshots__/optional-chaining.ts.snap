@@ -1181,6 +1181,91 @@ exports[`Optional chaining > Optional chaining (pass) > a?.() 1`] = `
 }
 `;
 
+exports[`Optional chaining > Optional chaining (pass) > a?.(a) = c 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "end": 10,
+        "left": {
+          "end": 6,
+          "expression": {
+            "arguments": [
+              {
+                "end": 5,
+                "name": "a",
+                "range": [
+                  4,
+                  5,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "end": 1,
+              "name": "a",
+              "range": [
+                0,
+                1,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "end": 6,
+            "optional": true,
+            "range": [
+              0,
+              6,
+            ],
+            "start": 0,
+            "type": "CallExpression",
+          },
+          "range": [
+            0,
+            6,
+          ],
+          "start": 0,
+          "type": "ChainExpression",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          10,
+        ],
+        "right": {
+          "end": 10,
+          "name": "c",
+          "range": [
+            9,
+            10,
+          ],
+          "start": 9,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Optional chaining > Optional chaining (pass) > a?.[x] 1`] = `
 {
   "body": [

@@ -81,9 +81,9 @@ export const enum Token {
   BitwiseXorAssign        = 37 | IsAssignOp, // ^=
   BitwiseOrAssign         = 38 | IsAssignOp, // |=
   BitwiseAndAssign        = 39 | IsAssignOp, // &=
-  LogicalOrAssign         = 40 | IsAssignOp, // ||=
-  LogicalAndAssign        = 41 | IsAssignOp, // &&=
-  CoalesceAssign          = 42 | IsAssignOp, // ??=
+  LogicalOrAssign         = 40 | IsAssignOp | IsLogical, // ||=
+  LogicalAndAssign        = 41 | IsAssignOp | IsLogical, // &&=
+  CoalesceAssign          = 42 | IsAssignOp | IsLogical, // ??=
 
   /* Unary/binary operators */
   TypeofKeyword      = 43 | IsUnaryOp | Reserved,
