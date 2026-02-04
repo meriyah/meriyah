@@ -1,3 +1,13 @@
+# [7.1.0](https://github.com/meriyah/meriyah/compare/v7.0.0...v7.1.0) (2026-02-04)
+
+
+### Features
+
+* add `isParseError()` for brand check ([#541](https://github.com/meriyah/meriyah/issues/541)) ([c5443c4](https://github.com/meriyah/meriyah/commit/c5443c4ac0abb9f25e6f176a7947f9b61e299c5d))
+* assign to CallExpression is now runtime error in annexB ([#546](https://github.com/meriyah/meriyah/issues/546)) ([5835016](https://github.com/meriyah/meriyah/commit/5835016ddcf3f16807ef87c41661a18c3038f131))
+
+
+
 # [7.0.0](https://github.com/meriyah/meriyah/compare/v6.1.4...v7.0.0) (2025-11-27)
 
 
