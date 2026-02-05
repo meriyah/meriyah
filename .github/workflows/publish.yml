@@ -21,5 +21,4 @@ jobs:
           cache-dependency-path: ./package.json
       - run: yarn
       - run: npm run build
-      - run: npm pkg delete scripts devDependencies lint-staged
       - run: npm publish
