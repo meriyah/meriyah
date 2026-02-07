@@ -252,40 +252,10 @@ describe('Miscellaneous - Fuzz', () => {
         }
       }
     `,
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
-    'a',
+    outdent`
+      var of=()=>{}
+      of.prop;
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
