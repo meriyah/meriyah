@@ -1800,7 +1800,7 @@ function parseVariableDeclaration(
   if (parser.getToken() === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
     init = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
-    if (origin & Origin.ForStatement || (token & Token.IsPatternStart) === 0) {
+    if (origin & Origin.ForStatement) {
       // Lexical declarations in for-in / for-of loops can't be initialized
 
       if (
