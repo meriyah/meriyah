@@ -3603,6 +3603,11 @@ function parseMemberOrUpdateExpression(
 
       /* Property */
       case Token.LeftBracket: {
+        if ((parser.flags & Flags.DisallowInvoke) === Flags.DisallowInvoke) {
+          parser.flags = (parser.flags | Flags.DisallowInvoke) ^ Flags.DisallowInvoke;
+          return expr;
+        }
+
         let restoreHasOptionalChaining = false;
         if ((parser.flags & Flags.HasOptionalChaining) === Flags.HasOptionalChaining) {
           restoreHasOptionalChaining = true;
@@ -6869,6 +6874,7 @@ function parseArrowFunctionExpression(
         if ((parser.flags & Flags.NewLine) === 0) {
           parser.report(Errors.InvalidInvokedBlockBodyArrow);
         }
+        parser.flags |= Flags.DisallowInvoke;
         break;
       case Token.Period:
       case Token.TemplateSpan:
