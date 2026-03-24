@@ -4427,13 +4427,18 @@ function parseTemplateElement(
   const tailSize = tail ? 1 : 2;
 
   // Patch range
-  if (parser.options.ranges) {
-    // skip the front "`" or "}"
-    (node.start as number) += 1;
-    (node.range as [number, number])[0] += 1;
-    // skip the tail "`" or "${"
-    (node.end as number) -= tailSize;
-    (node.range as [number, number])[1] -= tailSize;
+  const { ranges } = parser.options;
+  if (ranges) {
+    if (ranges !== 'array') {
+      // skip the front "`" or "}"
+      (node.start as number) += 1;
+      // skip the tail "`" or "${"
+      (node.end as number) -= tailSize;
+    }
+    if (ranges !== 'properties') {
+      (node.range as [number, number])[0] += 1;
+      (node.range as [number, number])[1] -= tailSize;
+    }
   }
 
   // Patch loc

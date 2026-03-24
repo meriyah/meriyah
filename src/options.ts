@@ -32,8 +32,11 @@ export interface Options {
   sourceType?: SourceType;
   // Enable stage 3 support (ESNext)
   next?: boolean;
-  // Enable start and end offsets to each node
-  ranges?: boolean;
+  // Enable start and end offsets to each node.
+  // true: emit start, end, and range (backwards compatible)
+  // 'properties': emit only start/end properties (no range array — saves ~72B/node)
+  // 'array': emit only range array (no start/end properties)
+  ranges?: boolean | 'properties' | 'array';
   // Enable web compatibility
   webcompat?: boolean;
   // Enable line/column location information to each node
