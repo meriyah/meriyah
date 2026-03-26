@@ -615,4 +615,28 @@ describe('Miscellaneous - onComment', () => {
     );
     t.equal(onCommentCount, 1);
   });
+
+  it('should respect ranges: { start, end } (no range array)', () => {
+    const comments: any[] = [];
+    parseSource('/* test */ var x;', {
+      ranges: { start: true, end: true },
+      onComment: comments,
+    });
+    t.equal(comments.length, 1);
+    t.equal(comments[0].start, 0);
+    t.equal(comments[0].end, 10);
+    t.equal(comments[0].range, undefined);
+  });
+
+  it('should respect ranges: { range } (no start/end)', () => {
+    const comments: any[] = [];
+    parseSource('/* test */ var x;', {
+      ranges: { range: true },
+      onComment: comments,
+    });
+    t.equal(comments.length, 1);
+    t.equal(comments[0].start, undefined);
+    t.equal(comments[0].end, undefined);
+    t.deepEqual(comments[0].range, [0, 10]);
+  });
 });
