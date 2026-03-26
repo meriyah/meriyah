@@ -82,9 +82,8 @@ The available options:
 
   // Enable start/end offsets to each node, default `false`
   // true: emit start, end, and range: [start, end] (backwards compatible)
-  // 'properties': emit only start/end properties (no range array — saves memory)
-  // 'array': emit only range: [start, end] array (no start/end properties)
-  ranges: boolean | 'properties' | 'array';
+  // object: selectively enable { start, end, range } — e.g. { start: true, end: true }
+  ranges: boolean | { start?: boolean; end?: boolean; range?: boolean };
 
   // Enable web compatibility, default `false`
   webcompat: boolean;

@@ -19435,7 +19435,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > while (x < 10)
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > ({x: y = z = 0} = 1) 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > ({x: y = z = 0} = 1) 1`] = `
 {
   "body": [
     {
@@ -19538,7 +19538,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > ({x: 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > /* comment */ var x; 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > /* comment */ var x; 1`] = `
 {
   "body": [
     {
@@ -19577,7 +19577,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > /* co
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > \`hello \${1}\` 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > \`hello \${1}\` 1`] = `
 {
   "body": [
     {
@@ -19640,7 +19640,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > \`hel
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > for (let x of [1]) {} 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > for (let x of [1]) {} 1`] = `
 {
   "body": [
     {
@@ -19712,7 +19712,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > for (
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > function f(a = 1) {} 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > function f(a = 1) {} 1`] = `
 {
   "body": [
     {
@@ -19775,7 +19775,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > funct
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > let [a, b] = [1, 2]; 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > let [a, b] = [1, 2]; 1`] = `
 {
   "body": [
     {
@@ -19855,7 +19855,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > let [
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > var x = 1; 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > var x = 1; 1`] = `
 {
   "body": [
     {
@@ -19901,7 +19901,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'array' (pass) > var x
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > ({x: y = z = 0} = 1) 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > ({x: y = z = 0} = 1) 1`] = `
 {
   "body": [
     {
@@ -19980,7 +19980,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > /* comment */ var x; 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > /* comment */ var x; 1`] = `
 {
   "body": [
     {
@@ -20011,7 +20011,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > \`hello \${1}\` 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > \`hello \${1}\` 1`] = `
 {
   "body": [
     {
@@ -20062,7 +20062,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > for (let x of [1]) {} 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > for (let x of [1]) {} 1`] = `
 {
   "body": [
     {
@@ -20118,7 +20118,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > function f(a = 1) {} 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > function f(a = 1) {} 1`] = `
 {
   "body": [
     {
@@ -20167,7 +20167,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > let [a, b] = [1, 2]; 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > let [a, b] = [1, 2]; 1`] = `
 {
   "body": [
     {
@@ -20229,7 +20229,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > 
 }
 `;
 
-exports[`Miscellaneous - ranges > Miscellaneous - ranges: 'properties' (pass) > var x = 1; 1`] = `
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > var x = 1; 1`] = `
 {
   "body": [
     {

@@ -33,10 +33,9 @@ export interface Options {
   // Enable stage 3 support (ESNext)
   next?: boolean;
   // Enable start and end offsets to each node.
-  // true: emit start, end, and range (backwards compatible)
-  // 'properties': emit only start/end properties (no range array — saves ~72B/node)
-  // 'array': emit only range array (no start/end properties)
-  ranges?: boolean | 'properties' | 'array';
+  // true: emit start, end, and range: [start, end] (backwards compatible)
+  // object: selectively enable { start, end, range } — e.g. { start: true, end: true } skips range array
+  ranges?: boolean | { start?: boolean; end?: boolean; range?: boolean };
   // Enable web compatibility
   webcompat?: boolean;
   // Enable line/column location information to each node
@@ -70,16 +69,34 @@ export interface Options {
   globalReturn?: boolean;
 }
 
-export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken'> & {
+export interface NormalizedRanges {
+  start: boolean;
+  end: boolean;
+  range: boolean;
+}
+
+export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken' | 'ranges'> & {
   validateRegex: boolean;
+  ranges?: NormalizedRanges;
   onComment?: OnComment;
   onToken?: OnToken;
 };
+
+function normalizeRanges(ranges: Options['ranges']): NormalizedRanges | undefined {
+  if (!ranges) return undefined;
+  if (ranges === true) return { start: true, end: true, range: true };
+  return {
+    start: ranges.start ?? false,
+    end: ranges.end ?? false,
+    range: ranges.range ?? false,
+  };
+}
 
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
   const options = {
     validateRegex: true,
     ...rawOptions,
+    ranges: normalizeRanges(rawOptions.ranges),
   } as NormalizedOptions;
 
   if (options.module && !options.sourceType) {
