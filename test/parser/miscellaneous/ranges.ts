@@ -336,4 +336,26 @@ describe('Miscellaneous - ranges', () => {
     { code: 'for (\n[x][0] in y);', options: { ranges: true, loc: true } },
     { code: 'for (\n[x][0] of y);', options: { ranges: true, loc: true } },
   ]);
+
+  const startEnd = { start: true, end: true };
+  pass('Miscellaneous - ranges: { start, end } (pass)', [
+    { code: 'var x = 1;', options: { ranges: startEnd } },
+    { code: '`hello ${1}`', options: { ranges: startEnd } },
+    { code: 'let [a, b] = [1, 2];', options: { ranges: startEnd } },
+    { code: '({x: y = z = 0} = 1)', options: { ranges: startEnd } },
+    { code: 'function f(a = 1) {}', options: { ranges: startEnd } },
+    { code: '/* comment */ var x;', options: { ranges: startEnd } },
+    { code: 'for (let x of [1]) {}', options: { ranges: startEnd } },
+  ]);
+
+  const rangeOnly = { range: true };
+  pass('Miscellaneous - ranges: { range } (pass)', [
+    { code: 'var x = 1;', options: { ranges: rangeOnly } },
+    { code: '`hello ${1}`', options: { ranges: rangeOnly } },
+    { code: 'let [a, b] = [1, 2];', options: { ranges: rangeOnly } },
+    { code: '({x: y = z = 0} = 1)', options: { ranges: rangeOnly } },
+    { code: 'function f(a = 1) {}', options: { ranges: rangeOnly } },
+    { code: '/* comment */ var x;', options: { ranges: rangeOnly } },
+    { code: 'for (let x of [1]) {}', options: { ranges: rangeOnly } },
+  ]);
 });

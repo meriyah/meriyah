@@ -256,4 +256,26 @@ describe('Miscellaneous - onToken', () => {
       { token: 'Punctuator', start: 36, end: 37, value: '>' },
     ]);
   });
+
+  it('should respect ranges: { start, end } (no range array)', () => {
+    const tokens: any[] = [];
+    parseSource('var x;', { ranges: { start: true, end: true }, onToken: tokens });
+    t.ok(tokens.length > 0);
+    for (const tok of tokens) {
+      t.equal(typeof tok.start, 'number');
+      t.equal(typeof tok.end, 'number');
+      t.equal(tok.range, undefined);
+    }
+  });
+
+  it('should respect ranges: { range } (no start/end)', () => {
+    const tokens: any[] = [];
+    parseSource('var x;', { ranges: { range: true }, onToken: tokens });
+    t.ok(tokens.length > 0);
+    for (const tok of tokens) {
+      t.equal(tok.start, undefined);
+      t.equal(tok.end, undefined);
+      t.ok(Array.isArray(tok.range));
+    }
+  });
 });

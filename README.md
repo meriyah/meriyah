@@ -80,8 +80,10 @@ The available options:
   // The flag to enable stage 3 support (ESNext), default `false`
   next: boolean;
 
-  // The flag to enable start, end offsets and range: [start, end] to each node, default `false`
-  ranges: boolean;
+  // Enable start/end offsets to each node, default `false`
+  // true: emit start, end, and range: [start, end] (backwards compatible)
+  // object: selectively enable { start, end, range } — e.g. { start: true, end: true }
+  ranges: boolean | { start?: boolean; end?: boolean; range?: boolean };
 
   // Enable web compatibility, default `false`
   webcompat: boolean;

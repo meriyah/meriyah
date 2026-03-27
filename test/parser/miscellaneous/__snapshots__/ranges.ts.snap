@@ -19434,3 +19434,833 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > while (x < 10)
   "type": "Program",
 }
 `;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > ({x: y = z = 0} = 1) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "x",
+                "range": [
+                  2,
+                  3,
+                ],
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "range": [
+                2,
+                14,
+              ],
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "name": "y",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "type": "Identifier",
+                },
+                "range": [
+                  5,
+                  14,
+                ],
+                "right": {
+                  "left": {
+                    "name": "z",
+                    "range": [
+                      9,
+                      10,
+                    ],
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "range": [
+                    9,
+                    14,
+                  ],
+                  "right": {
+                    "range": [
+                      13,
+                      14,
+                    ],
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "type": "AssignmentExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "range": [
+            1,
+            15,
+          ],
+          "type": "ObjectPattern",
+        },
+        "operator": "=",
+        "range": [
+          1,
+          19,
+        ],
+        "right": {
+          "range": [
+            18,
+            19,
+          ],
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "type": "ExpressionStatement",
+    },
+  ],
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > /* comment */ var x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "range": [
+              18,
+              19,
+            ],
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            18,
+            19,
+          ],
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "range": [
+        14,
+        20,
+      ],
+      "type": "VariableDeclaration",
+    },
+  ],
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > \`hello \${1}\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "range": [
+              9,
+              10,
+            ],
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "quasis": [
+          {
+            "range": [
+              1,
+              7,
+            ],
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "hello ",
+              "raw": "hello ",
+            },
+          },
+          {
+            "range": [
+              11,
+              11,
+            ],
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "range": [
+          0,
+          12,
+        ],
+        "type": "TemplateLiteral",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "type": "ExpressionStatement",
+    },
+  ],
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > for (let x of [1]) {} 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "body": [],
+        "range": [
+          19,
+          21,
+        ],
+        "type": "BlockStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "range": [
+                9,
+                10,
+              ],
+              "type": "Identifier",
+            },
+            "init": null,
+            "range": [
+              9,
+              10,
+            ],
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "range": [
+          5,
+          10,
+        ],
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        21,
+      ],
+      "right": {
+        "elements": [
+          {
+            "range": [
+              15,
+              16,
+            ],
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "range": [
+          14,
+          17,
+        ],
+        "type": "ArrayExpression",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > function f(a = 1) {} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "range": [
+          18,
+          20,
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "left": {
+            "name": "a",
+            "range": [
+              11,
+              12,
+            ],
+            "type": "Identifier",
+          },
+          "range": [
+            11,
+            16,
+          ],
+          "right": {
+            "range": [
+              15,
+              16,
+            ],
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "range": [
+        0,
+        20,
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > let [a, b] = [1, 2]; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "a",
+                "range": [
+                  5,
+                  6,
+                ],
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "range": [
+                  8,
+                  9,
+                ],
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              4,
+              10,
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "elements": [
+              {
+                "range": [
+                  14,
+                  15,
+                ],
+                "type": "Literal",
+                "value": 1,
+              },
+              {
+                "range": [
+                  17,
+                  18,
+                ],
+                "type": "Literal",
+                "value": 2,
+              },
+            ],
+            "range": [
+              13,
+              19,
+            ],
+            "type": "ArrayExpression",
+          },
+          "range": [
+            4,
+            19,
+          ],
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "range": [
+        0,
+        20,
+      ],
+      "type": "VariableDeclaration",
+    },
+  ],
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { range } (pass) > var x = 1; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "type": "Identifier",
+          },
+          "init": {
+            "range": [
+              8,
+              9,
+            ],
+            "type": "Literal",
+            "value": 1,
+          },
+          "range": [
+            4,
+            9,
+          ],
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "range": [
+        0,
+        10,
+      ],
+      "type": "VariableDeclaration",
+    },
+  ],
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > ({x: y = z = 0} = 1) 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "end": 19,
+        "left": {
+          "end": 15,
+          "properties": [
+            {
+              "computed": false,
+              "end": 14,
+              "key": {
+                "end": 3,
+                "name": "x",
+                "start": 2,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "start": 2,
+              "type": "Property",
+              "value": {
+                "end": 14,
+                "left": {
+                  "end": 6,
+                  "name": "y",
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "right": {
+                  "end": 14,
+                  "left": {
+                    "end": 10,
+                    "name": "z",
+                    "start": 9,
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "end": 14,
+                    "start": 13,
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "start": 9,
+                  "type": "AssignmentExpression",
+                },
+                "start": 5,
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "start": 1,
+          "type": "ObjectPattern",
+        },
+        "operator": "=",
+        "right": {
+          "end": 19,
+          "start": 18,
+          "type": "Literal",
+          "value": 1,
+        },
+        "start": 1,
+        "type": "AssignmentExpression",
+      },
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > /* comment */ var x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 19,
+          "id": {
+            "end": 19,
+            "name": "x",
+            "start": 18,
+            "type": "Identifier",
+          },
+          "init": null,
+          "start": 18,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 20,
+      "kind": "var",
+      "start": 14,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 20,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > \`hello \${1}\` 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "expressions": [
+          {
+            "end": 10,
+            "start": 9,
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "quasis": [
+          {
+            "end": 7,
+            "start": 1,
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "hello ",
+              "raw": "hello ",
+            },
+          },
+          {
+            "end": 11,
+            "start": 11,
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "start": 0,
+        "type": "TemplateLiteral",
+      },
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > for (let x of [1]) {} 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "body": [],
+        "end": 21,
+        "start": 19,
+        "type": "BlockStatement",
+      },
+      "end": 21,
+      "left": {
+        "declarations": [
+          {
+            "end": 10,
+            "id": {
+              "end": 10,
+              "name": "x",
+              "start": 9,
+              "type": "Identifier",
+            },
+            "init": null,
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 10,
+        "kind": "let",
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "elements": [
+          {
+            "end": 16,
+            "start": 15,
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "end": 17,
+        "start": 14,
+        "type": "ArrayExpression",
+      },
+      "start": 0,
+      "type": "ForOfStatement",
+    },
+  ],
+  "end": 21,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > function f(a = 1) {} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "end": 20,
+        "start": 18,
+        "type": "BlockStatement",
+      },
+      "end": 20,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 16,
+          "left": {
+            "end": 12,
+            "name": "a",
+            "start": 11,
+            "type": "Identifier",
+          },
+          "right": {
+            "end": 16,
+            "start": 15,
+            "type": "Literal",
+            "value": 1,
+          },
+          "start": 11,
+          "type": "AssignmentPattern",
+        },
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 20,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > let [a, b] = [1, 2]; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 19,
+          "id": {
+            "elements": [
+              {
+                "end": 6,
+                "name": "a",
+                "start": 5,
+                "type": "Identifier",
+              },
+              {
+                "end": 9,
+                "name": "b",
+                "start": 8,
+                "type": "Identifier",
+              },
+            ],
+            "end": 10,
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "elements": [
+              {
+                "end": 15,
+                "start": 14,
+                "type": "Literal",
+                "value": 1,
+              },
+              {
+                "end": 18,
+                "start": 17,
+                "type": "Literal",
+                "value": 2,
+              },
+            ],
+            "end": 19,
+            "start": 13,
+            "type": "ArrayExpression",
+          },
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 20,
+      "kind": "let",
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 20,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges: { start, end } (pass) > var x = 1; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 9,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 9,
+            "start": 8,
+            "type": "Literal",
+            "value": 1,
+          },
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 10,
+      "kind": "var",
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 10,
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
