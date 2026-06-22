@@ -3015,9 +3015,9 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function fo
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function foo(p\\u0061ckage) { "use strict"; } 1`] = `
-"SyntaxError [1:43-1:44]: Unexpected strict mode reserved word
+"SyntaxError [1:13-1:25]: Unexpected strict mode reserved word
 > 1 | function foo(p\\u0061ckage) { "use strict"; }
-    |                                            ^ Unexpected strict mode reserved word"
+    |              ^^^^^^^^^^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function foo(p\\x61ckage) { "use strict"; } 1`] = `
@@ -3033,9 +3033,15 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function fo
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function foo(package) { "use strict"; } 1`] = `
-"SyntaxError [1:38-1:39]: Unexpected strict mode reserved word
+"SyntaxError [1:13-1:20]: Unexpected strict mode reserved word
 > 1 | function foo(package) { "use strict"; }
-    |                                       ^ Unexpected strict mode reserved word"
+    |              ^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(package, public) { "use strict"; } 1`] = `
+"SyntaxError [1:13-1:20]: Unexpected strict mode reserved word
+> 1 | function foo(package, public) { "use strict"; }
+    |              ^^^^^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function super() {"use strict";} 1`] = `
@@ -3078,6 +3084,12 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function w(
 "SyntaxError [1:25-1:33]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
 > 1 | function w(casecase){y:j:function casecase(){}}
     |                          ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(package){ "use strict"; }} 1`] = `
+"SyntaxError [1:9-1:16]: Unexpected strict mode reserved word
+> 1 | o = {foo(package){ "use strict"; }}
+    |          ^^^^^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(x = implements = y){ "use strict"; }} 1`] = `

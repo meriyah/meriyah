@@ -111,6 +111,14 @@ export class Parser {
   destructible = DestructuringKind.None;
 
   /**
+   * Source range of the first strict-mode reserved word seen in a parameter
+   * list while strict mode was not yet known (e.g. a future-reserved parameter
+   * name). Used to report a later `"use strict"` directive error at the
+   * offending parameter instead of the current token. Reset per parameter list.
+   */
+  strictReservedRange: [Location, Location] | null = null;
+
+  /**
    * Holds leading decorators before "export" or "class" keywords
    */
   leadingDecorators: {

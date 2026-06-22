@@ -156,6 +156,8 @@ describe('Declarations - Function', () => {
     { code: 'function await() {}', options: { sourceType: 'module' } },
     { code: 'function *await() {}', options: { sourceType: 'module' } },
     'function foo(package) { "use strict"; }',
+    'function foo(package, public) { "use strict"; }',
+    'o = {foo(package){ "use strict"; }}',
     String.raw`function foo(p\x61ckage) { }`,
     String.raw`function foo(p\x61ckage) { "use strict"; }`,
     String.raw`function foo(p\141ckage) { }`,

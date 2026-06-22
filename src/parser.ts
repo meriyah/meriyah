@@ -3424,7 +3424,16 @@ function parseFunctionBody(
         }
       }
       if (parser.flags & Flags.StrictEvalArguments) parser.report(Errors.StrictEvalArguments);
-      if (parser.flags & Flags.HasStrictReserved) parser.report(Errors.UnexpectedStrictReserved);
+      if (parser.flags & Flags.HasStrictReserved) {
+        if (parser.strictReservedRange) {
+          throw new ParseError(
+            parser.strictReservedRange[0],
+            parser.strictReservedRange[1],
+            Errors.UnexpectedStrictReserved,
+          );
+        }
+        parser.report(Errors.UnexpectedStrictReserved);
+      }
     }
   }
 
@@ -6310,6 +6319,7 @@ function parseMethodFormals(
   const params: (ESTree.AssignmentPattern | ESTree.Parameter)[] = [];
 
   parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
+  parser.strictReservedRange = null;
 
   if (parser.getToken() === Token.RightParen) {
     if (kind & PropertyKind.Setter) {
@@ -6339,6 +6349,7 @@ function parseMethodFormals(
       if ((context & Context.Strict) === 0) {
         if ((parser.getToken() & Token.FutureReserved) === Token.FutureReserved) {
           parser.flags |= Flags.HasStrictReserved;
+          parser.strictReservedRange ??= [tokenStart, parser.currentLocation];
         }
 
         if ((parser.getToken() & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
@@ -6952,6 +6963,7 @@ function parseFormalParametersOrFormalList(
   consume(parser, context, Token.LeftParen);
 
   parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
+  parser.strictReservedRange = null;
 
   const params: ESTree.Parameter[] = [];
 
@@ -6971,6 +6983,7 @@ function parseFormalParametersOrFormalList(
       if ((context & Context.Strict) === 0) {
         if ((token & Token.FutureReserved) === Token.FutureReserved) {
           parser.flags |= Flags.HasStrictReserved;
+          parser.strictReservedRange ??= [tokenStart, parser.currentLocation];
         }
         if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
           parser.flags |= Flags.StrictEvalArguments;
