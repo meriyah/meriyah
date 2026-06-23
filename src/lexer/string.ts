@@ -218,7 +218,7 @@ export function parseEscape(parser: Parser, context: Context, first: number, isT
     // `8`, `9` (invalid escapes)
     case Chars.Eight:
     case Chars.Nine:
-      if (isTemplate || !parser.options.webcompat || context & Context.Strict) return Escape.EightOrNine;
+      if (isTemplate || context & Context.Strict) return Escape.EightOrNine;
       parser.flags |= Flags.EightAndNine;
     // fallthrough
     default:
