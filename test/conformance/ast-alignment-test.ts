@@ -4,6 +4,7 @@ import { it } from 'vitest';
 import type * as ESTree from '../../src/estree';
 import * as meriyah from '../../src/meriyah';
 import getTest262Fixtures, { type TestCase } from '../../test262/get-test262-fixtures.mjs';
+import { visitNode } from '../test-utils';
 
 const { TEST262_FILE } = process.env;
 
@@ -86,6 +87,7 @@ function parseMeriyah(text: string, sourceType: 'module' | 'script') {
     raw: true,
     onComment: comments,
     preserveParens: true,
+    jsx: false,
   }) as MeriyahAst;
 
   ast.comments = comments;
@@ -172,24 +174,4 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
 
     return node;
   });
-}
-
-function visitNode(node: any, fn: any) {
-  if (Array.isArray(node)) {
-    for (let i = 0; i < node.length; i++) {
-      node[i] = visitNode(node[i], fn);
-    }
-    return node;
-  }
-
-  if (typeof node?.type !== 'string') {
-    return node;
-  }
-
-  const keys = Object.keys(node);
-  for (let i = 0; i < keys.length; i++) {
-    node[keys[i]] = visitNode(node[keys[i]], fn);
-  }
-
-  return fn(node) ?? node;
 }
