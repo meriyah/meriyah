@@ -81,3 +81,23 @@ export const fail = (name: string, testCases: TestCase[]) => {
     });
   });
 };
+
+export function visitNode(node: any, fn: any) {
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i++) {
+      node[i] = visitNode(node[i], fn);
+    }
+    return node;
+  }
+
+  if (typeof node?.type !== 'string') {
+    return node;
+  }
+
+  const keys = Object.keys(node);
+  for (let i = 0; i < keys.length; i++) {
+    node[keys[i]] = visitNode(node[keys[i]], fn);
+  }
+
+  return fn(node) ?? node;
+}
