@@ -579,6 +579,8 @@ describe('Declarations - Let', () => {
   ]);
 
   pass('Declarations - Let (pass)', [
+    'let in x',
+    'let instanceof x',
     'for (let {[x]: y = z} of obj);',
     '[x = true] = y',
     'let [,] = x;',

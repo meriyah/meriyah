@@ -1534,7 +1534,7 @@ function parseLetIdentOrVarDeclarationStatement(
   const token = parser.getToken();
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context);
 
-  if (parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart)) {
+  if (parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart) && (parser.getToken() & Token.IsBinaryOp) === 0) {
     /* VariableDeclarations ::
      *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
      */
