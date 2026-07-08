@@ -4398,6 +4398,8 @@ function parseTemplate(
     quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ true));
   }
 
+  parser.assignable = AssignmentTargetKind.Invalid;
+
   return parser.finishNode<ESTree.TemplateLiteral>(
     {
       type: 'TemplateLiteral',
