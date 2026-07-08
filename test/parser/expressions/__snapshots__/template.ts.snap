@@ -168,6 +168,12 @@ exports[`Expressions - Template > Expressions - Template (fail) > \`\\30\` 1`] =
     | ^^ Octal escape sequences are not allowed in template strings"
 `;
 
+exports[`Expressions - Template > Expressions - Template (fail) > \`\\u{}\` 1`] = `
+"SyntaxError [1:0-1:4]: Invalid hexadecimal escape sequence
+> 1 | \`\\u{}\`
+    | ^^^^ Invalid hexadecimal escape sequence"
+`;
+
 exports[`Expressions - Template > Expressions - Template (fail) > \`\\u{11ffff}\${ 1`] = `
 "SyntaxError [1:0-1:9]: Unicode codepoint must not be greater than 0x10FFFF
 > 1 | \`\\u{11ffff}\${

@@ -439,6 +439,7 @@ describe('Expressions - Template', () => {
     '`\\001`',
     '`a${await foo}d`',
     '`\\u{g}`',
+    '`\\u{}`',
     '`\\u00g0`',
     '`\\ufffg${',
     '`\\uAA`',
