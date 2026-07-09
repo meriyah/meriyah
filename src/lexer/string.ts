@@ -188,12 +188,14 @@ export function parseEscape(parser: Parser, context: Context, first: number, isT
 
       if (parser.currentChar === Chars.LeftBrace) {
         let code = 0;
+        let digits = 0;
         while ((CharTypes[advanceChar(parser)] & CharFlags.Hex) !== 0) {
           code = (code << 4) | toHex(parser.currentChar);
           if (code > Chars.NonBMPMax) return Escape.OutOfRange;
+          digits++;
         }
 
-        if (parser.currentChar < 1 || (parser.currentChar as number) !== Chars.RightBrace) {
+        if (digits === 0 || parser.currentChar < 1 || (parser.currentChar as number) !== Chars.RightBrace) {
           return Escape.InvalidHex;
         }
         return code;

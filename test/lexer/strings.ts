@@ -216,7 +216,7 @@ describe('Lexer - String', () => {
   fail('fails on "foo', '"foo', Context.None);
   fail(String.raw`fails on "\u{1F_639}"`, String.raw`"\u{1F_639}"`, Context.None, { next: true });
   fail(String.raw`fails on "\u007Xvwxyz"`, String.raw`"\u007Xvwxyz"`, Context.None, { next: true });
-  //fail('fails on "abc\\u{}"', '"abc\\u{}"', Context.None, { next: true });
+  fail(String.raw`fails on "abc\u{}"`, String.raw`"abc\u{}"`, Context.None, { next: true });
   fail(String.raw`fails on "abc\u}"`, String.raw`"abc\u}"`, Context.None, { next: true });
   fail(String.raw`fails on "abc\u{`, String.raw`"abc\u{"`, Context.None, { next: true });
   fail(String.raw`fails on "\u{70bc"`, String.raw`"\u{70bc"`, Context.None, { next: true });
