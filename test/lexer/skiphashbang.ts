@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Flags } from '../../src/common';
-import { skipHashBang } from '../../src/lexer';
-import { Parser } from '../../src/parser/parser';
+import { Flags } from '../../src/common.ts';
+import { skipHashBang } from '../../src/lexer/index.ts';
+import { Parser } from '../../src/parser/parser.ts';
 
 describe('Lexer - skiphashbang', () => {
   function pass(name: string, opts: any) {

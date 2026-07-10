@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { pass } from '../../test-utils';
+import { pass } from '../../test-utils.ts';
 
 describe('Expressions - Logical', () => {
   pass('Expressions - Logical (pass)', [

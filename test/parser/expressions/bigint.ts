@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
-import { pass } from '../../test-utils';
+import { parseSource } from '../../../src/parser.ts';
+import { pass } from '../../test-utils.ts';
 
 describe('Expressions - BigInt', () => {
   for (const arg of [

@@ -1,7 +1,7 @@
-import { Chars } from '../chars';
-import { Flags } from '../common';
-import { type Parser } from '../parser/parser';
-import { Token } from '../token';
+import { Chars } from '../chars.ts';
+import { Flags } from '../common.ts';
+import { type Parser } from '../parser/parser.ts';
+import { Token } from '../token.ts';
 
 export const enum LexerState {
   None = 0,

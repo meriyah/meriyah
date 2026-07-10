@@ -1,6 +1,6 @@
-import { type Location, PropertyKind } from '../common';
-import { Errors, ParseError } from '../errors';
-import { type Parser } from './parser';
+import { type Location, PropertyKind } from '../common.ts';
+import { Errors, ParseError } from '../errors.ts';
+import { type Parser } from './parser.ts';
 
 // Note PrivateScope doesn't retain a scopeError
 // like Scope, because it doesn't need to.

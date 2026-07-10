@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { type SourceLocation } from '../../../src/estree';
-import { parseSource } from '../../../src/parser';
+import { type SourceLocation } from '../../../src/estree.ts';
+import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - onComment', () => {
   it('should extract single line comment', () => {

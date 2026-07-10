@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
+import { parseSource } from '../../../src/parser.ts';
 
 // DO NOT REMOVE OR MODIFY THIS TESTS!!!
 

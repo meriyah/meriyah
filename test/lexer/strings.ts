@@ -1,10 +1,10 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../src/common';
-import { scanSingleToken } from '../../src/lexer/scan';
-import { Parser } from '../../src/parser/parser';
-import { Token } from '../../src/token';
-import { type Options } from './../../src/options';
+import { Context } from '../../src/common.ts';
+import { scanSingleToken } from '../../src/lexer/scan.ts';
+import { Parser } from '../../src/parser/parser.ts';
+import { Token } from '../../src/token.ts';
+import { type Options } from './../../src/options.ts';
 
 describe('Lexer - String', () => {
   const tokens: ([Context, Token, string, string] | [Context, Token, string, string, Options])[] = [

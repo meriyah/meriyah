@@ -1,5 +1,5 @@
 import type * as ESTree from './estree';
-import { type Token } from './token';
+import { type Token } from './token.ts';
 
 /**
  * Function calls when semicolon inserted.

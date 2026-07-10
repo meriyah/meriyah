@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { type SourceLocation } from '../../../src/estree';
-import { parseSource } from '../../../src/parser';
-import { type Token } from '../../../src/token';
+import { type SourceLocation } from '../../../src/estree.ts';
+import { parseSource } from '../../../src/parser.ts';
+import { type Token } from '../../../src/token.ts';
 
 describe('Miscellaneous - onToken', () => {
   it('tokenize braces using array', () => {

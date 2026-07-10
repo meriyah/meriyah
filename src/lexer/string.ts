@@ -1,10 +1,10 @@
-import { Chars } from '../chars';
-import { Context, Flags } from '../common';
-import { Errors } from '../errors';
-import { type Parser } from '../parser/parser';
-import { Token } from '../token';
-import { CharFlags, CharTypes } from './charClassifier';
-import { advanceChar, toHex } from './common';
+import { Chars } from '../chars.ts';
+import { Context, Flags } from '../common.ts';
+import { Errors } from '../errors.ts';
+import { type Parser } from '../parser/parser.ts';
+import { Token } from '../token.ts';
+import { CharFlags, CharTypes } from './charClassifier.ts';
+import { advanceChar, toHex } from './common.ts';
 // Intentionally negative
 export const enum Escape {
   Empty = -1,

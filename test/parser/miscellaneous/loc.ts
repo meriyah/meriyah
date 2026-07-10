@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { parse } from '../../../src/meriyah';
-import { pass } from '../../test-utils';
+import { parse } from '../../../src/meriyah.ts';
+import { pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - loc', () => {
   pass('Miscellaneous - loc (pass)', [

@@ -1,3 +1,3 @@
-import { pass } from '../../test-utils';
+import { pass } from '../../test-utils.ts';
 
 pass('Identifier', [{ code: String.raw`a\u0065`, options: { loc: true, ranges: true } }]);

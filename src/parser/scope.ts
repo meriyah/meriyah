@@ -1,6 +1,6 @@
-import { BindingKind, Context, type Location, Origin } from '../common';
-import { Errors, ParseError } from '../errors';
-import { type Parser } from './parser';
+import { BindingKind, Context, type Location, Origin } from '../common.ts';
+import { Errors, ParseError } from '../errors.ts';
+import { type Parser } from './parser.ts';
 
 /**
  * Scope kinds

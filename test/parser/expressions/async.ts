@@ -1,9 +1,9 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
-import { parseSource } from '../../../src/parser';
-import { fail, pass } from '../../test-utils';
+import { Context } from '../../../src/common.ts';
+import { parseSource } from '../../../src/parser.ts';
+import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Async', () => {
   // Async as identifier

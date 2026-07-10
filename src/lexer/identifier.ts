@@ -1,11 +1,11 @@
-import { Chars } from '../chars';
-import { Context } from '../common';
-import { Errors, ParseError } from '../errors';
-import { type Parser } from '../parser/parser';
-import { getOwnProperty } from '../utilities';
-import { descKeywordTable, Token } from './../token';
-import { CharFlags, CharTypes, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
-import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
+import { Chars } from '../chars.ts';
+import { Context } from '../common.ts';
+import { Errors, ParseError } from '../errors.ts';
+import { type Parser } from '../parser/parser.ts';
+import { getOwnProperty } from '../utilities.ts';
+import { descKeywordTable, Token } from './../token.ts';
+import { CharFlags, CharTypes, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier.ts';
+import { advanceChar, consumePossibleSurrogatePair, toHex } from './common.ts';
 
 /**
  * Scans identifier

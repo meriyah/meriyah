@@ -1,10 +1,10 @@
-import { Chars } from '../chars';
-import { Context, Flags } from '../common';
-import { Errors, ParseError } from '../errors';
-import { type Parser } from '../parser/parser';
-import { Token } from '../token';
-import { CharFlags, CharTypes, isIdentifierStart } from './charClassifier';
-import { advanceChar, NumberKind, toHex } from './common';
+import { Chars } from '../chars.ts';
+import { Context, Flags } from '../common.ts';
+import { Errors, ParseError } from '../errors.ts';
+import { type Parser } from '../parser/parser.ts';
+import { Token } from '../token.ts';
+import { CharFlags, CharTypes, isIdentifierStart } from './charClassifier.ts';
+import { advanceChar, NumberKind, toHex } from './common.ts';
 
 /**
  * Scans numeric literal
