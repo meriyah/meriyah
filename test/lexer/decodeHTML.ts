@@ -1,6 +1,6 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { decodeHTMLStrict } from '../../src/lexer/decodeHTML';
+import { decodeHTMLStrict } from '../../src/lexer/decodeHTML.ts';
 
 describe('decodeHTMLStrict', () => {
   it('decode named character', () => {

@@ -1,4 +1,4 @@
-import { fail, pass } from '../../test-utils';
+import { fail, pass } from '../../test-utils.ts';
 
 fail('RegExp', [String.raw`/\B*/u`]);
 

@@ -24,17 +24,17 @@ import {
   validateAndDeclareLabel,
   validateBindingIdentifier,
   validateFunctionName,
-} from './common';
-import { Errors, ParseError } from './errors';
-import type * as ESTree from './estree';
-import { nextToken, skipHashBang } from './lexer';
-import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx';
-import { scanTemplateTail } from './lexer/template';
-import { type Options } from './options';
-import { Parser } from './parser/parser';
-import { type PrivateScope } from './parser/private-scope';
-import { createArrowHeadParsingScope, type Scope, ScopeKind } from './parser/scope';
-import { KeywordDescTable, Token } from './token';
+} from './common.ts';
+import { Errors, ParseError } from './errors.ts';
+import type * as ESTree from './estree.ts';
+import { nextToken, skipHashBang } from './lexer/index.ts';
+import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx.ts';
+import { scanTemplateTail } from './lexer/template.ts';
+import { type Options } from './options.ts';
+import { Parser } from './parser/parser.ts';
+import { type PrivateScope } from './parser/private-scope.ts';
+import { createArrowHeadParsingScope, type Scope, ScopeKind } from './parser/scope.ts';
+import { KeywordDescTable, Token } from './token.ts';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree

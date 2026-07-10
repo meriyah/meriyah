@@ -1,6 +1,6 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
+import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Trailing comma', () => {
   for (const arg of [

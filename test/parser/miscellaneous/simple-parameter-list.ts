@@ -1,6 +1,6 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
+import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Simple parameter list', () => {
   for (const arg of [

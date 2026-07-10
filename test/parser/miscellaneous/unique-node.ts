@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import type * as ESTree from '../../../src/estree';
-import { type Options } from '../../../src/options';
-import { parseSource } from '../../../src/parser';
+import type * as ESTree from '../../../src/estree.ts';
+import { type Options } from '../../../src/options.ts';
+import { parseSource } from '../../../src/parser.ts';
 
 const parseOptions: Options = {
   source: 'foo.js',

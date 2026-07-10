@@ -92,6 +92,15 @@ export default [
       ],
       'unicorn/template-indent': 'error',
 
+      'import-x/extensions': [
+        'error',
+        'always',
+        {
+          fix: true,
+          checkTypeImports: true,
+        },
+      ],
+
       // TODO: enable it when all problems addressed
       '@typescript-eslint/explicit-function-return-type': 0,
       '@typescript-eslint/no-explicit-any': 0,

@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
-import { fail, pass } from '../../test-utils';
+import { parseSource } from '../../../src/parser.ts';
+import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Assign', () => {
   fail('Expressions - Assign (fail)', [

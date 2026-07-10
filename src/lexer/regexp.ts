@@ -1,9 +1,9 @@
-import { Chars } from '../chars';
-import { Errors } from '../errors';
-import { type Parser } from '../parser/parser';
-import { Token } from '../token';
-import { isIdentifierPart } from './charClassifier';
-import { advanceChar } from './common';
+import { Chars } from '../chars.ts';
+import { Errors } from '../errors.ts';
+import { type Parser } from '../parser/parser.ts';
+import { Token } from '../token.ts';
+import { isIdentifierPart } from './charClassifier.ts';
+import { advanceChar } from './common.ts';
 
 enum RegexState {
   Empty = 0,

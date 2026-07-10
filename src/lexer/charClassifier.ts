@@ -1,5 +1,5 @@
-import { Chars } from '../chars';
-import { isIDContinue,isIDStart } from '../unicode';
+import { Chars } from '../chars.ts';
+import { isIDContinue,isIDStart } from '../unicode.ts';
 
 export const enum CharFlags {
   None = 0,

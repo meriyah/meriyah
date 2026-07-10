@@ -1,6 +1,6 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
+import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Strict mode', () => {
   for (const arg of ['; with (x) y;', '"use strict"; with (x) y;', 'class X { foo() { with (x) y; } }']) {

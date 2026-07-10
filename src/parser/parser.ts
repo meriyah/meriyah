@@ -1,11 +1,11 @@
-import { AssignmentTargetKind, DestructuringKind, Flags, type Location } from '../common';
-import { Errors, ParseError } from '../errors';
-import type * as ESTree from '../estree';
-import { convertTokenType } from '../lexer';
-import { type NormalizedOptions, normalizeOptions, type OnComment, type OnToken, type Options } from '../options';
-import { Token } from '../token';
-import { PrivateScope } from './private-scope';
-import { Scope, type ScopeKind } from './scope';
+import { AssignmentTargetKind, DestructuringKind, Flags, type Location } from '../common.ts';
+import { Errors, ParseError } from '../errors.ts';
+import type * as ESTree from '../estree.ts';
+import { convertTokenType } from '../lexer/index.ts';
+import { type NormalizedOptions, normalizeOptions, type OnComment, type OnToken, type Options } from '../options.ts';
+import { Token } from '../token.ts';
+import { PrivateScope } from './private-scope.ts';
+import { Scope, type ScopeKind } from './scope.ts';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;

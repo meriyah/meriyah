@@ -1,6 +1,6 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import * as meriyah from '../../src/meriyah';
+import * as meriyah from '../../src/meriyah.ts';
 import runTest from '../../test262/run-test262.mjs';
 describe('Test262', function () {
   it(

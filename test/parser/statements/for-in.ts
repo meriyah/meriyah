@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
-import { fail, pass } from '../../test-utils';
+import { parseSource } from '../../../src/parser.ts';
+import { fail, pass } from '../../test-utils.ts';
 
 describe('Statements - For in', () => {
   for (const arg of [

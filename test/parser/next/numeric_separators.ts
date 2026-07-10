@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { fail } from '../../test-utils';
+import { fail } from '../../test-utils.ts';
 
 describe('Next - Numeric separators', () => {
   fail('Next - Numeric separators (fail)', [

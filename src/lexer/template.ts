@@ -1,10 +1,10 @@
-import { Chars } from '../chars';
-import { Context } from '../common';
-import { Errors } from '../errors';
-import { type Parser } from '../parser/parser';
-import { Token } from '../token';
-import { advanceChar } from './common';
-import { Escape, handleStringError, parseEscape } from './string';
+import { Chars } from '../chars.ts';
+import { Context } from '../common.ts';
+import { Errors } from '../errors.ts';
+import { type Parser } from '../parser/parser.ts';
+import { Token } from '../token.ts';
+import { advanceChar } from './common.ts';
+import { Escape, handleStringError, parseEscape } from './string.ts';
 
 /**
  * Scan a template section. It can start either from the quote or closing brace.

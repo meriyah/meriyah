@@ -1,9 +1,9 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../src/common';
-import { scanSingleToken } from '../../src/lexer/scan';
-import { Parser } from '../../src/parser/parser';
-import { Token } from '../../src/token';
+import { Context } from '../../src/common.ts';
+import { scanSingleToken } from '../../src/lexer/scan.ts';
+import { Parser } from '../../src/parser/parser.ts';
+import { Token } from '../../src/token.ts';
 
 describe('Lexer - Unicode Escape', () => {
   const tokens: [Context, Token, string, string][] = [

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { isParseError, parse, type ParseError } from '../src/meriyah';
+import { isParseError, parse, type ParseError } from '../src/meriyah.ts';
 
 describe('ParseError', () => {
   let parseError: ParseError;

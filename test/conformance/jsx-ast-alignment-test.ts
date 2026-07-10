@@ -3,9 +3,9 @@ import * as acorn from 'acorn';
 import acornJsx from 'acorn-jsx';
 import jsxTestSuite from 'jsx-test-suite';
 import { it } from 'vitest';
-import type * as ESTree from '../../src/estree';
-import * as meriyah from '../../src/meriyah';
-import { visitNode } from '../test-utils';
+import type * as ESTree from '../../src/estree.ts';
+import * as meriyah from '../../src/meriyah.ts';
+import { visitNode } from '../test-utils.ts';
 
 const { TEST_JSX_FILE } = process.env;
 
