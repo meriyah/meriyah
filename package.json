@@ -105,7 +105,7 @@
     "knip": "^5.61.3",
     "lint-staged": "^16.1.2",
     "outdent": "^0.8.0",
-    "prettier": "3.6.2",
+    "prettier": "3.9.5",
     "rollup": "^4.44.1",
     "standard-changelog": "^7.0.1",
     "test262-parser-runner": "^0.5.0",
