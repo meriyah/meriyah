@@ -1,7 +1,7 @@
 import { Chars } from '../chars.ts';
 import { Context, type Location } from '../common.ts';
 import { Errors } from '../errors.ts';
-import type * as ESTree from '../estree';
+import type * as ESTree from '../estree.ts';
 import { type Parser } from '../parser/parser.ts';
 import { CharFlags, CharTypes } from './charClassifier.ts';
 import { advanceChar, consumeLineFeed, LexerState, scanNewLine } from './common.ts';

@@ -97,6 +97,7 @@ export default [
         'always',
         {
           fix: true,
+          checkTypeImports: true,
         },
       ],
 

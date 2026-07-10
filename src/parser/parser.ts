@@ -1,6 +1,6 @@
 import { AssignmentTargetKind, DestructuringKind, Flags, type Location } from '../common.ts';
 import { Errors, ParseError } from '../errors.ts';
-import type * as ESTree from '../estree';
+import type * as ESTree from '../estree.ts';
 import { convertTokenType } from '../lexer/index.ts';
 import { type NormalizedOptions, normalizeOptions, type OnComment, type OnToken, type Options } from '../options.ts';
 import { Token } from '../token.ts';

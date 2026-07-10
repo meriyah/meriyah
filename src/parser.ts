@@ -26,7 +26,7 @@ import {
   validateFunctionName,
 } from './common.ts';
 import { Errors, ParseError } from './errors.ts';
-import type * as ESTree from './estree';
+import type * as ESTree from './estree.ts';
 import { nextToken, skipHashBang } from './lexer/index.ts';
 import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx.ts';
 import { scanTemplateTail } from './lexer/template.ts';

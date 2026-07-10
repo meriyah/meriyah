@@ -1,4 +1,4 @@
-import type * as ESTree from './estree';
+import type * as ESTree from './estree.ts';
 import { type Token } from './token.ts';
 
 /**
