@@ -1,11 +1,9 @@
-// Current version
-import { version as pkgVersion } from '../package.json';
+import packageJson from '../package.json' with { type: 'json' };
 import { type Program } from './estree.ts';
 import { type Options } from './options.ts';
 import { parseSource } from './parser.ts';
 
-// This bypass troublesome package.json in generated d.ts file.
-const version: string = pkgVersion;
+export const { version } = packageJson;
 
 /**
  * @deprecated Use `parser()` with `sourceType: 'script'` instead.
@@ -32,6 +30,6 @@ export function parse(source: string, options?: Options): Program {
   return parseSource(source, options);
 }
 
-export { type Options, version };
+export { type Options } from './options.ts';
 export type * as ESTree from './estree.ts';
 export { isParseError, type ParseError } from './errors.ts';
