@@ -26,6 +26,10 @@
 - No backtracking
 - Low memory usage
 
+### Not yet supported features:
+
+- [Explicit Resource Management](https://github.com/tc39/proposal-explicit-resource-management)
+
 ## ESNext Stage 3 features
 
 ### Supported stage 3 features:
@@ -33,12 +37,12 @@
 These features need to be enabled with the `next` option.
 
 - [Decorators](https://github.com/tc39/proposal-decorators)
-- [JSON Modules](https://github.com/tc39/proposal-json-modules)
 
 ### Not yet supported stage 3 features:
 
-- [Explicit resource management](https://github.com/tc39/proposal-explicit-resource-management)
-- [Source phase import](https://github.com/tc39/proposal-source-phase-imports)
+- [Source Phase Imports](https://github.com/tc39/proposal-source-phase-imports)
+- [Deferring Module Evaluation](https://github.com/tc39/proposal-defer-import-eval)
+- [...and more](https://github.com/tc39/proposals#stage-3)
 
 ## RegExp support
 
