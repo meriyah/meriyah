@@ -83,7 +83,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@stylistic/eslint-plugin": "^5.1.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/babel__code-frame": "^7.0.6",
     "@types/node": "^24.0.7",
     "@unicode/unicode-17.0.0": "^1.6.10",
