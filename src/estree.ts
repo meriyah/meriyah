@@ -523,13 +523,7 @@ export interface JSXNamespacedName extends _Node {
 }
 
 export type JSXAttributeValue =
-  | JSXIdentifier
-  | Literal
-  | JSXElement
-  | JSXFragment
-  | JSXExpressionContainer
-  | JSXSpreadChild
-  | null;
+  JSXIdentifier | Literal | JSXElement | JSXFragment | JSXExpressionContainer | JSXSpreadChild | null;
 
 export interface JSXAttribute extends _Node {
   type: 'JSXAttribute';

@@ -4,17 +4,15 @@ export default {
     return {
       CallExpression(callExpression) {
         // `parseSource(..., undefined, ...)`
-        if (
-          !(
-            !callExpression.optional &&
-            callExpression.callee.type === 'Identifier' &&
-            callExpression.callee.name === 'parseSource' &&
-            callExpression.arguments.length === 3 &&
-            callExpression.arguments.every((node) => node.type !== 'SpreadElement') &&
-            callExpression.arguments[1].type === 'Identifier' &&
-            callExpression.arguments[1].name === 'undefined'
-          )
-        ) {
+        if (!(
+          !callExpression.optional &&
+          callExpression.callee.type === 'Identifier' &&
+          callExpression.callee.name === 'parseSource' &&
+          callExpression.arguments.length === 3 &&
+          callExpression.arguments.every((node) => node.type !== 'SpreadElement') &&
+          callExpression.arguments[1].type === 'Identifier' &&
+          callExpression.arguments[1].name === 'undefined'
+        )) {
           return;
         }
 
