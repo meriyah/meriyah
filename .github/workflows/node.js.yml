@@ -39,6 +39,9 @@ jobs:
           path: test262/test262
           key: ${{ hashFiles('test262/test262-commit-hash') }}
       - run: yarn
+        if: matrix.node != '20'
+      - run: yarn --ignore-engines
+        if: matrix.node == '20'
       - run: npm run build
       - run: npm run test
       - run: npm run test:unicode
