@@ -15,10 +15,8 @@ jobs:
     if: github.event_name != 'schedule' || github.repository == 'meriyah/meriyah'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
-        with:
-          node-version: 24
       - name: Update test262 commit hash
         run: git ls-remote --exit-code https://github.com/tc39/test262.git HEAD | cut -f1 > test262/test262-commit-hash
       - uses: actions/cache@v4

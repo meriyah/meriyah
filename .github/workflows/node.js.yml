@@ -22,35 +22,40 @@ jobs:
       fail-fast: false
       matrix:
         node:
+          - '26'
           - '24'
           - '22'
           - '20'
     name: Node.js ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: 'yarn'
           cache-dependency-path: ./package.json
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: test262/test262
           key: ${{ hashFiles('test262/test262-commit-hash') }}
       - run: yarn
+        if: matrix.node != '20'
+      - run: yarn --ignore-engines
+        if: matrix.node == '20'
       - run: npm run build
       - run: npm run test
       - run: npm run test:unicode
       - run: npm run lint
+        if: matrix.node != '20'
 
   preview:
     if: github.repository == 'meriyah/meriyah'
     name: Preview release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           cache-dependency-path: ./package.json

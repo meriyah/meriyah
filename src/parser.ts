@@ -52,7 +52,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
 
   const scope = parser.createScopeIfLexical();
 
-  let body: ESTree.Statement[] = [];
+  let body: ESTree.Statement[];
 
   // https://tc39.es/ecma262/#sec-scripts
   // https://tc39.es/ecma262/#sec-modules
@@ -1389,7 +1389,6 @@ function parseCatchBlock(
   start: Location,
 ): ESTree.CatchClause {
   let param: ESTree.BindingPattern | ESTree.Identifier | null = null;
-  let additionalScope: Scope | undefined = scope;
 
   if (consumeOpt(parser, context, Token.LeftParen)) {
     /*
@@ -1418,7 +1417,7 @@ function parseCatchBlock(
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
   }
 
-  additionalScope = scope?.createChildScope(ScopeKind.CatchBlock);
+  const additionalScope = scope?.createChildScope(ScopeKind.CatchBlock);
 
   const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels });
 
@@ -2137,7 +2136,7 @@ function parseImportDeclaration(
 
   nextToken(parser, context);
 
-  let source: ESTree.StringLiteral | null = null;
+  let source: ESTree.StringLiteral;
 
   const { tokenStart } = parser;
 
@@ -7359,7 +7358,7 @@ function parseAsyncArrowOrCallExpression(
   }
 
   let destructible = DestructuringKind.None;
-  let expr: ESTree.Expression | null = null;
+  let expr: ESTree.Expression;
   let isNonSimpleParameterList: 0 | 1 = 0;
 
   parser.destructible =
@@ -8870,7 +8869,7 @@ function parseJSXExpressionContainer(
   const { tokenStart } = parser;
   if (parser.getToken() === Token.Ellipsis) return parseJSXSpreadChild(parser, context, privateScope, start);
 
-  let expression: ESTree.Expression | ESTree.JSXEmptyExpression | null = null;
+  let expression: ESTree.Expression | ESTree.JSXEmptyExpression;
 
   if (parser.getToken() === Token.RightBrace) {
     // JSX attributes must only be assigned a non-empty 'expression'
