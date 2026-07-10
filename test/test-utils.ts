@@ -17,20 +17,9 @@ const serializeParserError = (code: string, error: unknown) => {
     throw error;
   }
 
-  const {
-    message,
-    loc: { start, end },
-    description,
-  } = error;
+  const { message, loc, description } = error;
 
-  const codeFrame = codeFrameColumns(
-    code,
-    {
-      start: { line: start.line, column: start.column + 1 },
-      end: { line: end.line, column: end.column + 1 },
-    },
-    { highlightCode: false, message: description },
-  );
+  const codeFrame = codeFrameColumns(code, loc, { highlightCode: false, message: description });
 
   return `${error.name} ${message}\n${codeFrame}`;
 };

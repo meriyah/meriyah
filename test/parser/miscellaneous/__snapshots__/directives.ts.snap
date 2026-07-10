@@ -38,7 +38,7 @@ exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > functi
 > 1 | function a() { "use strict" 
     |                ^^^^^^^^^^^^^
 > 2 |  "Hello\\312World" }
-    | ^^^^^^^^^^^^^^^^^^ Octal literals are not allowed in strict mode"
+    | ^^^^^^^^^^^^^^^^^ Octal literals are not allowed in strict mode"
 `;
 
 exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > function a() { "use strict" "Hello\\312World" } 1`] = `
