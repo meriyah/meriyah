@@ -967,15 +967,15 @@ exports[`Declarations - Let > Declarations - Let (fail) > let b = async () => []
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let const 1`] = `
-"SyntaxError [1:4-1:9]: Invalid keyword
+"SyntaxError [1:4-1:9]: Unexpected token: 'const'
 > 1 | let const
-    |     ^^^^^ Invalid keyword"
+    |     ^^^^^ Unexpected token: 'const'"
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let default 1`] = `
-"SyntaxError [1:4-1:11]: Invalid keyword
+"SyntaxError [1:4-1:11]: Unexpected token: 'default'
 > 1 | let default
-    |     ^^^^^^^ Invalid keyword"
+    |     ^^^^^^^ Unexpected token: 'default'"
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let eval(foo) 1`] = `
@@ -4184,4 +4184,64 @@ exports[`Declarations - Let > Declarations - Let (pass) > var let; 1`] = `
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Declarations - Let > Use let as identifier > let in x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "operator": "in",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Use let as identifier > let instanceof x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "operator": "instanceof",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > let cannot be used as identifier in strict mode > let in x 1`] = `
+"SyntaxError [1:4-1:6]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | let in x
+    |     ^^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Declarations - Let > let cannot be used as identifier in strict mode > let instanceof x 1`] = `
+"SyntaxError [1:4-1:14]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | let instanceof x
+    |     ^^^^^^^^^^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
 `;

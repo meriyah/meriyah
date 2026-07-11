@@ -1533,7 +1533,10 @@ function parseLetIdentOrVarDeclarationStatement(
   const token = parser.getToken();
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context);
 
-  if (parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart)) {
+  if (
+    parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart) &&
+    (parser.getToken() & Token.Reserved) !== Token.Reserved
+  ) {
     /* VariableDeclarations ::
      *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
      */
@@ -1878,26 +1881,25 @@ function parseForStatement(
   if (isVarDecl) {
     if (token === Token.LetKeyword) {
       init = parseIdentifier(parser, context);
-      if (parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart)) {
-        if (parser.getToken() === Token.InKeyword) {
-          if (context & Context.Strict) parser.report(Errors.DisallowedLetInStrict);
-        } else {
-          init = parser.finishNode<ESTree.VariableDeclaration>(
-            {
-              type: 'VariableDeclaration',
-              kind: 'let',
-              declarations: parseVariableDeclarationList(
-                parser,
-                context | Context.DisallowIn,
-                scope,
-                privateScope,
-                BindingKind.Let,
-                Origin.ForStatement,
-              ),
-            },
-            tokenStart,
-          );
-        }
+      if (
+        parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart) &&
+        (parser.getToken() & Token.Reserved) !== Token.Reserved
+      ) {
+        init = parser.finishNode<ESTree.VariableDeclaration>(
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: parseVariableDeclarationList(
+              parser,
+              context | Context.DisallowIn,
+              scope,
+              privateScope,
+              BindingKind.Let,
+              Origin.ForStatement,
+            ),
+          },
+          tokenStart,
+        );
 
         parser.assignable = AssignmentTargetKind.Simple;
       } else if (context & Context.Strict) {

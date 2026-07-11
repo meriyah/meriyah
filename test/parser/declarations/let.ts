@@ -1,6 +1,7 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
+import { Context } from '../../../src/common.ts';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
@@ -662,5 +663,12 @@ describe('Declarations - Let', () => {
       []
     `,
     { code: 'let {x} = a, {y} = obj;', options: { ranges: true } },
+  ]);
+
+  pass('Use let as identifier', ['let in x', 'let instanceof x']);
+
+  fail('let cannot be used as identifier in strict mode', [
+    { code: 'let in x', context: Context.Strict },
+    { code: 'let instanceof x', options: { module: true } },
   ]);
 });
