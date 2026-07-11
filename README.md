@@ -42,7 +42,6 @@ These features need to be enabled with the `next` option.
 
 - [Source Phase Imports](https://github.com/tc39/proposal-source-phase-imports)
 - [Deferring Module Evaluation](https://github.com/tc39/proposal-defer-import-eval)
-- [...and more](https://github.com/tc39/proposals#stage-3)
 
 ## RegExp support
 
