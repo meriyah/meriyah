@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/meriyah/meriyah/compare/v7.1.1...v7.1.2) (2026-07-11)
+
+### Bug Fixes
+
+* **lexer:** reject empty unicode code point escape \u{} ([#562](https://github.com/meriyah/meriyah/issues/562)) ([6dd2bba](https://github.com/meriyah/meriyah/commit/6dd2bba7bf9375f751ee9214526e4592702dab9d))
+* **parser:** mark template literal with substitutions as invalid assignment target ([#563](https://github.com/meriyah/meriyah/issues/563)) ([addcad6](https://github.com/meriyah/meriyah/commit/addcad684d5f1e13bcaebe8e97db7ca39370f603))
+* **parser:** parse get and set fields before generators ([#576](https://github.com/meriyah/meriyah/issues/576)) ([cad0605](https://github.com/meriyah/meriyah/commit/cad06053fc9ee16a2217f84ca46d45d9b25c17e7))
+* **parser:** treat let as identifier before in and instanceof ([#577](https://github.com/meriyah/meriyah/issues/577)) ([4a08591](https://github.com/meriyah/meriyah/commit/4a085918dce320f39b535a15eafb774a0b4b90b0))
+
 ## [7.1.1](https://github.com/meriyah/meriyah/compare/v7.1.0...v7.1.1) (2026-07-05)
 
 
