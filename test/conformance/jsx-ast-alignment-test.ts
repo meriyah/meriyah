@@ -41,13 +41,11 @@ function runTest(testCase: (typeof jsxTestSuite)[number]) {
   const meriyahAst = parseMeriyah(testCase.input);
 
   const isNotAlignedTest = notAlignedTests.has(testCase.name);
+  let passed;
 
   try {
     t.deepEqual(meriyahAst, acornAst);
-
-    if (isNotAlignedTest) {
-      console.log(`'${testCase.name}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`);
-    }
+    passed = true;
   } catch (error) {
     if (isNotAlignedTest) {
       return;
@@ -59,6 +57,12 @@ function runTest(testCase: (typeof jsxTestSuite)[number]) {
       );
     console.error(testCase);
     throw error;
+  }
+
+  if (isNotAlignedTest && passed) {
+    throw new Error(
+      `'${testCase.name}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`,
+    );
   }
 }
 
