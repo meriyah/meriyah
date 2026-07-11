@@ -13,10 +13,6 @@ const notAlignedTests = new Set([
   'language/expressions/template-literal/tv-line-continuation.js',
   'language/expressions/template-literal/tv-line-terminator-sequence.js',
   'built-ins/String/raw/special-characters.js',
-
-  // https://github.com/meriyah/meriyah/issues/475
-  'staging/sm/Function/function-name-computed-01.js',
-  'staging/sm/Function/function-name-computed-02.js',
 ]);
 
 it(
