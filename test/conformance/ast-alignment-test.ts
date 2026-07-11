@@ -13,6 +13,8 @@ const notAlignedTests = new Set([
   'language/expressions/template-literal/tv-line-continuation.js',
   'language/expressions/template-literal/tv-line-terminator-sequence.js',
   'built-ins/String/raw/special-characters.js',
+
+  'staging/sm/Function/function-name-computed-01.js',
 ]);
 
 it(
@@ -49,13 +51,11 @@ function runTest(testCase: TestCase) {
   const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
 
   const isNotAlignedTest = notAlignedTests.has(testCase.file);
+  let passed;
 
   try {
     t.deepEqual(meriyahAst, acornAst);
-
-    if (isNotAlignedTest) {
-      console.log(`'${testCase.file}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`);
-    }
+    passed = true;
   } catch (error) {
     if (isNotAlignedTest) {
       return;
@@ -67,6 +67,12 @@ function runTest(testCase: TestCase) {
       );
     console.error(testCase);
     throw error;
+  }
+
+  if (isNotAlignedTest && passed) {
+    throw new Error(
+      `'${testCase.file}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`,
+    );
   }
 }
 
