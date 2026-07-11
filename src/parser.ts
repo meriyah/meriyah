@@ -7998,6 +7998,9 @@ function parseClassElementList(
 
       case Token.GetKeyword:
         if (parser.getToken() !== Token.LeftParen) {
+          if (parser.getToken() === Token.Multiply && parser.flags & Flags.NewLine) {
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
+          }
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
             return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
@@ -8007,6 +8010,9 @@ function parseClassElementList(
 
       case Token.SetKeyword:
         if (parser.getToken() !== Token.LeftParen) {
+          if (parser.getToken() === Token.Multiply && parser.flags & Flags.NewLine) {
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
+          }
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
             return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
