@@ -3,6 +3,28 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Declarations - Class', () => {
+  for (const source of [
+    'class A { get\n*a() {} }',
+    'class B { static get\n*a() {} }',
+    'class C { set\n*a() {} }',
+    'class D { static set\n*a() {} }',
+  ]) {
+    it(`parses ${source}`, () => {
+      const declaration = parseSource(source).body[0];
+
+      t.equal(declaration.type, 'ClassDeclaration');
+      t.equal(declaration.body.body.length, 2);
+      t.equal(declaration.body.body[0].type, 'PropertyDefinition');
+      t.equal(declaration.body.body[1].type, 'MethodDefinition');
+      t.equal(declaration.body.body[1].value.generator, true);
+    });
+  }
+
+  it('rejects generator accessors without a line terminator', () => {
+    t.throws(() => parseSource('class A { get*a() {} }'));
+    t.throws(() => parseSource('class A { set*a() {} }'));
+  });
+
   // Strict mode errors
   for (const arg of [
     'class C { method() { with ({}) {} } }',
