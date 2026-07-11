@@ -69,7 +69,7 @@ export interface Options {
   globalReturn?: boolean;
 }
 
-export interface NormalizedRanges {
+interface NormalizedRanges {
   start: boolean;
   end: boolean;
   range: boolean;
