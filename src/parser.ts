@@ -27,6 +27,7 @@ import {
 } from './common.ts';
 import { Errors, ParseError } from './errors.ts';
 import type * as ESTree from './estree.ts';
+import { isIdentifierPart } from './lexer/charClassifier.ts';
 import { nextToken, skipHashBang } from './lexer/index.ts';
 import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx.ts';
 import { scanTemplateTail } from './lexer/template.ts';
@@ -257,6 +258,16 @@ function parseStatementListItem(
       return parseLexicalDeclaration(parser, context, scope, privateScope, BindingKind.Const, Origin.None);
     case Token.LetKeyword:
       return parseLetIdentOrVarDeclarationStatement(parser, context, scope, privateScope, origin);
+    case Token.UsingKeyword:
+      return parseUsingDeclarationOrExpressionStatement(parser, context, scope, privateScope, origin, labels);
+    case Token.AwaitKeyword:
+      if (
+        (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) &&
+        nextTokenIsUsingOnSameLine(parser)
+      ) {
+        return parseAwaitUsingDeclarationOrExpressionStatement(parser, context, scope, privateScope, origin, labels);
+      }
+      return parseStatement(parser, context, scope, privateScope, origin, labels, 1);
     // ExportDeclaration
     case Token.ExportKeyword:
       parser.report(Errors.InvalidImportExportSloppy, 'export');
@@ -436,15 +447,34 @@ function parseExpressionOrLabelledStatement(
       expr = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, parser.tokenStart);
   }
 
-  /** LabelledStatement[Yield, Await, Return]:
-   *
-   * ExpressionStatement | LabelledStatement ::
-   * Expression ';'
-   *   Identifier ':' Statement
-   *
-   * ExpressionStatement[Yield] :
-   *   [lookahead not in {{, function, class, let [}] Expression[In, ?Yield] ;
-   */
+  return finishExpressionOrLabelledStatement(
+    parser,
+    context,
+    scope,
+    privateScope,
+    origin,
+    labels,
+    allowFuncDecl,
+    expr,
+    token,
+    tokenValue,
+    tokenStart,
+  );
+}
+
+function finishExpressionOrLabelledStatement(
+  parser: Parser,
+  context: Context,
+  scope: Scope | undefined,
+  privateScope: PrivateScope | undefined,
+  origin: Origin,
+  labels: ESTree.Labels,
+  allowFuncDecl: 0 | 1,
+  initialExpression: ESTree.Expression,
+  token: Token,
+  tokenValue: string,
+  tokenStart: Location,
+): ESTree.ExpressionStatement | ESTree.LabeledStatement {
   if (token & Token.IsIdentifier && parser.getToken() === Token.Colon) {
     return parseLabelledStatement(
       parser,
@@ -454,59 +484,30 @@ function parseExpressionOrLabelledStatement(
       origin,
       labels,
       tokenValue,
-      expr,
+      initialExpression,
       token,
       allowFuncDecl,
       tokenStart,
     );
   }
-  /** MemberExpression :
-   *   1. PrimaryExpression
-   *   2. MemberExpression [ AssignmentExpression ]
-   *   3. MemberExpression . IdentifierName
-   *   4. MemberExpression TemplateLiteral
-   *
-   * CallExpression :
-   *   1. MemberExpression Arguments
-   *   2. CallExpression ImportCall
-   *   3. CallExpression Arguments
-   *   4. CallExpression [ AssignmentExpression ]
-   *   5. CallExpression . IdentifierName
-   *   6. CallExpression TemplateLiteral
-   *
-   *  UpdateExpression ::
-   *   ('++' | '--')? LeftHandSideExpression
-   *
-   */
 
-  expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, 0, 0, tokenStart);
+  let expression = parseMemberOrUpdateExpression(parser, context, privateScope, initialExpression, 0, 0, tokenStart);
 
-  /** AssignmentExpression :
-   *   1. ConditionalExpression
-   *   2. LeftHandSideExpression = AssignmentExpression
-   *
-   */
+  expression = parseAssignmentExpression(
+    parser,
+    context,
+    privateScope,
+    0,
+    0,
+    tokenStart,
+    expression as ESTree.ArgumentExpression,
+  );
 
-  expr = parseAssignmentExpression(parser, context, privateScope, 0, 0, tokenStart, expr as ESTree.ArgumentExpression);
-
-  /** Sequence expression
-   *
-   * Note: The comma operator leads to a sequence expression which is not equivalent
-   * to the ES Expression, but it's part of the ESTree specs:
-   *
-   * https://github.com/estree/estree/blob/master/es5.md#sequenceexpression
-   *
-   */
   if (parser.getToken() === Token.Comma) {
-    expr = parseSequenceExpression(parser, context, privateScope, 0, tokenStart, expr);
+    expression = parseSequenceExpression(parser, context, privateScope, 0, tokenStart, expression);
   }
 
-  /**
-   * ExpressionStatement[Yield, Await]:
-   *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
-   */
-
-  return parseExpressionStatement(parser, context, expr, tokenStart);
+  return parseExpressionStatement(parser, context, expression, tokenStart);
 }
 
 /**
@@ -1080,11 +1081,25 @@ function parseSwitchStatement(
       parser.getToken() !== Token.RightBrace &&
       parser.getToken() !== Token.DefaultKeyword
     ) {
-      consequent.push(
-        parseStatementListItem(parser, context | Context.InSwitch, scope, privateScope, Origin.BlockStatement, {
+      const statement = parseStatementListItem(
+        parser,
+        context | Context.InSwitch,
+        scope,
+        privateScope,
+        Origin.BlockStatement,
+        {
           $: labels,
-        }) as ESTree.Statement,
+        },
       );
+
+      if (
+        statement.type === 'VariableDeclaration' &&
+        (statement.kind === 'using' || statement.kind === 'await using')
+      ) {
+        parser.report(Errors.UnexpectedToken, statement.kind);
+      }
+
+      consequent.push(statement as ESTree.Statement);
     }
 
     cases.push(
@@ -1658,6 +1673,162 @@ function parseLetIdentOrVarDeclarationStatement(
   return parseExpressionStatement(parser, context, expr, tokenStart);
 }
 
+type ResourceDeclarationKind = 'using' | 'await using';
+
+function nextTokenIsUsingOnSameLine(parser: Parser): boolean {
+  const { index: parserIndex, source } = parser;
+  let index = parserIndex;
+
+  while (index < parser.end) {
+    const char = source.charCodeAt(index);
+
+    if (char === 0x0a || char === 0x0d || char === 0x2028 || char === 0x2029) return false;
+
+    if (/\s/u.test(source[index])) {
+      index++;
+      continue;
+    }
+
+    if (char === 0x2f && source.charCodeAt(index + 1) === 0x2a) {
+      index += 2;
+      while (index < parser.end) {
+        const commentChar = source.charCodeAt(index);
+        if (commentChar === 0x0a || commentChar === 0x0d || commentChar === 0x2028 || commentChar === 0x2029) {
+          return false;
+        }
+        if (commentChar === 0x2a && source.charCodeAt(index + 1) === 0x2f) {
+          index += 2;
+          break;
+        }
+        index++;
+      }
+      continue;
+    }
+
+    break;
+  }
+
+  if (source.slice(index, index + 5) !== 'using') return false;
+
+  const following = source.codePointAt(index + 5);
+  return following === undefined || (following !== 0x5c && !isIdentifierPart(following));
+}
+
+function isResourceBindingStart(token: Token): boolean {
+  return (token & Token.IsIdentifier) === Token.IsIdentifier && (token & Token.Reserved) !== Token.Reserved;
+}
+
+function parseUsingDeclarationOrExpressionStatement(
+  parser: Parser,
+  context: Context,
+  scope: Scope | undefined,
+  privateScope: PrivateScope | undefined,
+  origin: Origin,
+  labels: ESTree.Labels,
+): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
+  const { tokenStart, tokenValue } = parser;
+  const token = parser.getToken();
+  const expression = parseIdentifier(parser, context);
+
+  if ((parser.flags & Flags.NewLine) === 0 && isResourceBindingStart(parser.getToken())) {
+    if (origin & Origin.TopLevel && context & Context.InGlobal && (context & Context.Module) === 0) {
+      parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+    }
+
+    return parseLexicalDeclaration(
+      parser,
+      context,
+      scope,
+      privateScope,
+      BindingKind.Const,
+      origin,
+      'using',
+      tokenStart,
+      1,
+    );
+  }
+
+  parser.assignable = AssignmentTargetKind.Simple;
+  return finishExpressionOrLabelledStatement(
+    parser,
+    context,
+    scope,
+    privateScope,
+    origin,
+    labels,
+    1,
+    expression,
+    token,
+    tokenValue,
+    tokenStart,
+  );
+}
+
+function parseAwaitUsingDeclarationOrExpressionStatement(
+  parser: Parser,
+  context: Context,
+  scope: Scope | undefined,
+  privateScope: PrivateScope | undefined,
+  origin: Origin,
+  labels: ESTree.Labels,
+): ESTree.VariableDeclaration | ESTree.ExpressionStatement | ESTree.LabeledStatement {
+  const start = parser.tokenStart;
+
+  if (context & Context.InStaticBlock) parser.report(Errors.InvalidAwaitInStaticBlock);
+
+  nextToken(parser, context | Context.AllowRegExp);
+
+  let argument: ESTree.Expression;
+
+  if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() === Token.UsingKeyword) {
+    const usingStart = parser.tokenStart;
+    const usingIdentifier = parseIdentifier(parser, context);
+
+    if ((parser.flags & Flags.NewLine) === 0 && isResourceBindingStart(parser.getToken())) {
+      return parseLexicalDeclaration(
+        parser,
+        context,
+        scope,
+        privateScope,
+        BindingKind.Const,
+        origin,
+        'await using',
+        start,
+        1,
+      );
+    }
+
+    argument = parseMemberOrUpdateExpression(parser, context, privateScope, usingIdentifier, 0, 0, usingStart);
+  } else {
+    argument = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
+  }
+
+  if (parser.getToken() === Token.Exponentiation) parser.report(Errors.InvalidExponentiationLHS);
+
+  parser.assignable = AssignmentTargetKind.Invalid;
+  const expression = parser.finishNode<ESTree.AwaitExpression>(
+    {
+      type: 'AwaitExpression',
+      argument,
+    },
+    start,
+  );
+
+  return finishExpressionOrLabelledStatement(
+    parser,
+    context,
+    scope,
+    privateScope,
+    origin,
+    labels,
+    0,
+    expression,
+    Token.EOF,
+    '',
+    start,
+  );
+}
+
 /**
  * Parses a `const` or `let` lexical declaration statement
  *
@@ -1674,24 +1845,35 @@ function parseLexicalDeclaration(
   privateScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
+  declarationKind?: ResourceDeclarationKind,
+  declarationStart: Location = parser.tokenStart,
+  keywordConsumed: 0 | 1 = 0,
 ): ESTree.VariableDeclaration {
   // BindingList ::
   //  LexicalBinding
   //    BindingIdentifier
   //    BindingPattern
 
-  const start = parser.tokenStart;
+  const start = declarationStart;
 
-  nextToken(parser, context);
+  if (!keywordConsumed) nextToken(parser, context);
 
-  const declarations = parseVariableDeclarationList(parser, context, scope, privateScope, kind, origin);
+  const declarations = parseVariableDeclarationList(
+    parser,
+    context,
+    scope,
+    privateScope,
+    kind,
+    origin,
+    declarationKind,
+  );
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
   return parser.finishNode<ESTree.VariableDeclaration>(
     {
       type: 'VariableDeclaration',
-      kind: kind & BindingKind.Let ? 'let' : 'const',
+      kind: declarationKind ?? (kind & BindingKind.Let ? 'let' : 'const'),
       declarations,
     },
     start,
@@ -1752,14 +1934,29 @@ function parseVariableDeclarationList(
   privateScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
+  declarationKind?: ResourceDeclarationKind,
 ): ESTree.VariableDeclarator[] {
   let bindingCount = 1;
-  const list: ESTree.VariableDeclarator[] = [
-    parseVariableDeclaration(parser, context, scope, privateScope, kind, origin),
-  ];
+  const firstDeclaration = parseVariableDeclaration(
+    parser,
+    context,
+    scope,
+    privateScope,
+    kind,
+    origin,
+    declarationKind,
+  );
+  const list: ESTree.VariableDeclarator[] = [firstDeclaration];
+  const resourceNames = declarationKind ? new Set([(firstDeclaration.id as ESTree.Identifier).name]) : undefined;
   while (consumeOpt(parser, context, Token.Comma)) {
     bindingCount++;
-    list.push(parseVariableDeclaration(parser, context, scope, privateScope, kind, origin));
+    const declaration = parseVariableDeclaration(parser, context, scope, privateScope, kind, origin, declarationKind);
+    if (resourceNames) {
+      const { name } = declaration.id as ESTree.Identifier;
+      if (resourceNames.has(name)) parser.report(Errors.DuplicateBinding, name);
+      resourceNames.add(name);
+    }
+    list.push(declaration);
   }
 
   if (bindingCount > 1 && origin & Origin.ForStatement && parser.getToken() & Token.IsInOrOf) {
@@ -1783,6 +1980,7 @@ function parseVariableDeclaration(
   privateScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
+  declarationKind?: ResourceDeclarationKind,
 ): ESTree.VariableDeclarator {
   // VariableDeclaration :
   //   BindingIdentifier Initializer opt
@@ -1796,6 +1994,10 @@ function parseVariableDeclaration(
   const token = parser.getToken();
 
   let init: ESTree.Expression | ESTree.BindingPattern | ESTree.Identifier | null = null;
+
+  if (declarationKind && (token & Token.IsPatternStart) === Token.IsPatternStart) {
+    parser.report(Errors.InvalidBindingDestruct);
+  }
 
   const id = parseBindingPattern(parser, context, scope, privateScope, kind, origin);
 
@@ -1823,7 +2025,10 @@ function parseVariableDeclaration(
     (kind & BindingKind.Const || (token & Token.IsPatternStart) > 0) &&
     (parser.getToken() & Token.IsInOrOf) !== Token.IsInOrOf
   ) {
-    parser.report(Errors.DeclarationMissingInitializer, kind & BindingKind.Const ? 'const' : 'destructuring');
+    parser.report(
+      Errors.DeclarationMissingInitializer,
+      declarationKind ?? (kind & BindingKind.Const ? 'const' : 'destructuring'),
+    );
   }
 
   return parser.finishNode<ESTree.VariableDeclarator>(
@@ -1872,7 +2077,10 @@ function parseForStatement(
   let isVarDecl =
     parser.getToken() === Token.VarKeyword ||
     parser.getToken() === Token.LetKeyword ||
-    parser.getToken() === Token.ConstKeyword;
+    parser.getToken() === Token.ConstKeyword ||
+    parser.getToken() === Token.UsingKeyword;
+  let resourceDeclarationKind: ResourceDeclarationKind | undefined;
+  let consumedForOfDelimiter = false;
   let right;
 
   const { tokenStart } = parser;
@@ -1912,6 +2120,120 @@ function parseForStatement(
         // `for of` only allows LeftHandSideExpressions which do not start with `let`, and no other production matches
         if (parser.getToken() === Token.OfKeyword) parser.report(Errors.ForOfLet);
       }
+    } else if (token === Token.UsingKeyword) {
+      const usingIdentifier = parseIdentifier(parser, context);
+
+      if ((parser.flags & Flags.NewLine) !== 0 || !isResourceBindingStart(parser.getToken())) {
+        isVarDecl = false;
+        parser.assignable = AssignmentTargetKind.Simple;
+        init = parseMemberOrUpdateExpression(parser, context, privateScope, usingIdentifier, 0, 0, tokenStart);
+      } else if (parser.getToken() === Token.OfKeyword) {
+        const ofStart = parser.tokenStart;
+        const ofToken = parser.getToken();
+        const ofValue = parser.tokenValue;
+        const ofIdentifier = parseIdentifier(parser, context);
+
+        if (
+          parser.getToken() !== Token.Assign &&
+          parser.getToken() !== Token.InKeyword &&
+          parser.getToken() !== Token.Semicolon &&
+          parser.getToken() !== Token.Comma
+        ) {
+          isVarDecl = false;
+          consumedForOfDelimiter = true;
+          parser.assignable = AssignmentTargetKind.Simple;
+          init = usingIdentifier;
+        } else {
+          resourceDeclarationKind = 'using';
+          validateBindingIdentifier(parser, context, BindingKind.Const, ofToken, 0);
+          scope?.addBlockName(context, ofValue, BindingKind.Const, Origin.ForStatement);
+
+          let declarationInitializer: ESTree.Expression | null = null;
+          if (parser.getToken() === Token.Assign) {
+            nextToken(parser, context | Context.AllowRegExp);
+            declarationInitializer = parseExpression(
+              parser,
+              context | Context.DisallowIn,
+              privateScope,
+              1,
+              0,
+              parser.tokenStart,
+            );
+
+            if ((parser.getToken() & Token.IsInOrOf) === Token.IsInOrOf) {
+              throw new ParseError(
+                ofStart,
+                parser.currentLocation,
+                Errors.ForInOfLoopInitializer,
+                parser.getToken() === Token.OfKeyword ? 'of' : 'in',
+              );
+            }
+          } else if (parser.getToken() !== Token.InKeyword) {
+            parser.report(Errors.DeclarationMissingInitializer, resourceDeclarationKind);
+          }
+
+          const declarations: ESTree.VariableDeclarator[] = [
+            parser.finishNode<ESTree.VariableDeclarator>(
+              {
+                type: 'VariableDeclarator',
+                id: ofIdentifier,
+                init: declarationInitializer,
+              },
+              ofStart,
+            ),
+          ];
+          const resourceNames = new Set([ofValue]);
+
+          while (consumeOpt(parser, context | Context.DisallowIn, Token.Comma)) {
+            const declaration = parseVariableDeclaration(
+              parser,
+              context | Context.DisallowIn,
+              scope,
+              privateScope,
+              BindingKind.Const,
+              Origin.ForStatement,
+              resourceDeclarationKind,
+            );
+            const { name } = declaration.id as ESTree.Identifier;
+            if (resourceNames.has(name)) parser.report(Errors.DuplicateBinding, name);
+            resourceNames.add(name);
+            declarations.push(declaration);
+          }
+
+          if (declarations.length > 1 && parser.getToken() & Token.IsInOrOf) {
+            parser.report(Errors.ForInOfLoopMultiBindings, KeywordDescTable[parser.getToken() & Token.Type]);
+          }
+
+          init = parser.finishNode<ESTree.VariableDeclaration>(
+            {
+              type: 'VariableDeclaration',
+              kind: resourceDeclarationKind,
+              declarations,
+            },
+            tokenStart,
+          );
+          parser.assignable = AssignmentTargetKind.Simple;
+        }
+      } else {
+        resourceDeclarationKind = 'using';
+        init = parser.finishNode<ESTree.VariableDeclaration>(
+          {
+            type: 'VariableDeclaration',
+            kind: resourceDeclarationKind,
+            declarations: parseVariableDeclarationList(
+              parser,
+              context | Context.DisallowIn,
+              scope,
+              privateScope,
+              BindingKind.Const,
+              Origin.ForStatement,
+              resourceDeclarationKind,
+            ),
+          },
+          tokenStart,
+        );
+        parser.assignable = AssignmentTargetKind.Simple;
+      }
     } else {
       nextToken(parser, context);
 
@@ -1945,6 +2267,57 @@ function parseForStatement(
       );
 
       parser.assignable = AssignmentTargetKind.Simple;
+    }
+  } else if (
+    token === Token.AwaitKeyword &&
+    (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal))
+  ) {
+    if (context & Context.InStaticBlock) parser.report(Errors.InvalidAwaitInStaticBlock);
+
+    nextToken(parser, context | Context.AllowRegExp);
+    let awaitArgument: ESTree.Expression | undefined;
+
+    if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() === Token.UsingKeyword) {
+      const usingStart = parser.tokenStart;
+      const usingIdentifier = parseIdentifier(parser, context);
+
+      if ((parser.flags & Flags.NewLine) === 0 && isResourceBindingStart(parser.getToken())) {
+        resourceDeclarationKind = 'await using';
+        isVarDecl = true;
+        init = parser.finishNode<ESTree.VariableDeclaration>(
+          {
+            type: 'VariableDeclaration',
+            kind: resourceDeclarationKind,
+            declarations: parseVariableDeclarationList(
+              parser,
+              context | Context.DisallowIn,
+              scope,
+              privateScope,
+              BindingKind.Const,
+              Origin.ForStatement,
+              resourceDeclarationKind,
+            ),
+          },
+          tokenStart,
+        );
+        parser.assignable = AssignmentTargetKind.Simple;
+      } else {
+        awaitArgument = parseMemberOrUpdateExpression(parser, context, privateScope, usingIdentifier, 0, 0, usingStart);
+      }
+    } else {
+      awaitArgument = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
+    }
+
+    if (!isVarDecl) {
+      if (parser.getToken() === Token.Exponentiation) parser.report(Errors.InvalidExponentiationLHS);
+      parser.assignable = AssignmentTargetKind.Invalid;
+      init = parser.finishNode<ESTree.AwaitExpression>(
+        {
+          type: 'AwaitExpression',
+          argument: awaitArgument!,
+        },
+        tokenStart,
+      );
     }
   } else if (token === Token.Semicolon) {
     if (forAwait) parser.report(Errors.InvalidForAwait);
@@ -1997,13 +2370,13 @@ function parseForStatement(
     init = parseLeftHandSideExpression(parser, context | Context.DisallowIn, privateScope, 1, 0, 1);
   }
 
-  if ((parser.getToken() & Token.IsInOrOf) === Token.IsInOrOf) {
-    if (parser.getToken() === Token.OfKeyword) {
+  if (consumedForOfDelimiter || (parser.getToken() & Token.IsInOrOf) === Token.IsInOrOf) {
+    if (consumedForOfDelimiter || parser.getToken() === Token.OfKeyword) {
       if (parser.assignable & AssignmentTargetKind.Invalid)
         parser.report(Errors.CantAssignToInOfForLoop, forAwait ? 'await' : 'of');
 
       reinterpretToPattern(parser, init);
-      nextToken(parser, context | Context.AllowRegExp);
+      if (!consumedForOfDelimiter) nextToken(parser, context | Context.AllowRegExp);
 
       // IterationStatement:
       //  for(LeftHandSideExpression of AssignmentExpression) Statement
@@ -2026,6 +2399,7 @@ function parseForStatement(
       );
     }
 
+    if (resourceDeclarationKind) parser.report(Errors.UnexpectedToken, 'in');
     if (parser.assignable & AssignmentTargetKind.Invalid) parser.report(Errors.CantAssignToInOfForLoop, 'in');
 
     reinterpretToPattern(parser, init);

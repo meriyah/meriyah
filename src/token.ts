@@ -168,34 +168,35 @@ export const enum Token {
   AccessorKeyword    = 114 | Contextual,
   FromKeyword        = 115 | Contextual | IsExpressionStart | IsIdentifier,
   OfKeyword          = 116 | Contextual | IsInOrOf | IsExpressionStart | IsIdentifier,
-  EnumKeyword        = 117 | Reserved | IsExpressionStart,
+  UsingKeyword       = 117 | Contextual | IsExpressionStart | IsIdentifier,
+  EnumKeyword        = 118 | Reserved | IsExpressionStart,
 
-  Eval               = 118 | IsEvalOrArguments,
-  Arguments          = 119 | IsEvalOrArguments,
+  Eval               = 119 | IsEvalOrArguments,
+  Arguments          = 120 | IsEvalOrArguments,
 
-  EscapedReserved       = 120 | IsEscaped,
-  EscapedFutureReserved = 121 | IsEscaped,
-  AnyIdentifier      = 122 | IsExpressionStart | IsIdentifier,
+  EscapedReserved       = 121 | IsEscaped,
+  EscapedFutureReserved = 122 | IsEscaped,
+  AnyIdentifier      = 123 | IsExpressionStart | IsIdentifier,
 
-  PrivateIdentifier  = 123,
-  BigIntLiteral      = 124 | IsExpressionStart | IsStringOrNumber,
-  Coalesce           = 125 | IsBinaryOp | IsCoalesce | 1 << PrecedenceStart, // ??
-  QuestionMarkPeriod = 126 | IsMemberOrCallExpression, // ?.
+  PrivateIdentifier  = 124,
+  BigIntLiteral      = 125 | IsExpressionStart | IsStringOrNumber,
+  Coalesce           = 126 | IsBinaryOp | IsCoalesce | 1 << PrecedenceStart, // ??
+  QuestionMarkPeriod = 127 | IsMemberOrCallExpression, // ?.
 
   // Others
-  WhiteSpace        = 127,
-  Illegal           = 128,
-  CarriageReturn    = 129,
-  PrivateField      = 130,
-  Template          = 131,
-  Decorator         = 132,
-  Target            = 133 | IsExpressionStart | IsIdentifier,
-  Meta              = 134 | IsExpressionStart | IsIdentifier,
-  LineFeed          = 135,
-  EscapeStart       = 136,
+  WhiteSpace        = 128,
+  Illegal           = 129,
+  CarriageReturn    = 130,
+  PrivateField      = 131,
+  Template          = 132,
+  Decorator         = 133,
+  Target            = 134 | IsExpressionStart | IsIdentifier,
+  Meta              = 135 | IsExpressionStart | IsIdentifier,
+  LineFeed          = 136,
+  EscapeStart       = 137,
 
   // JSX
-  JSXText           = 137,
+  JSXText           = 138,
 }
 
 export const KeywordDescTable = [
@@ -234,7 +235,7 @@ export const KeywordDescTable = [
   'implements', 'interface', 'package', 'private', 'protected', 'public', 'static', 'yield',
 
   /* Contextual keywords */
-  'as', 'async', 'await', 'constructor', 'get', 'set', 'accessor', 'from', 'of',
+  'as', 'async', 'await', 'constructor', 'get', 'set', 'accessor', 'from', 'of', 'using',
 
   /* Others */
   'enum', 'eval', 'arguments', 'escaped keyword', 'escaped future reserved keyword', 'reserved if strict', '#',
@@ -286,6 +287,7 @@ export const descKeywordTable: { [key: string]: Token } =  {
   let: Token.LetKeyword,
   null: Token.NullKeyword,
   of: Token.OfKeyword,
+  using: Token.UsingKeyword,
   package: Token.PackageKeyword,
   private: Token.PrivateKeyword,
   protected: Token.ProtectedKeyword,

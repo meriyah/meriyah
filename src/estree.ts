@@ -808,7 +808,7 @@ export interface UnaryExpression extends _Node {
 export interface VariableDeclaration extends _Node {
   type: 'VariableDeclaration';
   declarations: VariableDeclarator[];
-  kind: 'let' | 'const' | 'var';
+  kind: 'let' | 'const' | 'var' | 'using' | 'await using';
 }
 
 export interface VariableDeclarator extends _Node {
