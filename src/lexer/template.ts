@@ -64,7 +64,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
 
   parser.tokenRaw = parser.source
     .slice(start + 1, parser.index - (token === Token.TemplateSpan ? 1 : 2))
-    .replace(/\r\n?/g, '\n');
+    .replaceAll(/\r\n?/g, '\n');
 
   return token;
 }

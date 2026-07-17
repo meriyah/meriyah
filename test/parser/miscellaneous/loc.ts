@@ -138,7 +138,7 @@ describe('Miscellaneous - loc', () => {
   it('Miscellaneous - loc (different line endings)', () => {
     const sourceLF =
       '// Single line comment\n// Single line comment\n// Single line comment\n// Single line comment\nfunction handleAutocomplete() {\n   var prp = this.props; // some error here\n\n   for(let xa=0; xa<100; xa++) {;}\n   }';
-    const sourceCRLF = sourceLF.replace(/\n/g, '\r\n');
+    const sourceCRLF = sourceLF.replaceAll('\n', '\r\n');
     t.deepEqual(
       parse(sourceLF, {
         loc: true,
