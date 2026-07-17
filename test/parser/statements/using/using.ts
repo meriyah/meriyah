@@ -127,6 +127,36 @@ describe('Statements - using declarations', () => {
     });
   });
 
+  const duplicateBindingCases = [
+    {
+      name: 'using declarations',
+      code: '{ using resource = a, resource = b; }',
+      binding: 'resource',
+    },
+    {
+      name: 'using declarations in classic for heads',
+      code: 'for (using of = a, of = b;;) {}',
+      binding: 'of',
+    },
+    {
+      name: 'await using declarations',
+      code: 'async function f() { await using resource = a, resource = b; }',
+      binding: 'resource',
+    },
+    {
+      name: 'await using declarations in classic for heads',
+      code: 'async function f() { for (await using resource = a, resource = b;;) {} }',
+      binding: 'resource',
+    },
+  ];
+
+  for (const { name, code, binding } of duplicateBindingCases) {
+    it(`gates duplicate bindings on the lexical option for ${name}`, () => {
+      expect(() => parseSource(code, { lexical: false })).not.toThrow();
+      expect(() => parseSource(code, { lexical: true })).toThrow(`Duplicate binding '${binding}'`);
+    });
+  }
+
   const invalidDeclarations: Array<{ code: string; options?: Options }> = [
     { code: 'using resource = acquire();' },
     { code: 'await using resource = acquire();' },
@@ -141,8 +171,6 @@ describe('Statements - using declarations', () => {
     { code: 'async function f() { for (await using resource = acquire() of resources) {} }' },
     { code: '{ using let = acquire(); }' },
     { code: 'async function f() { await using let = acquire(); }' },
-    { code: '{ using resource = a, resource = b; }' },
-    { code: 'for (using of = a, of = b;;) {}' },
     { code: 'if (condition) using resource = acquire();' },
     { code: 'label: using resource = acquire();' },
     { code: 'switch (value) { case 0: using resource = acquire(); }' },

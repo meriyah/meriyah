@@ -1947,7 +1947,8 @@ function parseVariableDeclarationList(
     declarationKind,
   );
   const list: ESTree.VariableDeclarator[] = [firstDeclaration];
-  const resourceNames = declarationKind ? new Set([(firstDeclaration.id as ESTree.Identifier).name]) : undefined;
+  const resourceNames =
+    declarationKind && parser.options.lexical ? new Set([(firstDeclaration.id as ESTree.Identifier).name]) : undefined;
   while (consumeOpt(parser, context, Token.Comma)) {
     bindingCount++;
     const declaration = parseVariableDeclaration(parser, context, scope, privateScope, kind, origin, declarationKind);
@@ -2182,7 +2183,7 @@ function parseForStatement(
               ofStart,
             ),
           ];
-          const resourceNames = new Set([ofValue]);
+          const resourceNames = parser.options.lexical ? new Set([ofValue]) : undefined;
 
           while (consumeOpt(parser, context | Context.DisallowIn, Token.Comma)) {
             const declaration = parseVariableDeclaration(
@@ -2194,9 +2195,11 @@ function parseForStatement(
               Origin.ForStatement,
               resourceDeclarationKind,
             );
-            const { name } = declaration.id as ESTree.Identifier;
-            if (resourceNames.has(name)) parser.report(Errors.DuplicateBinding, name);
-            resourceNames.add(name);
+            if (resourceNames) {
+              const { name } = declaration.id as ESTree.Identifier;
+              if (resourceNames.has(name)) parser.report(Errors.DuplicateBinding, name);
+              resourceNames.add(name);
+            }
             declarations.push(declaration);
           }
 
