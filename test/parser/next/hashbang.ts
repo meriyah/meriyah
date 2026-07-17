@@ -27,7 +27,7 @@ describe('Next - Hashbang grammar', () => {
     '() => #\n/*\n\n*/',
   ]);
 
-  for (const arg of [
+  for (const text of [
     '#!\n',
     '#!\n1',
     '#!2\n',
@@ -43,17 +43,17 @@ describe('Next - Hashbang grammar', () => {
     // Hashbang comments should not be interpreted and should not generate DirectivePrologues
     '#!"use strict" with ({}) {}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
     // Should pass in strict mode and module code
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

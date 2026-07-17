@@ -5,19 +5,19 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail } from '../../test-utils.ts';
 
 describe('Miscellaneous - Regular expressions', () => {
-  for (const arg of [
+  for (const text of [
     //    '/(?<abc𝟐def>foo\\k<abc𝟐def>)/',
     //    '/(?<輸xyz>foo)met\\k<輸xyz>/',
     String.raw`x = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

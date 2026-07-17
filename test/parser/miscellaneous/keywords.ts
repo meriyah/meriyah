@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - Keywords', () => {
-  for (const arg of [
+  for (const text of [
     'break = 1;',
     'case = 1;',
     'continue = 1;',
@@ -25,21 +25,21 @@ describe('Miscellaneous - Keywords', () => {
     'while = 1;',
     'try = 1;',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`var ${arg}`, () => {
+    it(`var ${text}`, () => {
       t.throws(() => {
-        parseSource(`var ${arg}`);
+        parseSource(`var ${text}`);
       });
     });
 
-    it(`function () { ${arg} }`, () => {
+    it(`function () { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`function () { ${arg} }`);
+        parseSource(`function () { ${text} }`);
       });
     });
   }

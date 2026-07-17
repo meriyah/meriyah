@@ -71,7 +71,7 @@ describe('Next - Private methods', () => {
     { code: 'class A extends B { #x() {} method() { super.#x() }  }', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     '#a : 0',
     '#a =',
     '#*a = 0',
@@ -119,32 +119,32 @@ describe('Next - Private methods', () => {
     '#x = super();',
     String.raw`#\u0000;`,
   ]) {
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`);
+        parseSource(`class C { ${text} }`);
       });
     });
 
-    it(`class C extends Base { ${arg} }`, () => {
+    it(`class C extends Base { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`class C extends Base { ${arg} }`);
+        parseSource(`class C extends Base { ${text} }`);
       });
     });
 
-    it(`(class C { ${arg} })`, () => {
+    it(`(class C { ${text} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { ${arg} })`);
+        parseSource(`(class C { ${text} })`);
       });
     });
 
-    it(`(class C extends Base { ${arg} })`, () => {
+    it(`(class C extends Base { ${text} })`, () => {
       t.throws(() => {
-        parseSource(`(class C extends Base { ${arg} })`);
+        parseSource(`(class C extends Base { ${text} })`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '#a = 0;',
     '#a = 0; #b;',
     '#a = 0; b;',
@@ -216,31 +216,31 @@ describe('Next - Private methods', () => {
     String.raw`static #\u{61}bc=2`,
     'static #\\u{61} = 2;\n',
   ]) {
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`);
+        parseSource(`class C { ${text} }`);
       });
     });
 
-    it(`class C extends Base { ${arg} }`, () => {
+    it(`class C extends Base { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base { ${arg} }`);
+        parseSource(`class C extends Base { ${text} }`);
       });
     });
 
-    it(`(class C { ${arg} })`, () => {
+    it(`(class C { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`);
+        parseSource(`(class C { ${text} })`);
       });
     });
 
-    it(`(class C extends Base { ${arg} })`, () => {
+    it(`(class C extends Base { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C extends Base { ${arg} })`);
+        parseSource(`(class C extends Base { ${text} })`);
       });
     });
   }
-  for (const arg of [
+  for (const text of [
     '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
     '{ class A { #a() { class C extends A { #c() { } } new C; } } new A; }',
     '{ const C = class { #a() { } } }',
@@ -281,9 +281,9 @@ describe('Next - Private methods', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }

@@ -8,7 +8,7 @@ import { fail, pass } from '../../test-utils.ts';
 describe('Declarations - Let', () => {
   // Invalid 'let' as identifier cases
 
-  for (const arg of [
+  for (const text of [
     'let let = 1',
     'for (let let = 1; let < 1; let++) {}',
     'for (let let in {}) {}',
@@ -31,33 +31,33 @@ describe('Declarations - Let', () => {
     String.raw`const [l\u0065t] = 1`,
     String.raw`for (let l\u0065t in {}) {}`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`(function() {${arg}})()`, () => {
+    it(`(function() {${text}})()`, () => {
       t.throws(() => {
-        parseSource(`(function() {${arg}})()`);
+        parseSource(`(function() {${text}})()`);
       });
     });
 
-    it(`(function() {${arg}})()`, () => {
+    it(`(function() {${text}})()`, () => {
       t.throws(() => {
-        parseSource(`(function() {${arg}})()`, { lexical: true });
+        parseSource(`(function() {${text}})()`, { lexical: true });
       });
     });
   }
 
   // Valid 'let' as identifier cases
-  for (const arg of [
+  for (const text of [
     'var let;',
     'var foo, let;',
     'try { } catch (let) { }',
@@ -93,39 +93,39 @@ describe('Declarations - Let', () => {
     'let g = /* before */async /* a */ ( /* b */ ) /* c */ => /* d */ 0/* after */;',
     'let h = /* before */async /* a */ a /* b */ => /* c */ 0/* after */;',
   ]) {
-    it(`function f() { ${arg}}`, () => {
+    it(`function f() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f() { ${arg}}`);
+        parseSource(`function f() { ${text}}`);
       });
     });
 
-    it(`function f() { ${arg}}`, () => {
+    it(`function f() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function f() { ${arg}})`);
+        parseSource(`(function f() { ${text}})`);
       });
     });
 
-    it(`function * gen() { function foo() { ${arg}}}`, () => {
+    it(`function * gen() { function foo() { ${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * gen() { function foo() { ${arg}}}`);
+        parseSource(`function * gen() { function foo() { ${text}}}`);
       });
     });
 
-    it(`(function foo() { ${arg}}`, () => {
+    it(`(function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() { ${arg}})`);
+        parseSource(`(function foo() { ${text}})`);
       });
     });
 
-    it(`(function foo() { ${arg}}`, () => {
+    it(`(function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() { ${arg}})`, { lexical: true });
+        parseSource(`(function foo() { ${text}})`, { lexical: true });
       });
     });
   }
 
   // Valid cases
-  for (const arg of [
+  for (const text of [
     'let [ , , ...x] = [1, 2, 3, 4, 5];',
     'let test262id8;',
     'let a1; [a1] = [1]',
@@ -363,21 +363,21 @@ describe('Declarations - Let', () => {
     'if (1) let\n{}',
     'let {a, b} = {}, c = 0;',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

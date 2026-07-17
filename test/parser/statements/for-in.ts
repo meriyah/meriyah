@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Statements - For in', () => {
-  for (const arg of [
+  for (const text of [
     'for (x+b in y);',
     'for (b++ in y);',
     'for ([...x,] in [[]]);',
@@ -35,20 +35,20 @@ describe('Statements - For in', () => {
     'for(({a: 0}) in 0);',
     'for(0 in 0);',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
   // ForInOfLoopInitializer only applies in strict mode when webCompat is off
-  for (const arg of [
+  for (const text of [
     'for(var x=1 in [1,2,3]) 0',
     'for (var x = 1 in y) {}',
     'for (var a = 0 in {});',
@@ -57,32 +57,32 @@ describe('Statements - For in', () => {
     'for (var a = 0 in stored = a, {});',
     'for (var a = (++effects, -1) in x);',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
+        parseSource(text, { webcompat: true, impliedStrict: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '"use strict";\nfor (var a = 0 in {});',
     'for(var [] = 0 in {});',
     'for(var [,] = 0 in {});',
@@ -205,14 +205,14 @@ describe('Statements - For in', () => {
     'for ([].x = y in y) {}',
     'for (a() in b) break',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'for (var a = b, c, d, b = a ; x in b ; ) { break }',
     'for ([].x in y) {}',
     'for (var {j} in x) { foo = j }',
@@ -433,39 +433,39 @@ describe('Statements - For in', () => {
     'for (function(){ a in b; };;);',
     'for (function(){ a in b; }.foo;;);',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`async(); ${arg}`, () => {
+    it(`async(); ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async(); ${arg}`);
+        parseSource(`async(); ${text}`);
       });
     });
 
-    it(`function foo() { ${arg} }`, () => {
+    it(`function foo() { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`);
+        parseSource(`function foo() { ${text} }`);
       });
     });
   }

@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - ASI', () => {
-  for (const arg of [
+  for (const text of [
     '{ 1 2 } 3',
     '{} * 1',
     '({};) * 1',
@@ -64,15 +64,15 @@ describe('Miscellaneous - ASI', () => {
       if (false) x = 1 else x = -1
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

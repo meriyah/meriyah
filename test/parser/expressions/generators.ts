@@ -7,7 +7,7 @@ import { fail } from '../../test-utils.ts';
 describe('Expressions - Generators', () => {
   fail('Expressions - Generators (pass)', ['foo\n++', 'if (foo\n++);']);
 
-  for (const arg of [
+  for (const text of [
     'var yield;',
     'var foo, yield;',
     'try { } catch (yield) { }',
@@ -44,15 +44,15 @@ describe('Expressions - Generators', () => {
     "for (yield 'x' in {} of {});",
     'class C extends yield { }',
   ]) {
-    it(`function * icefapper() {${arg}}`, () => {
+    it(`function * icefapper() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`function * icefapper() {${arg}}`);
+        parseSource(`function * icefapper() {${text}}`);
       });
     });
 
-    it(`"use strict"; function * icefapper() {${arg}}`, () => {
+    it(`"use strict"; function * icefapper() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function * icefapper() {${arg}}`);
+        parseSource(`"use strict"; function * icefapper() {${text}}`);
       });
     });
   }
@@ -78,10 +78,10 @@ describe('Expressions - Generators', () => {
     'let gfe = function* yield() { }',
   ];
 
-  for (const arg of invalidSyntax) {
-    it(`${arg}`, () => {
+  for (const text of invalidSyntax) {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
@@ -133,22 +133,22 @@ describe('Expressions - Generators', () => {
     'x = class extends (a ? null : yield) { }',
   ];
 
-  for (const arg of validYieldInGenerator) {
-    it(`function * icefapper() {${arg}}`, () => {
+  for (const text of validYieldInGenerator) {
+    it(`function * icefapper() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * icefapper() {${arg}}`);
+        parseSource(`function * icefapper() {${text}}`);
       });
     });
 
-    it(`(function * icefapper() {${arg}})`, () => {
+    it(`(function * icefapper() {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function * icefapper() {${arg}})`);
+        parseSource(`(function * icefapper() {${text}})`);
       });
     });
 
-    it(`(function *() {${arg}})`, () => {
+    it(`(function *() {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *() {${arg}})`);
+        parseSource(`(function *() {${text}})`);
       });
     });
   }
@@ -259,10 +259,10 @@ describe('Expressions - Generators', () => {
     `,
   ];
 
-  for (const arg of validSyntax) {
-    it(`${arg}`, () => {
+  for (const text of validSyntax) {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }

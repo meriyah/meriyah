@@ -195,7 +195,7 @@ describe('Lexical - Block', () => {
     { code: '{ class async {}; { var async; } }', options: { webcompat: true, lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'function x() { { var f; var f } }',
     'function f() {} var f;',
     '{ let x; } var x',
@@ -208,14 +208,14 @@ describe('Lexical - Block', () => {
     '{ var f; var f; }',
     '{ let foo = 1; { let foo = 2; } }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'function x() { { var f; var f } }',
     '{ { var f; } var f }',
     '{ function f() {} ; function f() {} }',
@@ -276,21 +276,21 @@ describe('Lexical - Block', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

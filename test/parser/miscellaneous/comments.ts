@@ -41,7 +41,7 @@ describe('Miscellaneous - Comments', () => {
     '</',
   ]);
 
-  for (const arg of [
+  for (const text of [
     'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
     'var x = a; --> is eol-comment\nvar y = b;\n',
     'x --> is eol-comment\nvar y = b;\n',
@@ -74,14 +74,14 @@ describe('Miscellaneous - Comments', () => {
       x*/
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     // Babylon issue: https://github.com/babel/babel/issues/7802
     '<!-- test --->',
     outdent`
@@ -241,9 +241,9 @@ describe('Miscellaneous - Comments', () => {
     `,
     '<!-- -->',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
+        parseSource(text, { webcompat: true, impliedStrict: true });
       });
     });
   }

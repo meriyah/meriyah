@@ -6,7 +6,7 @@ import { parseSource } from '../../../src/parser.ts';
 // DO NOT REMOVE OR MODIFY THIS TESTS!!!
 
 describe('Miscellaneous - Pass', () => {
-  for (const arg of [
+  for (const text of [
     String.raw`for (new /^\B\y\x2F\xEe/g(("y".z), eval in ({}));; (class x {}))  {}`,
     '([...[][void (this)] += (3287)])',
     '(false in (((5973))) ** (q), false.if --, function () {})',
@@ -15721,15 +15721,15 @@ var func4 = function(){
       })[((true))])) continue;
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }

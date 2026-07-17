@@ -26,20 +26,20 @@ describe('Declarations - Class', () => {
   });
 
   // Strict mode errors
-  for (const arg of [
+  for (const text of [
     'class C { method() { with ({}) {} } }',
     'class C extends function() { with ({}) {} } {}',
     'class C { *method() { with ({}) {} } }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
   // Tests reserved keywords
-  for (const arg of [
+  for (const text of [
     'implements',
     'interface',
     'let',
@@ -51,20 +51,20 @@ describe('Declarations - Class', () => {
     'var',
     'yield',
   ]) {
-    it(`class ${arg} {};`, () => {
+    it(`class ${text} {};`, () => {
       t.throws(() => {
-        parseSource(`class ${arg} {};`);
+        parseSource(`class ${text} {};`);
       });
     });
 
-    it(`"use strict"; class ${arg} {};`, () => {
+    it(`"use strict"; class ${text} {};`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; class ${arg} {};`);
+        parseSource(`"use strict"; class ${text} {};`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class',
     'class name extends',
     'class extends',
@@ -75,44 +75,44 @@ describe('Declarations - Class', () => {
     'class extends base {}',
     'class name { *',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} `);
+        parseSource(`${text} `);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} `);
+        parseSource(`${text} `);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} `, { lexical: true });
+        parseSource(`${text} `, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} `, { webcompat: true });
+        parseSource(`${text} `, { webcompat: true });
       });
     });
 
-    it(`if (true) { ${arg} }`, () => {
+    it(`if (true) { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`if (true) { ${arg} }`, { lexical: true });
+        parseSource(`if (true) { ${text} }`, { lexical: true });
       });
     });
 
-    it(`{${arg}}`, () => {
+    it(`{${text}}`, () => {
       t.throws(() => {
-        parseSource(`{${arg}}`);
+        parseSource(`{${text}}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'a class;',
     'a(eval){}',
     'a{ *() {} }',
@@ -175,19 +175,19 @@ describe('Declarations - Class', () => {
     'method() { let [super()] = []; }',
     'method() { [super()] = []; }',
   ]) {
-    it(`class ${arg}`, () => {
+    it(`class ${text}`, () => {
       t.throws(() => {
-        parseSource(`class ${arg} `);
+        parseSource(`class ${text} `);
       });
     });
-    it(`class { ${arg} }`, () => {
+    it(`class { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`class { ${arg} }`);
+        parseSource(`class { ${text} }`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'constructor() {}; static constructor() {}',
     'm() {}; static m() {}',
     'm() {}; m() {}',
@@ -204,26 +204,26 @@ describe('Declarations - Class', () => {
     'static void() {}',
     String.raw`static async *\u0076oid() {}`,
   ]) {
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}}`);
+        parseSource(`class C { ${text}}`);
       });
     });
 
-    it(`(class C { ${arg} })`, () => {
+    it(`(class C { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`);
+        parseSource(`(class C { ${text} })`);
       });
     });
 
-    it(`(class C { ${arg} })`, () => {
+    it(`(class C { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, { lexical: true });
+        parseSource(`(class C { ${text} })`, { lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '42',
     '42.5',
     '42e2',
@@ -253,118 +253,118 @@ describe('Declarations - Class', () => {
     'catch',
     'finally',
   ]) {
-    it(`class C { ${arg}() {}}`, () => {
+    it(`class C { ${text}() {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}() {}}`);
+        parseSource(`class C { ${text}() {}}`);
       });
     });
 
-    it(`class C { *${arg}(v) {}}`, () => {
+    it(`class C { *${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *${arg}(v) {}}`);
+        parseSource(`class C { *${text}(v) {}}`);
       });
     });
 
-    it(`class C { static *${arg}(v) {}}`, () => {
+    it(`class C { static *${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static *${arg}(v) {}}`);
+        parseSource(`class C { static *${text}(v) {}}`);
       });
     });
 
-    it(`(class {${arg}() {}});`, () => {
+    it(`(class {${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`);
+        parseSource(`(class {${text}() {}});`);
       });
     });
 
-    it(`(class {${arg}() {}});`, () => {
+    it(`(class {${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`, { lexical: true });
+        parseSource(`(class {${text}() {}});`, { lexical: true });
       });
     });
 
-    it(`(class { static ${arg}() {}});`, () => {
+    it(`(class { static ${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static ${arg}() {}});`);
+        parseSource(`(class { static ${text}() {}});`);
       });
     });
 
-    it(`class C { set ${arg}(v) {}}`, () => {
+    it(`class C { set ${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}(v) {}}`);
+        parseSource(`class C { ${text}(v) {}}`);
       });
     });
 
-    it(`class C { async *${arg}(v) {}}`, () => {
+    it(`class C { async *${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { async *${arg}(v) {}}`);
+        parseSource(`class C { async *${text}(v) {}}`);
       });
     });
 
-    it(`class C { async *${arg}(v) {}}`, () => {
+    it(`class C { async *${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { async *${arg}(v) {}}`, { webcompat: true });
+        parseSource(`class C { async *${text}(v) {}}`, { webcompat: true });
       });
     });
 
-    it(`(class C { async *${arg}(v) {}})`, () => {
+    it(`(class C { async *${text}(v) {}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { async *${arg}(v) {}})`);
+        parseSource(`(class C { async *${text}(v) {}})`);
       });
     });
 
-    it(`(class C { async *${arg}(v) {}})`, () => {
+    it(`(class C { async *${text}(v) {}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { async *${arg}(v) {}})`, { lexical: true });
+        parseSource(`(class C { async *${text}(v) {}})`, { lexical: true });
       });
     });
 
-    it(`class C { static ${arg}(v) {}}`, () => {
+    it(`class C { static ${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static ${arg}(v) {}}`);
+        parseSource(`class C { static ${text}(v) {}}`);
       });
     });
 
-    it(`class C { static get ${arg}() {}}`, () => {
+    it(`class C { static get ${text}() {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static get ${arg}() {}}`);
+        parseSource(`class C { static get ${text}() {}}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class name {}',
     'class name extends F {}',
     'class name extends (F, G) {}',
     'class name extends class {} {}',
     'class name extends class base {} {}',
   ]) {
-    it(`{ ${arg} }`, () => {
+    it(`{ ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`);
+        parseSource(`'use strict'; if (true) { ${text} }`);
       });
     });
 
-    it(`'use strict'; { ${arg} }`, () => {
+    it(`'use strict'; { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; { ${arg} }`);
+        parseSource(`'use strict'; { ${text} }`);
       });
     });
 
-    it(`'use strict'; if (true) { ${arg} }`, () => {
+    it(`'use strict'; if (true) { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`);
+        parseSource(`'use strict'; if (true) { ${text} }`);
       });
     });
 
-    it(`'use strict'; if (true) { ${arg} }`, () => {
+    it(`'use strict'; if (true) { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`, { lexical: true });
+        parseSource(`'use strict'; if (true) { ${text} }`, { lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class foo { constructor() {} }',
     'class foo { constructor() { class bar { constructor() {} }} }',
     'class foo extends bar {}',
@@ -381,26 +381,26 @@ describe('Declarations - Class', () => {
     'class foo { static set a(_ = null) {} }',
     'class foo { static method(a,) {} }',
   ]) {
-    it(`{ ${arg} }`, () => {
+    it(`{ ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`{ ${arg} }`, () => {
+    it(`{ ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`{ ${arg} }`, () => {
+    it(`{ ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     ';',
     ';;',
     'm() {}',
@@ -611,21 +611,21 @@ describe('Declarations - Class', () => {
     'get "character\tescape"() { return "get string"; }',
     'get "character\tescape"() { return "get string"; }',
   ]) {
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`);
+        parseSource(`class C { ${text} }`);
       });
     });
 
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, { lexical: true });
+        parseSource(`class C { ${text} }`, { lexical: true });
       });
     });
 
-    it(`class A extends B { ${arg} }`, () => {
+    it(`class A extends B { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class A extends B { ${arg} }`);
+        parseSource(`class A extends B { ${text} }`);
       });
     });
   }

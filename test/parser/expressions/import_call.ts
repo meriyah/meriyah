@@ -87,7 +87,7 @@ describe('ImportCall', () => {
     'new import(x);',
   ]);
 
-  for (const arg of [
+  for (const text of [
     'let f = () => { import("foo"); };',
     'f(...[import(y=x)])',
     'x = {[import(y=x)]: 1}',
@@ -147,14 +147,14 @@ describe('ImportCall', () => {
     'let f = () => import("", "");',
     'if (false) {} else import("", "");',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }

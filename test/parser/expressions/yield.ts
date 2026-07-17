@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Yield', () => {
-  for (const arg of [
+  for (const text of [
     'let foo = function*() { try {yield 42} finally {yield 43; return 13} };',
     'let foo = function*() { try {yield 42} finally {yield 43; 13} };',
     'let foo = function*() { try {yield 42} finally {yield 43; return 13} };',
@@ -133,26 +133,26 @@ describe('Expressions - Yield', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var yield;',
     'var foo, yield;',
     'try { } catch (yield) { }',
@@ -189,51 +189,51 @@ describe('Expressions - Yield', () => {
     "for (yield 'x' in {} of {});",
     'class C extends yield { }',
   ]) {
-    it(`function *g() { ${arg}}`, () => {
+    it(`function *g() { ${text}}`, () => {
       t.throws(() => {
-        parseSource(`function *g() { ${arg}}`);
+        parseSource(`function *g() { ${text}}`);
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`);
+        parseSource(`"use strict"; ${text}`);
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, { webcompat: true });
+        parseSource(`"use strict"; ${text}`, { webcompat: true });
       });
     });
 
-    it(`"use strict"; function foo() { ${arg}}`, () => {
+    it(`"use strict"; function foo() { ${text}}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function foo() { ${arg}}`);
+        parseSource(`"use strict"; function foo() { ${text}}`);
       });
     });
 
-    it(`function foo() { "use strict"; ${arg} }`, () => {
+    it(`function foo() { "use strict"; ${text} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { "use strict"; ${arg} }`);
+        parseSource(`function foo() { "use strict"; ${text} }`);
       });
     });
 
-    it(`"use strict"; (function foo() {${arg}})`, () => {
+    it(`"use strict"; (function foo() {${text}})`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function foo() {${arg}})`);
+        parseSource(`"use strict"; (function foo() {${text}})`);
       });
     });
 
-    it(`"use strict"; (function * gen() { function foo() { ${arg}} }`, () => {
+    it(`"use strict"; (function * gen() { function foo() { ${text}} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function * gen() { function foo() { ${arg}} }`);
+        parseSource(`"use strict"; (function * gen() { function foo() { ${text}} }`);
       });
     });
 
-    it(`"use strict"; (function * gen() { (function foo() { ${arg}}) })`, () => {
+    it(`"use strict"; (function * gen() { (function foo() { ${text}}) })`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function * gen() { (function foo() { ${arg}}) })`);
+        parseSource(`"use strict"; (function * gen() { (function foo() { ${text}}) })`);
       });
     });
   }
@@ -326,7 +326,7 @@ describe('Expressions - Yield', () => {
     });
   }
 
-  for (const arg of [
+  for (const text of [
     // A generator without a body is valid.
     '',
     // Valid yield expressions inside generators.
@@ -378,24 +378,24 @@ describe('Expressions - Yield', () => {
     'x = class extends (null, yield) { }',
     'x = class extends (a ? null : yield) { }',
   ]) {
-    it(`function *foo() {${arg}}`, () => {
+    it(`function *foo() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function *foo() {${arg}}`);
+        parseSource(`function *foo() {${text}}`);
       });
     });
-    it(`(function *foo() {${arg}})`, () => {
+    it(`(function *foo() {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *foo() {${arg}})`);
+        parseSource(`(function *foo() {${text}})`);
       });
     });
-    it(`(function *() {${arg}})`, () => {
+    it(`(function *() {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *() {${arg}})`);
+        parseSource(`(function *() {${text}})`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var yield;',
     'var foo, yield;',
     'try { } catch (yield) { }',
@@ -416,38 +416,38 @@ describe('Expressions - Yield', () => {
     'yield(100)',
     'yield[100]',
   ]) {
-    it(`function foo() {${arg}}`, () => {
+    it(`function foo() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() {${arg}}`);
+        parseSource(`function foo() {${text}}`);
       });
     });
 
-    it(`(function foo() {${arg}})`, () => {
+    it(`(function foo() {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() {${arg}})`);
+        parseSource(`(function foo() {${text}})`);
       });
     });
 
-    it(`(() => {${arg}})`, () => {
+    it(`(() => {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(() => {${arg}})`);
+        parseSource(`(() => {${text}})`);
       });
     });
 
-    it(`(() => {${arg}})`, () => {
+    it(`(() => {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(() => {${arg}})`, { lexical: true });
+        parseSource(`(() => {${text}})`, { lexical: true });
       });
     });
 
-    it(`(async () => {${arg}})`, () => {
+    it(`(async () => {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async () => {${arg}})`);
+        parseSource(`(async () => {${text}})`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var yield;',
     'var foo, yield;',
     'try { } catch (yield) { }',
@@ -597,27 +597,27 @@ describe('Expressions - Yield', () => {
     'function f() { class C { yield() { } } }',
     'function f() { class C { *yield() { } } }',
   ]) {
-    it(`function foo() { ${arg}}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function not_gen() { ${arg}}`);
+        parseSource(`function not_gen() { ${text}}`);
       });
     });
 
-    it(`function * gen() { function not_gen() { ${arg} }}`, () => {
+    it(`function * gen() { function not_gen() { ${text} }}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * gen() { function not_gen() { ${arg} }}`);
+        parseSource(`function * gen() { function not_gen() { ${text} }}`);
       });
     });
 
-    it(`(function foo() { ${arg}})`, () => {
+    it(`(function foo() { ${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() { ${arg}})`);
+        parseSource(`(function foo() { ${text}})`);
       });
     });
 
-    it(`(function * gen() { function not_gen() { ${arg} }})`, () => {
+    it(`(function * gen() { function not_gen() { ${text} }})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function * gen() { function not_gen() { ${arg} }})`);
+        parseSource(`(function * gen() { function not_gen() { ${text} }})`);
       });
     });
   }

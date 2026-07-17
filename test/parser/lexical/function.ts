@@ -167,7 +167,7 @@ describe('Lexical - Function', () => {
     { code: 'function foo() {try {} catch([x]) { var x = 10;} }', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     '{ function* foo() {}; }; let foo;',
     'function f(x) { { let x } }',
     'function f(x) { { const x = y } }',
@@ -265,14 +265,14 @@ describe('Lexical - Function', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '{  let f = 123;  if (false) ; else function f() {  }  }',
     'function f(a){ var a }',
     'function f(x) { { var x } }',
@@ -340,26 +340,26 @@ describe('Lexical - Function', () => {
     '(function foo([[x]]) { { function x() {}}})([[1]]);',
     'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'function f(a, a) {}',
     'function f(a, b, a) {}',
     'function f(b, a, a) {}',
@@ -472,14 +472,14 @@ describe('Lexical - Function', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
   }

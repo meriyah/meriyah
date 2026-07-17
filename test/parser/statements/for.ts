@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Statements - For', () => {
-  for (const arg of [
+  for (const text of [
     'for (a,b;;);',
     'for (const [,foo] = arr;;);',
     'for (let [[x] = [1]] = []; i < 1; i++) {}',
@@ -506,14 +506,14 @@ describe('Statements - For', () => {
         break;
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }

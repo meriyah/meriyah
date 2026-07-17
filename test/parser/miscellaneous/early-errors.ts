@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Early errors', () => {
-  for (const arg of [
+  for (const text of [
     '{ a = 0 });',
     '(...a)',
     '(a, ...b)',
@@ -324,19 +324,19 @@ describe('Miscellaneous - Early errors', () => {
     'a: while (true) { (function () { break; }); }',
     'for(const a;;);',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Next - Decorators', () => {
-  for (const arg of [
+  for (const text of [
     'var foo = @dec class Bar { bam() { f(); } }',
     'class A { @dec *m(){} }',
     'class A { @a.b.c.d(e, f)     m(){}}',
@@ -79,14 +79,14 @@ describe('Next - Decorators', () => {
     '(class { @dec accessor x})',
     '(class { @dec accessor x = 1})',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true });
+        parseSource(text, { next: true, webcompat: true });
       });
     });
   }

@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Functions', () => {
-  for (const arg of [
+  for (const text of [
     '...x = []',
     '[...[ x ] = []]',
     '[...x = []]',
@@ -21,22 +21,22 @@ describe('Expressions - Functions', () => {
     '[...{ x }, y] = [1, 2, 3]',
     '...a,',
   ]) {
-    it(`(function (${arg}) {})`, () => {
+    it(`(function (${text}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`);
+        parseSource(`(function (${text}) {})`);
       });
 
       t.throws(() => {
-        parseSource(`const foo = (function (${arg}) {})`);
+        parseSource(`const foo = (function (${text}) {})`);
       });
 
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, { sourceType: 'module' });
+        parseSource(`(function (${text}) {})`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(function([...{ x }, y] = [1, 2, 3]) {})',
     '(function([...[ x ] = []] = []) {})',
     '(function([...[x], y]) {})',
@@ -45,32 +45,32 @@ describe('Expressions - Functions', () => {
     '0, function(...x = []) {}',
     '0, function(...x = []) {};',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`function foo() { ${arg}}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg}}`);
+        parseSource(`function foo() { ${text}}`);
       });
     });
 
-    it(`(function foo() { ${arg}})`, () => {
+    it(`(function foo() { ${text}})`, () => {
       t.throws(() => {
-        parseSource(`(function foo() { ${arg}})`);
+        parseSource(`(function foo() { ${text}})`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '{...x}',
     '{ x: y }',
     '{ x, }',
@@ -101,9 +101,9 @@ describe('Expressions - Functions', () => {
     '[[] = function() { a += 1; }()]',
     'x = args = arguments',
   ]) {
-    it(`(function(${arg}) {})`, () => {
+    it(`(function(${text}) {})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function(${arg}) {})`);
+        parseSource(`(function(${text}) {})`);
       });
     });
   }
@@ -246,27 +246,27 @@ describe('Expressions - Functions', () => {
     '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);',
   ];
 
-  for (const arg of validSyntax) {
-    it(`${arg}`, () => {
+  for (const text of validSyntax) {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(function package() { (function gave_away_the_package() { "use strict"; }) })',
     '(function (eval) { (function () { "use strict"; })})',
   ]) {
-    it(arg, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(arg);
+        parseSource(text);
       });
     });
   }

@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Enum', () => {
-  for (const arg of [
+  for (const text of [
     'enum;',
     'enum: ;',
     'var enum;',
@@ -49,23 +49,23 @@ describe('Miscellaneous - Enum', () => {
     'try {} catch (enum) {}',
     'try {} catch (enum) {} finally {}',
   ]) {
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
   }
 
-  for (const arg of ['x = { enum: false }', 'class X { enum(){} }', 'class X { static enum(){} }']) {
-    it(`${arg}`, () => {
+  for (const text of ['x = { enum: false }', 'class X { enum(){} }', 'class X { static enum(){} }']) {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

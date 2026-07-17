@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Class', () => {
-  for (const arg of [
+  for (const text of [
     '*async x(){}',
     'async *(){}',
     'async get x(){}',
@@ -22,38 +22,38 @@ describe('Expressions - Class', () => {
     'static async x : 0',
     'static async : 0',
   ]) {
-    it(`(class {${arg}})`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`);
+        parseSource(`(class {${text}})`);
       });
     });
 
-    it(`(class {${arg}})`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`, { webcompat: true });
+        parseSource(`(class {${text}})`, { webcompat: true });
       });
     });
 
-    it(`class {${arg}}`, () => {
+    it(`class {${text}}`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`);
+        parseSource(`(class {${text}})`);
       });
     });
 
-    it(`(class extends Base {${arg}})`, () => {
+    it(`(class extends Base {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class extends Base {${arg}})`);
+        parseSource(`(class extends Base {${text}})`);
       });
     });
 
-    it(`(class {${arg}})`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`bar, (class {${arg}})`);
+        parseSource(`bar, (class {${text}})`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'arguments',
     'eval',
     'implements',
@@ -67,32 +67,32 @@ describe('Expressions - Class', () => {
     'var',
     'yield',
   ]) {
-    it(`class C { get name(${arg}) {} }`, () => {
+    it(`class C { get name(${text}) {} }`, () => {
       t.throws(() => {
-        parseSource(`class C { get name(${arg}) {} }`);
+        parseSource(`class C { get name(${text}) {} }`);
       });
     });
 
-    it(`class C { get name(${arg}) {} }`, () => {
+    it(`class C { get name(${text}) {} }`, () => {
       t.throws(() => {
-        parseSource(`class C { get name(${arg}) {} }`, { webcompat: true });
+        parseSource(`class C { get name(${text}) {} }`, { webcompat: true });
       });
     });
 
-    it(`"use strict"; class C { get name(${arg}) {} }`, () => {
+    it(`"use strict"; class C { get name(${text}) {} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; class C { get name(${arg}) {} }`);
+        parseSource(`"use strict"; class C { get name(${text}) {} }`);
       });
     });
 
-    it(`(class C { get name(${arg}) {} })`, () => {
+    it(`(class C { get name(${text}) {} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { get name(${arg}) {} })`);
+        parseSource(`(class C { get name(${text}) {} })`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'static prototype() {}',
     'static get prototype() {}',
     'static set prototype(_) {}',
@@ -105,26 +105,26 @@ describe('Expressions - Class', () => {
     String.raw`static set 'prot\u006ftype'(_) {}`,
     String.raw`static *'prot\u006ftype'() {}`,
   ]) {
-    it(`class C {${arg}}`, () => {
+    it(`class C {${text}}`, () => {
       t.throws(() => {
-        parseSource(`class C {${arg}}`);
+        parseSource(`class C {${text}}`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`);
+        parseSource(`(class C {${text}})`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`, { webcompat: true });
+        parseSource(`(class C {${text}})`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'get constructor() {}',
     'get constructor(_) {}',
     '*constructor() {}',
@@ -136,26 +136,26 @@ describe('Expressions - Class', () => {
     String.raw`get 'c\u006fnstructor'(_) {}`,
     String.raw`*'c\u006fnstructor'() {}`,
   ]) {
-    it(`class C {${arg}}`, () => {
+    it(`class C {${text}}`, () => {
       t.throws(() => {
-        parseSource(`class C {${arg}}`);
+        parseSource(`class C {${text}}`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`);
+        parseSource(`(class C {${text}})`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`, { webcompat: true });
+        parseSource(`(class C {${text}})`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class',
     'class name',
     'class name extends',
@@ -175,25 +175,25 @@ describe('Expressions - Class', () => {
     'class name { *set x(_) {} }',
     'class name { *static m() {} }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`if (true) { ${arg} }`, () => {
+    it(`if (true) { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`if (true) { ${arg} }`);
+        parseSource(`if (true) { ${text} }`);
       });
     });
   }
-  for (const arg of [
+  for (const text of [
     'class',
     'class name',
     'class name extends',
@@ -207,102 +207,102 @@ describe('Expressions - Class', () => {
     'class { set m() {} }', // Missing required parameter.
     'class { m() {}, n() {} }', // No commas allowed.
   ]) {
-    it(`bar, ${arg};`, () => {
+    it(`bar, ${text};`, () => {
       t.throws(() => {
-        parseSource(`bar, ${arg};`);
+        parseSource(`bar, ${text};`);
       });
     });
 
-    it(`var foo = ${arg};`, () => {
+    it(`var foo = ${text};`, () => {
       t.throws(() => {
-        parseSource(`var foo = ${arg};`);
+        parseSource(`var foo = ${text};`);
       });
     });
 
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`);
+        parseSource(`(${text})`);
       });
     });
 
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`, { webcompat: true });
+        parseSource(`(${text})`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class C { method() { with ({}) {} } }',
     'class C extends function() { with ({}) {} } {}',
     'class C { *method() { with ({}) {} } }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`);
+        parseSource(`(${text})`);
       });
     });
 
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`, { webcompat: true });
-      });
-    });
-  }
-
-  for (const arg of ['constructor() {}; constructor() {}']) {
-    it(`class C {${arg}}`, () => {
-      t.throws(() => {
-        parseSource(`class C {${arg}}`);
-      });
-    });
-
-    it(`(class C {${arg}})`, () => {
-      t.throws(() => {
-        parseSource(`(class C {${arg}})`);
-      });
-    });
-
-    it(`(class C {${arg}})`, () => {
-      t.throws(() => {
-        parseSource(`(class C {${arg}})`, { webcompat: true });
+        parseSource(`(${text})`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of ['constructor() {}; constructor() {}']) {
+    it(`class C {${text}}`, () => {
+      t.throws(() => {
+        parseSource(`class C {${text}}`);
+      });
+    });
+
+    it(`(class C {${text}})`, () => {
+      t.throws(() => {
+        parseSource(`(class C {${text}})`);
+      });
+    });
+
+    it(`(class C {${text}})`, () => {
+      t.throws(() => {
+        parseSource(`(class C {${text}})`, { webcompat: true });
+      });
+    });
+  }
+
+  for (const text of [
     'constructor() {}; static constructor() {}',
     'm() {}; static m() {}',
     'm() {}; m() {}',
     'static m() {}; static m() {}',
     'get m() {}; set m(_) {}; get m() {}; set m(_) {};',
   ]) {
-    it(`class C {${arg}}`, () => {
+    it(`class C {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {${arg}}`);
+        parseSource(`class C {${text}}`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C {${arg}})`);
+        parseSource(`(class C {${text}})`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C {${arg}})`, { webcompat: true });
+        parseSource(`(class C {${text}})`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'constructor() {}',
     'static constructor() {}',
     'static get constructor() {}',
@@ -326,20 +326,20 @@ describe('Expressions - Class', () => {
       constructor() {}
     `,
   ]) {
-    it(`class C {${arg}}`, () => {
+    it(`class C {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {${arg}}`);
+        parseSource(`class C {${text}}`);
       });
     });
 
-    it(`(class C {${arg}})`, () => {
+    it(`(class C {${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C {${arg}})`);
+        parseSource(`(class C {${text}})`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '3:0',
     '[3]:0',
     '[a,b](){}',
@@ -395,36 +395,36 @@ describe('Expressions - Class', () => {
     'constructor() { class B extends super() {} }',
     'constructor() { super(); }',
   ]) {
-    it(`(class {${arg}})`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`);
+        parseSource(`(class {${text}})`);
       });
     });
-    it(`(class {${arg}})`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`, { webcompat: true });
+        parseSource(`(class {${text}})`, { webcompat: true });
       });
     });
-    it(`(class {${arg}})`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`);
-      });
-    });
-
-    it(`(class {${arg}})`, () => {
-      t.throws(() => {
-        parseSource(`bar, class {${arg}}`);
+        parseSource(`(class {${text}})`);
       });
     });
 
-    it(`var foo =  class {${arg}}`, () => {
+    it(`(class {${text}})`, () => {
       t.throws(() => {
-        parseSource(`var foo = class {${arg}}`);
+        parseSource(`bar, class {${text}}`);
+      });
+    });
+
+    it(`var foo =  class {${text}}`, () => {
+      t.throws(() => {
+        parseSource(`var foo = class {${text}}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class {}',
     'class name {}',
     'class extends F {}',
@@ -443,20 +443,20 @@ describe('Expressions - Class', () => {
     '(class A {async prototype(){}})',
     '(class A {async *prototype(){}})',
   ]) {
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg})`);
+        parseSource(`(${text})`);
       });
     });
 
-    it(`bar, ${arg};`, () => {
+    it(`bar, ${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar, ${arg};`);
+        parseSource(`bar, ${text};`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '42',
     '42.5',
     '42e2',
@@ -486,45 +486,45 @@ describe('Expressions - Class', () => {
     'catch',
     'finally',
   ]) {
-    it(`(class {${arg}() {}});`, () => {
+    it(`(class {${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`);
+        parseSource(`(class {${text}() {}});`);
       });
     });
 
-    it(`(class { get ${arg}() {}});`, () => {
+    it(`(class { get ${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { get ${arg}() {}});`);
+        parseSource(`(class { get ${text}() {}});`);
       });
     });
 
-    it(`(class { static ${arg}() {}});`, () => {
+    it(`(class { static ${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static ${arg}() {}});`);
+        parseSource(`(class { static ${text}() {}});`);
       });
     });
 
-    it(`(class { static get ${arg}() {}});`, () => {
+    it(`(class { static get ${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static get ${arg}() {}});`);
+        parseSource(`(class { static get ${text}() {}});`);
       });
     });
 
-    it(`(class { static *${arg}() {}});`, () => {
+    it(`(class { static *${text}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static *${arg}() {}});`);
+        parseSource(`(class { static *${text}() {}});`);
       });
     });
 
-    it(`class C {${arg}() {}};`, () => {
+    it(`class C {${text}() {}};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {${arg}() {}}`);
+        parseSource(`class C {${text}() {}}`);
       });
     });
 
-    it(`class C { static set ${arg}(v) {}}`, () => {
+    it(`class C { static set ${text}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static set ${arg}(v) {}}`);
+        parseSource(`class C { static set ${text}(v) {}}`);
       });
     });
   }
@@ -808,7 +808,7 @@ describe('Expressions - Class', () => {
     'new class { constructor() {} start() { new class { } } constructor() {}}',
   ]);
 
-  for (const arg of [
+  for (const text of [
     ';;;\n;\n',
     'yield() {}',
     'await() {}',
@@ -1019,117 +1019,117 @@ describe('Expressions - Class', () => {
     '*[expr](){}',
     'static(){}',
   ]) {
-    it(`(class { ${arg}})`, () => {
+    it(`(class { ${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { ${arg}})`);
+        parseSource(`(class { ${text}})`);
       });
     });
 
-    it(`class C { ${arg}}`, () => {
+    it(`class C { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}}`);
+        parseSource(`class C { ${text}}`);
       });
     });
 
-    it(`(class { ${arg}}) (class { ${arg}})`, () => {
+    it(`(class { ${text}}) (class { ${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { ${arg}}) (class { ${arg}})`);
+        parseSource(`(class { ${text}}) (class { ${text}})`);
       });
     });
 
-    it(`function foo() { (class { ${arg}}) }`, () => {
+    it(`function foo() { (class { ${text}}) }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { (class { ${arg}}) }`);
+        parseSource(`function foo() { (class { ${text}}) }`);
       });
     });
 
-    it(`(class extends Base  { ${arg}})`, () => {
+    it(`(class extends Base  { ${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class extends Base  { ${arg}})`);
+        parseSource(`(class extends Base  { ${text}})`);
       });
     });
 
-    it(`class extends Base  { ${arg}}`, () => {
+    it(`class extends Base  { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base  { ${arg}}`);
+        parseSource(`class C extends Base  { ${text}}`);
       });
     });
   }
 
-  for (const arg of ['async', 'this', 'null', 'true', 'false', 'eval', 'arguments', 'get', 'set']) {
-    it(`(class x {${arg} : x})`, () => {
+  for (const text of ['async', 'this', 'null', 'true', 'false', 'eval', 'arguments', 'get', 'set']) {
+    it(`(class x {${text} : x})`, () => {
       t.throws(() => {
-        parseSource(`(class x {${arg} : x})`);
+        parseSource(`(class x {${text} : x})`);
       });
     });
-    it(`(class x {${arg}(){}})`, () => {
+    it(`(class x {${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {${arg}(){}})`);
+        parseSource(`(class x {${text}(){}})`);
       });
     });
-    it(`(class x { static ${arg}(){}})`, () => {
+    it(`(class x { static ${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static ${arg}(){}})`);
-      });
-    });
-
-    it(`(class x { static * ${arg}(){}})`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`(class x { static * ${arg}(){}})`);
+        parseSource(`(class x { static ${text}(){}})`);
       });
     });
 
-    it(`(class x { static async ${arg}(){}})`, () => {
+    it(`(class x { static * ${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static async ${arg}(){}})`);
+        parseSource(`(class x { static * ${text}(){}})`);
       });
     });
 
-    it(`(class x { static async *${arg}(){}})`, () => {
+    it(`(class x { static async ${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static async *${arg}(){}})`);
+        parseSource(`(class x { static async ${text}(){}})`);
       });
     });
 
-    it(`(class x { static get ${arg}(){}})`, () => {
+    it(`(class x { static async *${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static get ${arg}(){}})`);
+        parseSource(`(class x { static async *${text}(){}})`);
       });
     });
 
-    it(`(class x { static set ${arg}(x){}})`, () => {
+    it(`(class x { static get ${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static set ${arg}(x){}})`);
+        parseSource(`(class x { static get ${text}(){}})`);
       });
     });
 
-    it(`(class x { async ${arg}(){}})`, () => {
+    it(`(class x { static set ${text}(x){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { async ${arg}(){}})`);
+        parseSource(`(class x { static set ${text}(x){}})`);
       });
     });
 
-    it(`(class x { async *${arg}(){}})`, () => {
+    it(`(class x { async ${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { async *${arg}(){}})`);
+        parseSource(`(class x { async ${text}(){}})`);
       });
     });
 
-    it(`(class x {*${arg}(){}})`, () => {
+    it(`(class x { async *${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {*${arg}(){}})`);
+        parseSource(`(class x { async *${text}(){}})`);
       });
     });
 
-    it(`(class x {get ${arg}(){}})`, () => {
+    it(`(class x {*${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {get ${arg}(){}})`);
+        parseSource(`(class x {*${text}(){}})`);
       });
     });
 
-    it(`(class x {set ${arg}(x){}})`, () => {
+    it(`(class x {get ${text}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {set ${arg}(x){}})`);
+        parseSource(`(class x {get ${text}(){}})`);
+      });
+    });
+
+    it(`(class x {set ${text}(x){}})`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(class x {set ${text}(x){}})`);
       });
     });
   }

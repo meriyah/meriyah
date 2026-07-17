@@ -7,7 +7,7 @@ import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Async', () => {
   // Async as identifier
-  for (const arg of [
+  for (const text of [
     'async: function f() {}',
     outdent`
       async
@@ -31,21 +31,21 @@ describe('Expressions - Async', () => {
     'let async = await;',
     'x = { async: false }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
 
   // Valid cases
-  for (const arg of [
+  for (const text of [
     'async: function f() {}',
     outdent`
       var resumeAfterNormalArrow = async (value) => {
@@ -93,15 +93,15 @@ describe('Expressions - Async', () => {
     'let async = await;',
     'x = { async: false }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }

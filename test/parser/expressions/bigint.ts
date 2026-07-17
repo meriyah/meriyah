@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 
 describe('Expressions - BigInt', () => {
-  for (const arg of [
+  for (const text of [
     '-1n',
     'const minus_one = BigInt(-1);',
     'x(30n, "foo", "bar");',
@@ -125,21 +125,21 @@ describe('Expressions - BigInt', () => {
       }];
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

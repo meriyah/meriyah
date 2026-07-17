@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Async Generator', () => {
-  for (const arg of [
+  for (const text of [
     '(async function *foo() { var await; });',
     '(async function *foo() { void await; });',
     '(async function *foo() { await: ; });',
@@ -32,44 +32,44 @@ describe('Expressions - Async Generator', () => {
     '(async function *foo([...{ x } = []] = [])',
     '(async function *foo([...{ x } = []])',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`);
+        parseSource(`"use strict"; ${text}`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(async function *foo() { }.prototype)',
     '(async function *foo(x, y = x, z = y) { })',
     '(async function *foo(x = y, y) { })',
@@ -128,31 +128,31 @@ describe('Expressions - Async Generator', () => {
       };
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
-    it(`() => { ${arg} }`, () => {
+    it(`() => { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { ${arg} }`);
-      });
-    });
-
-    it(`function foo() { ${arg}}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`);
+        parseSource(`() => { ${text} }`);
       });
     });
 
-    it(`function foo() { ${arg}}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, { next: true });
+        parseSource(`function foo() { ${text}}`);
+      });
+    });
+
+    it(`function foo() { ${text}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`function foo() { ${text}}`, { next: true });
       });
     });
   }

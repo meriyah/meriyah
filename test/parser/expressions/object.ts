@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Object', () => {
-  for (const arg of [
+  for (const text of [
     '({x={}={}}),',
     '({y={x={}={}={}={}={}={}={}={}}={}}),',
     '({a=1, b=2, c=3, x=({}={})}),',
@@ -74,32 +74,32 @@ describe('Expressions - Object', () => {
     '{get async(v) {}}',
     '{get let(v) {}}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '{ ...y }',
     '{ a: 1, ...y }',
     '{ b: 1, ...y }',
@@ -188,90 +188,90 @@ describe('Expressions - Object', () => {
     '{get let() {}}',
     'async ({__proto__: a, __proto__: b}) => 1',
   ]) {
-    it(`x = ${arg}`, () => {
+    it(`x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg}`, { webcompat: true });
+        parseSource(`x = ${text}`, { webcompat: true });
       });
     });
 
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg})`, { webcompat: true });
+        parseSource(`(${text})`, { webcompat: true });
       });
     });
 
-    it(`(${arg})`, () => {
+    it(`(${text})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg})`, { webcompat: true, lexical: true });
+        parseSource(`(${text})`, { webcompat: true, lexical: true });
       });
     });
 
-    it(`'use strict'; x = ${arg}`, () => {
+    it(`'use strict'; x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; x = ${arg}`);
+        parseSource(`'use strict'; x = ${text}`);
       });
     });
 
-    it(`'use strict'; x = ${arg}`, () => {
+    it(`'use strict'; x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; x = ${arg}`, { next: true });
+        parseSource(`'use strict'; x = ${text}`, { next: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'x = {__proto__: 1, "__proto__": 2}',
     'x = {\'__proto__\': 1, "__proto__": 2}',
     "x = {'__proto__': 1, __proto__: 2}",
     'x = {__proto__: 1, "__proto__": 2}',
     'async ({__proto__: a, __proto__: b});',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     "__proto__: {}, ['__proto__']: {}",
     '__proto__: {}, __proto__() {}',
     '__proto__: {}, get __proto__() {}',
     '__proto__: {}, set __proto__(v) {}',
     '__proto__: {}, __proto__',
   ]) {
-    it(`({${arg}})`, () => {
+    it(`({${text}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({${arg}});`);
+        parseSource(`({${text}});`);
       });
     });
 
-    it(`"use strict"; ({${arg}});`, () => {
+    it(`"use strict"; ({${text}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ({${arg}});`);
+        parseSource(`"use strict"; ({${text}});`);
       });
     });
 
-    it(`x = {${arg}}`, () => {
+    it(`x = {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = {${arg}};`);
+        parseSource(`x = {${text}};`);
       });
     });
 
-    it(`x = {${arg}}`, () => {
+    it(`x = {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = {${arg}};`, { webcompat: true });
+        parseSource(`x = {${text}};`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'async ()=>x',
     'class{}',
     'delete x.y',
@@ -289,43 +289,43 @@ describe('Expressions - Object', () => {
     '{}.length',
     '{x: y}.length',
   ]) {
-    it(`({${arg}} = x);`, () => {
+    it(`({${text}} = x);`, () => {
       t.throws(() => {
-        parseSource(`({${arg}} = x);`, { next: true });
+        parseSource(`({${text}} = x);`, { next: true });
       });
     });
 
-    it(`({${arg}} = x) => x;`, () => {
+    it(`({${text}} = x) => x;`, () => {
       t.throws(() => {
-        parseSource(`({${arg}} = x) => x;`, { next: true, webcompat: true });
+        parseSource(`({${text}} = x) => x;`, { next: true, webcompat: true });
       });
     });
 
-    it(`({${arg}} = x) => x;`, () => {
+    it(`({${text}} = x) => x;`, () => {
       t.throws(() => {
-        parseSource(`({x: ${arg}} = x) => x;`, { next: true });
+        parseSource(`({x: ${text}} = x) => x;`, { next: true });
       });
     });
 
-    it(`({x: ${arg}});`, () => {
+    it(`({x: ${text}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({x: ${arg}});`, { next: true });
+        parseSource(`({x: ${text}});`, { next: true });
       });
     });
 
-    it(`({x: ${arg}});`, () => {
+    it(`({x: ${text}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({x: ${arg}});`);
+        parseSource(`({x: ${text}});`);
       });
     });
 
-    it(`({x: ${arg}});`, () => {
+    it(`({x: ${text}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({x: ${arg}});`, { webcompat: true });
+        parseSource(`({x: ${text}});`, { webcompat: true });
       });
     });
   }
-  for (const arg of [
+  for (const text of [
     'x: 1, x() {}',
     'x() {}, x: 1',
     'x() {}, get x() {}',
@@ -345,42 +345,42 @@ describe('Expressions - Object', () => {
     "*x() {}, *'x'() {}",
     '*1.0() {}, 1: 1',
   ]) {
-    it(`"use strict"; ({ ${arg} })`, () => {
+    it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict";  ({ ${arg} });`, { next: true });
+        parseSource(`"use strict";  ({ ${text} });`, { next: true });
       });
     });
   }
 
-  for (const arg of ['eval', 'arguments']) {
-    it(`({ ${arg} } = x);`, () => {
+  for (const text of ['eval', 'arguments']) {
+    it(`({ ${text} } = x);`, () => {
       t.throws(() => {
-        parseSource(`({ ${arg} } = x);`, { impliedStrict: true });
+        parseSource(`({ ${text} } = x);`, { impliedStrict: true });
       });
     });
-    it(`({ ${arg} } = x);`, () => {
+    it(`({ ${text} } = x);`, () => {
       t.throws(() => {
-        parseSource(`({ ${arg} } = x);`, { lexical: true, impliedStrict: true });
+        parseSource(`({ ${text} } = x);`, { lexical: true, impliedStrict: true });
       });
     });
-    it(`({ ${arg} }) => x;`, () => {
+    it(`({ ${text} }) => x;`, () => {
       t.throws(() => {
-        parseSource(`({ ${arg} }) => x;`, { impliedStrict: true });
+        parseSource(`({ ${text} }) => x;`, { impliedStrict: true });
       });
     });
-    it(`({ ${arg} }) => x;`, () => {
+    it(`({ ${text} }) => x;`, () => {
       t.throws(() => {
-        parseSource(`({ ${arg} }) => x;`, { webcompat: true, impliedStrict: true });
+        parseSource(`({ ${text} }) => x;`, { webcompat: true, impliedStrict: true });
       });
     });
-    it(`const { ${arg} } = x;`, () => {
+    it(`const { ${text} } = x;`, () => {
       t.throws(() => {
-        parseSource(`const { ${arg} } = x;`, { impliedStrict: true });
+        parseSource(`const { ${text} } = x;`, { impliedStrict: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'x: 1, x() {}',
     'x() {}, x: 1',
     'x() {}, get x() {}',
@@ -400,26 +400,26 @@ describe('Expressions - Object', () => {
     "*x() {}, *'x'() {}",
     '*1.0() {}, 1: 1',
   ]) {
-    it(`"use strict"; ({ ${arg} })`, () => {
+    it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict";  ({ ${arg} });`, { next: true });
+        parseSource(`"use strict";  ({ ${text} });`, { next: true });
       });
     });
 
-    it(`"use strict"; ({ ${arg} })`, () => {
+    it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict";  ({ ${arg} });`);
+        parseSource(`"use strict";  ({ ${text} });`);
       });
     });
 
-    it(`"use strict"; ({ ${arg} })`, () => {
+    it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict";  ({ ${arg} });`, { webcompat: true });
+        parseSource(`"use strict";  ({ ${text} });`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'break',
     'case',
     'catch',
@@ -456,25 +456,25 @@ describe('Expressions - Object', () => {
     'true',
     'false', // 'enum',
   ]) {
-    it(`({foo: ${arg}}) => null`, () => {
+    it(`({foo: ${text}}) => null`, () => {
       t.throws(() => {
-        parseSource(`({foo: ${arg}}) => null`, { next: true });
+        parseSource(`({foo: ${text}}) => null`, { next: true });
       });
     });
-    it(`({foo: ${arg}} = null)`, () => {
+    it(`({foo: ${text}} = null)`, () => {
       t.throws(() => {
-        parseSource(`({foo: ${arg}} = null)`);
+        parseSource(`({foo: ${text}} = null)`);
       });
     });
 
-    it(`({foo: ${arg}} = null)`, () => {
+    it(`({foo: ${text}} = null)`, () => {
       t.throws(() => {
-        parseSource(`({foo: ${arg}} = null)`, { webcompat: true });
+        parseSource(`({foo: ${text}} = null)`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'm',
     "'m'",
     '"m"',
@@ -533,58 +533,58 @@ describe('Expressions - Object', () => {
     'with',
     'yield',
   ]) {
-    it(`({ ${arg}(x, y) {}});`, () => {
+    it(`({ ${text}(x, y) {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg}(x, y) {}});`);
+        parseSource(`({ ${text}(x, y) {}});`);
       });
     });
-    it(`({ ${arg}(x, y) {}});`, () => {
+    it(`({ ${text}(x, y) {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg}(x, y) {}});`, { next: true });
+        parseSource(`({ ${text}(x, y) {}});`, { next: true });
       });
     });
-    it(`({ ${arg}(x, y) {}});`, () => {
+    it(`({ ${text}(x, y) {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg}(x, y) {}});`, { webcompat: true });
+        parseSource(`({ ${text}(x, y) {}});`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of ['var', 'let', 'const']) {
-    it(`${arg} {async async: a} = {}`, () => {
+  for (const text of ['var', 'let', 'const']) {
+    it(`${text} {async async: a} = {}`, () => {
       t.throws(() => {
-        parseSource(`${arg} {async async: a} = {}`, { webcompat: true });
+        parseSource(`${text} {async async: a} = {}`, { webcompat: true });
       });
     });
-    it(`${arg} {async async} = {}`, () => {
+    it(`${text} {async async} = {}`, () => {
       t.throws(() => {
-        parseSource(`${arg} {async async} = {}`, { webcompat: true });
+        parseSource(`${text} {async async} = {}`, { webcompat: true });
       });
     });
-    it(`${arg} {async async} = {}`, () => {
+    it(`${text} {async async} = {}`, () => {
       t.throws(() => {
-        parseSource(`${arg} {async async} = {}`);
+        parseSource(`${text} {async async} = {}`);
       });
     });
-    it(`${arg} {async async} = {}`, () => {
+    it(`${text} {async async} = {}`, () => {
       t.throws(() => {
-        parseSource(`${arg} {async async} = {}`, { lexical: true });
+        parseSource(`${text} {async async} = {}`, { lexical: true });
       });
     });
-    it(`${arg} {async async, } = {}`, () => {
+    it(`${text} {async async, } = {}`, () => {
       t.throws(() => {
-        parseSource(`${arg} {async async, } = {}`, { webcompat: true });
+        parseSource(`${text} {async async, } = {}`, { webcompat: true });
       });
     });
-    it(`${arg} {async async = 0} = {}`, () => {
+    it(`${text} {async async = 0} = {}`, () => {
       t.throws(() => {
-        parseSource(`${arg} {async async = 0} = {}`, { webcompat: true });
+        parseSource(`${text} {async async = 0} = {}`, { webcompat: true });
       });
     });
   }
 
   // Object assignment
-  for (const arg of [
+  for (const text of [
     '{ x: x[yield] }',
     '{ x: [ x ] }',
     '{ x: [x = yield] } ',
@@ -621,89 +621,89 @@ describe('Expressions - Object', () => {
     '{ w, x, y = c }',
     '{ w, x, y = a ? x : b }',
   ]) {
-    it(`a = ${arg} = b`, () => {
+    it(`a = ${text} = b`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = b`);
+        parseSource(`a = ${text} = b`);
       });
     });
-    it(`a = ${arg} = b`, () => {
+    it(`a = ${text} = b`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = b`, { lexical: true });
+        parseSource(`a = ${text} = b`, { lexical: true });
       });
     });
-    it(`a = ${arg} = b`, () => {
+    it(`a = ${text} = b`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = b`, { next: true });
-      });
-    });
-
-    it(`a = ${arg} = { a: 2 };`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = { a: 2 };`);
+        parseSource(`a = ${text} = b`, { next: true });
       });
     });
 
-    it(`a = ${arg} = 51`, () => {
+    it(`a = ${text} = { a: 2 };`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = 51`);
+        parseSource(`a = ${text} = { a: 2 };`);
       });
     });
 
-    it(`a = ${arg} = false`, () => {
+    it(`a = ${text} = 51`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = false`);
-      });
-    });
-    it(`a = ${arg} = null `, () => {
-      t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = null`);
+        parseSource(`a = ${text} = 51`);
       });
     });
 
-    it(`a = ${arg} = undefined `, () => {
+    it(`a = ${text} = false`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = undefined`);
+        parseSource(`a = ${text} = false`);
+      });
+    });
+    it(`a = ${text} = null `, () => {
+      t.doesNotThrow(() => {
+        parseSource(`a = ${text} = null`);
       });
     });
 
-    it(`a = ${arg} = { x: { y: 2 } };`, () => {
+    it(`a = ${text} = undefined `, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = { x: { y: 2 } };`);
+        parseSource(`a = ${text} = undefined`);
       });
     });
 
-    it(`a = ${arg} = { x: null }`, () => {
+    it(`a = ${text} = { x: { y: 2 } };`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = { x: null }`);
+        parseSource(`a = ${text} = { x: { y: 2 } };`);
       });
     });
 
-    it(`a = ${arg} = { x: null }`, () => {
+    it(`a = ${text} = { x: null }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = { x: null }`, { webcompat: true });
+        parseSource(`a = ${text} = { x: null }`);
       });
     });
 
-    it(`a = ${arg} = {};`, () => {
+    it(`a = ${text} = { x: null }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = {};`);
+        parseSource(`a = ${text} = { x: null }`, { webcompat: true });
       });
     });
 
-    it(`a = ${arg} = { x: [] };`, () => {
+    it(`a = ${text} = {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = { x: [] };`);
+        parseSource(`a = ${text} = {};`);
       });
     });
 
-    it(`a = ${arg} = { 1: [] = [(a = b)] };`, () => {
+    it(`a = ${text} = { x: [] };`, () => {
       t.doesNotThrow(() => {
-        parseSource(`a = ${arg} = { 1: [] = [(a = b)] };`);
+        parseSource(`a = ${text} = { x: [] };`);
+      });
+    });
+
+    it(`a = ${text} = { 1: [] = [(a = b)] };`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`a = ${text} = { 1: [] = [(a = b)] };`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '*method(a,) {}',
     '*[anonSym]() {}',
     '*id() {}',
@@ -946,51 +946,51 @@ describe('Expressions - Object', () => {
     'a: [b = 1, c = 2].b} = {a:[]',
     'async',
   ]) {
-    it(`({ ${arg} })`, () => {
+    it(`({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg} })`, { next: true });
+        parseSource(`({ ${text} })`, { next: true });
       });
     });
 
-    it(`({ ${arg} })`, () => {
+    it(`({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg} })`, { webcompat: true });
+        parseSource(`({ ${text} })`, { webcompat: true });
       });
     });
 
-    it(`({ ${arg} })`, () => {
+    it(`({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg} })`);
+        parseSource(`({ ${text} })`);
       });
     });
 
-    it(`({ ${arg} })`, () => {
+    it(`({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${arg} })`, { next: true, webcompat: true });
+        parseSource(`({ ${text} })`, { next: true, webcompat: true });
       });
     });
 
-    it(`x = { ${arg} }`, () => {
+    it(`x = { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = { ${arg} }`, { webcompat: true });
+        parseSource(`x = { ${text} }`, { webcompat: true });
       });
     });
 
-    it(`x = { ${arg} }`, () => {
+    it(`x = { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = { ${arg} }`, { webcompat: true, lexical: true });
+        parseSource(`x = { ${text} }`, { webcompat: true, lexical: true });
       });
     });
 
-    it(`({ ${arg} }) = {}`, () => {
+    it(`({ ${text} }) = {}`, () => {
       t.throws(() => {
-        parseSource(`({ ${arg} }) = {}`, { webcompat: true });
+        parseSource(`({ ${text} }) = {}`, { webcompat: true });
       });
     });
 
-    it(`"use strict"; ({ ${arg} })`, () => {
+    it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ({ ${arg} })`, { next: true });
+        parseSource(`"use strict"; ({ ${text} })`, { next: true });
       });
     });
   }

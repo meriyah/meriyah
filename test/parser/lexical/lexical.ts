@@ -240,7 +240,7 @@ describe('Lexical - Lexical', () => {
     { code: '{ var x; } let x', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'var x; for (;;) { let x; }',
     outdent`
       var x; for (;;) { let x; }
@@ -284,20 +284,20 @@ describe('Lexical - Lexical', () => {
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
     'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var x; for (;;) { let x; }',
     'for (;;) { let x; } var x;',
     'for (var x;;) { let x; }',
@@ -332,14 +332,14 @@ describe('Lexical - Lexical', () => {
     'var x; { let x }',
     '{ let x } var x;',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

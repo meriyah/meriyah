@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Array', () => {
-  for (const arg of [
+  for (const text of [
     '[1 <= 0]',
     '[a, ...b=c]',
     '[a, ...b=c]',
@@ -406,32 +406,32 @@ describe('Expressions - Array', () => {
     '[(a), ] = x;',
     '([(x), y] = x);',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
-      });
-    });
-
-    it(`() => {${arg}}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`() => {${arg}}`);
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`function foo() { ${arg}}`, () => {
+    it(`() => {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, { webcompat: true });
+        parseSource(`() => {${text}}`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(`function foo() { ${text}}`, { webcompat: true });
+      });
+    });
+
+    it(text, () => {
+      t.doesNotThrow(() => {
+        parseSource(text, { webcompat: true });
       });
     });
   }

@@ -92,6 +92,7 @@ export default [
       ],
       'unicorn/prefer-string-replace-all': 'error',
       'unicorn/template-indent': 'error',
+      'unicorn/no-useless-template-literals': 'error',
 
       'import-x/extensions': [
         'error',

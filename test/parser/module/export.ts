@@ -6,7 +6,7 @@ import { fail, pass } from '../../test-utils.ts';
 
 describe('Module - Export', () => {
   // Async await module errors
-  for (const arg of [
+  for (const text of [
     'export default (async function await() {})',
     'export default async function await() {}',
     'export async function await() {}',
@@ -14,39 +14,39 @@ describe('Module - Export', () => {
     'export async',
     'export async\nfunction async() { await 1; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
+        parseSource(text, { sourceType: 'module', webcompat: true });
       });
     });
   }
 
   // Async await module
-  for (const arg of [
+  for (const text of [
     'export default async function() { await 1; }',
     'export default async function async() { await 1; }',
     'export async function async() { await 1; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', webcompat: true, lexical: true });
+        parseSource(text, { sourceType: 'module', webcompat: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'export {',
     'var a; export { a',
     'var a; export { a',
@@ -139,9 +139,9 @@ describe('Module - Export', () => {
       while (false);
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
@@ -471,7 +471,7 @@ describe('Module - Export', () => {
     { code: 'const a = 1; export {a as "", a as ""}', options: { sourceType: 'module', lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'export let x = 0;',
     'export var y = 0;',
     'export const z = 0;',
@@ -747,23 +747,23 @@ describe('Module - Export', () => {
     'export { "a" as b } from "./foo";',
     String.raw`export { "\uD83C\uDF19" as b } from "./foo";`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`${arg}`, () => {
-      parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
+    it(text, () => {
+      parseSource(text, { sourceType: 'module', webcompat: true });
     });
   }
-  for (const arg of [
+  for (const text of [
     "export var var1 = 'string';",
     "export default 'default';",
     'export var var2;',
@@ -783,9 +783,9 @@ describe('Module - Export', () => {
     "export {thing}; import {thing} from 'a.js';",
     "export {thing}; import * as thing from 'a.js';",
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
+        parseSource(text, { sourceType: 'module', lexical: true });
       });
     });
   }

@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 
 describe('Expressions - Compound assignment', () => {
-  for (const arg of [
+  for (const text of [
     '[a >>>= a];',
     '[a >>>= a += a];',
     '[a >>>= (a += a)];',
@@ -38,19 +38,19 @@ describe('Expressions - Compound assignment', () => {
     '([a *= -1])',
     '([(a *= -1)])',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '({a *= -1})',
     '({a} *= -1)',
     '({a}) *=	-1',
@@ -73,19 +73,19 @@ describe('Expressions - Compound assignment', () => {
     '1 |= 1;',
     '1 = 1;',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true, sourceType: 'module' });
+        parseSource(text, { next: true, sourceType: 'module' });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

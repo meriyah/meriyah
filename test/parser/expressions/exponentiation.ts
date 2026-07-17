@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Exponentiation', () => {
-  for (const arg of [
+  for (const text of [
     'delete O.p ** 10',
     'delete x ** 10',
     '~O.p ** 10',
@@ -39,21 +39,21 @@ describe('Expressions - Exponentiation', () => {
     '{ x } **= { x: 2 }',
     '{ x: x **= 2 ] = { x: 2 }',
   ]) {
-    it(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
+    it(`let O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, () => {
       t.throws(() => {
-        parseSource(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true, sourceType: 'module' });
+        parseSource(`let O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`var O = { p: 1 }, x = 10; ; (${arg})`, () => {
+    it(`var O = { p: 1 }, x = 10; ; (${text})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, { next: true, impliedStrict: true });
+        parseSource(`var O = { p: 1 }, x = 10; ; (${text})`, { next: true, impliedStrict: true });
       });
     });
 
-    it(`var O = { p: 1 }, x = 10; foo(${arg})`, () => {
+    it(`var O = { p: 1 }, x = 10; foo(${text})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, { webcompat: true });
+        parseSource(`var O = { p: 1 }, x = 10; foo(${text})`, { webcompat: true });
       });
     });
   }
@@ -80,7 +80,7 @@ describe('Expressions - Exponentiation', () => {
     'async function f() { await 2 ** 2; }',
   ]);
 
-  for (const arg of [
+  for (const text of [
     '(delete O.p) ** 10',
     '(~O.p) ** 10',
     '(~x) ** 10',
@@ -118,21 +118,21 @@ describe('Expressions - Exponentiation', () => {
     'O.p-- ** 10',
     'x-- ** 10',
   ]) {
-    it(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
+    it(`var O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true, sourceType: 'module' });
+        parseSource(`var O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`var O = { p: 1 }, x = 10; ; (${arg})`, () => {
+    it(`var O = { p: 1 }, x = 10; ; (${text})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, { next: true, impliedStrict: true });
+        parseSource(`var O = { p: 1 }, x = 10; ; (${text})`, { next: true, impliedStrict: true });
       });
     });
 
-    it(`var O = { p: 1 }, x = 10; foo(${arg})`, () => {
+    it(`var O = { p: 1 }, x = 10; foo(${text})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, { webcompat: true });
+        parseSource(`var O = { p: 1 }, x = 10; foo(${text})`, { webcompat: true });
       });
     });
   }

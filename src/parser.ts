@@ -4563,7 +4563,7 @@ function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportA
     const keyContent = key.type === 'Literal' ? key.value : key.name;
 
     if (keysContent.has(keyContent)) {
-      parser.report(Errors.DuplicateBinding, `${keyContent}`);
+      parser.report(Errors.DuplicateBinding, keyContent);
     }
 
     keysContent.add(keyContent);

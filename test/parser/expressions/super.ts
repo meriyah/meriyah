@@ -4,126 +4,126 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Super', () => {
-  for (const arg of ['new super;', 'new super();', '() => new super;', '() => new super();']) {
-    it(`class C { method() { ${arg} } }`, () => {
+  for (const text of ['new super;', 'new super();', '() => new super;', '() => new super();']) {
+    it(`class C { method() { ${text} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { method() { ${arg} } }`);
+        parseSource(`class C { method() { ${text} } }`);
       });
     });
 
-    it(`class C { *method() { ${arg} } }`, () => {
+    it(`class C { *method() { ${text} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { *method() { ${arg} } }`);
+        parseSource(`class C { *method() { ${text} } }`);
       });
     });
 
-    it(`class C { get x() { ${arg} } }`, () => {
+    it(`class C { get x() { ${text} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { get x() { ${arg} } }`);
+        parseSource(`class C { get x() { ${text} } }`);
       });
     });
 
-    it(`class C { get x() { ${arg} } }`, () => {
+    it(`class C { get x() { ${text} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { get x() { ${arg} } }`, { lexical: true });
+        parseSource(`class C { get x() { ${text} } }`, { lexical: true });
       });
     });
 
-    it(`class C { set x(_) { ${arg} } }`, () => {
+    it(`class C { set x(_) { ${text} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { set x(_) { ${arg} } }`);
+        parseSource(`class C { set x(_) { ${text} } }`);
       });
     });
 
-    it(`({ method() { ${arg} } })`, () => {
+    it(`({ method() { ${text} } })`, () => {
       t.throws(() => {
-        parseSource(`({ method() { ${arg} } })`);
+        parseSource(`({ method() { ${text} } })`);
       });
     });
 
-    it(`(function() { ${arg} } )`, () => {
+    it(`(function() { ${text} } )`, () => {
       t.throws(() => {
-        parseSource(`(function() { ${arg} } )`);
+        parseSource(`(function() { ${text} } )`);
       });
     });
 
-    it(`var f = function() { ${arg} }`, () => {
+    it(`var f = function() { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`var f = function() { ${arg} }`);
+        parseSource(`var f = function() { ${text} }`);
       });
     });
 
-    it(`({ f: function*() {${arg} } })`, () => {
+    it(`({ f: function*() {${text} } })`, () => {
       t.throws(() => {
-        parseSource(`({ f: function*() { ${arg} } })`);
+        parseSource(`({ f: function*() { ${text} } })`);
       });
     });
 
-    it(`(function*() { ${arg} })`, () => {
+    it(`(function*() { ${text} })`, () => {
       t.throws(() => {
-        parseSource(`(function*() { ${arg} })`);
+        parseSource(`(function*() { ${text} })`);
       });
     });
 
-    it(`var f = function*() { ${arg} }`, () => {
+    it(`var f = function*() { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`var f = function*() { ${arg} }`);
+        parseSource(`var f = function*() { ${text} }`);
       });
     });
   }
 
   // Testing valid use of super property
-  for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
-    it(`class C { constructor() {${arg}}}`, () => {
+  for (const text of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
+    it(`class C { constructor() {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { constructor() {${arg}}}`);
+        parseSource(`class C { constructor() {${text}}}`);
       });
     });
 
-    it(`class C { *method() {${arg}}}`, () => {
+    it(`class C { *method() {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *method() {${arg}}}`);
+        parseSource(`class C { *method() {${text}}}`);
       });
     });
 
-    it(`({ method() {${arg}}})`, () => {
+    it(`({ method() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ method() {${arg}}})`);
+        parseSource(`({ method() {${text}}})`);
       });
     });
 
-    it(`({ *method() {${arg}}})`, () => {
+    it(`({ *method() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ *method() {${arg}}})`);
+        parseSource(`({ *method() {${text}}})`);
       });
     });
 
-    it(`({ get x() {${arg}}})`, () => {
+    it(`({ get x() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ get x() {${arg}}})`);
+        parseSource(`({ get x() {${text}}})`);
       });
     });
 
-    it(`({ set x(_) {${arg}}})`, () => {
+    it(`({ set x(_) {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ set x(_) {${arg}}})`);
+        parseSource(`({ set x(_) {${text}}})`);
       });
     });
 
-    it(`class C { set x(_) {${arg}}}`, () => {
+    it(`class C { set x(_) {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { set x(_) {${arg}}}`);
+        parseSource(`class C { set x(_) {${text}}}`);
       });
     });
 
-    it(`class C { get x() {${arg}}}`, () => {
+    it(`class C { get x() {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { get x() {${arg}}}`);
+        parseSource(`class C { get x() {${text}}}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'super',
     'super = x',
     'y = super',
@@ -140,62 +140,62 @@ describe('Expressions - Super', () => {
     '() => new super.x;',
     '() => new super.x();',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`parseSource = ${arg}`, () => {
+    it(`parseSource = ${text}`, () => {
       t.throws(() => {
-        parseSource(`parseSource = ${arg}`);
+        parseSource(`parseSource = ${text}`);
       });
     });
 
-    it(`foo(${arg})`, () => {
+    it(`foo(${text})`, () => {
       t.throws(() => {
-        parseSource(`foo(${arg})`);
+        parseSource(`foo(${text})`);
       });
     });
 
-    it(`if (${arg}) {}`, () => {
+    it(`if (${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`if (${arg}) {}`);
+        parseSource(`if (${text}) {}`);
       });
     });
 
-    it(`if (false) {} else {${arg}}`, () => {
+    it(`if (false) {} else {${text}}`, () => {
       t.throws(() => {
-        parseSource(`if (false) {} else {${arg}}`);
+        parseSource(`if (false) {} else {${text}}`);
       });
     });
 
-    it(`class C { m() { function f() {${arg}} } }`, () => {
+    it(`class C { m() { function f() {${text}} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { function f() {${arg}} } }`);
+        parseSource(`class C { m() { function f() {${text}} } }`);
       });
     });
 
-    it(`({ m() { function f() {${arg}} } })`, () => {
+    it(`({ m() { function f() {${text}} } })`, () => {
       t.throws(() => {
-        parseSource(`({ m() { function f() {${arg}} } })`);
+        parseSource(`({ m() { function f() {${text}} } })`);
       });
     });
 
-    it(`while (true) {${arg}}`, () => {
+    it(`while (true) {${text}}`, () => {
       t.throws(() => {
-        parseSource(`while (true) {${arg}}`);
+        parseSource(`while (true) {${text}}`);
       });
     });
 
-    it(`class C extends (${arg}) {}`, () => {
+    it(`class C extends (${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`class C extends (${arg}) {}`);
+        parseSource(`class C extends (${text}) {}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class C { constructor() { super(); } }',
     'class C { method() { super(); } }',
     'class C { method() { () => super(); } }',
@@ -213,14 +213,14 @@ describe('Expressions - Super', () => {
     '(function*() { super(); })',
     'var f = function*() { super(); }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class a extends b { c() { [super.d] = e } }',
     'class C { constructor() { this._x = 45; } get foo() { return this._x;} } class D extends C { x(y = () => super.foo) { return y(); } }',
     'class C { constructor() { this._x = 45; } get foo() { return this._x;} } class D extends C { x(y = () => {return super.foo}) { return y(); } }',
@@ -265,20 +265,20 @@ describe('Expressions - Super', () => {
     'class f { constructor(){  class x { super(){} }  }}',
     'class a { foo(){   class x { [super.foo](){} }    }}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'super',
     'super = x',
     'y = super',
@@ -290,82 +290,82 @@ describe('Expressions - Super', () => {
     'new new super()',
     'new new super()()',
   ]) {
-    it(`class C { m() { ${arg}; } }`, () => {
+    it(`class C { m() { ${text}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { ${arg}; } }`);
+        parseSource(`class C { m() { ${text}; } }`);
       });
     });
 
-    it(`class C { m() { k = ${arg}; } }`, () => {
+    it(`class C { m() { k = ${text}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { k = ${arg}; } }`);
+        parseSource(`class C { m() { k = ${text}; } }`);
       });
     });
 
-    it(`class C { m() { foo(${arg}); } }`, () => {
+    it(`class C { m() { foo(${text}); } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { foo(${arg}); } }`);
+        parseSource(`class C { m() { foo(${text}); } }`);
       });
     });
 
-    it(`class C { m() { () => ${arg}; } }`, () => {
+    it(`class C { m() { () => ${text}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { () => ${arg}; } }`);
+        parseSource(`class C { m() { () => ${text}; } }`);
       });
     });
   }
 
-  for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
-    it(`class C { constructor() { ${arg} } }`, () => {
+  for (const text of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
+    it(`class C { constructor() { ${text} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { constructor() { ${arg} } }`);
+        parseSource(`class C { constructor() { ${text} } }`);
       });
     });
 
-    it(`class C { *method() { ${arg} } }`, () => {
+    it(`class C { *method() { ${text} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *method() { ${arg} } }`);
+        parseSource(`class C { *method() { ${text} } }`);
       });
     });
 
-    it(`class C { get x() { ${arg} } }`, () => {
+    it(`class C { get x() { ${text} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { get x() { ${arg} } }`);
+        parseSource(`class C { get x() { ${text} } }`);
       });
     });
 
-    it(`class C { set x(_) { ${arg} } }`, () => {
+    it(`class C { set x(_) { ${text} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { set x(_) { ${arg} } }`);
+        parseSource(`class C { set x(_) { ${text} } }`);
       });
     });
 
-    it(`({ method() { ${arg} } })`, () => {
+    it(`({ method() { ${text} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ method() { ${arg} } })`);
+        parseSource(`({ method() { ${text} } })`);
       });
     });
 
-    it(`({ *method() { ${arg} } })`, () => {
+    it(`({ *method() { ${text} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ *method() { ${arg} } })`);
+        parseSource(`({ *method() { ${text} } })`);
       });
     });
 
-    it(`(class C { get x() { ${arg} } })`, () => {
+    it(`(class C { get x() { ${text} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { get x() { ${arg} } })`);
+        parseSource(`(class C { get x() { ${text} } })`);
       });
     });
 
-    it(`(class C { set x(_) { ${arg} } })`, () => {
+    it(`(class C { set x(_) { ${text} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { set x(_) { ${arg} } })`);
+        parseSource(`(class C { set x(_) { ${text} } })`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'super.x',
     'super[27]',
     'new super.x',
@@ -374,27 +374,27 @@ describe('Expressions - Super', () => {
     'new super[27]()',
     'z.super',
   ]) {
-    it(`class C { m() { ${arg}; } }`, () => {
+    it(`class C { m() { ${text}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { ${arg}; } }`);
+        parseSource(`class C { m() { ${text}; } }`);
       });
     });
 
-    it(`class C { m() { k = ${arg}; } }`, () => {
+    it(`class C { m() { k = ${text}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { k = ${arg}; } }`);
+        parseSource(`class C { m() { k = ${text}; } }`);
       });
     });
 
-    it(`class C { m() { foo(${arg}); } }`, () => {
+    it(`class C { m() { foo(${text}); } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { foo(${arg}); } }`);
+        parseSource(`class C { m() { foo(${text}); } }`);
       });
     });
 
-    it(`class C { m() { () => ${arg}; } }`, () => {
+    it(`class C { m() { () => ${text}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { () => ${arg}; } }`);
+        parseSource(`class C { m() { () => ${text}; } }`);
       });
     });
   }

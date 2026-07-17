@@ -14,7 +14,7 @@ describe('Expressions - Assign', () => {
     '[(a = 0)] = 1',
   ]);
 
-  for (const arg of [
+  for (const text of [
     '[v2 = 10, vNull = 11, vHole = 12, vUndefined = 13, vOob = 14] = [2, null, , undefined];',
     ' [ xFn = function x() {}, fn = function() {} ] = []',
     '0, [ x = y ] = [];',
@@ -63,9 +63,9 @@ describe('Expressions - Assign', () => {
     'x = ({ __proto__: x, __proto__: y } = value);',
     'arrow = () => {};',
   ]) {
-    it(`${arg};`, () => {
+    it(`${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }

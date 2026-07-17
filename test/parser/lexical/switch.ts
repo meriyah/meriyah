@@ -219,7 +219,7 @@ describe('Lexical - Switch', () => {
     { code: 'switch (x) { default: function *f(){} function *f(){} }', options: { webcompat: true, lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'switch (0) { case 1: var f; default: var f }',
     'switch (x) { case a: var foo; break; default: var foo; break; }',
     'switch (0) { case 1: var f; default: var f }',
@@ -229,26 +229,26 @@ describe('Lexical - Switch', () => {
     'switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f',
     'switch (x) { case a: var foo; break; default: var foo; break; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'switch (0) { case 1: var f; default: var f }',
     'switch (x) { case a: var foo; break; default: var foo; break; }',
     'switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f',
@@ -273,15 +273,15 @@ describe('Lexical - Switch', () => {
     `,
     'for (let f of [0]) { switch (1) { case 1:function f() {  } }}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

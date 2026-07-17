@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 
 describe('Expressions -In', () => {
-  for (const arg of [
+  for (const text of [
     'NaN in a',
     '"string" in a',
     '0 in a',
@@ -14,21 +14,21 @@ describe('Expressions -In', () => {
     '0.001 in a[2]',
     '0.001 in async[2]',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

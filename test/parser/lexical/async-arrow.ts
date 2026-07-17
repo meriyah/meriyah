@@ -58,7 +58,7 @@ describe('Lexical - Arrows', () => {
     { code: '(async await => { let await; })', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     '(x) => { function x() {} }',
     '(x) => { var x; }',
     'x => { function x() {} }',
@@ -66,14 +66,14 @@ describe('Lexical - Arrows', () => {
     '() => { let foo; }; foo => {}',
     '() => { let foo; }; () => { let foo; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(x) => { function x() {} }',
     '(x) => { var x; }',
     'x => { function x() {} }',
@@ -81,9 +81,9 @@ describe('Lexical - Arrows', () => {
     '() => { let foo; }; foo => {}',
     '() => { let foo; }; () => { let foo; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }

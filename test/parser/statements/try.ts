@@ -31,7 +31,7 @@ describe('Statements - Try', () => {
   ]);
 
   for (const binding of ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]']) {
-    it(`${binding}`, () => {
+    it(binding, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
@@ -45,7 +45,7 @@ describe('Statements - Try', () => {
         );
       });
     });
-    it(`${binding}`, () => {
+    it(binding, () => {
       t.doesNotThrow(() => {
         parseSource(
           outdent`
@@ -63,7 +63,7 @@ describe('Statements - Try', () => {
 
   // Check that the above applies even for nested catches.
   for (const binding of ['var e', 'var {e}', 'var {g, e}', 'var [e]', 'var {g:e}', 'var [[[], e]]']) {
-    it(`${binding}`, () => {
+    it(binding, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
@@ -90,7 +90,7 @@ describe('Statements - Try', () => {
   // Check that the above applies if a declaration scope is between the
   // catch and the loop.
   for (const binding of ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]']) {
-    it(`${binding}`, () => {
+    it(binding, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
@@ -105,7 +105,7 @@ describe('Statements - Try', () => {
       });
     });
 
-    it(`${binding}`, () => {
+    it(binding, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
@@ -139,7 +139,7 @@ describe('Statements - Try', () => {
     'let {x:y}',
     'const {x:y}',
   ]) {
-    it(`${binding}`, () => {
+    it(binding, () => {
       t.doesNotThrow(() => {
         parseSource(
           `

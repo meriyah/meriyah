@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - HTML Comments', () => {
-  for (const arg of [
+  for (const text of [
     '<!-- test --->',
     ';-->',
     outdent`
@@ -12,28 +12,28 @@ describe('Miscellaneous - HTML Comments', () => {
       -->
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     outdent`
       /*
       */ the comment should not include these characters, regardless of AnnexB extensions -->
     `,
     ';-->',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     // Babylon issue: https://github.com/babel/babel/issues/7802
     '<!-- test --->',
     '<!-- HTML comment (not ECMA)',
@@ -57,9 +57,9 @@ describe('Miscellaneous - HTML Comments', () => {
     '<!-- foo',
     //'--> comment'
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

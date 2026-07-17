@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - Literal', () => {
-  for (const arg of [
+  for (const text of [
     String.raw`('\u{0000000000F8}')`,
     String.raw`('\u{00F8}')`,
     String.raw`('\7a')`,
@@ -16,20 +16,20 @@ describe('Miscellaneous - Literal', () => {
     "('\\\n')",
     String.raw`("\\\"")`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true });
+        parseSource(text, { next: true, webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     String.raw`'use strict'; ('\1')`,
     String.raw`'use strict'; ('\4')`,
     String.raw`'use strict'; ('\11')`,
@@ -44,15 +44,15 @@ describe('Miscellaneous - Literal', () => {
     "(')",
     "('\n')",
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true });
+        parseSource(text, { next: true, webcompat: true });
       });
     });
   }

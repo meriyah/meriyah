@@ -7,7 +7,7 @@ import { fail, pass } from '../../test-utils.ts';
 describe('Declarations - const', () => {
   // Test keywords
 
-  for (const arg of [
+  for (const text of [
     'break',
     'case',
     'catch',
@@ -45,51 +45,51 @@ describe('Declarations - const', () => {
     'false',
     'enum',
   ]) {
-    it(`const ${arg} = x`, () => {
+    it(`const ${text} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`);
+        parseSource(`var ${text} = x`);
       });
     });
 
-    it(`let ${arg} = x`, () => {
+    it(`let ${text} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`);
+        parseSource(`var ${text} = x`);
       });
     });
 
-    it(`let ${arg} = x`, () => {
+    it(`let ${text} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, { webcompat: true });
+        parseSource(`var ${text} = x`, { webcompat: true });
       });
     });
 
-    it(`for (const  ${arg}  = x;;);`, () => {
+    it(`for (const  ${text}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`);
+        parseSource(`for (const  ${text}  = x;;);`);
       });
     });
   }
 
-  for (const arg of ['break', 'implements', 'package', 'protected', 'interface', 'private', 'public', 'static']) {
-    it(`const ${arg} = x`, () => {
+  for (const text of ['break', 'implements', 'package', 'protected', 'interface', 'private', 'public', 'static']) {
+    it(`const ${text} = x`, () => {
       t.throws(() => {
-        parseSource(`const ${arg} = x`, { impliedStrict: true });
+        parseSource(`const ${text} = x`, { impliedStrict: true });
       });
     });
-    it(`for (const  ${arg}  = x;;);`, () => {
+    it(`for (const  ${text}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, { impliedStrict: true });
+        parseSource(`for (const  ${text}  = x;;);`, { impliedStrict: true });
       });
     });
 
-    it(`for (const  ${arg}  = x;;);`, () => {
+    it(`for (const  ${text}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, { sourceType: 'module', webcompat: true });
+        parseSource(`for (const  ${text}  = x;;);`, { sourceType: 'module', webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'const a = Infinity;',
     'const b = -Infinity;',
     'const c = +Infinity;',
@@ -168,27 +168,27 @@ describe('Declarations - const', () => {
     'const val = (function f(a, b = (() => a)) {})',
     'const { a, b, ...c } = { a: 1, b: 2, c: 3 };',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

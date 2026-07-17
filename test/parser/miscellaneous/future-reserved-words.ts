@@ -4,27 +4,27 @@ import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Future reserved words', () => {
   describe('Failure', () => {
-    for (const arg of ['var package = 1;', 'var private = 1;', 'var yield = 1;', 'var interface = 1;']) {
-      it(`"use strict"; ${arg}`, () => {
+    for (const text of ['var package = 1;', 'var private = 1;', 'var yield = 1;', 'var interface = 1;']) {
+      it(`"use strict"; ${text}`, () => {
         t.throws(() => {
-          parseSource(`"use strict"; ${arg}`);
+          parseSource(`"use strict"; ${text}`);
         });
       });
 
-      it(`"use strict"; ${arg}`, () => {
+      it(`"use strict"; ${text}`, () => {
         t.throws(() => {
-          parseSource(`"use strict"; ${arg}`, { webcompat: true });
+          parseSource(`"use strict"; ${text}`, { webcompat: true });
         });
       });
 
-      it(`${arg}`, () => {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`, { sourceType: 'module' });
+          parseSource(text, { sourceType: 'module' });
         });
       });
     }
 
-    for (const arg of [
+    for (const text of [
       'var class = 1;',
       'var const = 1;',
       'var debugger = 1;',
@@ -35,9 +35,9 @@ describe('Miscellaneous - Future reserved words', () => {
       'var class = 1;',
       'var class = 1;',
     ]) {
-      it(`${arg}`, () => {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`);
+          parseSource(text);
         });
       });
     }

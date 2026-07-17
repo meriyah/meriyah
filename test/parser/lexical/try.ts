@@ -163,7 +163,7 @@ describe('Lexical - Try', () => {
     },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'try {} catch ([a,b,c]) { }',
     'try {} catch (e) { { let e = x; } }',
     'try {} catch(e) { try {} catch (e) {} }',
@@ -197,26 +197,26 @@ describe('Lexical - Try', () => {
     'try {} catch (e) { for (const e in y) {} }',
     'try {} catch (e) { for (let e of y) {} }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'try {} catch (e) { var e = x; }',
     'try {} catch (e) { for (var e;;) {} }',
     'try {} catch (e) { for (var e in y) {} }',
@@ -273,15 +273,15 @@ describe('Lexical - Try', () => {
     'try {} catch (e) { for (var e of y) {} }',
     'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

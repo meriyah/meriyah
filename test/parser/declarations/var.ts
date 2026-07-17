@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Declarations - Var', () => {
-  for (const arg of [
+  for (const text of [
     '[ foo().x ]',
     '[ foo()[x] ]',
     '[ x.y ]',
@@ -135,80 +135,80 @@ describe('Declarations - Var', () => {
     '(foo["bar"])',
     '[(foo["bar"])]',
   ]) {
-    it(`let x, y, z; (${arg} = z = {});`, () => {
+    it(`let x, y, z; (${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`let x, y, z; (${arg} = z = {});`);
+        parseSource(`let x, y, z; (${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; (${arg}= z = {});`, () => {
+    it(`var x, y, z; (${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; (${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; (x = ${arg}= z = {});`, () => {
+    it(`var x, y, z; (x = ${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (x = ${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; (x = ${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; for (x in ${arg}= z = {});`, () => {
+    it(`var x, y, z; for (x in ${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in ${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; for (x in ${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; for (x of ${arg}= z = {});`, () => {
+    it(`var x, y, z; for (x of ${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of ${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; for (x of ${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; for (x of x =${arg}= z = {});`, () => {
+    it(`var x, y, z; for (x of x =${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; for (x of x =${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; for (x of x =${arg}= z = {});`, () => {
+    it(`var x, y, z; for (x of x =${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, { webcompat: true });
+        parseSource(`var x, y, z; for (x of x =${text}= z = {});`, { webcompat: true });
       });
     });
 
-    it(`var x, y, z; (${arg}= z = {});`, () => {
+    it(`var x, y, z; (${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; (${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; (${arg}= z = {});`, () => {
+    it(`var x, y, z; (${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; (${text}= z = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`var x, y, z; (${arg} = {});`, () => {
+    it(`var x, y, z; (${text} = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg} = {});`, { sourceType: 'module' });
+        parseSource(`var x, y, z; (${text} = {});`, { sourceType: 'module' });
       });
     });
 
-    it(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, () => {
+    it(`'use strict'; var x, y, z; m(['a']) ? ${text} = {} : rhs`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, { sourceType: 'module' });
+        parseSource(`'use strict'; var x, y, z; m(['a']) ? ${text} = {} : rhs`, { sourceType: 'module' });
       });
     });
 
-    it(`'use strict'; var x, y, z; m(['b']) ? lhs :${arg} = {}`, () => {
+    it(`'use strict'; var x, y, z; m(['b']) ? lhs :${text} = {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; var x, y, z; m(['b']) ? lhs : ${arg} = {}`, { sourceType: 'module' });
+        parseSource(`'use strict'; var x, y, z; m(['b']) ? lhs : ${text} = {}`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var foo = { x = 10 } = {};',
     'var foo = { q } = { x = 10 } = {};',
     'var foo; foo = { x = 10 } = {};',
@@ -271,18 +271,18 @@ describe('Declarations - Var', () => {
     'var { x = 10 } = (o = { x = 20 } = {});',
     'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`);
+        parseSource(`"use strict"; ${text}`);
       });
     });
   }
-  for (const arg of [
+  for (const text of [
     'var [[...x] = function() { initCount += 1; }()] = [[2, 1, 3]];',
     'var [[x]] = [null];',
     'var [cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }] = [];',
@@ -355,21 +355,21 @@ describe('Declarations - Var', () => {
     'function foo() { return {}; }; [foo()["x"]] = [];',
     'class foo { method() { [super.x] = []; } }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }
 
   // Should fail on reserved words
 
-  for (const arg of [
+  for (const text of [
     'break',
     'case',
     'catch',
@@ -408,48 +408,48 @@ describe('Declarations - Var', () => {
     // future reserved keyword,
     'enum',
   ]) {
-    it(`for (var ${arg} = x;;);`, () => {
+    it(`for (var ${text} = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (var ${arg} = x;;);`);
+        parseSource(`for (var ${text} = x;;);`);
       });
     });
 
-    it(`function f({${arg}}) {}`, () => {
+    it(`function f({${text}}) {}`, () => {
       t.throws(() => {
-        parseSource(`function f({${arg}}) {}`);
+        parseSource(`function f({${text}}) {}`);
       });
     });
 
-    it(`function fh({x: ${arg}}) {}`, () => {
+    it(`function fh({x: ${text}}) {}`, () => {
       t.throws(() => {
-        parseSource(`function fh({x: ${arg}}) {}`);
+        parseSource(`function fh({x: ${text}}) {}`);
       });
     });
 
-    it(`function f([${arg}]) {}`, () => {
+    it(`function f([${text}]) {}`, () => {
       t.throws(() => {
-        parseSource(`function f([${arg}]) {}`);
+        parseSource(`function f([${text}]) {}`);
       });
     });
-    it(`function f([${arg}]) {}`, () => {
+    it(`function f([${text}]) {}`, () => {
       t.throws(() => {
-        parseSource(`function f([${arg}]) {}`, { lexical: true });
+        parseSource(`function f([${text}]) {}`, { lexical: true });
       });
     });
-    it(`try {} catch (${arg}) {}`, () => {
+    it(`try {} catch (${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`try {} catch (${arg}) {}`);
+        parseSource(`try {} catch (${text}) {}`);
       });
     });
 
-    it(`export var ${arg} = 10;`, () => {
+    it(`export var ${text} = 10;`, () => {
       t.throws(() => {
-        parseSource(`export var ${arg} = 10;`, { sourceType: 'module' });
+        parseSource(`export var ${text} = 10;`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '[1 <= 0]',
     'var [] = x',
     'var [,] = x',
@@ -626,43 +626,43 @@ describe('Declarations - Var', () => {
     `,
     'var {a: [b]} = c',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`);
-      });
-    });
-
-    it(`(function() { ${arg} })`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`(function() { ${arg} })`);
+        parseSource(`"use strict"; ${text}`);
       });
     });
 
-    it(`(function() { ${arg} })`, () => {
+    it(`(function() { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() /** Comment before body */ { ${arg} }) // Single`);
+        parseSource(`(function() { ${text} })`);
       });
     });
 
-    it(`async function *foo() { (function() { ${arg} })}`, () => {
+    it(`(function() { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function *foo() { (function() { ${arg} })} // k`);
+        parseSource(`(function() /** Comment before body */ { ${text} }) // Single`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(`async function *foo() { (function() { ${text} })}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(`async function *foo() { (function() { ${text} })} // k`);
+      });
+    });
+
+    it(text, () => {
+      t.doesNotThrow(() => {
+        parseSource(text, { webcompat: true });
       });
     });
   }

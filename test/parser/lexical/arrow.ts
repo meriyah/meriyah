@@ -123,7 +123,7 @@ describe('Lexical - Arrows', () => {
     { code: '(x) => { let x }', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     '(x) => { function x() {} }',
     '(x) => { var x; }',
     'x => { function x() {} }',
@@ -136,26 +136,26 @@ describe('Lexical - Arrows', () => {
     'a => { let {b} = a }',
     '() => { let foo; }; () => { let foo; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(x) => { function x() {} }',
     '(x) => { var x; }',
     'a => a',
@@ -170,15 +170,15 @@ describe('Lexical - Arrows', () => {
     'a => { for (let a of b) c }',
     '() => { let foo; }; () => { let foo; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

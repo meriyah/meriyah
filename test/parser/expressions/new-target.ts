@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 
 describe('Expressions - New target', () => {
-  for (const arg of [
+  for (const text of [
     'new.target',
     '{ new.target }',
     '() => new.target',
@@ -24,14 +24,14 @@ describe('Expressions - New target', () => {
     'new await foo;',
     '() => new.target',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     "function foo() { return new['target']; }",
     'function foo(){{if(true){new.target;}}}',
     'function foo(){ var x = function() {new.target;}; x();}',
@@ -43,25 +43,25 @@ describe('Expressions - New target', () => {
     'function a(){var x = function() {new.target;}; x();}',
     'function a(){var o = { "foo" : function () { new.target}}; o.foo();}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, sourceType: 'module' });
+        parseSource(text, { next: true, sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'function foo(){with({}) {new.target;}}',
     'function foo() { function parent(x) { new x();}; function child(){ with(new.target) {toString();}}; parent(child); }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true, sourceType: 'module' });
+        parseSource(text, { next: true, sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'new.target',
     '{ new.target }',
     '() => { new.target }',
@@ -88,63 +88,63 @@ describe('Expressions - New target', () => {
     'function f() { new new.target()(); }',
     'function f() { new.target(); }',
   ]) {
-    it(`function f() {${arg}}`, () => {
+    it(`function f() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f() {${arg}}`, { next: true, sourceType: 'module' });
+        parseSource(`function f() {${text}}`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`'use strict'; function f() {${arg}}`, () => {
+    it(`'use strict'; function f() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; function f() {${arg}}`, { next: true, sourceType: 'module' });
+        parseSource(`'use strict'; function f() {${text}}`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`var f = function() {${arg}}`, () => {
+    it(`var f = function() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = function() {${arg}}`, { next: true, sourceType: 'module' });
+        parseSource(`var f = function() {${text}}`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`({m: function() {${arg}}})`, () => {
+    it(`({m: function() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({m: function() {${arg}}})`, { next: true, sourceType: 'module' });
+        parseSource(`({m: function() {${text}}})`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`({set x(_) {${arg}}})`, () => {
+    it(`({set x(_) {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({set x(_) {${arg}}})`, { next: true });
+        parseSource(`({set x(_) {${text}}})`, { next: true });
       });
     });
 
-    it(`'use strict'; ({get x() {${arg}}})`, () => {
+    it(`'use strict'; ({get x() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; ({get x() {${arg}}})`);
+        parseSource(`'use strict'; ({get x() {${text}}})`);
       });
     });
 
-    it(`({m: function() {${arg}}})`, () => {
+    it(`({m: function() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({m: function() {${arg}}})`, { next: true, sourceType: 'module' });
+        parseSource(`({m: function() {${text}}})`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`'use strict'; ({m: function() {${arg}}})`, () => {
+    it(`'use strict'; ({m: function() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; ({m: function() {${arg}}})`, { next: true, sourceType: 'module' });
+        parseSource(`'use strict'; ({m: function() {${text}}})`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`class C {m() {${arg}}}`, () => {
+    it(`class C {m() {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {m() {${arg}}}`);
+        parseSource(`class C {m() {${text}}}`);
       });
     });
 
-    it(`class C {set x(_) {${arg}}}`, () => {
+    it(`class C {set x(_) {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {set x(_) {${arg}}}`, { next: true, sourceType: 'module' });
+        parseSource(`class C {set x(_) {${text}}}`, { next: true, sourceType: 'module' });
       });
     });
   }

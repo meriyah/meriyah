@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Trailing comma', () => {
-  for (const arg of [
+  for (const text of [
     ' function  a(b,,) {}',
     ' function* a(b,,) {}',
     '(function  a(b,,) {});',
@@ -76,33 +76,33 @@ describe('Miscellaneous - Trailing comma', () => {
     '(function   (...b,) {});',
     '(function*  (...b,) {});',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, { impliedStrict: true });
+        parseSource(`"use strict"; ${text}`, { impliedStrict: true });
       });
     });
 
-    it(`function foo() { ${arg}}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg}}`, { impliedStrict: true });
+        parseSource(`function foo() { ${text}}`, { impliedStrict: true });
       });
     });
 
-    it(`function foo() {'use strict'; ${arg}}`, () => {
+    it(`function foo() {'use strict'; ${text}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() {'use strict'; ${arg}}`, { impliedStrict: true });
+        parseSource(`function foo() {'use strict'; ${text}}`, { impliedStrict: true });
       });
     });
   }
 
   // Pass
-  for (const arg of [
+  for (const text of [
     ' function  a(b,) {}',
     ' function* a(b,) {}',
     '(function  a(b,) {});',
@@ -159,27 +159,27 @@ describe('Miscellaneous - Trailing comma', () => {
     'a(...[], 2, ...[],);',
     'a, b => 0',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, { impliedStrict: true });
+        parseSource(`"use strict"; ${text}`, { impliedStrict: true });
       });
     });
 
-    it(`function foo() { ${arg}}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, { impliedStrict: true });
+        parseSource(`function foo() { ${text}}`, { impliedStrict: true });
       });
     });
 
-    it(`function foo() {'use strict'; ${arg}}`, () => {
+    it(`function foo() {'use strict'; ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() {'use strict'; ${arg}}`, { impliedStrict: true });
+        parseSource(`function foo() {'use strict'; ${text}}`, { impliedStrict: true });
       });
     });
   }
@@ -197,16 +197,16 @@ describe('Miscellaneous - Trailing comma', () => {
     '(class {static foo(...a,) {}})',
   ];
 
-  for (const arg of invalidRest) {
-    it(`${arg}`, () => {
+  for (const text of invalidRest) {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

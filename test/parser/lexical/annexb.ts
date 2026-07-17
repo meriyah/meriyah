@@ -22,7 +22,7 @@ describe('Lexical - AnnexB', () => {
     { code: 'var x; let x;', options: { next: true, lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     '{ function f() {} ; function f() {} }',
     '{ if (x) function f() {} ; function f() {} }',
     'function f() {} ; function f() {}',
@@ -139,15 +139,15 @@ describe('Lexical - AnnexB', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

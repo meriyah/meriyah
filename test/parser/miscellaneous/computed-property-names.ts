@@ -4,17 +4,17 @@ import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Computed property names', () => {
   describe('Failure', () => {
-    for (const arg of ['({[1,2]:3})', '({ *a })', '({ *a: 0 })', '({ *[0]: 0 })']) {
-      it(`${arg}`, () => {
+    for (const text of ['({[1,2]:3})', '({ *a })', '({ *a: 0 })', '({ *[0]: 0 })']) {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`);
+          parseSource(text);
         });
       });
     }
   });
 
   describe('Pass', () => {
-    for (const arg of [
+    for (const text of [
       '({"oink"(that, ugly, icefapper) {}})',
       '({"moo"() {}})',
       '({3() {}})',
@@ -31,9 +31,9 @@ describe('Miscellaneous - Computed property names', () => {
       '({2e308:0})',
       '({0x0:0})',
     ]) {
-      it(`${arg}`, () => {
+      it(text, () => {
         t.doesNotThrow(() => {
-          parseSource(`${arg}`);
+          parseSource(text);
         });
       });
     }
