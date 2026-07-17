@@ -9,10 +9,10 @@ import { visitNode } from '../test-utils.ts';
 const { TEST262_FILE } = process.env;
 
 const notAlignedTests = new Set([
-  // https://github.com/meriyah/meriyah/issues/460
+  // tv-line-terminator-sequence.js and String/raw/special-characters.js now align
+  // with Acorn: ECMA-262 TV/TRV maps <CR> and <CR><LF> to <LF>. This fixture also
+  // exercises the existing LS/PS behavior, so that unrelated part remains exempt.
   'language/expressions/template-literal/tv-line-continuation.js',
-  'language/expressions/template-literal/tv-line-terminator-sequence.js',
-  'built-ins/String/raw/special-characters.js',
 ]);
 
 it(

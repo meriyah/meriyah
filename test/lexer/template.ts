@@ -25,8 +25,9 @@ describe('Lexer - Template', () => {
       [Context.None, Token.TemplateSpan, '``', ''],
       [Context.None, Token.TemplateSpan, '`123`', '123'],
       [Context.None, Token.TemplateSpan, '`true`', 'true'],
-      [Context.None, Token.TemplateSpan, '`\n\r`', '\n\r'],
-      [Context.None, Token.TemplateSpan, '`\r\n`', '\r\n'],
+      // ECMA-262 TV of LineTerminatorSequence maps <CR> and <CR><LF> to <LF>.
+      [Context.None, Token.TemplateSpan, '`\n\r`', '\n\n'],
+      [Context.None, Token.TemplateSpan, '`\r\n`', '\n'],
       [Context.None, Token.TemplateSpan, '`$$$a}`', '$$$a}'],
 
       // Russian letters
