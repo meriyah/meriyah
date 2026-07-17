@@ -44,10 +44,10 @@ export function scanTemplate(parser: Parser, context: Context): Token {
         }
       }
     } else if (parser.index < parser.end) {
-      if (char === Chars.CarriageReturn && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
-        ret += String.fromCodePoint(char);
+      if (char === Chars.CarriageReturn && parser.source.charCodeAt(parser.index + 1) === Chars.LineFeed) {
         parser.currentChar = parser.source.charCodeAt(++parser.index);
       }
+      if (char === Chars.CarriageReturn) char = Chars.LineFeed;
 
       if (((char & 83) < 3 && char === Chars.LineFeed) || (char ^ Chars.LineSeparator) <= 1) {
         parser.column = -1;

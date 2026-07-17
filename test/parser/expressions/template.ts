@@ -1,10 +1,113 @@
 import * as t from 'node:assert/strict';
+import * as acorn from 'acorn';
 import { describe, it } from 'vitest';
 import { Context } from '../../../src/common.ts';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
+const backtick = String.fromCharCode(0x60);
+const backslash = String.fromCharCode(0x5c);
+const carriageReturn = String.fromCharCode(0x0d);
+const lineFeed = String.fromCharCode(0x0a);
+
+const crNormalizationFixtures = [
+  { name: 'lone CR in an untagged template', source: backtick + 'a' + carriageReturn + 'b' + backtick },
+  {
+    name: 'CRLF in a tagged template',
+    source: 'tag' + backtick + 'a' + carriageReturn + lineFeed + 'b' + backtick,
+  },
+  {
+    name: 'CR at template chunk boundaries',
+    source: backtick + 'head' + carriageReturn + '${value}' + carriageReturn + 'tail' + backtick,
+  },
+  {
+    name: 'escaped carriage return',
+    source: backtick + 'a' + backslash + 'r' + 'b' + backtick,
+  },
+  {
+    name: 'CRLF line continuation',
+    source: backtick + 'a' + backslash + carriageReturn + lineFeed + 'b' + backtick,
+  },
+  {
+    // meriyah/meriyah#460: <BACKTICK>, <CR>, <BACKSLASH>, <CR>, <BACKTICK>.
+    name: 'issue byte-level line-continuation case',
+    source: backtick + carriageReturn + backslash + carriageReturn + backtick,
+  },
+];
+
+function getMeriyahTemplateQuasis(source: string) {
+  const statement = parseSource(source, { loc: true, ranges: true }).body[0];
+  t.equal(statement.type, 'ExpressionStatement');
+  if (statement.type !== 'ExpressionStatement') throw new Error('Expected an expression statement');
+
+  const { expression } = statement;
+  if (expression.type === 'TaggedTemplateExpression') return expression.quasi.quasis;
+
+  t.equal(expression.type, 'TemplateLiteral');
+  if (expression.type !== 'TemplateLiteral') throw new Error('Expected a template literal');
+  return expression.quasis;
+}
+
+function getAcornTemplateQuasis(source: string) {
+  const statement = acorn.parse(source, {
+    ecmaVersion: 'latest',
+    locations: true,
+    ranges: true,
+  }).body[0];
+  t.equal(statement.type, 'ExpressionStatement');
+  if (statement.type !== 'ExpressionStatement') throw new Error('Expected an expression statement');
+
+  const { expression } = statement;
+  if (expression.type === 'TaggedTemplateExpression') return expression.quasi.quasis;
+
+  t.equal(expression.type, 'TemplateLiteral');
+  if (expression.type !== 'TemplateLiteral') throw new Error('Expected a template literal');
+  return expression.quasis;
+}
+
 describe('Expressions - Template', () => {
+  describe('TemplateElement cooked CR normalization', () => {
+    // ECMA-262 TV of LineTerminatorSequence maps both <CR> and <CR><LF> to <LF>.
+    // Keep these fixtures aligned with Acorn, including the byte-level case from meriyah/meriyah#460.
+    for (const { name, source } of crNormalizationFixtures) {
+      it(name, () => {
+        const actual = getMeriyahTemplateQuasis(source).map((quasi) => ({
+          cooked: quasi.value.cooked,
+          start: quasi.start,
+          end: quasi.end,
+          loc: quasi.loc && {
+            start: { ...quasi.loc.start },
+            end: { ...quasi.loc.end },
+          },
+        }));
+        const expected = getAcornTemplateQuasis(source).map((quasi) => ({
+          cooked: quasi.value.cooked,
+          start: quasi.start,
+          end: quasi.end,
+          loc: quasi.loc && {
+            start: { ...quasi.loc.start },
+            end: { ...quasi.loc.end },
+          },
+        }));
+
+        t.deepEqual(actual, expected);
+      });
+    }
+
+    it('keeps source ranges and counts a lone CR as a line terminator', () => {
+      const source = backtick + 'a' + carriageReturn + 'b' + backtick + ';' + lineFeed + 'next;';
+      const program = parseSource(source, { loc: true, ranges: true });
+      const quasi = getMeriyahTemplateQuasis(source)[0];
+
+      t.deepEqual([quasi.start, quasi.end], [1, 4]);
+      t.deepEqual(quasi.loc, {
+        start: { line: 1, column: 1 },
+        end: { line: 2, column: 1 },
+      });
+      t.equal(program.body[1].loc?.start.line, 3);
+    });
+  });
+
   for (const arg of [
     '`${"a"}`',
     '`${1}`',
