@@ -5,25 +5,25 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Declarations - Function', () => {
-  for (const arg of ['package', 'public', 'instanceof']) {
-    it(`function foo(${arg}) { 'use strict'; }`, () => {
+  for (const text of ['package', 'public', 'instanceof']) {
+    it(`function foo(${text}) { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function foo(${arg}) { "use strict"; }`);
+        parseSource(`function foo(${text}) { "use strict"; }`);
       });
     });
-    it(`function ${arg}() { 'use strict'; }`, () => {
+    it(`function ${text}() { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function ${arg}() { "use strict"; }`);
+        parseSource(`function ${text}() { "use strict"; }`);
       });
     });
-    it(`(function ${arg}() { 'use strict'; })`, () => {
+    it(`(function ${text}() { 'use strict'; })`, () => {
       t.throws(() => {
-        parseSource(`(function ${arg}() { 'use strict'; })`);
+        parseSource(`(function ${text}() { 'use strict'; })`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'function 10() {}',
     'function 0x7F() {}',
     'function "str"() {}',
@@ -84,33 +84,33 @@ describe('Declarations - Function', () => {
     'label: async function f() { }',
     'label: async function* f() { }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`(function() { 'use strict';${arg}})()`);
+        parseSource(`(function() { 'use strict';${text}})()`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`(function() { 'use strict'; {${arg}}})()`);
+        parseSource(`(function() { 'use strict'; {${text}}})()`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`(function() { ;${arg}})()`);
+        parseSource(`(function() { ;${text}})()`);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`(function() { ;${arg}})()`, { lexical: true });
+        parseSource(`(function() { ;${text}})()`, { lexical: true });
       });
     });
   }
 
   // Valid only in sloppy mode and with the 'WebCompat' option on
-  for (const arg of [
+  for (const text of [
     'if (true) function foo() {}',
     'if (false) {} else function f() { };',
     'label: function f() { }',
@@ -118,9 +118,9 @@ describe('Declarations - Function', () => {
     'label: if (true) {} else function f() { }',
     'label: label2: function f() { }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() {${arg}})()`, { webcompat: true, lexical: true });
+        parseSource(`(function() {${text}})()`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -211,7 +211,7 @@ describe('Declarations - Function', () => {
     String.raw`function foo(p\u0061ckage) { "use strict"; }`,
   ]);
 
-  for (const arg of [
+  for (const text of [
     'function f() { ++(yield); }',
     'function f(arg) {function h() { g(arg) }; return h}',
     'function f(arg, ...arguments) {g(arg); arguments[0] = 42; g(arg)}',
@@ -576,15 +576,15 @@ describe('Declarations - Function', () => {
     'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }',
     String.raw`function foo(p\u0061ckage) { }`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

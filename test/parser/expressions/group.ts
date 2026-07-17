@@ -6,7 +6,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Group', () => {
-  for (const arg of [
+  for (const text of [
     'break',
     'case',
     'catch',
@@ -43,36 +43,36 @@ describe('Expressions - Group', () => {
     'true',
     'false' /*'enum',*/,
   ]) {
-    it(`should fail on '(${arg}) = foo'`, () => {
+    it(`should fail on '(${text}) = foo'`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) = foo`);
+        parseSource(`(${text}) = foo`);
       });
     });
-    it(`use strict"; '(${arg}) = foo'`, () => {
+    it(`use strict"; '(${text}) = foo'`, () => {
       t.throws(() => {
-        parseSource(`use strict"; (${arg}) = foo`);
+        parseSource(`use strict"; (${text}) = foo`);
       });
     });
-    it(`foo = { get x(){  "use strict"; ( ${arg} = "sentinal 79845134");   }}`, () => {
+    it(`foo = { get x(){  "use strict"; ( ${text} = "sentinal 79845134");   }}`, () => {
       t.throws(() => {
-        parseSource(`foo = { get x(){  "use strict"; ( ${arg} = "sentinal 79845134");   }}`);
-      });
-    });
-
-    it(`should fail on '(${arg} = foo )'`, () => {
-      t.throws(() => {
-        parseSource(`(${arg} = foo)`, { impliedStrict: true });
+        parseSource(`foo = { get x(){  "use strict"; ( ${text} = "sentinal 79845134");   }}`);
       });
     });
 
-    it(`should fail on '(${arg} = foo )'`, () => {
+    it(`should fail on '(${text} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`(${arg} = foo)`, { next: true, webcompat: true });
+        parseSource(`(${text} = foo)`, { impliedStrict: true });
+      });
+    });
+
+    it(`should fail on '(${text} = foo )'`, () => {
+      t.throws(() => {
+        parseSource(`(${text} = foo)`, { next: true, webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '([...[]] = x);',
     '({...[].x} = x);',
     '({...[({...[].x} = x)].x} = x);',
@@ -108,20 +108,20 @@ describe('Expressions - Group', () => {
     'foo({set [bar](c){}, [zoo](){}});',
     'foo({[bar](){}, set [zoo](e){}});',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { preserveParens: true }, Context.Strict);
+        parseSource(text, { preserveParens: true }, Context.Strict);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { preserveParens: true }, Context.Strict);
+        parseSource(text, { preserveParens: true }, Context.Strict);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'let',
     'implements',
     'package',
@@ -135,25 +135,25 @@ describe('Expressions - Group', () => {
     'eval',
     'arguments',
   ]) {
-    it(`should fail on '(${arg} = foo )'`, () => {
+    it(`should fail on '(${text} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`(${arg} = foo)`, { impliedStrict: true });
+        parseSource(`(${text} = foo)`, { impliedStrict: true });
       });
     });
-    it(`"use strict"; '(${arg} = foo )'`, () => {
+    it(`"use strict"; '(${text} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (${arg} = foo)`, { webcompat: true });
+        parseSource(`"use strict"; (${text} = foo)`, { webcompat: true });
       });
     });
 
-    it(`x = { get x() { "use strict"; ${arg} = foo } }'`, () => {
+    it(`x = { get x() { "use strict"; ${text} = foo } }'`, () => {
       t.throws(() => {
-        parseSource(`x = { get x() { "use strict"; (${arg} = foo} }`, { webcompat: true });
+        parseSource(`x = { get x() { "use strict"; (${text} = foo} }`, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'async ()=>x',
     'await foo',
     'class{}',
@@ -175,32 +175,32 @@ describe('Expressions - Group', () => {
     '{x}.length',
     '{x: y}.length',
   ]) {
-    it(`should fail on '(${arg})=> y'`, () => {
+    it(`should fail on '(${text})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`);
+        parseSource(`(${text})=> y`);
       });
     });
 
-    it(`"use strict"; '(${arg})=> y'`, () => {
+    it(`"use strict"; '(${text})=> y'`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (${arg})=> y`);
+        parseSource(`"use strict"; (${text})=> y`);
       });
     });
 
-    it(`should fail on '(${arg})=> y'`, () => {
+    it(`should fail on '(${text})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`, { webcompat: true });
+        parseSource(`(${text})=> y`, { webcompat: true });
       });
     });
 
-    it(`should fail on '(${arg})=> y'`, () => {
+    it(`should fail on '(${text})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`, { sourceType: 'module' });
+        parseSource(`(${text})=> y`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(a,b+=2',
     '(a,b)+=2',
     '(a[b],c)+=2',
@@ -255,39 +255,39 @@ describe('Expressions - Group', () => {
     '(...a = x,) => {}',
     '(...a = x,) => {}',
   ]) {
-    it(`should fail on '${arg}'`, () => {
+    it(`should fail on '${text}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`should fail on '${arg}'`, () => {
+    it(`should fail on '${text}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`"use strict"; '${arg}'`, () => {
+    it(`"use strict"; '${text}'`, () => {
       t.throws(() => {
-        parseSource(`"use strict";${arg}`);
+        parseSource(`"use strict";${text}`);
       });
     });
 
-    it(`"use strict"; '${arg}'`, () => {
+    it(`"use strict"; '${text}'`, () => {
       t.throws(() => {
-        parseSource(`"use strict";${arg}`, { lexical: true });
+        parseSource(`"use strict";${text}`, { lexical: true });
       });
     });
 
-    it(`should fail on '${arg}'`, () => {
+    it(`should fail on '${text}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
 
-    it(`function foo() { ${arg} }`, () => {
+    it(`function foo() { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg} }`);
+        parseSource(`function foo() { ${text} }`);
       });
     });
   }

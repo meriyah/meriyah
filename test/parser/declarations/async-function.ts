@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Declarations - Async Function', () => {
-  for (const arg of [
+  for (const text of [
     'async function f() { for await ([x] in y) {} }',
     'async function f() { for await ("foo".x in y) {} }',
     'async function f() { for await ((x) in y) {} }',
@@ -15,14 +15,14 @@ describe('Declarations - Async Function', () => {
     String.raw`async function foo(p\u0061ckage) { "use strict" }`,
     'async function foo(package) { "use strict" }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'async function wrap() {\n({a = await b} = obj)\n}',
     'async function wrap() {\n(a = await b)\n}',
     'async function foo(a = class {async bar() { await b }}) {}',
@@ -248,20 +248,20 @@ describe('Declarations - Async Function', () => {
     'async function foo(package) { }',
     String.raw`async function foo(p\u0061ckage) { }`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'async function f() { var await = { await : async function foo() {} } }',
     'async function f() { class x { foo(x=await y){} }   }',
     'async function f() { class x { foo(x=new (await y)()){} }   }',
@@ -332,31 +332,31 @@ describe('Declarations - Async Function', () => {
     'async function f() { return {await = 0} = {}; }',
     'async (a = await => {}) => {}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
-      });
-    });
-
-    it(`() =>${arg}`, () => {
-      t.throws(() => {
-        parseSource(`() =>${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`function foo() {${arg}}`, () => {
+    it(`() =>${text}`, () => {
       t.throws(() => {
-        parseSource(`function foo() {${arg}}`);
+        parseSource(`() =>${text}`);
+      });
+    });
+
+    it(`function foo() {${text}}`, () => {
+      t.throws(() => {
+        parseSource(`function foo() {${text}}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var await = 1;',
     'var { await } = 1;',
     'var [ await ] = 1;',
@@ -374,51 +374,51 @@ describe('Declarations - Async Function', () => {
     'var e = [await];',
     'var e = {await};',
   ]) {
-    it(`async function f() {${arg}}`, () => {
+    it(`async function f() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`async function f() {${arg}}`, { webcompat: true });
+        parseSource(`async function f() {${text}}`, { webcompat: true });
       });
     });
 
-    it(`var f = async() => {${arg}}`, () => {
+    it(`var f = async() => {${text}}`, () => {
       t.throws(() => {
-        parseSource(`var f = async() => {${arg}}`);
+        parseSource(`var f = async() => {${text}}`);
       });
     });
 
-    it(`var O = { async method() {${arg}}`, () => {
+    it(`var O = { async method() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`var O = { async method() {${arg}}`);
+        parseSource(`var O = { async method() {${text}}`);
       });
     });
 
-    it(`'use strict'; async function f() {${arg}}`, () => {
+    it(`'use strict'; async function f() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; async function f() {${arg}}`);
+        parseSource(`'use strict'; async function f() {${text}}`);
       });
     });
 
-    it(`'use strict'; var f = async function() {${arg}}`, () => {
+    it(`'use strict'; var f = async function() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var f = async function() {${arg}}`);
+        parseSource(`'use strict'; var f = async function() {${text}}`);
       });
     });
 
-    it(`'use strict'; var f = async() => {${arg}}`, () => {
+    it(`'use strict'; var f = async() => {${text}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var f = async() => {${arg}}`);
+        parseSource(`'use strict'; var f = async() => {${text}}`);
       });
     });
 
-    it(`'use strict'; var O = { async method() {${arg}}`, () => {
+    it(`'use strict'; var O = { async method() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var O = { async method() {${arg}}`, { webcompat: true });
+        parseSource(`'use strict'; var O = { async method() {${text}}`, { webcompat: true });
       });
     });
 
-    it(`'use strict'; var O = { async method() {${arg}}`, () => {
+    it(`'use strict'; var O = { async method() {${text}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var O = { async method() {${arg}}`);
+        parseSource(`'use strict'; var O = { async method() {${text}}`);
       });
     });
   }

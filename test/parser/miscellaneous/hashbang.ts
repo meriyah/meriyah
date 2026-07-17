@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Hashbang', () => {
-  for (const arg of [
+  for (const text of [
     '/**/ #!\n',
     '//---\n #!\n',
     'function fn() { #!\n }',
@@ -23,43 +23,43 @@ describe('Miscellaneous - Hashbang', () => {
     '\n#!---IGNORED---\n',
     ' #!---IGNORED---\n',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true });
+        parseSource(text, { next: true, webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module', next: true });
+        parseSource(text, { sourceType: 'module', next: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '#!\n',
     '#!---IGNORED---\n',
     '#!---IGNORED---\r',
     '#!---IGNORED---\xE2\x80\xA8',
     '#!---IGNORED---\xE2\x80\xA9',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true });
+        parseSource(text, { next: true, webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', next: true });
+        parseSource(text, { sourceType: 'module', next: true });
       });
     });
   }

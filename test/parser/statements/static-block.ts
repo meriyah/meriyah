@@ -13,7 +13,7 @@ describe('Next - Class static initialization block', () => {
     'async function t() { class A { static { await 0 } } }',
   ]);
 
-  for (const arg of [
+  for (const text of [
     outdent`
       class C {
         static {
@@ -50,9 +50,9 @@ describe('Next - Class static initialization block', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }

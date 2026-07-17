@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   describe('HTML Comments', () => {
-    for (const arg of [
+    for (const text of [
       // Before first real token.
       '-->',
       '--> is eol-comment',
@@ -29,44 +29,44 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
       '/* MLC1 \n */ /* MLC2 \n */ --> is eol-comment\nvar y = 37;\n',
       '/* SLDC */ /* MLC \n */ --> is eol-comment\nvar y = 37;\n',
     ]) {
-      it(`${arg}`, () => {
+      it(text, () => {
         t.doesNotThrow(() => {
-          parseSource(`${arg}`, { webcompat: true });
+          parseSource(text, { webcompat: true });
         });
       });
 
-      it(`${arg}`, () => {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
+          parseSource(text, { sourceType: 'module', webcompat: true });
         });
       });
     }
 
-    for (const arg of [
+    for (const text of [
       'x --> is eol-comment\nvar y = 37;\n',
       '"\\n" --> is eol-comment\nvar y = 37;\n',
       'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
       'var x = 42; --> is eol-comment\nvar y = 37;\n',
     ]) {
-      it(`${arg}`, () => {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`);
+          parseSource(text);
         });
       });
-      it(`${arg}`, () => {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`, { webcompat: true });
+          parseSource(text, { webcompat: true });
         });
       });
-      it(`${arg}`, () => {
+      it(text, () => {
         t.throws(() => {
-          parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
+          parseSource(text, { sourceType: 'module', webcompat: true });
         });
       });
     }
   });
 
-  for (const arg of [
+  for (const text of [
     '"use strict"; if (0) function f(){}',
     '"use strict";  if (0) function f(){} else;',
     '"use strict"; if (0); else function f(){}',
@@ -82,14 +82,14 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     // Esprima issue:  https://github.com/jquery/esprima/issues/1719
     'if (false) L: async function l() {}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     String.raw`/\}?/u;`,
     String.raw`/\{*/u;`,
     '/.{.}/;',
@@ -379,9 +379,9 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
       */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

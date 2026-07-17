@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Eval and arguments', () => {
-  for (const arg of [
+  for (const text of [
     'arguments--;',
     '{ eval }',
     '{ arguments }',
@@ -36,38 +36,38 @@ describe('Miscellaneous - Eval and arguments', () => {
     '[ ...(eval) = 0 ]',
     '[ ...(arguments) = 0 ]',
   ]) {
-    it(`'use strict'; (${arg} = {})`, () => {
+    it(`'use strict'; (${text} = {})`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; (${arg} = {})`, { webcompat: true });
+        parseSource(`'use strict'; (${text} = {})`, { webcompat: true });
       });
     });
 
-    it(`'use strict'; for (${arg} of {}) {}`, () => {
+    it(`'use strict'; for (${text} of {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} of {}) {}`, { webcompat: true });
+        parseSource(`'use strict'; for (${text} of {}) {}`, { webcompat: true });
       });
     });
 
-    it(`'use strict'; for (${arg} in {}) {}`, () => {
+    it(`'use strict'; for (${text} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} in {}) {}`, { webcompat: true });
+        parseSource(`'use strict'; for (${text} in {}) {}`, { webcompat: true });
       });
     });
 
-    it(`'use strict'; for (${arg} in {}) {}`, () => {
+    it(`'use strict'; for (${text} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} in {}) {}`, { next: true });
+        parseSource(`'use strict'; for (${text} in {}) {}`, { next: true });
       });
     });
 
-    it(`for (${arg} in {}) {}`, () => {
+    it(`for (${text} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`for (${arg} in {}) {}`, { sourceType: 'module' });
+        parseSource(`for (${text} in {}) {}`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var eval',
     'var arguments',
     'var foo, eval;',
@@ -136,15 +136,15 @@ describe('Miscellaneous - Eval and arguments', () => {
     "'use strict'; function f(argument1, { arguments = false }) {}",
     'arguments[0],',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
   }
 
   // Valid in strict mode
-  for (const arg of [
+  for (const text of [
     'eval;',
     'arguments;',
     'eval: a',
@@ -160,33 +160,33 @@ describe('Miscellaneous - Eval and arguments', () => {
     'var foo = { }; foo.arguments = {};',
     '(0,eval)(true)',
   ]) {
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`);
+        parseSource(`"use strict"; ${text}`);
       });
     });
 
-    it(`function foo() { "use strict"; ${arg} }`, () => {
+    it(`function foo() { "use strict"; ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { "use strict";  ${arg} }`);
+        parseSource(`function foo() { "use strict";  ${text} }`);
       });
     });
 
-    it(`() => { "use strict"; ${arg} }`, () => {
+    it(`() => { "use strict"; ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { "use strict";  ${arg} }`);
+        parseSource(`() => { "use strict";  ${text} }`);
       });
     });
 
-    it(`() => { "use strict"; ${arg} }`, () => {
+    it(`() => { "use strict"; ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { "use strict";  ${arg} }`, { webcompat: true });
+        parseSource(`() => { "use strict";  ${text} }`, { webcompat: true });
       });
     });
   }
 
   // Valid 'eval' and 'arguments' in sloppy mode
-  for (const arg of [
+  for (const text of [
     'var eval;',
     'var arguments',
     'var foo, eval;',
@@ -272,26 +272,26 @@ describe('Miscellaneous - Eval and arguments', () => {
     'arguments.a = 1;',
     '++arguments[0];',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`function foo() { ${arg} }`, () => {
+    it(`function foo() { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`, { webcompat: true });
+        parseSource(`function foo() { ${text} }`, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`function foo() { ${arg} }`, () => {
+    it(`function foo() { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`);
+        parseSource(`function foo() { ${text} }`);
       });
     });
   }

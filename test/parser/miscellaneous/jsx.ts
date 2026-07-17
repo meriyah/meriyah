@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - JSX', () => {
-  for (const arg of [
+  for (const text of [
     '<Component {...x}></Component>;',
     '<Component.Test />;',
     '<div>{...this.props.children}</div>;',
@@ -25,14 +25,14 @@ describe('Miscellaneous - JSX', () => {
     '<p>{1/2}</p>',
     '<p>{/w/.test(s)}</p>',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { jsx: true, next: true });
+        parseSource(text, { jsx: true, next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { jsx: true, next: true, webcompat: true });
+        parseSource(text, { jsx: true, next: true, webcompat: true });
       });
     });
   }

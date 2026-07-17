@@ -31,7 +31,7 @@ describe('Next - Public fields', () => {
     { code: 'class A { a = 1, b = 2 }', options: { next: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'static a : 0',
     'static a =',
     'static constructor',
@@ -61,14 +61,14 @@ describe('Next - Public fields', () => {
     '{ something.#x }',
     'class C { x = () => arguments; }',
   ]) {
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, { next: true });
+        parseSource(`class C { ${text} }`, { next: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'a = 0;',
     'a = (1, 2)',
     'a = 0; b;',
@@ -184,9 +184,9 @@ describe('Next - Public fields', () => {
       getx() { this.#x = 'foo'; ;({ x: this.x = this.#x, y: this.#x, z: this.z = this.#x } = props) }
     `,
   ]) {
-    it(`class C { ${arg} }`, () => {
+    it(`class C { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, { next: true });
+        parseSource(`class C { ${text} }`, { next: true });
       });
     });
   }

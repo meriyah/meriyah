@@ -82,47 +82,47 @@ describe('Lexical - Object', () => {
     { code: '!{f({[a]: b}, ...b) {}}', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     '!{f(f) { }}',
     '!{f(x) { function x() {} }}',
     '!{f(){ function x(){} var x = y; }}',
     '!{f(x) { var x; }}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '!{f(f) { }}',
     '!{f(x) { function x() {} }}',
     '!{f(x) { var x; }}',
     '!{f(){ function x(){} var x = y; }}',
     '!{f({[a]: b}, x = ((b) => {}) ) {}}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

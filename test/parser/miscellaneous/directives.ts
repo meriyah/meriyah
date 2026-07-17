@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - Directives', () => {
-  for (const arg of [
+  for (const text of [
     String.raw`"\1;" "use strict";`,
     String.raw`"\2;" "use strict";`,
     String.raw`"\3;" "use strict";`,
@@ -79,26 +79,26 @@ describe('Miscellaneous - Directives', () => {
       }
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`/* comment in front */ ${arg}`, () => {
+    it(`/* comment in front */ ${text}`, () => {
       t.throws(() => {
-        parseSource(`/* comment in front */ ${arg}`);
+        parseSource(`/* comment in front */ ${text}`);
       });
     });
 
-    it(`function foo() { ${arg} }`, () => {
+    it(`function foo() { ${text} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg} }`, { sourceType: 'module' });
+        parseSource(`function foo() { ${text} }`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '("use strict")',
     String.raw`"\n\r\t\v\b\f\\\'\"\0"`,
     '"use some future directive"',
@@ -174,28 +174,28 @@ describe('Miscellaneous - Directives', () => {
     String.raw`function a() {"use strict"; "\0";}`,
     String.raw`function a() {"\0"; "use strict";}`,
   ]) {
-    it(`/* comment in front */ ${arg}`, () => {
+    it(`/* comment in front */ ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, { raw: true });
+        parseSource(`/* comment in front */ ${text}`, { raw: true });
       });
     });
 
-    it(`/* comment in front */ ${arg}`, () => {
+    it(`/* comment in front */ ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, { webcompat: true, raw: true });
+        parseSource(`/* comment in front */ ${text}`, { webcompat: true, raw: true });
       });
     });
   }
 
-  for (const arg of ['.foo', '[foo]', '()', '`x`', ' + x', '/f', '/f/g']) {
+  for (const text of ['.foo', '[foo]', '()', '`x`', ' + x', '/f', '/f/g']) {
     t.throws(() => {
-      parseSource(`function f(){ "use strict" \n /* suffix = */   ${arg} ; eval = 1; }`, { impliedStrict: true });
+      parseSource(`function f(){ "use strict" \n /* suffix = */   ${text} ; eval = 1; }`, { impliedStrict: true });
     });
   }
 
-  for (const arg of ['foo', '++x', '--x', 'function f(){}', '{x}', ';', '25', 'true']) {
+  for (const text of ['foo', '++x', '--x', 'function f(){}', '{x}', ';', '25', 'true']) {
     t.throws(() => {
-      parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`);
+      parseSource(`function f(){ "use strict" \n  ${text} ; eval = 1; }`);
     });
   }
 

@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - New', () => {
-  for (const arg of [
+  for (const text of [
     'new x(1);',
     'new x;',
     'new new x;',
@@ -50,14 +50,14 @@ describe('Expressions - New', () => {
     'new (bar = function(foo) {\n    this.foo = foo;\n})(123);',
     'new (bar = function(foo) {\n    this.foo = foo;\n})();',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }

@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { pass } from '../../test-utils.ts';
 describe('Expressions - Binary', () => {
-  for (const arg of [
+  for (const text of [
     '(-1) = a',
     '(- 0) = a',
     '1 = a',
@@ -45,24 +45,24 @@ describe('Expressions - Binary', () => {
     '(- 0) |= a',
     '1 |= a',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '(a * b * c)',
     '(a * b) * c',
     'a * (b * c)',
@@ -253,19 +253,19 @@ describe('Expressions - Binary', () => {
     'const a = 1',
     'const a = (1, 2)',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

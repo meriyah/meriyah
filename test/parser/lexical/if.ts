@@ -55,15 +55,15 @@ describe('Lexical - If', () => {
     { code: 'if (x) { if (y) var foo = 1; } let foo = 1;', options: { webcompat: true, lexical: true } },
   ]);
 
-  for (const arg of ['if (x) var foo = 1; var foo = 1;']) {
-    it(`${arg}`, () => {
+  for (const text of ['if (x) var foo = 1; var foo = 1;']) {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

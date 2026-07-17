@@ -5,35 +5,35 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Call', () => {
-  for (const arg of [
+  for (const text of [
     'async(a)(b)async',
     '(a)(( async () => {}) => {})',
     'async(async() () => {})(async() () => {})(y)(n)(c)', // crazy #1
     'async(async() () => {})(async() () => {})(y)(n)(c)', // crazy #2
     'async(async() () => {})(async() () => {})(async() () => {})(async() () => {})(async() () => {})', // crazy #3
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of ['(...[1, 2, 3])', '......[1,2,3]']) {
-    it(`function fn() { 'use strict';} fn(${arg});`, () => {
+  for (const text of ['(...[1, 2, 3])', '......[1,2,3]']) {
+    it(`function fn() { 'use strict';} fn(${text});`, () => {
       t.throws(() => {
-        parseSource(`function fn() { 'use strict';} fn(${arg});`);
+        parseSource(`function fn() { 'use strict';} fn(${text});`);
       });
     });
 
-    it(`function fn() { } fn(${arg});`, () => {
+    it(`function fn() { } fn(${text});`, () => {
       t.throws(() => {
-        parseSource(`function fn() { } fn(${arg});`);
+        parseSource(`function fn() { } fn(${text});`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'a()(a)',
     'async()()',
     'async(a)()',
@@ -50,32 +50,32 @@ describe('Expressions - Call', () => {
     "...[0, 1, 2], 3, 4, 5, 6, ...'7', 8, 9",
     "...[0, 1, 2], 3, 4, 5, 6, ...'7', 8, 9, ...[10]",
   ]) {
-    it(`function fn() { 'use strict';} fn(${arg});`, () => {
+    it(`function fn() { 'use strict';} fn(${text});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { 'use strict';} fn(${arg});`);
+        parseSource(`function fn() { 'use strict';} fn(${text});`);
       });
     });
 
-    it(`function fn() { } fn(${arg});`, () => {
+    it(`function fn() { } fn(${text});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`);
+        parseSource(`function fn() { } fn(${text});`);
       });
     });
 
-    it(`function fn() { } fn(${arg});`, () => {
+    it(`function fn() { } fn(${text});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, { webcompat: true });
+        parseSource(`function fn() { } fn(${text});`, { webcompat: true });
       });
     });
 
-    it(`function fn() { } fn(${arg});`, () => {
+    it(`function fn() { } fn(${text});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, { sourceType: 'module' });
+        parseSource(`function fn() { } fn(${text});`, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'foo(...[],);',
     '(function(obj) {}(1, 2, 3, ...[]));',
     'foo(x=1,y=x,x+y)',
@@ -214,26 +214,26 @@ describe('Expressions - Call', () => {
       foo(bar("test"));
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`);
-      });
-    });
-
-    it(`"use strict"; ${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, { webcompat: true });
+        parseSource(`"use strict"; ${text}`);
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, { sourceType: 'module' });
+        parseSource(`"use strict"; ${text}`, { webcompat: true });
+      });
+    });
+
+    it(`"use strict"; ${text}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`"use strict"; ${text}`, { sourceType: 'module' });
       });
     });
   }

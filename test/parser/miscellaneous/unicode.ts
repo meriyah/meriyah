@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Unicode', () => {
-  for (const arg of [
+  for (const text of [
     String.raw`var foob\u123r = 0;`,
     String.raw`var \u123roo = 0;`,
     String.raw`/regex/\u0069g`,
@@ -18,14 +18,14 @@ describe('Miscellaneous - Unicode', () => {
     String.raw`var foob\v{1234}r = 0;`,
     String.raw`var foob\U{1234}r = 0;`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     String.raw`var \u0052oo = 0;`,
     String.raw`var \u{00000000052}oo = 0;`,
     String.raw`var \u{0052}oo = 0;`,
@@ -34,9 +34,9 @@ describe('Miscellaneous - Unicode', () => {
     String.raw`var foob\u{c481}r = 0;`,
     String.raw`foob\uc481r`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

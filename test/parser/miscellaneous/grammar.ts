@@ -19,7 +19,7 @@ describe('Miscellaneous - Cover grammar', () => {
     (a: any) => `(async function *f(${a}) {})`,
   ];
 
-  for (const arg of [
+  for (const text of [
     '[...r, ]',
     '[a, ...r, ]',
     '[a = 0, ...r, ]',
@@ -29,25 +29,25 @@ describe('Miscellaneous - Cover grammar', () => {
     '[[...r,], a]',
   ]) {
     for (const fn of destructuringForms) {
-      it(fn(`${arg}`), () => {
+      it(fn(text), () => {
         t.throws(() => {
-          parseSource(fn(`${arg}`));
+          parseSource(fn(text));
         });
       });
 
-      it(fn(`${arg}`), () => {
+      it(fn(text), () => {
         t.throws(() => {
-          parseSource(fn(`${arg}`), { webcompat: true });
+          parseSource(fn(text), { webcompat: true });
         });
       });
     }
   }
 
-  for (const arg of ['[, ]', '[a, ]', '[[], ]']) {
+  for (const text of ['[, ]', '[a, ]', '[[], ]']) {
     for (const fn of destructuringForms) {
-      it(fn(`${arg}`), () => {
+      it(fn(text), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`${arg}`));
+          parseSource(fn(text));
         });
       });
     }
@@ -67,7 +67,7 @@ describe('Miscellaneous - Cover grammar', () => {
     (p: any) => `(async (${p}) => {});`,
   ];
 
-  for (const arg of [
+  for (const text of [
     '[]',
     '[a]',
     '[a, b]',
@@ -84,75 +84,75 @@ describe('Miscellaneous - Cover grammar', () => {
     '{a = 0}',
   ]) {
     for (const fn of functions) {
-      it(fn(`${arg}`), () => {
+      it(fn(text), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`${arg}`));
+          parseSource(fn(text));
         });
       });
 
-      it(fn(`x, ...${arg}`), () => {
+      it(fn(`x, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x, ...${arg}`));
+          parseSource(fn(`x, ...${text}`));
         });
       });
 
-      it(fn(`x = 0, ...${arg}`), () => {
+      it(fn(`x = 0, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x = 0, ...${arg}`));
+          parseSource(fn(`x = 0, ...${text}`));
         });
       });
 
-      it(fn(`x = 0, ...${arg}`), () => {
+      it(fn(`x = 0, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x = 0, ...${arg}`), { webcompat: true });
+          parseSource(fn(`x = 0, ...${text}`), { webcompat: true });
         });
       });
 
-      it(fn(`x = 0, y = 0, ...${arg}`), () => {
+      it(fn(`x = 0, y = 0, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x = 0, y = 0, ...${arg}`));
+          parseSource(fn(`x = 0, y = 0, ...${text}`));
         });
       });
 
-      it(fn(`[], ...${arg}`), () => {
+      it(fn(`[], ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`[], ...${arg}`));
+          parseSource(fn(`[], ...${text}`));
         });
       });
 
-      it(fn(`[x], ...${arg}`), () => {
+      it(fn(`[x], ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`[x], ...${arg}`));
+          parseSource(fn(`[x], ...${text}`));
         });
       });
 
-      it(fn(`[x = 0], ...${arg}`), () => {
+      it(fn(`[x = 0], ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`[x = 0], ...${arg}`));
+          parseSource(fn(`[x = 0], ...${text}`));
         });
       });
 
-      it(fn(`{}, ...${arg}`), () => {
+      it(fn(`{}, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{}, ...${arg}`));
+          parseSource(fn(`{}, ...${text}`));
         });
       });
 
-      it(fn(`{p: x}, ...${arg}`), () => {
+      it(fn(`{p: x}, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{p: x}, ...${arg}`));
+          parseSource(fn(`{p: x}, ...${text}`));
         });
       });
 
-      it(fn(`{x}, ...${arg}`), () => {
+      it(fn(`{x}, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{x}, ...${arg}`));
+          parseSource(fn(`{x}, ...${text}`));
         });
       });
 
-      it(fn(`{x = 0}, ...${arg}`), () => {
+      it(fn(`{x = 0}, ...${text}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{x = 0}, ...${arg}`));
+          parseSource(fn(`{x = 0}, ...${text}`));
         });
       });
     }
@@ -190,7 +190,7 @@ describe('Miscellaneous - Cover grammar', () => {
     }
   }
 
-  for (const arg of [
+  for (const text of [
     '[x] += 0',
     '[...x, ] = 0;',
     '[, x, ...y,] = 0',
@@ -515,80 +515,80 @@ describe('Miscellaneous - Cover grammar', () => {
     'let {a, ...{}} = {/*...*/}; // invalid;',
     'let {a, ...{b}} = {/*...*/}; // invalid;',
   ]) {
-    it(`function fn() { 'use strict';} fn(${arg});`, () => {
+    it(`function fn() { 'use strict';} fn(${text});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; (${arg} = {});`);
+        parseSource(`'use strict'; let x, y, z; (${text} = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x in ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x in ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x in ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, { webcompat: true, lexical: true });
+        parseSource(`'use strict'; let x, y, z; for (x in ${text} = z = {});`, { webcompat: true, lexical: true });
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x in ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, { lexical: true });
+        parseSource(`'use strict'; let x, y, z; for (x in ${text} = z = {});`, { lexical: true });
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x in x =  ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x in x =  ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in x = ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x in x = ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x of ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x of ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x of x =  ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x of x =  ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of x = ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x of x = ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x of x = ${arg} = z = {});`, () => {
+    it(`var x, y, z; for (x of x = ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x of x = ${arg} = z = {});`);
+        parseSource(`var x, y, z; for (x of x = ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; (x = ${arg} = z = {});`, () => {
+    it(`var x, y, z; (x = ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; (x = ${arg} = z = {});`);
+        parseSource(`var x, y, z; (x = ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x of ${arg}= z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x of ${text}= z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x of ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x in ${arg} = z = {});`, () => {
+    it(`var x, y, z; for (x in ${text} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = z = {});`);
+        parseSource(`var x, y, z; for (x in ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x in x = ${arg}  = z = {});`, () => {
+    it(`var x, y, z; for (x in x = ${text}  = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in x = ${arg}  = z = {});`);
+        parseSource(`var x, y, z; for (x in x = ${text}  = z = {});`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'let [foo] = [1]; ',
     'let {foo} = {foo: 2}; ',
     'let {foo=3} = {}; ',
@@ -605,31 +605,31 @@ describe('Miscellaneous - Cover grammar', () => {
     'function foo() {}; ',
     'async function foo() {}; ',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
-    it(`{ function foo() {}; }; ${arg}`, () => {
+    it(`{ function foo() {}; }; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{ function foo() {}; }; ${arg}`, { next: true });
+        parseSource(`{ function foo() {}; }; ${text}`, { next: true });
       });
     });
-    it(`{  function* foo() {}; }; ${arg}`, () => {
+    it(`{  function* foo() {}; }; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{  function* foo() {}; }; ${arg}`, { next: true });
+        parseSource(`{  function* foo() {}; }; ${text}`, { next: true });
       });
     });
-    it(`{ async function foo() {};  }; ${arg}`, () => {
+    it(`{ async function foo() {};  }; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{ async function foo() {};  }; ${arg}`, { next: true });
+        parseSource(`{ async function foo() {};  }; ${text}`, { next: true });
       });
     });
   }
 
   // Failures
 
-  for (const arg of [
+  for (const text of [
     '({[a / b = c]: {}})',
     '({a: ({x = (y)})})',
     '({a = {}})',
@@ -690,24 +690,24 @@ describe('Miscellaneous - Cover grammar', () => {
     // doesn't fail in Acorn / Esprima / Espree and Babylon
     '({ src: ([dest]) } = obj)',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '[(a)] = 0',
     '[(a) = 0] = 1',
     '[(a.b)] = 0',
@@ -715,20 +715,20 @@ describe('Miscellaneous - Cover grammar', () => {
     '({a:(b.c)} = 0)',
     '({a:(b = 0)})',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '({y: a.g(...[])} = 1)',
     '({y: eval(...["1"])} = 1)',
     '({y: g(...[])} = 1)',
@@ -821,40 +821,40 @@ describe('Miscellaneous - Cover grammar', () => {
     '(w, ...x, y) => 10',
     '(...x, y) => 10',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
     // Generators
-    it(`function fn(${arg}) {}`, () => {
+    it(`function fn(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`function *fn(${arg}) {}`);
+        parseSource(`function *fn(${text}) {}`);
       });
     });
 
     // Generator expression - no name
-    it(`(function *(${arg}) {})`, () => {
+    it(`(function *(${text}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function *(${arg}) {})`);
+        parseSource(`(function *(${text}) {})`);
       });
     });
     // Async function
-    it(`async function fn(${arg}) {}`, () => {
+    it(`async function fn(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function fn(${arg}) {}`);
+        parseSource(`async function fn(${text}) {}`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '{,}',
     '({})',
     '([])',
@@ -870,54 +870,54 @@ describe('Miscellaneous - Cover grammar', () => {
     '[super()]',
   ]) {
     // Plain function
-    it(`function fn(${arg}) {}`, () => {
+    it(`function fn(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`function fn(${arg}) {}`);
+        parseSource(`function fn(${text}) {}`);
       });
     });
 
     // Generators
-    it(`function fn(${arg}) {}`, () => {
+    it(`function fn(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`function *fn(${arg}) {}`);
+        parseSource(`function *fn(${text}) {}`);
       });
     });
 
     // Generator expression - no name
-    it(`(function *(${arg}) {})`, () => {
+    it(`(function *(${text}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function *(${arg}) {})`);
+        parseSource(`(function *(${text}) {})`);
       });
     });
     // Async function
-    it(`async function fn(${arg}) {}`, () => {
+    it(`async function fn(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function fn(${arg}) {}`);
+        parseSource(`async function fn(${text}) {}`);
       });
     });
 
     // Async Generator
-    it(`async function *fn(${arg}) {}`, () => {
+    it(`async function *fn(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function *fn(${arg}) {}`);
+        parseSource(`async function *fn(${text}) {}`);
       });
     });
     // Arrows
-    it(`(${arg}) => x;`, () => {
+    it(`(${text}) => x;`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) => x;`);
+        parseSource(`(${text}) => x;`);
       });
     });
 
     // Async arrows
-    it(`(${arg}) => x;`, () => {
+    it(`(${text}) => x;`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) => x;`);
+        parseSource(`(${text}) => x;`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '{x:x}',
     '{x}',
     '{x:x}, y',
@@ -936,54 +936,54 @@ describe('Miscellaneous - Cover grammar', () => {
     '[,]',
   ]) {
     // Plain function
-    it(`function fn(${arg}) {}`, () => {
+    it(`function fn(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn(${arg}) {}`);
+        parseSource(`function fn(${text}) {}`);
       });
     });
 
     // Generators
-    it(`function fn(${arg}) {}`, () => {
+    it(`function fn(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function *fn(${arg}) {}`);
+        parseSource(`function *fn(${text}) {}`);
       });
     });
 
     // Generator expression - no name
-    it(`(function *(${arg}) {})`, () => {
+    it(`(function *(${text}) {})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *(${arg}) {})`);
+        parseSource(`(function *(${text}) {})`);
       });
     });
     // Async function
-    it(`async function fn(${arg}) {}`, () => {
+    it(`async function fn(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function fn(${arg}) {}`);
+        parseSource(`async function fn(${text}) {}`);
       });
     });
 
     // Async Generator
-    it(`async function *fn(${arg}) {}`, () => {
+    it(`async function *fn(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function *fn(${arg}) {}`);
+        parseSource(`async function *fn(${text}) {}`);
       });
     });
     // Arrows
-    it(`(${arg}) => x;`, () => {
+    it(`(${text}) => x;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg}) => x;`);
+        parseSource(`(${text}) => x;`);
       });
     });
 
     // Async arrows
-    it(`(${arg}) => x;`, () => {
+    it(`(${text}) => x;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg}) => x;`);
+        parseSource(`(${text}) => x;`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class foo { constructor({x1}){} }',
     'class foo { constructor([x1]){} }',
     'class foo { method({x1}){ }; set prop({x1}){} }',
@@ -1051,19 +1051,19 @@ describe('Miscellaneous - Cover grammar', () => {
     'function fn2([a = 42, b,]) {}',
   ]) {
     // Plain function
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
   }
-  for (const arg of [
+  for (const text of [
     'a',
     '{ x : y }',
     '{ x : y = 1 }',
@@ -1122,50 +1122,50 @@ describe('Miscellaneous - Cover grammar', () => {
     '{arguments: x, ...z}',
     '{ __proto__: x, __proto__: y, ...z}',
   ]) {
-    it(`var ${arg}= {};`, () => {
+    it(`var ${text}= {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var  ${arg} = {}`, { next: true, lexical: true });
+        parseSource(`var  ${text} = {}`, { next: true, lexical: true });
       });
     });
-    it(`"use strict"; let ${arg} = {};`, () => {
+    it(`"use strict"; let ${text} = {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; let ${arg} = {}`, { next: true });
+        parseSource(`"use strict"; let ${text} = {}`, { next: true });
       });
     });
-    it(`function f(${arg}) {}`, () => {
+    it(`function f(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f(${arg}) {}`, { next: true });
+        parseSource(`function f(${text}) {}`, { next: true });
       });
     });
-    it(`try {} catch(${arg}) {}`, () => {
+    it(`try {} catch(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try {} catch(${arg}) {}`, { next: true });
+        parseSource(`try {} catch(${text}) {}`, { next: true });
       });
     });
-    it(`try {} catch(${arg}) {}`, () => {
+    it(`try {} catch(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try {} catch(${arg}) {}`, { next: true, lexical: true });
+        parseSource(`try {} catch(${text}) {}`, { next: true, lexical: true });
       });
     });
-    it(`function f(arg1, ${arg}) {}`, () => {
+    it(`function f(arg1, ${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f(arg1, ${arg}) {}`, { next: true });
+        parseSource(`function f(arg1, ${text}) {}`, { next: true });
       });
     });
-    it(`var f = (${arg}) => {};`, () => {
+    it(`var f = (${text}) => {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = (${arg}) => {};`, { next: true });
+        parseSource(`var f = (${text}) => {};`, { next: true });
       });
     });
-    it(`var f = (arg1, ${arg}) => {};`, () => {
+    it(`var f = (arg1, ${text}) => {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = (arg1, ${arg}) => {};`, { next: true, lexical: true });
+        parseSource(`var f = (arg1, ${text}) => {};`, { next: true, lexical: true });
       });
     });
   }
 
   // Failures
-  for (const arg of [
+  for (const text of [
     '{ x : y * 2 }',
     '{ get x() {} }',
     '{ set x() {} }',
@@ -1486,29 +1486,29 @@ describe('Miscellaneous - Cover grammar', () => {
     '({a: {b = 0}.x} = {});',
     '({...{b = 0}.x} = {});',
   ]) {
-    it(`(${arg}= {});`, () => {
+    it(`(${text}= {});`, () => {
       t.throws(() => {
-        parseSource(`(${arg}= {});`, { next: true, lexical: true });
+        parseSource(`(${text}= {});`, { next: true, lexical: true });
       });
     });
-    it(`var ${arg}= {};`, () => {
+    it(`var ${text}= {};`, () => {
       t.throws(() => {
-        parseSource(`var  ${arg} = {}`, { next: true });
+        parseSource(`var  ${text} = {}`, { next: true });
       });
     });
-    it(`"use strict"; let ${arg} = {};`, () => {
+    it(`"use strict"; let ${text} = {};`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; let ${arg} = {}`, { next: true });
+        parseSource(`"use strict"; let ${text} = {}`, { next: true });
       });
     });
-    it(`try {} catch(${arg}) {}`, () => {
+    it(`try {} catch(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`try {} catch(${arg}) {}`, { next: true });
+        parseSource(`try {} catch(${text}) {}`, { next: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'x',
     '[x,] = 0',
     '[x,,] = 0',
@@ -1652,20 +1652,20 @@ describe('Miscellaneous - Cover grammar', () => {
       } = 0);
     `,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var foo = { x = 10 } = {};',
     'var foo = { q } = { x = 10 } = {};',
     'var foo; foo = { x = 10 } = {};',
@@ -1681,26 +1681,26 @@ describe('Miscellaneous - Cover grammar', () => {
     'var { x = 10 } = (o = { x = 20 } = {});',
     'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, { lexical: true });
+        parseSource(`"use strict"; ${text}`, { lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'x',
     '[x,]',
     '[x,,]',
@@ -1845,75 +1845,75 @@ describe('Miscellaneous - Cover grammar', () => {
     '{42e-2 : x}',
     '{42e-2 : x = 42}',
   ]) {
-    it(`function fn() { 'use strict';} fn(${arg});`, () => {
+    it(`function fn() { 'use strict';} fn(${text});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; (${arg} = {});`, { lexical: true });
+        parseSource(`'use strict'; let x, y, z; (${text} = {});`, { lexical: true });
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x in ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x in ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x in x =  ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x in x =  ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in x = ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x in x = ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x of ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, { lexical: true });
+        parseSource(`'use strict'; let x, y, z; for (x of ${text} = z = {});`, { lexical: true });
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x of x =  ${arg} = z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x of x =  ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of x = ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x of x = ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x of x = ${arg} = z = {});`, () => {
+    it(`var x, y, z; for (x of x = ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x = ${arg} = z = {});`);
+        parseSource(`var x, y, z; for (x of x = ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; (x = ${arg} = z = {});`, () => {
+    it(`var x, y, z; (x = ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (x = ${arg} = z = {});`);
+        parseSource(`var x, y, z; (x = ${text} = z = {});`);
       });
     });
 
-    it(`'use strict'; let x, y, z; for (x of ${arg}= z = {});`, () => {
+    it(`'use strict'; let x, y, z; for (x of ${text}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`);
+        parseSource(`'use strict'; let x, y, z; for (x of ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x in ${arg} = z = {});`, () => {
+    it(`var x, y, z; for (x in ${text} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = z = {});`);
+        parseSource(`var x, y, z; for (x in ${text} = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x in x = ${arg}  = z = {});`, () => {
+    it(`var x, y, z; for (x in x = ${text}  = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in x = ${arg}  = z = {});`);
+        parseSource(`var x, y, z; for (x in x = ${text}  = z = {});`);
       });
     });
 
-    it(`var x, y, z; for (x of x = ${arg}  = z = {});`, () => {
+    it(`var x, y, z; for (x of x = ${text}  = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x = ${arg}  = z = {});`, { lexical: true });
+        parseSource(`var x, y, z; for (x of x = ${text}  = z = {});`, { lexical: true });
       });
     });
   }
 
   // Failures
-  for (const arg of [
+  for (const text of [
     'for(let()of t)x',
     '([a.b]) => 0',
     'function foo() {for (let {x} = {} of []) {}; }; foo();',
@@ -2026,31 +2026,31 @@ describe('Miscellaneous - Cover grammar', () => {
     'for (var a = 7, b = c < d >= d ; f()[6]++ ; --i()[1]++ ) {}',
     'if (0) new a(b+c) = 5',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
 
-    it(`var x, y, z; for (x of ${arg} = {});`, () => {
+    it(`var x, y, z; for (x of ${text} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x of ${arg} = {});`, { next: true, lexical: true });
+        parseSource(`var x, y, z; for (x of ${text} = {});`, { next: true, lexical: true });
       });
     });
-    it(`var x, y, z; for (x in ${arg} = {});`, () => {
+    it(`var x, y, z; for (x in ${text} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = {});`, { next: true });
+        parseSource(`var x, y, z; for (x in ${text} = {});`, { next: true });
       });
     });
-    it(`var x, y, z; for (x in ${arg} = {});`, () => {
+    it(`var x, y, z; for (x in ${text} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = {});`, { webcompat: true });
+        parseSource(`var x, y, z; for (x in ${text} = {});`, { webcompat: true });
       });
     });
   }
 
   // Valid
-  for (const arg of [
+  for (const text of [
     '[((((a)))), b] = [];',
     '[x, y, ...z = 1]',
     '[...z = 1]',
@@ -3246,20 +3246,20 @@ describe('Miscellaneous - Cover grammar', () => {
     'class foo { method() { ({x:super.x} = {}); } }',
     "class foo { method() { ({x:super['x']} = {}); } }",
   ]) {
-    it(`  ${arg}`, () => {
+    it(`  ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
-    it(`  ${arg}`, () => {
+    it(`  ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
 
-    it(`  ${arg}`, () => {
+    it(`  ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true });
+        parseSource(text, { next: true, webcompat: true });
       });
     });
   }

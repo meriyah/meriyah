@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Next - Nullish Coalescing', () => {
-  for (const arg of [
+  for (const text of [
     'var foo = object.foo ?? "default";',
     'undefined ?? 3',
     'null ?? 3',
@@ -86,14 +86,14 @@ describe('Next - Nullish Coalescing', () => {
     'async.await??c.d??async ()',
     'a.b??c.d??e ()',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

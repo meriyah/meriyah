@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Declarations - Async Generator', () => {
-  for (const arg of [
+  for (const text of [
     'yield 2;',
     'yield * 2;',
     'yield * \n 2;',
@@ -85,56 +85,56 @@ describe('Declarations - Async Generator', () => {
     'await a; yield b;',
     'class A { async f() { for await (x of xs); } }',
   ]) {
-    it(`async function * gen() { ${arg} }`, () => {
+    it(`async function * gen() { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * gen() { ${arg} }`);
+        parseSource(`async function * gen() { ${text} }`);
       });
     });
 
-    it(`(async function * () { ${arg} })`, () => {
+    it(`(async function * () { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () { ${arg} })`);
+        parseSource(`(async function * () { ${text} })`);
       });
     });
 
-    it(`(async function * () { ${arg} })`, () => {
+    it(`(async function * () { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () { ${arg} })`, { webcompat: true });
+        parseSource(`(async function * () { ${text} })`, { webcompat: true });
       });
     });
 
-    it(`(async function * gen() { ${arg} })`, () => {
+    it(`(async function * gen() { ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * gen() { ${arg} })`);
+        parseSource(`(async function * gen() { ${text} })`);
       });
     });
 
-    it(`({ async * gen () { ${arg} } })`, () => {
+    it(`({ async * gen () { ${text} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () { ${arg} } })`);
+        parseSource(`({ async * gen () { ${text} } })`);
       });
     });
 
-    it(`(async function * () {${arg} }) `, () => {
+    it(`(async function * () {${text} }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () {${arg} }) `);
+        parseSource(`(async function * () {${text} }) `);
       });
     });
 
-    it(`({ async * gen () {${arg} } }) `, () => {
+    it(`({ async * gen () {${text} } }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () {${arg} } }) `);
+        parseSource(`({ async * gen () {${text} } }) `);
       });
     });
 
-    it(`({ async * gen () {${arg} } }) `, () => {
+    it(`({ async * gen () {${text} } }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () {${arg} } }) `, { webcompat: true });
+        parseSource(`({ async * gen () {${text} } }) `, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'var yield;',
     'var await;',
     'var foo, yield;',
@@ -203,39 +203,39 @@ describe('Declarations - Async Generator', () => {
     'class C extends yield { }',
     'class C extends await { }',
   ]) {
-    it(`async function * gen() { ${arg} } `, () => {
+    it(`async function * gen() { ${text} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `);
+        parseSource(`async function * gen() { ${text} } `);
       });
     });
 
-    it(`"use strict"; async function * gen() { ${arg} } `, () => {
+    it(`"use strict"; async function * gen() { ${text} } `, () => {
       t.throws(() => {
-        parseSource(`"use strict"; async function * gen() { ${arg} } `);
+        parseSource(`"use strict"; async function * gen() { ${text} } `);
       });
     });
 
-    it(`async function * gen() { ${arg} } `, () => {
+    it(`async function * gen() { ${text} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, { sourceType: 'module' });
+        parseSource(`async function * gen() { ${text} } `, { sourceType: 'module' });
       });
     });
 
-    it(`async function * gen() { ${arg} } `, () => {
+    it(`async function * gen() { ${text} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, { sourceType: 'module' });
+        parseSource(`async function * gen() { ${text} } `, { sourceType: 'module' });
       });
     });
 
-    it(`(async function * () {${arg} }) `, () => {
+    it(`(async function * () {${text} }) `, () => {
       t.throws(() => {
-        parseSource(`(async function * () {${arg} }) `);
+        parseSource(`(async function * () {${text} }) `);
       });
     });
 
-    it(`({ async * gen () {${arg} } }) `, () => {
+    it(`({ async * gen () {${text} } }) `, () => {
       t.throws(() => {
-        parseSource(`({ async * gen () {${arg} } }) `);
+        parseSource(`({ async * gen () {${text} } }) `);
       });
     });
   }

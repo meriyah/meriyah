@@ -50,7 +50,7 @@ describe('Lexical - Class', () => {
     { code: 'class o {f(){ function x(){} let x; }}', options: { lexical: true } },
   ]);
 
-  for (const arg of [
+  for (const text of [
     'class o {f(f) { }}',
     'class o {f(x) { function x() {} }}',
     'class o {f(x) { var x; }}',
@@ -65,26 +65,26 @@ describe('Lexical - Class', () => {
     'class x {} function y() { let x; }',
     'class x {} function y() { let y; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true });
+        parseSource(text, { next: true, lexical: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'class a extends b { constructor(x) { return async() => super(x); } };',
     'class o {f(x) { function x() {} }}',
     'class o {f(x) { var x; }}',
@@ -99,15 +99,15 @@ describe('Lexical - Class', () => {
     'class x {} function y() { let x; }',
     'class x {} function y() { let y; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

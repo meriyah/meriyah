@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 describe('Expressions - Rest', () => {
-  for (const arg of [
+  for (const text of [
     'let { ...x = y } = z;',
     'let { a, ...b, c } = x;',
     'let {...obj1,...obj2} = foo',
@@ -44,26 +44,26 @@ describe('Expressions - Rest', () => {
     'let {...[a,b]} = foo',
     'let {...{a,b}} = foo',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '({...obj} = foo)',
     '({a,...obj} = foo)',
     '({a:b,...obj} = foo)',
@@ -79,22 +79,22 @@ describe('Expressions - Rest', () => {
     'function f({ x, y, ...z }) {}',
     '({...(obj)} = foo)',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of ['function f(a, ...b, c) {}']) {
-    it(`${arg}`, () => {
+  for (const text of ['function f(a, ...b, c) {}']) {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'function empty(...{}) {}',
     'function emptyWithArray(...{p: []}) {}',
     'function emptyWithObject(...{p: {}}) {}',
@@ -129,21 +129,21 @@ describe('Expressions - Rest', () => {
     'function af(...a) {}',
     'function bf(a, ...b) {}',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
   }

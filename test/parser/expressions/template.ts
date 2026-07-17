@@ -119,7 +119,7 @@ describe('Expressions - Template', () => {
     });
   });
 
-  for (const arg of [
+  for (const text of [
     '`${"a"}`',
     '`${1}`',
     'example3 = 1 + `${foo}${bar}${baz}`',
@@ -480,43 +480,43 @@ describe('Expressions - Template', () => {
     'x`\\8`',
     'x`\\9`',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate);
+        parseSource(text, undefined, Context.TaggedTemplate);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true }, Context.TaggedTemplate);
+        parseSource(text, { webcompat: true }, Context.TaggedTemplate);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true }, Context.TaggedTemplate);
-      });
-    });
-
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, lexical: true }, Context.TaggedTemplate);
+        parseSource(text, { next: true }, Context.TaggedTemplate);
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.TaggedTemplate);
+        parseSource(text, { next: true, lexical: true }, Context.TaggedTemplate);
       });
     });
 
-    it(`${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true }, Context.TaggedTemplate);
+        parseSource(`"use strict"; ${text}`, undefined, Context.TaggedTemplate);
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' }, Context.TaggedTemplate);
+        parseSource(text, { webcompat: true }, Context.TaggedTemplate);
+      });
+    });
+
+    it(text, () => {
+      t.doesNotThrow(() => {
+        parseSource(text, { sourceType: 'module' }, Context.TaggedTemplate);
       });
     });
   }

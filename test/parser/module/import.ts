@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Module - Import', () => {
-  for (const arg of [
+  for (const text of [
     'import',
     'import;',
     'import;',
@@ -202,14 +202,14 @@ describe('Module - Import', () => {
     'import { "foo" as "f" } from "./foo";',
     'import { foo as "f" } from "./foo";',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'import from "foo";',
     'import a "foo";',
     'import * as a "foo";',
@@ -217,9 +217,9 @@ describe('Module - Import', () => {
     'import b, { a } "foo";',
     'import { default as a, b } "foo";',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       }, /Expected 'from'$/);
     });
   }
@@ -369,7 +369,7 @@ describe('Module - Import', () => {
     },
   ]);
 
-  for (const arg of [
+  for (const text of [
     "import 'foo';",
     "import { a } from 'foo';",
     'import  * as set from "a"',
@@ -458,13 +458,13 @@ describe('Module - Import', () => {
     'import { "foo" as foo, a, } from "./foo";',
     'import { "foo" as foo, "a" as a, default as b } from "./foo";',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
 
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
+        parseSource(text, { sourceType: 'module', lexical: true });
       });
     });
   }

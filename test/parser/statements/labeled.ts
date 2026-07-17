@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Statements - Labeled', () => {
-  for (const arg of [
+  for (const text of [
     'break',
     'case',
     'catch',
@@ -42,24 +42,24 @@ describe('Statements - Labeled', () => {
     'false',
     'enum',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`);
+        parseSource(`${text} : x`);
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, { lexical: true });
+        parseSource(`${text} : x`, { lexical: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, { webcompat: true });
+        parseSource(`${text} : x`, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, { impliedStrict: true });
+        parseSource(`${text} : x`, { impliedStrict: true });
       });
     });
   }

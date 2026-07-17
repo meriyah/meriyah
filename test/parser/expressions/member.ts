@@ -5,7 +5,7 @@ import { fail, pass } from '../../test-utils.ts';
 describe('Expressions - Member', () => {
   fail('Expressions - Member (fail)', ['abc.123', 'a.[b].c().d.toString()', 'abc.£', 'abc???.£']);
 
-  for (const arg of [
+  for (const text of [
     'let f = () => { import("foo"); };',
     'foo["bar"];',
     'foo.bar;',
@@ -22,14 +22,14 @@ describe('Expressions - Member', () => {
     'x.protected',
     String.raw`x.prot\u0065cted`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, sourceType: 'module' });
+        parseSource(text, { next: true, sourceType: 'module' });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true });
+        parseSource(text, { next: true });
       });
     });
   }

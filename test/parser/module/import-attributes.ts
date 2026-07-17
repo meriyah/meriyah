@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Next - Import Attributes', () => {
-  for (const arg of [
+  for (const text of [
     "import 'bar' with { type: 'what' };",
     "import foo from 'bar' with { type: 'json' };",
     "import foo from 'bar' with { type: 'json', 'data-type': 'json' };",
@@ -62,14 +62,14 @@ describe('Next - Import Attributes', () => {
     "import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };",
     "import {name} from './json-named-bindings_FIXTURE.json' with { \"type\": 'json' };",
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
+        parseSource(text, { sourceType: 'module', webcompat: true });
       });
     });
   }

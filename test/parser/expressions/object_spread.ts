@@ -2,7 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 describe('Expressions - Rest', () => {
-  for (const arg of [
+  for (const text of [
     '{ ...var z = y}',
     '{ ...var}',
     //  '{ ...foo bar}',
@@ -16,54 +16,54 @@ describe('Expressions - Rest', () => {
     'var [...x, y] = [1,2,3];',
     'var { x } = {x: ...[1,2,3]}',
   ]) {
-    it(`x = ${arg}`, () => {
+    it(`x = ${text}`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`);
+        parseSource(`x = ${text};`);
       });
     });
 
-    it(`function fn() { 'use strict';${arg}} fn();`, () => {
+    it(`function fn() { 'use strict';${text}} fn();`, () => {
       t.throws(() => {
-        parseSource(`function fn() { 'use strict';${arg}} fn();`);
+        parseSource(`function fn() { 'use strict';${text}} fn();`);
       });
     });
 
-    it(`function fn() { ${arg}} fn();`, () => {
+    it(`function fn() { ${text}} fn();`, () => {
       t.throws(() => {
-        parseSource(`function fn() { ${arg}} fn();`);
+        parseSource(`function fn() { ${text}} fn();`);
       });
     });
 
-    it(`"use strict"; x = ${arg}`, () => {
+    it(`"use strict"; x = ${text}`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`);
+        parseSource(`x = ${text};`);
       });
     });
   }
 
   // Spread Array
 
-  for (const arg of ['[...]', '[a, ...]', '[..., ]', '[..., ...]', '[ (...a)]']) {
-    it(`${arg}`, () => {
+  for (const text of ['[...]', '[a, ...]', '[..., ]', '[..., ...]', '[ (...a)]']) {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg};`, { webcompat: true });
+        parseSource(`${text};`, { webcompat: true });
       });
     });
 
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg};`, { webcompat: true, lexical: true });
+        parseSource(`${text};`, { webcompat: true, lexical: true });
       });
     });
 
-    it(`"use strict"; ${arg}`, () => {
+    it(`"use strict"; ${text}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg};`);
+        parseSource(`"use strict"; ${text};`);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '[...a]',
     '[a, ...b]',
     '[...a,]',
@@ -92,25 +92,25 @@ describe('Expressions - Rest', () => {
     '{ ...async () => { }}',
     '{ ...new Foo()}',
   ]) {
-    it(`x = ${arg}`, () => {
+    it(`x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`);
+        parseSource(`x = ${text};`);
       });
     });
-    it(`x = ${arg}`, () => {
+    it(`x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, { lexical: true });
+        parseSource(`x = ${text};`, { lexical: true });
       });
     });
-    it(`x = ${arg}`, () => {
+    it(`x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, { next: true, sourceType: 'module' });
+        parseSource(`x = ${text};`, { next: true, sourceType: 'module' });
       });
     });
 
-    it(`"use strict"; x = ${arg}`, () => {
+    it(`"use strict"; x = ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`);
+        parseSource(`x = ${text};`);
       });
     });
   }

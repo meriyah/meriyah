@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Async arrow', () => {
-  for (const arg of [
+  for (const text of [
     '(a, b, (c, d) => 0)',
     '(a, b) => 0, (c, d) => 1',
     '(a, b => {}, a => a + 1)',
@@ -77,51 +77,51 @@ describe('Expressions - Async arrow', () => {
     '((a, b) => a + b)(1, 4), 5',
     '((a, b) => { return a + b; })(1, 5), 6',
   ]) {
-    it(`async ${arg}`, () => {
+    it(`async ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`);
+        parseSource(`async ${text}`);
       });
     });
 
-    it(`async ${arg}`, () => {
+    it(`async ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, { lexical: true });
+        parseSource(`async ${text}`, { lexical: true });
       });
     });
 
-    it(`async ${arg}`, () => {
+    it(`async ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, { webcompat: true });
+        parseSource(`async ${text}`, { webcompat: true });
       });
     });
 
-    it(`bar, async ${arg};`, () => {
+    it(`bar, async ${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar, async ${arg};`);
+        parseSource(`bar, async ${text};`);
       });
     });
 
-    it(`bar ? async (${arg}) : baz;`, () => {
+    it(`bar ? async (${text}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? async (${arg}) : baz;`);
+        parseSource(`bar ? async (${text}) : baz;`);
       });
     });
 
-    it(`bar ? baz : async  (${arg});`, () => {
+    it(`bar ? baz : async  (${text});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : async  (${arg});`);
+        parseSource(`bar ? baz : async  (${text});`);
       });
     });
 
-    it(`async ${arg}, bar;`, () => {
+    it(`async ${text}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}, bar;`);
+        parseSource(`async ${text}, bar;`);
       });
     });
 
-    it(`async ${arg}, bar;`, () => {
+    it(`async ${text}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}, bar;`, { next: true });
+        parseSource(`async ${text}, bar;`, { next: true });
       });
     });
   }
@@ -532,7 +532,7 @@ describe('Expressions - Async arrow', () => {
     'async({a = 1}, {b = 2} = {}, {c = 3} = {})',
   ]);
 
-  for (const arg of [
+  for (const text of [
     'async(async(async(async(async(async())))))',
     'async()(async() => {})',
     'async(a)(s)(y)(n)(c)',
@@ -853,39 +853,39 @@ describe('Expressions - Async arrow', () => {
     `,
     'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (x =>x)',
   ]) {
-    it(`${arg};`, () => {
+    it(`${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`);
+        parseSource(`${text};`);
       });
     });
 
-    it(`${arg};`, () => {
+    it(`${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, { lexical: true });
+        parseSource(`${text};`, { lexical: true });
       });
     });
 
-    it(`${arg};`, () => {
+    it(`${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, { webcompat: true, lexical: true });
+        parseSource(`${text};`, { webcompat: true, lexical: true });
       });
     });
 
-    it(`${arg};`, () => {
+    it(`${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, { webcompat: true });
+        parseSource(`${text};`, { webcompat: true });
       });
     });
 
-    it(`${arg};`, () => {
+    it(`${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, { next: true });
+        parseSource(`${text};`, { next: true });
       });
     });
 
-    it(`function foo() { ${arg}}`, () => {
+    it(`function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, { webcompat: true });
+        parseSource(`function foo() { ${text}}`, { webcompat: true });
       });
     });
   }

@@ -4,7 +4,7 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Next - Import Meta', () => {
-  for (const arg of [
+  for (const text of [
     'class C {set x(_) { () => import.meta }}',
     'function f() { import.meta}',
     'class C {set x(_) { () => { import.meta } }}',
@@ -108,14 +108,14 @@ describe('Next - Import Meta', () => {
     'import.meta, import.meta.url = 1;',
     'import.meta;',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', next: true });
+        parseSource(text, { sourceType: 'module', next: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { sourceType: 'module', next: true, webcompat: true });
+        parseSource(text, { sourceType: 'module', next: true, webcompat: true });
       });
     });
   }

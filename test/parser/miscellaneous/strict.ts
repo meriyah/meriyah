@@ -3,20 +3,20 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Miscellaneous - Strict mode', () => {
-  for (const arg of ['; with (x) y;', '"use strict"; with (x) y;', 'class X { foo() { with (x) y; } }']) {
-    it(`${arg}`, () => {
+  for (const text of ['; with (x) y;', '"use strict"; with (x) y;', 'class X { foo() { with (x) y; } }']) {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
+        parseSource(text, { webcompat: true, impliedStrict: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { impliedStrict: true });
+        parseSource(text, { impliedStrict: true });
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     '"use strict"; with (x) y;',
     "'use strict'; with (x) y;",
     '"use strict";\nwith (x) y;',
@@ -72,19 +72,19 @@ describe('Miscellaneous - Strict mode', () => {
     String.raw`f = () => { "\1"; "use strict";}`,
     String.raw`f = () => { "\7"; "use strict";}`,
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.throws(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
 
-  for (const arg of [
+  for (const text of [
     'eval = x',
     'eval++',
     '--eval',
@@ -115,14 +115,14 @@ describe('Miscellaneous - Strict mode', () => {
     'function g() { function f(){ "use strict"; foo; } with (x) y; }',
     'if (x) { "use strict"; with (x) y; }',
   ]) {
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
-    it(`${arg}`, () => {
+    it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`);
+        parseSource(text);
       });
     });
   }
