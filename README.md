@@ -26,8 +26,6 @@
 - No backtracking
 - Low memory usage
 
-### Not yet supported features:
-
 ## ESNext Stage 3 features
 
 ### Supported stage 3 features:
