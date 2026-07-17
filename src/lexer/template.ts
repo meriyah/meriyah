@@ -13,6 +13,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
   const { index: start } = parser;
   let token: Token = Token.TemplateSpan;
   let ret: string | null = '';
+  let hasCarriageReturn = false;
 
   let char = advanceChar(parser);
 
@@ -23,6 +24,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
       break;
     } else if (char === Chars.Backslash) {
       char = advanceChar(parser);
+      if (char === Chars.CarriageReturn) hasCarriageReturn = true;
       if (char > 0x7e) {
         ret += String.fromCodePoint(char);
       } else {
@@ -36,7 +38,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
           parser.line = line;
           parser.column = column;
           ret = null;
-          char = scanBadTemplate(parser, char);
+          char = scanBadTemplate(parser, char, () => (hasCarriageReturn = true));
           if (char < 0) token = Token.TemplateContinuation;
           break;
         } else {
@@ -44,6 +46,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
         }
       }
     } else if (parser.index < parser.end) {
+      if (char === Chars.CarriageReturn) hasCarriageReturn = true;
       if (char === Chars.CarriageReturn && parser.source.charCodeAt(parser.index + 1) === Chars.LineFeed) {
         parser.currentChar = parser.source.charCodeAt(++parser.index);
       }
@@ -62,9 +65,8 @@ export function scanTemplate(parser: Parser, context: Context): Token {
   advanceChar(parser); // Consume the quote or opening brace
   parser.tokenValue = ret;
 
-  parser.tokenRaw = parser.source
-    .slice(start + 1, parser.index - (token === Token.TemplateSpan ? 1 : 2))
-    .replaceAll(/\r\n?/g, '\n');
+  const tokenRaw = parser.source.slice(start + 1, parser.index - (token === Token.TemplateSpan ? 1 : 2));
+  parser.tokenRaw = hasCarriageReturn ? tokenRaw.replaceAll(/\r\n?/g, '\n') : tokenRaw;
 
   return token;
 }
@@ -75,9 +77,12 @@ export function scanTemplate(parser: Parser, context: Context): Token {
  * @param parser Parser state
  * @param ch Code point
  */
-function scanBadTemplate(parser: Parser, ch: number): number {
+function scanBadTemplate(parser: Parser, ch: number, onCarriageReturn: () => void): number {
   while (ch !== Chars.Backtick) {
     switch (ch) {
+      case Chars.CarriageReturn:
+        onCarriageReturn();
+        break;
       case Chars.Dollar: {
         const index = parser.index + 1;
         if (index < parser.end && parser.source.charCodeAt(index) === Chars.LeftBrace) {
