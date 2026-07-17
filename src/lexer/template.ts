@@ -38,7 +38,9 @@ export function scanTemplate(parser: Parser, context: Context): Token {
           parser.line = line;
           parser.column = column;
           ret = null;
-          char = scanBadTemplate(parser, char, () => (hasCarriageReturn = true));
+          char = scanBadTemplate(parser, char, () => {
+            hasCarriageReturn = true;
+          });
           if (char < 0) token = Token.TemplateContinuation;
           break;
         } else {
@@ -76,6 +78,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
  *
  * @param parser Parser state
  * @param ch Code point
+ * @param onCarriageReturn Callback invoked when a carriage return character is encountered
  */
 function scanBadTemplate(parser: Parser, ch: number, onCarriageReturn: () => void): number {
   while (ch !== Chars.Backtick) {
