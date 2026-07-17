@@ -26,10 +26,6 @@
 - No backtracking
 - Low memory usage
 
-### Not yet supported features:
-
-- [Explicit Resource Management](https://github.com/tc39/proposal-explicit-resource-management)
-
 ## ESNext Stage 3 features
 
 ### Supported stage 3 features:
