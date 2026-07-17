@@ -18,7 +18,18 @@ const crNormalizationFixtures = [
   },
   {
     name: 'CR at template chunk boundaries',
-    source: backtick + 'head' + carriageReturn + '${value}' + carriageReturn + 'tail' + backtick,
+    source:
+      backtick +
+      'head' +
+      carriageReturn +
+      '${first}' +
+      carriageReturn +
+      'middle' +
+      carriageReturn +
+      '${second}' +
+      carriageReturn +
+      'tail' +
+      backtick,
   },
   {
     name: 'escaped carriage return',
@@ -634,4 +645,17 @@ describe('Expressions - Template', () => {
     'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
     'test`\\u{0`',
   ]);
+
+  describe('TemplateElement raw CR normalization', () => {
+    // ECMA-262 TRV of LineTerminatorSequence is <LF> for <CR> and <CR><LF>.
+    // Acorn applies the same normalization while preserving escaped `\\r` source text.
+    for (const { name, source } of crNormalizationFixtures) {
+      it(name, () => {
+        const actual = getMeriyahTemplateQuasis(source).map((quasi) => quasi.value.raw);
+        const expected = getAcornTemplateQuasis(source).map((quasi) => quasi.value.raw);
+
+        t.deepEqual(actual, expected);
+      });
+    }
+  });
 });

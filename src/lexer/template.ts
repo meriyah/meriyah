@@ -62,7 +62,9 @@ export function scanTemplate(parser: Parser, context: Context): Token {
   advanceChar(parser); // Consume the quote or opening brace
   parser.tokenValue = ret;
 
-  parser.tokenRaw = parser.source.slice(start + 1, parser.index - (token === Token.TemplateSpan ? 1 : 2));
+  parser.tokenRaw = parser.source
+    .slice(start + 1, parser.index - (token === Token.TemplateSpan ? 1 : 2))
+    .replace(/\r\n?/g, '\n');
 
   return token;
 }
