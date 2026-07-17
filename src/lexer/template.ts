@@ -38,7 +38,9 @@ export function scanTemplate(parser: Parser, context: Context): Token {
           parser.line = line;
           parser.column = column;
           ret = null;
-          char = scanBadTemplate(parser, char, () => (hasCarriageReturn = true));
+          char = scanBadTemplate(parser, char, () => {
+            hasCarriageReturn = true;
+          });
           if (char < 0) token = Token.TemplateContinuation;
           break;
         } else {
