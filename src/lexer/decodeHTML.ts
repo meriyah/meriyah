@@ -2164,7 +2164,7 @@ const decodeMap: { [Identifier: string]: number } = {
 
 // Used code from https://github.com/fb55/entities (BSD license)
 export function decodeHTMLStrict(text: string): string {
-  return text.replace(/&(?:[a-zA-Z]+|#[xX][\da-fA-F]+|#\d+);/g, (key) => {
+  return text.replaceAll(/&(?:[a-zA-Z]+|#[xX][\da-fA-F]+|#\d+);/g, (key) => {
     if (key.charAt(1) === '#') {
       const secondChar = key.charAt(2);
       const codePoint =

@@ -90,6 +90,7 @@ export default [
           checkUsedVariables: false,
         },
       ],
+      'unicorn/prefer-string-replace-all': 'error',
       'unicorn/template-indent': 'error',
 
       'import-x/extensions': [

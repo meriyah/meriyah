@@ -21,7 +21,7 @@ async function run() {
 
   const raw = new Date()
     .toISOString()
-    .replace(/:|T|\.|-/g, '')
+    .replaceAll(/:|T|\.|-/g, '')
     .slice(0, 8);
   const y = raw.slice(0, 4);
   const m = raw.slice(4, 6);
