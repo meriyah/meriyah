@@ -11,6 +11,7 @@
   "exports": {
     "types": "./dist/types/meriyah.d.ts",
     "module-sync": "./dist/meriyah.mjs",
+    "import": "./dist/meriyah.mjs",
     "require": "./dist/meriyah.cjs",
     "default": "./dist/meriyah.mjs"
   },
