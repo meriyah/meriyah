@@ -3971,7 +3971,10 @@ function parseMemberOrUpdateExpression(
           parser.report(Errors.InvalidSuperPrivate);
         }
 
-        parser.assignable = AssignmentTargetKind.Simple;
+        parser.assignable =
+          (parser.flags & Flags.HasOptionalChaining) === Flags.HasOptionalChaining
+            ? AssignmentTargetKind.Invalid
+            : AssignmentTargetKind.Simple;
 
         const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
 
@@ -4008,7 +4011,7 @@ function parseMemberOrUpdateExpression(
 
         consume(parser, context, Token.RightBracket);
 
-        parser.assignable = AssignmentTargetKind.Simple;
+        parser.assignable = restoreHasOptionalChaining ? AssignmentTargetKind.Invalid : AssignmentTargetKind.Simple;
 
         expr = parser.finishNode<ESTree.MemberExpression>(
           {

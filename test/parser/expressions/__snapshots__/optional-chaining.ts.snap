@@ -312,6 +312,30 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b => (a
     |      ^^ Unexpected token: '=>'"
 `;
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b.c = d 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | a?.b.c = d
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b.c++ 1`] = `
+"SyntaxError [1:6-1:8]: Invalid increment/decrement operand
+> 1 | a?.b.c++
+    |       ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b[c] = d 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | a?.b[c] = d
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b[c]++ 1`] = `
+"SyntaxError [1:7-1:9]: Invalid increment/decrement operand
+> 1 | a?.b[c]++
+    |        ^^ Invalid increment/decrement operand"
+`;
+
 exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.fn\`hello\`; 1`] = `
 "SyntaxError [1:5-1:12]: Invalid tagged template on optional chain
 > 1 | a?.fn\`hello\`;
