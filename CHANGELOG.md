@@ -1,3 +1,19 @@
+# [7.2.0](https://github.com/meriyah/meriyah/compare/v7.1.2...v7.2.0) (2026-07-24)
+
+### Bug Fixes
+
+* export map missing `import` ([#585](https://github.com/meriyah/meriyah/issues/585)) ([bcd697e](https://github.com/meriyah/meriyah/commit/bcd697e9e9ac1f28037748a5b5879c29d49d1326))
+* **lexer:** normalize template carriage returns per TV/TRV ([#580](https://github.com/meriyah/meriyah/issues/580)) ([d1dcd16](https://github.com/meriyah/meriyah/commit/d1dcd16bb78e83e79a1b72370cc8e9d67ef16abf))
+* **parser:** reject assignments to optional chain members ([#587](https://github.com/meriyah/meriyah/issues/587)) ([d1fd37d](https://github.com/meriyah/meriyah/commit/d1fd37d6294d4d248cc4a4d1dba1e4908f75c05e))
+
+### Features
+
+* **parser:** support explicit resource management declarations ([#579](https://github.com/meriyah/meriyah/issues/579)) ([d40161d](https://github.com/meriyah/meriyah/commit/d40161d245b966da3a058c0cca4d6c054a97f296))
+
+### Performance Improvements
+
+* skip template CR normalization when scan saw no carriage returns ([#583](https://github.com/meriyah/meriyah/issues/583)) ([65c3bf9](https://github.com/meriyah/meriyah/commit/65c3bf9c3dd2add375be599f9af4dd51e2c695e7))
+
 ## [7.1.2](https://github.com/meriyah/meriyah/compare/v7.1.1...v7.1.2) (2026-07-11)
 
 ### Bug Fixes
