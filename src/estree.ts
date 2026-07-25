@@ -321,6 +321,7 @@ export interface ImportExpression extends _Node {
   type: 'ImportExpression';
   source: Expression;
   options?: Expression | null;
+  phase?: 'defer' | 'source' | null;
 }
 
 export interface ChainExpression extends _Node {
@@ -492,6 +493,7 @@ export interface ImportDeclaration extends _Node {
   source: StringLiteral;
   specifiers: ImportClause[];
   attributes: ImportAttribute[];
+  phase?: 'defer' | 'source' | null;
 }
 
 export interface ImportAttribute extends _Node {

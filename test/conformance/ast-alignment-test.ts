@@ -161,6 +161,12 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
           delete node.id;
         }
         return node;
+      case 'ImportDeclaration':
+      case 'ImportExpression':
+        if (!('phase' in node)) {
+          node.phase = null;
+        }
+        return node;
       case 'ClassExpression':
       case 'ClassDeclaration':
       case 'AccessorProperty':
