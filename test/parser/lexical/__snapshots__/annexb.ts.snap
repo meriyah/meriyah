@@ -53,15 +53,3 @@ exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 1`] = `
 > 1 | var x; let x;
     |             ^ Duplicate binding 'x'"
 `;
-
-exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 2`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'x'
-> 1 | var x; let x;
-    |             ^ Duplicate binding 'x'"
-`;
-
-exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 3`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'x'
-> 1 | var x; let x;
-    |             ^ Duplicate binding 'x'"
-`;
