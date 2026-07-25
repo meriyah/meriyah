@@ -1,5 +1,314 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Import Phase contextual identifiers with next disabled > import * as defer from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import {defer} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import {source as s} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "s",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import defer from "m" with {}; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import defer from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import defer, {x} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import source from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import source, * as ns from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "local": {
+            "name": "ns",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > import.meta.url 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "optional": false,
+        "property": {
+          "name": "url",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers with next disabled > let defer = 1; let source = 2; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 2,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
 exports[`Import Phase disabled > import a from "m"; 1`] = `
 {
   "body": [
@@ -50,6 +359,18 @@ exports[`Import Phase syntax with next disabled > import defer * as ns from "m";
 "SyntaxError [1:13-1:14]: Expected 'from'
 > 1 | import defer * as ns from "m";
     |              ^ Expected 'from'"
+`;
+
+exports[`Import Phase syntax with next disabled > import source from from "m"; 1`] = `
+"SyntaxError [1:19-1:23]: Import source must be string
+> 1 | import source from from "m";
+    |                    ^^^^ Import source must be string"
+`;
+
+exports[`Import Phase syntax with next disabled > import source source from "m"; 1`] = `
+"SyntaxError [1:14-1:20]: Expected 'from'
+> 1 | import source source from "m";
+    |               ^^^^^^ Expected 'from'"
 `;
 
 exports[`Import Phase syntax with next disabled > import source x from "m"; 1`] = `

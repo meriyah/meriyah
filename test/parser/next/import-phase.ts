@@ -1,6 +1,7 @@
 import { fail, pass } from '../../test-utils.ts';
 
 const nextModule = { sourceType: 'module', next: true } as const;
+const nextOffModule = { sourceType: 'module', next: false } as const;
 
 pass('Next - Import Phase', [
   { code: 'import defer * as ns from "m";', options: nextModule },
@@ -45,6 +46,19 @@ pass('Import Phase disabled', [
   { code: 'import("m")', options: { sourceType: 'module' } },
 ]);
 
+pass('Import Phase contextual identifiers with next disabled', [
+  { code: 'import defer from "m";', options: nextOffModule },
+  { code: 'import source from "m";', options: nextOffModule },
+  { code: 'import defer from "m" with {};', options: nextOffModule },
+  { code: 'import defer, {x} from "m";', options: nextOffModule },
+  { code: 'import source, * as ns from "m";', options: nextOffModule },
+  { code: 'import {defer} from "m";', options: nextOffModule },
+  { code: 'import {source as s} from "m";', options: nextOffModule },
+  { code: 'import * as defer from "m";', options: nextOffModule },
+  { code: 'let defer = 1; let source = 2;', options: nextOffModule },
+  { code: 'import.meta.url', options: nextOffModule },
+]);
+
 fail('Next - Import Phase invalid forms', [
   { code: 'import defer x from "m";', options: nextModule },
   { code: 'import defer {a} from "m";', options: nextModule },
@@ -59,6 +73,8 @@ fail('Next - Import Phase invalid forms', [
 fail('Import Phase syntax with next disabled', [
   { code: 'import defer * as ns from "m";', options: { sourceType: 'module', next: false } },
   { code: 'import source x from "m";', options: { sourceType: 'module', next: false } },
+  { code: 'import source source from "m";', options: { sourceType: 'module', next: false } },
+  { code: 'import source from from "m";', options: { sourceType: 'module', next: false } },
   { code: 'import.defer("m")', options: { sourceType: 'module', next: false } },
   { code: 'import.source("m")', options: { sourceType: 'module', next: false } },
 ]);
