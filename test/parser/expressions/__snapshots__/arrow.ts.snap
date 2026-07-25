@@ -2621,6 +2621,50 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > () => bar 1`] = `
 }
 `;
 
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ()=>{}
+[a]=b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "left": {
+          "elements": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Arrow > Expressions - Arrow (pass) > (...a) => {} 1`] = `
 {
   "body": [
@@ -8446,6 +8490,67 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > bar ? ( (x, y) => (u
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > class A {
+  ["1"] = ()=>{}
+  ["2"] = 3;
+}; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": true,
+            "key": {
+              "type": "Literal",
+              "value": "1",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "expression": false,
+              "generator": false,
+              "params": [],
+              "type": "ArrowFunctionExpression",
+            },
+          },
+          {
+            "computed": true,
+            "key": {
+              "type": "Literal",
+              "value": "2",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 3,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;

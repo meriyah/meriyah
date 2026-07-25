@@ -1339,5 +1339,15 @@ describe('Expressions - Arrow', () => {
     { code: '(() => {}) + 2', options: { ranges: true } },
     { code: 'bar ? ( (x, y) => (u, v) => x*u + y*v ) : baz;', options: { ranges: true } },
     { code: "const a = () => { return 0; }\n[{ foo: 'foo', },].forEach(() => {})", options: { ranges: true } },
+    outdent`
+      class A {
+        ["1"] = ()=>{}
+        ["2"] = 3;
+      };
+    `,
+    outdent`
+      ()=>{}
+      [a]=b
+    `,
   ]);
 });
