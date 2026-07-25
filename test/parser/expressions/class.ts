@@ -557,12 +557,12 @@ describe('Expressions - Class', () => {
     'class E0 { 0123() {} }',
     'class E1 { 0123.1() {} }',
     'class yield { }',
-    { code: 'class x { x = new y<a>() }', options: { next: true } },
-    { code: 'class x { x = new y<a,>() }', options: { next: true } },
-    { code: 'class x { x = new y<a,b>() }', options: { next: true } },
-    { code: 'class x { x = y<a>() }', options: { next: true } },
-    { code: 'class x { x = new y<a,>() }', options: { next: true } },
-    { code: 'class x { x = new y<a,b>() }', options: { next: true } },
+    { code: 'class x { x = new y<a>() }' },
+    { code: 'class x { x = new y<a,>() }' },
+    { code: 'class x { x = new y<a,b>() }' },
+    { code: 'class x { x = y<a>() }' },
+    { code: 'class x { x = new y<a,>() }' },
+    { code: 'class x { x = new y<a,b>() }' },
     'class x { x = new y<a>() }',
     'class x { x = new y<a,>() }',
     'class x { x = new y<a,b>() }',
@@ -1407,9 +1407,9 @@ describe('Expressions - Class', () => {
     'class A extends B { *get() {} }',
     'class a { async *get(){} }',
     'class A { [1n](){} }',
-    { code: 'class A { static }', options: { next: true, sourceType: 'module' } },
-    { code: 'class A { static; }', options: { next: true, sourceType: 'module' } },
-    { code: 'class A { static = 1 }', options: { next: true, sourceType: 'module' } },
+    { code: 'class A { static }', options: { sourceType: 'module' } },
+    { code: 'class A { static; }', options: { sourceType: 'module' } },
+    { code: 'class A { static = 1 }', options: { sourceType: 'module' } },
     outdent`
       new class {
         start() {
@@ -1422,7 +1422,7 @@ describe('Expressions - Class', () => {
     `,
     {
       code: 'class C {\nstatic accessor = 42;\nstatic set = 42;\nstatic get = 42;\nstatic async = 42;\nstatic static = 42;}',
-      options: { next: true, loc: true, ranges: true },
+      options: { loc: true, ranges: true },
     },
     outdent`
       class MyClass {

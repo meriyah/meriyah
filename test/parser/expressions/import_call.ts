@@ -161,7 +161,7 @@ describe('ImportCall', () => {
 
   pass('ImportCall (pass)', [
     { code: 'import("lib.js").then(doThis);', options: { sourceType: 'module', ranges: true } },
-    { code: 'async function bar(){ await import("./nchanged") }', options: { next: true } },
+    { code: 'async function bar(){ await import("./nchanged") }' },
     'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
   ]);
 });

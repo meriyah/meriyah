@@ -41,13 +41,13 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`let O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, () => {
       t.throws(() => {
-        parseSource(`let O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, { next: true, sourceType: 'module' });
+        parseSource(`let O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, { sourceType: 'module' });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; ; (${text})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${text})`, { next: true, impliedStrict: true });
+        parseSource(`var O = { p: 1 }, x = 10; ; (${text})`, { impliedStrict: true });
       });
     });
 
@@ -120,13 +120,13 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`var O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, { next: true, sourceType: 'module' });
+        parseSource(`var O = { p: 1 }, x = 10; ; if (${text}) { foo(); }`, { sourceType: 'module' });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; ; (${text})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${text})`, { next: true, impliedStrict: true });
+        parseSource(`var O = { p: 1 }, x = 10; ; (${text})`, { impliedStrict: true });
       });
     });
 
