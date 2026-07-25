@@ -74,7 +74,7 @@ describe('Expressions - Arrow', () => {
 
     it(`async ${text};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${text};`, { next: true, webcompat: true });
+        parseSource(`async ${text};`, { webcompat: true });
       });
     });
 
@@ -239,11 +239,6 @@ describe('Expressions - Arrow', () => {
         parseSource(`x = ${text};`);
       });
     });
-    it(`x = ${text};`, () => {
-      t.throws(() => {
-        parseSource(`x = ${text};`, { next: true });
-      });
-    });
     it(`bar,  ${text};`, () => {
       t.throws(() => {
         parseSource(`bar,  ${text};`);
@@ -380,12 +375,6 @@ describe('Expressions - Arrow', () => {
       });
     });
 
-    it(`v = ${text};`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`v = ${text};`, { next: true });
-      });
-    });
-
     it(`bar,  ${text};`, () => {
       t.doesNotThrow(() => {
         parseSource(`bar,  ${text};`);
@@ -407,12 +396,6 @@ describe('Expressions - Arrow', () => {
     it(`${text}, bar;`, () => {
       t.doesNotThrow(() => {
         parseSource(`${text}, bar;`);
-      });
-    });
-
-    it(`${text}, bar;`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${text}, bar;`, { next: true });
       });
     });
   }
@@ -461,12 +444,6 @@ describe('Expressions - Arrow', () => {
     it(`var x = ()${text} =>{}`, () => {
       t.throws(() => {
         parseSource(`var x = ()${text} =>{}`);
-      });
-    });
-
-    it(`var x = ()${text} =>{}`, () => {
-      t.throws(() => {
-        parseSource(`var x = ()${text} =>{}`, { next: true });
       });
     });
 
@@ -1150,11 +1127,6 @@ describe('Expressions - Arrow', () => {
         parseSource(`${text};`, { webcompat: true });
       });
     });
-    it(`${text};`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${text};`, { next: true });
-      });
-    });
 
     it(`function x(){${text} }`, () => {
       t.doesNotThrow(() => {
@@ -1176,11 +1148,6 @@ describe('Expressions - Arrow', () => {
     it(`${text};`, () => {
       t.throws(() => {
         parseSource(`${text};`, { webcompat: true });
-      });
-    });
-    it(`${text};`, () => {
-      t.throws(() => {
-        parseSource(`${text};`, { next: true });
       });
     });
 

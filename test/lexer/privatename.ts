@@ -28,7 +28,6 @@ describe('lexer - privatename', () => {
   pass('scan identifier with backslash middle', {
     source: '#hello',
     ctx: Context.None,
-    options: { next: true },
     token: Token.PrivateField,
     value: '',
     newline: false,
