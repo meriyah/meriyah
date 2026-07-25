@@ -47,7 +47,7 @@ describe('Expressions - Binary', () => {
   ]) {
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
     it(text, () => {

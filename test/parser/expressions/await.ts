@@ -144,12 +144,6 @@ describe('Expressions - Await', () => {
       });
     });
 
-    it(`let f = () => {${text})`, () => {
-      t.throws(() => {
-        parseSource(`let f = () => {${text})`, { next: true });
-      });
-    });
-
     it(`'use strict'; async function* f() {${text})`, () => {
       t.throws(() => {
         parseSource(`let f = () => {${text})`);
@@ -277,12 +271,6 @@ describe('Expressions - Await', () => {
     it(`'use strict'; async function f() { ${text} }`, () => {
       t.throws(() => {
         parseSource(`async function f() { ${text} }`);
-      });
-    });
-
-    it(`'use strict'; async function f() { ${text} }`, () => {
-      t.throws(() => {
-        parseSource(`async function f() { ${text} }`, { next: true });
       });
     });
 

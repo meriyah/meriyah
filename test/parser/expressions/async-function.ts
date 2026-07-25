@@ -73,12 +73,6 @@ describe('Expressions - Async function', () => {
       });
     });
 
-    it(text, () => {
-      t.throws(() => {
-        parseSource(text, { next: true });
-      });
-    });
-
     it(`"use strict"; ${text}`, () => {
       t.throws(() => {
         parseSource(`"use strict"; ${text}`);

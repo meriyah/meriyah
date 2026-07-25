@@ -44,12 +44,6 @@ describe('Expressions - Async Generator', () => {
       });
     });
 
-    it(text, () => {
-      t.throws(() => {
-        parseSource(text, { next: true });
-      });
-    });
-
     it(`"use strict"; ${text}`, () => {
       t.throws(() => {
         parseSource(`"use strict"; ${text}`);
@@ -147,12 +141,6 @@ describe('Expressions - Async Generator', () => {
     it(`function foo() { ${text}}`, () => {
       t.doesNotThrow(() => {
         parseSource(`function foo() { ${text}}`);
-      });
-    });
-
-    it(`function foo() { ${text}}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`function foo() { ${text}}`, { next: true });
       });
     });
   }

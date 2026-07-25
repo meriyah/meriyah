@@ -118,12 +118,6 @@ describe('Expressions - Async arrow', () => {
         parseSource(`async ${text}, bar;`);
       });
     });
-
-    it(`async ${text}, bar;`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`async ${text}, bar;`, { next: true });
-      });
-    });
   }
 
   fail('Expressions - Async arrow (fail)', [
@@ -874,12 +868,6 @@ describe('Expressions - Async arrow', () => {
     it(`${text};`, () => {
       t.doesNotThrow(() => {
         parseSource(`${text};`, { webcompat: true });
-      });
-    });
-
-    it(`${text};`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${text};`, { next: true });
       });
     });
 
