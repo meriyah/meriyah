@@ -33,9 +33,6 @@
 These features need to be enabled with the `next` option.
 
 - [Decorators](https://github.com/tc39/proposal-decorators)
-
-### Not yet supported stage 3 features:
-
 - [Source Phase Imports](https://github.com/tc39/proposal-source-phase-imports)
 - [Deferring Module Evaluation](https://github.com/tc39/proposal-defer-import-eval)
 
