@@ -10525,6 +10525,61 @@ exports[`Expressions - Class > Expressions - Class (pass) > class C { async *gen
 }
 `;
 
+exports[`Expressions - Class > Expressions - Class (pass) > class MyClass {
+  a = 1
+  [b] = 2
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "left": {
+                "computed": true,
+                "object": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "optional": false,
+                "property": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": 2,
+              },
+              "type": "AssignmentExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "MyClass",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Class > Expressions - Class (pass) > class SimpleParent {
     constructor() {
         this.foo = 'SimpleParent';
