@@ -459,19 +459,7 @@ describe('Statements - For of', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
         parseSource(text);
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true });
       });
     });
 
