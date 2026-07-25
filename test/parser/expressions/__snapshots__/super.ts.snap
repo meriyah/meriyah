@@ -2264,7 +2264,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 44,
             "key": {
               "end": 21,
@@ -2367,7 +2366,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "start": 18,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 45,
       "id": {
         "end": 7,
@@ -2416,7 +2414,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 40,
             "key": {
               "end": 21,
@@ -2499,7 +2496,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "start": 18,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 42,
       "id": {
         "end": 7,
@@ -2548,7 +2544,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 56,
             "key": {
               "end": 21,
@@ -2660,7 +2655,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "start": 18,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 57,
       "id": {
         "end": 7,
@@ -2709,7 +2703,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 52,
             "key": {
               "end": 21,
@@ -2801,7 +2794,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "start": 18,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 54,
       "id": {
         "end": 7,
@@ -4828,7 +4820,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 76,
             "key": {
               "end": 37,
@@ -4928,7 +4919,6 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
         "start": 18,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 78,
       "id": {
         "end": 7,

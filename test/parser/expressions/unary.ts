@@ -29,12 +29,6 @@ describe('Expressions - Unary', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
         parseSource(text, { webcompat: true });
       });
     });

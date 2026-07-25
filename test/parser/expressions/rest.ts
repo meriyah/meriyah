@@ -52,12 +52,6 @@ describe('Expressions - Rest', () => {
 
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
-      });
-    });
-
-    it(text, () => {
-      t.throws(() => {
         parseSource(text, { webcompat: true });
       });
     });
@@ -138,12 +132,6 @@ describe('Expressions - Rest', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true });
       });
     });
   }

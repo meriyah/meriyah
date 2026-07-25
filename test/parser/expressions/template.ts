@@ -498,7 +498,7 @@ describe('Expressions - Template', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true }, Context.TaggedTemplate);
+        parseSource(text, { lexical: true }, Context.TaggedTemplate);
       });
     });
 

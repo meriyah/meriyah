@@ -656,19 +656,19 @@ describe('Expressions - Super', () => {
     'class x extends y { constructor() { super(this); } }',
     'class x extends y { constructor() { let xx = x + x; super(); } }',
     'class x extends y { constructor() { f(x); super(); } }',
-    { code: 'class x extends y { a = () => super.a(); }', options: { next: true, webcompat: true, ranges: true } },
-    { code: 'class x extends y { a = () => { super.a(); }}', options: { next: true, webcompat: true, ranges: true } },
+    { code: 'class x extends y { a = () => super.a(); }', options: { webcompat: true, ranges: true } },
+    { code: 'class x extends y { a = () => { super.a(); }}', options: { webcompat: true, ranges: true } },
     {
       code: 'class x extends y { a = async () => await super.a(); }',
-      options: { next: true, webcompat: true, ranges: true },
+      options: { webcompat: true, ranges: true },
     },
     {
       code: 'class x extends y { a = async () => { await super.a(); }}',
-      options: { next: true, webcompat: true, ranges: true },
+      options: { webcompat: true, ranges: true },
     },
     {
       code: 'class x extends y { static properties = { ...super.constructor.properties }; }',
-      options: { next: true, webcompat: true, ranges: true },
+      options: { webcompat: true, ranges: true },
     },
   ]);
 });
