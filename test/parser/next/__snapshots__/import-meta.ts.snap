@@ -223,12 +223,6 @@ exports[`Next - Import Meta > Expressions - Import Meta (fail) > import?.meta 1`
 `;
 
 exports[`Next - Import Meta > Expressions - Import Meta (fail) > import?.meta 2`] = `
-"SyntaxError [1:6-1:8]: The import keyword can only be used with the module goal
-> 1 | import?.meta
-    |       ^^ The import keyword can only be used with the module goal"
-`;
-
-exports[`Next - Import Meta > Expressions - Import Meta (fail) > import?.meta 3`] = `
 "SyntaxError [1:6-1:8]: Unexpected token: '?.'
 > 1 | import?.meta
     |       ^^ Unexpected token: '?.'"
