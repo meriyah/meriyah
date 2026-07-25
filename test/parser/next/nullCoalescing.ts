@@ -99,14 +99,14 @@ describe('Next - Nullish Coalescing', () => {
   }
 
   fail('Expressions - Nullish Coalescing (fail)', [
-    { code: 'c && d ?? e' },
-    { code: 'a??x = true?.(123)' },
-    { code: 'a??x = (true?.(123))' },
-    { code: '({a:let??foo} = 0);' },
-    { code: 'obj.??(defObj)' },
-    { code: '[a ?? b, c] = f(() => {  }); ' },
-    { code: '[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ' },
-    { code: 'a.??(nil).b.c.d.??(null)' },
+    'c && d ?? e',
+    'a??x = true?.(123)',
+    'a??x = (true?.(123))',
+    '({a:let??foo} = 0);',
+    'obj.??(defObj)',
+    '[a ?? b, c] = f(() => {  }); ',
+    '[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ',
+    'a.??(nil).b.c.d.??(null)',
     { code: 'c && d ?? e', options: { webcompat: true } },
     { code: '0 && 1 ?? 2', options: { sourceType: 'module' } },
     { code: '0 && 1 ?? 2', options: { webcompat: true } },
@@ -115,32 +115,27 @@ describe('Next - Nullish Coalescing', () => {
     { code: 'a ?? b || c', options: { sourceType: 'module' } },
     { code: 'a || b ?? c', options: { sourceType: 'module' } },
     { code: '0 ?? 1 && 2', options: { sourceType: 'module' } },
-
-    {
-      code: '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
-    },
+    '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
     { code: 'e ?? f ?? g || h;', options: { sourceType: 'module' } },
     { code: 'c && d ?? e', options: { sourceType: 'module' } },
   ]);
 
   pass('Next - Null Coalescing (pass)', [
-    { code: "({ x: 'hi' } ?? 3).x" },
-    { code: "'hi' ?? 3" },
-    { code: 'undefined ?? 3' },
-    { code: '1 << null ?? 3' },
-    { code: '1 / null ?? 3' },
-    { code: 'a ?? (b && c);' },
-    {
-      code: outdent`
-        a
-          ?? b
-          ?? c;
-      `,
-    },
-    { code: 'foo ?? 1;' },
-    { code: 'a ?? b ?? c;' },
-    { code: 'a ?? (b || c);' },
-    { code: '(a || b) ?? c;' },
-    { code: '(a && b) ?? c' },
+    "({ x: 'hi' } ?? 3).x",
+    "'hi' ?? 3",
+    'undefined ?? 3',
+    '1 << null ?? 3',
+    '1 / null ?? 3',
+    'a ?? (b && c);',
+    outdent`
+      a
+        ?? b
+        ?? c;
+    `,
+    'foo ?? 1;',
+    'a ?? b ?? c;',
+    'a ?? (b || c);',
+    '(a || b) ?? c;',
+    '(a && b) ?? c',
   ]);
 });
