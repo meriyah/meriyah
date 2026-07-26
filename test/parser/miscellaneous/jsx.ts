@@ -27,12 +27,12 @@ describe('Miscellaneous - JSX', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { jsx: true, next: true });
+        parseSource(text, { jsx: true });
       });
     });
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { jsx: true, next: true, webcompat: true });
+        parseSource(text, { jsx: true, webcompat: true });
       });
     });
   }
@@ -263,15 +263,15 @@ describe('Miscellaneous - JSX', () => {
     },
     {
       code: '<SolarSystem.Earth.America.USA.California.mountain-view></SolarSystem.Earth.America.USA.California.mountain-view>',
-      options: { jsx: true, next: true },
+      options: { jsx: true },
     },
-    { code: 'function *g() { yield <h1>Hello</h1> }', options: { jsx: true, next: true } },
-    { code: '<a>{`${1}`}</a>', options: { jsx: true, next: true } },
-    { code: '<strong><em><a href="{link}"><test/></a></em></strong>', options: { jsx: true, next: true } },
-    { code: '<x y="&#123abc &#123;" />', options: { jsx: true, next: true } },
-    { code: '<a b="&#xA2; &#x00A3;"/>', options: { jsx: true, next: true } },
-    { code: '<p q="Just my &#xA2;2" />', options: { jsx: true, next: true } },
-    { code: 'class C {  static a = <C.z></C.z> }', options: { jsx: true, next: true } },
+    { code: 'function *g() { yield <h1>Hello</h1> }', options: { jsx: true } },
+    { code: '<a>{`${1}`}</a>', options: { jsx: true } },
+    { code: '<strong><em><a href="{link}"><test/></a></em></strong>', options: { jsx: true } },
+    { code: '<x y="&#123abc &#123;" />', options: { jsx: true } },
+    { code: '<a b="&#xA2; &#x00A3;"/>', options: { jsx: true } },
+    { code: '<p q="Just my &#xA2;2" />', options: { jsx: true } },
+    { code: 'class C {  static a = <C.z></C.z> }', options: { jsx: true } },
 
     { code: '<n:a n:v />', options: { jsx: true } },
 

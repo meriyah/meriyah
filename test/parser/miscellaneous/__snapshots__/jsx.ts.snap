@@ -9151,7 +9151,6 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class C {  static a 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "a",
               "type": "Identifier",
@@ -9196,7 +9195,6 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class C {  static a 
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "C",
         "type": "Identifier",
