@@ -96,12 +96,6 @@ describe('Lexical - Object', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
         parseSource(text);
       });
     });
@@ -117,12 +111,6 @@ describe('Lexical - Object', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true, lexical: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

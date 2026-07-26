@@ -243,7 +243,7 @@ describe('Lexical - Switch', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }
@@ -276,12 +276,6 @@ describe('Lexical - Switch', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true, lexical: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

@@ -150,7 +150,6 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parseScript('foo', {
         impliedStrict: true,
-        next: true,
       }),
       {
         body: [
@@ -216,7 +215,6 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parseModule('"abc"', {
         raw: true,
-        next: true,
       }),
       {
         body: [
@@ -239,7 +237,6 @@ describe('Expressions - API', () => {
   it('should parse binary expr correctly', () => {
     t.deepEqual(
       parseModule('a ?? (x || dd && aa) / y - foo', {
-        next: true,
         ranges: true,
         loc: true,
       }),
@@ -472,7 +469,6 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parseModule('x || y || z && a ** x ? b ? c : d : e', {
         jsx: true,
-        next: true,
       }),
       {
         type: 'Program',
@@ -548,7 +544,6 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parseModule('<ul></ul>', {
         jsx: true,
-        next: true,
       }),
       {
         body: [

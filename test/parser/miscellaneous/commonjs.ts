@@ -9,7 +9,7 @@ describe('Statements - Return', () => {
     { code: 'class X { static { return; } }', options: { sourceType: 'commonjs' } },
     // The following should be allowed in CommonJS
     // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960396571
-    { code: 'using foo = null', options: { sourceType: 'commonjs', next: true } },
+    { code: 'using foo = null', options: { sourceType: 'commonjs' } },
   ]);
 
   pass('Commonjs (pass)', [
