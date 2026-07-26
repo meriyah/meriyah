@@ -25,17 +25,17 @@ describe('Miscellaneous - Hashbang', () => {
   ]) {
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true, webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { sourceType: 'module', next: true });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
@@ -49,17 +49,17 @@ describe('Miscellaneous - Hashbang', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { sourceType: 'module', next: true });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }

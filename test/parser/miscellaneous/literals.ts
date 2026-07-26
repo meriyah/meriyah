@@ -24,7 +24,7 @@ describe('Miscellaneous - Literal', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
@@ -52,7 +52,7 @@ describe('Miscellaneous - Literal', () => {
 
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true, webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }

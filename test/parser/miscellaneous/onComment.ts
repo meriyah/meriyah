@@ -550,7 +550,6 @@ describe('Miscellaneous - onComment', () => {
     let onCommentCount = 0;
     t.deepEqual(
       parseSource('#!/usr/bin/env node\n"use strict";\n', {
-        next: true,
         ranges: true,
         loc: true,
         onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {

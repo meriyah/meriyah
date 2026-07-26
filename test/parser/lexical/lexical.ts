@@ -149,14 +149,14 @@ describe('Lexical - Lexical', () => {
     { code: 'let {...[a,b]} = foo', options: { lexical: true } },
     { code: 'let {...{a,b}} = foo', options: { lexical: true } },
     { code: 'let {...(obj)} = foo', options: { lexical: true } },
-    { code: 'let {...(a,b)} = foo', options: { next: true, lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { lexical: true } },
     { code: 'let {...(a,b)} = foo', options: { webcompat: true, lexical: true } },
     { code: 'let {...[a,b]} = foo', options: { webcompat: true, lexical: true } },
-    { code: 'let {...{a,b}} = foo', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { webcompat: true, lexical: true } },
     { code: 'let {...(obj)} = foo', options: { webcompat: true, lexical: true } },
-    { code: 'let {...(a,b)} = foo', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'let {...(a,b)} = foo', options: { webcompat: true, lexical: true } },
     { code: 'let {...[a,b]} = foo', options: { webcompat: true, lexical: true } },
-    { code: 'let {...{a,b}} = foo', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'let {...{a,b}} = foo', options: { webcompat: true, lexical: true } },
     { code: 'let {...(obj)} = foo', options: { webcompat: true, lexical: true } },
     { code: 'var x; let x;', options: { lexical: true } },
     { code: '{ var f; let f; }', options: { lexical: true } },
@@ -335,11 +335,6 @@ describe('Lexical - Lexical', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true, lexical: true });
-      });
-    });
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

@@ -490,11 +490,6 @@ describe('Expressions - Template', () => {
         parseSource(text, { webcompat: true }, Context.TaggedTemplate);
       });
     });
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true }, Context.TaggedTemplate);
-      });
-    });
 
     it(text, () => {
       t.doesNotThrow(() => {

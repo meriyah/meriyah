@@ -208,12 +208,6 @@ describe('Lexical - Try', () => {
         parseSource(text);
       });
     });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
-      });
-    });
   }
 
   for (const text of [
@@ -276,12 +270,6 @@ describe('Lexical - Try', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true, lexical: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

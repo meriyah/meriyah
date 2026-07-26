@@ -264,7 +264,7 @@ describe('Miscellaneous - Comments', () => {
         lines
         */
       `,
-      options: { next: true, loc: true },
+      options: { loc: true },
     },
     { code: '/**/ --> comment', options: { ranges: true, webcompat: true } },
     { code: 'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', options: { ranges: true, webcompat: true } },

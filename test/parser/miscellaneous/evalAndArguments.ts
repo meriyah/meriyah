@@ -56,7 +56,7 @@ describe('Miscellaneous - Eval and arguments', () => {
 
     it(`'use strict'; for (${text} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${text} in {}) {}`, { next: true });
+        parseSource(`'use strict'; for (${text} in {}) {}`);
       });
     });
 

@@ -42,8 +42,8 @@ describe('Lexical - If', () => {
     },
     { code: 'if (x) async function f(){}', options: { lexical: true } },
     { code: 'if (x) {} else if (y) {} else var foo = 1; let foo = 1;', options: { lexical: true } },
-    { code: 'if (x) { if (y) var foo = 1; } let foo = 1;', options: { next: true, lexical: true } },
-    { code: 'if (x) { if (y) var foo = 1; } let foo = 1;', options: { webcompat: true, next: true, lexical: true } },
+    { code: 'if (x) { if (y) var foo = 1; } let foo = 1;', options: { lexical: true } },
+    { code: 'if (x) { if (y) var foo = 1; } let foo = 1;', options: { webcompat: true, lexical: true } },
     { code: 'const x = a; function x(){};', options: { sourceType: 'module', lexical: true } },
     { code: 'if (x) var foo = 1; let foo = 1;', options: { impliedStrict: true, webcompat: true, lexical: true } },
     { code: 'if (x) { if (y) var foo = 1; } let foo = 1;', options: { lexical: true } },
@@ -59,11 +59,6 @@ describe('Lexical - If', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true, lexical: true });
-      });
-    });
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }
