@@ -88,61 +88,54 @@ describe('Next - Nullish Coalescing', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
 
   fail('Expressions - Nullish Coalescing (fail)', [
-    { code: 'c && d ?? e', options: { next: true } },
-    { code: 'a??x = true?.(123)', options: { next: true } },
-    { code: 'a??x = (true?.(123))', options: { next: true } },
-    { code: '({a:let??foo} = 0);', options: { next: true } },
-    { code: 'obj.??(defObj)', options: { next: true } },
-    { code: '[a ?? b, c] = f(() => {  }); ', options: { next: true } },
-    { code: '[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', options: { next: true } },
-    { code: 'a.??(nil).b.c.d.??(null)', options: { next: true } },
+    'c && d ?? e',
+    'a??x = true?.(123)',
+    'a??x = (true?.(123))',
+    '({a:let??foo} = 0);',
+    'obj.??(defObj)',
+    '[a ?? b, c] = f(() => {  }); ',
+    '[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ',
+    'a.??(nil).b.c.d.??(null)',
     { code: 'c && d ?? e', options: { webcompat: true } },
-    { code: '0 && 1 ?? 2', options: { sourceType: 'module', next: true } },
-    { code: '0 && 1 ?? 2', options: { webcompat: true, next: true } },
-    { code: '0 ?? 1 || 2', options: { sourceType: 'module', next: true } },
-    { code: '0 ?? 1 && 2', options: { sourceType: 'module', next: true } },
-    { code: 'a ?? b || c', options: { sourceType: 'module', next: true } },
-    { code: 'a || b ?? c', options: { sourceType: 'module', next: true } },
-    { code: '0 ?? 1 && 2', options: { sourceType: 'module', next: true } },
-
-    {
-      code: '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
-      options: { next: true },
-    },
-    { code: 'e ?? f ?? g || h;', options: { sourceType: 'module', next: true } },
-    { code: 'c && d ?? e', options: { sourceType: 'module', next: true } },
+    { code: '0 && 1 ?? 2', options: { sourceType: 'module' } },
+    { code: '0 && 1 ?? 2', options: { webcompat: true } },
+    { code: '0 ?? 1 || 2', options: { sourceType: 'module' } },
+    { code: '0 ?? 1 && 2', options: { sourceType: 'module' } },
+    { code: 'a ?? b || c', options: { sourceType: 'module' } },
+    { code: 'a || b ?? c', options: { sourceType: 'module' } },
+    { code: '0 ?? 1 && 2', options: { sourceType: 'module' } },
+    '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
+    { code: 'e ?? f ?? g || h;', options: { sourceType: 'module' } },
+    { code: 'c && d ?? e', options: { sourceType: 'module' } },
   ]);
 
   pass('Next - Null Coalescing (pass)', [
-    { code: "({ x: 'hi' } ?? 3).x", options: { next: true } },
-    { code: "'hi' ?? 3", options: { next: true } },
-    { code: 'undefined ?? 3', options: { next: true } },
-    { code: '1 << null ?? 3', options: { next: true } },
-    { code: '1 / null ?? 3', options: { next: true } },
-    { code: 'a ?? (b && c);', options: { next: true } },
-    {
-      code: outdent`
-        a
-          ?? b
-          ?? c;
-      `,
-      options: { next: true },
-    },
-    { code: 'foo ?? 1;', options: { next: true } },
-    { code: 'a ?? b ?? c;', options: { next: true } },
-    { code: 'a ?? (b || c);', options: { next: true } },
-    { code: '(a || b) ?? c;', options: { next: true } },
-    { code: '(a && b) ?? c', options: { next: true } },
+    "({ x: 'hi' } ?? 3).x",
+    "'hi' ?? 3",
+    'undefined ?? 3',
+    '1 << null ?? 3',
+    '1 / null ?? 3',
+    'a ?? (b && c);',
+    outdent`
+      a
+        ?? b
+        ?? c;
+    `,
+    'foo ?? 1;',
+    'a ?? b ?? c;',
+    'a ?? (b || c);',
+    '(a || b) ?? c;',
+    '(a && b) ?? c',
   ]);
 });
