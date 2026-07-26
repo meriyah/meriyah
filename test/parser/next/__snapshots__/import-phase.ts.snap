@@ -1,5 +1,29 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Enable one should not enables another one > import defer * as ns from "m"; 1`] = `
+"SyntaxError [1:13-1:14]: Expected 'from'
+> 1 | import defer * as ns from "m";
+    |              ^ Expected 'from'"
+`;
+
+exports[`Enable one should not enables another one > import source x from "m"; 1`] = `
+"SyntaxError [1:14-1:15]: Expected 'from'
+> 1 | import source x from "m";
+    |               ^ Expected 'from'"
+`;
+
+exports[`Enable one should not enables another one > import.defer("m") 1`] = `
+"SyntaxError [1:7-1:12]: The only valid meta property for import is 'import.meta'
+> 1 | import.defer("m")
+    |        ^^^^^ The only valid meta property for import is 'import.meta'"
+`;
+
+exports[`Enable one should not enables another one > import.source("m") 1`] = `
+"SyntaxError [1:7-1:13]: The only valid meta property for import is 'import.meta'
+> 1 | import.source("m")
+    |        ^^^^^^ The only valid meta property for import is 'import.meta'"
+`;
+
 exports[`Import Phase contextual identifiers with next disabled > import * as defer from "m"; 1`] = `
 {
   "body": [
