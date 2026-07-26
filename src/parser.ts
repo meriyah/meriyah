@@ -8248,7 +8248,7 @@ function parseClassExpression(
       id,
       superClass,
       body,
-      ...(parser.features ? { decorators } : null),
+      ...(parser.features & Features.Decorators ? { decorators } : null),
     },
     start,
   );
