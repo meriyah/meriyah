@@ -9883,7 +9883,6 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A { static = 1
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "static",
               "type": "Identifier",
@@ -9898,7 +9897,6 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A { static = 1
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "A",
         "type": "Identifier",
@@ -9920,7 +9918,6 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A { static } 1
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "static",
               "type": "Identifier",
@@ -9932,7 +9929,6 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A { static } 1
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "A",
         "type": "Identifier",
@@ -9954,7 +9950,6 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A { static; } 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "static",
               "type": "Identifier",
@@ -9966,7 +9961,6 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A { static; } 
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "A",
         "type": "Identifier",
@@ -10039,7 +10033,6 @@ static static = 42;} 1`] = `
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 31,
             "key": {
               "end": 25,
@@ -10101,7 +10094,6 @@ static static = 42;} 1`] = `
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 48,
             "key": {
               "end": 42,
@@ -10163,7 +10155,6 @@ static static = 42;} 1`] = `
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 65,
             "key": {
               "end": 59,
@@ -10225,7 +10216,6 @@ static static = 42;} 1`] = `
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 84,
             "key": {
               "end": 78,
@@ -10287,7 +10277,6 @@ static static = 42;} 1`] = `
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 104,
             "key": {
               "end": 98,
@@ -10366,7 +10355,6 @@ static static = 42;} 1`] = `
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 105,
       "id": {
         "end": 7,

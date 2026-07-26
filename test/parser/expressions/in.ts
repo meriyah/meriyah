@@ -22,12 +22,6 @@ describe('Expressions -In', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
         parseSource(text, { webcompat: true });
       });
     });

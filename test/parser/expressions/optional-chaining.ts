@@ -273,16 +273,6 @@ describe('Optional chaining', () => {
         parseSource(text, { webcompat: true });
       });
     });
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
-      });
-    });
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true });
-      });
-    });
   }
 
   fail('Expressions - Optional chaining (fail)', [

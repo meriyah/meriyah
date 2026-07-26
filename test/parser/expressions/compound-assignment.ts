@@ -75,12 +75,12 @@ describe('Expressions - Compound assignment', () => {
   ]) {
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true, sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
     it(text, () => {

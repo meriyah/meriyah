@@ -5,7 +5,6 @@ describe('Expressions - Conditional', () => {
   fail('Expressions - Conditional (fail)', ['a ? await x : c', 'a ? b : await c', 'a ? b : yield c']);
 
   pass('Expressions - Conditional (pass)', [
-    { code: 'foo?.3:0', options: { next: true } },
     'foo?.3:0',
     'foo ? .3 : 0',
     'a ? b : c = d',

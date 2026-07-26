@@ -45,7 +45,7 @@ describe('Expressions - New target', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
@@ -56,7 +56,7 @@ describe('Expressions - New target', () => {
   ]) {
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true, sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
   }
@@ -90,31 +90,31 @@ describe('Expressions - New target', () => {
   ]) {
     it(`function f() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f() {${text}}`, { next: true, sourceType: 'module' });
+        parseSource(`function f() {${text}}`, { sourceType: 'module' });
       });
     });
 
     it(`'use strict'; function f() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; function f() {${text}}`, { next: true, sourceType: 'module' });
+        parseSource(`'use strict'; function f() {${text}}`, { sourceType: 'module' });
       });
     });
 
     it(`var f = function() {${text}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = function() {${text}}`, { next: true, sourceType: 'module' });
+        parseSource(`var f = function() {${text}}`, { sourceType: 'module' });
       });
     });
 
     it(`({m: function() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({m: function() {${text}}})`, { next: true, sourceType: 'module' });
+        parseSource(`({m: function() {${text}}})`, { sourceType: 'module' });
       });
     });
 
     it(`({set x(_) {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({set x(_) {${text}}})`, { next: true });
+        parseSource(`({set x(_) {${text}}})`);
       });
     });
 
@@ -126,13 +126,13 @@ describe('Expressions - New target', () => {
 
     it(`({m: function() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({m: function() {${text}}})`, { next: true, sourceType: 'module' });
+        parseSource(`({m: function() {${text}}})`, { sourceType: 'module' });
       });
     });
 
     it(`'use strict'; ({m: function() {${text}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; ({m: function() {${text}}})`, { next: true, sourceType: 'module' });
+        parseSource(`'use strict'; ({m: function() {${text}}})`, { sourceType: 'module' });
       });
     });
 
@@ -144,7 +144,7 @@ describe('Expressions - New target', () => {
 
     it(`class C {set x(_) {${text}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {set x(_) {${text}}}`, { next: true, sourceType: 'module' });
+        parseSource(`class C {set x(_) {${text}}}`, { sourceType: 'module' });
       });
     });
   }

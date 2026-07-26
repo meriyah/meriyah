@@ -1109,33 +1109,6 @@ exports[`Expressions - Conditional > Expressions - Conditional (pass) > foo?.3:0
 }
 `;
 
-exports[`Expressions - Conditional > Expressions - Conditional (pass) > foo?.3:0 2`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "alternate": {
-          "type": "Literal",
-          "value": 0,
-        },
-        "consequent": {
-          "type": "Literal",
-          "value": 0.3,
-        },
-        "test": {
-          "name": "foo",
-          "type": "Identifier",
-        },
-        "type": "ConditionalExpression",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
 exports[`Expressions - Conditional > Expressions - Conditional (pass) > true ? foo : bar 1`] = `
 {
   "body": [

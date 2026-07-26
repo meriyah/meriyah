@@ -82,7 +82,7 @@ describe('Expressions - Object', () => {
 
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
 
@@ -211,12 +211,6 @@ describe('Expressions - Object', () => {
         parseSource(`'use strict'; x = ${text}`);
       });
     });
-
-    it(`'use strict'; x = ${text}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`'use strict'; x = ${text}`, { next: true });
-      });
-    });
   }
 
   for (const text of [
@@ -291,25 +285,19 @@ describe('Expressions - Object', () => {
   ]) {
     it(`({${text}} = x);`, () => {
       t.throws(() => {
-        parseSource(`({${text}} = x);`, { next: true });
+        parseSource(`({${text}} = x);`);
       });
     });
 
     it(`({${text}} = x) => x;`, () => {
       t.throws(() => {
-        parseSource(`({${text}} = x) => x;`, { next: true, webcompat: true });
+        parseSource(`({${text}} = x) => x;`, { webcompat: true });
       });
     });
 
     it(`({${text}} = x) => x;`, () => {
       t.throws(() => {
-        parseSource(`({x: ${text}} = x) => x;`, { next: true });
-      });
-    });
-
-    it(`({x: ${text}});`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`({x: ${text}});`, { next: true });
+        parseSource(`({x: ${text}} = x) => x;`);
       });
     });
 
@@ -347,7 +335,7 @@ describe('Expressions - Object', () => {
   ]) {
     it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict";  ({ ${text} });`, { next: true });
+        parseSource(`"use strict";  ({ ${text} });`);
       });
     });
   }
@@ -402,12 +390,6 @@ describe('Expressions - Object', () => {
   ]) {
     it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict";  ({ ${text} });`, { next: true });
-      });
-    });
-
-    it(`"use strict"; ({ ${text} })`, () => {
-      t.doesNotThrow(() => {
         parseSource(`"use strict";  ({ ${text} });`);
       });
     });
@@ -458,7 +440,7 @@ describe('Expressions - Object', () => {
   ]) {
     it(`({foo: ${text}}) => null`, () => {
       t.throws(() => {
-        parseSource(`({foo: ${text}}) => null`, { next: true });
+        parseSource(`({foo: ${text}}) => null`);
       });
     });
     it(`({foo: ${text}} = null)`, () => {
@@ -536,11 +518,6 @@ describe('Expressions - Object', () => {
     it(`({ ${text}(x, y) {}});`, () => {
       t.doesNotThrow(() => {
         parseSource(`({ ${text}(x, y) {}});`);
-      });
-    });
-    it(`({ ${text}(x, y) {}});`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`({ ${text}(x, y) {}});`, { next: true });
       });
     });
     it(`({ ${text}(x, y) {}});`, () => {
@@ -629,11 +606,6 @@ describe('Expressions - Object', () => {
     it(`a = ${text} = b`, () => {
       t.doesNotThrow(() => {
         parseSource(`a = ${text} = b`, { lexical: true });
-      });
-    });
-    it(`a = ${text} = b`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`a = ${text} = b`, { next: true });
       });
     });
 
@@ -948,12 +920,6 @@ describe('Expressions - Object', () => {
   ]) {
     it(`({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${text} })`, { next: true });
-      });
-    });
-
-    it(`({ ${text} })`, () => {
-      t.doesNotThrow(() => {
         parseSource(`({ ${text} })`, { webcompat: true });
       });
     });
@@ -966,7 +932,7 @@ describe('Expressions - Object', () => {
 
     it(`({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ ${text} })`, { next: true, webcompat: true });
+        parseSource(`({ ${text} })`, { webcompat: true });
       });
     });
 
@@ -990,7 +956,7 @@ describe('Expressions - Object', () => {
 
     it(`"use strict"; ({ ${text} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ({ ${text} })`, { next: true });
+        parseSource(`"use strict"; ({ ${text} })`);
       });
     });
   }

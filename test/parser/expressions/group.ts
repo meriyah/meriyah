@@ -67,7 +67,7 @@ describe('Expressions - Group', () => {
 
     it(`should fail on '(${text} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`(${text} = foo)`, { next: true, webcompat: true });
+        parseSource(`(${text} = foo)`, { webcompat: true });
       });
     });
   }

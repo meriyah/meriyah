@@ -24,12 +24,12 @@ describe('Expressions - Member', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, sourceType: 'module' });
+        parseSource(text, { sourceType: 'module' });
       });
     });
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
   }
