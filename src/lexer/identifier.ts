@@ -18,9 +18,17 @@ export function scanIdentifier(parser: Parser, context: Context, isValidAsKeywor
   while (isIdPart[advanceChar(parser)]);
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
 
-  return parser.currentChar !== Chars.Backslash && parser.currentChar <= 0x7e
-    ? (descKeywordTable.get(parser.tokenValue) ?? Token.Identifier)
-    : scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
+  if (parser.currentChar === Chars.Backslash || parser.currentChar > 0x7e) {
+    return scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
+  }
+
+  // Every entry in `descKeywordTable` is between 2 and 11 characters long, so
+  // anything outside that range cannot be a keyword and can skip the lookup.
+  // Same bound as the escaped path below.
+  const length = parser.index - parser.tokenIndex;
+  if (length < 2 || length > 11) return Token.Identifier;
+
+  return descKeywordTable.get(parser.tokenValue) ?? Token.Identifier;
 }
 
 /**
