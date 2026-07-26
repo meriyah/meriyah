@@ -76,9 +76,7 @@ interface NormalizedRanges {
   range: boolean;
 }
 
-export type InternalOptions = Options & {
-  features?: number;
-};
+export type InternalOptions = Options & { features?: number };
 
 export type NormalizedOptions = Omit<
   Options,
