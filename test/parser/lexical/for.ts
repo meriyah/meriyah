@@ -84,11 +84,5 @@ describe('Lexical - For statement', () => {
         parseSource(text, { webcompat: true, lexical: true });
       });
     });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
-      });
-    });
   }
 });

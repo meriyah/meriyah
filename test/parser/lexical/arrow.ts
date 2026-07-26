@@ -31,15 +31,15 @@ describe('Lexical - Arrows', () => {
     { code: 'yield => let yield', options: { lexical: true } },
     { code: 'a => { let a }', options: { lexical: true } },
     { code: 'a => { const a }', options: { lexical: true } },
-    { code: 'a => const [a]', options: { next: true, lexical: true } },
+    { code: 'a => const [a]', options: { lexical: true } },
     { code: 'a => const {a}', options: { sourceType: 'module', lexical: true } },
     { code: 'a => let {a}', options: { sourceType: 'module', lexical: true } },
     { code: 'async a => let {a}', options: { sourceType: 'module', lexical: true } },
     { code: 'yield => let yield', options: { sourceType: 'module', lexical: true } },
-    { code: 'a => { let a }', options: { sourceType: 'module', next: true, lexical: true } },
+    { code: 'a => { let a }', options: { sourceType: 'module', lexical: true } },
     { code: 'a => { const a }', options: { sourceType: 'module', lexical: true } },
-    { code: 'a => { let [a] = x; }', options: { next: true, lexical: true } },
-    { code: 'a => { let {a} = x }', options: { next: true, lexical: true } },
+    { code: 'a => { let [a] = x; }', options: { lexical: true } },
+    { code: 'a => { let {a} = x }', options: { lexical: true } },
     { code: 'a => { let [a] = x; }', options: { lexical: true } },
     { code: 'a => { let {a} = x }', options: { lexical: true } },
     { code: 'a => {  const a = y; function x(){}  }', options: { lexical: true } },
@@ -144,12 +144,6 @@ describe('Lexical - Arrows', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
         parseSource(text);
       });
     });
@@ -173,12 +167,6 @@ describe('Lexical - Arrows', () => {
     it(text, () => {
       t.doesNotThrow(() => {
         parseSource(text, { webcompat: true, lexical: true });
-      });
-    });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
       });
     });
   }

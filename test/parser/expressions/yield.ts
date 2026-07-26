@@ -144,12 +144,6 @@ describe('Expressions - Yield', () => {
         parseSource(text, { webcompat: true });
       });
     });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true });
-      });
-    });
   }
 
   for (const text of [
@@ -306,7 +300,7 @@ describe('Expressions - Yield', () => {
     // Function context.
     it(`"use strict"; function f() { ${test} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function f() { ${test} }`, { next: true, webcompat: true });
+        parseSource(`"use strict"; function f() { ${test} }`, { webcompat: true });
       });
     });
 

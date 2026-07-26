@@ -287,11 +287,5 @@ describe('Lexical - Block', () => {
         parseSource(text, { webcompat: true });
       });
     });
-
-    it(text, () => {
-      t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
-      });
-    });
   }
 });
