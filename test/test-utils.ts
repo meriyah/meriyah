@@ -9,7 +9,7 @@ const IS_CI = Boolean(process.env.CI);
 // https://github.com/vitest-dev/vitest/issues/8151
 const toTestTile = (code: string) => code.replaceAll('\r', '␍␊');
 
-type NormalizedTestCase = { code: string; options?: InternalOptions; context?: Context; only?: true };
+type NormalizedTestCase = { code: string; options?: Omit<InternalOptions, 'next'>; context?: Context; only?: true };
 type TestCase = string | NormalizedTestCase;
 
 const serializeParserError = (code: string, error: unknown) => {
