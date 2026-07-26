@@ -1,6 +1,7 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
+import { Features } from '../../../src/features.ts';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
@@ -479,6 +480,6 @@ describe('Next - Private methods', () => {
     { code: 'class C { async #m() {} }', options: { ranges: true, loc: true } },
     { code: 'class C { * \n#m(v) {} }', options: { ranges: true, loc: true } },
     { code: 'class C { async * \n#m() {} }', options: { ranges: true, loc: true } },
-    { code: 'class C { accessor #x = 1 }', options: { ranges: true, loc: true, next: true } },
+    { code: 'class C { accessor #x = 1 }', options: { ranges: true, loc: true, features: Features.Decorators } },
   ]);
 });

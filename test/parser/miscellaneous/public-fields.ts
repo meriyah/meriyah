@@ -186,7 +186,7 @@ describe('Next - Public fields', () => {
   ]) {
     it(`class C { ${text} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${text} }`, { next: true });
+        parseSource(`class C { ${text} }`);
       });
     });
   }
