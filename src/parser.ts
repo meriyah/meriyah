@@ -2515,7 +2515,9 @@ function parseImportDeclaration(
 
   nextToken(parser, context);
 
-  let source: ESTree.StringLiteral;
+  let source!: ESTree.StringLiteral;
+  let sourceParsed = false;
+  let phase: 'defer' | 'source' | null = null;
 
   const { tokenStart } = parser;
 
@@ -2526,19 +2528,106 @@ function parseImportDeclaration(
     source = parseLiteral<ESTree.StringLiteral>(parser, context);
   } else {
     if (parser.getToken() & Token.IsIdentifier) {
-      const local = parseRestrictedIdentifier(parser, context, scope);
-      specifiers = [
-        parser.finishNode<ESTree.ImportDefaultSpecifier>(
-          {
-            type: 'ImportDefaultSpecifier',
-            local,
-          },
-          tokenStart,
-        ),
-      ];
+      const token = parser.getToken();
+      const { tokenValue } = parser;
+      const isPhaseCandidate =
+        parser.options.next && (token & Token.IsEscaped) === 0 && (tokenValue === 'defer' || tokenValue === 'source');
 
-      // NameSpaceImport
-      if (consumeOpt(parser, context, Token.Comma)) {
+      if (isPhaseCandidate) {
+        const phaseOrLocal = parseIdentifier(parser, context);
+
+        if (tokenValue === 'defer') {
+          if (parser.getToken() === Token.Multiply) {
+            phase = 'defer';
+            specifiers = [parseImportNamespaceSpecifier(parser, context, scope)];
+          } else if (parser.getToken() === Token.FromKeyword || parser.getToken() === Token.Comma) {
+            scope?.addBlockName(context, tokenValue, BindingKind.Let, Origin.None);
+            specifiers = [
+              parser.finishNode<ESTree.ImportDefaultSpecifier>(
+                {
+                  type: 'ImportDefaultSpecifier',
+                  local: phaseOrLocal,
+                },
+                tokenStart,
+              ),
+            ];
+          } else {
+            parser.report(Errors.InvalidDeferImport);
+          }
+        } else if (parser.getToken() === Token.FromKeyword) {
+          const fromToken = parser.getToken();
+          const fromStart = parser.tokenStart;
+          const fromLocal = parseIdentifier(parser, context);
+
+          if (parser.getToken() === Token.FromKeyword) {
+            validateBindingIdentifier(parser, context, BindingKind.Const, fromToken, 0);
+            scope?.addBlockName(context, fromLocal.name, BindingKind.Let, Origin.None);
+            phase = 'source';
+            specifiers = [
+              parser.finishNode<ESTree.ImportDefaultSpecifier>(
+                {
+                  type: 'ImportDefaultSpecifier',
+                  local: fromLocal,
+                },
+                fromStart,
+              ),
+            ];
+          } else {
+            scope?.addBlockName(context, tokenValue, BindingKind.Let, Origin.None);
+            specifiers = [
+              parser.finishNode<ESTree.ImportDefaultSpecifier>(
+                {
+                  type: 'ImportDefaultSpecifier',
+                  local: phaseOrLocal,
+                },
+                tokenStart,
+              ),
+            ];
+            if (parser.getToken() !== Token.StringLiteral) parser.report(Errors.InvalidExportImportSource, 'Import');
+            source = parseLiteral<ESTree.StringLiteral>(parser, context);
+            sourceParsed = true;
+          }
+        } else if (parser.getToken() & Token.IsIdentifier) {
+          phase = 'source';
+          const localStart = parser.tokenStart;
+          const local = parseRestrictedIdentifier(parser, context, scope);
+          specifiers = [
+            parser.finishNode<ESTree.ImportDefaultSpecifier>(
+              {
+                type: 'ImportDefaultSpecifier',
+                local,
+              },
+              localStart,
+            ),
+          ];
+        } else if (parser.getToken() === Token.Comma) {
+          scope?.addBlockName(context, tokenValue, BindingKind.Let, Origin.None);
+          specifiers = [
+            parser.finishNode<ESTree.ImportDefaultSpecifier>(
+              {
+                type: 'ImportDefaultSpecifier',
+                local: phaseOrLocal,
+              },
+              tokenStart,
+            ),
+          ];
+        } else {
+          parser.report(Errors.InvalidSourceImport);
+        }
+      } else {
+        const local = parseRestrictedIdentifier(parser, context, scope);
+        specifiers = [
+          parser.finishNode<ESTree.ImportDefaultSpecifier>(
+            {
+              type: 'ImportDefaultSpecifier',
+              local,
+            },
+            tokenStart,
+          ),
+        ];
+      }
+
+      if (phase === null && !sourceParsed && consumeOpt(parser, context, Token.Comma)) {
         switch (parser.getToken()) {
           case Token.Multiply:
             specifiers.push(parseImportNamespaceSpecifier(parser, context, scope));
@@ -2570,7 +2659,7 @@ function parseImportDeclaration(
       }
     }
 
-    source = parseModuleSpecifier(parser, context);
+    if (!sourceParsed) source = parseModuleSpecifier(parser, context);
   }
 
   const attributes = parseImportAttributes(parser, context);
@@ -2580,6 +2669,7 @@ function parseImportDeclaration(
     specifiers,
     source,
     attributes,
+    ...(parser.options.next ? { phase } : null),
   };
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -4450,7 +4540,7 @@ function parseImportCallOrMetaExpression(
   let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context);
 
   if (parser.getToken() === Token.Period) {
-    return parseImportMetaExpression(parser, context, expr, start);
+    return parseImportMetaExpression(parser, context, expr, start, privateScope, inGroup, inNew);
   }
 
   if (inNew) parser.report(Errors.InvalidImportNew);
@@ -4474,11 +4564,34 @@ function parseImportMetaExpression(
   context: Context,
   meta: ESTree.Identifier,
   start: Location,
-): ESTree.MetaProperty {
-  if ((context & Context.Module) === 0) parser.report(Errors.ImportMetaOutsideModule);
+  privateScope?: PrivateScope,
+  inGroup: 0 | 1 = 0,
+  inNew: 0 | 1 = 0,
+): ESTree.MetaProperty | ESTree.ImportExpression {
+  const propertyStart = parser.tokenStart;
+  const propertyEnd = parser.currentLocation;
 
   nextToken(parser, context); // skips: '.'
   const token = parser.getToken();
+  const phase =
+    parser.options.next &&
+    (parser.tokenValue === 'defer' || parser.tokenValue === 'source') &&
+    (token & Token.IsEscaped) === 0
+      ? parser.tokenValue
+      : null;
+
+  if (phase !== null) {
+    if (inNew) parser.report(Errors.InvalidImportNew);
+    nextToken(parser, context);
+    const expression = parseImportExpression(parser, context, privateScope, inGroup, start, phase);
+    parser.assignable = AssignmentTargetKind.Invalid;
+    return expression;
+  }
+
+  if ((context & Context.Module) === 0) {
+    throw new ParseError(propertyStart, propertyEnd, Errors.ImportMetaOutsideModule);
+  }
+
   if (token !== Token.Meta && parser.tokenValue !== 'meta') {
     parser.report(Errors.InvalidImportMeta);
   } else if (token & Token.IsEscaped) {
@@ -4511,6 +4624,7 @@ function parseImportExpression(
   privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   start: Location,
+  phase: 'defer' | 'source' | null = null,
 ): ESTree.ImportExpression {
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
 
@@ -4535,6 +4649,7 @@ function parseImportExpression(
     type: 'ImportExpression',
     source,
     options,
+    ...(parser.options.next ? { phase } : null),
   };
 
   consume(parser, context, Token.RightParen);

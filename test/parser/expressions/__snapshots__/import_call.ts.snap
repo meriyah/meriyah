@@ -491,6 +491,7 @@ exports[`ImportCall > ImportCall (pass) > async function bar(){ await import("./
             "expression": {
               "argument": {
                 "options": null,
+                "phase": null,
                 "source": {
                   "type": "Literal",
                   "value": "./nchanged",
