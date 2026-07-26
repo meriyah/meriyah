@@ -2536,9 +2536,9 @@ function parseImportDeclaration(
       const token = parser.getToken();
       const { tokenValue } = parser;
       const isPhaseDefer =
-        parser.options.features & Features.ImportDefer && (token & Token.IsEscaped) === 0 && tokenValue == 'defer';
+        parser.features & Features.ImportDefer && (token & Token.IsEscaped) === 0 && tokenValue == 'defer';
       const isPhaseSource =
-        parser.options.features & Features.ImportSource && (token & Token.IsEscaped) === 0 && tokenValue == 'source';
+        parser.features & Features.ImportSource && (token & Token.IsEscaped) === 0 && tokenValue == 'source';
 
       if (isPhaseDefer || isPhaseSource) {
         const phaseOrLocal = parseIdentifier(parser, context);
@@ -2676,9 +2676,7 @@ function parseImportDeclaration(
     specifiers,
     source,
     attributes,
-    ...(parser.options.features & Features.ImportDefer || parser.options.features & Features.ImportSource
-      ? { phase }
-      : null),
+    ...(parser.features & Features.ImportDefer || parser.features & Features.ImportSource ? { phase } : null),
   };
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -4583,11 +4581,9 @@ function parseImportMetaExpression(
   nextToken(parser, context); // skips: '.'
   const token = parser.getToken();
   const isPhaseDefer =
-    parser.options.features & Features.ImportDefer && (token & Token.IsEscaped) === 0 && parser.tokenValue === 'defer';
+    parser.features & Features.ImportDefer && (token & Token.IsEscaped) === 0 && parser.tokenValue === 'defer';
   const isPhaseSource =
-    parser.options.features & Features.ImportSource &&
-    (token & Token.IsEscaped) === 0 &&
-    parser.tokenValue === 'source';
+    parser.features & Features.ImportSource && (token & Token.IsEscaped) === 0 && parser.tokenValue === 'source';
 
   if (isPhaseDefer || isPhaseSource) {
     if (inNew) parser.report(Errors.InvalidImportNew);
@@ -4658,9 +4654,7 @@ function parseImportExpression(
     type: 'ImportExpression',
     source,
     options,
-    ...(parser.options.features & Features.ImportDefer || parser.options.features & Features.ImportSource
-      ? { phase }
-      : null),
+    ...(parser.features & Features.ImportDefer || parser.features & Features.ImportSource ? { phase } : null),
   };
 
   consume(parser, context, Token.RightParen);
@@ -8182,7 +8176,7 @@ function parseClassDeclaration(
       id,
       superClass,
       body,
-      ...(parser.options.features & Features.Decorators ? { decorators } : null),
+      ...(parser.features & Features.Decorators ? { decorators } : null),
     },
     start,
   );
@@ -8254,7 +8248,7 @@ function parseClassExpression(
       id,
       superClass,
       body,
-      ...(parser.options.features ? { decorators } : null),
+      ...(parser.features ? { decorators } : null),
     },
     start,
   );
@@ -8269,7 +8263,7 @@ function parseClassExpression(
 function parseDecorators(parser: Parser, context: Context, privateScope: PrivateScope | undefined): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
-  if (parser.options.features) {
+  if (parser.features) {
     while (parser.getToken() === Token.Decorator) {
       list.push(parseDecoratorList(parser, context, privateScope));
     }
@@ -8533,7 +8527,7 @@ function parseClassElementList(
             return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           // class auto-accessor is part of stage 3 decorator spec
-          if (parser.options.features & Features.Decorators) kind |= PropertyKind.Accessor;
+          if (parser.features & Features.Decorators) kind |= PropertyKind.Accessor;
         }
         break;
       default: // ignore
@@ -8638,7 +8632,7 @@ function parseClassElementList(
       computed: (kind & PropertyKind.Computed) > 0,
       key,
       value,
-      ...(parser.options.features & Features.Decorators ? { decorators } : null),
+      ...(parser.features & Features.Decorators ? { decorators } : null),
     },
     start,
   );
@@ -8774,7 +8768,7 @@ function parsePropertyDefinition(
       value,
       static: (state & PropertyKind.Static) > 0,
       computed: (state & PropertyKind.Computed) > 0,
-      ...(parser.options.features & Features.Decorators ? { decorators } : null),
+      ...(parser.features & Features.Decorators ? { decorators } : null),
     } as any,
     start,
   );

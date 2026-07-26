@@ -1,6 +1,7 @@
 import { AssignmentTargetKind, DestructuringKind, Flags, type Location } from '../common.ts';
 import { Errors, ParseError } from '../errors.ts';
 import type * as ESTree from '../estree.ts';
+import { Features } from '../features.ts';
 import { convertTokenType } from '../lexer/index.ts';
 import {
   type InternalOptions,
@@ -23,10 +24,17 @@ export class Parser {
    * The mutable parser flags, in case any flags need passed by reference.
    */
   flags = Flags.None;
+
+  /**
+   * Optional syntax features
+   */
+  features = Features.None;
+
   /**
    * The current index
    */
   index = 0;
+
   /**
    * Beginning of current line
    */
@@ -142,6 +150,7 @@ export class Parser {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
     this.options = normalizeOptions(rawOptions);
+    this.features = this.options.features;
 
     // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
     if (Array.isArray(this.options.onComment)) {
