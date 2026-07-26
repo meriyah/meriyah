@@ -1,4 +1,5 @@
 import type * as ESTree from './estree.ts';
+import { nextFeatures } from './features.ts';
 import { type Token } from './token.ts';
 
 /**
@@ -75,11 +76,12 @@ interface NormalizedRanges {
   range: boolean;
 }
 
-export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken' | 'ranges'> & {
+export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken' | 'ranges' | 'next'> & {
   validateRegex: boolean;
   ranges?: NormalizedRanges;
   onComment?: OnComment;
   onToken?: OnToken;
+  features: number;
 };
 
 function normalizeRanges(ranges: Options['ranges']): NormalizedRanges | undefined {
@@ -97,6 +99,7 @@ export function normalizeOptions(rawOptions: Options): NormalizedOptions {
     validateRegex: true,
     ...rawOptions,
     ranges: normalizeRanges(rawOptions.ranges),
+    features: rawOptions.next ? nextFeatures : 0,
   } as NormalizedOptions;
 
   if (options.module && !options.sourceType) {

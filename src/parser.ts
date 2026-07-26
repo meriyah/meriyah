@@ -27,6 +27,7 @@ import {
 } from './common.ts';
 import { Errors, ParseError } from './errors.ts';
 import type * as ESTree from './estree.ts';
+import { Features } from './features.ts';
 import { isIdentifierPart } from './lexer/charClassifier.ts';
 import { nextToken, skipHashBang } from './lexer/index.ts';
 import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx.ts';
@@ -2530,10 +2531,12 @@ function parseImportDeclaration(
     if (parser.getToken() & Token.IsIdentifier) {
       const token = parser.getToken();
       const { tokenValue } = parser;
-      const isPhaseCandidate =
-        parser.options.next && (token & Token.IsEscaped) === 0 && (tokenValue === 'defer' || tokenValue === 'source');
+      const isPhaseDefer =
+        parser.options.features & Features.ImportDefer && (token & Token.IsEscaped) === 0 && tokenValue == 'defer';
+      const isPhaseSource =
+        parser.options.features & Features.ImportSource && (token & Token.IsEscaped) === 0 && tokenValue == 'source';
 
-      if (isPhaseCandidate) {
+      if (isPhaseDefer || isPhaseSource) {
         const phaseOrLocal = parseIdentifier(parser, context);
 
         if (tokenValue === 'defer') {
@@ -2669,7 +2672,9 @@ function parseImportDeclaration(
     specifiers,
     source,
     attributes,
-    ...(parser.options.next ? { phase } : null),
+    ...(parser.options.features & Features.ImportDefer || parser.options.features & Features.ImportSource
+      ? { phase }
+      : null),
   };
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -4573,17 +4578,17 @@ function parseImportMetaExpression(
 
   nextToken(parser, context); // skips: '.'
   const token = parser.getToken();
-  const phase =
-    parser.options.next &&
-    (parser.tokenValue === 'defer' || parser.tokenValue === 'source') &&
-    (token & Token.IsEscaped) === 0
-      ? parser.tokenValue
-      : null;
+  const isPhaseDefer =
+    parser.options.features & Features.ImportDefer && (token & Token.IsEscaped) === 0 && parser.tokenValue === 'defer';
+  const isPhaseSource =
+    parser.options.features & Features.ImportSource &&
+    (token & Token.IsEscaped) === 0 &&
+    parser.tokenValue === 'source';
 
-  if (phase !== null) {
+  if (isPhaseDefer || isPhaseSource) {
     if (inNew) parser.report(Errors.InvalidImportNew);
     nextToken(parser, context);
-    const expression = parseImportExpression(parser, context, privateScope, inGroup, start, phase);
+    const expression = parseImportExpression(parser, context, privateScope, inGroup, start, parser.tokenValue);
     parser.assignable = AssignmentTargetKind.Invalid;
     return expression;
   }
@@ -4649,7 +4654,9 @@ function parseImportExpression(
     type: 'ImportExpression',
     source,
     options,
-    ...(parser.options.next ? { phase } : null),
+    ...(parser.options.features & Features.ImportDefer || parser.options.features & Features.ImportSource
+      ? { phase }
+      : null),
   };
 
   consume(parser, context, Token.RightParen);
@@ -8171,7 +8178,7 @@ function parseClassDeclaration(
       id,
       superClass,
       body,
-      ...(parser.options.next ? { decorators } : null),
+      ...(parser.options.features & Features.Decorators ? { decorators } : null),
     },
     start,
   );
@@ -8243,7 +8250,7 @@ function parseClassExpression(
       id,
       superClass,
       body,
-      ...(parser.options.next ? { decorators } : null),
+      ...(parser.options.features ? { decorators } : null),
     },
     start,
   );
@@ -8258,7 +8265,7 @@ function parseClassExpression(
 function parseDecorators(parser: Parser, context: Context, privateScope: PrivateScope | undefined): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
-  if (parser.options.next) {
+  if (parser.options.features) {
     while (parser.getToken() === Token.Decorator) {
       list.push(parseDecoratorList(parser, context, privateScope));
     }
@@ -8522,7 +8529,7 @@ function parseClassElementList(
             return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           // class auto-accessor is part of stage 3 decorator spec
-          if (parser.options.next) kind |= PropertyKind.Accessor;
+          if (parser.options.features & Features.Decorators) kind |= PropertyKind.Accessor;
         }
         break;
       default: // ignore
@@ -8627,7 +8634,7 @@ function parseClassElementList(
       computed: (kind & PropertyKind.Computed) > 0,
       key,
       value,
-      ...(parser.options.next ? { decorators } : null),
+      ...(parser.options.features & Features.Decorators ? { decorators } : null),
     },
     start,
   );
@@ -8763,7 +8770,7 @@ function parsePropertyDefinition(
       value,
       static: (state & PropertyKind.Static) > 0,
       computed: (state & PropertyKind.Computed) > 0,
-      ...(parser.options.next ? { decorators } : null),
+      ...(parser.options.features & Features.Decorators ? { decorators } : null),
     } as any,
     start,
   );
