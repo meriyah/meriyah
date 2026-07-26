@@ -100,16 +100,9 @@ function normalizeRanges(ranges: Options['ranges']): NormalizedRanges | undefine
 }
 
 export function normalizeOptions(rawOptions: InternalOptions): NormalizedOptions {
-  let {
-    features = Features.None,
-    next,
-    ranges,
-    module,
-    sourceType,
-    globalReturn,
-    ...restOptions
-  } = {
+  let { features, next, ranges, module, sourceType, globalReturn, ...restOptions } = {
     validateRegex: true,
+    features: Features.None,
     ...rawOptions,
   };
 
