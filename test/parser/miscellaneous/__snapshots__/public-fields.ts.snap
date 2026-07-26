@@ -25,7 +25,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
             "body": [
               {
                 "computed": false,
-                "decorators": [],
                 "end": 64,
                 "key": {
                   "end": 26,
@@ -118,7 +117,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
             "start": 12,
             "type": "ClassBody",
           },
-          "decorators": [],
           "end": 68,
           "id": {
             "end": 11,
@@ -154,7 +152,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
             "body": [
               {
                 "computed": false,
-                "decorators": [],
                 "end": 175,
                 "key": {
                   "end": 98,
@@ -308,7 +305,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
             "start": 84,
             "type": "ClassBody",
           },
-          "decorators": [],
           "end": 179,
           "id": {
             "end": 83,
@@ -432,7 +428,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > { class X { static
             "body": [
               {
                 "computed": false,
-                "decorators": [],
                 "end": 58,
                 "key": {
                   "end": 20,
@@ -525,7 +520,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > { class X { static
             "start": 10,
             "type": "ClassBody",
           },
-          "decorators": [],
           "end": 60,
           "id": {
             "end": 9,
@@ -574,7 +568,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A {  ;;;; ;;
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 26,
             "key": {
               "end": 25,
@@ -597,7 +590,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A {  ;;;; ;;
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 31,
             "key": {
               "end": 30,
@@ -620,7 +612,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A {  ;;;; ;;
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 41,
             "key": {
               "end": 35,
@@ -652,7 +643,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A {  ;;;; ;;
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 52,
             "key": {
               "end": 46,
@@ -691,7 +681,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A {  ;;;; ;;
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 66,
       "id": {
         "end": 7,
@@ -731,7 +720,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ;;;;;;[x
         "body": [
           {
             "computed": true,
-            "decorators": [],
             "end": 25,
             "key": {
               "end": 18,
@@ -763,7 +751,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ;;;;;;[x
           },
           {
             "computed": true,
-            "decorators": [],
             "end": 40,
             "key": {
               "end": 29,
@@ -795,7 +782,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ;;;;;;[x
           },
           {
             "computed": true,
-            "decorators": [],
             "end": 61,
             "key": {
               "end": 59,
@@ -825,7 +811,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ;;;;;;[x
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 69,
       "id": {
         "end": 7,
@@ -865,7 +850,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ['a'] = 
         "body": [
           {
             "computed": true,
-            "decorators": [],
             "end": 20,
             "key": {
               "end": 14,
@@ -897,7 +881,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ['a'] = 
           },
           {
             "computed": false,
-            "decorators": [],
             "end": 23,
             "key": {
               "end": 22,
@@ -927,7 +910,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { ['a'] = 
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 25,
       "id": {
         "end": 7,
@@ -967,7 +949,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { a = 0; }
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "a",
               "type": "Identifier",
@@ -982,7 +963,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { a = 0; }
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "A",
         "type": "Identifier",
@@ -1004,7 +984,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { a = b +=
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 20,
             "key": {
               "end": 11,
@@ -1063,7 +1042,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { a = b +=
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 22,
       "id": {
         "end": 7,
@@ -1103,7 +1081,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { a = b = 
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 19,
             "key": {
               "end": 11,
@@ -1162,7 +1139,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { a = b = 
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 21,
       "id": {
         "end": 7,
@@ -1202,7 +1178,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { foo; } 1
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 14,
             "key": {
               "end": 13,
@@ -1232,7 +1207,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { foo; } 1
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 16,
       "id": {
         "end": 7,
@@ -1272,7 +1246,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { set = ge
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "set",
               "type": "Identifier",
@@ -1287,7 +1260,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { set = ge
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "A",
         "type": "Identifier",
@@ -1309,7 +1281,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { set; } 1
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 14,
             "key": {
               "end": 13,
@@ -1339,7 +1310,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { set; } 1
         "start": 8,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 16,
       "id": {
         "end": 7,
@@ -1507,7 +1477,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class Foo { x = 1;
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 18,
             "key": {
               "end": 13,
@@ -1546,7 +1515,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class Foo { x = 1;
         "start": 10,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 20,
       "id": {
         "end": 9,
@@ -1586,7 +1554,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class Some { rende
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "end": 41,
             "key": {
               "end": 19,
@@ -1658,7 +1625,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class Some { rende
         "start": 11,
         "type": "ClassBody",
       },
-      "decorators": [],
       "end": 42,
       "id": {
         "end": 10,
@@ -1698,7 +1664,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class Some { rende
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "render",
               "type": "Identifier",
@@ -1737,7 +1702,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class Some { rende
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "Some",
         "type": "Identifier",
@@ -1759,7 +1723,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class X { static p
         "body": [
           {
             "computed": false,
-            "decorators": [],
             "key": {
               "name": "p",
               "type": "Identifier",
@@ -1784,7 +1747,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > class X { static p
         ],
         "type": "ClassBody",
       },
-      "decorators": [],
       "id": {
         "name": "X",
         "type": "Identifier",
@@ -1822,7 +1784,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > const createClass 
                 "body": [
                   {
                     "computed": true,
-                    "decorators": [],
                     "end": 44,
                     "key": {
                       "arguments": [],
@@ -1872,7 +1833,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > const createClass 
                 "start": 33,
                 "type": "ClassBody",
               },
-              "decorators": [],
               "end": 46,
               "id": null,
               "range": [
@@ -1956,7 +1916,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > var C = class { st
               "body": [
                 {
                   "computed": false,
-                  "decorators": [],
                   "end": 44,
                   "key": {
                     "end": 39,
@@ -2009,7 +1968,6 @@ exports[`Next - Public fields > Next - Public fields (pass) > var C = class { st
               "start": 14,
               "type": "ClassBody",
             },
-            "decorators": [],
             "end": 46,
             "id": null,
             "range": [
