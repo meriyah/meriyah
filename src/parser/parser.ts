@@ -2,7 +2,13 @@ import { AssignmentTargetKind, DestructuringKind, Flags, type Location } from '.
 import { Errors, ParseError } from '../errors.ts';
 import type * as ESTree from '../estree.ts';
 import { convertTokenType } from '../lexer/index.ts';
-import { type NormalizedOptions, normalizeOptions, type OnComment, type OnToken, type Options } from '../options.ts';
+import {
+  type InternalOptions,
+  type NormalizedOptions,
+  normalizeOptions,
+  type OnComment,
+  type OnToken,
+} from '../options.ts';
 import { Token } from '../token.ts';
 import { PrivateScope } from './private-scope.ts';
 import { Scope, type ScopeKind } from './scope.ts';
@@ -131,7 +137,7 @@ export class Parser {
      * The source code to be parsed
      */
     public readonly source: string,
-    rawOptions: Options = {},
+    rawOptions: InternalOptions = {},
   ) {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);

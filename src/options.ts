@@ -1,5 +1,5 @@
 import type * as ESTree from './estree.ts';
-import { nextFeatures } from './features.ts';
+import { Features, nextFeatures } from './features.ts';
 import { type Token } from './token.ts';
 
 /**
@@ -76,7 +76,14 @@ interface NormalizedRanges {
   range: boolean;
 }
 
-export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken' | 'ranges' | 'next'> & {
+export type InternalOptions = Options & {
+  features?: number;
+};
+
+export type NormalizedOptions = Omit<
+  Options,
+  'validateRegex' | 'onComment' | 'onToken' | 'ranges' | 'next' | 'module' | 'globalReturn'
+> & {
   validateRegex: boolean;
   ranges?: NormalizedRanges;
   onComment?: OnComment;
@@ -94,21 +101,40 @@ function normalizeRanges(ranges: Options['ranges']): NormalizedRanges | undefine
   };
 }
 
-export function normalizeOptions(rawOptions: Options): NormalizedOptions {
-  const options = {
+export function normalizeOptions(rawOptions: InternalOptions): NormalizedOptions {
+  let {
+    features = Features.None,
+    next,
+    ranges,
+    module,
+    sourceType,
+    globalReturn,
+    ...restOptions
+  } = {
     validateRegex: true,
     ...rawOptions,
-    ranges: normalizeRanges(rawOptions.ranges),
-    features: rawOptions.next ? nextFeatures : 0,
+  };
+
+  if (next) {
+    features |= nextFeatures;
+  }
+
+  ranges = normalizeRanges(ranges);
+
+  if (module && !sourceType) {
+    sourceType = 'module';
+  }
+
+  if (globalReturn && (!sourceType || sourceType === 'script')) {
+    sourceType = 'commonjs';
+  }
+
+  const options = {
+    ...restOptions,
+    ranges,
+    features,
+    sourceType,
   } as NormalizedOptions;
-
-  if (options.module && !options.sourceType) {
-    options.sourceType = 'module';
-  }
-
-  if (options.globalReturn && (!options.sourceType || options.sourceType === 'script')) {
-    options.sourceType = 'commonjs';
-  }
 
   return options;
 }

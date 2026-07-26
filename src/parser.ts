@@ -32,7 +32,7 @@ import { isIdentifierPart } from './lexer/charClassifier.ts';
 import { nextToken, skipHashBang } from './lexer/index.ts';
 import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx.ts';
 import { scanTemplateTail } from './lexer/template.ts';
-import { type Options } from './options.ts';
+import { type InternalOptions } from './options.ts';
 import { Parser } from './parser/parser.ts';
 import { type PrivateScope } from './parser/private-scope.ts';
 import { createArrowHeadParsingScope, type Scope, ScopeKind } from './parser/scope.ts';
@@ -41,7 +41,11 @@ import { KeywordDescTable, Token } from './token.ts';
 /**
  * Consumes a sequence of tokens and produces an syntax tree
  */
-export function parseSource(source: string, rawOptions: Options = {}, context: Context = Context.None): ESTree.Program {
+export function parseSource(
+  source: string,
+  rawOptions: InternalOptions = {},
+  context: Context = Context.None,
+): ESTree.Program {
   // Initialize parser state
   const parser = new Parser(source, rawOptions);
 
