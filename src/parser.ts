@@ -8263,7 +8263,7 @@ function parseClassExpression(
 function parseDecorators(parser: Parser, context: Context, privateScope: PrivateScope | undefined): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
-  if (parser.features) {
+  if (parser.features & Features.Decorators) {
     while (parser.getToken() === Token.Decorator) {
       list.push(parseDecoratorList(parser, context, privateScope));
     }

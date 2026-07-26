@@ -472,4 +472,15 @@ describe('Next - Decorators', () => {
       options: { features: Features.Decorators, ranges: true, loc: true },
     },
   ]);
+
+  for (const text of ['@foo class Foo {}', 'class Foo { accessor foo }']) {
+    it(text, () => {
+      t.doesNotThrow(() => {
+        parseSource(text, { features: Features.Decorators });
+      });
+      t.throws(() => {
+        parseSource(text);
+      });
+    });
+  }
 });
