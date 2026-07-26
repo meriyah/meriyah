@@ -607,22 +607,22 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
     it(`{ function foo() {}; }; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{ function foo() {}; }; ${text}`, { next: true });
+        parseSource(`{ function foo() {}; }; ${text}`);
       });
     });
     it(`{  function* foo() {}; }; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{  function* foo() {}; }; ${text}`, { next: true });
+        parseSource(`{  function* foo() {}; }; ${text}`);
       });
     });
     it(`{ async function foo() {};  }; ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{ async function foo() {};  }; ${text}`, { next: true });
+        parseSource(`{ async function foo() {};  }; ${text}`);
       });
     });
   }
@@ -697,7 +697,7 @@ describe('Miscellaneous - Cover grammar', () => {
     });
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true, lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
     it(text, () => {
@@ -823,7 +823,7 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
 
@@ -1059,7 +1059,7 @@ describe('Miscellaneous - Cover grammar', () => {
 
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
   }
@@ -1124,42 +1124,42 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`var ${text}= {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var  ${text} = {}`, { next: true, lexical: true });
+        parseSource(`var  ${text} = {}`, { lexical: true });
       });
     });
     it(`"use strict"; let ${text} = {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; let ${text} = {}`, { next: true });
+        parseSource(`"use strict"; let ${text} = {}`);
       });
     });
     it(`function f(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f(${text}) {}`, { next: true });
+        parseSource(`function f(${text}) {}`);
       });
     });
     it(`try {} catch(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try {} catch(${text}) {}`, { next: true });
+        parseSource(`try {} catch(${text}) {}`);
       });
     });
     it(`try {} catch(${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try {} catch(${text}) {}`, { next: true, lexical: true });
+        parseSource(`try {} catch(${text}) {}`, { lexical: true });
       });
     });
     it(`function f(arg1, ${text}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f(arg1, ${text}) {}`, { next: true });
+        parseSource(`function f(arg1, ${text}) {}`);
       });
     });
     it(`var f = (${text}) => {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = (${text}) => {};`, { next: true });
+        parseSource(`var f = (${text}) => {};`);
       });
     });
     it(`var f = (arg1, ${text}) => {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = (arg1, ${text}) => {};`, { next: true, lexical: true });
+        parseSource(`var f = (arg1, ${text}) => {};`, { lexical: true });
       });
     });
   }
@@ -1488,22 +1488,22 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`(${text}= {});`, () => {
       t.throws(() => {
-        parseSource(`(${text}= {});`, { next: true, lexical: true });
+        parseSource(`(${text}= {});`, { lexical: true });
       });
     });
     it(`var ${text}= {};`, () => {
       t.throws(() => {
-        parseSource(`var  ${text} = {}`, { next: true });
+        parseSource(`var  ${text} = {}`);
       });
     });
     it(`"use strict"; let ${text} = {};`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; let ${text} = {}`, { next: true });
+        parseSource(`"use strict"; let ${text} = {}`);
       });
     });
     it(`try {} catch(${text}) {}`, () => {
       t.throws(() => {
-        parseSource(`try {} catch(${text}) {}`, { next: true });
+        parseSource(`try {} catch(${text}) {}`);
       });
     });
   }
@@ -2028,18 +2028,18 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(text, () => {
       t.throws(() => {
-        parseSource(text, { next: true });
+        parseSource(text);
       });
     });
 
     it(`var x, y, z; for (x of ${text} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x of ${text} = {});`, { next: true, lexical: true });
+        parseSource(`var x, y, z; for (x of ${text} = {});`, { lexical: true });
       });
     });
     it(`var x, y, z; for (x in ${text} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${text} = {});`, { next: true });
+        parseSource(`var x, y, z; for (x in ${text} = {});`);
       });
     });
     it(`var x, y, z; for (x in ${text} = {});`, () => {
@@ -3253,13 +3253,13 @@ describe('Miscellaneous - Cover grammar', () => {
     });
     it(`  ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
 
     it(`  ${text}`, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true });
+        parseSource(text, { webcompat: true });
       });
     });
   }
