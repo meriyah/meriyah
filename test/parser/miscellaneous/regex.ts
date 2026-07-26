@@ -12,27 +12,27 @@ describe('Miscellaneous - Regular expressions', () => {
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, lexical: true });
+        parseSource(text, { lexical: true });
       });
     });
     it(text, () => {
       t.doesNotThrow(() => {
-        parseSource(text, { next: true, webcompat: true, lexical: true });
+        parseSource(text, { webcompat: true, lexical: true });
       });
     });
   }
 
   fail('Miscellaneous - Regular expressions (fail)', [
-    { code: 'function *f(){   s = {foo: yield / x}   }', options: { next: true } },
-    { code: 's = {foo: yield / x}', options: { impliedStrict: true, next: true } },
-    { code: 'function *f(){   s = {"foo": yield / x}   }', options: { next: true } },
-    { code: String.raw`/(?<a>.)\k<a/`, options: { next: true } },
-    { code: String.raw`/\k<a(?<a>a)/`, options: { next: true } },
-    { code: '/(?<42a>a)/', options: { next: true } },
-    { code: '/(?<𝟐rest>foo)/', options: { next: true } },
-    { code: '/(?<𝟐>foo)/', options: { next: true } },
+    'function *f(){   s = {foo: yield / x}   }',
+    { code: 's = {foo: yield / x}', options: { impliedStrict: true } },
+    'function *f(){   s = {"foo": yield / x}   }',
+    String.raw`/(?<a>.)\k<a/`,
+    String.raw`/\k<a(?<a>a)/`,
+    '/(?<42a>a)/',
+    '/(?<𝟐rest>foo)/',
+    '/(?<𝟐>foo)/',
     { code: String.raw`/(?<\uD835\uDFD0rest>foo)/`, options: { webcompat: true } },
-    { code: String.raw`/(?<abc\uD835\uDFD0def>foo\k<abc\uD835def>)/`, options: { sourceType: 'module', next: true } },
+    { code: String.raw`/(?<abc\uD835\uDFD0def>foo\k<abc\uD835def>)/`, options: { sourceType: 'module' } },
     // Nodejs v18 now accepts unicode in capture group name
     // ['/(?<\\ud87e\\udddfrest>foo)/', Context.OptionsNext | Context.OptionsWebCompat],
     {
@@ -40,15 +40,12 @@ describe('Miscellaneous - Regular expressions', () => {
         function* f(){ yield
         /foo }
       `,
-      options: { sourceType: 'module', next: true },
+      options: { sourceType: 'module' },
     },
-    { code: 'function l(){((/)/))(/]/)};', options: { sourceType: 'module', next: true } },
-    { code: '0 ?? 1 && 2', options: { sourceType: 'module', next: true } },
-    {
-      code: '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
-      options: { next: true },
-    },
-    { code: 'e ?? f ?? g || h;', options: { sourceType: 'module', next: true } },
-    { code: 'c && d ?? e', options: { sourceType: 'module', next: true } },
+    { code: 'function l(){((/)/))(/]/)};', options: { sourceType: 'module' } },
+    { code: '0 ?? 1 && 2', options: { sourceType: 'module' } },
+    '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
+    { code: 'e ?? f ?? g || h;', options: { sourceType: 'module' } },
+    { code: 'c && d ?? e', options: { sourceType: 'module' } },
   ]);
 });
