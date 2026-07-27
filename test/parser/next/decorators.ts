@@ -126,7 +126,132 @@ describe('Decorators', () => {
     { code: '@bar();', options: { features: Features.Decorators } },
     { code: '@foo export @bar class A {}', options: { features: Features.Decorators, sourceType: 'module' } },
     { code: '@foo export default @bar class A {}', options: { features: Features.Decorators, sourceType: 'module' } },
+    { code: '@dec[0] class A {}', options: { features: Features.Decorators } },
+    { code: '@dec["x"] class A {}', options: { features: Features.Decorators } },
+    { code: '@dec?.b class A {}', options: { features: Features.Decorators } },
+    { code: '@dec?.() class A {}', options: { features: Features.Decorators } },
+    { code: '@dec().b class A {}', options: { features: Features.Decorators } },
+    { code: '@dec()() class A {}', options: { features: Features.Decorators } },
+    { code: '@this.x class A {}', options: { features: Features.Decorators } },
+    { code: 'class A { @dec[0] m() {} }', options: { features: Features.Decorators } },
   ]);
+
+  describe('Decorator class element boundaries', () => {
+    for (const [keySource, key] of [
+      ['0', { type: 'Literal', value: 0 }],
+      ['first', { type: 'Identifier', name: 'first' }],
+    ] as const) {
+      it(`splits a computed [${keySource}] field from the following method`, () => {
+        const program = parseSource(
+          outdent`
+            class A {
+              @decorators
+              [${keySource}]
+              method() {}
+            }
+          `,
+          { features: Features.Decorators },
+        );
+        const declaration = program.body[0];
+
+        t.equal(declaration.type, 'ClassDeclaration');
+        if (declaration.type !== 'ClassDeclaration') return;
+
+        t.deepEqual(declaration.body.body, [
+          {
+            type: 'PropertyDefinition',
+            key,
+            value: null,
+            static: false,
+            computed: true,
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'Identifier',
+                  name: 'decorators',
+                },
+              },
+            ],
+          },
+          {
+            type: 'MethodDefinition',
+            kind: 'method',
+            static: false,
+            computed: false,
+            key: {
+              type: 'Identifier',
+              name: 'method',
+            },
+            value: {
+              type: 'FunctionExpression',
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [],
+              },
+              async: false,
+              generator: false,
+              id: null,
+            },
+            decorators: [],
+          },
+        ]);
+      });
+    }
+
+    it('preserves the computed key in the #407 field shape', () => {
+      const program = parseSource(
+        outdent`
+          class A {
+            @decorators
+            [x] = 1
+          }
+        `,
+        { features: Features.Decorators },
+      );
+      const declaration = program.body[0];
+
+      t.equal(declaration.type, 'ClassDeclaration');
+      if (declaration.type !== 'ClassDeclaration') return;
+
+      t.deepEqual(declaration.body.body, [
+        {
+          type: 'PropertyDefinition',
+          key: {
+            type: 'Identifier',
+            name: 'x',
+          },
+          value: {
+            type: 'Literal',
+            value: 1,
+          },
+          static: false,
+          computed: true,
+          decorators: [
+            {
+              type: 'Decorator',
+              expression: {
+                type: 'Identifier',
+                name: 'decorators',
+              },
+            },
+          ],
+        },
+      ]);
+    });
+
+    it('keeps grammar-legal member, call, private, and parenthesized forms', () => {
+      for (const source of [
+        'class A { @dec.a.b m() {} }',
+        'class A { @dec() m() {} }',
+        'class A { @dec.#x m() {} #x; }',
+        'class A { @(dec?.[0]().x) m() {} }',
+      ]) {
+        t.doesNotThrow(() => parseSource(source, { features: Features.Decorators, lexical: true }));
+      }
+    });
+  });
 
   pass('Decorators (pass)', [
     { code: 'class A { @dec name = 0; }', options: { features: Features.Decorators, ranges: true, loc: true } },

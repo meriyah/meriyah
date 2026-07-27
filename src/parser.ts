@@ -8288,9 +8288,78 @@ function parseDecoratorList(
   nextToken(parser, context | Context.AllowRegExp);
   const expressionStart = parser.tokenStart;
 
-  let expression = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, start);
+  let expression: ESTree.Decorator['expression'];
 
-  expression = parseMemberOrUpdateExpression(parser, context, privateScope, expression, 0, 0, expressionStart);
+  if (parser.getToken() === Token.LeftParen) {
+    expression = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, start);
+  } else {
+    const token = parser.getToken();
+
+    if (
+      ((token & Token.IsIdentifier) !== Token.IsIdentifier && !isValidIdentifier(context, token)) ||
+      (context & Context.Strict && (token & Token.FutureReserved) === Token.FutureReserved)
+    ) {
+      parser.report(Errors.UnexpectedToken, KeywordDescTable[token & Token.Type]);
+    }
+
+    if (token === Token.AwaitKeyword && context & (Context.InAwaitContext | Context.Module)) {
+      parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
+    }
+
+    if (token === Token.YieldKeyword && context & Context.InYieldContext) {
+      parser.report(Errors.DisallowedInContext, 'yield');
+    }
+
+    let memberExpression: ESTree.Identifier | ESTree.MemberExpression = parseIdentifier(
+      parser,
+      context | Context.TaggedTemplate,
+    );
+
+    parser.assignable =
+      context & Context.Strict && (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
+        ? AssignmentTargetKind.Invalid
+        : AssignmentTargetKind.Simple;
+
+    while (parser.getToken() === Token.Period) {
+      nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
+
+      const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
+
+      parser.assignable = AssignmentTargetKind.Simple;
+
+      memberExpression = parser.finishNode<ESTree.MemberExpression>(
+        {
+          type: 'MemberExpression',
+          object: memberExpression,
+          computed: false,
+          property,
+          optional: false,
+        },
+        expressionStart,
+      );
+    }
+
+    expression = memberExpression;
+
+    if (parser.getToken() === Token.LeftParen) {
+      const args = parseArguments(parser, context, privateScope, 0);
+
+      parser.assignable =
+        !(context & Context.Strict) && parser.options.webcompat
+          ? AssignmentTargetKind.WebCompat
+          : AssignmentTargetKind.Invalid;
+
+      expression = parser.finishNode<ESTree.CallExpression>(
+        {
+          type: 'CallExpression',
+          callee: memberExpression,
+          arguments: args,
+          optional: false,
+        },
+        expressionStart,
+      );
+    }
+  }
 
   return parser.finishNode<ESTree.Decorator>(
     {
