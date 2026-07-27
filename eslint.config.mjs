@@ -13,7 +13,7 @@ export default [
   ...tseslint.configs.recommended,
   eslintPluginInternal,
   {
-    languageOptions: { globals: { ...globals.builtin } },
+    languageOptions: { globals: { ...globals.builtin, ...globals['shared-node-browser'] } },
     plugins: {
       '@stylistic': eslintPluginStylistic,
       'import-x': eslintPluginImportX,
