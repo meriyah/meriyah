@@ -3859,6 +3859,9 @@ function parseFunctionBody(
 ): ESTree.BlockStatement {
   const { tokenStart } = parser;
 
+  // Pending legacy-octal errors belong to the enclosing code unit, not to this body.
+  parser.flags &= ~(Flags.Octal | Flags.EightAndNine);
+
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
   const body: ESTree.Statement[] = [];

@@ -5,6 +5,67 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Miscellaneous - Directives', () => {
+  // A `"use strict"` directive only applies to its own code unit, so a legacy octal
+  // in enclosing sloppy code must not be reported against a nested function's prologue.
+  for (const sloppy of [
+    String.raw`"\145"`,
+    String.raw`'\145'`,
+    String.raw`"\08"`,
+    String.raw`"\8"`,
+    String.raw`"\9"`,
+    '08',
+    '09',
+  ]) {
+    for (const nested of [
+      'function g() { "use strict"; }',
+      '(function () { "use strict"; });',
+      'function* g() { "use strict"; }',
+      'async function g() { "use strict"; }',
+      'async function* g() { "use strict"; }',
+      '(() => { "use strict"; });',
+      '(async () => { "use strict"; });',
+      '({ m() { "use strict"; } });',
+      '({ get p() { "use strict"; } });',
+      '({ set p(v) { "use strict"; } });',
+      'class C { m() { "use strict"; } }',
+      'class C { static m() { "use strict"; } }',
+    ]) {
+      for (const source of [`5; ${sloppy}; ${nested}`, `function outer() { 5; ${sloppy}; ${nested} }`]) {
+        it(source, () => {
+          t.doesNotThrow(() => {
+            parseSource(source);
+          });
+        });
+      }
+    }
+  }
+
+  // A computed key is not part of the method body it names.
+  it(String.raw`({ ["\145"]() { "use strict"; } });`, () => {
+    t.doesNotThrow(() => {
+      parseSource(String.raw`({ ["\145"]() { "use strict"; } });`);
+    });
+  });
+
+  for (const source of [
+    String.raw`"\145"; "use strict";`,
+    String.raw`"\8"; "use strict";`,
+    String.raw`function f() { "\145"; "use strict"; }`,
+    String.raw`(() => { "\9"; "use strict"; });`,
+    String.raw`({ m() { "\145"; "use strict"; } });`,
+    String.raw`class C { m() { "\145"; "use strict"; } }`,
+    String.raw`function f() { function g() { "\145"; "use strict"; } }`,
+    String.raw`5; "\145"; function g() { "\145"; "use strict"; }`,
+    String.raw`function f(a = "\145") { "use strict"; }`,
+    String.raw`class C { ["\145"]() {} }`,
+  ]) {
+    it(source, () => {
+      t.throws(() => {
+        parseSource(source);
+      });
+    });
+  }
+
   for (const text of [
     String.raw`"\1;" "use strict";`,
     String.raw`"\2;" "use strict";`,
