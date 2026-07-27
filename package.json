@@ -62,6 +62,7 @@
     "lint:types": "tsc",
     "lint:knip": "knip",
     "lint:unicode": "node scripts/generate-unicode.mjs --check",
+    "lint:snapshots": "node scripts/lint-snapshots.mjs",
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix",
     "fix:prettier": "prettier . --write",
