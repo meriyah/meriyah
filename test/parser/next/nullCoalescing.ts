@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
-describe('Next - Nullish Coalescing', () => {
+describe('Nullish Coalescing', () => {
   for (const text of [
     'var foo = object.foo ?? "default";',
     'undefined ?? 3',
@@ -120,7 +120,7 @@ describe('Next - Nullish Coalescing', () => {
     { code: 'c && d ?? e', options: { sourceType: 'module' } },
   ]);
 
-  pass('Next - Null Coalescing (pass)', [
+  pass('Null Coalescing (pass)', [
     "({ x: 'hi' } ?? 3).x",
     "'hi' ?? 3",
     'undefined ?? 3',

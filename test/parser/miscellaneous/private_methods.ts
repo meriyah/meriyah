@@ -5,7 +5,7 @@ import { Features } from '../../../src/features.ts';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
-describe('Next - Private methods', () => {
+describe('Private methods', () => {
   fail('Private methods (fail)', [
     'class A { #a b() {} }',
     'class A { #a b }',
@@ -288,7 +288,7 @@ describe('Next - Private methods', () => {
       });
     });
   }
-  pass('Next - Private methods (pass)', [
+  pass('Private methods (pass)', [
     'class A { #key; }',
     'class A { static async #_(value) { return await value;} }',
     { code: 'class A { #a; #b; }', options: { ranges: true } },

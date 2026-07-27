@@ -24,6 +24,638 @@ exports[`Enable one should not enables another one > import.source("m") 1`] = `
     |        ^^^^^^ The only valid meta property for import is 'import.meta'"
 `;
 
+exports[`Import Phase > import "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import * as ns from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "ns",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import {a} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import a from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import defer * as ns from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": "defer",
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "ns",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import source x from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": "source",
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import("m") 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "options": null,
+        "phase": null,
+        "source": {
+          "type": "Literal",
+          "value": "m",
+        },
+        "type": "ImportExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import.defer("m") 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "options": null,
+        "phase": "defer",
+        "source": {
+          "type": "Literal",
+          "value": "m",
+        },
+        "type": "ImportExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import.defer("m").then(f) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "f",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "options": null,
+            "phase": "defer",
+            "source": {
+              "type": "Literal",
+              "value": "m",
+            },
+            "type": "ImportExpression",
+          },
+          "optional": false,
+          "property": {
+            "name": "then",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "optional": false,
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase > import.source("m") 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "options": null,
+        "phase": "source",
+        "source": {
+          "type": "Literal",
+          "value": "m",
+        },
+        "type": "ImportExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import * as defer from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import {defer} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import {source as s} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "s",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import defer from "m" with {}; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import defer from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import defer, {x} from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import source from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import source from from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": "source",
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "from",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import source source from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": "source",
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import source, * as ns from "m"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "phase": null,
+      "source": {
+        "type": "Literal",
+        "value": "m",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "local": {
+            "name": "ns",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > import.meta.url 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "optional": false,
+        "property": {
+          "name": "url",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Phase contextual identifiers > let defer = 1; let source = 2; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "defer",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "source",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 2,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
 exports[`Import Phase contextual identifiers with next disabled > import * as defer from "m"; 1`] = `
 {
   "body": [
@@ -379,6 +1011,54 @@ exports[`Import Phase disabled > import("m") 1`] = `
 }
 `;
 
+exports[`Import Phase invalid forms > import d\\u0065fer * as ns from "m"; 1`] = `
+"SyntaxError [1:18-1:19]: Expected 'from'
+> 1 | import d\\u0065fer * as ns from "m";
+    |                   ^ Expected 'from'"
+`;
+
+exports[`Import Phase invalid forms > import defer "m"; 1`] = `
+"SyntaxError [1:13-1:16]: 'import defer' must be followed by a namespace import
+> 1 | import defer "m";
+    |              ^^^ 'import defer' must be followed by a namespace import"
+`;
+
+exports[`Import Phase invalid forms > import defer {a} from "m"; 1`] = `
+"SyntaxError [1:13-1:14]: 'import defer' must be followed by a namespace import
+> 1 | import defer {a} from "m";
+    |              ^ 'import defer' must be followed by a namespace import"
+`;
+
+exports[`Import Phase invalid forms > import defer x from "m"; 1`] = `
+"SyntaxError [1:13-1:14]: 'import defer' must be followed by a namespace import
+> 1 | import defer x from "m";
+    |              ^ 'import defer' must be followed by a namespace import"
+`;
+
+exports[`Import Phase invalid forms > import source "m"; 1`] = `
+"SyntaxError [1:14-1:17]: 'import source' must be followed by a default import
+> 1 | import source "m";
+    |               ^^^ 'import source' must be followed by a default import"
+`;
+
+exports[`Import Phase invalid forms > import source * as ns from "m"; 1`] = `
+"SyntaxError [1:14-1:15]: 'import source' must be followed by a default import
+> 1 | import source * as ns from "m";
+    |               ^ 'import source' must be followed by a default import"
+`;
+
+exports[`Import Phase invalid forms > import source {a} from "m"; 1`] = `
+"SyntaxError [1:14-1:15]: 'import source' must be followed by a default import
+> 1 | import source {a} from "m";
+    |               ^ 'import source' must be followed by a default import"
+`;
+
+exports[`Import Phase invalid forms > new import.defer("m") 1`] = `
+"SyntaxError [1:11-1:16]: Cannot use new with import(...)
+> 1 | new import.defer("m")
+    |            ^^^^^ Cannot use new with import(...)"
+`;
+
 exports[`Import Phase syntax with next disabled > import defer * as ns from "m"; 1`] = `
 "SyntaxError [1:13-1:14]: Expected 'from'
 > 1 | import defer * as ns from "m";
@@ -415,111 +1095,7 @@ exports[`Import Phase syntax with next disabled > import.source("m") 1`] = `
     |        ^^^^^^ The only valid meta property for import is 'import.meta'"
 `;
 
-exports[`Next - Import Phase > import "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import * as ns from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "ns",
-            "type": "Identifier",
-          },
-          "type": "ImportNamespaceSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import {a} from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "imported": {
-            "name": "a",
-            "type": "Identifier",
-          },
-          "local": {
-            "name": "a",
-            "type": "Identifier",
-          },
-          "type": "ImportSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import a from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "a",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import defer * as ns from "m"; 1`] = `
+exports[`Import Phase with lexical tracking > import defer * as ns from "m"; 1`] = `
 {
   "body": [
     {
@@ -546,7 +1122,7 @@ exports[`Next - Import Phase > import defer * as ns from "m"; 1`] = `
 }
 `;
 
-exports[`Next - Import Phase > import source x from "m"; 1`] = `
+exports[`Import Phase with lexical tracking > import source x from "m"; 1`] = `
 {
   "body": [
     {
@@ -573,529 +1149,7 @@ exports[`Next - Import Phase > import source x from "m"; 1`] = `
 }
 `;
 
-exports[`Next - Import Phase > import("m") 1`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "options": null,
-        "phase": null,
-        "source": {
-          "type": "Literal",
-          "value": "m",
-        },
-        "type": "ImportExpression",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import.defer("m") 1`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "options": null,
-        "phase": "defer",
-        "source": {
-          "type": "Literal",
-          "value": "m",
-        },
-        "type": "ImportExpression",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import.defer("m").then(f) 1`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "arguments": [
-          {
-            "name": "f",
-            "type": "Identifier",
-          },
-        ],
-        "callee": {
-          "computed": false,
-          "object": {
-            "options": null,
-            "phase": "defer",
-            "source": {
-              "type": "Literal",
-              "value": "m",
-            },
-            "type": "ImportExpression",
-          },
-          "optional": false,
-          "property": {
-            "name": "then",
-            "type": "Identifier",
-          },
-          "type": "MemberExpression",
-        },
-        "optional": false,
-        "type": "CallExpression",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase > import.source("m") 1`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "options": null,
-        "phase": "source",
-        "source": {
-          "type": "Literal",
-          "value": "m",
-        },
-        "type": "ImportExpression",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import * as defer from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "type": "ImportNamespaceSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import {defer} from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "imported": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "local": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "type": "ImportSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import {source as s} from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "imported": {
-            "name": "source",
-            "type": "Identifier",
-          },
-          "local": {
-            "name": "s",
-            "type": "Identifier",
-          },
-          "type": "ImportSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import defer from "m" with {}; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import defer from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import defer, {x} from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-        {
-          "imported": {
-            "name": "x",
-            "type": "Identifier",
-          },
-          "local": {
-            "name": "x",
-            "type": "Identifier",
-          },
-          "type": "ImportSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import source from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "source",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import source from from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": "source",
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "from",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import source source from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": "source",
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "source",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import source, * as ns from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": null,
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "source",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-        {
-          "local": {
-            "name": "ns",
-            "type": "Identifier",
-          },
-          "type": "ImportNamespaceSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > import.meta.url 1`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "computed": false,
-        "object": {
-          "meta": {
-            "name": "import",
-            "type": "Identifier",
-          },
-          "property": {
-            "name": "meta",
-            "type": "Identifier",
-          },
-          "type": "MetaProperty",
-        },
-        "optional": false,
-        "property": {
-          "name": "url",
-          "type": "Identifier",
-        },
-        "type": "MemberExpression",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase contextual identifiers > let defer = 1; let source = 2; 1`] = `
-{
-  "body": [
-    {
-      "declarations": [
-        {
-          "id": {
-            "name": "defer",
-            "type": "Identifier",
-          },
-          "init": {
-            "type": "Literal",
-            "value": 1,
-          },
-          "type": "VariableDeclarator",
-        },
-      ],
-      "kind": "let",
-      "type": "VariableDeclaration",
-    },
-    {
-      "declarations": [
-        {
-          "id": {
-            "name": "source",
-            "type": "Identifier",
-          },
-          "init": {
-            "type": "Literal",
-            "value": 2,
-          },
-          "type": "VariableDeclarator",
-        },
-      ],
-      "kind": "let",
-      "type": "VariableDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase invalid forms > import d\\u0065fer * as ns from "m"; 1`] = `
-"SyntaxError [1:18-1:19]: Expected 'from'
-> 1 | import d\\u0065fer * as ns from "m";
-    |                   ^ Expected 'from'"
-`;
-
-exports[`Next - Import Phase invalid forms > import defer "m"; 1`] = `
-"SyntaxError [1:13-1:16]: 'import defer' must be followed by a namespace import
-> 1 | import defer "m";
-    |              ^^^ 'import defer' must be followed by a namespace import"
-`;
-
-exports[`Next - Import Phase invalid forms > import defer {a} from "m"; 1`] = `
-"SyntaxError [1:13-1:14]: 'import defer' must be followed by a namespace import
-> 1 | import defer {a} from "m";
-    |              ^ 'import defer' must be followed by a namespace import"
-`;
-
-exports[`Next - Import Phase invalid forms > import defer x from "m"; 1`] = `
-"SyntaxError [1:13-1:14]: 'import defer' must be followed by a namespace import
-> 1 | import defer x from "m";
-    |              ^ 'import defer' must be followed by a namespace import"
-`;
-
-exports[`Next - Import Phase invalid forms > import source "m"; 1`] = `
-"SyntaxError [1:14-1:17]: 'import source' must be followed by a default import
-> 1 | import source "m";
-    |               ^^^ 'import source' must be followed by a default import"
-`;
-
-exports[`Next - Import Phase invalid forms > import source * as ns from "m"; 1`] = `
-"SyntaxError [1:14-1:15]: 'import source' must be followed by a default import
-> 1 | import source * as ns from "m";
-    |               ^ 'import source' must be followed by a default import"
-`;
-
-exports[`Next - Import Phase invalid forms > import source {a} from "m"; 1`] = `
-"SyntaxError [1:14-1:15]: 'import source' must be followed by a default import
-> 1 | import source {a} from "m";
-    |               ^ 'import source' must be followed by a default import"
-`;
-
-exports[`Next - Import Phase invalid forms > new import.defer("m") 1`] = `
-"SyntaxError [1:11-1:16]: Cannot use new with import(...)
-> 1 | new import.defer("m")
-    |            ^^^^^ Cannot use new with import(...)"
-`;
-
-exports[`Next - Import Phase with lexical tracking > import defer * as ns from "m"; 1`] = `
+exports[`Import Phase without lexical tracking > import defer * as ns from "m"; 1`] = `
 {
   "body": [
     {
@@ -1122,61 +1176,7 @@ exports[`Next - Import Phase with lexical tracking > import defer * as ns from "
 }
 `;
 
-exports[`Next - Import Phase with lexical tracking > import source x from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": "source",
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "x",
-            "type": "Identifier",
-          },
-          "type": "ImportDefaultSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase without lexical tracking > import defer * as ns from "m"; 1`] = `
-{
-  "body": [
-    {
-      "attributes": [],
-      "phase": "defer",
-      "source": {
-        "type": "Literal",
-        "value": "m",
-      },
-      "specifiers": [
-        {
-          "local": {
-            "name": "ns",
-            "type": "Identifier",
-          },
-          "type": "ImportNamespaceSpecifier",
-        },
-      ],
-      "type": "ImportDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Import Phase without lexical tracking > import source x from "m"; 1`] = `
+exports[`Import Phase without lexical tracking > import source x from "m"; 1`] = `
 {
   "body": [
     {

@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
-describe('Next - Public fields', () => {
+describe('Public fields', () => {
   fail('Public fields (fail)', [
     { code: 'class A { "x" = arguments; }', options: { webcompat: true } },
     { code: 'class A { "x" = super(); }', options: { webcompat: true } },
@@ -191,7 +191,7 @@ describe('Next - Public fields', () => {
     });
   }
 
-  pass('Next - Public fields (pass)', [
+  pass('Public fields (pass)', [
     { code: 'var C = class { static async #prototype() {} };', options: { ranges: true } },
     { code: 'class Foo { x = 1; }', options: { ranges: true } },
     { code: 'class A { set; }', options: { ranges: true } },
