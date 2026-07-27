@@ -1,14 +1,10 @@
 {
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "emmet.triggerExpansionOnTab": true,
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true,
-    "**/build": true,
     "**/.vscode": true
   },
-  "deepscan.ignoreConfirmWarning": true,
-  "[json][jsonc][markdown][javascript][typescript]": {
+  "[json][jsonc][markdown][javascript][typescript][json5][github-actions-workflow]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
