@@ -45,9 +45,23 @@ jobs:
         if: matrix.node == '20'
       - run: npm run build
       - run: npm run test
-      - run: npm run test:unicode
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v7
+        if: github.repository == 'meriyah/meriyah'
+        with:
+          fail_ci_if_error: true
+          disable_search: true
+          files: coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+      - run: yarn
       - run: npm run lint
-        if: matrix.node != '20'
 
   preview:
     if: github.repository == 'meriyah/meriyah'

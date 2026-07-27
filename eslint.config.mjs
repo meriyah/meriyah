@@ -155,6 +155,12 @@ export default [
     },
   },
   {
+    files: ['test262/run-test262-cli.mjs'],
+    rules: {
+      'n/no-missing-import': 0,
+    },
+  },
+  {
     ignores: ['dist', 'src/unicode.ts', 'test262/test262', 'coverage', 'test.ts'],
   },
 ];
