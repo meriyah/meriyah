@@ -306,3 +306,8 @@ export const descKeywordTable = new Map<string, Token>([
   ['meta', Token.Meta],
   ['accessor', Token.AccessorKeyword],
 ]);
+
+const keywordLengths = [...descKeywordTable.keys()].map((keyword) => keyword.length);
+
+export const minKeywordLength = Math.min(...keywordLengths);
+export const maxKeywordLength = Math.max(...keywordLengths);

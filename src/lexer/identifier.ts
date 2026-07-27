@@ -2,7 +2,7 @@ import { Chars } from '../chars.ts';
 import { Context } from '../common.ts';
 import { Errors, ParseError } from '../errors.ts';
 import { type Parser } from '../parser/parser.ts';
-import { descKeywordTable, Token } from './../token.ts';
+import { descKeywordTable, maxKeywordLength, minKeywordLength, Token } from './../token.ts';
 import { CharFlags, CharTypes, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier.ts';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common.ts';
 
@@ -22,11 +22,10 @@ export function scanIdentifier(parser: Parser, context: Context, isValidAsKeywor
     return scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
   }
 
-  // Every entry in `descKeywordTable` is between 2 and 11 characters long, so
-  // anything outside that range cannot be a keyword and can skip the lookup.
-  // Same bound as the escaped path below.
+  // An identifier shorter or longer than every `descKeywordTable` entry cannot
+  // be a keyword and can skip the lookup. Same bound as the escaped path below.
   const length = parser.index - parser.tokenIndex;
-  if (length < 2 || length > 11) return Token.Identifier;
+  if (length < minKeywordLength || length > maxKeywordLength) return Token.Identifier;
 
   return descKeywordTable.get(parser.tokenValue) ?? Token.Identifier;
 }
@@ -92,7 +91,7 @@ export function scanIdentifierSlowCase(
   }
 
   const { length } = parser.tokenValue;
-  if (isValidAsKeyword && length >= 2 && length <= 11) {
+  if (isValidAsKeyword && length >= minKeywordLength && length <= maxKeywordLength) {
     const token = descKeywordTable.get(parser.tokenValue);
     if (token === void 0) return Token.Identifier | (hasEscape ? Token.IsEscaped : 0);
     if (!hasEscape) return token;
