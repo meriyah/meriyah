@@ -155,7 +155,7 @@ export default [
     },
   },
   {
-    files: ['test262/run-test262-cli.mjs '],
+    files: ['test262/run-test262-cli.mjs'],
     rules: {
       'n/no-missing-import': 0,
     },
