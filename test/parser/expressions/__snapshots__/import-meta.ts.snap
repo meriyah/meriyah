@@ -1,0 +1,1426 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x in [import.meta = 1] = {}); 1`] = `
+"SyntaxError [1:50-1:51]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x in [import.meta = 1] = {});
+    |                                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x in [import.meta] = {}); 1`] = `
+"SyntaxError [1:53-1:54]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x in [import.meta] = {});
+    |                                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x in { x: import.meta } = {}); 1`] = `
+"SyntaxError [1:58-1:59]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x in { x: import.meta } = {});
+    |                                                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x of [import.meta = 1] = {}); 1`] = `
+"SyntaxError [1:50-1:51]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x of [import.meta = 1] = {});
+    |                                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x of [import.meta] = {}); 1`] = `
+"SyntaxError [1:53-1:54]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x of [import.meta] = {});
+    |                                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > "use strict"; let x, y, z; for (x of { x: import.meta } = {}); 1`] = `
+"SyntaxError [1:58-1:59]: Invalid left-hand side in assignment
+> 1 | "use strict"; let x, y, z; for (x of { x: import.meta } = {});
+    |                                                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > ([import.meta] = [1]) 1`] = `
+"SyntaxError [1:8-1:9]: Cannot use "import.meta" outside a module
+> 1 | ([import.meta] = [1])
+    |         ^ Cannot use "import.meta" outside a module"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > ({...import.meta} = {}); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({...import.meta} = {});
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > ({a: import.meta} = {}); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({a: import.meta} = {});
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > (import.meta([1 = ()](x = 123))) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | (import.meta([1 = ()](x = 123)))
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > (import?.meta) 1`] = `
+"SyntaxError [1:7-1:9]: Expected '('
+> 1 | (import?.meta)
+    |        ^^ Expected '('"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > [...import.meta] = []; 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | [...import.meta] = [];
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > [import.meta] = []; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | [import.meta] = [];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > [import.meta] = []; 2`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | [import.meta] = [];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > async function* f() { for await (import.meta of null) ; } 1`] = `
+"SyntaxError [1:45-1:47]: Invalid left-hand side in for-await
+> 1 | async function* f() { for await (import.meta of null) ; }
+    |                                              ^^ Invalid left-hand side in for-await"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta in null) ; 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-in
+> 1 | for (import.meta in null) ;
+    |                  ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 2`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 3`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 4`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 5`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 6`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 7`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 8`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 9`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 10`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (import.meta of null) ; 11`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for (import.meta of null) ;
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > for (var import.meta of [1]) {} 1`] = `
+"SyntaxError [1:9-1:15]: Invalid keyword
+> 1 | for (var import.meta of [1]) {}
+    |          ^^^^^^ Invalid keyword"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.(meta([0](x = 123))) 1`] = `
+"SyntaxError [1:7-1:8]: The only valid meta property for import is 'import.meta'
+> 1 | import.(meta([0](x = 123)))
+    |        ^ The only valid meta property for import is 'import.meta'"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.\\u006deta; 1`] = `
+"SyntaxError [1:7-1:16]: 'import.meta' must not contain escaped characters
+> 1 | import.\\u006deta;
+    |        ^^^^^^^^^ 'import.meta' must not contain escaped characters"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.m\\u0065ta; 1`] = `
+"SyntaxError [1:7-1:16]: 'import.meta' must not contain escaped characters
+> 1 | import.m\\u0065ta;
+    |        ^^^^^^^^^ 'import.meta' must not contain escaped characters"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.meta = 0; 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | import.meta = 0;
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.meta++; 1`] = `
+"SyntaxError [1:11-1:13]: Invalid increment/decrement operand
+> 1 | import.meta++;
+    |            ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.meta++; 2`] = `
+"SyntaxError [1:11-1:13]: Invalid increment/decrement operand
+> 1 | import.meta++;
+    |            ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.meta[0]() = 123 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | import.meta[0]() = 123
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import.meta2; 1`] = `
+"SyntaxError [1:7-1:12]: The only valid meta property for import is 'import.meta'
+> 1 | import.meta2;
+    |        ^^^^^ The only valid meta property for import is 'import.meta'"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import?.meta 1`] = `
+"SyntaxError [1:6-1:8]: The import keyword can only be used with the module goal
+> 1 | import?.meta
+    |       ^^ The import keyword can only be used with the module goal"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > import?.meta 2`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '?.'
+> 1 | import?.meta
+    |       ^^ Unexpected token: '?.'"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var import.meta 1`] = `
+"SyntaxError [1:4-1:10]: Invalid keyword
+> 1 | var import.meta
+    |     ^^^^^^ Invalid keyword"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var import.meta 2`] = `
+"SyntaxError [1:4-1:10]: Invalid keyword
+> 1 | var import.meta
+    |     ^^^^^^ Invalid keyword"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( [import.meta = 1] = {}); 1`] = `
+"SyntaxError [1:28-1:29]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( [import.meta = 1] = {});
+    |                             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( [import.meta] = {}); 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( [import.meta] = {});
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( { import.meta } = {}); 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected character after object literal property name
+> 1 | var x, y, z; ( { import.meta } = {});
+    |                        ^ Unexpected character after object literal property name"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( { x: import.meta = 1 } = {}); 1`] = `
+"SyntaxError [1:32-1:33]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( { x: import.meta = 1 } = {});
+    |                                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Expressions - Import Meta (fail) > var x, y, z; ( { x: import.meta } = {}); 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | var x, y, z; ( { x: import.meta } = {});
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Import Meta > Import Meta (pass) > "use strict"; ({m() { while (0) { import.meta } }}) 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "meta": {
+                              "name": "import",
+                              "type": "Identifier",
+                            },
+                            "property": {
+                              "name": "meta",
+                              "type": "Identifier",
+                            },
+                            "type": "MetaProperty",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "test": {
+                      "type": "Literal",
+                      "value": 0,
+                    },
+                    "type": "WhileStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > () => { import.meta } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "meta": {
+                  "name": "import",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "meta",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > ({m() { import.meta.url}}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "computed": false,
+                      "object": {
+                        "meta": {
+                          "name": "import",
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "name": "meta",
+                          "type": "Identifier",
+                        },
+                        "type": "MetaProperty",
+                      },
+                      "optional": false,
+                      "property": {
+                        "name": "url",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > const size = import.meta.scriptElement.dataset.size || 300; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "size",
+            "type": "Identifier",
+          },
+          "init": {
+            "left": {
+              "computed": false,
+              "object": {
+                "computed": false,
+                "object": {
+                  "computed": false,
+                  "object": {
+                    "meta": {
+                      "name": "import",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "meta",
+                      "type": "Identifier",
+                    },
+                    "type": "MetaProperty",
+                  },
+                  "optional": false,
+                  "property": {
+                    "name": "scriptElement",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "optional": false,
+                "property": {
+                  "name": "dataset",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "optional": false,
+              "property": {
+                "name": "size",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "operator": "||",
+            "right": {
+              "type": "Literal",
+              "value": 300,
+            },
+            "type": "LogicalExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > delete import.meta 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > do { import.meta } while (0) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "meta": {
+                "name": "import",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "meta",
+                "type": "Identifier",
+              },
+              "type": "MetaProperty",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 0,
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > if (1) { import.meta } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "meta": {
+                "name": "import",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "meta",
+                "type": "Identifier",
+              },
+              "type": "MetaProperty",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 1,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > import.meta 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 11,
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "meta": {
+          "end": 6,
+          "loc": {
+            "end": {
+              "column": 6,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "import",
+          "range": [
+            0,
+            6,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "property": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 1,
+            },
+            "start": {
+              "column": 7,
+              "line": 1,
+            },
+          },
+          "name": "meta",
+          "range": [
+            7,
+            11,
+          ],
+          "start": 7,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "type": "MetaProperty",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > import.meta() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "optional": false,
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > import.meta.resolve('something') 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": "something",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "meta": {
+              "name": "import",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "meta",
+              "type": "Identifier",
+            },
+            "type": "MetaProperty",
+          },
+          "optional": false,
+          "property": {
+            "name": "resolve",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "optional": false,
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > import.meta.url 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "computed": false,
+        "end": 15,
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "object": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "meta": {
+            "end": 6,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 1,
+              },
+              "start": {
+                "column": 0,
+                "line": 1,
+              },
+            },
+            "name": "import",
+            "range": [
+              0,
+              6,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 11,
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 1,
+              },
+              "start": {
+                "column": 7,
+                "line": 1,
+              },
+            },
+            "name": "meta",
+            "range": [
+              7,
+              11,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            11,
+          ],
+          "start": 0,
+          "type": "MetaProperty",
+        },
+        "optional": false,
+        "property": {
+          "end": 15,
+          "loc": {
+            "end": {
+              "column": 15,
+              "line": 1,
+            },
+            "start": {
+              "column": 12,
+              "line": 1,
+            },
+          },
+          "name": "url",
+          "range": [
+            12,
+            15,
+          ],
+          "start": 12,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > import.meta[0] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": true,
+        "object": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "optional": false,
+        "property": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > t = [...import.meta] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "t",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "elements": [
+            {
+              "argument": {
+                "meta": {
+                  "name": "import",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "meta",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "SpreadElement",
+            },
+          ],
+          "type": "ArrayExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > var f = function() {import.meta.couldBeMutable = true} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "expression": {
+                    "left": {
+                      "computed": false,
+                      "object": {
+                        "meta": {
+                          "name": "import",
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "name": "meta",
+                          "type": "Identifier",
+                        },
+                        "type": "MetaProperty",
+                      },
+                      "optional": false,
+                      "property": {
+                        "name": "couldBeMutable",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "type": "Literal",
+                      "value": true,
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > x = 
+import.meta 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "end": 16,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          16,
+        ],
+        "right": {
+          "end": 16,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "meta": {
+            "end": 11,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "name": "import",
+            "range": [
+              5,
+              11,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 16,
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 2,
+              },
+              "start": {
+                "column": 7,
+                "line": 2,
+              },
+            },
+            "name": "meta",
+            "range": [
+              12,
+              16,
+            ],
+            "start": 12,
+            "type": "Identifier",
+          },
+          "range": [
+            5,
+            16,
+          ],
+          "start": 5,
+          "type": "MetaProperty",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > x = 
+import.meta.url 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "end": 20,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          20,
+        ],
+        "right": {
+          "computed": false,
+          "end": 20,
+          "loc": {
+            "end": {
+              "column": 15,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "object": {
+            "end": 16,
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "meta": {
+              "end": 11,
+              "loc": {
+                "end": {
+                  "column": 6,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 0,
+                  "line": 2,
+                },
+              },
+              "name": "import",
+              "range": [
+                5,
+                11,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 16,
+              "loc": {
+                "end": {
+                  "column": 11,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "name": "meta",
+              "range": [
+                12,
+                16,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+            "range": [
+              5,
+              16,
+            ],
+            "start": 5,
+            "type": "MetaProperty",
+          },
+          "optional": false,
+          "property": {
+            "end": 20,
+            "loc": {
+              "end": {
+                "column": 15,
+                "line": 2,
+              },
+              "start": {
+                "column": 12,
+                "line": 2,
+              },
+            },
+            "name": "url",
+            "range": [
+              17,
+              20,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            5,
+            20,
+          ],
+          "start": 5,
+          "type": "MemberExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Import Meta > Import Meta (pass) > x = import.meta 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
