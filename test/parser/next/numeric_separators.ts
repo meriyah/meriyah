@@ -1,8 +1,8 @@
 import { describe } from 'vitest';
 import { fail } from '../../test-utils.ts';
 
-describe('Next - Numeric separators', () => {
-  fail('Next - Numeric separators (fail)', [
+describe('Numeric separators', () => {
+  fail('Numeric separators (fail)', [
     '0_',
     '1_0_0_0_',
     '09_0;',

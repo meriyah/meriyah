@@ -5,7 +5,7 @@ import { Features } from '../../../src/features.ts';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
-describe('Next - Decorators', () => {
+describe('Decorators', () => {
   for (const text of [
     'var foo = @dec class Bar { bam() { f(); } }',
     'class A { @dec *m(){} }',
@@ -92,7 +92,7 @@ describe('Next - Decorators', () => {
     });
   }
 
-  fail('Next - Decorators (fail)', [
+  fail('Decorators (fail)', [
     { code: 'class A { accessor a() {}}', options: { sourceType: 'module', features: Features.Decorators } },
     { code: 'class A { @dec accessor a() {}}', options: { sourceType: 'module', features: Features.Decorators } },
     { code: 'class A { accessor @dec a}', options: { sourceType: 'module', features: Features.Decorators } },
@@ -128,7 +128,7 @@ describe('Next - Decorators', () => {
     { code: '@foo export default @bar class A {}', options: { features: Features.Decorators, sourceType: 'module' } },
   ]);
 
-  pass('Next - Decorators (pass)', [
+  pass('Decorators (pass)', [
     { code: 'class A { @dec name = 0; }', options: { features: Features.Decorators, ranges: true, loc: true } },
     { code: 'class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}', options: { features: Features.Decorators } },
     { code: '(class A { @foo get getter(){} })', options: { sourceType: 'module', features: Features.Decorators } },

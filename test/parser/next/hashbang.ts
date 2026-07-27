@@ -3,8 +3,8 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { fail } from '../../test-utils.ts';
 
-describe('Next - Hashbang grammar', () => {
-  fail('Next - Hashbang grammar (fail)', [
+describe('Hashbang grammar', () => {
+  fail('Hashbang grammar (fail)', [
     '\x20#!',
     '\r\n#!\n',
     '\r#!\n',

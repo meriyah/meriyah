@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
-describe('Next - Import Attributes', () => {
+describe('Import Attributes', () => {
   for (const text of [
     "import 'bar' with { type: 'what' };",
     "import foo from 'bar' with { type: 'json' };",

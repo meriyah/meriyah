@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
-describe('Next - Import Meta', () => {
+describe('Import Meta', () => {
   for (const text of [
     'class C {set x(_) { () => import.meta }}',
     'function f() { import.meta}',
@@ -189,7 +189,7 @@ describe('Next - Import Meta', () => {
     { code: 'import.meta2;', options: { sourceType: 'module' } },
   ]);
 
-  pass('Next - Import Meta (pass)', [
+  pass('Import Meta (pass)', [
     { code: '({m() { import.meta.url}})', options: { sourceType: 'module' } },
     { code: 'if (1) { import.meta }', options: { sourceType: 'module' } },
     { code: 'var f = function() {import.meta.couldBeMutable = true}', options: { sourceType: 'module' } },
