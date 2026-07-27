@@ -13,4 +13,5 @@
       matchManagers: ['github-actions'],
     },
   ],
+  ignoreDeps: ['node'],
 }
