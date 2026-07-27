@@ -1,8 +1,7 @@
-import { getOwnProperty } from './../utilities.ts';
-
 // https://html.spec.whatwg.org/entities.json
 /* spellchecker: disable */
-const entities: { [Identifier: string]: string } = {
+// prettier-ignore
+const entities = new Map<string, string>(Object.entries({
   AElig: '\u00C6',
   AMP: '\u0026',
   Aacute: '\u00C1',
@@ -2128,10 +2127,11 @@ const entities: { [Identifier: string]: string } = {
   zscr: '\uD835\uDCCF',
   zwj: '\u200D',
   zwnj: '\u200C',
-};
+}));
 /* spellchecker: enable */
 
-const decodeMap: { [Identifier: string]: number } = {
+// prettier-ignore
+const decodeMap = new Map<number, number>(Object.entries({
   '0': 65533,
   '128': 8364,
   '130': 8218,
@@ -2160,7 +2160,7 @@ const decodeMap: { [Identifier: string]: number } = {
   '156': 339,
   '158': 382,
   '159': 376,
-};
+}).map(([key, value]): [number, number] => [Number(key), value]));
 
 // Used code from https://github.com/fb55/entities (BSD license)
 export function decodeHTMLStrict(text: string): string {
@@ -2171,7 +2171,7 @@ export function decodeHTMLStrict(text: string): string {
         secondChar === 'X' || secondChar === 'x' ? parseInt(key.slice(3), 16) : parseInt(key.slice(2), 10);
       return decodeCodePoint(codePoint);
     }
-    return getOwnProperty(entities, key.slice(1, -1)) ?? key;
+    return entities.get(key.slice(1, -1)) ?? key;
   });
 }
 
@@ -2180,5 +2180,5 @@ function decodeCodePoint(codePoint: number): string {
     return '\uFFFD';
   }
 
-  return String.fromCodePoint(getOwnProperty(decodeMap, codePoint) ?? codePoint);
+  return String.fromCodePoint(decodeMap.get(codePoint) ?? codePoint);
 }
