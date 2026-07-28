@@ -13,99 +13,117 @@ exports[`Decorators > Decorators (fail) > (@bar function foo() {}) 1`] = `
 `;
 
 exports[`Decorators > Decorators (fail) > @bar const foo = 1; 1`] = `
-"SyntaxError [1:15-1:16]: Expected '{'
+"SyntaxError [1:5-1:10]: Leading decorators must be attached to a class declaration
 > 1 | @bar const foo = 1;
-    |                ^ Expected '{'"
+    |      ^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export * from "./foo"; 1`] = `
-"SyntaxError [1:26-1:27]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @bar export * from "./foo";
-    |                           ^ Leading decorators must be attached to a class declaration"
+    |             ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export {Foo}; 1`] = `
-"SyntaxError [1:17-1:18]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @bar export {Foo};
-    |                  ^ Leading decorators must be attached to a class declaration"
+    |             ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export const foo = 1; 1`] = `
-"SyntaxError [1:25-1:26]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:17]: Leading decorators must be attached to a class declaration
 > 1 | @bar export const foo = 1;
-    |                          ^ Leading decorators must be attached to a class declaration"
+    |             ^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export const lo = {a: class Foo {}}; 1`] = `
-"SyntaxError [1:40-1:41]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:17]: Leading decorators must be attached to a class declaration
 > 1 | @bar export const lo = {a: class Foo {}};
-    |                                         ^ Leading decorators must be attached to a class declaration"
+    |             ^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export default function foo() {} 1`] = `
-"SyntaxError [1:36-1:37]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:20-1:28]: Leading decorators must be attached to a class declaration
 > 1 | @bar export default function foo() {}
-    |                                     ^ Leading decorators must be attached to a class declaration"
+    |                     ^^^^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar function foo() {} 1`] = `
-"SyntaxError [1:17-1:18]: Expected '{'
+"SyntaxError [1:5-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @bar function foo() {}
-    |                  ^ Expected '{'"
+    |      ^^^^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar(); 1`] = `
-"SyntaxError [1:6-1:7]: Class declaration must have a name in this context
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
 > 1 | @bar();
-    |       ^ Class declaration must have a name in this context"
+    |       ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar; 1`] = `
-"SyntaxError [1:4-1:5]: Class declaration must have a name in this context
+"SyntaxError [1:4-1:5]: Leading decorators must be attached to a class declaration
 > 1 | @bar;
-    |     ^ Class declaration must have a name in this context"
+    |     ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() => {} 1`] = `
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
+> 1 | @dec()() => {}
+    |       ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() => {} 2`] = `
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
+> 1 | @dec()() => {}
+    |       ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @dec()() class A {} 1`] = `
-"SyntaxError [1:7-1:8]: Class declaration must have a name in this context
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
 > 1 | @dec()() class A {}
-    |        ^ Class declaration must have a name in this context"
+    |       ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() class A {} 2`] = `
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
+> 1 | @dec()() class A {}
+    |       ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @dec().b class A {} 1`] = `
-"SyntaxError [1:9-1:14]: Expected '{'
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
 > 1 | @dec().b class A {}
-    |          ^^^^^ Expected '{'"
+    |       ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @dec?.() class A {} 1`] = `
-"SyntaxError [1:6-1:7]: Class declaration must have a name in this context
+"SyntaxError [1:4-1:6]: Leading decorators must be attached to a class declaration
 > 1 | @dec?.() class A {}
-    |       ^ Class declaration must have a name in this context"
+    |     ^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @dec?.b class A {} 1`] = `
-"SyntaxError [1:8-1:13]: Expected '{'
+"SyntaxError [1:4-1:6]: Leading decorators must be attached to a class declaration
 > 1 | @dec?.b class A {}
-    |         ^^^^^ Expected '{'"
+    |     ^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @dec["x"] class A {} 1`] = `
-"SyntaxError [1:5-1:8]: Class declaration must have a name in this context
+"SyntaxError [1:4-1:5]: Leading decorators must be attached to a class declaration
 > 1 | @dec["x"] class A {}
-    |      ^^^ Class declaration must have a name in this context"
+    |     ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @dec[0] class A {} 1`] = `
-"SyntaxError [1:5-1:6]: Class declaration must have a name in this context
+"SyntaxError [1:4-1:5]: Leading decorators must be attached to a class declaration
 > 1 | @dec[0] class A {}
-    |      ^ Class declaration must have a name in this context"
+    |     ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @decorate 1`] = `
-"SyntaxError [1:1-1:9]: Class declaration must have a name in this context
+"SyntaxError [1:1-1:9]: Leading decorators must be attached to a class declaration
 > 1 | @decorate
-    |  ^^^^^^^^ Class declaration must have a name in this context"
+    |  ^^^^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @foo export @bar class A {} 1`] = `

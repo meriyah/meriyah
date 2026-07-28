@@ -132,6 +132,15 @@ describe('Decorators', () => {
     { code: '@dec?.() class A {}', options: { features: Features.Decorators } },
     { code: '@dec().b class A {}', options: { features: Features.Decorators } },
     { code: '@dec()() class A {}', options: { features: Features.Decorators } },
+    {
+      code: '@dec()() class A {}',
+      options: { features: Features.Decorators, sourceType: 'module' },
+    },
+    { code: '@dec()() => {}', options: { features: Features.Decorators } },
+    {
+      code: '@dec()() => {}',
+      options: { features: Features.Decorators, sourceType: 'module' },
+    },
     { code: '@this.x class A {}', options: { features: Features.Decorators } },
     { code: 'class A { @dec[0] m() {} }', options: { features: Features.Decorators } },
   ]);

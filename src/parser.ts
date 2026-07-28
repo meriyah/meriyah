@@ -193,6 +193,9 @@ function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefi
       moduleItem = parseExportDeclaration(parser, context, scope);
       break;
     case Token.ImportKeyword:
+      if (parser.leadingDecorators.decorators.length) {
+        parser.report(Errors.InvalidLeadingDecorator);
+      }
       moduleItem = parseImportDeclaration(parser, context, scope);
       break;
     default:
@@ -238,6 +241,10 @@ function parseStatementListItem(
   // LexicalDeclaration[In, Yield] :
   //   LetOrConst BindingList[?In, ?Yield] ;
   const start = parser.tokenStart;
+
+  if (parser.leadingDecorators.decorators.length && parser.getToken() !== Token.ClassKeyword) {
+    parser.report(Errors.InvalidLeadingDecorator);
+  }
 
   switch (parser.getToken()) {
     //   HoistableDeclaration[?Yield, ~Default]
@@ -2951,6 +2958,15 @@ function parseExportDeclaration(
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
 
+  if (
+    parser.leadingDecorators.decorators.length &&
+    parser.getToken() !== Token.DefaultKeyword &&
+    parser.getToken() !== Token.Decorator &&
+    parser.getToken() !== Token.ClassKeyword
+  ) {
+    parser.report(Errors.InvalidLeadingDecorator);
+  }
+
   const specifiers: ESTree.ExportSpecifier[] = [];
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
@@ -2961,6 +2977,14 @@ function parseExportDeclaration(
     // export default HoistableDeclaration[Default]
     // export default ClassDeclaration[Default]
     // export default [lookahead not-in {function, class}] AssignmentExpression[In] ;
+
+    if (
+      parser.leadingDecorators.decorators.length &&
+      parser.getToken() !== Token.Decorator &&
+      parser.getToken() !== Token.ClassKeyword
+    ) {
+      parser.report(Errors.InvalidLeadingDecorator);
+    }
 
     switch (parser.getToken()) {
       // export default HoistableDeclaration[Default]
@@ -8104,6 +8128,9 @@ function parseClassDeclaration(
   } else {
     start = parser.tokenStart;
     decorators = parseDecorators(parser, context, privateScope);
+    if (decorators.length && parser.getToken() !== Token.ClassKeyword) {
+      parser.report(Errors.InvalidLeadingDecorator);
+    }
   }
 
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
