@@ -8350,17 +8350,10 @@ function parseDecorator(parser: Parser, context: Context, privateScope: PrivateS
       context | Context.TaggedTemplate,
     );
 
-    parser.assignable =
-      context & Context.Strict && (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
-        ? AssignmentTargetKind.Invalid
-        : AssignmentTargetKind.Simple;
-
     while (parser.getToken() === Token.Period) {
       nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
 
       const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
-
-      parser.assignable = AssignmentTargetKind.Simple;
 
       memberExpression = parser.finishNode<ESTree.MemberExpression>(
         {
@@ -8378,11 +8371,6 @@ function parseDecorator(parser: Parser, context: Context, privateScope: PrivateS
 
     if (parser.getToken() === Token.LeftParen) {
       const args = parseArguments(parser, context, privateScope, 0);
-
-      parser.assignable =
-        !(context & Context.Strict) && parser.options.webcompat
-          ? AssignmentTargetKind.WebCompat
-          : AssignmentTargetKind.Invalid;
 
       expression = parser.finishNode<ESTree.CallExpression>(
         {
