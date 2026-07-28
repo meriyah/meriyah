@@ -2958,12 +2958,9 @@ function parseExportDeclaration(
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
 
-  if (
-    parser.leadingDecorators.decorators.length &&
-    parser.getToken() !== Token.DefaultKeyword &&
-    parser.getToken() !== Token.Decorator &&
-    parser.getToken() !== Token.ClassKeyword
-  ) {
+  const isDefaultExport = consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword);
+
+  if (parser.leadingDecorators.decorators.length && parser.getToken() !== Token.ClassKeyword) {
     parser.report(Errors.InvalidLeadingDecorator);
   }
 
@@ -2973,18 +2970,10 @@ function parseExportDeclaration(
   let source: ESTree.StringLiteral | null = null;
   let attributes: ESTree.ImportAttribute[] = [];
 
-  if (consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword)) {
+  if (isDefaultExport) {
     // export default HoistableDeclaration[Default]
     // export default ClassDeclaration[Default]
     // export default [lookahead not-in {function, class}] AssignmentExpression[In] ;
-
-    if (
-      parser.leadingDecorators.decorators.length &&
-      parser.getToken() !== Token.Decorator &&
-      parser.getToken() !== Token.ClassKeyword
-    ) {
-      parser.report(Errors.InvalidLeadingDecorator);
-    }
 
     switch (parser.getToken()) {
       // export default HoistableDeclaration[Default]

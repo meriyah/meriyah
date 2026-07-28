@@ -127,15 +127,15 @@ exports[`Decorators > Decorators (fail) > @decorate 1`] = `
 `;
 
 exports[`Decorators > Decorators (fail) > @foo export @bar class A {} 1`] = `
-"SyntaxError [1:12-1:13]: Unexpected token: '@'
+"SyntaxError [1:12-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @foo export @bar class A {}
-    |             ^ Unexpected token: '@'"
+    |             ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @foo export default @bar class A {} 1`] = `
-"SyntaxError [1:20-1:21]: Unexpected token: '@'
+"SyntaxError [1:20-1:21]: Leading decorators must be attached to a class declaration
 > 1 | @foo export default @bar class A {}
-    |                     ^ Unexpected token: '@'"
+    |                     ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @this.x class A {} 1`] = `
