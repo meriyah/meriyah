@@ -8265,7 +8265,7 @@ function parseDecorators(parser: Parser, context: Context, privateScope: Private
 
   if (parser.features & Features.Decorators) {
     while (parser.getToken() === Token.Decorator) {
-      list.push(parseDecoratorList(parser, context, privateScope));
+      list.push(parseDecorator(parser, context, privateScope));
     }
   }
 
@@ -8273,16 +8273,24 @@ function parseDecorators(parser: Parser, context: Context, privateScope: Private
 }
 
 /**
- * Parses a list of decorators
+ * Parses a decorator
  *
  * @param parser Parser object
  * @param context Context masks
  */
-function parseDecoratorList(
-  parser: Parser,
-  context: Context,
-  privateScope: PrivateScope | undefined,
-): ESTree.Decorator {
+function parseDecorator(parser: Parser, context: Context, privateScope: PrivateScope | undefined): ESTree.Decorator {
+  // Decorator[Yield, Await] :
+  //    @ DecoratorMemberExpression[?Yield, ?Await]
+  //    @ DecoratorParenthesizedExpression[?Yield, ?Await]
+  //    @ DecoratorCallExpression[?Yield, ?Await]
+  //  DecoratorMemberExpression[Yield, Await] :
+  //    IdentifierReference[?Yield, ?Await]
+  //    DecoratorMemberExpression[?Yield, ?Await] . IdentifierName
+  //    DecoratorMemberExpression[?Yield, ?Await] . PrivateIdentifier
+  //  DecoratorParenthesizedExpression[Yield, Await] :
+  //    ( Expression[+In, ?Yield, ?Await] )
+  //  DecoratorCallExpression[Yield, Await] :
+  //    DecoratorMemberExpression[?Yield, ?Await] Arguments[?Yield, ?Await]
   const start = parser.tokenStart;
 
   nextToken(parser, context | Context.AllowRegExp);
