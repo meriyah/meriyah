@@ -68,15 +68,19 @@
 
 <script type="module">
 import { createApp } from 'https://cdn.jsdelivr.net/npm/petite-vue/+esm';
-import { parse, version } from 'https://cdn.jsdelivr.net/npm/meriyah/+esm';
+import { parse, version } from 'https://esm.sh/pr/meriyah@101491e/dist/meriyah.min.mjs';
 import { codeFrameColumns } from 'https://cdn.jsdelivr.net/npm/@babel/code-frame/+esm';
 
-let sourceEditor, resultEditor;
+let sourceEditor, resultEditor, prParse;
 
 function App() {
   return {
     $template: '#app',
     version,
+    pkgpr: '',
+    isLoading: false,
+    pkgprVersion: '',
+    pkgprError: '',
     source: 'let x = 1;',
     options: {
       module: false,
@@ -93,7 +97,8 @@ function App() {
     },
     get result() {
       try {
-        const result = parse(this.source, this.options);
+        const parseFunc = this.pkgprVersion ? prParse : parse;
+        const result = parseFunc(this.source, this.options);
         if (resultEditor) {
           resultEditor.setOption('mode', 'application/json');
         }
@@ -116,6 +121,42 @@ function App() {
         const pretty = codeFrameColumns(this.source, babelLoc);
         return `${e.message}\n\n${pretty}`;
       }
+    },
+    loadPkgpr() {
+      if (this.isLoading || !this.pkgpr) {
+        return;
+      }
+      this.isLoading = true;
+
+      const match = this.pkgpr.match(/meriyah@([0-9a-f]+)/);
+      if (!match) {
+        this.pkgprError = 'Invalid pkg.pr.new URL or version';
+        this.isLoading = false;
+        return;
+      }
+
+
+      const version = match[1];
+      const url = `https://esm.sh/pr/meriyah@${version}/dist/meriyah.min.mjs`;
+      import(url).then((module) => {
+        if (typeof module.parse !== 'function') {
+          throw new Error(`Invalid meriyah module from pkg.pr.new: ${url}`);
+        }
+        prParse = module.parse;
+        this.pkgprVersion = version;
+        this.pkgprError = '';
+      }).catch((err) => {
+        console.error(err);
+        this.pkgprError = `Failed to load meriyah@${version} from pkg.pr.new`;
+      }).finally(() => {
+        this.isLoading = false;
+      });
+    },
+    unloadPkgpr() {
+      this.pkgprVersion = '';
+      this.pkgprError = '';
+      this.pkgpr = '';
+      prParse = null;
     },
     updateResult(content) {
       resultEditor.setValue(content);
@@ -156,6 +197,24 @@ createApp({ App }).mount();
       </div>
       <div class="m-3">
         <p>Latest version: {{ version }}</p>
+        <div class="section">
+          <div class="head">
+            Load a pkg.pr.new
+            <br>
+
+          </div>
+          <div class="item">
+            <div><small><code>https://pkg.pr.new/meriyah@612</code><br>or just <code>meriyah@612</code></small></div>
+            <div class="input-group input-group-sm mb-3">
+              <input v-if="!pkgprVersion && !isLoading" type="text" class="form-control form-control-sm" v-model="pkgpr" @keyup.enter="loadPkgpr">
+              <button v-if="!pkgprVersion && !isLoading" class="btn btn-primary" @click="loadPkgpr">Load</button>
+              <span v-if="isLoading" class="input-group-text flex-grow-1">Loading...</span>
+              <span v-if="!isLoading && pkgprVersion" class="input-group-text flex-grow-1">meriyah@{{ pkgprVersion }}</span>
+              <button v-if="!isLoading && pkgprVersion" class="btn btn-light" @click="unloadPkgpr">Unload</button>
+            </div>
+            <span v-if="pkgprError" class="text-danger">{{ pkgprError }}</span>
+          </div>
+        </div>
         <div class="section">
           <div class="head">Source Type</div>
           <div class="item">
