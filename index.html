@@ -67,9 +67,9 @@
 <body v-scope="App()">
 
 <script type="module">
-import { createApp } from 'https://cdn.jsdelivr.net/npm/petite-vue/+esm';
-import { parse, version } from 'https://cdn.jsdelivr.net/npm/meriyah/+esm';
-import { codeFrameColumns } from 'https://cdn.jsdelivr.net/npm/@babel/code-frame/+esm';
+import { createApp } from 'https://esm.sh/petite-vue';
+import { parse, version } from 'https://esm.sh/meriyah';
+import { codeFrameColumns } from 'https://esm.sh/@babel/code-frame';
 
 let sourceEditor, resultEditor, prParse;
 
@@ -112,12 +112,8 @@ function App() {
           // Be defensive if meriyah failed unexpectedly.
           return e.message;
         }
-        const babelLoc = {
-          start: { line: e.loc.start.line, column: e.loc.start.column},
-          end: { line: e.loc.end.line, column: e.loc.end.column},
-        }
 
-        const pretty = codeFrameColumns(this.source, babelLoc);
+        const pretty = codeFrameColumns(this.source, e.loc);
         return `${e.message}\n\n${pretty}`;
       }
     },
