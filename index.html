@@ -83,16 +83,16 @@ function App() {
     pkgprError: '',
     source: 'let x = 1;',
     options: {
-      module: false,
+      sourceType: 'script',
       next: true,
       webcompat: true,
       ranges: false,
       loc: false,
       raw: false,
-      globalReturn: false,
       preserveParens: false,
       lexical: true,
       jsx: true,
+      validateRegex: true,
       impliedStrict: false
     },
     get result() {
@@ -213,74 +213,80 @@ createApp({ App }).mount();
         <div class="section">
           <div class="head">Source Type</div>
           <div class="item">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="type-script" :value="false" v-model="options.module">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="type-script" :value="'script'" v-model="options.sourceType">
               <label class="form-check-label" for="type-script">Script</label>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="type-module" :value="true" v-model="options.module">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="type-module" :value="'module'" v-model="options.sourceType">
               <label class="form-check-label" for="type-module">Module</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="type-commonjs" :value="'commonjs'" v-model="options.sourceType">
+              <label class="form-check-label" for="type-commonjs">CommonJS</label>
+              <br>
+              <small>CommonJS enables global return and global new.target.</small>
             </div>
           </div>
         </div>
         <div class="section">
           <div class="head">Options</div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-next" v-model="options.next">
               <label class="form-check-label" for="opts-next">ESNext stage 3 features</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-webcompat" v-model="options.webcompat">
               <label class="form-check-label" for="opts-webcompat">Web compatibility (Annex.B)</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-ranges" v-model="options.ranges">
               <label class="form-check-label" for="opts-ranges">Ranges (start, end)</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-loc" v-model="options.loc">
               <label class="form-check-label" for="opts-loc">Locations (line, column)</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-raw" v-model="options.raw">
               <label class="form-check-label" for="opts-raw">Raw property</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="opts-global-return" v-model="options.globalReturn">
-              <label class="form-check-label" for="opts-global-return">Enable global return</label>
-            </div>
-          </div>
-          <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-preserve-parens" v-model="options.preserveParens">
               <label class="form-check-label" for="opts-preserve-parens">Preserve parenthesis</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-lexical" v-model="options.lexical">
               <label class="form-check-label" for="opts-lexical">Lexical analysis</label>
             </div>
           </div>
           <div class="item">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-jsx" v-model="options.jsx">
               <label class="form-check-label" for="opts-jsx">JSX support</label>
             </div>
           </div>
+          <div class="item">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="opts-validate-regex" v-model="options.validateRegex">
+              <label class="form-check-label" for="opts-validate-regex">Validate regular expressions</label>
+            </div>
+          </div>
           <div class="item" v-if="!options.module">
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" id="opts-implied-strict" v-model="options.impliedStrict">
               <label class="form-check-label" for="opts-implied-strict">Implied strict mode</label>
             </div>

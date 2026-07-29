@@ -10,5 +10,7 @@ yarn-error.log*
 .DS_Store
 /.cache
 /dist
-bun.lockb
+bun.lock
+package-lock.json
+test262
 test.ts
