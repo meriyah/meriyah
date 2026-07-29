@@ -68,7 +68,7 @@ jobs:
           ./actionlint -color
         shell: bash
       - name: Validate renovate config
-        run: yarn dlx --package renovate@latest renovate-config-validator
+        run: npx --package renovate@latest renovate-config-validator
 
   preview:
     if: github.repository == 'meriyah/meriyah'
