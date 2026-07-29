@@ -79,6 +79,7 @@ describe('Decorators', () => {
     '(class { @a.b accessor = 1})',
     '(class { @dec accessor x})',
     '(class { @dec accessor x = 1})',
+    '(@dec class {})',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
@@ -143,6 +144,8 @@ describe('Decorators', () => {
     },
     { code: '@this.x class A {}', options: { features: Features.Decorators } },
     { code: 'class A { @dec[0] m() {} }', options: { features: Features.Decorators } },
+    // decorators in parseClassExpression
+    { code: '(@dec a)', options: { features: Features.Decorators } },
   ]);
 
   describe('Decorator class element boundaries', () => {

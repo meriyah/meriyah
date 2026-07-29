@@ -1,15 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Decorators > Decorators (fail) > (@bar const foo = 1); 1`] = `
-"SyntaxError [1:16-1:17]: Expected '{'
+"SyntaxError [1:6-1:11]: Expected 'class'
 > 1 | (@bar const foo = 1);
-    |                 ^ Expected '{'"
+    |       ^^^^^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > (@bar function foo() {}) 1`] = `
-"SyntaxError [1:18-1:19]: Expected '{'
+"SyntaxError [1:6-1:14]: Expected 'class'
 > 1 | (@bar function foo() {})
-    |                   ^ Expected '{'"
+    |       ^^^^^^^^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > (@dec a) 1`] = `
+"SyntaxError [1:6-1:7]: Expected 'class'
+> 1 | (@dec a)
+    |       ^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar const foo = 1; 1`] = `

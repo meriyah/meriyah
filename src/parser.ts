@@ -8218,7 +8218,7 @@ function parseClassExpression(
 
   context = (context | Context.Strict | Context.InConstructor) ^ Context.InConstructor;
 
-  nextToken(parser, context);
+  consume(parser, context, Token.ClassKeyword);
 
   if (parser.getToken() & Token.Keyword && parser.getToken() !== Token.ExtendsKeyword) {
     if (isStrictReservedWord(parser, context, parser.getToken())) parser.report(Errors.UnexpectedStrictReserved);
