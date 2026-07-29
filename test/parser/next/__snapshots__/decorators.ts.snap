@@ -13,75 +13,135 @@ exports[`Decorators > Decorators (fail) > (@bar function foo() {}) 1`] = `
 `;
 
 exports[`Decorators > Decorators (fail) > @bar const foo = 1; 1`] = `
-"SyntaxError [1:15-1:16]: Expected '{'
+"SyntaxError [1:5-1:10]: Expected 'class'
 > 1 | @bar const foo = 1;
-    |                ^ Expected '{'"
+    |      ^^^^^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export * from "./foo"; 1`] = `
-"SyntaxError [1:26-1:27]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @bar export * from "./foo";
-    |                           ^ Leading decorators must be attached to a class declaration"
+    |             ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export {Foo}; 1`] = `
-"SyntaxError [1:17-1:18]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @bar export {Foo};
-    |                  ^ Leading decorators must be attached to a class declaration"
+    |             ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export const foo = 1; 1`] = `
-"SyntaxError [1:25-1:26]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:17]: Leading decorators must be attached to a class declaration
 > 1 | @bar export const foo = 1;
-    |                          ^ Leading decorators must be attached to a class declaration"
+    |             ^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export const lo = {a: class Foo {}}; 1`] = `
-"SyntaxError [1:40-1:41]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:12-1:17]: Leading decorators must be attached to a class declaration
 > 1 | @bar export const lo = {a: class Foo {}};
-    |                                         ^ Leading decorators must be attached to a class declaration"
+    |             ^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar export default function foo() {} 1`] = `
-"SyntaxError [1:36-1:37]: Leading decorators must be attached to a class declaration
+"SyntaxError [1:20-1:28]: Leading decorators must be attached to a class declaration
 > 1 | @bar export default function foo() {}
-    |                                     ^ Leading decorators must be attached to a class declaration"
+    |                     ^^^^^^^^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar function foo() {} 1`] = `
-"SyntaxError [1:17-1:18]: Expected '{'
+"SyntaxError [1:5-1:13]: Expected 'class'
 > 1 | @bar function foo() {}
-    |                  ^ Expected '{'"
+    |      ^^^^^^^^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar(); 1`] = `
-"SyntaxError [1:6-1:7]: Class declaration must have a name in this context
+"SyntaxError [1:6-1:7]: Expected 'class'
 > 1 | @bar();
-    |       ^ Class declaration must have a name in this context"
+    |       ^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > @bar; 1`] = `
-"SyntaxError [1:4-1:5]: Class declaration must have a name in this context
+"SyntaxError [1:4-1:5]: Expected 'class'
 > 1 | @bar;
-    |     ^ Class declaration must have a name in this context"
+    |     ^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() => {} 1`] = `
+"SyntaxError [1:6-1:7]: Expected 'class'
+> 1 | @dec()() => {}
+    |       ^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() => {} 2`] = `
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
+> 1 | @dec()() => {}
+    |       ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() class A {} 1`] = `
+"SyntaxError [1:6-1:7]: Expected 'class'
+> 1 | @dec()() class A {}
+    |       ^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec()() class A {} 2`] = `
+"SyntaxError [1:6-1:7]: Leading decorators must be attached to a class declaration
+> 1 | @dec()() class A {}
+    |       ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec().b class A {} 1`] = `
+"SyntaxError [1:6-1:7]: Expected 'class'
+> 1 | @dec().b class A {}
+    |       ^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec?.() class A {} 1`] = `
+"SyntaxError [1:4-1:6]: Expected 'class'
+> 1 | @dec?.() class A {}
+    |     ^^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec?.b class A {} 1`] = `
+"SyntaxError [1:4-1:6]: Expected 'class'
+> 1 | @dec?.b class A {}
+    |     ^^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec["x"] class A {} 1`] = `
+"SyntaxError [1:4-1:5]: Expected 'class'
+> 1 | @dec["x"] class A {}
+    |     ^ Expected 'class'"
+`;
+
+exports[`Decorators > Decorators (fail) > @dec[0] class A {} 1`] = `
+"SyntaxError [1:4-1:5]: Expected 'class'
+> 1 | @dec[0] class A {}
+    |     ^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > @decorate 1`] = `
-"SyntaxError [1:1-1:9]: Class declaration must have a name in this context
+"SyntaxError [1:1-1:9]: Expected 'class'
 > 1 | @decorate
-    |  ^^^^^^^^ Class declaration must have a name in this context"
+    |  ^^^^^^^^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > @foo export @bar class A {} 1`] = `
-"SyntaxError [1:12-1:13]: Unexpected token: '@'
+"SyntaxError [1:12-1:13]: Leading decorators must be attached to a class declaration
 > 1 | @foo export @bar class A {}
-    |             ^ Unexpected token: '@'"
+    |             ^ Leading decorators must be attached to a class declaration"
 `;
 
 exports[`Decorators > Decorators (fail) > @foo export default @bar class A {} 1`] = `
-"SyntaxError [1:20-1:21]: Unexpected token: '@'
+"SyntaxError [1:20-1:21]: Leading decorators must be attached to a class declaration
 > 1 | @foo export default @bar class A {}
-    |                     ^ Unexpected token: '@'"
+    |                     ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Decorators > Decorators (fail) > @this.x class A {} 1`] = `
+"SyntaxError [1:1-1:5]: Unexpected token: 'this'
+> 1 | @this.x class A {}
+    |  ^^^^ Unexpected token: 'this'"
 `;
 
 exports[`Decorators > Decorators (fail) > class A {  constructor(@foo x) {} } 1`] = `
@@ -112,6 +172,12 @@ exports[`Decorators > Decorators (fail) > class A { @dec accessor a() {}} 1`] = 
 "SyntaxError [1:25-1:26]: Unexpected token: '('
 > 1 | class A { @dec accessor a() {}}
     |                          ^ Unexpected token: '('"
+`;
+
+exports[`Decorators > Decorators (fail) > class A { @dec[0] m() {} } 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: 'identifier'
+> 1 | class A { @dec[0] m() {} }
+    |                   ^ Unexpected token: 'identifier'"
 `;
 
 exports[`Decorators > Decorators (fail) > class A { @foo && bar method() {}  } 1`] = `
@@ -169,9 +235,9 @@ exports[`Decorators > Decorators (fail) > class Foo {@abc constructor(){} 1`] = 
 `;
 
 exports[`Decorators > Decorators (fail) > export default @decorator class Foo {} 1`] = `
-"SyntaxError [1:26-1:31]: Expected '{'
+"SyntaxError [1:15-1:16]: Expected 'class'
 > 1 | export default @decorator class Foo {}
-    |                           ^^^^^ Expected '{'"
+    |                ^ Expected 'class'"
 `;
 
 exports[`Decorators > Decorators (fail) > var obj = { method(@foo x) {} }; 1`] = `

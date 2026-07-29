@@ -193,15 +193,15 @@ function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefi
       moduleItem = parseExportDeclaration(parser, context, scope);
       break;
     case Token.ImportKeyword:
+      if (parser.leadingDecorators.decorators.length) {
+        parser.report(Errors.InvalidLeadingDecorator);
+      }
       moduleItem = parseImportDeclaration(parser, context, scope);
       break;
     default:
       moduleItem = parseStatementListItem(parser, context, scope, undefined, Origin.TopLevel, {});
   }
 
-  if (parser.leadingDecorators?.decorators.length) {
-    parser.report(Errors.InvalidLeadingDecorator);
-  }
   return moduleItem;
 }
 
@@ -238,6 +238,10 @@ function parseStatementListItem(
   // LexicalDeclaration[In, Yield] :
   //   LetOrConst BindingList[?In, ?Yield] ;
   const start = parser.tokenStart;
+
+  if (parser.leadingDecorators.decorators.length && parser.getToken() !== Token.ClassKeyword) {
+    parser.report(Errors.InvalidLeadingDecorator);
+  }
 
   switch (parser.getToken()) {
     //   HoistableDeclaration[?Yield, ~Default]
@@ -2951,13 +2955,19 @@ function parseExportDeclaration(
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
 
+  const isDefaultExport = consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword);
+
+  if (parser.leadingDecorators.decorators.length && parser.getToken() !== Token.ClassKeyword) {
+    parser.report(Errors.InvalidLeadingDecorator);
+  }
+
   const specifiers: ESTree.ExportSpecifier[] = [];
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
   let source: ESTree.StringLiteral | null = null;
   let attributes: ESTree.ImportAttribute[] = [];
 
-  if (consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword)) {
+  if (isDefaultExport) {
     // export default HoistableDeclaration[Default]
     // export default ClassDeclaration[Default]
     // export default [lookahead not-in {function, class}] AssignmentExpression[In] ;
@@ -8098,9 +8108,6 @@ function parseClassDeclaration(
   let start;
   let decorators;
   if (parser.leadingDecorators.decorators.length) {
-    if (parser.getToken() === Token.Decorator) {
-      parser.report(Errors.UnexpectedToken, '@');
-    }
     start = parser.leadingDecorators.start!;
     decorators = [...parser.leadingDecorators.decorators];
     parser.leadingDecorators.decorators.length = 0;
@@ -8111,7 +8118,7 @@ function parseClassDeclaration(
 
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
-  nextToken(parser, context);
+  consume(parser, context, Token.ClassKeyword);
   let id: ESTree.Expression | null = null;
   let superClass: ESTree.Expression | null = null;
 
@@ -8268,7 +8275,7 @@ function parseDecorators(parser: Parser, context: Context, privateScope: Private
 
   if (parser.features & Features.Decorators) {
     while (parser.getToken() === Token.Decorator) {
-      list.push(parseDecoratorList(parser, context, privateScope));
+      list.push(parseDecorator(parser, context, privateScope));
     }
   }
 
@@ -8276,24 +8283,89 @@ function parseDecorators(parser: Parser, context: Context, privateScope: Private
 }
 
 /**
- * Parses a list of decorators
+ * Parses a decorator
  *
  * @param parser Parser object
  * @param context Context masks
  */
-function parseDecoratorList(
-  parser: Parser,
-  context: Context,
-  privateScope: PrivateScope | undefined,
-): ESTree.Decorator {
+function parseDecorator(parser: Parser, context: Context, privateScope: PrivateScope | undefined): ESTree.Decorator {
+  // Decorator[Yield, Await] :
+  //    @ DecoratorMemberExpression[?Yield, ?Await]
+  //    @ DecoratorParenthesizedExpression[?Yield, ?Await]
+  //    @ DecoratorCallExpression[?Yield, ?Await]
+  //  DecoratorMemberExpression[Yield, Await] :
+  //    IdentifierReference[?Yield, ?Await]
+  //    DecoratorMemberExpression[?Yield, ?Await] . IdentifierName
+  //    DecoratorMemberExpression[?Yield, ?Await] . PrivateIdentifier
+  //  DecoratorParenthesizedExpression[Yield, Await] :
+  //    ( Expression[+In, ?Yield, ?Await] )
+  //  DecoratorCallExpression[Yield, Await] :
+  //    DecoratorMemberExpression[?Yield, ?Await] Arguments[?Yield, ?Await]
   const start = parser.tokenStart;
 
   nextToken(parser, context | Context.AllowRegExp);
   const expressionStart = parser.tokenStart;
 
-  let expression = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, start);
+  let expression: ESTree.Decorator['expression'];
 
-  expression = parseMemberOrUpdateExpression(parser, context, privateScope, expression, 0, 0, expressionStart);
+  if (parser.getToken() === Token.LeftParen) {
+    expression = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, start);
+  } else {
+    const token = parser.getToken();
+
+    if (
+      ((token & Token.IsIdentifier) !== Token.IsIdentifier && !isValidIdentifier(context, token)) ||
+      (context & Context.Strict && (token & Token.FutureReserved) === Token.FutureReserved)
+    ) {
+      parser.report(Errors.UnexpectedToken, KeywordDescTable[token & Token.Type]);
+    }
+
+    if (token === Token.AwaitKeyword && context & (Context.InAwaitContext | Context.Module)) {
+      parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
+    }
+
+    if (token === Token.YieldKeyword && context & Context.InYieldContext) {
+      parser.report(Errors.DisallowedInContext, 'yield');
+    }
+
+    let memberExpression: ESTree.Identifier | ESTree.MemberExpression = parseIdentifier(
+      parser,
+      context | Context.TaggedTemplate,
+    );
+
+    while (parser.getToken() === Token.Period) {
+      nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
+
+      const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
+
+      memberExpression = parser.finishNode<ESTree.MemberExpression>(
+        {
+          type: 'MemberExpression',
+          object: memberExpression,
+          computed: false,
+          property,
+          optional: false,
+        },
+        expressionStart,
+      );
+    }
+
+    expression = memberExpression;
+
+    if (parser.getToken() === Token.LeftParen) {
+      const args = parseArguments(parser, context, privateScope, 0);
+
+      expression = parser.finishNode<ESTree.CallExpression>(
+        {
+          type: 'CallExpression',
+          callee: memberExpression,
+          arguments: args,
+          optional: false,
+        },
+        expressionStart,
+      );
+    }
+  }
 
   return parser.finishNode<ESTree.Decorator>(
     {
