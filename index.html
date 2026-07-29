@@ -112,10 +112,9 @@ function App() {
           // Be defensive if meriyah failed unexpectedly.
           return e.message;
         }
-        // babel code-frame uses 1 based column?!
         const babelLoc = {
-          start: { line: e.loc.start.line, column: e.loc.start.column + 1},
-          end: { line: e.loc.end.line, column: e.loc.end.column + 1},
+          start: { line: e.loc.start.line, column: e.loc.start.column},
+          end: { line: e.loc.end.line, column: e.loc.end.column},
         }
 
         const pretty = codeFrameColumns(this.source, babelLoc);
