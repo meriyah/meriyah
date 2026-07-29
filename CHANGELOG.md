@@ -1,3 +1,19 @@
+# [7.3.0](https://github.com/meriyah/meriyah/compare/v7.2.0...v7.3.0) (2026-07-29)
+
+### Bug Fixes
+
+* **parser:** fix class keyword check after decorator for class expression ([#617](https://github.com/meriyah/meriyah/issues/617)) ([faa2324](https://github.com/meriyah/meriyah/commit/faa2324975c3723cc885f23cb1ed8f0c711ddff6)), closes [#612](https://github.com/meriyah/meriyah/issues/612)
+* **parser:** restrict decorator expressions to the decorators grammar ([#612](https://github.com/meriyah/meriyah/issues/612)) ([2047ba4](https://github.com/meriyah/meriyah/commit/2047ba4110f8d37d8ffbc61b4fb5d6e476c6a2a9))
+* **parser:** scope pending octal errors to the code unit that produced them ([#615](https://github.com/meriyah/meriyah/issues/615)) ([865731a](https://github.com/meriyah/meriyah/commit/865731a56ece9c61d6c74e984bfee7374140605f))
+
+### Features
+
+* **parser:** support import defer and import source phases ([#588](https://github.com/meriyah/meriyah/issues/588)) ([c7458a3](https://github.com/meriyah/meriyah/commit/c7458a360dad51517dd20914c8c3eecd02a4ac84))
+
+### Performance Improvements
+
+* **lexer:** replace keyword table with Map and add length pre-filter ([#604](https://github.com/meriyah/meriyah/issues/604)) ([4b53020](https://github.com/meriyah/meriyah/commit/4b5302082e3386e8bc2a2be175dae8f93aba0086))
+
 # [7.2.0](https://github.com/meriyah/meriyah/compare/v7.1.2...v7.2.0) (2026-07-24)
 
 ### Bug Fixes
