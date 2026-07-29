@@ -259,6 +259,10 @@ function parseStatementListItem(
       );
 
     case Token.Decorator: // @decorator
+      if (!(parser.features & Features.Decorators)) {
+        parser.report(Errors.UnexpectedToken, '@');
+      }
+    // fall through to parseClassDeclaration which handles decorators
     case Token.ClassKeyword: // ClassDeclaration[?Yield, ~Default]
       return parseClassDeclaration(parser, context, scope, privateScope, HoistedClassFlags.None);
     // LexicalDeclaration[In, ?Yield]
@@ -2991,6 +2995,10 @@ function parseExportDeclaration(
       // export default ClassDeclaration[Default]
       // export default  @decl ClassDeclaration[Default]
       case Token.Decorator:
+        if (!(parser.features & Features.Decorators)) {
+          parser.report(Errors.UnexpectedToken, '@');
+        }
+      // fall through to parseClassDeclaration which handles decorators
       case Token.ClassKeyword:
         declaration = parseClassDeclaration(parser, context, scope, undefined, HoistedClassFlags.Hoisted);
         break;
@@ -3199,6 +3207,10 @@ function parseExportDeclaration(
     }
 
     case Token.Decorator:
+      if (!(parser.features & Features.Decorators)) {
+        parser.report(Errors.UnexpectedToken, '@');
+      }
+    // fall through to parseClassDeclaration which handles decorators
     case Token.ClassKeyword:
       declaration = parseClassDeclaration(parser, context, scope, undefined, HoistedClassFlags.Export);
       break;
@@ -4513,6 +4525,10 @@ function parsePrimaryExpression(
     case Token.RegularExpression:
       return parseRegExpLiteral(parser, context);
     case Token.Decorator:
+      if (!(parser.features & Features.Decorators)) {
+        parser.report(Errors.UnexpectedToken, '@');
+      }
+    // fall through to parseClassExpression which handles decorators
     case Token.ClassKeyword:
       return parseClassExpression(parser, context, privateScope, inGroup, start);
     case Token.SuperKeyword:

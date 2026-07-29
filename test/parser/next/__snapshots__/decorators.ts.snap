@@ -235,9 +235,9 @@ exports[`Decorators > Decorators (fail) > class Foo {@abc constructor(){} 1`] = 
 `;
 
 exports[`Decorators > Decorators (fail) > export default @decorator class Foo {} 1`] = `
-"SyntaxError [1:15-1:16]: Expected 'class'
+"SyntaxError [1:15-1:16]: Unexpected token: '@'
 > 1 | export default @decorator class Foo {}
-    |                ^ Expected 'class'"
+    |                ^ Unexpected token: '@'"
 `;
 
 exports[`Decorators > Decorators (fail) > var obj = { method(@foo x) {} }; 1`] = `
