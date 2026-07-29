@@ -202,9 +202,6 @@ function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefi
       moduleItem = parseStatementListItem(parser, context, scope, undefined, Origin.TopLevel, {});
   }
 
-  if (parser.leadingDecorators?.decorators.length) {
-    parser.report(Errors.InvalidLeadingDecorator);
-  }
   return moduleItem;
 }
 
@@ -8108,23 +8105,17 @@ function parseClassDeclaration(
   let start;
   let decorators;
   if (parser.leadingDecorators.decorators.length) {
-    if (parser.getToken() === Token.Decorator) {
-      parser.report(Errors.UnexpectedToken, '@');
-    }
     start = parser.leadingDecorators.start!;
     decorators = [...parser.leadingDecorators.decorators];
     parser.leadingDecorators.decorators.length = 0;
   } else {
     start = parser.tokenStart;
     decorators = parseDecorators(parser, context, privateScope);
-    if (decorators.length && parser.getToken() !== Token.ClassKeyword) {
-      parser.report(Errors.InvalidLeadingDecorator);
-    }
   }
 
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
-  nextToken(parser, context);
+  consume(parser, context, Token.ClassKeyword);
   let id: ESTree.Expression | null = null;
   let superClass: ESTree.Expression | null = null;
 
