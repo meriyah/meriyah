@@ -62,6 +62,13 @@ jobs:
       - uses: actions/setup-node@v7
       - run: yarn
       - run: npm run lint
+      - name: Lint workflow files
+        run: |
+          bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
+        shell: bash
+      - name: Validate renovate config
+        run: npx --package renovate@latest renovate-config-validator
 
   preview:
     if: github.repository == 'meriyah/meriyah'
