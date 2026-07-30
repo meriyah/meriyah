@@ -37,7 +37,7 @@ var setupBenchmarks,
 parsers = [
 {
     name: 'Meriyah',
-    src: 'https://cdn.jsdelivr.net/npm/meriyah/dist/meriyah.umd.min.js',
+    src: 'https://unpkg.com/meriyah/dist/meriyah.umd.min.js',
     version: function () {
         return window.meriyah.version;
     },
@@ -48,7 +48,7 @@ parsers = [
 },
 {
   name: 'Meriyah+loc',
-  src: 'https://cdn.jsdelivr.net/npm/meriyah/dist/meriyah.umd.min.js',
+  src: 'https://unpkg.com/meriyah/dist/meriyah.umd.min.js',
   version: function () {
       return window.meriyah.version;
   },
@@ -60,7 +60,7 @@ parsers = [
 {
     name: 'Acorn',
     link: 'https://github.com/marijnh/acorn',
-    src: 'https://cdn.jsdelivr.net/npm/acorn/dist/acorn.min.js',
+    src: 'https://unpkg.com/acorn@8.18.0/dist/acorn.js',
     version: function () {
         return window.acorn.version;
     },
@@ -72,7 +72,7 @@ parsers = [
 {
   name: 'Acorn+loc',
   link: 'https://github.com/marijnh/acorn',
-  src: 'https://cdn.jsdelivr.net/npm/acorn/dist/acorn.min.js',
+  src: 'https://unpkg.com/acorn@8.18.0/dist/acorn.js',
   version: function () {
       return window.acorn.version;
   },
@@ -84,7 +84,7 @@ parsers = [
 {
     name: 'TypeScript',
     link: 'https://github.com/microsoft/TypeScript',
-    src: 'https://cdn.jsdelivr.net/npm/typescript/lib/typescript.min.js',
+    src: 'https://unpkg.com/typescript@6.0.3/lib/typescript.js',
     version: function () {
         return window.ts.version;
     },
@@ -96,9 +96,9 @@ parsers = [
 ];
 
 fixtureList = [
-    { label: 'jQuery v3.7.1', url: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.js' },
-    { label: 'React v18.3.1', url: 'https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.development.js' },
-    { label: 'TypeScript v5.6.2', url: 'https://cdn.jsdelivr.net/npm/typescript@5.6.2/lib/typescript.js' }
+    { label: 'jQuery v4.0.0', url: 'https://unpkg.com/jquery@4.0.0/dist/jquery.js' },
+    { label: 'React v19.2.8', url: 'https://unpkg.com/react@19.2.8/cjs/react.development.js' },
+    { label: 'TypeScript v6.0.3', url: 'https://unpkg.com/typescript@6.0.3/lib/typescript.js' }
 ];
 
 resources =
