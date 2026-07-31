@@ -148,10 +148,10 @@ export const CharTypes = [
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x78 x */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x79 y */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x7A z */,
-  CharFlags.JSXToken /* 0x7B */,
-  CharFlags.None /* 0x7C */,
-  CharFlags.None /* 0x7D */,
-  CharFlags.None /* 0x7E */,
+  CharFlags.JSXToken /* 0x7B { */,
+  CharFlags.None /* 0x7C | */,
+  CharFlags.JSXToken /* 0x7D } */,
+  CharFlags.None /* 0x7E ~ */,
   CharFlags.None /* 0x7F */
 ];
 

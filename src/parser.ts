@@ -9213,7 +9213,7 @@ function parseJSXChildOrClosingFragment(
 function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
   const start = parser.tokenStart;
 
-  nextToken(parser, context);
+  nextJSXToken(parser);
 
   const node = {
     type: 'JSXText',
