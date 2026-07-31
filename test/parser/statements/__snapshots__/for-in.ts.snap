@@ -546,10 +546,22 @@ exports[`Statements - For in > Statements - For in (fail) > for (var a = () => {
     |                                  ^^ Unexpected token: 'in'"
 `;
 
+exports[`Statements - For in > Statements - For in (fail) > for (var a = () => { return "a"} in {}); 2`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: 'in'
+> 1 | for (var a = () => { return "a"} in {});
+    |                                  ^^ Unexpected token: 'in'"
+`;
+
 exports[`Statements - For in > Statements - For in (fail) > for (var i, j = void 0 in [1, 2, 3]) {} 1`] = `
-"SyntaxError [1:23-1:25]: Invalid left-hand side in for-in loop: Must have a single binding
+"SyntaxError [1:12-1:25]: 'for-in' loop head declarations can not have an initializer
 > 1 | for (var i, j = void 0 in [1, 2, 3]) {}
-    |                        ^^ Invalid left-hand side in for-in loop: Must have a single binding"
+    |             ^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For in > Statements - For in (fail) > for (var i, j in [1, 2, 3]) {} 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in for-in loop: Must have a single binding
+> 1 | for (var i, j in [1, 2, 3]) {}
+    |               ^^ Invalid left-hand side in for-in loop: Must have a single binding"
 `;
 
 exports[`Statements - For in > Statements - For in (fail) > for (var x in {}) function* g() {} 1`] = `
@@ -4459,155 +4471,6 @@ exports[`Statements - For in > Statements - For in (pass) > for (var a = (++effe
 }
 `;
 
-exports[`Statements - For in > Statements - For in (pass) > for (var a = (++effects, -1) in x); 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "type": "EmptyStatement",
-      },
-      "left": {
-        "declarations": [
-          {
-            "id": {
-              "name": "a",
-              "type": "Identifier",
-            },
-            "init": {
-              "expressions": [
-                {
-                  "argument": {
-                    "name": "effects",
-                    "type": "Identifier",
-                  },
-                  "operator": "++",
-                  "prefix": true,
-                  "type": "UpdateExpression",
-                },
-                {
-                  "argument": {
-                    "type": "Literal",
-                    "value": 1,
-                  },
-                  "operator": "-",
-                  "prefix": true,
-                  "type": "UnaryExpression",
-                },
-              ],
-              "type": "SequenceExpression",
-            },
-            "type": "VariableDeclarator",
-          },
-        ],
-        "kind": "var",
-        "type": "VariableDeclaration",
-      },
-      "right": {
-        "name": "x",
-        "type": "Identifier",
-      },
-      "type": "ForInStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Statements - For in > Statements - For in (pass) > for (var a = ++b in c); 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "type": "EmptyStatement",
-      },
-      "left": {
-        "declarations": [
-          {
-            "id": {
-              "name": "a",
-              "type": "Identifier",
-            },
-            "init": {
-              "argument": {
-                "name": "b",
-                "type": "Identifier",
-              },
-              "operator": "++",
-              "prefix": true,
-              "type": "UpdateExpression",
-            },
-            "type": "VariableDeclarator",
-          },
-        ],
-        "kind": "var",
-        "type": "VariableDeclaration",
-      },
-      "right": {
-        "name": "c",
-        "type": "Identifier",
-      },
-      "type": "ForInStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Statements - For in > Statements - For in (pass) > for (var a = 0 in stored = a, {}); 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "type": "EmptyStatement",
-      },
-      "left": {
-        "declarations": [
-          {
-            "id": {
-              "name": "a",
-              "type": "Identifier",
-            },
-            "init": {
-              "type": "Literal",
-              "value": 0,
-            },
-            "type": "VariableDeclarator",
-          },
-        ],
-        "kind": "var",
-        "type": "VariableDeclaration",
-      },
-      "right": {
-        "expressions": [
-          {
-            "left": {
-              "name": "stored",
-              "type": "Identifier",
-            },
-            "operator": "=",
-            "right": {
-              "name": "a",
-              "type": "Identifier",
-            },
-            "type": "AssignmentExpression",
-          },
-          {
-            "properties": [],
-            "type": "ObjectExpression",
-          },
-        ],
-        "type": "SequenceExpression",
-      },
-      "type": "ForInStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
 exports[`Statements - For in > Statements - For in (pass) > for (var a = b in c); 1`] = `
 {
   "body": [
@@ -5699,59 +5562,6 @@ exports[`Statements - For in > Statements - For in (pass) > for(var a in b, c); 
           },
         ],
         "type": "SequenceExpression",
-      },
-      "type": "ForInStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Statements - For in > Statements - For in (pass) > for(var x=1 in [1,2,3]) 0 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "expression": {
-          "type": "Literal",
-          "value": 0,
-        },
-        "type": "ExpressionStatement",
-      },
-      "left": {
-        "declarations": [
-          {
-            "id": {
-              "name": "x",
-              "type": "Identifier",
-            },
-            "init": {
-              "type": "Literal",
-              "value": 1,
-            },
-            "type": "VariableDeclarator",
-          },
-        ],
-        "kind": "var",
-        "type": "VariableDeclaration",
-      },
-      "right": {
-        "elements": [
-          {
-            "type": "Literal",
-            "value": 1,
-          },
-          {
-            "type": "Literal",
-            "value": 2,
-          },
-          {
-            "type": "Literal",
-            "value": 3,
-          },
-        ],
-        "type": "ArrayExpression",
       },
       "type": "ForInStatement",
     },

@@ -2024,7 +2024,10 @@ function parseVariableDeclaration(
       if (
         parser.getToken() === Token.OfKeyword ||
         (parser.getToken() === Token.InKeyword &&
-          (token & Token.IsPatternStart || (kind & BindingKind.Variable) === 0 || context & Context.Strict))
+          (token & Token.IsPatternStart ||
+            (kind & BindingKind.Variable) === 0 ||
+            context & Context.Strict ||
+            !parser.options.webcompat))
       ) {
         throw new ParseError(
           tokenStart,
