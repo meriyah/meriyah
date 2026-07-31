@@ -2017,7 +2017,7 @@ function parseVariableDeclaration(
 
   if (parser.getToken() === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
-    init = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
+    init = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart, origin);
     if (origin & Origin.ForStatement) {
       // Lexical declarations in for-in / for-of loops can't be initialized
 
@@ -3282,8 +3282,9 @@ function parseExportDeclaration(
  * @param parser  Parser object
  * @param context Context masks
  * @param canAssign
- * @param inGroup,
- * @param start,
+ * @param inGroup
+ * @param start
+ * @param origin
  */
 function parseExpression(
   parser: Parser,
@@ -3292,12 +3293,24 @@ function parseExpression(
   canAssign: 0 | 1,
   inGroup: 0 | 1,
   start: Location,
+  origin: Origin = Origin.None,
 ): ESTree.Expression {
   // Expression ::
   //   AssignmentExpression
   //   Expression ',' AssignmentExpression
 
-  let expr = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, canAssign, inGroup, 1, start);
+  let expr = parsePrimaryExpression(
+    parser,
+    context,
+    privateScope,
+    BindingKind.Empty,
+    0,
+    canAssign,
+    inGroup,
+    1,
+    start,
+    origin,
+  );
 
   expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, inGroup, 0, start);
 
@@ -4399,6 +4412,7 @@ function parseUpdateExpressionPrefixed(
  * @param canAssign
  * @param inGroup
  * @param start
+ * @param origin
  */
 function parsePrimaryExpression(
   parser: Parser,
@@ -4410,6 +4424,7 @@ function parsePrimaryExpression(
   inGroup: 0 | 1,
   isLHS: 0 | 1,
   start: Location,
+  origin: Origin = Origin.None,
 ): any {
   // PrimaryExpression ::
   //   'this'
@@ -4458,7 +4473,18 @@ function parsePrimaryExpression(
       if ((token & Token.FutureReserved) === Token.FutureReserved) {
         parser.flags |= Flags.HasStrictReserved;
       }
-      return parseArrowFromIdentifier(parser, context, privateScope, tokenValue, expr, inNew, canAssign, 0, start);
+      return parseArrowFromIdentifier(
+        parser,
+        context,
+        privateScope,
+        tokenValue,
+        expr,
+        inNew,
+        canAssign,
+        0,
+        start,
+        origin,
+      );
     }
 
     if (
@@ -4516,7 +4542,7 @@ function parsePrimaryExpression(
         privateScope,
         canAssign,
         BindingKind.ArgumentList,
-        Origin.None,
+        origin,
         start,
       );
     case Token.FalseKeyword:
@@ -7016,7 +7042,7 @@ function parseParenthesizedExpression(
   if (consumeOpt(parser, context, Token.RightParen)) {
     // Not valid expression syntax, but this is valid in an arrow function
     // with no params: `() => body`.
-    return parseParenthesizedArrow(parser, context, scope, privateScope, [], canAssign, 0, start);
+    return parseParenthesizedArrow(parser, context, scope, privateScope, [], canAssign, 0, start, origin);
   }
 
   let destructible = DestructuringKind.None;
@@ -7046,7 +7072,7 @@ function parseParenthesizedExpression(
         hasStrictReserved = 1;
       }
 
-      expr = parsePrimaryExpression(parser, context, privateScope, kind, 0, 1, 1, 1, tokenStart);
+      expr = parsePrimaryExpression(parser, context, privateScope, kind, 0, 1, 1, 1, tokenStart, origin);
 
       if (parser.getToken() === Token.RightParen || parser.getToken() === Token.Comma) {
         if (parser.assignable & AssignmentTargetKind.Invalid) {
@@ -7228,6 +7254,7 @@ function parseParenthesizedExpression(
       canAssign,
       0,
       start,
+      origin,
     );
   }
 
@@ -7296,6 +7323,7 @@ function parseIdentifierOrArrow(
  * @param params
  * @param isAsync
  * @param start Start index
+ * @param origin
  */
 function parseArrowFromIdentifier(
   parser: Parser,
@@ -7307,13 +7335,14 @@ function parseArrowFromIdentifier(
   canAssign: 0 | 1,
   isAsync: 0 | 1,
   start: Location,
+  origin: Origin = Origin.None,
 ): ESTree.ArrowFunctionExpression {
   if (!canAssign) parser.report(Errors.InvalidAssignmentTarget);
   if (inNew) parser.report(Errors.InvalidAsyncArrow);
   parser.flags &= ~Flags.NonSimpleParameterList;
   const scope = parser.options.lexical ? createArrowHeadParsingScope(parser, context, value) : void 0;
 
-  return parseArrowFunctionExpression(parser, context, scope, privateScope, [expr], isAsync, start);
+  return parseArrowFunctionExpression(parser, context, scope, privateScope, [expr], isAsync, start, origin);
 }
 
 /**
@@ -7334,12 +7363,13 @@ function parseParenthesizedArrow(
   canAssign: 0 | 1,
   isAsync: 0 | 1,
   start: Location,
+  origin: Origin = Origin.None,
 ): ESTree.ArrowFunctionExpression {
   if (!canAssign) parser.report(Errors.InvalidAssignmentTarget);
 
   for (let i = 0; i < params.length; ++i) reinterpretToPattern(parser, params[i]);
 
-  return parseArrowFunctionExpression(parser, context, scope, privateScope, params, isAsync, start);
+  return parseArrowFunctionExpression(parser, context, scope, privateScope, params, isAsync, start, origin);
 }
 
 /**
@@ -7350,6 +7380,7 @@ function parseParenthesizedArrow(
  * @param params
  * @param isAsync
  * @param start Start index
+ * @param origin Origin
  */
 function parseArrowFunctionExpression(
   parser: Parser,
@@ -7359,6 +7390,7 @@ function parseArrowFunctionExpression(
   params: any,
   isAsync: 0 | 1,
   start: Location,
+  origin: Origin = Origin.None,
 ): ESTree.ArrowFunctionExpression {
   /**
    * ArrowFunction :
@@ -7436,8 +7468,13 @@ function parseArrowFunctionExpression(
         break;
       default: // ignore
     }
-    if ((parser.getToken() & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) === 0)
-      parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+    if ((parser.getToken() & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) === 0) {
+      if (parser.getToken() !== Token.InKeyword || origin !== Origin.ForStatement) {
+        // for (var a = () => {} in b); will be handled later in parseVariableDeclaration.
+        parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+      }
+    }
+
     if ((parser.getToken() & Token.IsUpdateOp) === Token.IsUpdateOp) parser.report(Errors.InvalidArrowPostfix);
   }
 

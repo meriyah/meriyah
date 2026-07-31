@@ -541,15 +541,15 @@ exports[`Statements - For in > Statements - For in (fail) > for (var {x}=0 in y)
 `;
 
 exports[`Statements - For in > Statements - For in (fail) > for (var a = () => { return "a"} in {}); 1`] = `
-"SyntaxError [1:33-1:35]: Unexpected token: 'in'
+"SyntaxError [1:9-1:35]: 'for-in' loop head declarations can not have an initializer
 > 1 | for (var a = () => { return "a"} in {});
-    |                                  ^^ Unexpected token: 'in'"
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
 `;
 
 exports[`Statements - For in > Statements - For in (fail) > for (var a = () => { return "a"} in {}); 2`] = `
-"SyntaxError [1:33-1:35]: Unexpected token: 'in'
+"SyntaxError [1:9-1:35]: 'for-in' loop head declarations can not have an initializer
 > 1 | for (var a = () => { return "a"} in {});
-    |                                  ^^ Unexpected token: 'in'"
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
 `;
 
 exports[`Statements - For in > Statements - For in (fail) > for (var i, j = void 0 in [1, 2, 3]) {} 1`] = `
@@ -4203,6 +4203,57 @@ exports[`Statements - For in > Statements - For in (pass) > for (var {x} in obj)
 }
 `;
 
+exports[`Statements - For in > Statements - For in (pass) > for (var a = () => { return "a"} in {}); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "init": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "type": "Literal",
+                      "value": "a",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "expression": false,
+              "generator": false,
+              "params": [],
+              "type": "ArrowFunctionExpression",
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "properties": [],
+        "type": "ObjectExpression",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Statements - For in > Statements - For in (pass) > for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2}); 1`] = `
 {
   "body": [
@@ -4467,6 +4518,69 @@ exports[`Statements - For in > Statements - For in (pass) > for (var a = (++effe
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - For in > Statements - For in (pass) > for (var a = (x = b in c) => {} in {}); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "init": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "expression": false,
+              "generator": false,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "left": {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    "operator": "in",
+                    "right": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "type": "BinaryExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrowFunctionExpression",
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "properties": [],
+        "type": "ObjectExpression",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
