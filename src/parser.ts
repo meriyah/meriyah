@@ -7018,6 +7018,7 @@ function parseParenthesizedExpression(
 
   let destructible = DestructuringKind.None;
 
+  const previousAwaitYield = parser.destructible & (DestructuringKind.Yield | DestructuringKind.Await);
   parser.destructible &= ~(DestructuringKind.Yield | DestructuringKind.Await);
 
   let expr;
@@ -7152,7 +7153,7 @@ function parseParenthesizedExpression(
 
       consume(parser, context, Token.RightParen);
 
-      parser.destructible = destructible;
+      parser.destructible = destructible | previousAwaitYield;
 
       return parser.options.preserveParens
         ? parser.finishNode<ESTree.ParenthesizedExpression>(
@@ -7236,7 +7237,7 @@ function parseParenthesizedExpression(
     parser.report(Errors.IncompleteArrow);
   }
 
-  parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
+  parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible | previousAwaitYield;
 
   return parser.options.preserveParens
     ? parser.finishNode<ESTree.ParenthesizedExpression>(

@@ -1368,6 +1368,12 @@ exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x
     |                   ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
 `;
 
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x = await (2)) => {}; 1`] = `
+"SyntaxError [1:22-1:24]: Await expression not allowed in formal parameter
+> 1 | async (x = await (2)) => {};
+    |                       ^^ Await expression not allowed in formal parameter"
+`;
+
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async (x) 
  => x 1`] = `
 "SyntaxError [2:1-2:3]: No line break is allowed after '=>'
@@ -2142,6 +2148,18 @@ exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(fo
 "SyntaxError [1:21-1:22]: Member access on super must be in a method
 > 1 | async(foo) => { super.prop };
     |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(x = await (0)) => 1 1`] = `
+"SyntaxError [1:21-1:23]: Await expression not allowed in formal parameter
+> 1 | async(x = await (0)) => 1
+    |                      ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(x = await(0)) => 1 1`] = `
+"SyntaxError [1:20-1:22]: Await expression not allowed in formal parameter
+> 1 | async(x = await(0)) => 1
+    |                     ^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async(x = await) => {  } 1`] = `
