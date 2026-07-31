@@ -56,6 +56,15 @@ describe('Statements - For in', () => {
     'for (var a = b in c);',
     'for (var a = 0 in stored = a, {});',
     'for (var a = (++effects, -1) in x);',
+    'for (var a = (b in c) in {});',
+    'for (var a = 1 || (b in c) in {});',
+    'for (var a = 1 + (2 || (b in c)) in {});',
+    'for (var a = (() => b in c) in {});',
+    'for (var a = 1 || (() => b in c) in {});',
+    'for (var a = (() => { b in c; }) in {});',
+    'for (var a = [b in c] in {});',
+    'for (var a = {b: b in c} in {});',
+    'for (var a = (x = b in c) => {} in {});',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
@@ -753,6 +762,7 @@ describe('Statements - For in', () => {
     'for (x in {a: b}) {}',
     'function foo(){ "use strict"; for(x in {}, {}) {} }',
     'for(const x in [1,2,3]) {}',
-    // { code: 'for (var a = () => { return "a"} in {});', options: { webcompat: true } },
+    { code: 'for (var a = () => { return "a"} in {});', options: { webcompat: true } },
+    { code: 'for (var a = (x = b in c) => {} in {});', options: { webcompat: true } },
   ]);
 });
