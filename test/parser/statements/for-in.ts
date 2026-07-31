@@ -47,7 +47,7 @@ describe('Statements - For in', () => {
       });
     });
   }
-  // ForInOfLoopInitializer only applies in strict mode when webCompat is off
+  // ForInOfLoopInitializer error only applies in strict mode or webCompat is off
   for (const text of [
     'for(var x=1 in [1,2,3]) 0',
     'for (var x = 1 in y) {}',
@@ -70,7 +70,7 @@ describe('Statements - For in', () => {
     });
 
     it(text, () => {
-      t.doesNotThrow(() => {
+      t.throws(() => {
         parseSource(text);
       });
     });
@@ -518,6 +518,7 @@ describe('Statements - For in', () => {
     { code: 'for (let in o) { }', options: { impliedStrict: true } },
     'for(var [...a] = 0 in {});',
     'for (var a = () => { return "a"} in {});',
+    { code: 'for (var a = () => { return "a"} in {});', options: { impliedStrict: true, webcompat: true } },
     'for (const ...x in y){}',
     'for (...x in y){}',
     'for (let a = b => b in c; ;);',
@@ -572,6 +573,7 @@ describe('Statements - For in', () => {
     { code: 'for ({ eval } in [{}]) ;', options: { impliedStrict: true } },
     { code: 'for ({ eval } in [{}]) ;', options: { impliedStrict: true, webcompat: true } },
     'for (var i, j = void 0 in [1, 2, 3]) {}',
+    'for (var i, j in [1, 2, 3]) {}',
     'function foo() { for (var i, j of {}) {} }',
     '"use strict"; for ([ x = yield ] in [[]]) ;',
     'for ([[(x, y)]] in [[[]]]) ;',
@@ -618,15 +620,13 @@ describe('Statements - For in', () => {
     'for ({}.bar in obj);',
     'for ([].bar in obj);',
     'for (var {x : y} in obj);',
-    'for(var x=1 in [1,2,3]) 0',
     'for (var [foo, bar=b] of arr);',
     'for (function* y() { new.target in /(?:()|[]|(?!))/iuy };; (null))  {}',
     'for (var {[x]: y} of obj);',
-
     'for (var {x = y} in obj);',
     'for (var [] in x);',
     'for (var [foo,] in arr);',
-    'for (var a = b in c);',
+    { code: 'for (var a = b in c);', options: { webcompat: true } },
     { code: 'for (var [foo,bar] in arr);', options: { ranges: true } },
     { code: 'for (let.x in {}) {}', options: { ranges: true } },
     { code: 'for (var [foo,,] in arr);', options: { ranges: true } },
@@ -656,9 +656,6 @@ describe('Statements - For in', () => {
     'for (let a in b);',
     'for (const a in b);',
     'for (a in b=c);',
-    'for (var a = ++b in c);',
-    'for (var a = 0 in stored = a, {});',
-    'for (var a = (++effects, -1) in x);',
     'for (var a in stored = a, {a: 0, b: 1, c: 2});',
     {
       code: 'for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2});',
@@ -756,5 +753,6 @@ describe('Statements - For in', () => {
     'for (x in {a: b}) {}',
     'function foo(){ "use strict"; for(x in {}, {}) {} }',
     'for(const x in [1,2,3]) {}',
+    // { code: 'for (var a = () => { return "a"} in {});', options: { webcompat: true } },
   ]);
 });
