@@ -377,8 +377,8 @@ const errorMessages: {
   [Errors.InvalidEscapedImportMeta]: "'import.meta' must not contain escaped characters",
   [Errors.InvalidAwaitAsIdentifier]: 'cannot use "await" as identifier inside an async function',
   [Errors.InvalidAwaitInStaticBlock]: 'cannot use "await" in static blocks',
-  [Errors.UnexpectedRightBraceInJSXText]: 'Unexpected token `}`. Did you mean `&rbrace;` or `{\'}\'}`?',
-  [Errors.UnexpectedGreaterThanInJSXText]: 'Unexpected token `>`. Did you mean `&gt;` or `{\'>\'}`?',
+  [Errors.UnexpectedRightBraceInJSXText]: "Unexpected token `}`. Did you mean `&rbrace;` or `{'}'}`?",
+  [Errors.UnexpectedGreaterThanInJSXText]: "Unexpected token `>`. Did you mean `&gt;` or `{'>'}`?",
 };
 
 export class ParseError extends SyntaxError implements _Node {
