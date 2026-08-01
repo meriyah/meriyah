@@ -79,6 +79,10 @@ export function nextJSXToken(parser: Parser) {
     parser.report(Errors.UnexpectedRightBraceInJSXText);
   }
 
+  if (parser.currentChar === Chars.GreaterThan) {
+    parser.report(Errors.UnexpectedGreaterThanInJSXText);
+  }
+
   let state = LexerState.None;
 
   while (parser.index < parser.end) {

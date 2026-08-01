@@ -330,16 +330,28 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=div></div> 1`] 
     |     ^ Unexpected token: '='"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>></div> 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '>>'
+> 1 | <div>></div>
+    |     ^^ Unexpected token: '>>'"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>}</div> 1`] = `
 "SyntaxError [1:5-1:5]: Unexpected token \`}\`. Did you mean \`&rbrace;\` or \`{'}'}\`?
 > 1 | <div>}</div>
     |      ^ Unexpected token \`}\`. Did you mean \`&rbrace;\` or \`{'}'}\`?"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>foo>bar</div> 1`] = `
+"SyntaxError [1:8-1:8]: Unexpected token \`>\`. Did you mean \`&gt;\` or \`{'>'}\`?
+> 1 | <div>foo>bar</div>
+    |         ^ Unexpected token \`>\`. Did you mean \`&gt;\` or \`{'>'}\`?"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>foo}bar</div> 1`] = `
-"SyntaxError [1:8-1:9]: Unexpected token
+"SyntaxError [1:8-1:8]: Unexpected token \`}\`. Did you mean \`&rbrace;\` or \`{'}'}\`?
 > 1 | <div>foo}bar</div>
-    |         ^ Unexpected token"
+    |         ^ Unexpected token \`}\`. Did you mean \`&rbrace;\` or \`{'}'}\`?"
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>one</div><div>two</div> 1`] = `

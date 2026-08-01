@@ -87,7 +87,7 @@ export const CharTypes = [
   CharFlags.None /* 0x3B   */,
   CharFlags.JSXToken /* 0x3C < */,
   CharFlags.None /* 0x3D = */,
-  CharFlags.None /* 0x3E > */,
+  CharFlags.JSXToken /* 0x3E > */,
   CharFlags.None /* 0x3F   */,
   CharFlags.None /* 0x40 @ */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.Hex /* 0x41 A */,

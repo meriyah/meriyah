@@ -58,6 +58,8 @@ describe('Miscellaneous - JSX', () => {
     { code: '<1/>', options: { jsx: true } },
     { code: '<div>}</div>', options: { jsx: true } },
     { code: '<div>foo}bar</div>', options: { jsx: true } },
+    { code: '<div>></div>', options: { jsx: true } },
+    { code: '<div>foo>bar</div>', options: { jsx: true } },
     { code: '<div id={}></div>', options: { jsx: true } },
     { code: '<div>one</div><div>two</div>', options: { jsx: true } },
     { code: '</>', options: { jsx: true } },
