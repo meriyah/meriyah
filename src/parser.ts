@@ -7237,7 +7237,8 @@ function parseParenthesizedExpression(
     parser.report(Errors.IncompleteArrow);
   }
 
-  parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible | previousAwaitYield;
+  parser.destructible =
+    ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible | previousAwaitYield;
 
   return parser.options.preserveParens
     ? parser.finishNode<ESTree.ParenthesizedExpression>(
