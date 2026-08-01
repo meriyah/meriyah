@@ -9166,7 +9166,7 @@ function parseJSXChildOrClosingElement(
   privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
 ) {
-  if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
+  if (parser.getToken() === Token.JSXText) return parseJSXText(parser);
   if (parser.getToken() === Token.LeftBrace)
     return parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 1, /* isAttr */ 0);
   if (parser.getToken() === Token.LessThan) {
@@ -9191,7 +9191,7 @@ function parseJSXChildOrClosingFragment(
   privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
 ) {
-  if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
+  if (parser.getToken() === Token.JSXText) return parseJSXText(parser);
   if (parser.getToken() === Token.LeftBrace)
     return parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 1, /* isAttr */ 0);
   if (parser.getToken() === Token.LessThan) {
@@ -9210,7 +9210,7 @@ function parseJSXChildOrClosingFragment(
  * @param parser Parser object
  * @param context  Context masks
  */
-function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
+function parseJSXText(parser: Parser): ESTree.JSXText {
   const start = parser.tokenStart;
 
   nextJSXToken(parser);
