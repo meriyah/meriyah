@@ -13848,9 +13848,9 @@ exports[`Expressions - Class > Expressions - Class > async function f() {   clas
 `;
 
 exports[`Expressions - Class > Expressions - Class > async function f(){   (fail = class extends (await x) {}) => {}   } 1`] = `
-"SyntaxError [1:58-1:60]: Await expression not allowed in formal parameter
+"SyntaxError [1:45-1:50]: Await expression not allowed in formal parameter
 > 1 | async function f(){   (fail = class extends (await x) {}) => {}   }
-    |                                                           ^^ Await expression not allowed in formal parameter"
+    |                                              ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Class > Expressions - Class > async function f(foo = class y extends (await f) {}){} 1`] = `

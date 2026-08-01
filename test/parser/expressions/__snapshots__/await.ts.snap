@@ -145,9 +145,9 @@ exports[`Expressions - Await > Expressions - Await (fail) > async () => { (a, aw
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async () => { (x, y, z = await 0) => { }; } 1`] = `
-"SyntaxError [1:34-1:36]: Await expression not allowed in formal parameter
+"SyntaxError [1:25-1:30]: Await expression not allowed in formal parameter
 > 1 | async () => { (x, y, z = await 0) => { }; }
-    |                                   ^^ Await expression not allowed in formal parameter"
+    |                          ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async () => { await => { }; } 1`] = `
@@ -295,15 +295,15 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function *f(fo
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
-"SyntaxError [1:56-1:58]: Await expression not allowed in formal parameter
+"SyntaxError [1:42-1:47]: Await expression not allowed in formal parameter
 > 1 | async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     }
-    |                                                         ^^ Await expression not allowed in formal parameter"
+    |                                           ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
-"SyntaxError [1:56-1:58]: Await expression not allowed in formal parameter
+"SyntaxError [1:42-1:47]: Await expression not allowed in formal parameter
 > 1 | async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     }
-    |                                                         ^^ Await expression not allowed in formal parameter"
+    |                                           ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){     async ([y] = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
@@ -325,21 +325,21 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function a(){ 
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){ ([v] = await bar) => {}     } 1`] = `
-"SyntaxError [1:38-1:40]: Await expression not allowed in formal parameter
+"SyntaxError [1:27-1:32]: Await expression not allowed in formal parameter
 > 1 | async function a(){ ([v] = await bar) => {}     }
-    |                                       ^^ Await expression not allowed in formal parameter"
+    |                            ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){ ({r} = await bar) => {}     } 1`] = `
-"SyntaxError [1:38-1:40]: Await expression not allowed in formal parameter
+"SyntaxError [1:27-1:32]: Await expression not allowed in formal parameter
 > 1 | async function a(){ ({r} = await bar) => {}     }
-    |                                       ^^ Await expression not allowed in formal parameter"
+    |                            ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){ (foo = await bar) => {}     } 1`] = `
-"SyntaxError [1:38-1:40]: Await expression not allowed in formal parameter
+"SyntaxError [1:27-1:32]: Await expression not allowed in formal parameter
 > 1 | async function a(){ (foo = await bar) => {}     }
-    |                                       ^^ Await expression not allowed in formal parameter"
+    |                            ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){ async ([v] = await bar) => {}     } 1`] = `
@@ -373,9 +373,9 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function af() 
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function af() { var a = (x = await 0) => { }; } 1`] = `
-"SyntaxError [1:44-1:46]: Await expression not allowed in formal parameter
+"SyntaxError [1:35-1:40]: Await expression not allowed in formal parameter
 > 1 | async function af() { var a = (x = await 0) => { }; }
-    |                                             ^^ Await expression not allowed in formal parameter"
+    |                                    ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function af() { var a = (x, await, y) => { }; } 1`] = `
@@ -385,9 +385,9 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function af() 
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function af() { var a = (x, y = await 0, z = 0) => { }; } 1`] = `
-"SyntaxError [1:54-1:56]: Await expression not allowed in formal parameter
+"SyntaxError [1:38-1:43]: Await expression not allowed in formal parameter
 > 1 | async function af() { var a = (x, y = await 0, z = 0) => { }; }
-    |                                                       ^^ Await expression not allowed in formal parameter"
+    |                                       ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function af() { var a = (x, y, await) => { }; } 1`] = `
@@ -475,21 +475,21 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ 
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ (fail = class A extends (await foo) {}) => fail    } 1`] = `
-"SyntaxError [1:60-1:62]: Await expression not allowed in formal parameter
+"SyntaxError [1:45-1:50]: Await expression not allowed in formal parameter
 > 1 | async function f(){ (fail = class A extends (await foo) {}) => fail    }
-    |                                                             ^^ Await expression not allowed in formal parameter"
+    |                                              ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ (fail = class A extends await foo {}) => fail    } 1`] = `
-"SyntaxError [1:58-1:60]: Await expression not allowed in formal parameter
+"SyntaxError [1:44-1:49]: Await expression not allowed in formal parameter
 > 1 | async function f(){ (fail = class A extends await foo {}) => fail    }
-    |                                                           ^^ Await expression not allowed in formal parameter"
+    |                                             ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ (fail = class extends await foo {}) => fail    } 1`] = `
-"SyntaxError [1:56-1:58]: Await expression not allowed in formal parameter
+"SyntaxError [1:42-1:47]: Await expression not allowed in formal parameter
 > 1 | async function f(){ (fail = class extends await foo {}) => fail    }
-    |                                                         ^^ Await expression not allowed in formal parameter"
+    |                                           ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ async function f(){   (a= {[await foo](){}, "x"(){}} ) => a    }    } 1`] = `

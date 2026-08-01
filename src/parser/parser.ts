@@ -133,6 +133,11 @@ export class Parser {
   strictReservedRange: [Location, Location] | null = null;
 
   /**
+   * Location of the first 'await' keyword seen. Used to report deferred errors in async arrow parameters.
+   */
+  firstAwaitLocation: { start: Location; end: Location } | null = null;
+
+  /**
    * Holds leading decorators before "export" or "class" keywords
    */
   leadingDecorators: {

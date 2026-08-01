@@ -273,9 +273,9 @@ exports[`Expressions - Async function > Expressions - Async function (fail) > as
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
-"SyntaxError [1:56-1:58]: Await expression not allowed in formal parameter
+"SyntaxError [1:42-1:47]: Await expression not allowed in formal parameter
 > 1 | async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     }
-    |                                                         ^^ Await expression not allowed in formal parameter"
+    |                                           ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > async function a(k = await 3) {} 1`] = `
