@@ -7219,7 +7219,8 @@ function parseParenthesizedExpression(
     if (destructible & (DestructuringKind.Assignable | DestructuringKind.CannotDestruct))
       parser.report(Errors.InvalidArrowDestructLHS);
     if (context & (Context.InAwaitContext | Context.Module) && destructible & DestructuringKind.Await) {
-      if (parser.firstAwaitLocation) throw new ParseError(parser.firstAwaitLocation.start, parser.firstAwaitLocation.end, Errors.AwaitInParameter);
+      if (parser.firstAwaitLocation)
+        throw new ParseError(parser.firstAwaitLocation.start, parser.firstAwaitLocation.end, Errors.AwaitInParameter);
       parser.report(Errors.AwaitInParameter);
     }
     if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield) {
@@ -8051,7 +8052,8 @@ function parseAsyncArrowOrCallExpression(
       parser.report(Errors.InvalidLHSAsyncArrow);
     if (parser.flags & Flags.NewLine || flags & Flags.NewLine) parser.report(Errors.InvalidLineBreak);
     if (destructible & DestructuringKind.Await) {
-      if (parser.firstAwaitLocation) throw new ParseError(parser.firstAwaitLocation.start, parser.firstAwaitLocation.end, Errors.AwaitInParameter);
+      if (parser.firstAwaitLocation)
+        throw new ParseError(parser.firstAwaitLocation.start, parser.firstAwaitLocation.end, Errors.AwaitInParameter);
       parser.report(Errors.AwaitInParameter);
     }
     if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield)
