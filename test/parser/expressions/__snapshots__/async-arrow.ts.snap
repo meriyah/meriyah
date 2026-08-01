@@ -1738,6 +1738,12 @@ exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async fu
     |                                   ^ Can not use \`await\` as identifier in module or async func"
 `;
 
+exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function t() { async(foo = await 0) => 1 } 1`] = `
+"SyntaxError [1:42-1:44]: Await expression not allowed in formal parameter
+> 1 | async function t() { async(foo = await 0) => 1 }
+    |                                           ^^ Await expression not allowed in formal parameter"
+`;
+
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > async function x({await}) { return 1 } 1`] = `
 "SyntaxError [1:23-1:24]: Can not use \`await\` as identifier in module or async func
 > 1 | async function x({await}) { return 1 }
@@ -4096,6 +4102,58 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > async (b = {awa
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async arrow > Expressions - Async arrow > async function t() { async(foo = await 0) } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "arguments": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "argument": {
+                      "type": "Literal",
+                      "value": 0,
+                    },
+                    "type": "AwaitExpression",
+                  },
+                  "type": "AssignmentExpression",
+                },
+              ],
+              "callee": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "optional": false,
+              "type": "CallExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "t",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
