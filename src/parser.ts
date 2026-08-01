@@ -9208,7 +9208,6 @@ function parseJSXChildOrClosingFragment(
  * Parses JSX Text
  *
  * @param parser Parser object
- * @param context  Context masks
  */
 function parseJSXText(parser: Parser): ESTree.JSXText {
   const start = parser.tokenStart;
