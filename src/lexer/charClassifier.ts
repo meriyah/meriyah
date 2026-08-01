@@ -87,7 +87,7 @@ export const CharTypes = [
   CharFlags.None /* 0x3B   */,
   CharFlags.JSXToken /* 0x3C < */,
   CharFlags.None /* 0x3D = */,
-  CharFlags.None /* 0x3E > */,
+  CharFlags.JSXToken /* 0x3E > */,
   CharFlags.None /* 0x3F   */,
   CharFlags.None /* 0x40 @ */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.Hex /* 0x41 A */,
@@ -148,10 +148,10 @@ export const CharTypes = [
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x78 x */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x79 y */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x7A z */,
-  CharFlags.JSXToken /* 0x7B */,
-  CharFlags.None /* 0x7C */,
-  CharFlags.None /* 0x7D */,
-  CharFlags.None /* 0x7E */,
+  CharFlags.JSXToken /* 0x7B { */,
+  CharFlags.None /* 0x7C | */,
+  CharFlags.JSXToken /* 0x7D } */,
+  CharFlags.None /* 0x7E ~ */,
   CharFlags.None /* 0x7F */
 ];
 
