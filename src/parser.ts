@@ -7086,7 +7086,7 @@ function parseParenthesizedExpression(
         hasStrictReserved = 1;
       }
 
-      expr = parsePrimaryExpression(parser, context, privateScope, kind, 0, 1, 1, 1, tokenStart, origin);
+      expr = parsePrimaryExpression(parser, context, privateScope, kind, 0, 1, 1, 1, tokenStart, Origin.None);
 
       if (parser.getToken() === Token.RightParen || parser.getToken() === Token.Comma) {
         if (parser.assignable & AssignmentTargetKind.Invalid) {
@@ -7118,7 +7118,7 @@ function parseParenthesizedExpression(
               1,
               0,
               kind,
-              origin,
+              Origin.None,
             )
           : parseArrayExpressionOrPattern(
               parser,
@@ -7129,7 +7129,7 @@ function parseParenthesizedExpression(
               1,
               0,
               kind,
-              origin,
+              Origin.None,
             );
 
       destructible |= parser.destructible;
@@ -7150,7 +7150,18 @@ function parseParenthesizedExpression(
         }
       }
     } else if (token === Token.Ellipsis) {
-      expr = parseSpreadOrRestElement(parser, context, scope, privateScope, Token.RightParen, kind, origin, 0, 1, 0);
+      expr = parseSpreadOrRestElement(
+        parser,
+        context,
+        scope,
+        privateScope,
+        Token.RightParen,
+        kind,
+        Origin.None,
+        0,
+        1,
+        0,
+      );
 
       if (parser.destructible & DestructuringKind.CannotDestruct) parser.report(Errors.InvalidRestArg);
 
