@@ -88,7 +88,7 @@
     "@types/node": "^26.1.1",
     "@unicode/unicode-17.0.0": "^1.6.17",
     "@vitest/coverage-v8": "^4.1.10",
-    "acorn": "^8.17.0",
+    "acorn": "^8.18.0",
     "acorn-jsx": "^5.3.2",
     "cross-env": "^10.1.0",
     "cspell": "^10.0.1",
