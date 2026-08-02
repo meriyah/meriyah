@@ -18,12 +18,6 @@ exports[`Statements - Return > Commonjs (fail) > return 1`] = `
     | ^^^^^^ Illegal return statement"
 `;
 
-exports[`Statements - Return > Commonjs (fail) > using foo = null 1`] = `
-"SyntaxError [1:6-1:9]: Unexpected token: 'identifier'
-> 1 | using foo = null
-    |       ^^^ Unexpected token: 'identifier'"
-`;
-
 exports[`Statements - Return > Commonjs (pass) > new.target 1`] = `
 {
   "body": [
@@ -53,6 +47,32 @@ exports[`Statements - Return > Commonjs (pass) > return 1`] = `
     {
       "argument": null,
       "type": "ReturnStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Commonjs (pass) > using foo = null 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": null,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "using",
+      "type": "VariableDeclaration",
     },
   ],
   "sourceType": "script",
