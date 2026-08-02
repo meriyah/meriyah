@@ -1744,7 +1744,12 @@ function parseUsingDeclarationOrExpressionStatement(
   const expression = parseIdentifier(parser, context);
 
   if ((parser.flags & Flags.NewLine) === 0 && isResourceBindingStart(parser.getToken())) {
-    if (origin & Origin.TopLevel && context & Context.InGlobal && (context & Context.Module) === 0) {
+    if (
+      origin & Origin.TopLevel &&
+      context & Context.InGlobal &&
+      (context & Context.Module) === 0 &&
+      (context & Context.InReturnContext) === 0
+    ) {
       parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
     }
 

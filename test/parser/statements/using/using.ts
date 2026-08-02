@@ -3,6 +3,8 @@ import { type Options } from '../../../../src/options.ts';
 import { parseSource } from '../../../../src/parser.ts';
 
 const moduleOptions: Options = { sourceType: 'module' };
+const commonjsOptions: Options = { sourceType: 'commonjs' };
+const title = (code: string, options?: Options) => (options?.sourceType ? `${code} (${options.sourceType})` : code);
 
 describe('Statements - using declarations', () => {
   const declarations: Array<{
@@ -17,10 +19,11 @@ describe('Statements - using declarations', () => {
     { code: 'async function f() { await using resource = acquire(); }', kind: 'await using' },
     { code: 'async function f() { await /* no line break */ using resource = acquire(); }', kind: 'await using' },
     { code: '{ using first = a, second = b; }', kind: 'using' },
+    { code: 'using resource = acquire();', kind: 'using', options: commonjsOptions },
   ];
 
   for (const { code, kind, options } of declarations) {
-    it(code, () => {
+    it(title(code, options), () => {
       const program = parseSource(code, options);
       const declaration =
         program.body[0].type === 'BlockStatement'
@@ -159,6 +162,8 @@ describe('Statements - using declarations', () => {
 
   const invalidDeclarations: Array<{ code: string; options?: Options }> = [
     { code: 'using resource = acquire();' },
+    { code: 'using resource = acquire();', options: { sourceType: 'script' } },
+    { code: 'await using resource = acquire();', options: commonjsOptions },
     { code: 'await using resource = acquire();' },
     { code: 'function f() { await using resource = acquire(); }' },
     { code: '{ using { resource } = acquire(); }' },
@@ -179,7 +184,7 @@ describe('Statements - using declarations', () => {
   ];
 
   for (const { code, options } of invalidDeclarations) {
-    it(`rejects ${code}`, () => {
+    it(`rejects ${title(code, options)}`, () => {
       expect(() => parseSource(code, options)).toThrow();
     });
   }
