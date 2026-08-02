@@ -846,6 +846,78 @@ exports[`Statements - For in > Statements - For in (fail) > or (var [p]=0 in q);
     |     ^^^ Unexpected token: 'var'"
 `;
 
+exports[`Statements - For in > Statements - For in (origin state guard fail) > for (var a = {p: () => {} in y};;); 1`] = `
+"SyntaxError [1:26-1:28]: Unexpected token: 'in'
+> 1 | for (var a = {p: () => {} in y};;);
+    |                           ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (origin state guard fail) > for (var a = {p: () => {} in y};;); 2`] = `
+"SyntaxError [1:26-1:28]: Unexpected token: 'in'
+> 1 | for (var a = {p: () => {} in y};;);
+    |                           ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (origin state guard fail) > for (var a = f(() => {} in y);;); 1`] = `
+"SyntaxError [1:24-1:26]: Unexpected token: 'in'
+> 1 | for (var a = f(() => {} in y);;);
+    |                         ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (origin state guard fail) > for (var a = f(() => {} in y);;); 2`] = `
+"SyntaxError [1:24-1:26]: Unexpected token: 'in'
+> 1 | for (var a = f(() => {} in y);;);
+    |                         ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (origin state guard fail) > for (var a = function () { return () => {} in y; };;); 1`] = `
+"SyntaxError [1:43-1:45]: Unexpected token: 'in'
+> 1 | for (var a = function () { return () => {} in y; };;);
+    |                                            ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (origin state guard fail) > for (var a = function () { return () => {} in y; };;); 2`] = `
+"SyntaxError [1:43-1:45]: Unexpected token: 'in'
+> 1 | for (var a = function () { return () => {} in y; };;);
+    |                                            ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (parenthesized origin fail) > for (var a = (x => {} in y) in z); 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | for (var a = (x => {} in y) in z);
+    |                       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (parenthesized origin fail) > for (var a = (x => {} in y) in z); 2`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | for (var a = (x => {} in y) in z);
+    |                       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (parenthesized origin fail) > for (var a = (x => {} in y), b = 1;;); 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | for (var a = (x => {} in y), b = 1;;);
+    |                       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (parenthesized origin fail) > for (var a = (x => {} in y), b = 1;;); 2`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | for (var a = (x => {} in y), b = 1;;);
+    |                       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (parenthesized origin fail) > for (var a = (x => {} in y);;); 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | for (var a = (x => {} in y);;);
+    |                       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For in > Statements - For in (parenthesized origin fail) > for (var a = (x => {} in y);;); 2`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | for (var a = (x => {} in y);;);
+    |                       ^^ Unexpected token: 'in'"
+`;
+
 exports[`Statements - For in > Statements - For in (pass) > 2; for (var b in { x: 0 }) { 3; } 1`] = `
 {
   "body": [

@@ -622,6 +622,22 @@ describe('Statements - For in', () => {
     'for ([].bar = x in obj);',
     'for ([]=1 in x);',
   ]);
+  fail('Statements - For in (parenthesized origin fail)', [
+    { code: 'for (var a = (x => {} in y);;);', options: { webcompat: false } },
+    { code: 'for (var a = (x => {} in y);;);', options: { webcompat: true } },
+    { code: 'for (var a = (x => {} in y) in z);', options: { webcompat: false } },
+    { code: 'for (var a = (x => {} in y) in z);', options: { webcompat: true } },
+    { code: 'for (var a = (x => {} in y), b = 1;;);', options: { webcompat: false } },
+    { code: 'for (var a = (x => {} in y), b = 1;;);', options: { webcompat: true } },
+  ]);
+  fail('Statements - For in (origin state guard fail)', [
+    { code: 'for (var a = {p: () => {} in y};;);', options: { webcompat: false } },
+    { code: 'for (var a = {p: () => {} in y};;);', options: { webcompat: true } },
+    { code: 'for (var a = f(() => {} in y);;);', options: { webcompat: false } },
+    { code: 'for (var a = f(() => {} in y);;);', options: { webcompat: true } },
+    { code: 'for (var a = function () { return () => {} in y; };;);', options: { webcompat: false } },
+    { code: 'for (var a = function () { return () => {} in y; };;);', options: { webcompat: true } },
+  ]);
   pass('Statements - For in (pass)', [
     'for ({x: a.b} in obj);',
 
