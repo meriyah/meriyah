@@ -7163,6 +7163,10 @@ function parseParenthesizedExpression(
 
       parser.destructible = destructible | previousAwaitYield;
 
+      if (previousFirstAwaitLocation) {
+        parser.firstAwaitLocation = previousFirstAwaitLocation;
+      }
+
       return parser.options.preserveParens
         ? parser.finishNode<ESTree.ParenthesizedExpression>(
             {
