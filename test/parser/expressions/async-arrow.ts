@@ -223,6 +223,10 @@ describe('Expressions - Async arrow', () => {
     'async ([{x: y.z} = a]) => b',
     'async(foo = super()) => {}',
     'async(x = await) => {  }',
+    { code: 'async(x = await (0)) => 1', options: { sourceType: 'module' } },
+    { code: 'async(x = await(0)) => 1', options: { sourceType: 'module' } },
+    { code: 'async (x = await (2)) => {};', options: { sourceType: 'module' } },
+    'async function t() { async(foo = await 0) => 1 }',
     'async (x = 1) => {"use strict"}',
     'async(await) => {  }',
     'async(foo) => { super() };',
@@ -914,5 +918,6 @@ describe('Expressions - Async arrow', () => {
     { code: 'f(async ()=>c)', options: { ranges: true } },
     { code: 'a => a => a => async a => a', options: { ranges: true } },
     { code: 'f(a, async (b, c) => await [b, c], d)', options: { ranges: true } },
+    'async function t() { async(foo = await 0) }',
   ]);
 });

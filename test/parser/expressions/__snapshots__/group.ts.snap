@@ -1698,9 +1698,9 @@ exports[`Expressions - Group > Expressions - Group (fail) > async (foo = yield x
 `;
 
 exports[`Expressions - Group > Expressions - Group (fail) > async (x = (await) = f) => {} 1`] = `
-"SyntaxError [1:24-1:26]: Await expression not allowed in formal parameter
+"SyntaxError [1:12-1:17]: Await expression not allowed in formal parameter
 > 1 | async (x = (await) = f) => {}
-    |                         ^^ Await expression not allowed in formal parameter"
+    |             ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Group > Expressions - Group (fail) > async("foo".bar) => x 1`] = `

@@ -347,6 +347,9 @@ export function validateFunctionName(parser: Parser, context: Context, t: Token)
 export function isStrictReservedWord(parser: Parser, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
     if (context & (Context.InAwaitContext | Context.Module)) parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
+    if ((parser.destructible & DestructuringKind.Await) === 0) {
+      parser.firstAwaitLocation ??= { start: parser.tokenStart, end: parser.currentLocation };
+    }
     parser.destructible |= DestructuringKind.Await;
   }
 
