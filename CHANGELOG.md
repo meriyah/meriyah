@@ -1,3 +1,14 @@
+## [7.3.1](https://github.com/meriyah/meriyah/compare/v7.3.0...v7.3.1) (2026-08-06)
+
+### Bug Fixes
+
+* **jsx:** forbid `}` and `>` in JSX element children ([#622](https://github.com/meriyah/meriyah/issues/622)) ([9dde69a](https://github.com/meriyah/meriyah/commit/9dde69ac80f808c1f76e267ea76f8d057a5a2d1b)), closes [#619](https://github.com/meriyah/meriyah/issues/619)
+* **parser:** allow top-level `using` declarations in commonjs source type ([#627](https://github.com/meriyah/meriyah/issues/627)) ([ec524bc](https://github.com/meriyah/meriyah/commit/ec524bc2402ff3dadd4858a46031b61a4ecd1e59))
+* **parser:** delay the process of 'in' token after arrow func expression ([86f1acd](https://github.com/meriyah/meriyah/commit/86f1acdcfa962b09e672c2a5766f1d434a05962b)), closes [#273](https://github.com/meriyah/meriyah/issues/273)
+* **parser:** For-In initializer is only available in non-strict webcompat code ([aa0797f](https://github.com/meriyah/meriyah/commit/aa0797f67dcd8a318c637e84fe7c6277801e0a25))
+* **parser:** forbid await in parenthesized async arrow parameters ([#623](https://github.com/meriyah/meriyah/issues/623)) ([fb12e77](https://github.com/meriyah/meriyah/commit/fb12e77fa09ef1bba6c00f6a45eca63f44e34814)), closes [#620](https://github.com/meriyah/meriyah/issues/620) [#337](https://github.com/meriyah/meriyah/issues/337)
+* **parser:** reset origin for parenthesized contents ([3c3ce74](https://github.com/meriyah/meriyah/commit/3c3ce749dfd3c9186fa21663cef2ae6559f816cb))
+
 # [7.3.0](https://github.com/meriyah/meriyah/compare/v7.2.0...v7.3.0) (2026-07-29)
 
 ### Bug Fixes
