@@ -123,7 +123,7 @@ export class Scope {
    * @param type Binding kind
    * @param origin Binding Origin
    */
-  addBlockName(context: Context, name: string, kind: BindingKind, origin: Origin) {
+  addBlockName(context: Context, name: string, kind: BindingKind, origin: Origin = Origin.None): void {
     const { parser } = this;
     const value = this.variableBindings.get(name);
 
@@ -199,6 +199,6 @@ export class Scope {
  */
 export function createArrowHeadParsingScope(parser: Parser, context: Context, value: string): Scope {
   const scope = parser.createScope().createChildScope(ScopeKind.ArrowParams);
-  scope.addBlockName(context, value, BindingKind.ArgumentList, Origin.None);
+  scope.addBlockName(context, value, BindingKind.ArgumentList);
   return scope;
 }
