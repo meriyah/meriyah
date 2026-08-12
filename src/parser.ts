@@ -2789,6 +2789,7 @@ function parseImportSpecifierOrNamedImports(
 
   while (parser.getToken() & Token.IsIdentifier || parser.getToken() === Token.StringLiteral) {
     let { tokenValue, tokenStart, currentLocation } = parser;
+    const start = tokenStart;
     const token = parser.getToken();
     const imported = parseModuleExportName(parser, context);
     let local: ESTree.Identifier;
@@ -2803,6 +2804,8 @@ function parseImportSpecifierOrNamedImports(
         validateBindingIdentifier(parser, context, BindingKind.Const, parser.getToken(), 0);
       }
       tokenValue = parser.tokenValue;
+      tokenStart = parser.tokenStart;
+      currentLocation = parser.currentLocation;
       local = parseIdentifier(parser, context);
     } else if (imported.type === 'Identifier') {
       // Keywords cannot be bound to themselves, so an import name
@@ -2825,7 +2828,7 @@ function parseImportSpecifierOrNamedImports(
           local,
           imported,
         },
-        tokenStart,
+        start,
       ),
     );
 

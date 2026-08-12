@@ -1673,9 +1673,9 @@ exports[`Module - Import > Module - Import (fail) > import { a } from; 1`] = `
 `;
 
 exports[`Module - Import > Module - Import (fail) > import { b as foo } from "./f"; import { "a" as foo } from "./m"; 1`] = `
-"SyntaxError [1:41-1:44]: Duplicate binding 'foo'
+"SyntaxError [1:48-1:51]: Duplicate binding 'foo'
 > 1 | import { b as foo } from "./f"; import { "a" as foo } from "./m";
-    |                                          ^^^ Duplicate binding 'foo'"
+    |                                                 ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import { foo } from "./f"; import { foo } from "./m"; 1`] = `
@@ -1775,9 +1775,9 @@ exports[`Module - Import > Module - Import (fail) > import { foo, , } from "modu
 `;
 
 exports[`Module - Import > Module - Import (fail) > import { foo, bar as foo } from "string"; 1`] = `
-"SyntaxError [1:14-1:17]: Duplicate binding 'foo'
+"SyntaxError [1:21-1:24]: Duplicate binding 'foo'
 > 1 | import { foo, bar as foo } from "string";
-    |               ^^^ Duplicate binding 'foo'"
+    |                      ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import { foo, foo } from "string"; 1`] = `
@@ -1841,9 +1841,9 @@ exports[`Module - Import > Module - Import (fail) > import {a b} from "foo"; 1`]
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a, a as a} from "foo" 1`] = `
-"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
 > 1 | import {a, a as a} from "foo"
-    |            ^ Duplicate binding 'a'"
+    |                 ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a, a, b} from "foo" 1`] = `
@@ -1865,15 +1865,15 @@ exports[`Module - Import > Module - Import (fail) > import {a, a} from "foo"; 1`
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a, b as a} from "foo" 1`] = `
-"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
 > 1 | import {a, b as a} from "foo"
-    |            ^ Duplicate binding 'a'"
+    |                 ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a, b as a} from "foo"; 1`] = `
-"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
 > 1 | import {a, b as a} from "foo";
-    |            ^ Duplicate binding 'a'"
+    |                 ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a, b, a} from "foo" 1`] = `
@@ -1883,9 +1883,9 @@ exports[`Module - Import > Module - Import (fail) > import {a, b, a} from "foo" 
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {a as a} from "foo" 1`] = `
-"SyntaxError [1:31-1:32]: Duplicate binding 'a'
+"SyntaxError [1:36-1:37]: Duplicate binding 'a'
 > 1 | import {a} from "foo"; import {a as a} from "foo"
-    |                                ^ Duplicate binding 'a'"
+    |                                     ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {a} from "foo"; 1`] = `
@@ -1895,15 +1895,15 @@ exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; impor
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {b as a} from "foo" 1`] = `
-"SyntaxError [1:31-1:32]: Duplicate binding 'a'
+"SyntaxError [1:36-1:37]: Duplicate binding 'a'
 > 1 | import {a} from "foo"; import {b as a} from "foo"
-    |                                ^ Duplicate binding 'a'"
+    |                                     ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {b as a} from "foo" 2`] = `
-"SyntaxError [1:31-1:32]: Duplicate binding 'a'
+"SyntaxError [1:36-1:37]: Duplicate binding 'a'
 > 1 | import {a} from "foo"; import {b as a} from "foo"
-    |                                ^ Duplicate binding 'a'"
+    |                                     ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {a} from "foo"; import {b, a} from "foo" 1`] = `
@@ -1925,9 +1925,9 @@ exports[`Module - Import > Module - Import (fail) > import {await} from "foo"; 1
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {b as a, c as a} from "foo"; 1`] = `
-"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+"SyntaxError [1:21-1:22]: Duplicate binding 'a'
 > 1 | import {b as a, c as a} from "foo";
-    |                 ^ Duplicate binding 'a'"
+    |                      ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import {b, a, a} from "foo" 1`] = `
@@ -2009,15 +2009,15 @@ exports[`Module - Import > Module - Import (fail) > import a, {a} from "foo"; 1`
 `;
 
 exports[`Module - Import > Module - Import (fail) > import a, {b as a} from "foo" 1`] = `
-"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
 > 1 | import a, {b as a} from "foo"
-    |            ^ Duplicate binding 'a'"
+    |                 ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import a, {b as a} from "foo"; 1`] = `
-"SyntaxError [1:11-1:12]: Duplicate binding 'a'
+"SyntaxError [1:16-1:17]: Duplicate binding 'a'
 > 1 | import a, {b as a} from "foo";
-    |            ^ Duplicate binding 'a'"
+    |                 ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import arguments, {x, y, z} from "foo"; 1`] = `
