@@ -54,11 +54,18 @@ export class Scope {
    * @param type Binding kind
    * @param origin Binding Origin
    */
-  addVarOrBlock(context: Context, name: string, kind: BindingKind, origin: Origin) {
+  addVarOrBlock(
+    context: Context,
+    name: string,
+    kind: BindingKind,
+    tokenStart: Location,
+    tokenEnd: Location,
+    origin: Origin,
+  ) {
     if (kind & BindingKind.Variable) {
-      this.addVarName(context, name, kind);
+      this.addVarName(context, name, kind, tokenStart, tokenEnd);
     } else {
-      this.addBlockName(context, name, kind, origin);
+      this.addBlockName(context, name, kind, tokenStart, tokenEnd, origin);
     }
     if (origin & Origin.Export) {
       this.parser.declareUnboundVariable(name);
@@ -71,8 +78,10 @@ export class Scope {
    * @param context Context masks
    * @param name Binding name
    * @param type Binding kind
+   * @param tokenStart Token start location
+   * @param tokenEnd Token end location
    */
-  addVarName(context: Context, name: string, kind: BindingKind): void {
+  addVarName(context: Context, name: string, kind: BindingKind, tokenStart: Location, tokenEnd: Location): void {
     const { parser } = this;
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let currentScope: Scope | undefined = this;
@@ -90,19 +99,19 @@ export class Scope {
         ) {
           // No op
         } else {
-          parser.report(Errors.DuplicateBinding, name);
+          throw new ParseError(tokenStart, tokenEnd, Errors.DuplicateBinding, name);
         }
       }
       if (currentScope === this) {
         if (value && value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
-          currentScope.recordScopeError(Errors.DuplicateBinding, name);
+          currentScope.recordScopeError(Errors.DuplicateBinding, tokenStart, tokenEnd, name);
         }
       }
       if (
         value &&
         (value & BindingKind.CatchPattern || (value & BindingKind.CatchIdentifier && !parser.options.webcompat))
       ) {
-        parser.report(Errors.DuplicateBinding, name);
+        throw new ParseError(tokenStart, tokenEnd, Errors.DuplicateBinding, name);
       }
 
       currentScope.variableBindings.set(name, kind);
@@ -121,15 +130,24 @@ export class Scope {
    * @param context Context masks
    * @param name Binding name
    * @param type Binding kind
+   * @param tokenStart Token start location
+   * @param tokenEnd Token end location
    * @param origin Binding Origin
    */
-  addBlockName(context: Context, name: string, kind: BindingKind, origin: Origin = Origin.None): void {
+  addBlockName(
+    context: Context,
+    name: string,
+    kind: BindingKind,
+    tokenStart: Location,
+    tokenEnd: Location,
+    origin: Origin = Origin.None,
+  ): void {
     const { parser } = this;
     const value = this.variableBindings.get(name);
 
     if (value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
-        this.recordScopeError(Errors.DuplicateBinding, name);
+        this.recordScopeError(Errors.DuplicateBinding, tokenStart, tokenEnd, name);
       } else if (
         parser.options.webcompat &&
         (context & Context.Strict) === 0 &&
@@ -139,7 +157,7 @@ export class Scope {
       ) {
         // No op
       } else {
-        parser.report(Errors.DuplicateBinding, name);
+        throw new ParseError(tokenStart, tokenEnd, Errors.DuplicateBinding, name);
       }
     }
 
@@ -148,18 +166,18 @@ export class Scope {
       this.parent?.hasVariable(name) &&
       (this.parent.variableBindings.get(name)! & BindingKind.Empty) === 0
     ) {
-      parser.report(Errors.DuplicateBinding, name);
+      throw new ParseError(tokenStart, tokenEnd, Errors.DuplicateBinding, name);
     }
 
     if (this.type & ScopeKind.ArrowParams && value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
-        this.recordScopeError(Errors.DuplicateBinding, name);
+        this.recordScopeError(Errors.DuplicateBinding, tokenStart, tokenEnd, name);
       }
     }
 
     if (this.type & ScopeKind.CatchBlock) {
       if (this.parent!.variableBindings.get(name)! & BindingKind.CatchIdentifierOrPattern)
-        parser.report(Errors.ShadowedCatchClause, name);
+        throw new ParseError(tokenStart, tokenEnd, Errors.ShadowedCatchClause, name);
     }
 
     this.variableBindings.set(name, kind);
@@ -171,12 +189,12 @@ export class Scope {
    * @param parser Parser state
    * @param type Errors type
    */
-  recordScopeError(type: Errors, ...params: string[]) {
+  recordScopeError(type: Errors, tokenStart: Location, tokenEnd: Location, ...params: string[]) {
     this.scopeError = {
       type,
       params,
-      start: this.parser.tokenStart,
-      end: this.parser.currentLocation,
+      start: tokenStart,
+      end: tokenEnd,
     };
   }
 
@@ -196,9 +214,18 @@ export class Scope {
  * @param parser Parser state
  * @param context Context masks
  * @param value Binding name to be declared
+ * @param tokenStart Token start location
+ * @param tokenEnd Token end location
+ * @returns Scope
  */
-export function createArrowHeadParsingScope(parser: Parser, context: Context, value: string): Scope {
+export function createArrowHeadParsingScope(
+  parser: Parser,
+  context: Context,
+  value: string,
+  tokenStart: Location,
+  tokenEnd: Location,
+): Scope {
   const scope = parser.createScope().createChildScope(ScopeKind.ArrowParams);
-  scope.addBlockName(context, value, BindingKind.ArgumentList);
+  scope.addBlockName(context, value, BindingKind.ArgumentList, tokenStart, tokenEnd);
   return scope;
 }

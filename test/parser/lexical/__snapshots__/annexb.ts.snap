@@ -43,13 +43,13 @@ exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > function f(){ var f = 123;
 `;
 
 exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > let x; var x; 1`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+"SyntaxError [1:11-1:12]: Duplicate binding 'x'
 > 1 | let x; var x;
-    |             ^ Duplicate binding 'x'"
+    |            ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - AnnexB > Lexical - AnnexB (fail) > var x; let x; 1`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'x'
+"SyntaxError [1:11-1:12]: Duplicate binding 'x'
 > 1 | var x; let x;
-    |             ^ Duplicate binding 'x'"
+    |            ^ Duplicate binding 'x'"
 `;

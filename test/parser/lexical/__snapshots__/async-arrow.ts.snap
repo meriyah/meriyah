@@ -1,33 +1,33 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a, a, b]) => {} 1`] = `
-"SyntaxError [1:6-1:7]: Duplicate binding 'a'
+"SyntaxError [1:5-1:6]: Duplicate binding 'a'
 > 1 | ([a, a, b]) => {}
-    |       ^ Duplicate binding 'a'"
+    |      ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a, a]) => {} 1`] = `
-"SyntaxError [1:6-1:7]: Duplicate binding 'a'
+"SyntaxError [1:5-1:6]: Duplicate binding 'a'
 > 1 | ([a, a]) => {}
-    |       ^ Duplicate binding 'a'"
+    |      ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a, b, a]) => {} 1`] = `
-"SyntaxError [1:9-1:10]: Duplicate binding 'a'
+"SyntaxError [1:8-1:9]: Duplicate binding 'a'
 > 1 | ([a, b, a]) => {}
-    |          ^ Duplicate binding 'a'"
+    |         ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a,b,c]) => { const c = x; } 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'c'
+"SyntaxError [1:21-1:22]: Duplicate binding 'c'
 > 1 | ([a,b,c]) => { const c = x; }
-    |                        ^ Duplicate binding 'c'"
+    |                      ^ Duplicate binding 'c'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a,b,c]) => { const c = x; } 2`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'c'
+"SyntaxError [1:21-1:22]: Duplicate binding 'c'
 > 1 | ([a,b,c]) => { const c = x; }
-    |                        ^ Duplicate binding 'c'"
+    |                      ^ Duplicate binding 'c'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a], a, ...b) => {} 1`] = `
@@ -37,21 +37,21 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([a], a, ...b) => {} 1`] =
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([b, a, a]) => {} 1`] = `
-"SyntaxError [1:9-1:10]: Duplicate binding 'a'
+"SyntaxError [1:8-1:9]: Duplicate binding 'a'
 > 1 | ([b, a, a]) => {}
-    |          ^ Duplicate binding 'a'"
+    |         ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([b, a, b, a]) => {} 1`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
 > 1 | ([b, a, b, a]) => {}
-    |             ^ Duplicate binding 'a'"
+    |            ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([b, a], {b}) => {} 1`] = `
-"SyntaxError [1:11-1:12]: Duplicate binding 'b'
+"SyntaxError [1:10-1:11]: Duplicate binding 'b'
 > 1 | ([b, a], {b}) => {}
-    |            ^ Duplicate binding 'b'"
+    |           ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > ([b, a], b) => {} 1`] = `
@@ -85,15 +85,15 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > (a, b, a) => {} 1`] = `
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (async (a = b => { let b; })) 1`] = `
-"SyntaxError [1:24-1:25]: Duplicate binding 'b'
+"SyntaxError [1:23-1:24]: Duplicate binding 'b'
 > 1 | (async (a = b => { let b; }))
-    |                         ^ Duplicate binding 'b'"
+    |                        ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (async => { let async; }) 1`] = `
-"SyntaxError [1:21-1:22]: Duplicate binding 'async'
+"SyntaxError [1:16-1:21]: Duplicate binding 'async'
 > 1 | (async => { let async; })
-    |                      ^ Duplicate binding 'async'"
+    |                 ^^^^^ Duplicate binding 'async'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (async await => { let await; }) 1`] = `
@@ -103,9 +103,9 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > (async await => { let awai
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (async yield => { let yield; }) 1`] = `
-"SyntaxError [1:27-1:28]: Duplicate binding 'yield'
+"SyntaxError [1:22-1:27]: Duplicate binding 'yield'
 > 1 | (async yield => { let yield; })
-    |                            ^ Duplicate binding 'yield'"
+    |                       ^^^^^ Duplicate binding 'yield'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (b, a, a) => {} 1`] = `
@@ -115,9 +115,9 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > (b, a, a) => {} 1`] = `
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (b, a, b, ...a) => {} 1`] = `
-"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+"SyntaxError [1:13-1:14]: Duplicate binding 'a'
 > 1 | (b, a, b, ...a) => {}
-    |               ^ Duplicate binding 'a'"
+    |              ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (b, a, b, a = x) => {} 1`] = `
@@ -139,21 +139,21 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > (b, a, b, a, [fine]) => {}
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > (x) => { const x = y } 1`] = `
-"SyntaxError [1:17-1:18]: Duplicate binding 'x'
-> 1 | (x) => { const x = y }
-    |                  ^ Duplicate binding 'x'"
-`;
-
-exports[`Lexical - Arrows > Lexical - Arrows (fail) > (x) => { let x } 1`] = `
 "SyntaxError [1:15-1:16]: Duplicate binding 'x'
-> 1 | (x) => { let x }
+> 1 | (x) => { const x = y }
     |                ^ Duplicate binding 'x'"
 `;
 
+exports[`Lexical - Arrows > Lexical - Arrows (fail) > (x) => { let x } 1`] = `
+"SyntaxError [1:13-1:14]: Duplicate binding 'x'
+> 1 | (x) => { let x }
+    |              ^ Duplicate binding 'x'"
+`;
+
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > a(async (a, [a]) => { let a; }) 1`] = `
-"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+"SyntaxError [1:13-1:14]: Duplicate binding 'a'
 > 1 | a(async (a, [a]) => { let a; })
-    |               ^ Duplicate binding 'a'"
+    |              ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > a(async (a, a) => { let a; }) 1`] = `
@@ -163,33 +163,33 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > a(async (a, a) => { let a;
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > a(async a => { let a; }) 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:19-1:20]: Duplicate binding 'a'
 > 1 | a(async a => { let a; })
-    |                     ^ Duplicate binding 'a'"
+    |                    ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ([a,b,c]) => { const c = x; } 1`] = `
-"SyntaxError [1:29-1:30]: Duplicate binding 'c'
+"SyntaxError [1:27-1:28]: Duplicate binding 'c'
 > 1 | async ([a,b,c]) => { const c = x; }
-    |                              ^ Duplicate binding 'c'"
+    |                            ^ Duplicate binding 'c'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ([b, a, b, a]) => {} 1`] = `
-"SyntaxError [1:18-1:19]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
 > 1 | async ([b, a, b, a]) => {}
-    |                   ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ([b, a], ...b) => {} 1`] = `
-"SyntaxError [1:19-1:20]: Duplicate binding 'b'
+"SyntaxError [1:18-1:19]: Duplicate binding 'b'
 > 1 | async ([b, a], ...b) => {}
-    |                    ^ Duplicate binding 'b'"
+    |                   ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ({"x": x, x: x}) => a 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'x'
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
 > 1 | async ({"x": x, x: x}) => a
-    |                     ^ Duplicate binding 'x'"
+    |                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ({3: x, 4: x}) => a 1`] = `
@@ -199,27 +199,27 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ({3: x, 4: x}) => a 
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ({x: x, x: x}) => a 1`] = `
-"SyntaxError [1:18-1:19]: Duplicate binding 'x'
+"SyntaxError [1:17-1:18]: Duplicate binding 'x'
 > 1 | async ({x: x, x: x}) => a
-    |                   ^ Duplicate binding 'x'"
+    |                  ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ({x: y, "x": x = y}) => { let y; } 1`] = `
-"SyntaxError [1:37-1:38]: Duplicate binding 'y'
+"SyntaxError [1:36-1:37]: Duplicate binding 'y'
 > 1 | async ({x: y, "x": x = y}) => { let y; }
-    |                                      ^ Duplicate binding 'y'"
+    |                                     ^ Duplicate binding 'y'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async ({x: y, "x": x = y}) => { let y; } 2`] = `
-"SyntaxError [1:37-1:38]: Duplicate binding 'y'
+"SyntaxError [1:36-1:37]: Duplicate binding 'y'
 > 1 | async ({x: y, "x": x = y}) => { let y; }
-    |                                      ^ Duplicate binding 'y'"
+    |                                     ^ Duplicate binding 'y'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (a = b => { let b; }) 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'b'
+"SyntaxError [1:22-1:23]: Duplicate binding 'b'
 > 1 | async (a = b => { let b; })
-    |                        ^ Duplicate binding 'b'"
+    |                       ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (a, a) => {} 1`] = `
@@ -241,15 +241,15 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (b, a, b, a, [fine])
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (x) => { const x = y } 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+"SyntaxError [1:21-1:22]: Duplicate binding 'x'
 > 1 | async (x) => { const x = y }
-    |                        ^ Duplicate binding 'x'"
+    |                      ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (x) => { let x } 1`] = `
-"SyntaxError [1:21-1:22]: Duplicate binding 'x'
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
 > 1 | async (x) => { let x }
-    |                      ^ Duplicate binding 'x'"
+    |                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (ā,食,食) => { /* 𢭃 */ } 1`] = `
@@ -259,21 +259,21 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > async (ā,食,食) => { /*
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async => { let async; } 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'async'
+"SyntaxError [1:15-1:20]: Duplicate binding 'async'
 > 1 | async => { let async; }
-    |                     ^ Duplicate binding 'async'"
+    |                ^^^^^ Duplicate binding 'async'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async => { let async; } 2`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'async'
+"SyntaxError [1:15-1:20]: Duplicate binding 'async'
 > 1 | async => { let async; }
-    |                     ^ Duplicate binding 'async'"
+    |                ^^^^^ Duplicate binding 'async'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async a => { let a; } 1`] = `
-"SyntaxError [1:18-1:19]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
 > 1 | async a => { let a; }
-    |                   ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async await => { let await; } 1`] = `
@@ -283,25 +283,25 @@ exports[`Lexical - Arrows > Lexical - Arrows (fail) > async await => { let await
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async b => { let b; } 1`] = `
-"SyntaxError [1:18-1:19]: Duplicate binding 'b'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | async b => { let b; }
-    |                   ^ Duplicate binding 'b'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > async yield => { let yield; } 1`] = `
-"SyntaxError [1:26-1:27]: Duplicate binding 'yield'
+"SyntaxError [1:21-1:26]: Duplicate binding 'yield'
 > 1 | async yield => { let yield; }
-    |                           ^ Duplicate binding 'yield'"
+    |                      ^^^^^ Duplicate binding 'yield'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > x = async => { let async; } 1`] = `
-"SyntaxError [1:24-1:25]: Duplicate binding 'async'
+"SyntaxError [1:19-1:24]: Duplicate binding 'async'
 > 1 | x = async => { let async; }
-    |                         ^ Duplicate binding 'async'"
+    |                    ^^^^^ Duplicate binding 'async'"
 `;
 
 exports[`Lexical - Arrows > Lexical - Arrows (fail) > x = async yield => { let yield; } 1`] = `
-"SyntaxError [1:30-1:31]: Duplicate binding 'yield'
+"SyntaxError [1:25-1:30]: Duplicate binding 'yield'
 > 1 | x = async yield => { let yield; }
-    |                               ^ Duplicate binding 'yield'"
+    |                          ^^^^^ Duplicate binding 'yield'"
 `;

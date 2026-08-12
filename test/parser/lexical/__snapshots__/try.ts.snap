@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Lexical - Try > Lexical - Try (fail) > const a = 1, a = 2 1`] = `
-"SyntaxError [1:15-1:16]: Duplicate binding 'a'
+"SyntaxError [1:13-1:14]: Duplicate binding 'a'
 > 1 | const a = 1, a = 2
-    |                ^ Duplicate binding 'a'"
+    |              ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > function f() { try {} catch (e) { function e(){} } } 1`] = `
@@ -19,27 +19,27 @@ exports[`Lexical - Try > Lexical - Try (fail) > function f() { try {} catch (e) 
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > let e; try {} catch (e) { let e; } 1`] = `
-"SyntaxError [1:31-1:32]: 'e' shadowed a catch clause binding
+"SyntaxError [1:30-1:31]: 'e' shadowed a catch clause binding
 > 1 | let e; try {} catch (e) { let e; }
-    |                                ^ 'e' shadowed a catch clause binding"
+    |                               ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > let foo; try {} catch (foo) {} let foo; 1`] = `
-"SyntaxError [1:38-1:39]: Duplicate binding 'foo'
+"SyntaxError [1:35-1:38]: Duplicate binding 'foo'
 > 1 | let foo; try {} catch (foo) {} let foo;
-    |                                       ^ Duplicate binding 'foo'"
+    |                                    ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch ([x, x]) {} 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'x'
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
 > 1 | try { } catch ([x, x]) {}
-    |                     ^ Duplicate binding 'x'"
+    |                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch ([x, x]) {} 2`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'x'
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
 > 1 | try { } catch ([x, x]) {}
-    |                     ^ Duplicate binding 'x'"
+    |                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (e) { async function f(){} async function f(){} } 1`] = `
@@ -79,39 +79,39 @@ exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (e) { function(){}
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (x) { for (var x of []) {} } 1`] = `
-"SyntaxError [1:31-1:33]: Duplicate binding 'x'
+"SyntaxError [1:29-1:30]: Duplicate binding 'x'
 > 1 | try { } catch (x) { for (var x of []) {} }
-    |                                ^^ Duplicate binding 'x'"
+    |                              ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (x) { for (var x of []) {} } 2`] = `
-"SyntaxError [1:31-1:33]: Duplicate binding 'x'
+"SyntaxError [1:29-1:30]: Duplicate binding 'x'
 > 1 | try { } catch (x) { for (var x of []) {} }
-    |                                ^^ Duplicate binding 'x'"
+    |                              ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (x) { for (var x of []) {} } 3`] = `
-"SyntaxError [1:31-1:33]: Duplicate binding 'x'
+"SyntaxError [1:29-1:30]: Duplicate binding 'x'
 > 1 | try { } catch (x) { for (var x of []) {} }
-    |                                ^^ Duplicate binding 'x'"
+    |                              ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (x) { let x; } 1`] = `
-"SyntaxError [1:25-1:26]: 'x' shadowed a catch clause binding
+"SyntaxError [1:24-1:25]: 'x' shadowed a catch clause binding
 > 1 | try { } catch (x) { let x; }
-    |                          ^ 'x' shadowed a catch clause binding"
+    |                         ^ 'x' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (x) { let x; } 2`] = `
-"SyntaxError [1:25-1:26]: 'x' shadowed a catch clause binding
+"SyntaxError [1:24-1:25]: 'x' shadowed a catch clause binding
 > 1 | try { } catch (x) { let x; }
-    |                          ^ 'x' shadowed a catch clause binding"
+    |                         ^ 'x' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } catch (x) { let x; } 3`] = `
-"SyntaxError [1:25-1:26]: 'x' shadowed a catch clause binding
+"SyntaxError [1:24-1:25]: 'x' shadowed a catch clause binding
 > 1 | try { } catch (x) { let x; }
-    |                          ^ 'x' shadowed a catch clause binding"
+    |                         ^ 'x' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { } finally { async function *f(){} async function *f(){} } 1`] = `
@@ -145,27 +145,27 @@ exports[`Lexical - Try > Lexical - Try (fail) > try { } finally { function(){} f
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { async function *f(){} var f } catch (e) {} 1`] = `
-"SyntaxError [1:34-1:35]: Duplicate binding 'f'
+"SyntaxError [1:32-1:33]: Duplicate binding 'f'
 > 1 | try { async function *f(){} var f } catch (e) {}
-    |                                   ^ Duplicate binding 'f'"
+    |                                 ^ Duplicate binding 'f'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { async function f(){} var f } catch (e) {} 1`] = `
-"SyntaxError [1:33-1:34]: Duplicate binding 'f'
+"SyntaxError [1:31-1:32]: Duplicate binding 'f'
 > 1 | try { async function f(){} var f } catch (e) {}
-    |                                  ^ Duplicate binding 'f'"
+    |                                ^ Duplicate binding 'f'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { function *f(){} var f } catch (e) {} 1`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'f'
+"SyntaxError [1:26-1:27]: Duplicate binding 'f'
 > 1 | try { function *f(){} var f } catch (e) {}
-    |                             ^ Duplicate binding 'f'"
+    |                           ^ Duplicate binding 'f'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { function f(){} var f } catch (e) {} 1`] = `
-"SyntaxError [1:27-1:28]: Duplicate binding 'f'
+"SyntaxError [1:25-1:26]: Duplicate binding 'f'
 > 1 | try { function f(){} var f } catch (e) {}
-    |                            ^ Duplicate binding 'f'"
+    |                          ^ Duplicate binding 'f'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { function(){} var f } catch (e) {} 1`] = `
@@ -175,9 +175,9 @@ exports[`Lexical - Try > Lexical - Try (fail) > try { function(){} var f } catch
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}} 1`] = `
-"SyntaxError [1:44-1:45]: Duplicate binding 'x'
+"SyntaxError [1:42-1:43]: Duplicate binding 'x'
 > 1 | try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}
-    |                                             ^ Duplicate binding 'x'"
+    |                                           ^ Duplicate binding 'x'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try { throw {}; } catch ({ f }) { if (true) function f() {  } } 1`] = `
@@ -187,9 +187,9 @@ exports[`Lexical - Try > Lexical - Try (fail) > try { throw {}; } catch ({ f }) 
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([a,a]) { } 1`] = `
-"SyntaxError [1:18-1:19]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'a'
 > 1 | try {} catch ([a,a]) { }
-    |                   ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'a'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([a] = b) { } 1`] = `
@@ -199,81 +199,81 @@ exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([a] = b) { } 1`] =
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([foo, foo]) {} 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'foo'
+"SyntaxError [1:20-1:23]: Duplicate binding 'foo'
 > 1 | try {} catch ([foo, foo]) {}
-    |                        ^ Duplicate binding 'foo'"
+    |                     ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([foo, foo]) {} 2`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'foo'
+"SyntaxError [1:20-1:23]: Duplicate binding 'foo'
 > 1 | try {} catch ([foo, foo]) {}
-    |                        ^ Duplicate binding 'foo'"
+    |                     ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([foo]) { var foo; } 1`] = `
-"SyntaxError [1:30-1:31]: Duplicate binding 'foo'
+"SyntaxError [1:27-1:30]: Duplicate binding 'foo'
 > 1 | try {} catch ([foo]) { var foo; }
-    |                               ^ Duplicate binding 'foo'"
+    |                            ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ([foo]) { var foo; } 2`] = `
-"SyntaxError [1:30-1:31]: Duplicate binding 'foo'
+"SyntaxError [1:27-1:30]: Duplicate binding 'foo'
 > 1 | try {} catch ([foo]) { var foo; }
-    |                               ^ Duplicate binding 'foo'"
+    |                            ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({ a: foo, b: { c: [foo] } }) {} 1`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+"SyntaxError [1:33-1:36]: Duplicate binding 'foo'
 > 1 | try {} catch ({ a: foo, b: { c: [foo] } }) {}
-    |                                     ^ Duplicate binding 'foo'"
+    |                                  ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({ a: foo, b: { c: [foo] } }) {} 2`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+"SyntaxError [1:33-1:36]: Duplicate binding 'foo'
 > 1 | try {} catch ({ a: foo, b: { c: [foo] } }) {}
-    |                                     ^ Duplicate binding 'foo'"
+    |                                  ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({ foo }) { var foo; } 1`] = `
-"SyntaxError [1:32-1:33]: Duplicate binding 'foo'
+"SyntaxError [1:29-1:32]: Duplicate binding 'foo'
 > 1 | try {} catch ({ foo }) { var foo; }
-    |                                 ^ Duplicate binding 'foo'"
+    |                              ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({ foo }) { var foo; } 2`] = `
-"SyntaxError [1:32-1:33]: Duplicate binding 'foo'
+"SyntaxError [1:29-1:32]: Duplicate binding 'foo'
 > 1 | try {} catch ({ foo }) { var foo; }
-    |                                 ^ Duplicate binding 'foo'"
+    |                              ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({a: e, b: e}) {} 1`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'e'
+"SyntaxError [1:24-1:25]: Duplicate binding 'e'
 > 1 | try {} catch ({a: e, b: e}) {}
-    |                          ^ Duplicate binding 'e'"
+    |                         ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({a: e, b: e}) {} 2`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'e'
+"SyntaxError [1:24-1:25]: Duplicate binding 'e'
 > 1 | try {} catch ({a: e, b: e}) {}
-    |                          ^ Duplicate binding 'e'"
+    |                         ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({e = 0, a: e}) {} 1`] = `
-"SyntaxError [1:26-1:27]: Duplicate binding 'e'
+"SyntaxError [1:25-1:26]: Duplicate binding 'e'
 > 1 | try {} catch ({e = 0, a: e}) {}
-    |                           ^ Duplicate binding 'e'"
+    |                          ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch ({e, e}) {} 1`] = `
-"SyntaxError [1:19-1:20]: Duplicate binding 'e'
+"SyntaxError [1:18-1:19]: Duplicate binding 'e'
 > 1 | try {} catch ({e, e}) {}
-    |                    ^ Duplicate binding 'e'"
+    |                   ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (a) { const a = 1; }  1`] = `
-"SyntaxError [1:27-1:28]: 'a' shadowed a catch clause binding
+"SyntaxError [1:25-1:26]: 'a' shadowed a catch clause binding
 > 1 | try {} catch (a) { const a = 1; } 
-    |                            ^ 'a' shadowed a catch clause binding"
+    |                          ^ 'a' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (a, a) { } 1`] = `
@@ -295,105 +295,105 @@ exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (arguments) { } 2`]
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { { var e = x; } } 1`] = `
-"SyntaxError [1:27-1:28]: Duplicate binding 'e'
+"SyntaxError [1:25-1:26]: Duplicate binding 'e'
 > 1 | try {} catch (e) { { var e = x; } }
-    |                            ^ Duplicate binding 'e'"
+    |                          ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { const e = x; } 1`] = `
-"SyntaxError [1:27-1:28]: 'e' shadowed a catch clause binding
+"SyntaxError [1:25-1:26]: 'e' shadowed a catch clause binding
 > 1 | try {} catch (e) { const e = x; }
-    |                            ^ 'e' shadowed a catch clause binding"
+    |                          ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { const e = x; } 2`] = `
-"SyntaxError [1:27-1:28]: 'e' shadowed a catch clause binding
+"SyntaxError [1:25-1:26]: 'e' shadowed a catch clause binding
 > 1 | try {} catch (e) { const e = x; }
-    |                            ^ 'e' shadowed a catch clause binding"
+    |                          ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e in y) {} } 1`] = `
-"SyntaxError [1:30-1:32]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e in y) {} }
-    |                               ^^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e in y) {} } 2`] = `
-"SyntaxError [1:30-1:32]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e in y) {} }
-    |                               ^^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e in y) {} } 3`] = `
-"SyntaxError [1:30-1:32]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e in y) {} }
-    |                               ^^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e of y) {} } 1`] = `
-"SyntaxError [1:30-1:32]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e of y) {} }
-    |                               ^^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e;;) {} } 1`] = `
-"SyntaxError [1:29-1:30]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e;;) {} }
-    |                              ^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e;;) {} } 2`] = `
-"SyntaxError [1:29-1:30]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e;;) {} }
-    |                              ^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { for (var e;;) {} } 3`] = `
-"SyntaxError [1:29-1:30]: Duplicate binding 'e'
+"SyntaxError [1:28-1:29]: Duplicate binding 'e'
 > 1 | try {} catch (e) { for (var e;;) {} }
-    |                              ^ Duplicate binding 'e'"
+    |                             ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { let e = x; } 1`] = `
-"SyntaxError [1:25-1:26]: 'e' shadowed a catch clause binding
+"SyntaxError [1:23-1:24]: 'e' shadowed a catch clause binding
 > 1 | try {} catch (e) { let e = x; }
-    |                          ^ 'e' shadowed a catch clause binding"
+    |                        ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { let e = x; } 2`] = `
-"SyntaxError [1:25-1:26]: 'e' shadowed a catch clause binding
+"SyntaxError [1:23-1:24]: 'e' shadowed a catch clause binding
 > 1 | try {} catch (e) { let e = x; }
-    |                          ^ 'e' shadowed a catch clause binding"
+    |                        ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { let e = x; } 3`] = `
-"SyntaxError [1:25-1:26]: 'e' shadowed a catch clause binding
+"SyntaxError [1:23-1:24]: 'e' shadowed a catch clause binding
 > 1 | try {} catch (e) { let e = x; }
-    |                          ^ 'e' shadowed a catch clause binding"
+    |                        ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { var e = x; } 1`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'e'
+"SyntaxError [1:23-1:24]: Duplicate binding 'e'
 > 1 | try {} catch (e) { var e = x; }
-    |                          ^ Duplicate binding 'e'"
+    |                        ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { var e = x; } 2`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'e'
+"SyntaxError [1:23-1:24]: Duplicate binding 'e'
 > 1 | try {} catch (e) { var e = x; }
-    |                          ^ Duplicate binding 'e'"
+    |                        ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { var e = x; } 3`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'e'
+"SyntaxError [1:23-1:24]: Duplicate binding 'e'
 > 1 | try {} catch (e) { var e = x; }
-    |                          ^ Duplicate binding 'e'"
+    |                        ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (e) { var e = x; } 4`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'e'
+"SyntaxError [1:23-1:24]: Duplicate binding 'e'
 > 1 | try {} catch (e) { var e = x; }
-    |                          ^ Duplicate binding 'e'"
+    |                        ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { function foo() {} } 1`] = `
@@ -415,59 +415,59 @@ exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { function fo
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { let foo = 1; } 1`] = `
-"SyntaxError [1:29-1:30]: 'foo' shadowed a catch clause binding
+"SyntaxError [1:25-1:28]: 'foo' shadowed a catch clause binding
 > 1 | try {} catch (foo) { let foo = 1; }
-    |                              ^ 'foo' shadowed a catch clause binding"
+    |                          ^^^ 'foo' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { let foo; } 1`] = `
-"SyntaxError [1:28-1:29]: 'foo' shadowed a catch clause binding
+"SyntaxError [1:25-1:28]: 'foo' shadowed a catch clause binding
 > 1 | try {} catch (foo) { let foo; }
-    |                             ^ 'foo' shadowed a catch clause binding"
+    |                          ^^^ 'foo' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { let foo; } 2`] = `
-"SyntaxError [1:28-1:29]: 'foo' shadowed a catch clause binding
+"SyntaxError [1:25-1:28]: 'foo' shadowed a catch clause binding
 > 1 | try {} catch (foo) { let foo; }
-    |                             ^ 'foo' shadowed a catch clause binding"
+    |                          ^^^ 'foo' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { let foo; } 3`] = `
-"SyntaxError [1:28-1:29]: 'foo' shadowed a catch clause binding
+"SyntaxError [1:25-1:28]: 'foo' shadowed a catch clause binding
 > 1 | try {} catch (foo) { let foo; }
-    |                             ^ 'foo' shadowed a catch clause binding"
+    |                          ^^^ 'foo' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { let foo; } 4`] = `
-"SyntaxError [1:28-1:29]: 'foo' shadowed a catch clause binding
+"SyntaxError [1:25-1:28]: 'foo' shadowed a catch clause binding
 > 1 | try {} catch (foo) { let foo; }
-    |                             ^ 'foo' shadowed a catch clause binding"
+    |                          ^^^ 'foo' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { try {} catch (_) { var foo; } } 1`] = `
-"SyntaxError [1:47-1:48]: Duplicate binding 'foo'
+"SyntaxError [1:44-1:47]: Duplicate binding 'foo'
 > 1 | try {} catch (foo) { try {} catch (_) { var foo; } }
-    |                                                ^ Duplicate binding 'foo'"
+    |                                             ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { var foo; } 1`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:25-1:28]: Duplicate binding 'foo'
 > 1 | try {} catch (foo) { var foo; }
-    |                             ^ Duplicate binding 'foo'"
+    |                          ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { var foo; } 2`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:25-1:28]: Duplicate binding 'foo'
 > 1 | try {} catch (foo) { var foo; }
-    |                             ^ Duplicate binding 'foo'"
+    |                          ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) {}  let foo;
 try {} catch (foo) {}  let foo; 1`] = `
-"SyntaxError [2:30-2:31]: Duplicate binding 'foo'
+"SyntaxError [2:27-2:30]: Duplicate binding 'foo'
   1 | try {} catch (foo) {}  let foo;
 > 2 | try {} catch (foo) {}  let foo;
-    |                               ^ Duplicate binding 'foo'"
+    |                            ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) {if (1) function foo() {}} 1`] = `
@@ -489,31 +489,31 @@ exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (x) { { let x }  2`
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (x) { let x } 1`] = `
-"SyntaxError [1:25-1:26]: 'x' shadowed a catch clause binding
+"SyntaxError [1:23-1:24]: 'x' shadowed a catch clause binding
 > 1 | try {} catch (x) { let x }
-    |                          ^ 'x' shadowed a catch clause binding"
+    |                        ^ 'x' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (x) { let x } 2`] = `
-"SyntaxError [1:25-1:26]: 'x' shadowed a catch clause binding
+"SyntaxError [1:23-1:24]: 'x' shadowed a catch clause binding
 > 1 | try {} catch (x) { let x }
-    |                          ^ 'x' shadowed a catch clause binding"
+    |                        ^ 'x' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch(e) { for(var e of 0); } 1`] = `
-"SyntaxError [1:28-1:30]: Duplicate binding 'e'
+"SyntaxError [1:26-1:27]: Duplicate binding 'e'
 > 1 | try {} catch(e) { for(var e of 0); }
-    |                             ^^ Duplicate binding 'e'"
+    |                           ^ Duplicate binding 'e'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch(e) { let e; } 1`] = `
-"SyntaxError [1:23-1:24]: 'e' shadowed a catch clause binding
+"SyntaxError [1:22-1:23]: 'e' shadowed a catch clause binding
 > 1 | try {} catch(e) { let e; }
-    |                        ^ 'e' shadowed a catch clause binding"
+    |                       ^ 'e' shadowed a catch clause binding"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch(e) { var e; } 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'e'
+"SyntaxError [1:22-1:23]: Duplicate binding 'e'
 > 1 | try {} catch(e) { var e; }
-    |                        ^ Duplicate binding 'e'"
+    |                       ^ Duplicate binding 'e'"
 `;
