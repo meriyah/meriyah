@@ -109,9 +109,9 @@ exports[`Lexical - Class > Lexical - Class (fail) > class o {f([b, a, a]) {}} 1`
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f([b, a, b, a]) {}} 1`] = `
-"SyntaxError [1:21-1:22]: Duplicate binding 'a'
+"SyntaxError [1:18-1:19]: Duplicate binding 'b'
 > 1 | class o {f([b, a, b, a]) {}}
-    |                      ^ Duplicate binding 'a'"
+    |                   ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f([b, a], ...b) {}} 1`] = `
@@ -199,45 +199,45 @@ exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, a) {}} 2`] 
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, ...a) {}} 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, ...a) {}}
-    |                        ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, a = x) {}} 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, a = x) {}}
-    |                     ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, a = x) {}} 2`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, a = x) {}}
-    |                     ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, a) {}} 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, a) {}}
-    |                     ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, a) {}} 2`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, a) {}}
-    |                     ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, a, [fine]) {}} 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, a, [fine]) {}}
-    |                     ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(b, a, b, a, [fine]) {}} 2`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'a'
+"SyntaxError [1:17-1:18]: Duplicate binding 'b'
 > 1 | class o {f(b, a, b, a, [fine]) {}}
-    |                     ^ Duplicate binding 'a'"
+    |                  ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Class > Lexical - Class (fail) > class o {f(x) { const x = y }} 1`] = `

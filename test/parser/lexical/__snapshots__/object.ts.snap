@@ -289,9 +289,9 @@ exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a, a]) {}} 1`] = `
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a, b, a]) {}} 1`] = `
-"SyntaxError [1:14-1:15]: Duplicate binding 'a'
+"SyntaxError [1:11-1:12]: Duplicate binding 'b'
 > 1 | !{f([b, a, b, a]) {}}
-    |               ^ Duplicate binding 'a'"
+    |            ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f([b, a], ...b) {}} 1`] = `
@@ -415,27 +415,27 @@ exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, a) {}} 1`] = `
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, ...a) {}} 1`] = `
-"SyntaxError [1:16-1:17]: Duplicate binding 'a'
+"SyntaxError [1:10-1:11]: Duplicate binding 'b'
 > 1 | !{f(b, a, b, ...a) {}}
-    |                 ^ Duplicate binding 'a'"
+    |           ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, a = x) {}} 1`] = `
-"SyntaxError [1:13-1:14]: Duplicate binding 'a'
+"SyntaxError [1:10-1:11]: Duplicate binding 'b'
 > 1 | !{f(b, a, b, a = x) {}}
-    |              ^ Duplicate binding 'a'"
+    |           ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, a) {}} 1`] = `
-"SyntaxError [1:13-1:14]: Duplicate binding 'a'
+"SyntaxError [1:10-1:11]: Duplicate binding 'b'
 > 1 | !{f(b, a, b, a) {}}
-    |              ^ Duplicate binding 'a'"
+    |           ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f(b, a, b, a, [fine]) {}} 1`] = `
-"SyntaxError [1:13-1:14]: Duplicate binding 'a'
+"SyntaxError [1:10-1:11]: Duplicate binding 'b'
 > 1 | !{f(b, a, b, a, [fine]) {}}
-    |              ^ Duplicate binding 'a'"
+    |           ^ Duplicate binding 'b'"
 `;
 
 exports[`Lexical - Object > Lexical - Object (fail) > !{f(x) { const x = y }} 1`] = `
