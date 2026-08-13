@@ -191,10 +191,7 @@ export class Scope {
    */
   recordScopeError(type: Errors, tokenStart: Location, tokenEnd: Location, ...params: string[]) {
     // Only record the first error, subsequent errors will be ignored
-    if (this.scopeError) {
-      return;
-    }
-    this.scopeError = {
+    this.scopeError ??= {
       type,
       params,
       start: tokenStart,
