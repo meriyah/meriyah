@@ -19,51 +19,51 @@ exports[`Lexical - If > Lexical - If (fail) > do async function f(){} while (x);
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 1`] = `
-"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+"SyntaxError [1:35-1:38]: Duplicate binding 'foo'
 > 1 | if (x) { if (y) var foo = 1; } let foo = 1;
-    |                                        ^ Duplicate binding 'foo'"
+    |                                    ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 2`] = `
-"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+"SyntaxError [1:35-1:38]: Duplicate binding 'foo'
 > 1 | if (x) { if (y) var foo = 1; } let foo = 1;
-    |                                        ^ Duplicate binding 'foo'"
+    |                                    ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 3`] = `
-"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+"SyntaxError [1:35-1:38]: Duplicate binding 'foo'
 > 1 | if (x) { if (y) var foo = 1; } let foo = 1;
-    |                                        ^ Duplicate binding 'foo'"
+    |                                    ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) { if (y) var foo = 1; } let foo = 1; 4`] = `
-"SyntaxError [1:39-1:40]: Duplicate binding 'foo'
+"SyntaxError [1:35-1:38]: Duplicate binding 'foo'
 > 1 | if (x) { if (y) var foo = 1; } let foo = 1;
-    |                                        ^ Duplicate binding 'foo'"
+    |                                    ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) {} else if (y) {} else var foo = 1; let foo = 1; 1`] = `
-"SyntaxError [1:51-1:52]: Duplicate binding 'foo'
+"SyntaxError [1:47-1:50]: Duplicate binding 'foo'
 > 1 | if (x) {} else if (y) {} else var foo = 1; let foo = 1;
-    |                                                    ^ Duplicate binding 'foo'"
+    |                                                ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) {} else if (y) {} else var foo = 1; let foo = 1; 2`] = `
-"SyntaxError [1:51-1:52]: Duplicate binding 'foo'
+"SyntaxError [1:47-1:50]: Duplicate binding 'foo'
 > 1 | if (x) {} else if (y) {} else var foo = 1; let foo = 1;
-    |                                                    ^ Duplicate binding 'foo'"
+    |                                                ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) {} else var foo = 1; let foo = 1; 1`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+"SyntaxError [1:32-1:35]: Duplicate binding 'foo'
 > 1 | if (x) {} else var foo = 1; let foo = 1;
-    |                                     ^ Duplicate binding 'foo'"
+    |                                 ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) {} else var foo = 1; let foo = 1; 2`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+"SyntaxError [1:32-1:35]: Duplicate binding 'foo'
 > 1 | if (x) {} else var foo = 1; let foo = 1;
-    |                                     ^ Duplicate binding 'foo'"
+    |                                 ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) async function f(){} 1`] = `
@@ -73,45 +73,45 @@ exports[`Lexical - If > Lexical - If (fail) > if (x) async function f(){} 1`] = 
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; else {} let foo = 1; 1`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+"SyntaxError [1:32-1:35]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; else {} let foo = 1;
-    |                                     ^ Duplicate binding 'foo'"
+    |                                 ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; else {} let foo = 1; 2`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'foo'
+"SyntaxError [1:32-1:35]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; else {} let foo = 1;
-    |                                     ^ Duplicate binding 'foo'"
+    |                                 ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 1`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:24-1:27]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; let foo = 1;
-    |                             ^ Duplicate binding 'foo'"
+    |                         ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 2`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:24-1:27]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; let foo = 1;
-    |                             ^ Duplicate binding 'foo'"
+    |                         ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 3`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:24-1:27]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; let foo = 1;
-    |                             ^ Duplicate binding 'foo'"
+    |                         ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 4`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:24-1:27]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; let foo = 1;
-    |                             ^ Duplicate binding 'foo'"
+    |                         ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) var foo = 1; let foo = 1; 5`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'foo'
+"SyntaxError [1:24-1:27]: Duplicate binding 'foo'
 > 1 | if (x) var foo = 1; let foo = 1;
-    |                             ^ Duplicate binding 'foo'"
+    |                         ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - If > Lexical - If (fail) > if (x) x;

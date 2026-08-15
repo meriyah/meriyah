@@ -55,9 +55,9 @@ exports[`Module - Export > Module - Export (fail) > const a = 0; export class a 
 `;
 
 exports[`Module - Export > Module - Export (fail) > const a = 0; export const a = 1; 1`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'a'
+"SyntaxError [1:26-1:27]: Duplicate binding 'a'
 > 1 | const a = 0; export const a = 1;
-    |                             ^ Duplicate binding 'a'"
+    |                           ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > const a = 0; export function a(){}; 1`] = `
@@ -67,9 +67,9 @@ exports[`Module - Export > Module - Export (fail) > const a = 0; export function
 `;
 
 exports[`Module - Export > Module - Export (fail) > const a = 0; export let a; 1`] = `
-"SyntaxError [1:25-1:26]: Duplicate binding 'a'
+"SyntaxError [1:24-1:25]: Duplicate binding 'a'
 > 1 | const a = 0; export let a;
-    |                          ^ Duplicate binding 'a'"
+    |                         ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > const a = 1; export {a as "", a as ""} 1`] = `
@@ -530,10 +530,10 @@ export async function a() {} 1`] = `
 
 exports[`Module - Export > Module - Export (fail) > export async function a() {}
 export const a = 1; 1`] = `
-"SyntaxError [2:15-2:16]: Duplicate binding 'a'
+"SyntaxError [2:13-2:14]: Duplicate binding 'a'
   1 | export async function a() {}
 > 2 | export const a = 1;
-    |                ^ Duplicate binding 'a'"
+    |              ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export async function a() {}
@@ -557,9 +557,9 @@ exports[`Module - Export > Module - Export (fail) > export async function f(){};
 `;
 
 exports[`Module - Export > Module - Export (fail) > export async function f(){}; const f = foo; 1`] = `
-"SyntaxError [1:37-1:38]: Duplicate binding 'f'
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
 > 1 | export async function f(){}; const f = foo;
-    |                                      ^ Duplicate binding 'f'"
+    |                                    ^ Duplicate binding 'f'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export async function f(){}; export {f}; 1`] = `
@@ -655,33 +655,33 @@ exports[`Module - Export > Module - Export (fail) > export class x{}; export def
 `;
 
 exports[`Module - Export > Module - Export (fail) > export const [x, {x}] = y 1`] = `
-"SyntaxError [1:19-1:20]: Duplicate binding 'x'
-> 1 | export const [x, {x}] = y
-    |                    ^ Duplicate binding 'x'"
-`;
-
-exports[`Module - Export > Module - Export (fail) > export const [x, x] = c 1`] = `
 "SyntaxError [1:18-1:19]: Duplicate binding 'x'
-> 1 | export const [x, x] = c
+> 1 | export const [x, {x}] = y
     |                   ^ Duplicate binding 'x'"
 `;
 
+exports[`Module - Export > Module - Export (fail) > export const [x, x] = c 1`] = `
+"SyntaxError [1:17-1:18]: Duplicate binding 'x'
+> 1 | export const [x, x] = c
+    |                  ^ Duplicate binding 'x'"
+`;
+
 exports[`Module - Export > Module - Export (fail) > export const {x:x, x:x} = c 1`] = `
-"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+"SyntaxError [1:21-1:22]: Duplicate binding 'x'
 > 1 | export const {x:x, x:x} = c
-    |                       ^ Duplicate binding 'x'"
+    |                      ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export const a = 0; export const a = 0; 1`] = `
-"SyntaxError [1:35-1:36]: Duplicate binding 'a'
+"SyntaxError [1:33-1:34]: Duplicate binding 'a'
 > 1 | export const a = 0; export const a = 0;
-    |                                    ^ Duplicate binding 'a'"
+    |                                  ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export const a = b; let a = c 1`] = `
-"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+"SyntaxError [1:24-1:25]: Duplicate binding 'a'
 > 1 | export const a = b; let a = c
-    |                           ^ Duplicate binding 'a'"
+    |                         ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export const const1; 1`] = `
@@ -691,9 +691,9 @@ exports[`Module - Export > Module - Export (fail) > export const const1; 1`] = `
 `;
 
 exports[`Module - Export > Module - Export (fail) > export const x = x, x = y; 1`] = `
-"SyntaxError [1:22-1:23]: Duplicate binding 'x'
+"SyntaxError [1:20-1:21]: Duplicate binding 'x'
 > 1 | export const x = x, x = y;
-    |                       ^ Duplicate binding 'x'"
+    |                     ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export const x = y; export {f}; 1`] = `
@@ -755,9 +755,9 @@ exports[`Module - Export > Module - Export (fail) > export default async x
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default async x => { let x; }; 1`] = `
-"SyntaxError [1:33-1:34]: Duplicate binding 'x'
+"SyntaxError [1:32-1:33]: Duplicate binding 'x'
 > 1 | export default async x => { let x; };
-    |                                  ^ Duplicate binding 'x'"
+    |                                 ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default await 1`] = `
@@ -827,27 +827,27 @@ exports[`Module - Export > Module - Export (fail) > export default function(){};
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default function([a, a]){} 1`] = `
-"SyntaxError [1:29-1:30]: Duplicate binding 'a'
+"SyntaxError [1:28-1:29]: Duplicate binding 'a'
 > 1 | export default function([a, a]){}
-    |                              ^ Duplicate binding 'a'"
+    |                             ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default function(a){ const a = 0; } 1`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'a'
+"SyntaxError [1:34-1:35]: Duplicate binding 'a'
 > 1 | export default function(a){ const a = 0; }
-    |                                     ^ Duplicate binding 'a'"
+    |                                   ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default function(a){ let a; } 1`] = `
-"SyntaxError [1:33-1:34]: Duplicate binding 'a'
+"SyntaxError [1:32-1:33]: Duplicate binding 'a'
 > 1 | export default function(a){ let a; }
-    |                                  ^ Duplicate binding 'a'"
+    |                                 ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default function(a, a){} 1`] = `
-"SyntaxError [1:28-1:29]: Duplicate binding 'a'
+"SyntaxError [1:27-1:28]: Duplicate binding 'a'
 > 1 | export default function(a, a){}
-    |                             ^ Duplicate binding 'a'"
+    |                            ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default let 1`] = `
@@ -941,15 +941,15 @@ exports[`Module - Export > Module - Export (fail) > export function f(){}; funct
 `;
 
 exports[`Module - Export > Module - Export (fail) > export function x(){}; export let [x] = y; 1`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'x'
+"SyntaxError [1:35-1:36]: Duplicate binding 'x'
 > 1 | export function x(){}; export let [x] = y;
-    |                                     ^ Duplicate binding 'x'"
+    |                                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export function x(){}; export let [x] = y; 2`] = `
-"SyntaxError [1:36-1:37]: Duplicate binding 'x'
+"SyntaxError [1:35-1:36]: Duplicate binding 'x'
 > 1 | export function x(){}; export let [x] = y;
-    |                                     ^ Duplicate binding 'x'"
+    |                                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export function* () { } 1`] = `
@@ -965,15 +965,15 @@ exports[`Module - Export > Module - Export (fail) > export let ...x = y 1`] = `
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let [x, x] = y; 1`] = `
-"SyntaxError [1:16-1:17]: Duplicate binding 'x'
+"SyntaxError [1:15-1:16]: Duplicate binding 'x'
 > 1 | export let [x, x] = y;
-    |                 ^ Duplicate binding 'x'"
+    |                ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let [x, x] = y; 2`] = `
-"SyntaxError [1:16-1:17]: Duplicate binding 'x'
+"SyntaxError [1:15-1:16]: Duplicate binding 'x'
 > 1 | export let [x, x] = y;
-    |                 ^ Duplicate binding 'x'"
+    |                ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let [x] = y; export {x}; 1`] = `
@@ -1003,15 +1003,15 @@ export async function a() {} 1`] = `
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let a; export let a; 1`] = `
-"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+"SyntaxError [1:25-1:26]: Duplicate binding 'a'
 > 1 | export let a; export let a;
-    |                           ^ Duplicate binding 'a'"
+    |                          ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let a; export let a; 2`] = `
-"SyntaxError [1:26-1:27]: Duplicate binding 'a'
+"SyntaxError [1:25-1:26]: Duplicate binding 'a'
 > 1 | export let a; export let a;
-    |                           ^ Duplicate binding 'a'"
+    |                          ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let await; 1`] = `
@@ -1021,39 +1021,39 @@ exports[`Module - Export > Module - Export (fail) > export let await; 1`] = `
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let foo; export let foo; 1`] = `
-"SyntaxError [1:30-1:31]: Duplicate binding 'foo'
+"SyntaxError [1:27-1:30]: Duplicate binding 'foo'
 > 1 | export let foo; export let foo;
-    |                               ^ Duplicate binding 'foo'"
+    |                            ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let x = y, [...x] = y; 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
 > 1 | export let x = y, [...x] = y;
-    |                        ^ Duplicate binding 'x'"
+    |                       ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let x = y, [...x] = y; 2`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
 > 1 | export let x = y, [...x] = y;
-    |                        ^ Duplicate binding 'x'"
+    |                       ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let x = y, [x] = y; 1`] = `
-"SyntaxError [1:20-1:21]: Duplicate binding 'x'
+"SyntaxError [1:19-1:20]: Duplicate binding 'x'
 > 1 | export let x = y, [x] = y;
-    |                     ^ Duplicate binding 'x'"
+    |                    ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let x = y, {...x} = y; 1`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
 > 1 | export let x = y, {...x} = y;
-    |                        ^ Duplicate binding 'x'"
+    |                       ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let x = y, {...x} = y; 2`] = `
-"SyntaxError [1:23-1:24]: Duplicate binding 'x'
+"SyntaxError [1:22-1:23]: Duplicate binding 'x'
 > 1 | export let x = y, {...x} = y;
-    |                        ^ Duplicate binding 'x'"
+    |                       ^ Duplicate binding 'x'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export let x = y; export {f}; 1`] = `
@@ -1093,9 +1093,9 @@ exports[`Module - Export > Module - Export (fail) > export var a; export var a; 
 `;
 
 exports[`Module - Export > Module - Export (fail) > export var foo; export let foo; 1`] = `
-"SyntaxError [1:30-1:31]: Duplicate binding 'foo'
+"SyntaxError [1:27-1:30]: Duplicate binding 'foo'
 > 1 | export var foo; export let foo;
-    |                               ^ Duplicate binding 'foo'"
+    |                            ^^^ Duplicate binding 'foo'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export var let = x; 1`] = `
@@ -1183,9 +1183,9 @@ exports[`Module - Export > Module - Export (fail) > let a; export class a {}; 1`
 `;
 
 exports[`Module - Export > Module - Export (fail) > let a; export const a = 0; 1`] = `
-"SyntaxError [1:22-1:23]: Duplicate binding 'a'
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
 > 1 | let a; export const a = 0;
-    |                       ^ Duplicate binding 'a'"
+    |                     ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > let a; export function a(){}; 1`] = `
@@ -1195,21 +1195,21 @@ exports[`Module - Export > Module - Export (fail) > let a; export function a(){}
 `;
 
 exports[`Module - Export > Module - Export (fail) > let a; export let a; 1`] = `
-"SyntaxError [1:19-1:20]: Duplicate binding 'a'
+"SyntaxError [1:18-1:19]: Duplicate binding 'a'
 > 1 | let a; export let a;
-    |                    ^ Duplicate binding 'a'"
+    |                   ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > let a; let a; 1`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
 > 1 | let a; let a;
-    |             ^ Duplicate binding 'a'"
+    |            ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > let a; var a; 1`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
 > 1 | let a; var a;
-    |             ^ Duplicate binding 'a'"
+    |            ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > let x = () => {export {x};} 1`] = `
@@ -1369,9 +1369,9 @@ exports[`Module - Export > Module - Export (fail) > var a; export class a {}; 1`
 `;
 
 exports[`Module - Export > Module - Export (fail) > var a; export const a = 0; 1`] = `
-"SyntaxError [1:22-1:23]: Duplicate binding 'a'
+"SyntaxError [1:20-1:21]: Duplicate binding 'a'
 > 1 | var a; export const a = 0;
-    |                       ^ Duplicate binding 'a'"
+    |                     ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > var a; export function a(){}; 1`] = `
@@ -1381,15 +1381,15 @@ exports[`Module - Export > Module - Export (fail) > var a; export function a(){}
 `;
 
 exports[`Module - Export > Module - Export (fail) > var a; export let a; 1`] = `
-"SyntaxError [1:19-1:20]: Duplicate binding 'a'
+"SyntaxError [1:18-1:19]: Duplicate binding 'a'
 > 1 | var a; export let a;
-    |                    ^ Duplicate binding 'a'"
+    |                   ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > var a; let a; 1`] = `
-"SyntaxError [1:12-1:13]: Duplicate binding 'a'
+"SyntaxError [1:11-1:12]: Duplicate binding 'a'
 > 1 | var a; let a;
-    |             ^ Duplicate binding 'a'"
+    |            ^ Duplicate binding 'a'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > var canBeUndeclared; export {mustExist as canBeUndeclared}; 1`] = `
