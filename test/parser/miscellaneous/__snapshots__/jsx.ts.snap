@@ -3098,6 +3098,76 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a href={link}></a> 
 }
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a with /> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "with",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": null,
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a with-dash /> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "with-dash",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": null,
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a.b></a.b> 1`] = `
 {
   "body": [
@@ -8996,6 +9066,58 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <ul><li>111</li><li>
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <with/> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [],
+          "name": {
+            "name": "with",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <with-dash /> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [],
+          "name": {
+            "name": "with-dash",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
