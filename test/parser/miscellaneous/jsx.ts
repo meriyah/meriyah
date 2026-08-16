@@ -529,5 +529,7 @@ describe('Miscellaneous - JSX', () => {
     { code: '<with-dash />', options: { jsx: true } },
     { code: '<a with />', options: { jsx: true } },
     { code: '<with/>', options: { jsx: true } },
+    { code: '<a>=</a>', options: { jsx: true } },
+    { code: '<a/>==1', options: { jsx: true } },
   ]);
 });

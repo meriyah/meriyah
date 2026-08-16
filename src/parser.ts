@@ -9335,7 +9335,7 @@ function parseJSXOpeningElementOrSelfCloseElement(
   const attributes = parseJSXAttributes(parser, context, privateScope);
   const selfClosing = parser.getToken() === Token.Divide;
 
-  if (selfClosing) consume(parser, context, Token.Divide);
+  if (selfClosing) consume(parser, context | Context.InJSXTag, Token.Divide);
 
   if (parser.getToken() !== Token.GreaterThan) {
     parser.report(Errors.ExpectedToken, KeywordDescTable[Token.GreaterThan & Token.Type]);
@@ -9639,7 +9639,7 @@ function parseJSXIdentifier(parser: Parser, context: Context): ESTree.JSXIdentif
     parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
   const { tokenValue } = parser;
-  nextToken(parser, context);
+  nextToken(parser, context | Context.InJSXTag);
 
   return parser.finishNode<ESTree.JSXIdentifier>(
     {
