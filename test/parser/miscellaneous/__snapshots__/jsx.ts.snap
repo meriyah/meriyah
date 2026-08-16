@@ -3098,97 +3098,72 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a href={link}></a> 
 }
 `;
 
-exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a with-dash={1} /> 1`] = `
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a with /> 1`] = `
 {
   "body": [
     {
-      "end": 19,
       "expression": {
         "children": [],
         "closingElement": null,
-        "end": 19,
         "openingElement": {
           "attributes": [
             {
-              "end": 16,
               "name": {
-                "end": 12,
-                "name": "with-dash",
-                "range": [
-                  3,
-                  12,
-                ],
-                "start": 3,
+                "name": "with",
                 "type": "JSXIdentifier",
               },
-              "range": [
-                3,
-                16,
-              ],
-              "start": 3,
               "type": "JSXAttribute",
-              "value": {
-                "end": 16,
-                "expression": {
-                  "end": 15,
-                  "range": [
-                    14,
-                    15,
-                  ],
-                  "start": 14,
-                  "type": "Literal",
-                  "value": 1,
-                },
-                "range": [
-                  13,
-                  16,
-                ],
-                "start": 13,
-                "type": "JSXExpressionContainer",
-              },
+              "value": null,
             },
           ],
-          "end": 19,
           "name": {
-            "end": 2,
             "name": "a",
-            "range": [
-              1,
-              2,
-            ],
-            "start": 1,
             "type": "JSXIdentifier",
           },
-          "range": [
-            0,
-            19,
-          ],
           "selfClosing": true,
-          "start": 0,
           "type": "JSXOpeningElement",
         },
-        "range": [
-          0,
-          19,
-        ],
-        "start": 0,
         "type": "JSXElement",
       },
-      "range": [
-        0,
-        19,
-      ],
-      "start": 0,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 19,
-  "range": [
-    0,
-    19,
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a with-dash /> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "with-dash",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": null,
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
   ],
   "sourceType": "script",
-  "start": 0,
   "type": "Program",
 }
 `;
@@ -9091,6 +9066,58 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <ul><li>111</li><li>
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <with/> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [],
+          "name": {
+            "name": "with",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <with-dash /> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [],
+          "name": {
+            "name": "with-dash",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": true,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
