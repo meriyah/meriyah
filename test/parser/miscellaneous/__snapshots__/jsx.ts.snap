@@ -3098,6 +3098,101 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a href={link}></a> 
 }
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a with-dash={1} /> 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 19,
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 16,
+              "name": {
+                "end": 12,
+                "name": "with-dash",
+                "range": [
+                  3,
+                  12,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                16,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 16,
+                "expression": {
+                  "end": 15,
+                  "range": [
+                    14,
+                    15,
+                  ],
+                  "start": 14,
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "range": [
+                  13,
+                  16,
+                ],
+                "start": 13,
+                "type": "JSXExpressionContainer",
+              },
+            },
+          ],
+          "end": 19,
+          "name": {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            19,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          19,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a.b></a.b> 1`] = `
 {
   "body": [

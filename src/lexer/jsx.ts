@@ -116,7 +116,7 @@ export function nextJSXToken(parser: Parser) {
  * @param parser The parser instance
  */
 export function rescanJSXIdentifier(parser: Parser): Token {
-  if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
+  if (parser.getToken() & Token.IsIdentifier) {
     const { index } = parser;
     let char = parser.currentChar;
     while (CharTypes[char] & (CharFlags.Hyphen | CharFlags.IdentifierPart)) {

@@ -525,5 +525,6 @@ describe('Miscellaneous - JSX', () => {
     { code: '<a></* block */\n/a>;', options: { jsx: true } },
     { code: '</* open fragment */>\n</ /* close fragment */>;', options: { jsx: true, ranges: true } },
     { code: '<a><  /a>', options: { jsx: true, ranges: true } },
+    { code: '<a with-dash={1} />', options: { jsx: true, ranges: true } },
   ]);
 });
