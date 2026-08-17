@@ -1,3 +1,11 @@
+## [7.3.2](https://github.com/meriyah/meriyah/compare/v7.3.1...v7.3.2) (2026-08-17)
+
+### Bug Fixes
+
+* **jsx:** fix pasring jsx contextual identifier ([#630](https://github.com/meriyah/meriyah/issues/630)) ([503bc24](https://github.com/meriyah/meriyah/commit/503bc2425d4af95df328f6c1e676269aaeccb54d)), closes [#629](https://github.com/meriyah/meriyah/issues/629)
+* **jsx:** fix tokenizing ">" when "=" is after ([#632](https://github.com/meriyah/meriyah/issues/632)) ([6d419ac](https://github.com/meriyah/meriyah/commit/6d419aca1b76c36b379c595ca26a3fe96ed1cf77)), closes [#631](https://github.com/meriyah/meriyah/issues/631)
+* **parser:** fix error location for duplicate binding ([#628](https://github.com/meriyah/meriyah/issues/628)) ([49500e1](https://github.com/meriyah/meriyah/commit/49500e17acfff303dff4768523cbecfd66e09dba))
+
 ## [7.3.1](https://github.com/meriyah/meriyah/compare/v7.3.0...v7.3.1) (2026-08-06)
 
 ### Bug Fixes
