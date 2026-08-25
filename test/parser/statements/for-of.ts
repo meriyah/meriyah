@@ -77,6 +77,7 @@ describe('Statements - For of', () => {
     'for(f() = 0 of {});',
     'for(({a}) of 0);',
     'for(([a]) of 0);',
+    'for (async of x);',
   ]) {
     it(text, () => {
       t.throws(() => {
@@ -444,6 +445,8 @@ describe('Statements - For of', () => {
     'for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}',
     'for(x of ~y);',
     'for(x of~y);',
+    'for ((async) of x);',
+    String.raw`for (\u0061sync of x);`,
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
