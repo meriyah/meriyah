@@ -505,6 +505,7 @@ describe('Statements - For', () => {
       for ( [let][0]; ; )
         break;
     `,
+    'for (async of => {}; i < 10; i++);',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {

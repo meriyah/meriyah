@@ -261,6 +261,10 @@ describe('Statements - For await of', () => {
 
   for (const text of [
     '(a of [])',
+    '(async of [])',
+    '(async of of)',
+    '(async.x of [])',
+    '(async[0] of [])',
     '(a.b of [])',
     '([a] of [])',
     '([a = 1] of [])',
@@ -542,6 +546,25 @@ describe('Statements - For await of', () => {
 
     t.throws(() => {
       parseSource('function c() { for await (const a of b) {} }', { sourceType: 'module' });
+    });
+  });
+
+  it('accepts `async` identifier as for await-of left-hand side', () => {
+    t.doesNotThrow(() => {
+      parseSource('let async; for await (async of [7]);', { sourceType: 'module' });
+    });
+
+    t.doesNotThrow(() => {
+      parseSource('async function f() { for await (async of [7]); }');
+    });
+
+    t.doesNotThrow(() => {
+      parseSource('async function f() { let async; async = 0; for await (async of [async]); }');
+    });
+
+    // Only `for await` allows the identifier `async` on the left of `of`
+    t.throws(() => {
+      parseSource('function f() { for (async of [7]); }');
     });
   });
 });

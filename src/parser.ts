@@ -2346,6 +2346,27 @@ function parseForStatement(
         tokenStart,
       );
     }
+  } else if (forAwait && token === Token.AsyncKeyword) {
+    // ForInOfStatement[+Await]:
+    //   for await ( [lookahead != let] LeftHandSideExpression of AssignmentExpression ) Statement
+    //
+    // Only `let` is excluded by lookahead, so `async` can be a plain identifier here:
+    //   for await (async of x);
+    //
+    // Parsing this through parseLeftHandSideExpression would let parseAsyncExpression
+    // treat `async of` as the start of an async arrow function.
+    const asyncIdentifier = parseIdentifier(parser, context);
+
+    parser.assignable = AssignmentTargetKind.Simple;
+    init = parseMemberOrUpdateExpression(
+      parser,
+      context | Context.DisallowIn,
+      privateScope,
+      asyncIdentifier,
+      0,
+      0,
+      tokenStart,
+    );
   } else if (token === Token.Semicolon) {
     if (forAwait) parser.report(Errors.InvalidForAwait);
   } else if ((token & Token.IsPatternStart) === Token.IsPatternStart) {
