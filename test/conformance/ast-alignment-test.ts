@@ -15,6 +15,18 @@ const notAlignedTests = new Set([
   'language/expressions/template-literal/tv-line-continuation.js',
 ]);
 
+// `runTest` silently skips every fixture Acorn cannot parse, so a `parseAcorn`
+// that stopped working would skip all of them and this test would pass while
+// comparing nothing. The number of fixtures is checked as well, because a ratio
+// on its own is vacuously true when there are none to compare. Acorn parses
+// nearly every fixture, but both numbers move with the test262 pin, with
+// `test262/unsupported-features.txt` and with `test262/whitelist.txt`, so these
+// are floors rather than exact counts.
+const MINIMUM_FIXTURE_COUNT = 40_000;
+const MINIMUM_COMPARED_RATIO = 0.9;
+
+let comparedCount = 0;
+
 it(
   'AST alignment with Acorn',
   async () => {
@@ -28,8 +40,22 @@ it(
       t.equal(tests.length, 1);
     }
 
+    comparedCount = 0;
     for (const testCase of tests) {
       runTest(testCase);
+    }
+
+    if (!TEST262_FILE) {
+      t.ok(
+        tests.length >= MINIMUM_FIXTURE_COUNT,
+        `Loaded ${tests.length} test262 fixtures, expected at least ${MINIMUM_FIXTURE_COUNT}. ` +
+          'Nothing is compared when the fixtures are missing, so this has to be checked separately from the ratio below.',
+      );
+      t.ok(
+        comparedCount >= tests.length * MINIMUM_COMPARED_RATIO,
+        `Compared ${comparedCount} of ${tests.length} test262 fixtures against Acorn, expected at least ${MINIMUM_COMPARED_RATIO * 100}%. ` +
+          'Fixtures Acorn cannot parse are skipped, so a drop means Acorn is no longer parsing them and this test is comparing nothing.',
+      );
     }
   },
   Infinity,
@@ -52,6 +78,7 @@ function runTest(testCase: TestCase) {
   let passed;
 
   try {
+    comparedCount++;
     t.deepEqual(meriyahAst, acornAst);
     passed = true;
   } catch (error) {
