@@ -594,6 +594,15 @@ describe('Expressions - Await', () => {
     'async () => { (a, await) => { }; }',
     'async () => { (x, y, z = await 0) => { }; }',
     'async function af() { (b = (c = await => {}) => {}) => {}; }',
+    'async function f(){ (a = await 1, b = yield) => 1; }',
+    'async function f(){ (a = yield, b = await 1) => 1; }',
+    'async function f(){ ([a = yield, b = await 1]) => 1; }',
+    'async function f(){ async (a = await 1, b = yield) => 1; }',
+    'async function f(){ async ([a = yield, b = await 1]) => 1; }',
+    'async function f(){ (a = await 1, b = (c) => 1) => 1; }',
+    'async function f(){ async (a = await 1, b = (c) => 1) => 1; }',
+    'async ({x} = await bar);',
+    { code: '(a = await 1, b = (c) => 1) => 1', options: { sourceType: 'module' } },
   ]);
 
   for (const text of [

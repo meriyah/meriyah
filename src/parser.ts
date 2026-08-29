@@ -5620,11 +5620,8 @@ function parseArrayExpressionOrPattern(
           );
 
           destructible |=
-            parser.destructible & DestructuringKind.Yield
-              ? DestructuringKind.Yield
-              : 0 | (parser.destructible & DestructuringKind.Await)
-                ? DestructuringKind.Await
-                : 0;
+            (parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0) |
+            (parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0);
         } else if (parser.getToken() === Token.Comma || parser.getToken() === Token.RightBracket) {
           if (parser.assignable & AssignmentTargetKind.Invalid) {
             destructible |= DestructuringKind.CannotDestruct;
@@ -5632,11 +5629,8 @@ function parseArrayExpressionOrPattern(
             scope?.addVarOrBlock(context, tokenValue, kind, tokenStart, currentLocation, origin);
           }
           destructible |=
-            parser.destructible & DestructuringKind.Yield
-              ? DestructuringKind.Yield
-              : 0 | (parser.destructible & DestructuringKind.Await)
-                ? DestructuringKind.Await
-                : 0;
+            (parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0) |
+            (parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0);
         } else {
           destructible |=
             kind & BindingKind.ArgumentList
@@ -6285,11 +6279,8 @@ function parseObjectLiteralOrPattern(
             const right = parseExpression(parser, context, privateScope, 1, inGroup, parser.tokenStart);
 
             destructible |=
-              parser.destructible & DestructuringKind.Yield
-                ? DestructuringKind.Yield
-                : 0 | (parser.destructible & DestructuringKind.Await)
-                  ? DestructuringKind.Await
-                  : 0;
+              (parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0) |
+              (parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0);
 
             value = parser.finishNode<ESTree.AssignmentPattern>(
               {
@@ -7273,11 +7264,8 @@ function parseParenthesizedExpression(
     parser.report(Errors.CantAssignToValidRHS);
 
   destructible |=
-    parser.destructible & DestructuringKind.Yield
-      ? DestructuringKind.Yield
-      : 0 | (parser.destructible & DestructuringKind.Await)
-        ? DestructuringKind.Await
-        : 0;
+    (parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0) |
+    (parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0);
 
   if (parser.getToken() === Token.Arrow) {
     if (destructible & (DestructuringKind.Assignable | DestructuringKind.CannotDestruct))
@@ -7292,6 +7280,12 @@ function parseParenthesizedExpression(
     }
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
     if (hasStrictReserved) parser.flags |= Flags.HasStrictReserved;
+    parser.destructible |= previousAwaitYield;
+
+    if (previousFirstAwaitLocation) {
+      parser.firstAwaitLocation = previousFirstAwaitLocation;
+    }
+
     return parseParenthesizedArrow(
       parser,
       context,
@@ -8118,11 +8112,8 @@ function parseAsyncArrowOrCallExpression(
   consume(parser, context, Token.RightParen);
 
   destructible |=
-    parser.destructible & DestructuringKind.Yield
-      ? DestructuringKind.Yield
-      : 0 | (parser.destructible & DestructuringKind.Await)
-        ? DestructuringKind.Await
-        : 0;
+    (parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0) |
+    (parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0);
 
   if (parser.getToken() === Token.Arrow) {
     if (destructible & (DestructuringKind.Assignable | DestructuringKind.CannotDestruct))

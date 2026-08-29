@@ -528,6 +528,20 @@ describe('Expressions - Async arrow', () => {
     '(async(...a, ...b) => x)',
     'async (/foo/) => bar',
     'async({a = 1}, {b = 2} = {}, {c = 3} = {})',
+    'async (yield, await) => 1',
+    'async (await, yield) => 1',
+    'async (a = yield, b = await) => 1',
+    'async (a = await, b = yield) => 1',
+    'async ([yield, await]) => 1',
+    'async ([await, yield]) => 1',
+    'async ([a = yield, b = await]) => 1',
+    'async ([yield], [await]) => 1',
+    'async (...[yield, await]) => 1',
+    'async ({a: [b = yield]}, {c: [d = await]}) => 1',
+    'async (a = yield, [b = await]) => 1',
+    'async (a = await, b = (c) => 1) => 1',
+    'async (a = await, b = ([c]) => 1) => 1',
+    { code: 'function* g(){ async (a = yield, b = (c) => 1) => 1; }', options: { webcompat: true } },
   ]);
 
   for (const text of [
