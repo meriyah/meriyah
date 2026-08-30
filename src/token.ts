@@ -162,10 +162,10 @@ export const enum Token {
   AsKeyword          = 108 | Contextual | IsExpressionStart,
   AsyncKeyword       = 109 | Contextual | IsExpressionStart | IsIdentifier,
   AwaitKeyword       = 110 | Contextual | IsExpressionStart | IsIdentifier, // await is only reserved word in async functions or modules
-  ConstructorKeyword = 111 | Contextual,
+  ConstructorKeyword = 111 | Contextual | IsExpressionStart | IsIdentifier,
   GetKeyword         = 112 | Contextual | IsExpressionStart | IsIdentifier,
   SetKeyword         = 113 | Contextual | IsExpressionStart | IsIdentifier,
-  AccessorKeyword    = 114 | Contextual,
+  AccessorKeyword    = 114 | Contextual | IsExpressionStart | IsIdentifier,
   FromKeyword        = 115 | Contextual | IsExpressionStart | IsIdentifier,
   OfKeyword          = 116 | Contextual | IsInOrOf | IsExpressionStart | IsIdentifier,
   UsingKeyword       = 117 | Contextual | IsExpressionStart | IsIdentifier,

@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - invalid using arrow expressions > async function f() { await using => 0; } 1`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: '=>'
+> 1 | async function f() { await using => 0; }
+    |                                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Statements - invalid using arrow expressions > await using
+=> 0 1`] = `
+"SyntaxError [2:0-2:2]: Unexpected token: '=>'
+  1 | await using
+> 2 | => 0
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Statements - invalid using arrow expressions > await using => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | await using => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Statements - invalid using arrow expressions > using
+=> 0 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | using
+> 2 | => 0
+    | ^^ No line break is allowed after '=>'"
+`;
