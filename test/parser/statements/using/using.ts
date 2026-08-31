@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { type Options } from '../../../../src/options.ts';
 import { parseSource } from '../../../../src/parser.ts';
+import { fail } from '../../../test-utils.ts';
 
 const moduleOptions: Options = { sourceType: 'module' };
 const commonjsOptions: Options = { sourceType: 'commonjs' };
@@ -103,6 +104,36 @@ describe('Statements - using declarations', () => {
     ).not.toThrow();
   });
 
+  it('parses using as a bare arrow parameter at statement position', () => {
+    for (const lexical of [false, true]) {
+      const expressionBody = parseSource('using => 0', { lexical });
+      const blockBody = parseSource('using => {}', { lexical });
+
+      expect(expressionBody.body[0]).toMatchObject({
+        type: 'ExpressionStatement',
+        expression: {
+          type: 'ArrowFunctionExpression',
+          params: [{ type: 'Identifier', name: 'using' }],
+          body: { type: 'Literal', value: 0 },
+        },
+      });
+      expect(blockBody.body[0]).toMatchObject({
+        type: 'ExpressionStatement',
+        expression: {
+          type: 'ArrowFunctionExpression',
+          params: [{ type: 'Identifier', name: 'using' }],
+          body: { type: 'BlockStatement' },
+        },
+      });
+    }
+  });
+
+  it('keeps existing using arrow expression positions valid', () => {
+    for (const code of ['(using) => 0', 'x = using => 0', 'f(using => 0)', 'if (1) using => 0']) {
+      expect(() => parseSource(code)).not.toThrow();
+    }
+  });
+
   it('keeps using followed by property access out of the declaration grammar', () => {
     expect(() => parseSource('var using = []; using[index] = value;')).not.toThrow();
     expect(() => parseSource('async function f() { var using = []; await using[index]; }')).not.toThrow();
@@ -189,3 +220,10 @@ describe('Statements - using declarations', () => {
     });
   }
 });
+
+fail('Statements - invalid using arrow expressions', [
+  { code: 'await using => 0', options: moduleOptions },
+  'async function f() { await using => 0; }',
+  'using\n=> 0',
+  { code: 'await using\n=> 0', options: moduleOptions },
+]);

@@ -43,6 +43,8 @@ describe('Expressions - Await', () => {
     'async function a() { await from }',
     'async function a() { await get }',
     'async function a() { await set }',
+    'async function a() { await constructor }',
+    'async function a() { await accessor }',
     'async function a() { await of }',
     'async function a() { await target }',
     'async function a() { await meta }',
@@ -65,6 +67,17 @@ describe('Expressions - Await', () => {
       });
     });
   }
+
+  it('keeps constructor and accessor class-body forms unchanged', () => {
+    for (const { code, options } of [
+      { code: 'class C { constructor() {} }', options: {} },
+      { code: 'class C{accessor x=1}', options: { next: true } },
+      { code: 'class C{accessor}', options: {} },
+      { code: 'class C{accessor=1}', options: {} },
+    ]) {
+      t.doesNotThrow(() => parseSource(code, options));
+    }
+  });
 
   for (const text of [
     '[await]',

@@ -1736,7 +1736,7 @@ function parseUsingDeclarationOrExpressionStatement(
   labels: ESTree.Labels,
   origin: Origin,
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
-  const { tokenStart, tokenValue } = parser;
+  const { tokenStart, tokenValue, currentLocation } = parser;
   const token = parser.getToken();
   const expression = parseIdentifier(parser, context);
 
@@ -1764,6 +1764,28 @@ function parseUsingDeclarationOrExpressionStatement(
   }
 
   parser.assignable = AssignmentTargetKind.Simple;
+
+  if (parser.getToken() === Token.Arrow) {
+    let arrowScope: Scope | undefined = void 0;
+
+    if (parser.options.lexical)
+      arrowScope = createArrowHeadParsingScope(parser, context, tokenValue, tokenStart, currentLocation);
+
+    parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
+
+    const arrow = parseArrowFunctionExpression(
+      parser,
+      context,
+      arrowScope,
+      privateScope,
+      [expression],
+      /* isAsync */ 0,
+      tokenStart,
+    );
+
+    return parseExpressionStatement(parser, context, arrow, tokenStart);
+  }
+
   return finishExpressionOrLabelledStatement(
     parser,
     context,
