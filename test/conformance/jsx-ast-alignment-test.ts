@@ -197,7 +197,7 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
         return node;
       case 'JSXOpeningFragment':
         // Not in ESTree, `acorn-jsx` adds them, Babel doesn't
-        // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/estree-jsx/index.d.ts
+        // https://github.com/react/jsx/blob/main/AST.md#jsx-fragment
         delete node.attributes;
         delete node.selfClosing;
         return node;
