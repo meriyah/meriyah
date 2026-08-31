@@ -1,6 +1,7 @@
 import * as t from 'node:assert/strict';
 import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
+import type * as ESTree from '../../../src/estree.ts';
 import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
@@ -34,6 +35,50 @@ describe('Miscellaneous - JSX', () => {
       t.doesNotThrow(() => {
         parseSource(text, { jsx: true, webcompat: true });
       });
+    });
+  }
+
+  // Line terminators inside a JSX attribute value have to be counted, or every
+  // location after the attribute is wrong. https://github.com/meriyah/meriyah/issues/90
+  for (const [name, separator] of [
+    ['<LF>', '\n'],
+    ['<CR>', '\r'],
+    ['<CR><LF>', '\r\n'],
+    ['<LS>', '\u2028'],
+    ['<PS>', '\u2029'],
+  ] as const) {
+    it(`${name} in a JSX attribute value counts as one line`, () => {
+      // The attribute value holds one line terminator, `var after = 1;` follows
+      // one more, so the program ends on line 3.
+      const { loc } = parseSource(`<a b="x${separator}y" />;\nvar after = 1;`, { jsx: true, loc: true });
+
+      t.equal(loc?.end.line, 3);
+      t.equal(loc?.end.column, 14);
+    });
+  }
+
+  // `nextJSXToken` decodes HTML entities in JSX text, `scanJSXString` has to do
+  // the same for attribute values. https://github.com/meriyah/meriyah/issues/133
+  for (const [attributeValue, value] of [
+    ['&amp;', '&'],
+    ['&#38;', '&'],
+    ['&#x26;', '&'],
+    ['&nbsp;', '\u00a0'],
+    ['&#0123;&hellip;&#x7D;', '{…}'],
+    // Not entities, kept as is
+    ['&notanentity;', '&notanentity;'],
+    ['&amp', '&amp'],
+    ['&#;', '&#;'],
+  ] as const) {
+    it(`decodes ${attributeValue} in a JSX attribute value`, () => {
+      const ast = parseSource(`<a b="${attributeValue}" />`, { jsx: true, raw: true });
+      const element = (ast.body[0] as ESTree.ExpressionStatement).expression as ESTree.JSXElement;
+      const attribute = element.openingElement.attributes[0] as ESTree.JSXAttribute;
+      const literal = attribute.value as ESTree.StringLiteral;
+
+      t.equal(literal.value, value);
+      // The raw text is the source slice, decoding must not touch it
+      t.equal(literal.raw, `"${attributeValue}"`);
     });
   }
 
@@ -125,6 +170,9 @@ describe('Miscellaneous - JSX', () => {
     { code: '<div=/>', options: { jsx: true } },
     { code: '<div =/>', options: { jsx: true } },
     { code: '<div=+-%&([)]}.../>', options: { jsx: true } },
+    // The error location has to account for the line terminator in the attribute value
+    { code: '<a b="x\ny', options: { jsx: true } },
+    { code: '<a b="x\r\ny"', options: { jsx: true } },
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
@@ -275,6 +323,12 @@ describe('Miscellaneous - JSX', () => {
     { code: '<x y="&#123abc &#123;" />', options: { jsx: true } },
     { code: '<a b="&#xA2; &#x00A3;"/>', options: { jsx: true } },
     { code: '<p q="Just my &#xA2;2" />', options: { jsx: true } },
+    { code: '<a b="&amp;&#38;&#x26;" />;\nvar after = 1;', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<a b="x\ny" />;\nvar after = 1;', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<a b="x\ry" />;\nvar after = 1;', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<a b="x\r\ny" />;\nvar after = 1;', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<a b="x\u2028y" />;\nvar after = 1;', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<a b="x\u2029y" />;\nvar after = 1;', options: { jsx: true, ranges: true, loc: true, raw: true } },
     { code: 'class C {  static a = <C.z></C.z> }', options: { jsx: true } },
 
     { code: '<n:a n:v />', options: { jsx: true } },

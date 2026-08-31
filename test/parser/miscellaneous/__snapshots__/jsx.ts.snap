@@ -120,6 +120,24 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <Foo></Bar> 1`] = `
     |           ^ Expected corresponding JSX closing tag for Bar"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b="x
+y 1`] = `
+"SyntaxError [1:5-2:1]: Unterminated string literal
+> 1 | <a b="x
+    |      ^^
+> 2 | y
+    | ^ Unterminated string literal"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b="x␍␊
+y" 1`] = `
+"SyntaxError [1:5-2:2]: Expected '>'
+> 1 | <a b="x
+    |      ^^
+> 2 | y"
+    | ^^ Expected '>'"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b=: /> 1`] = `
 "SyntaxError [1:5-1:6]: JSX value should be either an expression or a quoted JSX text
 > 1 | <a b=: />
@@ -2920,7 +2938,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="&#xA2; &#x00A3
               "type": "JSXAttribute",
               "value": {
                 "type": "Literal",
-                "value": "&#xA2; &#x00A3;",
+                "value": "¢ £",
               },
             },
           ],
@@ -2937,6 +2955,256 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="&#xA2; &#x00A3
     },
   ],
   "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="&amp;&#38;&#x26;" />;
+var after = 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 27,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 26,
+        "loc": {
+          "end": {
+            "column": 26,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 23,
+              "loc": {
+                "end": {
+                  "column": 23,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  3,
+                  4,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                23,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 23,
+                "loc": {
+                  "end": {
+                    "column": 23,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  5,
+                  23,
+                ],
+                "raw": ""&amp;&#38;&#x26;"",
+                "start": 5,
+                "type": "Literal",
+                "value": "&&&",
+              },
+            },
+          ],
+          "end": 26,
+          "loc": {
+            "end": {
+              "column": 26,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": {
+            "end": 2,
+            "loc": {
+              "end": {
+                "column": 2,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            26,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          26,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "loc": {
+        "end": {
+          "column": 27,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 41,
+          "id": {
+            "end": 37,
+            "loc": {
+              "end": {
+                "column": 9,
+                "line": 2,
+              },
+              "start": {
+                "column": 4,
+                "line": 2,
+              },
+            },
+            "name": "after",
+            "range": [
+              32,
+              37,
+            ],
+            "start": 32,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 41,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 2,
+              },
+              "start": {
+                "column": 12,
+                "line": 2,
+              },
+            },
+            "range": [
+              40,
+              41,
+            ],
+            "raw": "1",
+            "start": 40,
+            "type": "Literal",
+            "value": 1,
+          },
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 2,
+            },
+            "start": {
+              "column": 4,
+              "line": 2,
+            },
+          },
+          "range": [
+            32,
+            41,
+          ],
+          "start": 32,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 42,
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 2,
+        },
+      },
+      "range": [
+        28,
+        42,
+      ],
+      "start": 28,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 42,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    42,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
@@ -2975,6 +3243,1264 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="&notanentity;"
     },
   ],
   "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="x
+y" />;
+var after = 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 13,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 10,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  3,
+                  4,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                10,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 10,
+                "loc": {
+                  "end": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  5,
+                  10,
+                ],
+                "raw": ""x
+y"",
+                "start": 5,
+                "type": "Literal",
+                "value": "x
+y",
+              },
+            },
+          ],
+          "end": 13,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": {
+            "end": 2,
+            "loc": {
+              "end": {
+                "column": 2,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            13,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 28,
+          "id": {
+            "end": 24,
+            "loc": {
+              "end": {
+                "column": 9,
+                "line": 3,
+              },
+              "start": {
+                "column": 4,
+                "line": 3,
+              },
+            },
+            "name": "after",
+            "range": [
+              19,
+              24,
+            ],
+            "start": 19,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 28,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 3,
+              },
+              "start": {
+                "column": 12,
+                "line": 3,
+              },
+            },
+            "range": [
+              27,
+              28,
+            ],
+            "raw": "1",
+            "start": 27,
+            "type": "Literal",
+            "value": 1,
+          },
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 3,
+            },
+            "start": {
+              "column": 4,
+              "line": 3,
+            },
+          },
+          "range": [
+            19,
+            28,
+          ],
+          "start": 19,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 29,
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 3,
+        },
+      },
+      "range": [
+        15,
+        29,
+      ],
+      "start": 15,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 29,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 3,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="x y" />;
+var after = 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 13,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 10,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  3,
+                  4,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                10,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 10,
+                "loc": {
+                  "end": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  5,
+                  10,
+                ],
+                "raw": ""x y"",
+                "start": 5,
+                "type": "Literal",
+                "value": "x y",
+              },
+            },
+          ],
+          "end": 13,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": {
+            "end": 2,
+            "loc": {
+              "end": {
+                "column": 2,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            13,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 28,
+          "id": {
+            "end": 24,
+            "loc": {
+              "end": {
+                "column": 9,
+                "line": 3,
+              },
+              "start": {
+                "column": 4,
+                "line": 3,
+              },
+            },
+            "name": "after",
+            "range": [
+              19,
+              24,
+            ],
+            "start": 19,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 28,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 3,
+              },
+              "start": {
+                "column": 12,
+                "line": 3,
+              },
+            },
+            "range": [
+              27,
+              28,
+            ],
+            "raw": "1",
+            "start": 27,
+            "type": "Literal",
+            "value": 1,
+          },
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 3,
+            },
+            "start": {
+              "column": 4,
+              "line": 3,
+            },
+          },
+          "range": [
+            19,
+            28,
+          ],
+          "start": 19,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 29,
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 3,
+        },
+      },
+      "range": [
+        15,
+        29,
+      ],
+      "start": 15,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 29,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 3,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="x y" />;
+var after = 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 13,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 10,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  3,
+                  4,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                10,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 10,
+                "loc": {
+                  "end": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  5,
+                  10,
+                ],
+                "raw": ""x y"",
+                "start": 5,
+                "type": "Literal",
+                "value": "x y",
+              },
+            },
+          ],
+          "end": 13,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": {
+            "end": 2,
+            "loc": {
+              "end": {
+                "column": 2,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            13,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 28,
+          "id": {
+            "end": 24,
+            "loc": {
+              "end": {
+                "column": 9,
+                "line": 3,
+              },
+              "start": {
+                "column": 4,
+                "line": 3,
+              },
+            },
+            "name": "after",
+            "range": [
+              19,
+              24,
+            ],
+            "start": 19,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 28,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 3,
+              },
+              "start": {
+                "column": 12,
+                "line": 3,
+              },
+            },
+            "range": [
+              27,
+              28,
+            ],
+            "raw": "1",
+            "start": 27,
+            "type": "Literal",
+            "value": 1,
+          },
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 3,
+            },
+            "start": {
+              "column": 4,
+              "line": 3,
+            },
+          },
+          "range": [
+            19,
+            28,
+          ],
+          "start": 19,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 29,
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 3,
+        },
+      },
+      "range": [
+        15,
+        29,
+      ],
+      "start": 15,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 29,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 3,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="x␍␊
+y" />;
+var after = 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 14,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 11,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  3,
+                  4,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                11,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 11,
+                "loc": {
+                  "end": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  5,
+                  11,
+                ],
+                "raw": ""x
+y"",
+                "start": 5,
+                "type": "Literal",
+                "value": "x
+y",
+              },
+            },
+          ],
+          "end": 14,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": {
+            "end": 2,
+            "loc": {
+              "end": {
+                "column": 2,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            14,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 29,
+          "id": {
+            "end": 25,
+            "loc": {
+              "end": {
+                "column": 9,
+                "line": 3,
+              },
+              "start": {
+                "column": 4,
+                "line": 3,
+              },
+            },
+            "name": "after",
+            "range": [
+              20,
+              25,
+            ],
+            "start": 20,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 29,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 3,
+              },
+              "start": {
+                "column": 12,
+                "line": 3,
+              },
+            },
+            "range": [
+              28,
+              29,
+            ],
+            "raw": "1",
+            "start": 28,
+            "type": "Literal",
+            "value": 1,
+          },
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 3,
+            },
+            "start": {
+              "column": 4,
+              "line": 3,
+            },
+          },
+          "range": [
+            20,
+            29,
+          ],
+          "start": 20,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 30,
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 3,
+        },
+      },
+      "range": [
+        16,
+        30,
+      ],
+      "start": 16,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 30,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 3,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    30,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b="x␍␊y" />;
+var after = 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 13,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 10,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  3,
+                  4,
+                ],
+                "start": 3,
+                "type": "JSXIdentifier",
+              },
+              "range": [
+                3,
+                10,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": {
+                "end": 10,
+                "loc": {
+                  "end": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  5,
+                  10,
+                ],
+                "raw": ""x
+y"",
+                "start": 5,
+                "type": "Literal",
+                "value": "x
+y",
+              },
+            },
+          ],
+          "end": 13,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": {
+            "end": 2,
+            "loc": {
+              "end": {
+                "column": 2,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            13,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 28,
+          "id": {
+            "end": 24,
+            "loc": {
+              "end": {
+                "column": 9,
+                "line": 3,
+              },
+              "start": {
+                "column": 4,
+                "line": 3,
+              },
+            },
+            "name": "after",
+            "range": [
+              19,
+              24,
+            ],
+            "start": 19,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 28,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 3,
+              },
+              "start": {
+                "column": 12,
+                "line": 3,
+              },
+            },
+            "range": [
+              27,
+              28,
+            ],
+            "raw": "1",
+            "start": 27,
+            "type": "Literal",
+            "value": 1,
+          },
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 3,
+            },
+            "start": {
+              "column": 4,
+              "line": 3,
+            },
+          },
+          "range": [
+            19,
+            28,
+          ],
+          "start": 19,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 29,
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 3,
+        },
+      },
+      "range": [
+        15,
+        29,
+      ],
+      "start": 15,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 29,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 3,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
@@ -5222,7 +6748,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div attr="&#0123;&h
               "type": "JSXAttribute",
               "value": {
                 "type": "Literal",
-                "value": "&#0123;&hellip;&#x7D;",
+                "value": "{…}",
               },
             },
           ],
@@ -8414,7 +9940,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <p q="Just my &#xA2;
               "type": "JSXAttribute",
               "value": {
                 "type": "Literal",
-                "value": "Just my &#xA2;2",
+                "value": "Just my ¢2",
               },
             },
           ],
@@ -9210,7 +10736,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <x y="&#123abc &#123
               "type": "JSXAttribute",
               "value": {
                 "type": "Literal",
-                "value": "&#123abc &#123;",
+                "value": "&#123abc {",
               },
             },
           ],

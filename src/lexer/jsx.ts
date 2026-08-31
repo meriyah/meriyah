@@ -37,12 +37,28 @@ function scanJSXString(parser: Parser): Token {
   const start = parser.index;
   while (char !== quote) {
     if (parser.index >= parser.end) parser.report(Errors.UnterminatedString);
+
+    // Unlike a normal string, a JSX attribute value may contain raw line
+    // terminators, and they have to be counted or every location after the
+    // attribute is off. `CharTypes` only covers the first 128 code points, so
+    // `<LS>` and `<PS>` are matched by code point like `scanString` does.
+    if (char === Chars.CarriageReturn) {
+      // `<CR><LF>` is one line terminator sequence, not two
+      if (parser.source.charCodeAt(parser.index + 1) === Chars.LineFeed) advanceChar(parser);
+      parser.column = -1;
+      parser.line++;
+    } else if (char === Chars.LineFeed || char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
+      parser.column = -1;
+      parser.line++;
+    }
+
     char = advanceChar(parser);
   }
 
   // check for unterminated string
   if (char !== quote) parser.report(Errors.UnterminatedString);
-  parser.tokenValue = parser.source.slice(start, parser.index);
+  // Decode HTML entities, same as `nextJSXToken` does for JSX text
+  parser.tokenValue = decodeHTMLStrict(parser.source.slice(start, parser.index));
   advanceChar(parser); // skip the quote
   if (parser.options.raw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
   return Token.StringLiteral;

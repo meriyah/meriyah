@@ -9,7 +9,22 @@ import { visitNode } from '../test-utils.ts';
 
 const { TEST_JSX_FILE } = process.env;
 
-const notAlignedTests: Set<string> = new Set([]);
+const notAlignedTests: Set<string> = new Set([
+  // `<A>foo&rbrace;</A>`. Meriyah decodes HTML entities in JSX text with the full
+  // https://html.spec.whatwg.org/entities.json table, `acorn-jsx` uses a smaller
+  // one, so entities that only exist in the full table (`&rbrace;`, `&AMP;`, ...)
+  // stay raw in Acorn and are decoded here. That is deliberate, see
+  // https://github.com/meriyah/meriyah/issues/133#issuecomment-770512949
+  '0044-16f0.jsx',
+]);
+
+// How many of the `jsx-test-suite` cases are actually compared against Acorn.
+// `runTest` silently skips every case Acorn cannot parse, so a `parseAcorn` that
+// lost its JSX support skips all of them and this test passes while comparing
+// nothing. `jsx-test-suite` is version pinned, so this is an exact number.
+const EXPECTED_COMPARED_COUNT = 40;
+
+let comparedCount = 0;
 
 it(
   'AST alignment with Acorn (JSX)',
@@ -20,8 +35,18 @@ it(
       t.equal(testCases.length, 1);
     }
 
+    comparedCount = 0;
     for (const testCase of testCases) {
       runTest(testCase);
+    }
+
+    if (!TEST_JSX_FILE) {
+      t.equal(
+        comparedCount,
+        EXPECTED_COMPARED_COUNT,
+        `Compared ${comparedCount} of ${testCases.length} 'jsx-test-suite' cases against Acorn, expected ${EXPECTED_COMPARED_COUNT}. ` +
+          'Cases Acorn cannot parse are skipped, so a drop means Acorn is no longer parsing JSX and this test is comparing nothing.',
+      );
     }
   },
   Infinity,
@@ -44,6 +69,7 @@ function runTest(testCase: (typeof jsxTestSuite)[number]) {
   let passed;
 
   try {
+    comparedCount++;
     t.deepEqual(meriyahAst, acornAst);
     passed = true;
   } catch (error) {
@@ -86,12 +112,12 @@ function parseMeriyah(text: string) {
 }
 
 type AcornAst = acorn.Program & { comments: acorn.Comment[] };
-let acornParser;
+let acornParser: typeof acorn.Parser | undefined;
 function parseAcorn(text: string) {
   acornParser ??= acorn.Parser.extend(acornJsx());
 
   const comments: acorn.Comment[] = [];
-  const ast = acorn.parse(text, {
+  const ast = acornParser.parse(text, {
     ecmaVersion: 'latest',
     locations: true,
     ranges: true,
@@ -135,10 +161,46 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
     };
 
     switch (node.type) {
+      case 'Block':
+        return Object.assign(node, { type: 'MultiLine' });
       case 'Line': {
         const type = getSingleLineCommentType(node as acorn.Comment, text);
         return Object.assign(node, { type });
       }
+      case 'FunctionExpression':
+      case 'FunctionDeclaration':
+        // Depreacted property https://github.com/acornjs/acorn/pull/1361
+        if (node.expression === false) {
+          delete node.expression;
+        }
+        return node;
+      case 'ArrowFunctionExpression':
+        // Not in ESTree
+        if (node.id === null) {
+          delete node.id;
+        }
+        return node;
+      case 'ImportDeclaration':
+      case 'ImportExpression':
+        if (!('phase' in node)) {
+          node.phase = null;
+        }
+        return node;
+      case 'ClassExpression':
+      case 'ClassDeclaration':
+      case 'AccessorProperty':
+      case 'PropertyDefinition':
+      case 'MethodDefinition':
+        if (!('decorators' in node)) {
+          node.decorators = [];
+        }
+        return node;
+      case 'JSXOpeningFragment':
+        // Not in ESTree, `acorn-jsx` adds them, Babel doesn't
+        // https://github.com/react/jsx/blob/main/AST.md#jsx-fragment
+        delete node.attributes;
+        delete node.selfClosing;
+        return node;
     }
 
     return node;
