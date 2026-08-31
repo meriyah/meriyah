@@ -1738,7 +1738,7 @@ function parseUsingDeclarationOrExpressionStatement(
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
   const { tokenStart, tokenValue, currentLocation } = parser;
   const token = parser.getToken();
-  let expression: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context);
+  const expression = parseIdentifier(parser, context);
 
   if ((parser.flags & Flags.NewLine) === 0 && isResourceBindingStart(parser.getToken())) {
     if (
@@ -1773,7 +1773,7 @@ function parseUsingDeclarationOrExpressionStatement(
 
     parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
 
-    expression = parseArrowFunctionExpression(
+    const arrow = parseArrowFunctionExpression(
       parser,
       context,
       arrowScope,
@@ -1783,7 +1783,7 @@ function parseUsingDeclarationOrExpressionStatement(
       tokenStart,
     );
 
-    return parseExpressionStatement(parser, context, expression, tokenStart);
+    return parseExpressionStatement(parser, context, arrow, tokenStart);
   }
 
   return finishExpressionOrLabelledStatement(
