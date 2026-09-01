@@ -86,7 +86,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^26.1.1",
-    "@unicode/unicode-17.0.0": "^1.6.17",
+    "@unicode/unicode-17.0.0": "^2.0.2",
     "@vitest/coverage-v8": "^4.1.10",
     "acorn": "^8.18.0",
     "acorn-jsx": "^5.3.2",
