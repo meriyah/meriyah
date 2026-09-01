@@ -9,14 +9,7 @@ import { visitNode } from '../test-utils.ts';
 
 const { TEST_JSX_FILE } = process.env;
 
-const notAlignedTests: Set<string> = new Set([
-  // `<A>foo&rbrace;</A>`. Meriyah decodes HTML entities in JSX text with the full
-  // https://html.spec.whatwg.org/entities.json table, `acorn-jsx` uses a smaller
-  // one, so entities that only exist in the full table (`&rbrace;`, `&AMP;`, ...)
-  // stay raw in Acorn and are decoded here. That is deliberate, see
-  // https://github.com/meriyah/meriyah/issues/133#issuecomment-770512949
-  '0044-16f0.jsx',
-]);
+const notAlignedTests: Set<string> = new Set([]);
 
 // How many of the `jsx-test-suite` cases are actually compared against Acorn.
 // `runTest` silently skips every case Acorn cannot parse, so a `parseAcorn` that
