@@ -72,12 +72,13 @@ function runTest(testCase: TestCase) {
     throw error;
   }
 
+  comparedCount++;
+
   const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
 
   if (notAlignedTests.has(testCase.file)) {
     try {
       t.notDeepEqual(meriyahAst, acornAst);
-      comparedCount++;
     } catch {
       throw new Error(
         `'${testCase.file}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`,
@@ -89,7 +90,6 @@ function runTest(testCase: TestCase) {
 
   try {
     t.deepEqual(meriyahAst, acornAst);
-    comparedCount++;
   } catch (error) {
     if (!TEST262_FILE)
       console.log(
