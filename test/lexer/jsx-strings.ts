@@ -19,6 +19,7 @@ describe('decodeJsxString', () => {
     t.equal(decodeJsxString('&amp;'), '&');
     t.equal(decodeJsxString('&ampa'), '&ampa');
     t.equal(decodeJsxString('&amp;a'), '&a');
+    t.equal(decodeJsxString('&there4;'), '\u2234');
   });
 
   it('decode non-named character', () => {
@@ -41,5 +42,24 @@ describe('decodeJsxString', () => {
 
   it('Should not decode HTML5 entries', () => {
     t.equal(decodeJsxString('&rbrace;'), '&rbrace;');
+  });
+
+  it('Should not hex characters with `X`', () => {
+    t.equal(decodeJsxString('&#65; &#x41; &#X41;'), 'A A &#X41;');
+  });
+
+  it('C1 Unicode control characters', () => {
+    t.equal(decodeJsxString('&#0; &#x0;'), '\u{0} \u{0}');
+    t.equal(decodeJsxString('&#128; &#x80;'), '\u{80} \u{80}');
+  });
+
+  it('Invalid codepoint', () => {
+    t.equal(decodeJsxString('&#1114112; &#x110000;'), '&#1114112; &#x110000;');
+  });
+
+  it('Leading zeros', () => {
+    t.equal(decodeJsxString(`&#${'0'.repeat(255)}65;`), 'A');
+    t.equal(decodeJsxString(`&#x${'0'.repeat(255)}41;`), 'A');
+    t.equal(decodeJsxString('&000amp;'), '&000amp;');
   });
 });
