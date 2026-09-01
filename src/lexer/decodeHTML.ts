@@ -264,7 +264,7 @@ const entities = new Map<string, string>(Object.entries({
 /* spellchecker: enable */
 
 export function decodeHTMLStrict(text: string): string {
-  return text.replaceAll(/&(?:[a-zA-Z]+|#x[\da-fA-F]+|#\d+);/g, (key) => {
+  return text.replaceAll(/&(?:[\da-zA-Z]+|#x[\da-fA-F]+|#\d+);/g, (key) => {
     if (key.charAt(1) === '#') {
       const secondChar = key.charAt(2);
       const codePoint = secondChar === 'x' ? parseInt(key.slice(3), 16) : parseInt(key.slice(2), 10);

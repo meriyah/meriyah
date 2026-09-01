@@ -19,6 +19,7 @@ describe('decodeJsxString', () => {
     t.equal(decodeJsxString('&amp;'), '&');
     t.equal(decodeJsxString('&ampa'), '&ampa');
     t.equal(decodeJsxString('&amp;a'), '&a');
+    t.equal(decodeJsxString('&there4;'), '\u2234');
   });
 
   it('decode non-named character', () => {
