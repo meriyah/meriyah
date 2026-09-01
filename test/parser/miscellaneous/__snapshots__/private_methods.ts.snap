@@ -1113,57 +1113,6 @@ exports[`Private methods > Private methods (pass) > class A { #foo = bar; } 1`] 
 }
 `;
 
-exports[`Private methods > Private methods (pass) > class A { #foo() { #bar } } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [
-          {
-            "computed": false,
-            "key": {
-              "name": "foo",
-              "type": "PrivateIdentifier",
-            },
-            "kind": "method",
-            "static": false,
-            "type": "MethodDefinition",
-            "value": {
-              "async": false,
-              "body": {
-                "body": [
-                  {
-                    "expression": {
-                      "name": "bar",
-                      "type": "PrivateIdentifier",
-                    },
-                    "type": "ExpressionStatement",
-                  },
-                ],
-                "type": "BlockStatement",
-              },
-              "generator": false,
-              "id": null,
-              "params": [],
-              "type": "FunctionExpression",
-            },
-          },
-        ],
-        "type": "ClassBody",
-      },
-      "id": {
-        "name": "A",
-        "type": "Identifier",
-      },
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
 exports[`Private methods > Private methods (pass) > class A { #key() {} } 1`] = `
 {
   "body": [
