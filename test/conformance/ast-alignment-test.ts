@@ -72,32 +72,31 @@ function runTest(testCase: TestCase) {
     throw error;
   }
 
+  comparedCount++;
+
   const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
 
-  const isNotAlignedTest = notAlignedTests.has(testCase.file);
-  let passed;
-
-  try {
-    comparedCount++;
-    t.deepEqual(meriyahAst, acornAst);
-    passed = true;
-  } catch (error) {
-    if (isNotAlignedTest) {
-      return;
+  if (notAlignedTests.has(testCase.file)) {
+    try {
+      t.notDeepEqual(meriyahAst, acornAst);
+    } catch {
+      throw new Error(
+        `'${testCase.file}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`,
+      );
     }
 
+    return;
+  }
+
+  try {
+    t.deepEqual(meriyahAst, acornAst);
+  } catch (error) {
     if (!TEST262_FILE)
       console.log(
         `Test faild, use this commmand to debug\n$ TEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
       );
     console.error(testCase);
     throw error;
-  }
-
-  if (isNotAlignedTest && passed) {
-    throw new Error(
-      `'${testCase.file}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`,
-    );
   }
 }
 
