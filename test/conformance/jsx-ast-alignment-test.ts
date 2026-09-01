@@ -68,6 +68,7 @@ function runTest(testCase: (typeof jsxTestSuite)[number]) {
   if (notAlignedTests.has(testCase.name)) {
     try {
       t.notDeepEqual(meriyahAst, acornAst);
+      comparedCount++;
     } catch {
       throw new Error(
         `'${testCase.name}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`,
@@ -78,8 +79,8 @@ function runTest(testCase: (typeof jsxTestSuite)[number]) {
   }
 
   try {
-    comparedCount++;
     t.deepEqual(meriyahAst, acornAst);
+    comparedCount++;
   } catch (error) {
     if (!TEST_JSX_FILE)
       console.log(
