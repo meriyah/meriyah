@@ -42,4 +42,23 @@ describe('decodeJsxString', () => {
   it('Should not decode HTML5 entries', () => {
     t.equal(decodeJsxString('&rbrace;'), '&rbrace;');
   });
+
+  it('Should not hex characters with `X`', () => {
+    t.equal(decodeJsxString('&#65; &#x41; &#X41;'), 'A A &#X41;');
+  });
+
+  it('C1 Unicode control characters', () => {
+    t.equal(decodeJsxString('&#0; &#x0;'), '\u{0} \u{0}');
+    t.equal(decodeJsxString('&#128; &#x80;'), '\u{128} \u{128}');
+  });
+
+  it('Invalid codepoint', () => {
+    t.equal(decodeJsxString('&#1114112; &#x110000;'), '&#1114112; &#x110000;');
+  });
+
+  it('Leading zeros', () => {
+    t.equal(decodeJsxString(`&#${'0'.repeat(255)}65;`), 'A');
+    t.equal(decodeJsxString(`&#x${'0'.repeat(255)}41;`), 'A');
+    t.equal(decodeJsxString('&amp;'), '&');
+  });
 });
