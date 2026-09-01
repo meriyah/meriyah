@@ -49,7 +49,7 @@ describe('decodeJsxString', () => {
 
   it('C1 Unicode control characters', () => {
     t.equal(decodeJsxString('&#0; &#x0;'), '\u{0} \u{0}');
-    t.equal(decodeJsxString('&#128; &#x80;'), '\u{128} \u{128}');
+    t.equal(decodeJsxString('&#128; &#x80;'), '\u{80} \u{80}');
   });
 
   it('Invalid codepoint', () => {
