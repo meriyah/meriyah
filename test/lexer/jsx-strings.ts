@@ -59,6 +59,6 @@ describe('decodeJsxString', () => {
   it('Leading zeros', () => {
     t.equal(decodeJsxString(`&#${'0'.repeat(255)}65;`), 'A');
     t.equal(decodeJsxString(`&#x${'0'.repeat(255)}41;`), 'A');
-    t.equal(decodeJsxString('&amp;'), '&');
+    t.equal(decodeJsxString('&000amp;'), '&000amp;');
   });
 });
