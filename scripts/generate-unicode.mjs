@@ -19,7 +19,7 @@ const unicodePackageName = Object.keys(packageJson.devDependencies).find((name) 
 const UNICODE_VERSION = unicodePackageName.slice(UNICODE_PACKAGE_PREFIX.length);
 
 const loadUnicodeCodePoints = async (name) => {
-  const { default: list } = await import(`${unicodePackageName}/${name}/code-points.js`);
+  const { default: list } = await import(`${unicodePackageName}/${name}/code-points.mjs`);
   return list;
 };
 
