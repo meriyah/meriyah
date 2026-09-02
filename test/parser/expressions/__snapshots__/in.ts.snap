@@ -195,18 +195,18 @@ class C { #field; m() { #field in #field in this; } } 1`] = `
 
 exports[`Expressions -In > Private identifiers outside in expressions (module with directive) > 'use strict';
 class C { #x; m() { #x; } } 1`] = `
-"SyntaxError [2:22-2:23]: Unexpected token: ';'
+"SyntaxError [2:20-2:22]: Unexpected private field
   1 | 'use strict';
 > 2 | class C { #x; m() { #x; } }
-    |                       ^ Unexpected token: ';'"
+    |                     ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module with directive) > 'use strict';
 class C { #x; m() { (#x); } } 1`] = `
-"SyntaxError [2:23-2:24]: Unexpected token: ')'
+"SyntaxError [2:21-2:23]: Unexpected private field
   1 | 'use strict';
 > 2 | class C { #x; m() { (#x); } }
-    |                        ^ Unexpected token: ')'"
+    |                      ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module with directive) > 'use strict';
@@ -227,10 +227,10 @@ class C { #x; m() { [#x]; } } 1`] = `
 
 exports[`Expressions -In > Private identifiers outside in expressions (module with directive) > 'use strict';
 class C { #x; m() { \`\${#x}\`; } } 1`] = `
-"SyntaxError [2:25-2:26]: Unexpected token: '}'
+"SyntaxError [2:23-2:25]: Unexpected private field
   1 | 'use strict';
 > 2 | class C { #x; m() { \`\${#x}\`; } }
-    |                          ^ Unexpected token: '}'"
+    |                        ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module with directive) > 'use strict';
@@ -256,15 +256,15 @@ exports[`Expressions -In > Private identifiers outside in expressions (module) >
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module) > class C { #x; m() { #x; } } 1`] = `
-"SyntaxError [1:22-1:23]: Unexpected token: ';'
+"SyntaxError [1:20-1:22]: Unexpected private field
 > 1 | class C { #x; m() { #x; } }
-    |                       ^ Unexpected token: ';'"
+    |                     ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module) > class C { #x; m() { (#x); } } 1`] = `
-"SyntaxError [1:23-1:24]: Unexpected token: ')'
+"SyntaxError [1:21-1:23]: Unexpected private field
 > 1 | class C { #x; m() { (#x); } }
-    |                        ^ Unexpected token: ')'"
+    |                      ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module) > class C { #x; m() { ({ value: #x }); } } 1`] = `
@@ -280,9 +280,9 @@ exports[`Expressions -In > Private identifiers outside in expressions (module) >
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module) > class C { #x; m() { \`\${#x}\`; } } 1`] = `
-"SyntaxError [1:25-1:26]: Unexpected token: '}'
+"SyntaxError [1:23-1:25]: Unexpected private field
 > 1 | class C { #x; m() { \`\${#x}\`; } }
-    |                          ^ Unexpected token: '}'"
+    |                        ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (module) > class C { #x; m() { for (#x in []) {} } } 1`] = `
@@ -304,15 +304,15 @@ exports[`Expressions -In > Private identifiers outside in expressions (script sl
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script sloppy) > class C { #x; m() { #x; } } 1`] = `
-"SyntaxError [1:22-1:23]: Unexpected token: ';'
+"SyntaxError [1:20-1:22]: Unexpected private field
 > 1 | class C { #x; m() { #x; } }
-    |                       ^ Unexpected token: ';'"
+    |                     ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script sloppy) > class C { #x; m() { (#x); } } 1`] = `
-"SyntaxError [1:23-1:24]: Unexpected token: ')'
+"SyntaxError [1:21-1:23]: Unexpected private field
 > 1 | class C { #x; m() { (#x); } }
-    |                        ^ Unexpected token: ')'"
+    |                      ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script sloppy) > class C { #x; m() { ({ value: #x }); } } 1`] = `
@@ -328,9 +328,9 @@ exports[`Expressions -In > Private identifiers outside in expressions (script sl
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script sloppy) > class C { #x; m() { \`\${#x}\`; } } 1`] = `
-"SyntaxError [1:25-1:26]: Unexpected token: '}'
+"SyntaxError [1:23-1:25]: Unexpected private field
 > 1 | class C { #x; m() { \`\${#x}\`; } }
-    |                          ^ Unexpected token: '}'"
+    |                        ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script sloppy) > class C { #x; m() { for (#x in []) {} } } 1`] = `
@@ -355,18 +355,18 @@ class C { #field; m() { #field in #field in this; } } 1`] = `
 
 exports[`Expressions -In > Private identifiers outside in expressions (script strict) > 'use strict';
 class C { #x; m() { #x; } } 1`] = `
-"SyntaxError [2:22-2:23]: Unexpected token: ';'
+"SyntaxError [2:20-2:22]: Unexpected private field
   1 | 'use strict';
 > 2 | class C { #x; m() { #x; } }
-    |                       ^ Unexpected token: ';'"
+    |                     ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script strict) > 'use strict';
 class C { #x; m() { (#x); } } 1`] = `
-"SyntaxError [2:23-2:24]: Unexpected token: ')'
+"SyntaxError [2:21-2:23]: Unexpected private field
   1 | 'use strict';
 > 2 | class C { #x; m() { (#x); } }
-    |                        ^ Unexpected token: ')'"
+    |                      ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script strict) > 'use strict';
@@ -387,10 +387,10 @@ class C { #x; m() { [#x]; } } 1`] = `
 
 exports[`Expressions -In > Private identifiers outside in expressions (script strict) > 'use strict';
 class C { #x; m() { \`\${#x}\`; } } 1`] = `
-"SyntaxError [2:25-2:26]: Unexpected token: '}'
+"SyntaxError [2:23-2:25]: Unexpected private field
   1 | 'use strict';
 > 2 | class C { #x; m() { \`\${#x}\`; } }
-    |                          ^ Unexpected token: '}'"
+    |                        ^^ Unexpected private field"
 `;
 
 exports[`Expressions -In > Private identifiers outside in expressions (script strict) > 'use strict';

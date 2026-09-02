@@ -4664,9 +4664,14 @@ function parsePrimaryExpression(
       return parseBigIntLiteral(parser, context);
     case Token.PrivateField: {
       if (!allowPrivateId) parser.report(Errors.UnexpectedToken, 'PrivateField');
+      const { tokenStart } = parser;
       const expression = parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None);
       if (parser.getToken() !== Token.InKeyword) {
-        parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+        throw new ParseError(
+          tokenStart,
+          { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
+          Errors.UnexpectedPrivateField,
+        );
       }
       return expression;
     }
