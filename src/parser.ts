@@ -4667,11 +4667,7 @@ function parsePrimaryExpression(
       const { tokenStart } = parser;
       const expression = parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None);
       if (parser.getToken() !== Token.InKeyword) {
-        throw new ParseError(
-          tokenStart,
-          { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-          Errors.UnexpectedPrivateField,
-        );
+        throw new ParseError(tokenStart, parser.currentLocation, Errors.UnexpectedPrivateField);
       }
       return expression;
     }
