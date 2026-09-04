@@ -389,7 +389,6 @@ describe('Private methods', () => {
     `,
     'class A { #key() {} }',
     'class A { #yield\n = 0; }',
-    'class A { #foo() { #bar } }',
     'class A { static #key; }',
     'class A { static #foo(bar) {} }',
     'class A { m() {} #a; }',

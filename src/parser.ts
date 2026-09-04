@@ -465,7 +465,19 @@ function parseExpressionOrLabelledStatement(
       break;
 
     default:
-      expr = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, parser.tokenStart);
+      expr = parsePrimaryExpression(
+        parser,
+        context,
+        privateScope,
+        BindingKind.Empty,
+        0,
+        1,
+        0,
+        1,
+        parser.tokenStart,
+        Origin.None,
+        1,
+      );
   }
 
   return finishExpressionOrLabelledStatement(
@@ -3371,6 +3383,7 @@ function parseExpression(
     1,
     start,
     origin,
+    context & Context.DisallowIn ? 0 : 1,
   );
 
   expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, inGroup, 0, start);
@@ -3659,7 +3672,15 @@ function parseBinaryExpression(
           parser.tokenStart,
           precedence,
           t,
-          parseLeftHandSideExpression(parser, context, privateScope, 0, inGroup, 1),
+          parseLeftHandSideExpression(
+            parser,
+            context,
+            privateScope,
+            0,
+            inGroup,
+            1,
+            (context & Context.DisallowIn) === 0 && (Token.InKeyword & Token.Precedence) > precedence ? 1 : 0,
+          ),
         ),
         operator: KeywordDescTable[t & Token.Type],
       },
@@ -3876,45 +3897,24 @@ function parseAwaitExpressionOrIdentifier(
 
   if (isIdentifier) {
     if (context & Context.InAwaitContext)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.InvalidAwaitAsIdentifier,
-      );
+      throw new ParseError(start, parser.startPosition, Errors.InvalidAwaitAsIdentifier);
     if (context & Context.Module)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.AwaitIdentInModuleOrAsyncFunc,
-      );
+      throw new ParseError(start, parser.startPosition, Errors.AwaitIdentInModuleOrAsyncFunc);
 
     if (context & Context.InArgumentList && context & Context.InAwaitContext)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.AwaitIdentInModuleOrAsyncFunc,
-      );
+      throw new ParseError(start, parser.startPosition, Errors.AwaitIdentInModuleOrAsyncFunc);
     // "await" can be identifier out of async func.
     return possibleIdentifierOrArrowFunc;
   }
 
   // "await" is start of await expression.
   if (context & Context.InArgumentList) {
-    throw new ParseError(
-      start,
-      { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-      Errors.AwaitInParameter,
-    );
+    throw new ParseError(start, parser.startPosition, Errors.AwaitInParameter);
   }
 
   // await expression is only allowed in async func or at module top level.
   if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
-    if (inNew)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.Unexpected,
-      );
+    if (inNew) throw new ParseError(start, parser.startPosition, Errors.Unexpected);
 
     const argument = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
 
@@ -3931,12 +3931,7 @@ function parseAwaitExpressionOrIdentifier(
     );
   }
 
-  if (context & Context.Module)
-    throw new ParseError(
-      start,
-      { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-      Errors.AwaitOutsideAsync,
-    );
+  if (context & Context.Module) throw new ParseError(start, parser.startPosition, Errors.AwaitOutsideAsync);
   // Fallback to identifier in script mode
   return possibleIdentifierOrArrowFunc;
 }
@@ -4096,6 +4091,7 @@ function parseLeftHandSideExpression(
   canAssign: 0 | 1,
   inGroup: 0 | 1,
   isLHS: 0 | 1,
+  allowPrivateId: 0 | 1 = 0,
 ): ESTree.Expression {
   // LeftHandSideExpression ::
   //   (PrimaryExpression | MemberExpression) ...
@@ -4111,6 +4107,8 @@ function parseLeftHandSideExpression(
     inGroup,
     isLHS,
     start,
+    Origin.None,
+    allowPrivateId,
   );
 
   return parseMemberOrUpdateExpression(parser, context, privateScope, expression, inGroup, 0, start);
@@ -4180,7 +4178,7 @@ function parseMemberOrUpdateExpression(
             ? AssignmentTargetKind.Invalid
             : AssignmentTargetKind.Simple;
 
-        const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
+        const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope, 1);
 
         expr = parser.finishNode<ESTree.MemberExpression>(
           {
@@ -4377,7 +4375,7 @@ function parseOptionalChain(
       start,
     );
   } else {
-    const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope);
+    const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope, 1);
     parser.assignable = AssignmentTargetKind.Invalid;
     node = parser.finishNode<ESTree.MemberExpression>(
       {
@@ -4407,12 +4405,13 @@ function parsePropertyOrPrivatePropertyName(
   parser: Parser,
   context: Context,
   privateScope: PrivateScope | undefined,
+  allowPrivateId: 0 | 1 = 0,
 ): any {
   if (
     (parser.getToken() & Token.IsIdentifier) === 0 &&
     parser.getToken() !== Token.EscapedReserved &&
     parser.getToken() !== Token.EscapedFutureReserved &&
-    parser.getToken() !== Token.PrivateField
+    (parser.getToken() !== Token.PrivateField || !allowPrivateId)
   ) {
     parser.report(Errors.InvalidDotProperty);
   }
@@ -4491,6 +4490,7 @@ function parsePrimaryExpression(
   isLHS: 0 | 1,
   start: Location,
   origin: Origin = Origin.None,
+  allowPrivateId: 0 | 1 = 0,
 ): any {
   // PrimaryExpression ::
   //   'this'
@@ -4636,8 +4636,15 @@ function parsePrimaryExpression(
       return parseNewExpression(parser, context, privateScope, inGroup);
     case Token.BigIntLiteral:
       return parseBigIntLiteral(parser, context);
-    case Token.PrivateField:
-      return parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None);
+    case Token.PrivateField: {
+      if (!allowPrivateId) parser.report(Errors.UnexpectedToken, 'PrivateField');
+      const { tokenStart } = parser;
+      const expression = parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None);
+      if (parser.getToken() !== Token.InKeyword) {
+        throw new ParseError(tokenStart, parser.startPosition, Errors.UnexpectedPrivateField);
+      }
+      return expression;
+    }
     case Token.ImportKeyword:
       return parseImportCallOrMetaExpression(parser, context, privateScope, inNew, inGroup, start);
     case Token.LessThan:
@@ -7725,7 +7732,7 @@ function parseMemberExpressionNoCall(
 
       parser.assignable = AssignmentTargetKind.Simple;
 
-      const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope);
+      const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope, 1);
 
       return parseMemberExpressionNoCall(
         parser,
@@ -8464,7 +8471,7 @@ function parseDecorator(parser: Parser, context: Context, privateScope: PrivateS
     while (parser.getToken() === Token.Period) {
       nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
 
-      const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
+      const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope, 1);
 
       memberExpression = parser.finishNode<ESTree.MemberExpression>(
         {
@@ -8944,6 +8951,8 @@ function parsePropertyDefinition(
       0,
       1,
       tokenStart,
+      Origin.None,
+      1,
     );
 
     if (
