@@ -222,6 +222,14 @@ export class Parser {
     };
   }
 
+  get startPosition(): Location {
+    return {
+      index: this.startIndex,
+      line: this.startLine,
+      column: this.startColumn,
+    };
+  }
+
   get currentLocation(): Location {
     return { index: this.index, line: this.line, column: this.column };
   }

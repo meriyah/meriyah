@@ -3897,45 +3897,24 @@ function parseAwaitExpressionOrIdentifier(
 
   if (isIdentifier) {
     if (context & Context.InAwaitContext)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.InvalidAwaitAsIdentifier,
-      );
+      throw new ParseError(start, parser.startPosition, Errors.InvalidAwaitAsIdentifier);
     if (context & Context.Module)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.AwaitIdentInModuleOrAsyncFunc,
-      );
+      throw new ParseError(start, parser.startPosition, Errors.AwaitIdentInModuleOrAsyncFunc);
 
     if (context & Context.InArgumentList && context & Context.InAwaitContext)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.AwaitIdentInModuleOrAsyncFunc,
-      );
+      throw new ParseError(start, parser.startPosition, Errors.AwaitIdentInModuleOrAsyncFunc);
     // "await" can be identifier out of async func.
     return possibleIdentifierOrArrowFunc;
   }
 
   // "await" is start of await expression.
   if (context & Context.InArgumentList) {
-    throw new ParseError(
-      start,
-      { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-      Errors.AwaitInParameter,
-    );
+    throw new ParseError(start, parser.startPosition, Errors.AwaitInParameter);
   }
 
   // await expression is only allowed in async func or at module top level.
   if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
-    if (inNew)
-      throw new ParseError(
-        start,
-        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-        Errors.Unexpected,
-      );
+    if (inNew) throw new ParseError(start, parser.startPosition, Errors.Unexpected);
 
     const argument = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
 
@@ -3952,12 +3931,7 @@ function parseAwaitExpressionOrIdentifier(
     );
   }
 
-  if (context & Context.Module)
-    throw new ParseError(
-      start,
-      { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
-      Errors.AwaitOutsideAsync,
-    );
+  if (context & Context.Module) throw new ParseError(start, parser.startPosition, Errors.AwaitOutsideAsync);
   // Fallback to identifier in script mode
   return possibleIdentifierOrArrowFunc;
 }
@@ -4667,7 +4641,7 @@ function parsePrimaryExpression(
       const { tokenStart } = parser;
       const expression = parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None);
       if (parser.getToken() !== Token.InKeyword) {
-        throw new ParseError(tokenStart, parser.currentLocation, Errors.UnexpectedPrivateField);
+        throw new ParseError(tokenStart, parser.startPosition, Errors.UnexpectedPrivateField);
       }
       return expression;
     }
