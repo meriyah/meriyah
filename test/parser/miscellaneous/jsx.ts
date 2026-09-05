@@ -57,6 +57,41 @@ describe('Miscellaneous - JSX', () => {
     });
   }
 
+  // `nextJSXToken` previously looked up line terminators through `CharTypes`,
+  // which has the `CarriageReturn`/`LineFeed` flags swapped relative to the
+  // conventional `\r`/`\n` mapping and only covers the first 128 code points.
+  // That made `<CR><LF>` two line terminators (instead of one), `<LF><CR>`
+  // one (instead of two), and skipped `<LS>` / `<PS>` entirely. The decoded
+  // `JSXText.value` also kept `<CR><LF>` raw instead of normalizing it to
+  // `<LF>`, which Babel and acorn-jsx both do.
+  for (const [name, source, expectedValue, expectedEndLine] of [
+    ['<LF>', '<a>foo\nbar</a>', 'foo\nbar', 2],
+    ['<CR>', '<a>foo\rbar</a>', 'foo\rbar', 2],
+    ['<CR><LF>', '<a>foo\r\nbar</a>', 'foo\nbar', 2],
+    ['<LF><CR>', '<a>foo\n\rbar</a>', 'foo\n\rbar', 3],
+    ['<LS>', '<a>foo\u2028bar</a>', 'foo\u2028bar', 2],
+    ['<PS>', '<a>foo\u2029bar</a>', 'foo\u2029bar', 2],
+    ['two <CR><LF>', '<a>\r\n\r\n</a>', '\n\n', 3],
+  ] as const) {
+    it(`${name} in JSX text counts as one line terminator`, () => {
+      const ast = parseSource(source, { jsx: true, loc: true });
+      const element = (ast.body[0] as ESTree.ExpressionStatement).expression as ESTree.JSXElement;
+      const text = element.children[0] as ESTree.JSXText;
+
+      t.equal(text.value, expectedValue);
+      t.equal(text.loc?.end.line, expectedEndLine);
+    });
+  }
+
+  it('normalizes <CR><LF> to <LF> in JSX text value but keeps a lone <CR>', () => {
+    const ast = parseSource('<a>foo\r\nbar\rbaz</a>', { jsx: true });
+    const element = (ast.body[0] as ESTree.ExpressionStatement).expression as ESTree.JSXElement;
+    const text = element.children[0] as ESTree.JSXText;
+
+    // `<CR><LF>` -> `<LF>`, lone `<CR>` stays.
+    t.equal(text.value, 'foo\nbar\rbaz');
+  });
+
   // `nextJSXToken` decodes HTML entities in JSX text, `scanJSXString` has to do
   // the same for attribute values. https://github.com/meriyah/meriyah/issues/133
   for (const [attributeValue, value] of [

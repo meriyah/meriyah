@@ -1,5 +1,5 @@
 import { Chars } from '../chars.ts';
-import { type Context } from '../common.ts';
+import { type Context, Flags } from '../common.ts';
 import { Errors } from '../errors.ts';
 import { type Parser } from '../parser/parser.ts';
 import { Token } from '../token.ts';
@@ -100,15 +100,30 @@ export function nextJSXToken(parser: Parser) {
   }
 
   let state = LexerState.None;
+  let hasCarriageReturn = false;
 
   while (parser.index < parser.end) {
-    const type = CharTypes[parser.source.charCodeAt(parser.index)];
+    const char = parser.source.charCodeAt(parser.index);
 
-    if (type & CharFlags.CarriageReturn) {
+    // `CharTypes` only covers the first 128 code points, and the
+    // `CarriageReturn`/`LineFeed` flags it does have are swapped relative to
+    // the conventional `\r`/`\n` mapping used everywhere else in this file
+    // (`scanJSXString`, `scanString`, `scanTemplate`, `comments.ts`). Matching
+    // by code point, like `scanJSXString` already does, makes `<CR><LF>` one
+    // line terminator (not two), `<LF><CR>` two line terminators (not one),
+    // and counts `<LS>` / `<PS>` as line terminators at all.
+    if (char === Chars.CarriageReturn) {
       state |= LexerState.NewLine | LexerState.LastIsCR;
+      hasCarriageReturn = true;
       scanNewLine(parser);
-    } else if (type & CharFlags.LineFeed) {
+    } else if (char === Chars.LineFeed) {
       consumeLineFeed(parser, state);
+      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+    } else if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
+      parser.flags |= Flags.NewLine;
+      parser.currentChar = parser.source.charCodeAt(++parser.index);
+      parser.column = 0;
+      parser.line++;
       state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
     } else {
       advanceChar(parser);
@@ -120,7 +135,12 @@ export function nextJSXToken(parser: Parser) {
   // No text, next char is "}" or ">"
   if (parser.tokenIndex === parser.index) parser.report(Errors.Unexpected);
 
-  const raw = parser.source.slice(parser.tokenIndex, parser.index);
+  // Normalize `<CR><LF>` to `<LF>` in the decoded value, matching Babel and
+  // acorn-jsx. A lone `<CR>` is intentionally kept, the same way those parsers
+  // keep it. `scanTemplate` already does the equivalent normalization for
+  // template raw text.
+  const sourceSlice = parser.source.slice(parser.tokenIndex, parser.index);
+  const raw = hasCarriageReturn ? sourceSlice.replaceAll('\r\n', '\n') : sourceSlice;
   if (parser.options.raw) parser.tokenRaw = raw;
   parser.tokenValue = decodeHTMLStrict(raw);
   parser.setToken(Token.JSXText);
