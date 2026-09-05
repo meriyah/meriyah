@@ -64,7 +64,7 @@ describe('Miscellaneous - JSX', () => {
   // one (instead of two), and skipped `<LS>` / `<PS>` entirely. The decoded
   // `JSXText.value` also kept `<CR><LF>` raw instead of normalizing it to
   // `<LF>`, which Babel and acorn-jsx both do.
-  for (const [name, source, wantValue, wantEndLine] of [
+  for (const [name, source, expectedValue, expectedEndLine] of [
     ['<LF>', '<a>foo\nbar</a>', 'foo\nbar', 2],
     ['<CR>', '<a>foo\rbar</a>', 'foo\rbar', 2],
     ['<CR><LF>', '<a>foo\r\nbar</a>', 'foo\nbar', 2],
