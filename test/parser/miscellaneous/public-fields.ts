@@ -29,6 +29,13 @@ describe('Public fields', () => {
     { code: 'class A { a b() {} }' },
     { code: 'class A { a = 1, 2 }' },
     { code: 'class A { a = 1, b = 2 }' },
+    { code: 'class C { x = await 1 }', options: { sourceType: 'module' } },
+    { code: 'class C { static x = await 1 }', options: { sourceType: 'module' } },
+    { code: 'class C { x = (await 1) }', options: { sourceType: 'module' } },
+    { code: 'class C { x = () => await 1 }', options: { sourceType: 'module' } },
+    { code: 'class C { x = class { y = await 1 } }', options: { sourceType: 'module' } },
+    { code: 'async () => class { x = await 1 };', options: { sourceType: 'module' } },
+    { code: '(async () => class { x = await 1 })', options: { sourceType: 'module' } },
   ]);
 
   for (const text of [
@@ -126,6 +133,8 @@ describe('Public fields', () => {
     'async;\n a;',
     'await;',
     'await = 0;',
+    'x = await;',
+    'static x = await;',
     'await;\n a;',
     '\nx;\ny;\n\n',
     "static ['constructor'];",
@@ -192,6 +201,11 @@ describe('Public fields', () => {
   }
 
   pass('Public fields (pass)', [
+    { code: 'class C { [await 1] = 1 }', options: { sourceType: 'module' } },
+    { code: 'class C extends (await 1) {}', options: { sourceType: 'module' } },
+    { code: 'class C { x = async () => await 1 }', options: { sourceType: 'module' } },
+    { code: 'class C { x = 1 }; await 1;', options: { sourceType: 'module' } },
+    { code: 'async function g() { return class { x = await }; }' },
     { code: 'var C = class { static async #prototype() {} };', options: { ranges: true } },
     { code: 'class Foo { x = 1; }', options: { ranges: true } },
     { code: 'class A { set; }', options: { ranges: true } },
