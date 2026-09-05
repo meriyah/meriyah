@@ -78,8 +78,8 @@ describe('Miscellaneous - JSX', () => {
       const element = (ast.body[0] as ESTree.ExpressionStatement).expression as ESTree.JSXElement;
       const text = element.children[0] as ESTree.JSXText;
 
-      t.equal(text.value, wantValue);
-      t.equal(text.loc?.end.line, wantEndLine);
+      t.equal(text.value, expectedValue);
+      t.equal(text.loc?.end.line, expectedEndLine);
     });
   }
 
