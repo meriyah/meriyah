@@ -1,3 +1,16 @@
+## [7.3.3](https://github.com/meriyah/meriyah/compare/v7.3.2...v7.3.3) (2026-09-05)
+
+### Bug Fixes
+
+* **jsx:** count line terminators and decode entities in attribute values ([#635](https://github.com/meriyah/meriyah/issues/635)) ([75e591d](https://github.com/meriyah/meriyah/commit/75e591de2202da990acca0a5ff13487fa2964ea6))
+* **jsx:** count line terminators in JSXText ([#645](https://github.com/meriyah/meriyah/issues/645)) ([933ab26](https://github.com/meriyah/meriyah/commit/933ab2658f61ac8dcd8242194f3564ea96042d30))
+* **jsx:** fix `JSXText` value decoding ([#642](https://github.com/meriyah/meriyah/issues/642)) ([8e96fc7](https://github.com/meriyah/meriyah/commit/8e96fc76200d9e0b80733faddd45cd86ee912de4))
+* **jsx:** fix named entries decoding in `JSXText` ([#638](https://github.com/meriyah/meriyah/issues/638)) ([9d237a2](https://github.com/meriyah/meriyah/commit/9d237a27ee6dee9046bb648a6911a27635b52b25))
+* **parser:** allow `async of` in for await-of statement ([#633](https://github.com/meriyah/meriyah/issues/633)) ([0d8893e](https://github.com/meriyah/meriyah/commit/0d8893ecb99cf5306edc6beb3e485e053c07f007))
+* **parser:** allow constructor/accessor identifiers and using arrows ([#637](https://github.com/meriyah/meriyah/issues/637)) ([1248953](https://github.com/meriyah/meriyah/commit/1248953939675c68fe5faaf580e3e750073bd35d))
+* **parser:** propagate `DestructuringKind.Await` alongside `Yield` ([#634](https://github.com/meriyah/meriyah/issues/634)) ([3e87ff3](https://github.com/meriyah/meriyah/commit/3e87ff38da80149e7ee4e80f89beea2f7ac60fc8))
+* **parser:** restrict private identifiers to in expressions ([#644](https://github.com/meriyah/meriyah/issues/644)) ([875d8eb](https://github.com/meriyah/meriyah/commit/875d8ebff64242eb9d208ece6efee4358afd5849))
+
 ## [7.3.2](https://github.com/meriyah/meriyah/compare/v7.3.1...v7.3.2) (2026-08-17)
 
 ### Bug Fixes
