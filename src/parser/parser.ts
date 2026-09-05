@@ -138,6 +138,11 @@ export class Parser {
   firstAwaitLocation: { start: Location; end: Location } | null = null;
 
   /**
+   * Location of the first 'yield' keyword seen. Used to report deferred errors in arrow parameters.
+   */
+  firstYieldLocation: { start: Location; end: Location } | null = null;
+
+  /**
    * Holds leading decorators before "export" or "class" keywords
    */
   leadingDecorators: {

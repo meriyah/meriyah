@@ -103,9 +103,9 @@ exports[`Expressions - Super > Expressions - Super (fail) > async(foo) => { supe
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { *g2(a = 1 + (yield 2)) { } } 1`] = `
-"SyntaxError [1:39-1:40]: Yield expression not allowed in formal parameter
+"SyntaxError [1:33-1:38]: Yield expression not allowed in formal parameter
 > 1 | class A extends B { *g2(a = 1 + (yield 2)) { } }
-    |                                        ^ Yield expression not allowed in formal parameter"
+    |                                  ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { constructor() { (super)() } } 1`] = `
@@ -1069,9 +1069,9 @@ exports[`Expressions - Super > Expressions - Super (fail) > function* a(b){ supe
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > function* foo(a = 1 + (yield 2)) { super.foo() } 1`] = `
-"SyntaxError [1:29-1:30]: Yield expression not allowed in formal parameter
+"SyntaxError [1:23-1:28]: Yield expression not allowed in formal parameter
 > 1 | function* foo(a = 1 + (yield 2)) { super.foo() }
-    |                              ^ Yield expression not allowed in formal parameter"
+    |                        ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > g={f: function f(){ super() }] 1`] = `
@@ -1219,9 +1219,9 @@ exports[`Expressions - Super > Expressions - Super (fail) > var f = function*() 
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > var foo = function*(a = 1 + (yield 2)) { super.foo()  1`] = `
-"SyntaxError [1:35-1:36]: Yield expression not allowed in formal parameter
+"SyntaxError [1:29-1:34]: Yield expression not allowed in formal parameter
 > 1 | var foo = function*(a = 1 + (yield 2)) { super.foo() 
-    |                                    ^ Yield expression not allowed in formal parameter"
+    |                              ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > var gen = { async *method() { super(); } } 1`] = `
