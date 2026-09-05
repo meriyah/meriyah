@@ -105,6 +105,11 @@ describe('Miscellaneous - Escaped keywords', () => {
     String.raw`var y = { c\u0061tch: x } = { catch: 42 };`,
     String.raw`var y = { \u0063onst: x } = { const: 42 };`,
     String.raw`var y = { \u0064ebugger: x } = { debugger: 42 };`,
+    String.raw`var aw\u{61}it = 1;`,
+    String.raw`(aw\u{61}it) => {}`,
+    String.raw`(a = aw\u{61}it) => {}`,
+    String.raw`async (aw\u{61}it);`,
+    String.raw`async (a = aw\u{61}it => {});`,
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
@@ -122,6 +127,11 @@ describe('Miscellaneous - Escaped keywords', () => {
   }
   //
   fail('Miscellaneous - Escaped identifiers (failures)', [
+    String.raw`async (a = aw\u{61}it => {}) => {}`,
+    String.raw`async (a = aw\u0061it => {}) => {}`,
+    String.raw`async (aw\u{61}it) => {}`,
+    String.raw`async (a = aw\u{61}it) => {}`,
+    String.raw`async aw\u{61}it => {}`,
     String.raw`(x === n\u0075ll);`,
     String.raw`var x = n\u0075ll;`,
     { code: String.raw`var x = { interf\u0061ce } = { interface: 42 };`, options: { sourceType: 'module' } },
