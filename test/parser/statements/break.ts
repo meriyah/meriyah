@@ -160,5 +160,6 @@ describe('Statements - Break', () => {
     { code: 'this', options: { ranges: true } },
     'foo: switch (x) { case x: if (foo) {break foo;} }',
     { code: 'switch (x) { case x: break; }', options: { ranges: true } },
+    'a: { for (;;) { break a; } }',
   ]);
 });

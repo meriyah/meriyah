@@ -352,6 +352,45 @@ x 1`] = `
 }
 `;
 
+exports[`Statements - Break > Statements - Break (pass) > a: { for (;;) { break a; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [
+                {
+                  "label": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "BreakStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "init": null,
+            "test": null,
+            "type": "ForStatement",
+            "update": null,
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Statements - Break > Statements - Break (pass) > a: if (true) b: { break a; break b; }
 else b: { break a; break b; } 1`] = `
 {

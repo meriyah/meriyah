@@ -382,12 +382,19 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
  * @param isIterationStatement
  */
 export function isValidLabel(parser: Parser, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
+  // A `continue` may only target a label of an iteration statement it is nested in, so
+  // the label has to be declared in the label set that iteration statement was parsed
+  // with. Label sets chain outwards and the set marked `loop` is an iteration statement
+  // body, so the set right above such a set holds that statement's own labels.
+  let isIterationLabelSet: 0 | 1 = 0;
+
   while (labels) {
     if (labels['$' + name]) {
-      if (isIterationStatement) parser.report(Errors.InvalidNestedStatement);
+      // A label is declared at most once per chain, so this is its only declaration.
+      if (isIterationStatement && !isIterationLabelSet) parser.report(Errors.InvalidNestedStatement);
       return 1;
     }
-    if (isIterationStatement && labels.loop) isIterationStatement = 0;
+    isIterationLabelSet = labels.loop ? 1 : 0;
     labels = labels['$'];
   }
 

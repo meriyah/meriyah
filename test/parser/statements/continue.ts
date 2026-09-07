@@ -95,6 +95,19 @@ describe('Statements - Continue', () => {
     'switch (x){ case z:    if (x) continue   }',
     'switch (x){ case z:    continue y   }',
     'switch (x){ case z:    if (x) continue y   }',
+    'a: { for (;;) { continue a; } }',
+    'a: { b: for (;;) { continue a; } }',
+    'a: if (x) for (;;) { continue a; }',
+    'a: switch (x) { default: for (;;) continue a; }',
+    'a: try { for (;;) continue a; } finally {}',
+    'a: for (;;) { b: { for (;;) continue b; } }',
+    outdent`
+      label: {
+        for ( ;; ) {
+          continue label;
+        }
+      }
+    `,
   ]);
 
   pass('Statements - Continue', [
@@ -113,5 +126,11 @@ describe('Statements - Continue', () => {
     'while (true) {  continue   }',
     'foo: while(true)continue foo;',
     'foo: while (true) { if (x) continue foo; }',
+    'a: b: for (;;) { continue a; }',
+    'a: for (;;) { for (;;) continue a; }',
+    'a: for (;;) b: for (;;) continue b;',
+    'for (;;) { a: for (;;) continue a; }',
+    'a: while (x) { b: { continue a; } }',
+    'a: for (;;) { switch (x) { case 1: continue a; } }',
   ]);
 });
