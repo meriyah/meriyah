@@ -15,7 +15,7 @@
     },
     {
       groupName: 'Vitest',
-      matchPackageNames: ['vitest', '@vitest/*'],
+      matchPackageNames: ['vitest', '@vitest/*', 'vite'],
     },
     {
       groupName: 'Acorn',
