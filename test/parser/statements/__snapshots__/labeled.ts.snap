@@ -97,9 +97,9 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > bar: function* x()
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > do { test262: { continue test262; } } while (false) 1`] = `
-"SyntaxError [1:32-1:33]: continue statement must be nested within an iteration statement
+"SyntaxError [1:25-1:32]: Label 'test262' does not denote an iteration statement
 > 1 | do { test262: { continue test262; } } while (false)
-    |                                 ^ continue statement must be nested within an iteration statement"
+    |                          ^^^^^^^ Label 'test262' does not denote an iteration statement"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > false: ; 1`] = `
@@ -253,15 +253,15 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > yield: { function 
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > yield: { function *f(){ break await; } } 2`] = `
-"SyntaxError [1:35-1:36]: Undefined label 'await'
+"SyntaxError [1:30-1:35]: Undefined label 'await'
 > 1 | yield: { function *f(){ break await; } }
-    |                                    ^ Undefined label 'await'"
+    |                               ^^^^^ Undefined label 'await'"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > yield: { function *f(){ break await; } } 3`] = `
-"SyntaxError [1:35-1:36]: Undefined label 'await'
+"SyntaxError [1:30-1:35]: Undefined label 'await'
 > 1 | yield: { function *f(){ break await; } }
-    |                                    ^ Undefined label 'await'"
+    |                               ^^^^^ Undefined label 'await'"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > yield: 1; 1`] = `

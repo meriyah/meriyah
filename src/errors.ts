@@ -336,7 +336,7 @@ const errorMessages: {
   [Errors.UnexpectedCharAfterObjLit]: 'Unexpected character after object literal property name',
   [Errors.InvalidKeyToken]: 'Invalid key token',
   [Errors.LabelRedeclaration]: "Label '%0' has already been declared",
-  [Errors.InvalidNestedStatement]: 'continue statement must be nested within an iteration statement',
+  [Errors.InvalidNestedStatement]: "Label '%0' does not denote an iteration statement",
   [Errors.UnknownLabel]: "Undefined label '%0'",
   [Errors.InvalidImportTail]: 'Trailing comma is disallowed inside import(...) arguments',
   [Errors.InvalidJSONImportBinding]: 'Invalid binding in JSON import',

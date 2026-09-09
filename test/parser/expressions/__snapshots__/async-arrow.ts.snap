@@ -2260,10 +2260,10 @@ exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > asyncFn 
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > break async 
  () => x 1`] = `
-"SyntaxError [2:1-2:2]: Undefined label 'async'
-  1 | break async 
-> 2 |  () => x
-    |  ^ Undefined label 'async'"
+"SyntaxError [1:6-1:11]: Undefined label 'async'
+> 1 | break async 
+    |       ^^^^^ Undefined label 'async'
+  2 |  () => x"
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > class x extends async 

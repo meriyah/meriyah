@@ -1,4 +1,2 @@
-language/statements/block/labeled-continue.js (default)
-language/statements/block/labeled-continue.js (strict mode)
 staging/sm/fields/await-identifier-module-3.js (default)
 staging/sm/fields/await-identifier-module-3.js (strict mode)

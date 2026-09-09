@@ -50,10 +50,46 @@ y++;
   5 | } while(0);"
 `;
 
+exports[`Statements - Continue > Declarations - Continue > a: { b: for (;;) { continue a; } } 1`] = `
+"SyntaxError [1:28-1:29]: Label 'a' does not denote an iteration statement
+> 1 | a: { b: for (;;) { continue a; } }
+    |                             ^ Label 'a' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > a: { for (;;) { continue a; } } 1`] = `
+"SyntaxError [1:25-1:26]: Label 'a' does not denote an iteration statement
+> 1 | a: { for (;;) { continue a; } }
+    |                          ^ Label 'a' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > a: for (;;) { b: { for (;;) continue b; } } 1`] = `
+"SyntaxError [1:37-1:38]: Label 'b' does not denote an iteration statement
+> 1 | a: for (;;) { b: { for (;;) continue b; } }
+    |                                      ^ Label 'b' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > a: if (x) for (;;) { continue a; } 1`] = `
+"SyntaxError [1:30-1:31]: Label 'a' does not denote an iteration statement
+> 1 | a: if (x) for (;;) { continue a; }
+    |                               ^ Label 'a' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > a: switch (x) { default: for (;;) continue a; } 1`] = `
+"SyntaxError [1:43-1:44]: Label 'a' does not denote an iteration statement
+> 1 | a: switch (x) { default: for (;;) continue a; }
+    |                                            ^ Label 'a' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > a: try { for (;;) continue a; } finally {} 1`] = `
+"SyntaxError [1:27-1:28]: Label 'a' does not denote an iteration statement
+> 1 | a: try { for (;;) continue a; } finally {}
+    |                            ^ Label 'a' does not denote an iteration statement"
+`;
+
 exports[`Statements - Continue > Declarations - Continue > ce: while(true) { continue fapper; } 1`] = `
-"SyntaxError [1:33-1:34]: Undefined label 'fapper'
+"SyntaxError [1:27-1:33]: Undefined label 'fapper'
 > 1 | ce: while(true) { continue fapper; }
-    |                                  ^ Undefined label 'fapper'"
+    |                            ^^^^^^ Undefined label 'fapper'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > continue
@@ -109,33 +145,33 @@ exports[`Statements - Continue > Declarations - Continue > continue; continue; 1
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do     continue y   ; while(true); 1`] = `
-"SyntaxError [1:20-1:21]: Undefined label 'y'
+"SyntaxError [1:16-1:17]: Undefined label 'y'
 > 1 | do     continue y   ; while(true);
-    |                     ^ Undefined label 'y'"
+    |                 ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do     if (x) continue y   ; while(true); 1`] = `
-"SyntaxError [1:27-1:28]: Undefined label 'y'
+"SyntaxError [1:23-1:24]: Undefined label 'y'
 > 1 | do     if (x) continue y   ; while(true);
-    |                            ^ Undefined label 'y'"
+    |                        ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do     if (x) continue y   ; while(true); 2`] = `
-"SyntaxError [1:27-1:28]: Undefined label 'y'
+"SyntaxError [1:23-1:24]: Undefined label 'y'
 > 1 | do     if (x) continue y   ; while(true);
-    |                            ^ Undefined label 'y'"
+    |                        ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do {  test262: {  continue test262; } } while (a) 1`] = `
-"SyntaxError [1:34-1:35]: continue statement must be nested within an iteration statement
+"SyntaxError [1:27-1:34]: Label 'test262' does not denote an iteration statement
 > 1 | do {  test262: {  continue test262; } } while (a)
-    |                                   ^ continue statement must be nested within an iteration statement"
+    |                            ^^^^^^^ Label 'test262' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > for (;;)    continue y  1`] = `
-"SyntaxError [1:22-1:23]: Undefined label 'y'
+"SyntaxError [1:21-1:22]: Undefined label 'y'
 > 1 | for (;;)    continue y 
-    |                       ^ Undefined label 'y'"
+    |                      ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){    continue    } 1`] = `
@@ -187,39 +223,39 @@ exports[`Statements - Continue > Declarations - Continue > function f(){   { con
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ do        if (x) continue y   ; while(true);} 1`] = `
-"SyntaxError [1:44-1:45]: Undefined label 'y'
+"SyntaxError [1:40-1:41]: Undefined label 'y'
 > 1 | function f(){ do        if (x) continue y   ; while(true);}
-    |                                             ^ Undefined label 'y'"
+    |                                         ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ do        if (x) continue y   ; while(true);} 2`] = `
-"SyntaxError [1:44-1:45]: Undefined label 'y'
+"SyntaxError [1:40-1:41]: Undefined label 'y'
 > 1 | function f(){ do        if (x) continue y   ; while(true);}
-    |                                             ^ Undefined label 'y'"
+    |                                         ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ for (;;)       if (x) continue y   } 1`] = `
-"SyntaxError [1:49-1:50]: Undefined label 'y'
+"SyntaxError [1:45-1:46]: Undefined label 'y'
 > 1 | function f(){ for (;;)       if (x) continue y   }
-    |                                                  ^ Undefined label 'y'"
+    |                                              ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ for (;;)       if (x) continue y   }} 1`] = `
-"SyntaxError [1:49-1:50]: Undefined label 'y'
+"SyntaxError [1:45-1:46]: Undefined label 'y'
 > 1 | function f(){ for (;;)       if (x) continue y   }}
-    |                                                  ^ Undefined label 'y'"
+    |                                              ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ while (true)       if (x) continue y   } 1`] = `
-"SyntaxError [1:53-1:54]: Undefined label 'y'
+"SyntaxError [1:49-1:50]: Undefined label 'y'
 > 1 | function f(){ while (true)       if (x) continue y   }
-    |                                                      ^ Undefined label 'y'"
+    |                                                  ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ while (true)       if (x) continue y   }} 1`] = `
-"SyntaxError [1:53-1:54]: Undefined label 'y'
+"SyntaxError [1:49-1:50]: Undefined label 'y'
 > 1 | function f(){ while (true)       if (x) continue y   }}
-    |                                                      ^ Undefined label 'y'"
+    |                                                  ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > if (x) continue y 1`] = `
@@ -232,6 +268,20 @@ exports[`Statements - Continue > Declarations - Continue > if (x) continue; 1`] 
 "SyntaxError [1:7-1:15]: Illegal continue statement
 > 1 | if (x) continue;
     |        ^^^^^^^^ Illegal continue statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > label: {
+  for ( ;; ) {
+    continue label;
+  }
+} 1`] = `
+"SyntaxError [3:13-3:18]: Label 'label' does not denote an iteration statement
+  1 | label: {
+  2 |   for ( ;; ) {
+> 3 |     continue label;
+    |              ^^^^^ Label 'label' does not denote an iteration statement
+  4 |   }
+  5 | }"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > loop1: while (true) { loop1: function a() { continue loop1; } } 1`] = `
@@ -367,15 +417,15 @@ LABEL2 : do {
 `;
 
 exports[`Statements - Continue > Declarations - Continue > while (true)    if (x) continue y   } 1`] = `
-"SyntaxError [1:36-1:37]: Undefined label 'y'
+"SyntaxError [1:32-1:33]: Undefined label 'y'
 > 1 | while (true)    if (x) continue y   }
-    |                                     ^ Undefined label 'y'"
+    |                                 ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > while (true) continue x; 1`] = `
-"SyntaxError [1:23-1:24]: Undefined label 'x'
+"SyntaxError [1:22-1:23]: Undefined label 'x'
 > 1 | while (true) continue x;
-    |                        ^ Undefined label 'x'"
+    |                       ^ Undefined label 'x'"
 `;
 
 exports[`Statements - Continue > Statements - Continue > () => { do        if (x) continue   ; while(true);} 1`] = `
@@ -456,6 +506,47 @@ exports[`Statements - Continue > Statements - Continue > __proto__: while (true)
 }
 `;
 
+exports[`Statements - Continue > Statements - Continue > a: b: for (;;) { continue a; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": {
+            "body": [
+              {
+                "label": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "ContinueStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "init": null,
+          "test": null,
+          "type": "ForStatement",
+          "update": null,
+        },
+        "label": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "LabeledStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Statements - Continue > Statements - Continue > a: do continue a; while(1); 1`] = `
 {
   "body": [
@@ -473,6 +564,140 @@ exports[`Statements - Continue > Statements - Continue > a: do continue a; while
           "value": 1,
         },
         "type": "DoWhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: for (;;) { for (;;) continue a; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "label": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "ContinueStatement",
+              },
+              "init": null,
+              "test": null,
+              "type": "ForStatement",
+              "update": null,
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "init": null,
+        "test": null,
+        "type": "ForStatement",
+        "update": null,
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: for (;;) { switch (x) { case 1: continue a; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "cases": [
+                {
+                  "consequent": [
+                    {
+                      "label": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "type": "ContinueStatement",
+                    },
+                  ],
+                  "test": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "SwitchCase",
+                },
+              ],
+              "discriminant": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "SwitchStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "init": null,
+        "test": null,
+        "type": "ForStatement",
+        "update": null,
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: for (;;) b: for (;;) continue b; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": {
+            "body": {
+              "label": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "ContinueStatement",
+            },
+            "init": null,
+            "test": null,
+            "type": "ForStatement",
+            "update": null,
+          },
+          "label": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LabeledStatement",
+        },
+        "init": null,
+        "test": null,
+        "type": "ForStatement",
+        "update": null,
       },
       "label": {
         "name": "a",
@@ -589,6 +814,53 @@ exports[`Statements - Continue > Statements - Continue > a: while (0) { continue
         "test": {
           "type": "Literal",
           "value": 0,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: while (x) { b: { continue a; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "body": [
+                  {
+                    "label": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "type": "ContinueStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "label": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "LabeledStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "name": "x",
+          "type": "Identifier",
         },
         "type": "WhileStatement",
       },
@@ -768,6 +1040,46 @@ exports[`Statements - Continue > Statements - Continue > for (;;)  { if (x) cont
               "type": "Identifier",
             },
             "type": "IfStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "init": null,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > for (;;) { a: for (;;) continue a; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": {
+                "label": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "ContinueStatement",
+              },
+              "init": null,
+              "test": null,
+              "type": "ForStatement",
+              "update": null,
+            },
+            "label": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "type": "LabeledStatement",
           },
         ],
         "type": "BlockStatement",

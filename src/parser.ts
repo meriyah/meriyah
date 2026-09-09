@@ -1235,9 +1235,10 @@ function parseContinueStatement(parser: Parser, context: Context, labels: ESTree
   let label: ESTree.Identifier | undefined | null = null;
   if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() & Token.IsIdentifier) {
     const { tokenValue } = parser;
-    label = parseIdentifier(parser, context | Context.AllowRegExp);
+    // Validate before consuming the label so a reported error points at the label.
     if (!isValidLabel(parser, labels, tokenValue, /* requireIterationStatement */ 1))
       parser.report(Errors.UnknownLabel, tokenValue);
+    label = parseIdentifier(parser, context | Context.AllowRegExp);
   }
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return parser.finishNode<ESTree.ContinueStatement>(
@@ -1267,9 +1268,10 @@ function parseBreakStatement(parser: Parser, context: Context, labels: ESTree.La
   let label: ESTree.Identifier | undefined | null = null;
   if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() & Token.IsIdentifier) {
     const { tokenValue } = parser;
-    label = parseIdentifier(parser, context | Context.AllowRegExp);
+    // Validate before consuming the label so a reported error points at the label.
     if (!isValidLabel(parser, labels, tokenValue, /* requireIterationStatement */ 0))
       parser.report(Errors.UnknownLabel, tokenValue);
+    label = parseIdentifier(parser, context | Context.AllowRegExp);
   } else if ((context & (Context.InSwitch | Context.InIteration)) === 0) {
     parser.report(Errors.IllegalBreak);
   }
