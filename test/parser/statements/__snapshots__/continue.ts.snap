@@ -51,45 +51,45 @@ y++;
 `;
 
 exports[`Statements - Continue > Declarations - Continue > a: { b: for (;;) { continue a; } } 1`] = `
-"SyntaxError [1:29-1:30]: continue statement must be nested within an iteration statement
+"SyntaxError [1:28-1:29]: Label 'a' does not denote an iteration statement
 > 1 | a: { b: for (;;) { continue a; } }
-    |                              ^ continue statement must be nested within an iteration statement"
+    |                             ^ Label 'a' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > a: { for (;;) { continue a; } } 1`] = `
-"SyntaxError [1:26-1:27]: continue statement must be nested within an iteration statement
+"SyntaxError [1:25-1:26]: Label 'a' does not denote an iteration statement
 > 1 | a: { for (;;) { continue a; } }
-    |                           ^ continue statement must be nested within an iteration statement"
+    |                          ^ Label 'a' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > a: for (;;) { b: { for (;;) continue b; } } 1`] = `
-"SyntaxError [1:38-1:39]: continue statement must be nested within an iteration statement
+"SyntaxError [1:37-1:38]: Label 'b' does not denote an iteration statement
 > 1 | a: for (;;) { b: { for (;;) continue b; } }
-    |                                       ^ continue statement must be nested within an iteration statement"
+    |                                      ^ Label 'b' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > a: if (x) for (;;) { continue a; } 1`] = `
-"SyntaxError [1:31-1:32]: continue statement must be nested within an iteration statement
+"SyntaxError [1:30-1:31]: Label 'a' does not denote an iteration statement
 > 1 | a: if (x) for (;;) { continue a; }
-    |                                ^ continue statement must be nested within an iteration statement"
+    |                               ^ Label 'a' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > a: switch (x) { default: for (;;) continue a; } 1`] = `
-"SyntaxError [1:44-1:45]: continue statement must be nested within an iteration statement
+"SyntaxError [1:43-1:44]: Label 'a' does not denote an iteration statement
 > 1 | a: switch (x) { default: for (;;) continue a; }
-    |                                             ^ continue statement must be nested within an iteration statement"
+    |                                            ^ Label 'a' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > a: try { for (;;) continue a; } finally {} 1`] = `
-"SyntaxError [1:28-1:29]: continue statement must be nested within an iteration statement
+"SyntaxError [1:27-1:28]: Label 'a' does not denote an iteration statement
 > 1 | a: try { for (;;) continue a; } finally {}
-    |                             ^ continue statement must be nested within an iteration statement"
+    |                            ^ Label 'a' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > ce: while(true) { continue fapper; } 1`] = `
-"SyntaxError [1:33-1:34]: Undefined label 'fapper'
+"SyntaxError [1:27-1:33]: Undefined label 'fapper'
 > 1 | ce: while(true) { continue fapper; }
-    |                                  ^ Undefined label 'fapper'"
+    |                            ^^^^^^ Undefined label 'fapper'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > continue
@@ -145,33 +145,33 @@ exports[`Statements - Continue > Declarations - Continue > continue; continue; 1
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do     continue y   ; while(true); 1`] = `
-"SyntaxError [1:20-1:21]: Undefined label 'y'
+"SyntaxError [1:16-1:17]: Undefined label 'y'
 > 1 | do     continue y   ; while(true);
-    |                     ^ Undefined label 'y'"
+    |                 ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do     if (x) continue y   ; while(true); 1`] = `
-"SyntaxError [1:27-1:28]: Undefined label 'y'
+"SyntaxError [1:23-1:24]: Undefined label 'y'
 > 1 | do     if (x) continue y   ; while(true);
-    |                            ^ Undefined label 'y'"
+    |                        ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do     if (x) continue y   ; while(true); 2`] = `
-"SyntaxError [1:27-1:28]: Undefined label 'y'
+"SyntaxError [1:23-1:24]: Undefined label 'y'
 > 1 | do     if (x) continue y   ; while(true);
-    |                            ^ Undefined label 'y'"
+    |                        ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > do {  test262: {  continue test262; } } while (a) 1`] = `
-"SyntaxError [1:34-1:35]: continue statement must be nested within an iteration statement
+"SyntaxError [1:27-1:34]: Label 'test262' does not denote an iteration statement
 > 1 | do {  test262: {  continue test262; } } while (a)
-    |                                   ^ continue statement must be nested within an iteration statement"
+    |                            ^^^^^^^ Label 'test262' does not denote an iteration statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > for (;;)    continue y  1`] = `
-"SyntaxError [1:22-1:23]: Undefined label 'y'
+"SyntaxError [1:21-1:22]: Undefined label 'y'
 > 1 | for (;;)    continue y 
-    |                       ^ Undefined label 'y'"
+    |                      ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){    continue    } 1`] = `
@@ -223,39 +223,39 @@ exports[`Statements - Continue > Declarations - Continue > function f(){   { con
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ do        if (x) continue y   ; while(true);} 1`] = `
-"SyntaxError [1:44-1:45]: Undefined label 'y'
+"SyntaxError [1:40-1:41]: Undefined label 'y'
 > 1 | function f(){ do        if (x) continue y   ; while(true);}
-    |                                             ^ Undefined label 'y'"
+    |                                         ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ do        if (x) continue y   ; while(true);} 2`] = `
-"SyntaxError [1:44-1:45]: Undefined label 'y'
+"SyntaxError [1:40-1:41]: Undefined label 'y'
 > 1 | function f(){ do        if (x) continue y   ; while(true);}
-    |                                             ^ Undefined label 'y'"
+    |                                         ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ for (;;)       if (x) continue y   } 1`] = `
-"SyntaxError [1:49-1:50]: Undefined label 'y'
+"SyntaxError [1:45-1:46]: Undefined label 'y'
 > 1 | function f(){ for (;;)       if (x) continue y   }
-    |                                                  ^ Undefined label 'y'"
+    |                                              ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ for (;;)       if (x) continue y   }} 1`] = `
-"SyntaxError [1:49-1:50]: Undefined label 'y'
+"SyntaxError [1:45-1:46]: Undefined label 'y'
 > 1 | function f(){ for (;;)       if (x) continue y   }}
-    |                                                  ^ Undefined label 'y'"
+    |                                              ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ while (true)       if (x) continue y   } 1`] = `
-"SyntaxError [1:53-1:54]: Undefined label 'y'
+"SyntaxError [1:49-1:50]: Undefined label 'y'
 > 1 | function f(){ while (true)       if (x) continue y   }
-    |                                                      ^ Undefined label 'y'"
+    |                                                  ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){ while (true)       if (x) continue y   }} 1`] = `
-"SyntaxError [1:53-1:54]: Undefined label 'y'
+"SyntaxError [1:49-1:50]: Undefined label 'y'
 > 1 | function f(){ while (true)       if (x) continue y   }}
-    |                                                      ^ Undefined label 'y'"
+    |                                                  ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > if (x) continue y 1`] = `
@@ -275,11 +275,11 @@ exports[`Statements - Continue > Declarations - Continue > label: {
     continue label;
   }
 } 1`] = `
-"SyntaxError [3:18-3:19]: continue statement must be nested within an iteration statement
+"SyntaxError [3:13-3:18]: Label 'label' does not denote an iteration statement
   1 | label: {
   2 |   for ( ;; ) {
 > 3 |     continue label;
-    |                   ^ continue statement must be nested within an iteration statement
+    |              ^^^^^ Label 'label' does not denote an iteration statement
   4 |   }
   5 | }"
 `;
@@ -417,15 +417,15 @@ LABEL2 : do {
 `;
 
 exports[`Statements - Continue > Declarations - Continue > while (true)    if (x) continue y   } 1`] = `
-"SyntaxError [1:36-1:37]: Undefined label 'y'
+"SyntaxError [1:32-1:33]: Undefined label 'y'
 > 1 | while (true)    if (x) continue y   }
-    |                                     ^ Undefined label 'y'"
+    |                                 ^ Undefined label 'y'"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > while (true) continue x; 1`] = `
-"SyntaxError [1:23-1:24]: Undefined label 'x'
+"SyntaxError [1:22-1:23]: Undefined label 'x'
 > 1 | while (true) continue x;
-    |                        ^ Undefined label 'x'"
+    |                       ^ Undefined label 'x'"
 `;
 
 exports[`Statements - Continue > Statements - Continue > () => { do        if (x) continue   ; while(true);} 1`] = `

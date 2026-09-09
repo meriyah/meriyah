@@ -391,7 +391,7 @@ export function isValidLabel(parser: Parser, labels: any, name: string, isIterat
   while (labels) {
     if (labels['$' + name]) {
       // A label is declared at most once per chain, so this is its only declaration.
-      if (isIterationStatement && !isIterationLabelSet) parser.report(Errors.InvalidNestedStatement);
+      if (isIterationStatement && !isIterationLabelSet) parser.report(Errors.InvalidNestedStatement, name);
       return 1;
     }
     isIterationLabelSet = labels.loop ? 1 : 0;
