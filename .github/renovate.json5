@@ -13,6 +13,32 @@
       groupName: 'GitHub Actions',
       matchManagers: ['github-actions'],
     },
+    {
+      groupName: 'Vitest',
+      matchPackageNames: ['vitest', '@vitest/*'],
+    },
+    {
+      groupName: 'Acorn',
+      matchPackageNames: ['acorn', 'acorn-jsx'],
+    },
+    {
+      groupName: 'Rollup',
+      matchPackageNames: ['rollup', '@rollup/*'],
+    },
+    {
+      groupName: 'ESLint related dependencies',
+      matchPackageNames: [
+        'eslint',
+        '@eslint/*',
+        '@stylistic/eslint-plugin',
+        'eslint-import-resolver-typescript',
+        'eslint-plugin-import-x',
+        'eslint-plugin-n',
+        'eslint-plugin-simple-import-sort',
+        'eslint-plugin-unicorn',
+        'typescript-eslint',
+      ],
+    },
   ],
   ignoreDeps: ['node'],
 }
