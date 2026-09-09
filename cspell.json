@@ -10,6 +10,7 @@
     "quasis",
     "rescan",
     "Rollup",
+    "vite",
     "Vitest",
     "webcompat",
     "ZWNJ"

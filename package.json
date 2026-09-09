@@ -87,7 +87,7 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^26.1.1",
     "@unicode/unicode-17.0.0": "^2.0.2",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^5.0.0",
     "acorn": "^8.18.0",
     "acorn-jsx": "^5.3.2",
     "cross-env": "^10.1.0",
@@ -112,7 +112,8 @@
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.63.0",
-    "vitest": "^4.1.10"
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0"
   },
   "engines": {
     "node": ">=20.0.0"
