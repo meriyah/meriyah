@@ -8934,9 +8934,11 @@ function parsePropertyDefinition(
 
     if (parser.getToken() === Token.Arguments) parser.report(Errors.StrictEvalArguments);
 
+    // Initializer[+In, ~Yield, ~Await]: a module top-level `await` must not reach the initializer either.
     const modifierFlags =
       Context.InYieldContext |
       Context.InAwaitContext |
+      Context.InGlobal |
       Context.InArgumentList |
       ((state & PropertyKind.Constructor) === 0 ? Context.SuperCall | Context.InConstructor : 0);
 

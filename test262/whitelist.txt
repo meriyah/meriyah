@@ -1,2 +1,1 @@
-staging/sm/fields/await-identifier-module-3.js (default)
-staging/sm/fields/await-identifier-module-3.js (strict mode)
+
