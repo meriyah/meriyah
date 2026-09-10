@@ -3889,11 +3889,15 @@ function parseAwaitExpressionOrIdentifier(
   }
   if (context & Context.InStaticBlock) parser.report(Errors.InvalidAwaitInStaticBlock);
 
+  // An escaped "await" can only be an identifier, never an await expression.
+  const isEscaped = (parser.getToken() & Token.IsEscaped) !== 0;
+
   // Peek next Token first;
   const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope);
 
   // If got an arrow function, or token after "await" is not an expression.
   const isIdentifier =
+    isEscaped ||
     possibleIdentifierOrArrowFunc.type === 'ArrowFunctionExpression' ||
     (parser.getToken() & Token.IsExpressionStart) === 0;
 
@@ -4522,6 +4526,7 @@ function parsePrimaryExpression(
   if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
     switch (parser.getToken()) {
       case Token.AwaitKeyword:
+      case Token.AwaitKeyword | Token.IsEscaped:
         return parseAwaitExpressionOrIdentifier(parser, context, privateScope, inNew, inGroup, start);
       case Token.YieldKeyword:
         return parseYieldExpressionOrIdentifier(parser, context, privateScope, inGroup, canAssign, start);
@@ -6323,7 +6328,7 @@ function parseObjectLiteralOrPattern(
             );
           } else {
             destructible |=
-              (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
+              ((token & Token.Type) === (Token.AwaitKeyword & Token.Type) ? DestructuringKind.Await : 0) |
               (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
             value = parser.cloneIdentifier(key);
           }
@@ -7931,7 +7936,7 @@ function parseAsyncArrowAfterIdent(
   canAssign: 0 | 1,
   start: Location,
 ) {
-  if (parser.getToken() === Token.AwaitKeyword) parser.report(Errors.AwaitInParameter);
+  if ((parser.getToken() & Token.Type) === (Token.AwaitKeyword & Token.Type)) parser.report(Errors.AwaitInParameter);
 
   if (context & (Context.Strict | Context.InYieldContext) && parser.getToken() === Token.YieldKeyword) {
     parser.report(Errors.YieldInParameter);

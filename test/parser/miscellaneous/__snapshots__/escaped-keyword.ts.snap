@@ -306,6 +306,36 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
     |               ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async (a = aw\\u{61}it => {}) => {} 1`] = `
+"SyntaxError [1:11-1:21]: Await expression not allowed in formal parameter
+> 1 | async (a = aw\\u{61}it => {}) => {}
+    |            ^^^^^^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async (a = aw\\u{61}it) => {} 1`] = `
+"SyntaxError [1:11-1:21]: Await expression not allowed in formal parameter
+> 1 | async (a = aw\\u{61}it) => {}
+    |            ^^^^^^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async (a = aw\\u0061it => {}) => {} 1`] = `
+"SyntaxError [1:11-1:21]: Await expression not allowed in formal parameter
+> 1 | async (a = aw\\u0061it => {}) => {}
+    |            ^^^^^^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async (aw\\u{61}it) => {} 1`] = `
+"SyntaxError [1:7-1:17]: Await expression not allowed in formal parameter
+> 1 | async (aw\\u{61}it) => {}
+    |        ^^^^^^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async aw\\u{61}it => {} 1`] = `
+"SyntaxError [1:6-1:16]: Await expression not allowed in formal parameter
+> 1 | async aw\\u{61}it => {}
+    |       ^^^^^^^^^^ Await expression not allowed in formal parameter"
+`;
+
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async() => { void \\u0061wait; }; 1`] = `
 "SyntaxError [1:18-1:28]: Unexpected token: 'escaped keyword'
 > 1 | async() => { void \\u0061wait; };
