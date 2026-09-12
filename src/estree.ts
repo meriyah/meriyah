@@ -18,7 +18,18 @@ export interface Position {
   column: number;
 }
 
-export type Labels = any;
+/**
+ * The label set a statement is parsed with, chained outwards through `$` to the
+ * set of the statement it is nested in.
+ */
+export interface Labels {
+  /** The label set of the enclosing statement. */
+  $?: Labels;
+  /** Marks the label set an iteration statement body is parsed with. */
+  loop?: 1;
+  /** A label declared in this set, keyed by `$` followed by its name. */
+  [label: `$${string}`]: Labels | 1 | undefined;
+}
 
 export type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
 

@@ -1,4 +1,5 @@
 import { Errors } from './errors.ts';
+import { type Labels } from './estree.ts';
 import { nextToken } from './lexer/scan.ts';
 import { type Parser } from './parser/parser.ts';
 import { KeywordDescTable, Token } from './token.ts';
@@ -381,7 +382,12 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
  * @param name Current label
  * @param isIterationStatement
  */
-export function isValidLabel(parser: Parser, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
+export function isValidLabel(
+  parser: Parser,
+  labels: Labels | undefined,
+  name: string,
+  isIterationStatement: 0 | 1,
+): 0 | 1 {
   // A `continue` may only target a label of an iteration statement it is nested in, so
   // the label has to be declared in the label set that iteration statement was parsed
   // with. Label sets chain outwards and the set marked `loop` is an iteration statement
@@ -389,13 +395,13 @@ export function isValidLabel(parser: Parser, labels: any, name: string, isIterat
   let isIterationLabelSet: 0 | 1 = 0;
 
   while (labels) {
-    if (labels['$' + name]) {
+    if (labels[`$${name}`]) {
       // A label is declared at most once per chain, so this is its only declaration.
       if (isIterationStatement && !isIterationLabelSet) parser.report(Errors.InvalidNestedStatement, name);
       return 1;
     }
     isIterationLabelSet = labels.loop ? 1 : 0;
-    labels = labels['$'];
+    labels = labels.$;
   }
 
   return 0;
@@ -409,14 +415,14 @@ export function isValidLabel(parser: Parser, labels: any, name: string, isIterat
  * @param labels Object holding the labels
  * @param name Current label
  */
-export function validateAndDeclareLabel(parser: Parser, labels: any, name: string): void {
-  let set = labels;
+export function validateAndDeclareLabel(parser: Parser, labels: Labels, name: string): void {
+  let set: Labels | undefined = labels;
   while (set) {
-    if (set['$' + name]) parser.report(Errors.LabelRedeclaration, name);
-    set = set['$'];
+    if (set[`$${name}`]) parser.report(Errors.LabelRedeclaration, name);
+    set = set.$;
   }
 
-  labels['$' + name] = 1;
+  labels[`$${name}`] = 1;
 }
 
 /** @internal */
