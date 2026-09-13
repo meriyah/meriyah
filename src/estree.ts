@@ -19,19 +19,16 @@ export interface Position {
 }
 
 /**
- * The label set a statement is parsed with, chained outwards through `$` to the
- * set of the statement it is nested in.
+ * The label set a statement is parsed with, chained outwards through `parent` to
+ * the set of the statement it is nested in.
  */
 export interface Labels {
   /** The label set of the enclosing statement. */
-  $?: Labels;
+  parent?: Labels;
   /** Marks the label set an iteration statement body is parsed with. */
   loop?: 1;
-  /**
-   * A label declared in this set, keyed by `$` followed by its name. Always `1`;
-   * `Labels` is in the union only because the `$` key above matches this pattern.
-   */
-  [label: `$${string}`]: Labels | 1 | undefined;
+  /** The labels declared in this set. Created on the first declaration. */
+  names?: Set<string>;
 }
 
 export type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;

@@ -395,13 +395,13 @@ export function isValidLabel(
   let isIterationLabelSet: 0 | 1 = 0;
 
   while (labels) {
-    if (labels[`$${name}`]) {
+    if (labels.names?.has(name)) {
       // A label is declared at most once per chain, so this is its only declaration.
       if (isIterationStatement && !isIterationLabelSet) parser.report(Errors.InvalidNestedStatement, name);
       return 1;
     }
     isIterationLabelSet = labels.loop ? 1 : 0;
-    labels = labels.$;
+    labels = labels.parent;
   }
 
   return 0;
@@ -418,11 +418,11 @@ export function isValidLabel(
 export function validateAndDeclareLabel(parser: Parser, labels: Labels, name: string): void {
   let set: Labels | undefined = labels;
   while (set) {
-    if (set[`$${name}`]) parser.report(Errors.LabelRedeclaration, name);
-    set = set.$;
+    if (set.names?.has(name)) parser.report(Errors.LabelRedeclaration, name);
+    set = set.parent;
   }
 
-  labels[`$${name}`] = 1;
+  (labels.names ??= new Set()).add(name);
 }
 
 /** @internal */
