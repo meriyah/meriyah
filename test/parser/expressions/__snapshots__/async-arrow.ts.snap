@@ -2429,9 +2429,9 @@ exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > function* g(){ async (a = yield, b = (c) => 1) => 1; } 1`] = `
-"SyntaxError [1:47-1:49]: Yield expression not allowed in formal parameter
+"SyntaxError [1:26-1:31]: Yield expression not allowed in formal parameter
 > 1 | function* g(){ async (a = yield, b = (c) => 1) => 1; }
-    |                                                ^^ Yield expression not allowed in formal parameter"
+    |                           ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > if (x) async 
