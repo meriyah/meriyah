@@ -155,6 +155,8 @@ describe('Miscellaneous - JSX', () => {
     { code: '<:path />', options: { jsx: true } },
     { code: '<path></svg:path>', options: { jsx: true } },
     { code: '<a:b></c:d>', options: { jsx: true } },
+    { code: '<a:x></b:x>', options: { jsx: true } },
+    { code: '<x:a></x:b>', options: { jsx: true } },
     { code: '<foo.bar></foo.baz>', options: { jsx: true } },
     { code: '<chinese:alladinfoo.bar></foo.baz>', options: { jsx: true } },
     { code: '<foo:bar></foo.baz>', options: { jsx: true } },
