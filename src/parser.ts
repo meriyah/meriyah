@@ -3486,7 +3486,7 @@ function parseAssignmentExpression(
       (!isPattern && token === Token.Assign && ((left as ESTree.Expression).type as string) === 'ArrayExpression') ||
       ((left as ESTree.Expression).type as string) === 'ObjectExpression'
     ) {
-      reinterpretToPattern(parser, left);
+      reinterpretToPattern(parser, left!);
     }
 
     nextToken(parser, context | Context.AllowRegExp);
@@ -6007,7 +6007,7 @@ function parseSpreadOrRestElement(
     if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
       if (destructible & DestructuringKind.CannotDestruct) parser.report(Errors.CantAssignTo);
 
-      reinterpretToPattern(parser, argument);
+      reinterpretToPattern(parser, argument!);
 
       const right = parseExpression(parser, context, privateScope, 1, inGroup, parser.tokenStart);
 

@@ -204,6 +204,18 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b></b>; 1`] = `
     |          ^ Expected corresponding JSX closing tag for b"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b></c:d> 1`] = `
+"SyntaxError [1:10-1:11]: Expected corresponding JSX closing tag for c:d
+> 1 | <a:b></c:d>
+    |           ^ Expected corresponding JSX closing tag for c:d"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:x></b:x> 1`] = `
+"SyntaxError [1:10-1:11]: Expected corresponding JSX closing tag for b:x
+> 1 | <a:x></b:x>
+    |           ^ Expected corresponding JSX closing tag for b:x"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>;</>; 1`] = `
 "SyntaxError [1:6-1:7]: Unexpected token: '>'
 > 1 | <a>;</>;
@@ -451,9 +463,9 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p>{/}</p> 1`] = `
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <path></svg:path> 1`] = `
-"SyntaxError [1:16-1:17]: Expected corresponding JSX closing tag for [object Object]:[object Object]
+"SyntaxError [1:16-1:17]: Expected corresponding JSX closing tag for svg:path
 > 1 | <path></svg:path>
-    |                 ^ Expected corresponding JSX closing tag for [object Object]:[object Object]"
+    |                 ^ Expected corresponding JSX closing tag for svg:path"
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <tag \${"className"}="tag"></tag> 1`] = `
@@ -466,6 +478,12 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <tag className=></ta
 "SyntaxError [1:14-1:16]: Unexpected token: '=>'
 > 1 | <tag className=></tag>
     |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <x:a></x:b> 1`] = `
+"SyntaxError [1:10-1:11]: Expected corresponding JSX closing tag for x:b
+> 1 | <x:a></x:b>
+    |           ^ Expected corresponding JSX closing tag for x:b"
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <xyz. /> 1`] = `
