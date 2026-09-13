@@ -27,7 +27,10 @@ export interface Labels {
   $?: Labels;
   /** Marks the label set an iteration statement body is parsed with. */
   loop?: 1;
-  /** A label declared in this set, keyed by `$` followed by its name. */
+  /**
+   * A label declared in this set, keyed by `$` followed by its name. Always `1`;
+   * `Labels` is in the union only because the `$` key above matches this pattern.
+   */
   [label: `$${string}`]: Labels | 1 | undefined;
 }
 
