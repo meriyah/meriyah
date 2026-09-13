@@ -10,6 +10,8 @@ export default defineConfig({
     include: ['test/**/*.ts'],
     exclude: [
       'test/test-utils.ts',
+      // Type-only test, checked by `npm run lint:types`
+      'test/estree-compat.ts',
       // Skip production test on local by default
       ...(SHOULD_RUN_PRODUCTION_TEST ? [] : ['test/production/production-tests.ts']),
       // Skip conformance test on local by default
