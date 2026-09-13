@@ -345,7 +345,7 @@ export interface ChainExpression extends _Node {
 
 export interface CallExpression extends _Node {
   type: 'CallExpression';
-  callee: any; //Expression | Super;
+  callee: Expression | Super;
   arguments: (Expression | SpreadElement)[];
   optional: boolean;
 }
@@ -368,7 +368,7 @@ export interface ClassBody extends _Node {
 export interface AccessorProperty extends _Node {
   type: 'AccessorProperty';
   key: PrivateIdentifier | Expression;
-  value: any;
+  value: Expression | null;
   decorators?: Decorator[];
   computed: boolean;
   static: boolean;
@@ -377,7 +377,7 @@ export interface AccessorProperty extends _Node {
 export interface PropertyDefinition extends _Node {
   type: 'PropertyDefinition';
   key: PrivateIdentifier | Expression;
-  value: any;
+  value: Expression | null;
   decorators?: Decorator[];
   computed: boolean;
   static: boolean;

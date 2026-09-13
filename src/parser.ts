@@ -7978,7 +7978,7 @@ function parseAsyncArrowOrCallExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScope | undefined,
-  callee: ESTree.Identifier | void,
+  callee: ESTree.Identifier,
   canAssign: 0 | 1,
   kind: BindingKind,
   flags: Flags,
