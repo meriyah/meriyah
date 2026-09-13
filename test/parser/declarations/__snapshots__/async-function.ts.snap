@@ -749,10 +749,10 @@ exports[`Declarations - Async Function > Declarations - Async Function (fail) > 
 exports[`Declarations - Async Function > Declarations - Async Function (fail) > function* wrap() {
 async(a = yield b) => a
 } 1`] = `
-"SyntaxError [2:19-2:21]: Yield expression not allowed in formal parameter
+"SyntaxError [2:10-2:15]: Yield expression not allowed in formal parameter
   1 | function* wrap() {
 > 2 | async(a = yield b) => a
-    |                    ^^ Yield expression not allowed in formal parameter
+    |           ^^^^^ Yield expression not allowed in formal parameter
   3 | }"
 `;
 

@@ -320,6 +320,24 @@ describe('Expressions - Yield', () => {
     });
   }
 
+  // The error is reported at the `yield` token, not at the `=>` or the token after it.
+  for (const { code, column } of [
+    { code: 'function* g() { async (a = yield, b = (c) => 1) => 1; }', column: 27 },
+    { code: 'function* g() { (a = yield) => 1; }', column: 21 },
+    { code: 'function* g() { async (a = 1, b = yield) => 1; }', column: 34 },
+    { code: 'function* g() { (a = (b = yield) => 1) => 1; }', column: 26 },
+    { code: 'function* g() { ([a = yield]) => 1; }', column: 22 },
+    { code: 'function* g(a = yield) {}', column: 16 },
+    { code: 'function* g([a = yield]) {}', column: 17 },
+    { code: 'class C { *g(a = yield) {} }', column: 17 },
+  ]) {
+    it(`${code} (location)`, () => {
+      t.throws(() => parseSource(code), {
+        loc: { start: { line: 1, column }, end: { line: 1, column: column + 5 } },
+      });
+    });
+  }
+
   for (const text of [
     // A generator without a body is valid.
     '',
