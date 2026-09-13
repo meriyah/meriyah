@@ -571,7 +571,7 @@ function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTre
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   while (parser.getToken() !== Token.RightBrace) {
-    body.push(parseStatementListItem(parser, context, scope, privateScope, { $: labels }) as any);
+    body.push(parseStatementListItem(parser, context, scope, privateScope, { parent: labels }) as any);
   }
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
@@ -1057,7 +1057,7 @@ function parseConsequentOrAlternative(
     // Disallow if web compatibility is off
     !parser.options.webcompat ||
     parser.getToken() !== Token.FunctionKeyword
-    ? parseStatement(parser, context, scope, privateScope, { $: labels }, 0)
+    ? parseStatement(parser, context, scope, privateScope, { parent: labels }, 0)
     : parseFunctionDeclaration(
         parser,
         context,
@@ -1119,7 +1119,7 @@ function parseSwitchStatement(
       parser.getToken() !== Token.DefaultKeyword
     ) {
       const statement = parseStatementListItem(parser, context | Context.InSwitch, scope, privateScope, {
-        $: labels,
+        parent: labels,
       });
 
       if (
@@ -1210,7 +1210,7 @@ function parseIterationStatementBody(
     ((context | Context.DisallowIn) ^ Context.DisallowIn) | Context.InIteration,
     scope,
     privateScope,
-    { loop: 1, $: labels },
+    { loop: 1, parent: labels },
     0,
   );
 }
@@ -1386,7 +1386,7 @@ function parseTryStatement(
 
   const firstScope = scope?.createChildScope(ScopeKind.TryStatement);
 
-  const block = parseBlock(parser, context, firstScope, privateScope, { $: labels });
+  const block = parseBlock(parser, context, firstScope, privateScope, { parent: labels });
   const { tokenStart } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, privateScope, labels, tokenStart)
@@ -1397,7 +1397,7 @@ function parseTryStatement(
   if (parser.getToken() === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
     const finalizerScope = scope?.createChildScope(ScopeKind.CatchStatement);
-    const block = parseBlock(parser, context, finalizerScope, privateScope, { $: labels });
+    const block = parseBlock(parser, context, finalizerScope, privateScope, { parent: labels });
     finalizer = block;
   }
 
@@ -1464,7 +1464,7 @@ function parseCatchBlock(
 
   const additionalScope = scope?.createChildScope(ScopeKind.CatchBlock);
 
-  const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels });
+  const body = parseBlock(parser, context, additionalScope, privateScope, { parent: labels });
 
   return parser.finishNode<ESTree.CatchClause>(
     {
