@@ -1758,15 +1758,15 @@ exports[`Expressions - Group > Expressions - Group (fail) > function *f(){ yield
 `;
 
 exports[`Expressions - Group > Expressions - Group (fail) > function *f(x = (yield) = f) {} 1`] = `
-"SyntaxError [1:22-1:23]: Yield expression not allowed in formal parameter
+"SyntaxError [1:17-1:22]: Yield expression not allowed in formal parameter
 > 1 | function *f(x = (yield) = f) {}
-    |                       ^ Yield expression not allowed in formal parameter"
+    |                  ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Group > Expressions - Group (fail) > function *f(x = delete ((yield) = f)) {} 1`] = `
-"SyntaxError [1:30-1:31]: Yield expression not allowed in formal parameter
+"SyntaxError [1:25-1:30]: Yield expression not allowed in formal parameter
 > 1 | function *f(x = delete ((yield) = f)) {}
-    |                               ^ Yield expression not allowed in formal parameter"
+    |                          ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Group > Expressions - Group (fail) > if => {} 1`] = `

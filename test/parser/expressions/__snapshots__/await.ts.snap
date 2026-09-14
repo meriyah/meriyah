@@ -1083,9 +1083,9 @@ exports[`Expressions - Await > Expressions - Await (fail) > function method() { 
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > function* wrap() { async(a = yield b) => a }; 1`] = `
-"SyntaxError [1:38-1:40]: Yield expression not allowed in formal parameter
+"SyntaxError [1:29-1:34]: Yield expression not allowed in formal parameter
 > 1 | function* wrap() { async(a = yield b) => a };
-    |                                       ^^ Yield expression not allowed in formal parameter"
+    |                              ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > let f = () => (y=await foo) => y; 1`] = `

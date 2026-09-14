@@ -3830,10 +3830,15 @@ function parseYieldExpressionOrIdentifier(
   //     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
   //     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
 
-  if (inGroup) parser.destructible |= DestructuringKind.Yield;
+  if (inGroup) {
+    if ((parser.destructible & DestructuringKind.Yield) === 0) {
+      parser.firstYieldLocation ??= { start, end: parser.currentLocation };
+    }
+    parser.destructible |= DestructuringKind.Yield;
+  }
   if (context & Context.InYieldContext) {
     nextToken(parser, context | Context.AllowRegExp);
-    if (context & Context.InArgumentList) parser.report(Errors.YieldInParameter);
+    if (context & Context.InArgumentList) throw new ParseError(start, parser.startPosition, Errors.YieldInParameter);
     if (!canAssign) parser.report(Errors.CantAssignTo);
     if (parser.getToken() === Token.QuestionMark) parser.report(Errors.InvalidTernaryYield);
 
@@ -6955,6 +6960,7 @@ function parseMethodFormals(
   parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
   parser.strictReservedRange = null;
   parser.firstAwaitLocation = null;
+  parser.firstYieldLocation = null;
 
   if (parser.getToken() === Token.RightParen) {
     if (kind & PropertyKind.Setter) {
@@ -7117,6 +7123,8 @@ function parseParenthesizedExpression(
   parser.destructible &= ~(DestructuringKind.Yield | DestructuringKind.Await);
   const previousFirstAwaitLocation = parser.firstAwaitLocation;
   parser.firstAwaitLocation = null;
+  const previousFirstYieldLocation = parser.firstYieldLocation;
+  parser.firstYieldLocation = null;
 
   let expr;
   let expressions: ESTree.Expression[] = [];
@@ -7253,6 +7261,9 @@ function parseParenthesizedExpression(
       if (previousFirstAwaitLocation) {
         parser.firstAwaitLocation = previousFirstAwaitLocation;
       }
+      if (previousFirstYieldLocation) {
+        parser.firstYieldLocation = previousFirstYieldLocation;
+      }
 
       return parser.options.preserveParens
         ? parser.finishNode<ESTree.ParenthesizedExpression>(
@@ -7312,6 +7323,8 @@ function parseParenthesizedExpression(
       parser.report(Errors.AwaitInParameter);
     }
     if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield) {
+      const loc = parser.firstYieldLocation!;
+      if (loc) throw new ParseError(loc.start, loc.end, Errors.YieldInParameter);
       parser.report(Errors.YieldInParameter);
     }
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
@@ -7320,6 +7333,9 @@ function parseParenthesizedExpression(
 
     if (previousFirstAwaitLocation) {
       parser.firstAwaitLocation = previousFirstAwaitLocation;
+    }
+    if (previousFirstYieldLocation) {
+      parser.firstYieldLocation = previousFirstYieldLocation;
     }
 
     return parseParenthesizedArrow(
@@ -7348,6 +7364,9 @@ function parseParenthesizedExpression(
 
   if (previousFirstAwaitLocation) {
     parser.firstAwaitLocation = previousFirstAwaitLocation;
+  }
+  if (previousFirstYieldLocation) {
+    parser.firstYieldLocation = previousFirstYieldLocation;
   }
 
   return parser.options.preserveParens
@@ -7632,6 +7651,7 @@ function parseFormalParametersOrFormalList(
   parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
   parser.strictReservedRange = null;
   parser.firstAwaitLocation = null;
+  parser.firstYieldLocation = null;
 
   const params: ESTree.Parameter[] = [];
 
@@ -7990,6 +8010,8 @@ function parseAsyncArrowOrCallExpression(
 
   const previousFirstAwaitLocation = parser.firstAwaitLocation;
   parser.firstAwaitLocation = null;
+  const previousFirstYieldLocation = parser.firstYieldLocation;
+  parser.firstYieldLocation = null;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -8006,6 +8028,7 @@ function parseAsyncArrowOrCallExpression(
     }
 
     if (previousFirstAwaitLocation) parser.firstAwaitLocation = previousFirstAwaitLocation;
+    if (previousFirstYieldLocation) parser.firstYieldLocation = previousFirstYieldLocation;
 
     return parser.finishNode<ESTree.CallExpression>(
       {
@@ -8127,6 +8150,7 @@ function parseAsyncArrowOrCallExpression(
       }
 
       if (previousFirstAwaitLocation) parser.firstAwaitLocation = previousFirstAwaitLocation;
+      if (previousFirstYieldLocation) parser.firstYieldLocation = previousFirstYieldLocation;
 
       return parser.finishNode<ESTree.CallExpression>(
         {
@@ -8160,8 +8184,11 @@ function parseAsyncArrowOrCallExpression(
       if (loc) throw new ParseError(loc.start, loc.end, Errors.AwaitInParameter);
       parser.report(Errors.AwaitInParameter);
     }
-    if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield)
+    if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield) {
+      const loc = parser.firstYieldLocation!;
+      if (loc) throw new ParseError(loc.start, loc.end, Errors.YieldInParameter);
       parser.report(Errors.YieldInParameter);
+    }
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
 
     return parseParenthesizedArrow(
@@ -8191,6 +8218,7 @@ function parseAsyncArrowOrCallExpression(
   }
 
   if (previousFirstAwaitLocation) parser.firstAwaitLocation = previousFirstAwaitLocation;
+  if (previousFirstYieldLocation) parser.firstYieldLocation = previousFirstYieldLocation;
 
   return parser.finishNode<ESTree.CallExpression>(
     {

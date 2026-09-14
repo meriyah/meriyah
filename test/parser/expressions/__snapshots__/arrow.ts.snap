@@ -1141,33 +1141,33 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > (foo ? bar : baz, a)
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g([x = class extends (a ? null : yield) { }] = [null]) { }); 1`] = `
-"SyntaxError [1:49-1:50]: Yield expression not allowed in formal parameter
+"SyntaxError [1:44-1:49]: Yield expression not allowed in formal parameter
 > 1 | (function *g([x = class extends (a ? null : yield) { }] = [null]) { });
-    |                                                  ^ Yield expression not allowed in formal parameter"
+    |                                             ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(x = class { [y = (yield, 1)]() { } }) { }); 1`] = `
-"SyntaxError [1:36-1:37]: Yield expression not allowed in formal parameter
+"SyntaxError [1:31-1:36]: Yield expression not allowed in formal parameter
 > 1 | (function *g(x = class { [y = (yield, 1)]() { } }) { });
-    |                                     ^ Yield expression not allowed in formal parameter"
+    |                                ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(x = class extends (yield) { }) { }); 1`] = `
-"SyntaxError [1:37-1:38]: Yield expression not allowed in formal parameter
+"SyntaxError [1:32-1:37]: Yield expression not allowed in formal parameter
 > 1 | (function *g(x = class extends (yield) { }) { });
-    |                                      ^ Yield expression not allowed in formal parameter"
+    |                                 ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(z = ( [x=(yield)]) => {}) { }); 1`] = `
-"SyntaxError [1:28-1:29]: Yield expression not allowed in formal parameter
+"SyntaxError [1:23-1:28]: Yield expression not allowed in formal parameter
 > 1 | (function *g(z = ( [x=(yield)]) => {}) { });
-    |                             ^ Yield expression not allowed in formal parameter"
+    |                        ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(z = ( x=yield) => {}) { }); 1`] = `
-"SyntaxError [1:26-1:27]: Yield expression not allowed in formal parameter
+"SyntaxError [1:21-1:26]: Yield expression not allowed in formal parameter
 > 1 | (function *g(z = ( x=yield) => {}) { });
-    |                           ^ Yield expression not allowed in formal parameter"
+    |                      ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > (if) => {} 1`] = `
