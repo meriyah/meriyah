@@ -3897,8 +3897,12 @@ function parseAwaitExpressionOrIdentifier(
   // An escaped "await" can only be an identifier, never an await expression.
   const isEscaped = (parser.getToken() & Token.IsEscaped) !== 0;
 
+  // "await" can only start an await expression where await expressions are allowed. Anywhere else it is a
+  // plain identifier, so a "/" after it is a division operator and not the start of a regular expression.
+  const allowRegExp: 0 | 1 = !isEscaped && context & (Context.InAwaitContext | Context.Module) ? 1 : 0;
+
   // Peek next Token first;
-  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope);
+  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, allowRegExp);
 
   // If got an arrow function, or token after "await" is not an expression.
   const isIdentifier =
@@ -5176,12 +5180,12 @@ function parseArguments(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param allowRegExp Whether the token after the identifier may start a regular expression
  */
-function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
+function parseIdentifier(parser: Parser, context: Context, allowRegExp: 0 | 1 = 0): ESTree.Identifier {
   const { tokenValue, tokenStart } = parser;
 
-  const allowRegex = tokenValue === 'await' && (parser.getToken() & Token.IsEscaped) === 0;
-  nextToken(parser, context | (allowRegex ? Context.AllowRegExp : 0));
+  nextToken(parser, context | (allowRegExp ? Context.AllowRegExp : 0));
 
   return parser.finishNode<ESTree.Identifier>(
     {
@@ -7385,11 +7389,13 @@ function parseParenthesizedExpression(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param allowRegExp Whether the token after the identifier may start a regular expression
  */
 function parseIdentifierOrArrow(
   parser: Parser,
   context: Context,
   privateScope: PrivateScope | undefined,
+  allowRegExp: 0 | 1 = 0,
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
   const { tokenValue, tokenStart, currentLocation } = parser;
 
@@ -7402,7 +7408,7 @@ function parseIdentifierOrArrow(
     hasStrictReserved = 1;
   }
 
-  const expr = parseIdentifier(parser, context);
+  const expr = parseIdentifier(parser, context, allowRegExp);
   parser.assignable = AssignmentTargetKind.Simple;
   if (parser.getToken() === Token.Arrow) {
     const scope = parser.options.lexical

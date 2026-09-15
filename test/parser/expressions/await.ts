@@ -616,6 +616,10 @@ describe('Expressions - Await', () => {
     'async function f(){ async (a = await 1, b = (c) => 1) => 1; }',
     'async ({x} = await bar);',
     { code: '(a = await 1, b = (c) => 1) => 1', options: { sourceType: 'module' } },
+
+    // `await` starts an await expression here, so `/` opens a regular expression that is never closed
+    { code: 'await/x', options: { sourceType: 'module' } },
+    'async function f(){ await/x }',
   ]);
 
   for (const text of [
@@ -836,5 +840,26 @@ describe('Expressions - Await', () => {
     'let o = {*f(await){}}',
     { code: 'foo[await 1]', options: { sourceType: 'module' } },
     { code: 'foo(await bar)', options: { sourceType: 'module' } },
+
+    // `await` is a plain identifier here, so `/` is division
+    { code: 'await/x', options: { ranges: true } },
+    'await \n / x',
+    'await/x/g',
+    'x = await/2/g',
+    'function f(){ await/x }',
+    'function* g(){ await/x }',
+    'let x = await/2',
+    'var await; await/x',
+    'label: await/x',
+    'a.await/2/g',
+    { code: 'x.await/2/g', options: { sourceType: 'module' } },
+    'async function f(){ x.await/2/g }',
+    { code: 'await/x', options: { sourceType: 'commonjs' } },
+    '"use strict"; await/x',
+
+    // `await` starts an await expression here, so `/` opens a regular expression
+    { code: 'y = await/x/g', options: { sourceType: 'module' } },
+    'async function f(){ await/x/g }',
+    'async () => await/x/g',
   ]);
 });
