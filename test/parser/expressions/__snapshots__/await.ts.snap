@@ -560,6 +560,12 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ 
     |       ^ Unexpected token: '}'"
 `;
 
+exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ await/x } 1`] = `
+"SyntaxError [1:25-1:29]: Unterminated regular expression
+> 1 | async function f(){ await/x }
+    |                          ^^^^ Unterminated regular expression"
+`;
+
 exports[`Expressions - Await > Expressions - Await (fail) > async function f(){ let y = x => await x; } 1`] = `
 "SyntaxError [1:39-1:40]: Unexpected token: 'identifier'
 > 1 | async function f(){ let y = x => await x; }
@@ -846,6 +852,12 @@ exports[`Expressions - Await > Expressions - Await (fail) > await.b[c] => async 
 "SyntaxError [1:11-1:13]: Unexpected token: '=>'
 > 1 | await.b[c] => async
     |            ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Await > Expressions - Await (fail) > await/x 1`] = `
+"SyntaxError [1:5-1:7]: Unterminated regular expression
+> 1 | await/x
+    |      ^^ Unterminated regular expression"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > await; 1`] = `
@@ -1338,6 +1350,38 @@ exports[`Expressions - Await > Expressions - Await (fail) > x = { async f(await)
     |               ^^^^^ cannot use "await" as identifier inside an async function"
 `;
 
+exports[`Expressions - Await > Expressions - Await (pass) > "use strict"; await/x 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "left": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Await > Expressions - Await (pass) > (async function f(){ await 
  x; }) 1`] = `
 {
@@ -1651,6 +1695,77 @@ exports[`Expressions - Await > Expressions - Await (pass) > (function call(foo=a
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > a.await/2/g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "computed": false,
+            "object": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "optional": false,
+            "property": {
+              "name": "await",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "/",
+          "right": {
+            "type": "Literal",
+            "value": 2,
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "g",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > async () => await/x/g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "argument": {
+            "regex": {
+              "flags": "g",
+              "pattern": "x",
+            },
+            "type": "Literal",
+            "value": /x/g,
+          },
+          "type": "AwaitExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
@@ -2157,6 +2272,44 @@ exports[`Expressions - Await > Expressions - Await (pass) > async function f(){ 
 }
 `;
 
+exports[`Expressions - Await > Expressions - Await (pass) > async function f(){ await/x/g } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "regex": {
+                  "flags": "g",
+                  "pattern": "x",
+                },
+                "type": "Literal",
+                "value": /x/g,
+              },
+              "type": "AwaitExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Await > Expressions - Await (pass) > async function f(){ if (await 
  x) {} } 1`] = `
 {
@@ -2237,6 +2390,62 @@ exports[`Expressions - Await > Expressions - Await (pass) > async function f(){ 
 }
 `;
 
+exports[`Expressions - Await > Expressions - Await (pass) > async function f(){ x.await/2/g } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "left": {
+                  "computed": false,
+                  "object": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "optional": false,
+                  "property": {
+                    "name": "await",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "operator": "/",
+                "right": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "/",
+              "right": {
+                "name": "g",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Await > Expressions - Await (pass) > async function foo(){} 1`] = `
 {
   "body": [
@@ -2253,6 +2462,31 @@ exports[`Expressions - Await > Expressions - Await (pass) > async function foo()
       },
       "params": [],
       "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > await 
+ / x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
     },
   ],
   "sourceType": "script",
@@ -2363,6 +2597,116 @@ exports[`Expressions - Await > Expressions - Await (pass) > await() 1`] = `
         },
         "optional": false,
         "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > await/x 1`] = `
+{
+  "body": [
+    {
+      "end": 7,
+      "expression": {
+        "end": 7,
+        "left": {
+          "end": 5,
+          "name": "await",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "range": [
+          0,
+          7,
+        ],
+        "right": {
+          "end": 7,
+          "name": "x",
+          "range": [
+            6,
+            7,
+          ],
+          "start": 6,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        7,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 7,
+  "range": [
+    0,
+    7,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > await/x 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > await/x/g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "operator": "/",
+          "right": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "g",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
       },
       "type": "ExpressionStatement",
     },
@@ -3106,6 +3450,45 @@ exports[`Expressions - Await > Expressions - Await (pass) > function *f(await){}
 }
 `;
 
+exports[`Expressions - Await > Expressions - Await (pass) > function f(){ await/x } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "await",
+                "type": "Identifier",
+              },
+              "operator": "/",
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Await > Expressions - Await (pass) > function f(foo = await){} 1`] = `
 {
   "body": [
@@ -3169,6 +3552,76 @@ exports[`Expressions - Await > Expressions - Await (pass) > function f(x = await
         },
       ],
       "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > function* g(){ await/x } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "await",
+                "type": "Identifier",
+              },
+              "operator": "/",
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > label: await/x 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "left": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "operator": "/",
+          "right": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "ExpressionStatement",
+      },
+      "label": {
+        "name": "label",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
     },
   ],
   "sourceType": "script",
@@ -3381,6 +3834,40 @@ exports[`Expressions - Await > Expressions - Await (pass) > let o = {f(foo = awa
               },
             ],
             "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > let x = await/2 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "left": {
+              "name": "await",
+              "type": "Identifier",
+            },
+            "operator": "/",
+            "right": {
+              "type": "Literal",
+              "value": 2,
+            },
+            "type": "BinaryExpression",
           },
           "type": "VariableDeclarator",
         },
@@ -3770,6 +4257,84 @@ exports[`Expressions - Await > Expressions - Await (pass) > o = {f(await){}} 1`]
 }
 `;
 
+exports[`Expressions - Await > Expressions - Await (pass) > var await; await/x 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "left": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > x = await/2/g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "left": {
+              "name": "await",
+              "type": "Identifier",
+            },
+            "operator": "/",
+            "right": {
+              "type": "Literal",
+              "value": 2,
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "/",
+          "right": {
+            "name": "g",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Await > Expressions - Await (pass) > x = function f(foo = await){} 1`] = `
 {
   "body": [
@@ -3816,6 +4381,47 @@ exports[`Expressions - Await > Expressions - Await (pass) > x = function f(foo =
 }
 `;
 
+exports[`Expressions - Await > Expressions - Await (pass) > x.await/2/g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "computed": false,
+            "object": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "optional": false,
+            "property": {
+              "name": "await",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "/",
+          "right": {
+            "type": "Literal",
+            "value": 2,
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "g",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Await > Expressions - Await (pass) > y = async x => await x 1`] = `
 {
   "body": [
@@ -3851,6 +4457,37 @@ exports[`Expressions - Await > Expressions - Await (pass) > y = async x => await
     },
   ],
   "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Await > Expressions - Await (pass) > y = await/x/g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "regex": {
+              "flags": "g",
+              "pattern": "x",
+            },
+            "type": "Literal",
+            "value": /x/g,
+          },
+          "type": "AwaitExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
   "type": "Program",
 }
 `;

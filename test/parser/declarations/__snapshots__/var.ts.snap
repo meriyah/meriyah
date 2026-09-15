@@ -437,9 +437,9 @@ exports[`Declarations - Var > Declarations - Var (fail) > var { foo: true / fals
 `;
 
 exports[`Declarations - Var > Declarations - Var (fail) > var { key: await /foo/g } = {} 1`] = `
-"SyntaxError [1:17-1:23]: Expected '}'
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
 > 1 | var { key: await /foo/g } = {}
-    |                  ^^^^^^ Expected '}'"
+    |                           ^ The binding declaration is not destructible"
 `;
 
 exports[`Declarations - Var > Declarations - Var (fail) > var { key: bar + x } = {} 1`] = `

@@ -2173,15 +2173,15 @@ exports[`Expressions - Object > Expressions - Object (fail) > obj = {x = 0} 1`] 
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await /fail/g = x} = x 1`] = `
-"SyntaxError [1:18-1:25]: Expected '}'
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
 > 1 | s = {"foo": await /fail/g = x} = x
-    |                   ^^^^^^^ Expected '}'"
+    |                           ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await /fail/g = x} = x 2`] = `
-"SyntaxError [1:18-1:25]: Expected '}'
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
 > 1 | s = {"foo": await /fail/g = x} = x
-    |                   ^^^^^^^ Expected '}'"
+    |                           ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await = x} = x 1`] = `
