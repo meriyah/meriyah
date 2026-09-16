@@ -625,6 +625,7 @@ describe('Declarations - Var', () => {
       };
     `,
     'var {a: [b]} = c',
+    'var 𫠞_ = 12;',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
@@ -742,7 +743,8 @@ describe('Declarations - Var', () => {
     'var [((((a)))), b] = [];',
     'var [[(a)], ((((((([b])))))))] = [[],[]];',
     'var a; [([a])] = [[]];"); }',
-    'var 𫠞_ = 12;}',
+    // https://github.com/babel/babel/pull/18237#issuecomment-5639443716
+    'var 𯿾_ = 12;',
     'var _𖫵 = 11;',
     'var a, b; [([a]), (((([b]))))] = [[], []];',
     'var a, b; [({a}), (((({b}))))] = [{}, {}];',
