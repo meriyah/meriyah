@@ -772,10 +772,10 @@ exports[`Declarations - Var > Declarations - Var (fail) > var x>>1; 1`] = `
     |      ^^ Unexpected token: '>>'"
 `;
 
-exports[`Declarations - Var > Declarations - Var (fail) > var 𫠞_ = 12;} 1`] = `
-"SyntaxError [1:4-1:4]: Illegal character '𫠞'
-> 1 | var 𫠞_ = 12;}
-    |     ^ Illegal character '𫠞'"
+exports[`Declarations - Var > Declarations - Var (fail) > var 𯿾_ = 12; 1`] = `
+"SyntaxError [1:4-1:4]: Illegal character '𯿾'
+> 1 | var 𯿾_ = 12;
+    |     ^ Illegal character '𯿾'"
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > "use strict"; let x = 0; { let x = 6; } 1`] = `
