@@ -533,7 +533,7 @@ function finishExpressionOrLabelledStatement(
     0,
     0,
     tokenStart,
-    expression as ESTree.ArgumentExpression,
+    expression as ESTree.Expression,
   );
 
   if (parser.getToken() === Token.Comma) {
@@ -874,7 +874,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
    *   2. LeftHandSideExpression = AssignmentExpression
    *
    */
-  expr = parseAssignmentExpression(parser, context, privateScope, 0, 0, start, expr as ESTree.ArgumentExpression);
+  expr = parseAssignmentExpression(parser, context, privateScope, 0, 0, start, expr as ESTree.Expression);
 
   parser.assignable = AssignmentTargetKind.Simple;
 
@@ -912,7 +912,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
 function parseDirective(
   parser: Parser,
   context: Context,
-  expression: ESTree.ArgumentExpression | ESTree.SequenceExpression | ESTree.Expression,
+  expression: ESTree.SequenceExpression | ESTree.Expression,
   token: Token,
   start: Location,
 ): ESTree.ExpressionStatement {
@@ -1673,15 +1673,7 @@ function parseLetIdentOrVarDeclarationStatement(
      *   2. LeftHandSideExpression = AssignmentExpression
      *
      */
-    expr = parseAssignmentExpression(
-      parser,
-      context,
-      privateScope,
-      0,
-      0,
-      tokenStart,
-      expr as ESTree.ArgumentExpression,
-    );
+    expr = parseAssignmentExpression(parser, context, privateScope, 0, 0, tokenStart, expr as ESTree.Expression);
   }
 
   /** Sequence expression
@@ -3463,8 +3455,8 @@ function parseAssignmentExpression(
   inGroup: 0 | 1,
   isPattern: 0 | 1,
   start: Location,
-  left: ESTree.ArgumentExpression | ESTree.Expression | null,
-): ESTree.ArgumentExpression | ESTree.Expression {
+  left: ESTree.Expression | null,
+): ESTree.Expression {
   /**
    * AssignmentExpression ::
    *   ConditionalExpression
@@ -3640,8 +3632,8 @@ function parseBinaryExpression(
   start: Location,
   minPrecedence: number,
   operator: Token,
-  left: ESTree.ArgumentExpression | ESTree.Expression,
-): ESTree.ArgumentExpression | ESTree.Expression {
+  left: ESTree.Expression,
+): ESTree.Expression {
   const bit = -((context & Context.DisallowIn) > 0) & Token.InKeyword;
   let t: Token;
   let precedence: number;
@@ -5933,10 +5925,11 @@ function parseSpreadOrRestElement(
   } else if (token === closingToken) {
     parser.report(Errors.RestMissingArg);
   } else if (token & Token.IsPatternStart) {
-    argument =
+    argument = (
       parser.getToken() === Token.LeftBrace
         ? parseObjectLiteralOrPattern(parser, context, scope, privateScope, 1, inGroup, isPattern, kind, origin)
-        : parseArrayExpressionOrPattern(parser, context, scope, privateScope, 1, inGroup, isPattern, kind, origin);
+        : parseArrayExpressionOrPattern(parser, context, scope, privateScope, 1, inGroup, isPattern, kind, origin)
+    ) as ESTree.Expression;
 
     token = parser.getToken();
 
@@ -6426,7 +6419,15 @@ function parseObjectLiteralOrPattern(
             } else if (parser.destructible & DestructuringKind.HasToDestruct) {
               parser.report(Errors.InvalidDestructuringTarget);
             } else {
-              value = parseMemberOrUpdateExpression(parser, context, privateScope, value, inGroup, 0, tokenStart);
+              value = parseMemberOrUpdateExpression(
+                parser,
+                context,
+                privateScope,
+                value as ESTree.Expression,
+                inGroup,
+                0,
+                tokenStart,
+              );
 
               destructible = parser.assignable & AssignmentTargetKind.Invalid ? DestructuringKind.CannotDestruct : 0;
 
@@ -6631,7 +6632,15 @@ function parseObjectLiteralOrPattern(
                 destructible |= DestructuringKind.CannotDestruct;
               }
             } else if ((parser.destructible & DestructuringKind.HasToDestruct) !== DestructuringKind.HasToDestruct) {
-              value = parseMemberOrUpdateExpression(parser, context, privateScope, value, inGroup, 0, tokenStart);
+              value = parseMemberOrUpdateExpression(
+                parser,
+                context,
+                privateScope,
+                value as ESTree.Expression,
+                inGroup,
+                0,
+                tokenStart,
+              );
               destructible = parser.assignable & AssignmentTargetKind.Invalid ? DestructuringKind.CannotDestruct : 0;
 
               if ((parser.getToken() & Token.IsAssignOp) === Token.IsAssignOp) {
@@ -6778,7 +6787,15 @@ function parseObjectLiteralOrPattern(
             } else if (destructible & DestructuringKind.HasToDestruct) {
               parser.report(Errors.InvalidShorthandPropInit);
             } else {
-              value = parseMemberOrUpdateExpression(parser, context, privateScope, value, inGroup, 0, tokenStart);
+              value = parseMemberOrUpdateExpression(
+                parser,
+                context,
+                privateScope,
+                value as ESTree.Expression,
+                inGroup,
+                0,
+                tokenStart,
+              );
 
               destructible =
                 parser.assignable & AssignmentTargetKind.Invalid ? destructible | DestructuringKind.CannotDestruct : 0;
@@ -7131,7 +7148,7 @@ function parseParenthesizedExpression(
   parser.firstYieldLocation = null;
 
   let expr;
-  let expressions: ESTree.Expression[] = [];
+  let expressions: (ESTree.Expression | ESTree.SpreadElement | ESTree.RestElement)[] = [];
   let isSequence: 0 | 1 = 0;
   let isNonSimpleParameterList: 0 | 1 = 0;
   let hasStrictReserved: 0 | 1 = 0;
@@ -7206,7 +7223,15 @@ function parseParenthesizedExpression(
       if (parser.getToken() !== Token.RightParen && parser.getToken() !== Token.Comma) {
         if (destructible & DestructuringKind.HasToDestruct) parser.report(Errors.InvalidPatternTail);
 
-        expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, 0, 0, tokenStart);
+        expr = parseMemberOrUpdateExpression(
+          parser,
+          context,
+          privateScope,
+          expr as ESTree.Expression,
+          0,
+          0,
+          tokenStart,
+        );
 
         destructible |= DestructuringKind.CannotDestruct;
 
@@ -7252,7 +7277,7 @@ function parseParenthesizedExpression(
         expr = parser.finishNode<ESTree.SequenceExpression>(
           {
             type: 'SequenceExpression',
-            expressions,
+            expressions: expressions as ESTree.Expression[],
           },
           tokenAfterParenthesesStart,
         );
@@ -7303,7 +7328,7 @@ function parseParenthesizedExpression(
     expr = parser.finishNode<ESTree.SequenceExpression>(
       {
         type: 'SequenceExpression',
-        expressions,
+        expressions: expressions as ESTree.Expression[],
       },
       tokenAfterParenthesesStart,
     );
@@ -8048,7 +8073,7 @@ function parseAsyncArrowOrCallExpression(
   }
 
   let destructible = DestructuringKind.None;
-  let expr: ESTree.Expression;
+  let expr: ESTree.Expression | ESTree.SpreadElement | ESTree.RestElement;
   let isNonSimpleParameterList: 0 | 1 = 0;
 
   parser.destructible =
@@ -8102,10 +8127,11 @@ function parseAsyncArrowOrCallExpression(
         }
       }
     } else if (token & Token.IsPatternStart) {
-      expr =
+      expr = (
         token === Token.LeftBrace
           ? parseObjectLiteralOrPattern(parser, context, scope, privateScope, 0, 1, 0, kind)
-          : parseArrayExpressionOrPattern(parser, context, scope, privateScope, 0, 1, 0, kind);
+          : parseArrayExpressionOrPattern(parser, context, scope, privateScope, 0, 1, 0, kind)
+      ) as ESTree.Expression;
 
       destructible |= parser.destructible;
 

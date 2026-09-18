@@ -159,17 +159,9 @@ export type Expression =
   | ConditionalExpression
   | MetaProperty
   | ChainExpression
-  | JSXClosingElement
-  | JSXClosingFragment
-  | JSXExpressionContainer
-  | JSXOpeningElement
-  | JSXOpeningFragment
-  | JSXSpreadChild
   | LogicalExpression
   | NewExpression
-  | RestElement
   | SequenceExpression
-  | SpreadElement
   | AwaitExpression
   | LeftHandSideExpression
   | UnaryExpression
@@ -186,7 +178,6 @@ export type LeftHandSideExpression =
   | ChainExpression
   | ImportExpression
   | ClassExpression
-  | ClassDeclaration
   | FunctionExpression
   | LiteralExpression
   | MemberExpression
@@ -197,19 +188,15 @@ export type ObjectLiteralElementLike = MethodDefinition | Property | RestElement
 export type Parameter = AssignmentPattern | RestElement | ArrayPattern | ObjectPattern | Identifier;
 export type PrimaryExpression =
   | ArrayExpression
-  | ArrayPattern
   | ClassExpression
   | FunctionExpression
   | Identifier
   | JSXElement
   | JSXFragment
-  | JSXOpeningElement
   | Literal
   | LiteralExpression
   | MetaProperty
   | ObjectExpression
-  | ObjectPattern
-  | Super
   | TemplateLiteral
   | ThisExpression;
 export type PrimaryExpressionExtended =
@@ -691,7 +678,7 @@ export interface MethodDefinition extends _Node {
 export interface NewExpression extends _Node {
   type: 'NewExpression';
   callee: LeftHandSideExpression;
-  arguments: Expression[];
+  arguments: (Expression | SpreadElement)[];
 }
 
 export interface ObjectExpression extends _Node {
