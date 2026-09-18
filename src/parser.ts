@@ -3677,7 +3677,7 @@ function parseBinaryExpression(
           ),
         ),
         operator: KeywordDescTable[t & Token.Type],
-      },
+      } as ESTree.BinaryExpression | ESTree.LogicalExpression,
       start,
     );
   }
@@ -5996,7 +5996,7 @@ function parseSpreadOrRestElement(
     return parser.finishNode(
       {
         type: isPattern ? 'RestElement' : 'SpreadElement',
-        argument: argument as ESTree.SpreadArgument,
+        argument: argument as ESTree.Expression,
       } as any,
       start,
     );
@@ -6017,12 +6017,12 @@ function parseSpreadOrRestElement(
         isPattern
           ? {
               type: 'AssignmentPattern',
-              left: argument as ESTree.SpreadArgument,
+              left: argument as ESTree.Expression,
               right,
             }
           : ({
               type: 'AssignmentExpression',
-              left: argument as ESTree.SpreadArgument,
+              left: argument as ESTree.Expression,
               operator: '=',
               right,
             } as any),
@@ -6041,7 +6041,7 @@ function parseSpreadOrRestElement(
   return parser.finishNode(
     {
       type: isPattern ? 'RestElement' : 'SpreadElement',
-      argument: argument as ESTree.SpreadArgument,
+      argument: argument as ESTree.Expression,
     } as any,
     start,
   );
@@ -6931,7 +6931,7 @@ function parseObjectLiteralOrPattern(
     {
       type: isPattern ? 'ObjectPattern' : 'ObjectExpression',
       properties,
-    },
+    } as ESTree.ObjectExpression | ESTree.ObjectPattern,
     start,
   );
 
@@ -9629,7 +9629,7 @@ function parseJsxAttribute(
 function parseJSXNamespacedName(
   parser: Parser,
   context: Context,
-  namespace: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
+  namespace: ESTree.JSXIdentifier,
   start: Location,
 ): ESTree.JSXNamespacedName {
   consume(parser, context, Token.Colon);
