@@ -287,7 +287,7 @@ export type AssignmentOperator =
 export interface AssignmentExpression extends _Node {
   type: 'AssignmentExpression';
   operator: AssignmentOperator;
-  left: Pattern | MemberExpression;
+  left: Pattern | MemberExpression | CallExpression;
   right: Expression;
 }
 
@@ -472,14 +472,14 @@ export interface ExpressionStatement extends _Node {
 
 export interface ForInStatement extends _Node {
   type: 'ForInStatement';
-  left: VariableDeclaration | Pattern;
+  left: VariableDeclaration | Pattern | CallExpression;
   right: Expression;
   body: Statement;
 }
 
 export interface ForOfStatement extends _Node {
   type: 'ForOfStatement';
-  left: VariableDeclaration | Pattern;
+  left: VariableDeclaration | Pattern | CallExpression;
   right: Expression;
   body: Statement;
   await: boolean;
@@ -749,7 +749,7 @@ export interface AssignmentProperty extends Property {
 
 export interface RestElement extends _Node {
   type: 'RestElement';
-  argument: Pattern;
+  argument: Pattern | CallExpression;
   value?: AssignmentPattern;
 }
 
