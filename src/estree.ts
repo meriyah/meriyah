@@ -269,7 +269,7 @@ export interface ArrayExpression extends _Node {
 
 export interface ArrayPattern extends _Node {
   type: 'ArrayPattern';
-  elements: Expression[];
+  elements: (Pattern | null)[];
 }
 
 export interface ArrowFunctionExpression extends _Node {
@@ -281,10 +281,13 @@ export interface ArrowFunctionExpression extends _Node {
   generator: false;
 }
 
+export type AssignmentOperator =
+  '=' | '+=' | '-=' | '*=' | '/=' | '%=' | '**=' | '<<=' | '>>=' | '>>>=' | '|=' | '^=' | '&=' | '||=' | '&&=' | '??=';
+
 export interface AssignmentExpression extends _Node {
   type: 'AssignmentExpression';
-  operator: string;
-  left: Expression;
+  operator: AssignmentOperator;
+  left: Pattern | MemberExpression | CallExpression;
   right: Expression;
 }
 
@@ -299,9 +302,33 @@ export interface AwaitExpression extends _Node {
   argument: Expression;
 }
 
+export type BinaryOperator =
+  | '=='
+  | '!='
+  | '==='
+  | '!=='
+  | '<'
+  | '<='
+  | '>'
+  | '>='
+  | '<<'
+  | '>>'
+  | '>>>'
+  | '+'
+  | '-'
+  | '*'
+  | '/'
+  | '%'
+  | '**'
+  | '|'
+  | '^'
+  | '&'
+  | 'in'
+  | 'instanceof';
+
 export interface BinaryExpression extends _Node {
   type: 'BinaryExpression';
-  operator: string;
+  operator: BinaryOperator;
   left: Expression | PrivateIdentifier;
   right: Expression;
 }
@@ -445,14 +472,14 @@ export interface ExpressionStatement extends _Node {
 
 export interface ForInStatement extends _Node {
   type: 'ForInStatement';
-  left: ForInitializer;
+  left: VariableDeclaration | Pattern | CallExpression;
   right: Expression;
   body: Statement;
 }
 
 export interface ForOfStatement extends _Node {
   type: 'ForOfStatement';
-  left: ForInitializer;
+  left: VariableDeclaration | Pattern | CallExpression;
   right: Expression;
   body: Statement;
   await: boolean;
@@ -518,7 +545,7 @@ export interface ImportSpecifier extends _Node {
 
 export interface JSXNamespacedName extends _Node {
   type: 'JSXNamespacedName';
-  namespace: JSXIdentifier | JSXMemberExpression;
+  namespace: JSXIdentifier;
   name: JSXIdentifier;
 }
 
@@ -570,7 +597,7 @@ export interface JSXIdentifier extends _Node {
 
 export interface JSXMemberExpression extends _Node {
   type: 'JSXMemberExpression';
-  object: JSXTagNameExpression;
+  object: JSXIdentifier | JSXMemberExpression;
   property: JSXIdentifier;
 }
 
@@ -642,9 +669,11 @@ export interface RegExpLiteral extends _LiteralBase {
   };
 }
 
+export type LogicalOperator = '||' | '&&' | '??';
+
 export interface LogicalExpression extends _Node {
   type: 'LogicalExpression';
-  operator: string;
+  operator: LogicalOperator;
   left: Expression;
   right: Expression;
 }
@@ -688,7 +717,7 @@ export interface ObjectExpression extends _Node {
 
 export interface ObjectPattern extends _Node {
   type: 'ObjectPattern';
-  properties: ObjectLiteralElementLike[];
+  properties: (AssignmentProperty | RestElement)[];
 }
 
 export interface Program extends _Node {
@@ -705,16 +734,22 @@ export interface ParenthesizedExpression extends _Node {
 export interface Property extends _Node {
   type: 'Property';
   key: Expression;
-  value: Expression | AssignmentPattern | BindingPattern | Identifier;
+  value: Expression | Pattern;
   computed: boolean;
   method: boolean;
   shorthand: boolean;
   kind: 'init' | 'get' | 'set';
 }
 
+export interface AssignmentProperty extends Property {
+  value: Pattern;
+  kind: 'init';
+  method: boolean;
+}
+
 export interface RestElement extends _Node {
   type: 'RestElement';
-  argument: BindingPattern | Identifier | Expression | PropertyName;
+  argument: Pattern | CallExpression;
   value?: AssignmentPattern;
 }
 
@@ -728,11 +763,9 @@ export interface SequenceExpression extends _Node {
   expressions: Expression[];
 }
 
-export type SpreadArgument = BindingPattern | Identifier | Expression | PropertyName | SpreadElement;
-
 export interface SpreadElement extends _Node {
   type: 'SpreadElement';
-  argument: SpreadArgument;
+  argument: Expression;
 }
 
 export interface Super extends _Node {
@@ -813,7 +846,7 @@ export interface VariableDeclaration extends _Node {
 
 export interface VariableDeclarator extends _Node {
   type: 'VariableDeclarator';
-  id: Expression | BindingPattern | Identifier;
+  id: BindingPattern;
   init: Expression | null;
   definite?: boolean;
 }
