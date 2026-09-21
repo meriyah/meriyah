@@ -58,7 +58,7 @@ export function parseSource(
 
   const scope = parser.createScopeIfLexical();
 
-  let body: ESTree.Statement[];
+  let body: (ESTree.Statement | ESTree.ModuleDeclaration)[];
 
   // https://tc39.es/ecma262/#sec-scripts
   // https://tc39.es/ecma262/#sec-modules
@@ -136,7 +136,11 @@ function parseStatementList(parser: Parser, context: Context, scope: Scope | und
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseModuleItemList(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement[] {
+function parseModuleItemList(
+  parser: Parser,
+  context: Context,
+  scope: Scope | undefined,
+): (ESTree.Statement | ESTree.ModuleDeclaration)[] {
   // ecma262/#prod-Module
   // Module :
   //    ModuleBody?
@@ -147,7 +151,7 @@ function parseModuleItemList(parser: Parser, context: Context, scope: Scope | un
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const statements: ESTree.Statement[] = [];
+  const statements: (ESTree.Statement | ESTree.ModuleDeclaration)[] = [];
 
   while (parser.getToken() === Token.StringLiteral) {
     const { tokenStart } = parser;
@@ -158,7 +162,7 @@ function parseModuleItemList(parser: Parser, context: Context, scope: Scope | un
   }
 
   while (parser.getToken() !== Token.EOF) {
-    statements.push(parseModuleItem(parser, context, scope) as ESTree.Statement);
+    statements.push(parseModuleItem(parser, context, scope));
   }
   return statements;
 }
@@ -173,7 +177,11 @@ function parseModuleItemList(parser: Parser, context: Context, scope: Scope | un
  * @param scope Scope object
  */
 
-function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement {
+function parseModuleItem(
+  parser: Parser,
+  context: Context,
+  scope: Scope | undefined,
+): ESTree.Statement | ESTree.ModuleDeclaration {
   if (parser.getToken() === Token.Decorator) {
     Object.assign(parser.leadingDecorators, {
       start: parser.tokenStart,

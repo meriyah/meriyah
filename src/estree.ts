@@ -184,6 +184,8 @@ export type LeftHandSideExpression =
   | PrimaryExpression
   | TaggedTemplateExpression;
 export type LiteralExpression = Literal | TemplateLiteral;
+export type ModuleDeclaration =
+  ExportAllDeclaration | ExportDefaultDeclaration | ExportNamedDeclaration | ImportDeclaration;
 export type ObjectLiteralElementLike = MethodDefinition | Property | RestElement | SpreadElement;
 export type Parameter = AssignmentPattern | RestElement | ArrayPattern | ObjectPattern | Identifier;
 export type PrimaryExpression =
@@ -227,14 +229,14 @@ export type PropertyName = Identifier | Literal;
 export type Statement =
   | BlockStatement
   | BreakStatement
+  | ClassDeclaration
   | ContinueStatement
   | DebuggerStatement
-  | DeclarationStatement
   | EmptyStatement
   | ExpressionStatement
+  | FunctionDeclaration
   | IfStatement
   | IterationStatement
-  | ImportDeclaration
   | LabeledStatement
   | ReturnStatement
   | SwitchStatement
@@ -722,7 +724,7 @@ export interface ObjectPattern extends _Node {
 
 export interface Program extends _Node {
   type: 'Program';
-  body: Statement[];
+  body: (Statement | ModuleDeclaration)[];
   sourceType: 'module' | 'script';
 }
 
