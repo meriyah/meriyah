@@ -349,9 +349,9 @@ exports[`Declarations - Async Function > Declarations - Async Function (fail) > 
 `;
 
 exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function af(x) { function f(a = await x) { } f(); } af(); 1`] = `
-"SyntaxError [1:38-1:43]: Await expression not allowed in formal parameter
+"SyntaxError [1:44-1:45]: Expected ')'
 > 1 | async function af(x) { function f(a = await x) { } f(); } af();
-    |                                       ^^^^^ Await expression not allowed in formal parameter"
+    |                                             ^ Expected ')'"
 `;
 
 exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function arguments() { "use strict"; } 1`] = `

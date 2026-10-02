@@ -5,6 +5,25 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Expressions - Await', () => {
+  it('allows await identifiers followed by division or templates in ordinary parameters', () => {
+    for (const source of [
+      'function f(a = await / x) {}',
+      'function f(a = await / x / g) {}',
+      'function f(a = await`x`) {}',
+      '(function (a = await / x) {})',
+      '({ f(a = await / x) {} })',
+      'class C { f(a = await / x) {} }',
+    ]) {
+      for (const lexical of [false, true]) {
+        t.doesNotThrow(() => parseSource(source, { lexical }));
+      }
+    }
+    for (const source of ['async function f(a = await / x / g) {}', 'async (a = await / x / g) => {}']) {
+      t.throws(() => parseSource(source), /Await expression not allowed in formal parameter/);
+    }
+    t.throws(() => parseSource('function f(a = await / x / g) {}', { module: true }));
+  });
+
   for (const text of [
     'await;',
     'class await {}',

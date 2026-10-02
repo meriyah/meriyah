@@ -3923,7 +3923,7 @@ function parseAwaitExpressionOrIdentifier(
   }
 
   // "await" is start of await expression.
-  if (context & Context.InArgumentList) {
+  if (context & Context.InArgumentList && context & (Context.InAwaitContext | Context.Module)) {
     throw new ParseError(start, parser.startPosition, Errors.AwaitInParameter);
   }
 
