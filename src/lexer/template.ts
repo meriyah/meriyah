@@ -25,7 +25,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
     } else if (char === Chars.Backslash) {
       char = advanceChar(parser);
       if (char === Chars.CarriageReturn) hasCarriageReturn = true;
-      if (char > 0x7e) {
+      if (char > 0x7e && char !== Chars.LineSeparator && char !== Chars.ParagraphSeparator) {
         ret += String.fromCodePoint(char);
       } else {
         const { index, line, column } = parser;
