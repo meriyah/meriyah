@@ -9,6 +9,8 @@ const backtick = String.fromCharCode(0x60);
 const backslash = String.fromCharCode(0x5c);
 const carriageReturn = String.fromCharCode(0x0d);
 const lineFeed = String.fromCharCode(0x0a);
+const lineSeparator = String.fromCharCode(0x2028);
+const paragraphSeparator = String.fromCharCode(0x2029);
 
 const crNormalizationFixtures = [
   { name: 'lone CR in an untagged template', source: backtick + 'a' + carriageReturn + 'b' + backtick },
@@ -38,6 +40,14 @@ const crNormalizationFixtures = [
   {
     name: 'CRLF line continuation',
     source: backtick + 'a' + backslash + carriageReturn + lineFeed + 'b' + backtick,
+  },
+  {
+    name: 'LS line continuation',
+    source: backtick + 'a' + backslash + lineSeparator + 'b' + backtick,
+  },
+  {
+    name: 'PS line continuation in a tagged template',
+    source: 'tag' + backtick + 'a' + backslash + paragraphSeparator + '${0}' + backtick,
   },
   {
     // meriyah/meriyah#460: <BACKTICK>, <CR>, <BACKSLASH>, <CR>, <BACKTICK>.

@@ -8,12 +8,7 @@ import { visitNode } from '../test-utils.ts';
 
 const { TEST262_FILE } = process.env;
 
-const notAlignedTests = new Set([
-  // tv-line-terminator-sequence.js and String/raw/special-characters.js now align
-  // with Acorn: ECMA-262 TV/TRV maps <CR> and <CR><LF> to <LF>. This fixture also
-  // exercises the existing LS/PS behavior, so that unrelated part remains exempt.
-  'language/expressions/template-literal/tv-line-continuation.js',
-]);
+const notAlignedTests = new Set<string>();
 
 // `runTest` silently skips every fixture Acorn cannot parse, so a `parseAcorn`
 // that stopped working would skip all of them and this test would pass while
