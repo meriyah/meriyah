@@ -18,10 +18,17 @@ describe('Expressions - Await', () => {
         t.doesNotThrow(() => parseSource(source, { lexical }));
       }
     }
-    for (const source of ['async function f(a = await / x / g) {}', 'async (a = await / x / g) => {}']) {
+    for (const source of [
+      'async function f(a = await / x / g) {}',
+      'async (a = await / x / g) => {}',
+      'async function f(a = await 1) {}',
+      'async function f(a = await (x)) {}',
+    ]) {
       t.throws(() => parseSource(source), /Await expression not allowed in formal parameter/);
     }
-    t.throws(() => parseSource('function f(a = await / x / g) {}', { module: true }));
+    for (const source of ['function f(a = await / x / g) {}', 'function f(a = await (x)) {}']) {
+      t.throws(() => parseSource(source, { module: true }), /Await expression not allowed in formal parameter/);
+    }
   });
 
   for (const text of [

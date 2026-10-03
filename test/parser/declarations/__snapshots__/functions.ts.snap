@@ -2781,9 +2781,9 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function f(
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x { foo(x=await y){} }   } 1`] = `
-"SyntaxError [1:37-1:38]: Expected ')'
+"SyntaxError [1:31-1:36]: Await expression not allowed in formal parameter
 > 1 | function f() { class x { foo(x=await y){} }   }
-    |                                      ^ Expected ')'"
+    |                                ^^^^^ Await expression not allowed in formal parameter"
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x extends await { }   } 1`] = `
