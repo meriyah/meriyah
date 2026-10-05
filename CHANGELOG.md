@@ -1,3 +1,20 @@
+# [7.4.0](https://github.com/meriyah/meriyah/compare/v7.3.3...v7.4.0) (2026-10-05)
+
+### Bug Fixes
+
+* **jsx:** compare namespaced tag names by text, and type the common.ts helpers ([#655](https://github.com/meriyah/meriyah/issues/655)) ([b60eb49](https://github.com/meriyah/meriyah/commit/b60eb49d2fc16ba363ffb9f05b190d92f51cc746))
+* **lexer:** treat LS/PS after a backslash in templates as a line continuation ([#665](https://github.com/meriyah/meriyah/issues/665)) ([205f6f0](https://github.com/meriyah/meriyah/commit/205f6f0250f924368ca73488d00b2ac74092b2fb))
+* **parser:** allow await identifiers in ordinary parameter defaults ([#666](https://github.com/meriyah/meriyah/issues/666)) ([02c894b](https://github.com/meriyah/meriyah/commit/02c894bb5d0637f681347a7731862881015a8a58))
+* **parser:** parse `/` after an `await` identifier as division ([#659](https://github.com/meriyah/meriyah/issues/659)) ([7424452](https://github.com/meriyah/meriyah/commit/7424452d09317a01d6766944873bd36bd7eb8125))
+* **parser:** reject `await` in class field initializers ([#651](https://github.com/meriyah/meriyah/issues/651)) ([51dfdcb](https://github.com/meriyah/meriyah/commit/51dfdcb7c3d7c60b7e68581919629fd9250b9549))
+* **parser:** reject escaped `await` in async arrow parameters ([#647](https://github.com/meriyah/meriyah/issues/647)) ([e45a36c](https://github.com/meriyah/meriyah/commit/e45a36c89821e6725701f761699b13cdf17575b1))
+* **parser:** report yield-in-parameter errors at the yield token ([#656](https://github.com/meriyah/meriyah/issues/656)) ([754a550](https://github.com/meriyah/meriyah/commit/754a550c5896b6d1a8dbead95208ae206a15466d))
+* **parser:** restrict continue targets to iteration statement labels ([#646](https://github.com/meriyah/meriyah/issues/646)) ([3df8ade](https://github.com/meriyah/meriyah/commit/3df8adea6fb57e01d81478e4b2453a3b29248fe3))
+
+### Features
+
+* support Unicode 18 ([#660](https://github.com/meriyah/meriyah/issues/660)) ([d666dca](https://github.com/meriyah/meriyah/commit/d666dca10294abbfadd2c0b0a31a3e1501ab946f))
+
 ## [7.3.3](https://github.com/meriyah/meriyah/compare/v7.3.2...v7.3.3) (2026-09-05)
 
 ### Bug Fixes
