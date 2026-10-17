@@ -154,7 +154,7 @@ function App() {
       prParse = null;
     },
     updateResult(content) {
-      resultEditor.setValue(content);
+      resultEditor?.setValue(content);
     },
     mounted() {
       sourceEditor = CodeMirror.fromTextArea(document.getElementById('source'), {
