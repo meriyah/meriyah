@@ -5977,7 +5977,6 @@ function parseSpreadOrRestElement(
 
     argument = parseLeftHandSideExpression(parser, context, privateScope, 1, inGroup, 1);
 
-    const { tokenStart } = parser;
     const token = parser.getToken();
 
     if (token === Token.Assign) {

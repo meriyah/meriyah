@@ -4004,6 +4004,91 @@ exports[`Expressions - Array > Expressions - Array (pass) > [,a,] 1`] = `
 }
 `;
 
+exports[`Expressions - Array > Expressions - Array (pass) > [...!a || b] 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "elements": [
+          {
+            "argument": {
+              "end": 11,
+              "left": {
+                "argument": {
+                  "end": 6,
+                  "name": "a",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "end": 6,
+                "operator": "!",
+                "prefix": true,
+                "range": [
+                  4,
+                  6,
+                ],
+                "start": 4,
+                "type": "UnaryExpression",
+              },
+              "operator": "||",
+              "range": [
+                4,
+                11,
+              ],
+              "right": {
+                "end": 11,
+                "name": "b",
+                "range": [
+                  10,
+                  11,
+                ],
+                "start": 10,
+                "type": "Identifier",
+              },
+              "start": 4,
+              "type": "LogicalExpression",
+            },
+            "end": 11,
+            "range": [
+              1,
+              11,
+            ],
+            "start": 1,
+            "type": "SpreadElement",
+          },
+        ],
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Array > Expressions - Array (pass) > [..."f".toString()] 1`] = `
 {
   "body": [
@@ -4160,6 +4245,175 @@ exports[`Expressions - Array > Expressions - Array (pass) > [..."x".y] 1`] = `
     },
   ],
   "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Array > Expressions - Array (pass) > [...(a) + b] 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "elements": [
+          {
+            "argument": {
+              "end": 11,
+              "left": {
+                "end": 6,
+                "name": "a",
+                "range": [
+                  5,
+                  6,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "range": [
+                4,
+                11,
+              ],
+              "right": {
+                "end": 11,
+                "name": "b",
+                "range": [
+                  10,
+                  11,
+                ],
+                "start": 10,
+                "type": "Identifier",
+              },
+              "start": 4,
+              "type": "BinaryExpression",
+            },
+            "end": 11,
+            "range": [
+              1,
+              11,
+            ],
+            "start": 1,
+            "type": "SpreadElement",
+          },
+        ],
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Array > Expressions - Array (pass) > [...(a).x = b] 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "elements": [
+          {
+            "argument": {
+              "end": 13,
+              "left": {
+                "computed": false,
+                "end": 9,
+                "object": {
+                  "end": 6,
+                  "name": "a",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "optional": false,
+                "property": {
+                  "end": 9,
+                  "name": "x",
+                  "range": [
+                    8,
+                    9,
+                  ],
+                  "start": 8,
+                  "type": "Identifier",
+                },
+                "range": [
+                  4,
+                  9,
+                ],
+                "start": 4,
+                "type": "MemberExpression",
+              },
+              "operator": "=",
+              "range": [
+                4,
+                13,
+              ],
+              "right": {
+                "end": 13,
+                "name": "b",
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+              "start": 4,
+              "type": "AssignmentExpression",
+            },
+            "end": 13,
+            "range": [
+              1,
+              13,
+            ],
+            "start": 1,
+            "type": "SpreadElement",
+          },
+        ],
+        "end": 14,
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
@@ -5365,6 +5619,100 @@ exports[`Expressions - Array > Expressions - Array (pass) > [...{x}=y]; 1`] = `
     },
   ],
   "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Array > Expressions - Array (pass) > [...-a ? b : c] 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "elements": [
+          {
+            "argument": {
+              "alternate": {
+                "end": 14,
+                "name": "c",
+                "range": [
+                  13,
+                  14,
+                ],
+                "start": 13,
+                "type": "Identifier",
+              },
+              "consequent": {
+                "end": 10,
+                "name": "b",
+                "range": [
+                  9,
+                  10,
+                ],
+                "start": 9,
+                "type": "Identifier",
+              },
+              "end": 14,
+              "range": [
+                4,
+                14,
+              ],
+              "start": 4,
+              "test": {
+                "argument": {
+                  "end": 6,
+                  "name": "a",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "end": 6,
+                "operator": "-",
+                "prefix": true,
+                "range": [
+                  4,
+                  6,
+                ],
+                "start": 4,
+                "type": "UnaryExpression",
+              },
+              "type": "ConditionalExpression",
+            },
+            "end": 14,
+            "range": [
+              1,
+              14,
+            ],
+            "start": 1,
+            "type": "SpreadElement",
+          },
+        ],
+        "end": 15,
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
