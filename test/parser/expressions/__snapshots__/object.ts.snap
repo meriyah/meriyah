@@ -5060,6 +5060,91 @@ exports[`Expressions - Object > Expressions - Object (pass) > ({*typeof(){}}); 1
 }
 `;
 
+exports[`Expressions - Object > Expressions - Object (pass) > ({...!a || b}) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "end": 13,
+        "properties": [
+          {
+            "argument": {
+              "end": 12,
+              "left": {
+                "argument": {
+                  "end": 7,
+                  "name": "a",
+                  "range": [
+                    6,
+                    7,
+                  ],
+                  "start": 6,
+                  "type": "Identifier",
+                },
+                "end": 7,
+                "operator": "!",
+                "prefix": true,
+                "range": [
+                  5,
+                  7,
+                ],
+                "start": 5,
+                "type": "UnaryExpression",
+              },
+              "operator": "||",
+              "range": [
+                5,
+                12,
+              ],
+              "right": {
+                "end": 12,
+                "name": "b",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+              "start": 5,
+              "type": "LogicalExpression",
+            },
+            "end": 12,
+            "range": [
+              2,
+              12,
+            ],
+            "start": 2,
+            "type": "SpreadElement",
+          },
+        ],
+        "range": [
+          1,
+          13,
+        ],
+        "start": 1,
+        "type": "ObjectExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Object > Expressions - Object (pass) > ({...(a,b),c}) 1`] = `
 {
   "body": [

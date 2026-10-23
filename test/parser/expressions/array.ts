@@ -950,5 +950,9 @@ describe('Expressions - Array', () => {
     { code: '[...{a = b} = c];', options: { ranges: true } },
     { code: '[a, {b}, c] = obj', options: { ranges: true } },
     { code: '[z++]', options: { ranges: true } },
+    { code: '[...!a || b]', options: { ranges: true } },
+    { code: '[...(a) + b]', options: { ranges: true } },
+    { code: '[...-a ? b : c]', options: { ranges: true } },
+    { code: '[...(a).x = b]', options: { ranges: true } },
   ]);
 });

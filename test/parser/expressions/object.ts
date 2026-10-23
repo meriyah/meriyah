@@ -1399,6 +1399,7 @@ describe('Expressions - Object', () => {
     { code: 'var b = { ["__proto__"]: { abc: 123 }};', options: { ranges: true } },
     { code: '({...x = y, y})', options: { ranges: true } },
     { code: '({...a,});', options: { ranges: true } },
+    { code: '({...!a || b})', options: { ranges: true } },
     { code: '[...a] = []', options: { ranges: true } },
     { code: '({[sourceKey()]: target()[targetKey()]} = source());', options: { ranges: true } },
     { code: 'f(a, ...1 + 1, b)', options: { ranges: true } },
