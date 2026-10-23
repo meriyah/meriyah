@@ -3642,6 +3642,11 @@ function parseBinaryExpression(
   operator: Token,
   left: ESTree.Expression,
 ): ESTree.Expression {
+  if ((parser.flags & Flags.DisallowContinuation) === Flags.DisallowContinuation) {
+    parser.flags = (parser.flags | Flags.DisallowContinuation) ^ Flags.DisallowContinuation;
+    return left;
+  }
+
   const bit = -((context & Context.DisallowIn) > 0) & Token.InKeyword;
   let t: Token;
   let precedence: number;
@@ -3852,6 +3857,17 @@ function parseYieldExpressionOrIdentifier(
       }
     } else if (parser.getToken() === Token.Multiply) {
       parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+    }
+
+    // A YieldExpression is a complete AssignmentExpression, so a member access, call, tagged template or binary
+    // operator can't continue it. Without an operand, such a token on the same line is an error (`yield.x`,
+    // `yield > 1`). After a line break it can only start a new statement through ASI (`yield\n(x)` is
+    // `yield; (x)`), so the caller must stop before it.
+    if (parser.getToken() & (Token.IsMemberOrCallExpression | Token.IsBinaryOp)) {
+      if (argument === null && (parser.flags & Flags.NewLine) === 0) {
+        parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+      }
+      parser.flags |= Flags.DisallowContinuation;
     }
 
     parser.assignable = AssignmentTargetKind.Invalid;
@@ -4180,6 +4196,11 @@ function parseMemberOrUpdateExpression(
   if ((parser.getToken() & Token.IsUpdateOp) === Token.IsUpdateOp && (parser.flags & Flags.NewLine) === 0) {
     expr = parseUpdateExpression(parser, context, expr, start);
   } else if ((parser.getToken() & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
+    if ((parser.flags & Flags.DisallowContinuation) === Flags.DisallowContinuation) {
+      parser.flags = (parser.flags | Flags.DisallowContinuation) ^ Flags.DisallowContinuation;
+      return expr;
+    }
+
     context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
     switch (parser.getToken()) {
