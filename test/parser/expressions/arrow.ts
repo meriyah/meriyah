@@ -669,6 +669,9 @@ describe('Expressions - Arrow', () => {
     { code: 'f(let => 1);', options: { sourceType: 'module' } },
     { code: 'a => let => b;', options: { sourceType: 'module' } },
     '"use strict"; x = let => 1;',
+    { code: 'x => await x;', options: { sourceType: 'module' } },
+    { code: 'f(b => await + x);', options: { sourceType: 'module' } },
+    { code: '`${b => await b}`;', options: { sourceType: 'module' } },
     { code: 'var af = (yield) => 1;', options: { impliedStrict: true } },
     outdent`
       var af = x

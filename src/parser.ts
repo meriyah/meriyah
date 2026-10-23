@@ -7601,8 +7601,9 @@ function parseArrowFunctionExpression(
 
   consume(parser, context | Context.AllowRegExp, Token.Arrow);
 
+  // An arrow body is a function body: top-level `await` (`Context.InGlobal`) does not reach into it
   const modifierFlags =
-    Context.InYieldContext | Context.InAwaitContext | Context.InArgumentList | Context.InStaticBlock;
+    Context.InYieldContext | Context.InAwaitContext | Context.InArgumentList | Context.InStaticBlock | Context.InGlobal;
 
   context = ((context | modifierFlags) ^ modifierFlags) | (isAsync ? Context.InAwaitContext : 0);
 
