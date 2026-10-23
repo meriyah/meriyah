@@ -686,6 +686,12 @@ exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { new 
     |                           ^^^ Invalid left-hand side in assignment"
 `;
 
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { return yield.x; } 1`] = `
+"SyntaxError [1:28-1:29]: Unexpected token: '.'
+> 1 | function *g() { return yield.x; }
+    |                             ^ Unexpected token: '.'"
+`;
+
 exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { yield = {}; } 1`] = `
 "SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
 > 1 | function *g() { yield = {}; }
@@ -914,6 +920,60 @@ exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { (fun
     |                           ^^^^^ Unexpected strict mode reserved word"
 `;
 
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { (yield
+(x)) } 1`] = `
+"SyntaxError [2:0-2:1]: Expected ')'
+  1 | function* g() { (yield
+> 2 | (x)) }
+    | ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { [yield.x] } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: '.'
+> 1 | function* g() { [yield.x] }
+    |                       ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { f(yield == 1) } 1`] = `
+"SyntaxError [1:24-1:26]: Unexpected token: '=='
+> 1 | function* g() { f(yield == 1) }
+    |                         ^^ Unexpected token: '=='"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield
+.x } 1`] = `
+"SyntaxError [2:0-2:1]: Unexpected token: '.'
+  1 | function* g() { yield
+> 2 | .x }
+    | ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield
+> 1 } 1`] = `
+"SyntaxError [2:0-2:1]: Unexpected token: '>'
+  1 | function* g() { yield
+> 2 | > 1 }
+    | ^ Unexpected token: '>'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield ** 2 } 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '**'
+> 1 | function* g() { yield ** 2 }
+    |                       ^^ Unexpected token: '**'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield > 1 } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: '>'
+> 1 | function* g() { yield > 1 }
+    |                       ^ Unexpected token: '>'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield ?? x } 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '??'
+> 1 | function* g() { yield ?? x }
+    |                       ^^ Unexpected token: '??'"
+`;
+
 exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield 3 + yield 4; } 1`] = `
 "SyntaxError [1:32-1:33]: Invalid left-hand side in assignment
 > 1 | function* g() { yield 3 + yield 4; }
@@ -924,6 +984,12 @@ exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yiel
 "SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
 > 1 | function* g() { yield 3 + yield; }
     |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield?.x } 1`] = `
+"SyntaxError [1:21-1:23]: Unexpected token: '?.'
+> 1 | function* g() { yield?.x }
+    |                      ^^ Unexpected token: '?.'"
 `;
 
 exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { (yield) = 10; } 1`] = `
@@ -10970,6 +11036,47 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function* foo(a, b, 
 }
 `;
 
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { (yield).x } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "computed": false,
+              "object": {
+                "argument": null,
+                "delegate": false,
+                "type": "YieldExpression",
+              },
+              "optional": false,
+              "property": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { exprValue = yield * {}; } 1`] = `
 {
   "body": [
@@ -10993,6 +11100,287 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { expr
                 "type": "YieldExpression",
               },
               "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { x = yield
+[y] } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "argument": null,
+                "delegate": false,
+                "type": "YieldExpression",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "elements": [
+                {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yield
+(x) } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "end": 21,
+            "expression": {
+              "argument": null,
+              "delegate": false,
+              "end": 21,
+              "range": [
+                16,
+                21,
+              ],
+              "start": 16,
+              "type": "YieldExpression",
+            },
+            "range": [
+              16,
+              21,
+            ],
+            "start": 16,
+            "type": "ExpressionStatement",
+          },
+          {
+            "end": 25,
+            "expression": {
+              "end": 24,
+              "name": "x",
+              "range": [
+                23,
+                24,
+              ],
+              "start": 23,
+              "type": "Identifier",
+            },
+            "range": [
+              22,
+              25,
+            ],
+            "start": 22,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 27,
+        "range": [
+          14,
+          27,
+        ],
+        "start": 14,
+        "type": "BlockStatement",
+      },
+      "end": 27,
+      "generator": true,
+      "id": {
+        "end": 11,
+        "name": "g",
+        "range": [
+          10,
+          11,
+        ],
+        "start": 10,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yield
++x } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": null,
+              "delegate": false,
+              "type": "YieldExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "argument": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "prefix": true,
+              "type": "UnaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yield
+[x] } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": null,
+              "delegate": false,
+              "type": "YieldExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yield
+\`x\` } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": null,
+              "delegate": false,
+              "type": "YieldExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "expressions": [],
+              "quasis": [
+                {
+                  "tail": true,
+                  "type": "TemplateElement",
+                  "value": {
+                    "cooked": "x",
+                    "raw": "x",
+                  },
+                },
+              ],
+              "type": "TemplateLiteral",
             },
             "type": "ExpressionStatement",
           },
@@ -11224,6 +11612,105 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yiel
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yield x => {}
+(y) } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "expression": false,
+                "generator": false,
+                "params": [
+                  {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrowFunctionExpression",
+              },
+              "delegate": false,
+              "type": "YieldExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (pass) > function* g() { yield yield
+(x) } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "argument": null,
+                "delegate": false,
+                "type": "YieldExpression",
+              },
+              "delegate": false,
+              "type": "YieldExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;

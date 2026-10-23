@@ -135,6 +135,7 @@ export const enum Flags {
   HasOptionalChaining = 1 << 11,
   EightAndNine = 1 << 12,
   DisallowInvoke = 1 << 13,
+  DisallowContinuation = 1 << 14,
 }
 
 export const enum HoistedClassFlags {

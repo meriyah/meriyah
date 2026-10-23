@@ -862,6 +862,18 @@ describe('Expressions - Yield', () => {
     'function* gf() { const yield = 10; }',
     'async (yield) = f',
     // [`(x = delete (async (yield) = f)) => {}`, Context.None]
+
+    // A YieldExpression can't be continued by a member access, call or binary operator
+    'function *g() { return yield.x; }',
+    'function* g() { yield?.x }',
+    'function* g() { yield > 1 }',
+    'function* g() { yield ** 2 }',
+    'function* g() { yield ?? x }',
+    'function* g() { [yield.x] }',
+    'function* g() { f(yield == 1) }',
+    'function* g() { yield\n.x }',
+    'function* g() { yield\n> 1 }',
+    'function* g() { (yield\n(x)) }',
   ]);
 
   pass('Expressions - Yield (pass)', [
@@ -1182,5 +1194,17 @@ describe('Expressions - Yield', () => {
       `,
       options: { ranges: true, raw: true },
     },
+
+    // A YieldExpression can't be continued, so after a line break ASI ends the statement before `(`, `[`, a template
+    // or a binary operator
+    { code: 'function* g() { yield\n(x) }', options: { ranges: true } },
+    'function* g() { yield\n[x] }',
+    'function* g() { yield\n`x` }',
+    'function* g() { yield\n+x }',
+    'function* g() { x = yield\n[y] }',
+    'function* g() { yield yield\n(x) }',
+    'function* g() { yield x => {}\n(y) }',
+    // A parenthesized YieldExpression can be continued
+    'function* g() { (yield).x }',
   ]);
 });
