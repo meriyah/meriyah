@@ -3098,7 +3098,19 @@ function parseExportDeclaration(
           break;
         }
 
-        if ((flags & Flags.NewLine) === 0 && parser.getToken() === Token.LeftParen) {
+        if (parser.getToken() === Token.Arrow) {
+          declaration = parseArrowFromIdentifier(
+            parser,
+            context & ~Context.InGlobal,
+            undefined,
+            'async',
+            declaration,
+            0,
+            1,
+            0,
+            tokenStart,
+          );
+        } else if ((flags & Flags.NewLine) === 0 && parser.getToken() === Token.LeftParen) {
           declaration = parseAsyncArrowOrCallExpression(
             parser,
             context,
