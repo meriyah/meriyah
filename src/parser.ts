@@ -3083,56 +3083,53 @@ function parseExportDeclaration(
 
         const { flags } = parser;
 
-        if ((flags & Flags.NewLine) === 0) {
-          if (parser.getToken() === Token.FunctionKeyword) {
-            declaration = parseFunctionDeclaration(
+        if ((flags & Flags.NewLine) === 0 && parser.getToken() === Token.FunctionKeyword) {
+          declaration = parseFunctionDeclaration(
+            parser,
+            context,
+            scope,
+            undefined,
+            1,
+            HoistedFunctionFlags.Hoisted,
+            1,
+            tokenStart,
+            Origin.TopLevel,
+          );
+          break;
+        }
+
+        if ((flags & Flags.NewLine) === 0 && parser.getToken() === Token.LeftParen) {
+          declaration = parseAsyncArrowOrCallExpression(
+            parser,
+            context,
+            undefined,
+            declaration,
+            1,
+            BindingKind.ArgumentList,
+            flags,
+            tokenStart,
+          );
+          declaration = parseMemberOrUpdateExpression(parser, context, undefined, declaration, 0, 0, tokenStart);
+          declaration = parseAssignmentExpression(parser, context, undefined, 0, 0, tokenStart, declaration as any);
+        } else if ((flags & Flags.NewLine) === 0 && parser.getToken() & Token.IsIdentifier) {
+          if (scope)
+            scope = createArrowHeadParsingScope(
               parser,
               context,
-              scope,
-              undefined,
-              1,
-              HoistedFunctionFlags.Hoisted,
-              1,
-              tokenStart,
-              Origin.TopLevel,
+              parser.tokenValue,
+              parser.tokenStart,
+              parser.currentLocation,
             );
-          } else {
-            if (parser.getToken() === Token.LeftParen) {
-              declaration = parseAsyncArrowOrCallExpression(
-                parser,
-                context,
-                undefined,
-                declaration,
-                1,
-                BindingKind.ArgumentList,
-                flags,
-                tokenStart,
-              );
-              declaration = parseMemberOrUpdateExpression(parser, context, undefined, declaration, 0, 0, tokenStart);
-              declaration = parseAssignmentExpression(parser, context, undefined, 0, 0, tokenStart, declaration as any);
-            } else if (parser.getToken() & Token.IsIdentifier) {
-              if (scope)
-                scope = createArrowHeadParsingScope(
-                  parser,
-                  context,
-                  parser.tokenValue,
-                  parser.tokenStart,
-                  parser.currentLocation,
-                );
 
-              declaration = parseIdentifier(parser, context);
-              declaration = parseArrowFunctionExpression(
-                parser,
-                context,
-                scope,
-                undefined,
-                [declaration],
-                1,
-                tokenStart,
-              );
-            }
-          }
+          declaration = parseIdentifier(parser, context);
+          declaration = parseArrowFunctionExpression(parser, context, scope, undefined, [declaration], 1, tokenStart);
+        } else {
+          // `async` is an identifier reference here, e.g. `export default async + 1;`
+          declaration = parseMemberOrUpdateExpression(parser, context, undefined, declaration, 0, 0, tokenStart);
+          declaration = parseAssignmentExpression(parser, context, undefined, 0, 0, tokenStart, declaration as any);
         }
+
+        matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
         break;
       }
 

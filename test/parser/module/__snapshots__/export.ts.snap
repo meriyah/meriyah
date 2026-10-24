@@ -3057,6 +3057,63 @@ exports[`Module - Export > Module - Export (pass) > export default 3; 1`] = `
 }
 `;
 
+exports[`Module - Export > Module - Export (pass) > export default async
+(x) 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "arguments": [
+          {
+            "end": 23,
+            "name": "x",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "end": 20,
+          "name": "async",
+          "range": [
+            15,
+            20,
+          ],
+          "start": 15,
+          "type": "Identifier",
+        },
+        "end": 24,
+        "optional": false,
+        "range": [
+          15,
+          24,
+        ],
+        "start": 15,
+        "type": "CallExpression",
+      },
+      "end": 24,
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Module - Export > Module - Export (pass) > export default async 
 function f(){} 1`] = `
 {
@@ -3186,6 +3243,60 @@ exports[`Module - Export > Module - Export (pass) > export default async (x) => 
   "range": [
     0,
     29,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async + 1; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "end": 24,
+        "left": {
+          "end": 20,
+          "name": "async",
+          "range": [
+            15,
+            20,
+          ],
+          "start": 15,
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "range": [
+          15,
+          24,
+        ],
+        "right": {
+          "end": 24,
+          "range": [
+            23,
+            24,
+          ],
+          "start": 23,
+          "type": "Literal",
+          "value": 1,
+        },
+        "start": 15,
+        "type": "BinaryExpression",
+      },
+      "end": 25,
+      "range": [
+        0,
+        25,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
   ],
   "sourceType": "module",
   "start": 0,
@@ -3330,6 +3441,64 @@ exports[`Module - Export > Module - Export (pass) > export default async functio
 }
 `;
 
+exports[`Module - Export > Module - Export (pass) > export default async x => x; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": true,
+        "body": {
+          "end": 27,
+          "name": "x",
+          "range": [
+            26,
+            27,
+          ],
+          "start": 26,
+          "type": "Identifier",
+        },
+        "end": 27,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 22,
+            "name": "x",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          15,
+          27,
+        ],
+        "start": 15,
+        "type": "ArrowFunctionExpression",
+      },
+      "end": 28,
+      "range": [
+        0,
+        28,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Module - Export > Module - Export (pass) > export default async x => y 1`] = `
 {
   "body": [
@@ -3381,6 +3550,137 @@ exports[`Module - Export > Module - Export (pass) > export default async x => y 
   "range": [
     0,
     27,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async(1) + 2; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "end": 27,
+        "left": {
+          "arguments": [
+            {
+              "end": 22,
+              "range": [
+                21,
+                22,
+              ],
+              "start": 21,
+              "type": "Literal",
+              "value": 1,
+            },
+          ],
+          "callee": {
+            "end": 20,
+            "name": "async",
+            "range": [
+              15,
+              20,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "end": 23,
+          "optional": false,
+          "range": [
+            15,
+            23,
+          ],
+          "start": 15,
+          "type": "CallExpression",
+        },
+        "operator": "+",
+        "range": [
+          15,
+          27,
+        ],
+        "right": {
+          "end": 27,
+          "range": [
+            26,
+            27,
+          ],
+          "start": 26,
+          "type": "Literal",
+          "value": 2,
+        },
+        "start": 15,
+        "type": "BinaryExpression",
+      },
+      "end": 28,
+      "range": [
+        0,
+        28,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async.x; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "computed": false,
+        "end": 22,
+        "object": {
+          "end": 20,
+          "name": "async",
+          "range": [
+            15,
+            20,
+          ],
+          "start": 15,
+          "type": "Identifier",
+        },
+        "optional": false,
+        "property": {
+          "end": 22,
+          "name": "x",
+          "range": [
+            21,
+            22,
+          ],
+          "start": 21,
+          "type": "Identifier",
+        },
+        "range": [
+          15,
+          22,
+        ],
+        "start": 15,
+        "type": "MemberExpression",
+      },
+      "end": 23,
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
   ],
   "sourceType": "module",
   "start": 0,
