@@ -24,6 +24,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > "use strict"; let =>
     |                   ^^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > "use strict"; x = let => 1; 1`] = `
+"SyntaxError [1:22-1:24]: Can not use \`let\` as variable name in strict mode
+> 1 | "use strict"; x = let => 1;
+    |                       ^^ Can not use \`let\` as variable name in strict mode"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > ("a") => {} 1`] = `
 "SyntaxError [1:6-1:8]: Unexpected token: '=>'
 > 1 | ("a") => {}
@@ -1476,6 +1482,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > a => (b => (a + b) 1
     |                  ^ Expected ')'"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > a => let => b; 1`] = `
+"SyntaxError [1:9-1:11]: Can not use \`let\` as variable name in strict mode
+> 1 | a => let => b;
+    |          ^^ Can not use \`let\` as variable name in strict mode"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > a++ => {} 1`] = `
 "SyntaxError [1:4-1:6]: Unexpected token: '=>'
 > 1 | a++ => {}
@@ -1606,6 +1618,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > f = ([...{ x }, y]) 
 "SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
 > 1 | f = ([...{ x }, y]) => {};
     |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > f(let => 1); 1`] = `
+"SyntaxError [1:6-1:8]: Can not use \`let\` as variable name in strict mode
+> 1 | f(let => 1);
+    |       ^^ Can not use \`let\` as variable name in strict mode"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > foo bar => zoo 1`] = `
@@ -1754,6 +1772,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > var af = arguments =
     |                    ^^ Unexpected eval or arguments in strict mode"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = async let => 1; 1`] = `
+"SyntaxError [1:15-1:18]: Can not use \`let\` as variable name in strict mode
+> 1 | var af = async let => 1;
+    |                ^^^ Can not use \`let\` as variable name in strict mode"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > var af = enum => 1; 1`] = `
 "SyntaxError [1:9-1:13]: Unexpected token: 'enum'
 > 1 | var af = enum => 1;
@@ -1764,6 +1788,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > var af = eval => 1; 
 "SyntaxError [1:14-1:16]: Unexpected eval or arguments in strict mode
 > 1 | var af = eval => 1;
     |               ^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = let => 1; 1`] = `
+"SyntaxError [1:13-1:15]: Can not use \`let\` as variable name in strict mode
+> 1 | var af = let => 1;
+    |              ^^ Can not use \`let\` as variable name in strict mode"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > var af = package => 1; 1`] = `

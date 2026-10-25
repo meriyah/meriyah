@@ -664,6 +664,11 @@ describe('Expressions - Arrow', () => {
     { code: 'var af = eval => 1;', options: { impliedStrict: true } },
     'var af = ...x => x;',
     { code: 'var af = yield => 1;', options: { impliedStrict: true } },
+    { code: 'var af = let => 1;', options: { impliedStrict: true } },
+    { code: 'var af = async let => 1;', options: { impliedStrict: true } },
+    { code: 'f(let => 1);', options: { sourceType: 'module' } },
+    { code: 'a => let => b;', options: { sourceType: 'module' } },
+    '"use strict"; x = let => 1;',
     { code: 'var af = (yield) => 1;', options: { impliedStrict: true } },
     outdent`
       var af = x

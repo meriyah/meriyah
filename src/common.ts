@@ -462,6 +462,11 @@ export function classifyIdentifier(parser: Parser, context: Context, t: Token): 
     parser.flags |= Flags.StrictEvalArguments;
   }
 
+  // `let` is a valid identifier in sloppy mode, but not a binding identifier in strict mode code
+  if (context & Context.Strict && (t & Token.Type) === (Token.LetKeyword & Token.Type)) {
+    parser.report(Errors.InvalidStrictLet);
+  }
+
   if (!isValidIdentifier(context, t)) parser.report(Errors.Unexpected);
 }
 
