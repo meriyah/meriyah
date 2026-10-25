@@ -5,6 +5,51 @@ import { parseSource } from '../../../src/parser.ts';
 import { fail, pass } from '../../test-utils.ts';
 
 describe('Module - Export', () => {
+  it('parses async as a synchronous arrow parameter in default exports', () => {
+    for (const source of [
+      'export default async => async;',
+      'export default async => async + 1;',
+      'export default async => { return async; };',
+      'export default async /* comment */ => 1;',
+    ]) {
+      for (const lexical of [false, true]) {
+        const program = parseSource(source, { sourceType: 'module', ranges: true, lexical });
+        t.equal(program.body.length, 1);
+        const exported = program.body[0];
+        t.ok(exported.type === 'ExportDefaultDeclaration');
+        const { declaration } = exported;
+        t.ok(declaration.type === 'ArrowFunctionExpression');
+        t.equal(declaration.async, false);
+        t.equal(declaration.generator, false);
+        t.equal(declaration.params.length, 1);
+        const parameter = declaration.params[0];
+        t.ok(parameter.type === 'Identifier');
+        t.equal(parameter.name, 'async');
+        t.deepEqual(parameter.range, [15, 20]);
+        t.deepEqual(declaration.range, [15, source.length - 1]);
+      }
+    }
+  });
+
+  it('rejects a line break before the default-export arrow and await in its synchronous body', () => {
+    for (const source of [
+      'export default async\n=> 1;',
+      'export default async /*\n*/ => 1;',
+      'export default async => await value;',
+    ]) {
+      for (const lexical of [false, true]) {
+        t.throws(() => parseSource(source, { sourceType: 'module', lexical }));
+      }
+    }
+  });
+
+  it('registers the async-named default-export arrow parameter in its own scope', () => {
+    t.doesNotThrow(() =>
+      parseSource('const async = 1; export default async => async;', { sourceType: 'module', lexical: true }),
+    );
+    t.throws(() => parseSource('export default async => { let async; };', { sourceType: 'module', lexical: true }));
+  });
+
   // Async await module errors
   for (const text of [
     'export default (async function await() {})',
