@@ -1,3 +1,13 @@
+## [7.4.1](https://github.com/meriyah/meriyah/compare/v7.4.0...v7.4.1) (2026-10-25)
+
+### Bug Fixes
+
+* parse default-exported arrows with async as a parameter ([#672](https://github.com/meriyah/meriyah/issues/672)) ([30e5789](https://github.com/meriyah/meriyah/commit/30e57899a281ef8fa6c1706fbc2478ceaa6ac4c1))
+* **parser:** don't extend `yield` with member access, calls or binary operators ([#669](https://github.com/meriyah/meriyah/issues/669)) ([7bcc6ae](https://github.com/meriyah/meriyah/commit/7bcc6aea2b6f21a9bed70c45804dc9888e7956b3))
+* **parser:** finish `export default async` expressions ([#670](https://github.com/meriyah/meriyah/issues/670)) ([41b306b](https://github.com/meriyah/meriyah/commit/41b306bfdf3dfb2d92272688369c99a0be816dd1))
+* **parser:** reject `let` as an arrow parameter in strict mode code ([#671](https://github.com/meriyah/meriyah/issues/671)) ([bb5eac9](https://github.com/meriyah/meriyah/commit/bb5eac99027a73304ee61e24ac332c465474e4f8))
+* **parser:** start binary and conditional spread arguments at their left operand ([#668](https://github.com/meriyah/meriyah/issues/668)) ([56afd77](https://github.com/meriyah/meriyah/commit/56afd77e926e990136418df06300a49d0f35b1b7))
+
 # [7.4.0](https://github.com/meriyah/meriyah/compare/v7.3.3...v7.4.0) (2026-10-05)
 
 ### Bug Fixes
