@@ -1512,7 +1512,12 @@ function parseStaticBlock(
   scope = scope?.createChildScope();
 
   const ctorContext =
-    Context.SuperCall | Context.InReturnContext | Context.InYieldContext | Context.InSwitch | Context.InIteration;
+    Context.SuperCall |
+    Context.InReturnContext |
+    Context.InYieldContext |
+    Context.InSwitch |
+    Context.InIteration |
+    Context.InMethodOrFunction;
 
   context =
     ((context | ctorContext) ^ ctorContext) |
@@ -6343,6 +6348,16 @@ function parseObjectLiteralOrPattern(
         ) {
           state |= PropertyKind.Shorthand;
 
+          // `{ arguments }` is a reference to `arguments`, so it has the same restriction
+          // in class field initializers and static blocks as a plain identifier
+          if (
+            context & Context.InClass &&
+            !(context & Context.InMethodOrFunction) &&
+            !(context & Context.InArgumentList) &&
+            tokenValue === 'arguments'
+          )
+            parser.report(Errors.InvalidClassFieldArgEval);
+
           if (context & Context.Strict && (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
             destructible |= DestructuringKind.CannotDestruct;
           } else {
@@ -9041,6 +9056,7 @@ function parsePropertyDefinition(
       Context.InAwaitContext |
       Context.InGlobal |
       Context.InArgumentList |
+      Context.InMethodOrFunction |
       ((state & PropertyKind.Constructor) === 0 ? Context.SuperCall | Context.InConstructor : 0);
 
     context =
