@@ -28,6 +28,10 @@ describe('Expressions - Yield', () => {
     'function* foo() {  return ( yield* ( async ( j ) => {}) ) }',
     'function* foo() { switch ( y (yield) - ((a) => {})) { } }',
     'function* foo() { switch ( y (yield) - (async (a) => {})) { } }',
+    'function* g() { static; }',
+    'function* g() { var implements = 1; package = interface + private; }',
+    'function* g() { (protected) => public; }',
+    'async function* g() { async static => 1; }',
     'function* foo() { a(yield* function t(k) {}, ...(c) => {}) }',
     'function* foo() { yield 2; yield 3; yield 4 }',
     'function* foo() { yield 2; if (true) { yield 3 }; yield 4 }',
@@ -635,6 +639,8 @@ describe('Expressions - Yield', () => {
   }
 
   fail('Expressions - Yield (fail)', [
+    'function* g() { "use strict"; static; }',
+    '"use strict"; function* g() { var implements; }',
     '(a = yield 3) {}',
     '(a=yield) {}',
     '(yield 3) {}',
