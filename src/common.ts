@@ -450,7 +450,8 @@ export function isValidIdentifier(context: Context, t: Token): boolean {
     // Module code is also "strict mode code"
     if (context & Context.Module && t === Token.AwaitKeyword) return false;
     if (context & Context.InYieldContext && t === Token.YieldKeyword) return false;
-    return (t & Token.Contextual) === Token.Contextual;
+    // Generator bodies are not strict mode code: only `yield` is reserved there
+    if (context & Context.Strict) return (t & Token.Contextual) === Token.Contextual;
   }
 
   return (t & Token.Contextual) === Token.Contextual || (t & Token.FutureReserved) === Token.FutureReserved;
