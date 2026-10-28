@@ -12,6 +12,7 @@ const invalidPrivateIdentifierPositions = [
   'class C { #field; m() { #field in #field in this; } }',
   'class C { #x; m() { ({ value: #x }); } }',
   'class C { #x; m() { `${#x}`; } }',
+  'class C { #x; m(obj) { [#x in obj] = obj; } }',
 ];
 
 const validPrivateIdentifierInExpressions = [
@@ -23,6 +24,12 @@ const validPrivateIdentifierInExpressions = [
   'class C { #x; m(obj) { (#x in obj); } }',
   'class C { #a; m(b, c) { (#a in b) in c; } }',
   'class C { #x; y = #x in this; }',
+  'class C { #x; m(obj) { [#x in obj]; } }',
+  'class C { #x; m(obj) { [1, #x in obj]; } }',
+  'class C { #x; m(obj) { [...#x in obj]; } }',
+  'class C { #x; m(obj) { ({ a: #x in obj }); } }',
+  'class C { #x; m(obj) { ({ "a": #x in obj, [b]: #x in obj, 1: #x in obj }); } }',
+  'class C { #x; m(obj) { ({ ...#x in obj }); } }',
 ];
 
 const privateIdentifierModes = [

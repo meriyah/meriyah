@@ -196,7 +196,6 @@ describe('Declarations - Let', () => {
       for (let x = "x", i = 0; i < 1; i++) { let y = "y"; }
     `,
     '[1 <= 0]',
-    'let [1 <= 0] = "foo"',
     'let a; [a] = [];',
     'let a, b; [a, b] = [1];',
     'let [a] = [1, 2];',
@@ -383,6 +382,7 @@ describe('Declarations - Let', () => {
   }
 
   fail('Declarations - Let (fail)', [
+    'let [1 <= 0] = "foo"',
     'let [({x: 1})] = [];',
     'let [(x)] = [];',
     'let [({x: 1}) = y] = [];',
