@@ -17,6 +17,8 @@ const lines = stdout
   .map((line) => line.trim().replaceAll('\\', '/'))
   .sort();
 
-await fs.writeFile(WHITELIST_FILE, lines.join('\n') + '\n');
+if (lines.length > 0) {
+  await fs.writeFile(WHITELIST_FILE, lines.join('\n') + '\n');
+}
 
 console.log('✅ test262 whitelist updated.');
