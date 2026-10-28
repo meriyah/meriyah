@@ -5,6 +5,9 @@ import { fail, pass } from '../../test-utils.ts';
 
 describe('ImportCall', () => {
   fail('Import call (fail)', [
+    'import(b) = 1;',
+    'import(b)++;',
+    'import(b) += 1;',
     'function failsParse() { return import.then(); }',
     'import.then(doLoad);',
     'import(',
@@ -146,6 +149,13 @@ describe('ImportCall', () => {
     'let f = () => import("",);',
     'let f = () => import("", "");',
     'if (false) {} else import("", "");',
+    'import(b) + 1;',
+    'import(b) || x;',
+    'import(b) ?? x;',
+    'import(b) ? 1 : 2;',
+    'import(b) instanceof Promise;',
+    'import(b).then(f) || x;',
+    'import(b).x = 1;',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
