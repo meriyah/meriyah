@@ -2974,6 +2974,8 @@ function parseImportCallDeclaration(
 ): ESTree.ExpressionStatement {
   let expr: ESTree.Expression = parseImportExpression(parser, context, privateScope, /* inGroup */ 0, start);
 
+  parser.assignable = AssignmentTargetKind.Invalid;
+
   /** MemberExpression :
    *   1. PrimaryExpression
    *   2. MemberExpression [ AssignmentExpression ]
@@ -2994,6 +2996,13 @@ function parseImportCallDeclaration(
    */
 
   expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, 0, 0, start);
+
+  /** AssignmentExpression :
+   *   1. ConditionalExpression
+   *   2. LeftHandSideExpression = AssignmentExpression
+   */
+
+  expr = parseAssignmentExpression(parser, context, privateScope, 0, 0, start, expr);
 
   if (parser.getToken() === Token.Comma) {
     expr = parseSequenceExpression(parser, context, privateScope, 0, start, expr);

@@ -205,9 +205,9 @@ exports[`ImportCall > Import call (fail) > import( 1`] = `
 `;
 
 exports[`ImportCall > Import call (fail) > import("") **= 2 1`] = `
-"SyntaxError [1:11-1:14]: Unexpected token: '**='
+"SyntaxError [1:11-1:14]: Invalid left-hand side in assignment
 > 1 | import("") **= 2
-    |            ^^^ Unexpected token: '**='"
+    |            ^^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") ++ 1`] = `
@@ -217,45 +217,45 @@ exports[`ImportCall > Import call (fail) > import("") ++ 1`] = `
 `;
 
 exports[`ImportCall > Import call (fail) > import("") += 5 1`] = `
-"SyntaxError [1:11-1:13]: Unexpected token: '+='
+"SyntaxError [1:11-1:13]: Invalid left-hand side in assignment
 > 1 | import("") += 5
-    |            ^^ Unexpected token: '+='"
+    |            ^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") <<= 2 1`] = `
-"SyntaxError [1:11-1:14]: Unexpected token: '<<='
+"SyntaxError [1:11-1:14]: Invalid left-hand side in assignment
 > 1 | import("") <<= 2
-    |            ^^^ Unexpected token: '<<='"
+    |            ^^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") = 2 1`] = `
-"SyntaxError [1:11-1:12]: Unexpected token: '='
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
 > 1 | import("") = 2
-    |            ^ Unexpected token: '='"
+    |            ^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") >>= 2 1`] = `
-"SyntaxError [1:11-1:14]: Unexpected token: '>>='
+"SyntaxError [1:11-1:14]: Invalid left-hand side in assignment
 > 1 | import("") >>= 2
-    |            ^^^ Unexpected token: '>>='"
+    |            ^^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") >>>= 2 1`] = `
-"SyntaxError [1:11-1:15]: Unexpected token: '>>>='
+"SyntaxError [1:11-1:15]: Invalid left-hand side in assignment
 > 1 | import("") >>>= 2
-    |            ^^^^ Unexpected token: '>>>='"
+    |            ^^^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") -= 1; 1`] = `
-"SyntaxError [1:11-1:13]: Unexpected token: '-='
+"SyntaxError [1:11-1:13]: Invalid left-hand side in assignment
 > 1 | import("") -= 1;
-    |            ^^ Unexpected token: '-='"
+    |            ^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") -= 5 1`] = `
-"SyntaxError [1:11-1:13]: Unexpected token: '-='
+"SyntaxError [1:11-1:13]: Invalid left-hand side in assignment
 > 1 | import("") -= 5
-    |            ^^ Unexpected token: '-='"
+    |            ^^ Invalid left-hand side in assignment"
 `;
 
 exports[`ImportCall > Import call (fail) > import("") -- 1`] = `
@@ -328,6 +328,24 @@ exports[`ImportCall > Import call (fail) > import(;) 1`] = `
 "SyntaxError [1:7-1:8]: Unexpected token: ';'
 > 1 | import(;)
     |        ^ Unexpected token: ';'"
+`;
+
+exports[`ImportCall > Import call (fail) > import(b) += 1; 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in assignment
+> 1 | import(b) += 1;
+    |           ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > import(b) = 1; 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | import(b) = 1;
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > import(b)++; 1`] = `
+"SyntaxError [1:9-1:11]: Invalid increment/decrement operand
+> 1 | import(b)++;
+    |          ^^ Invalid increment/decrement operand"
 `;
 
 exports[`ImportCall > Import call (fail) > import) 1`] = `
