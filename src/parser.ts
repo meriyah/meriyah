@@ -4615,7 +4615,8 @@ function parsePrimaryExpression(
       // because "arguments" maybe escaped like argument\u0073
       parser.tokenValue === 'arguments'
     )
-      parser.report(Errors.InvalidClassFieldArgEval);
+      // Report the `arguments` token itself, which has already been consumed
+      throw new ParseError(start, parser.startPosition, Errors.InvalidClassFieldArgEval);
 
     // Only a "simple validation" is done here to handle 'let' edge cases
 
@@ -6356,7 +6357,7 @@ function parseObjectLiteralOrPattern(
             !(context & Context.InArgumentList) &&
             tokenValue === 'arguments'
           )
-            parser.report(Errors.InvalidClassFieldArgEval);
+            throw new ParseError(tokenStart, currentLocation, Errors.InvalidClassFieldArgEval);
 
           if (context & Context.Strict && (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
             destructible |= DestructuringKind.CannotDestruct;
