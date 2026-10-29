@@ -648,6 +648,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > let [[(a)], ((((((([b]
     |                                ^ The binding declaration is not destructible"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > let [1 <= 0] = "foo" 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | let [1 <= 0] = "foo"
+    |              ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > let [1, a] = []; 1`] = `
 "SyntaxError [1:11-1:12]: The binding declaration is not destructible
 > 1 | let [1, a] = [];

@@ -5793,9 +5793,19 @@ function parseArrayExpressionOrPattern(
         if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBracket)
           parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
       } else {
-        left = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1);
+        left = parseLeftHandSideExpression(
+          parser,
+          context,
+          privateScope,
+          1,
+          0,
+          1,
+          context & Context.DisallowIn ? 0 : 1,
+        );
 
         if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBracket) {
+          // `[a + b] = c`, `[#x in o] = c`: only `=` keeps the element an assignment target
+          if (parser.getToken() !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
           left = parseAssignmentExpression(parser, context, privateScope, inGroup, isPattern, tokenStart, left);
           if ((kind & (BindingKind.Empty | BindingKind.ArgumentList)) === 0 && token === Token.LeftParen)
             destructible |= DestructuringKind.CannotDestruct;
@@ -6020,7 +6030,15 @@ function parseSpreadOrRestElement(
   } else {
     destructible |= DestructuringKind.Assignable;
 
-    argument = parseLeftHandSideExpression(parser, context, privateScope, 1, inGroup, 1);
+    argument = parseLeftHandSideExpression(
+      parser,
+      context,
+      privateScope,
+      1,
+      inGroup,
+      1,
+      context & Context.DisallowIn ? 0 : 1,
+    );
 
     const token = parser.getToken();
 
@@ -6520,7 +6538,15 @@ function parseObjectLiteralOrPattern(
               }
             }
           } else {
-            value = parseLeftHandSideExpression(parser, context, privateScope, 1, inGroup, 1);
+            value = parseLeftHandSideExpression(
+              parser,
+              context,
+              privateScope,
+              1,
+              inGroup,
+              1,
+              context & Context.DisallowIn ? 0 : 1,
+            );
 
             destructible |=
               parser.assignable & AssignmentTargetKind.Simple
@@ -6732,7 +6758,15 @@ function parseObjectLiteralOrPattern(
               }
             }
           } else {
-            value = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1);
+            value = parseLeftHandSideExpression(
+              parser,
+              context,
+              privateScope,
+              1,
+              0,
+              1,
+              context & Context.DisallowIn ? 0 : 1,
+            );
 
             destructible |=
               parser.assignable & AssignmentTargetKind.Simple
@@ -6890,7 +6924,15 @@ function parseObjectLiteralOrPattern(
               }
             }
           } else {
-            value = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1);
+            value = parseLeftHandSideExpression(
+              parser,
+              context,
+              privateScope,
+              1,
+              0,
+              1,
+              context & Context.DisallowIn ? 0 : 1,
+            );
 
             destructible |=
               parser.assignable & AssignmentTargetKind.Simple

@@ -252,6 +252,12 @@ exports[`Expressions - Array > Expressions - Array (fail) > [ x += x ] = a; 1`] 
     |              ^ Invalid left-hand side in assignment"
 `;
 
+exports[`Expressions - Array > Expressions - Array (fail) > ["a" in b] = x 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ["a" in b] = x
+    |              ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Expressions - Array > Expressions - Array (fail) > ["b" /= e ? f : g ] 1`] = `
 "SyntaxError [1:5-1:7]: Invalid left-hand side in assignment
 > 1 | ["b" /= e ? f : g ]
@@ -436,6 +442,12 @@ exports[`Expressions - Array > Expressions - Array (fail) > [...[(x, y)]] = x; 1
 "SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
 > 1 | [...[(x, y)]] = x;
     |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Array > Expressions - Array (fail) > [...[1 + 2]] = x 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | [...[1 + 2]] = x
+    |                ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Array > Expressions - Array (fail) > [...[1], "a"(b)] = x 1`] = `
@@ -1096,6 +1108,12 @@ exports[`Expressions - Array > Expressions - Array (fail) > [0] = 0 2`] = `
 "SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
 > 1 | [0] = 0
     |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Array > Expressions - Array (fail) > [1 + 2] = x 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | [1 + 2] = x
+    |           ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Array > Expressions - Array (fail) > [50] = a; 1`] = `
