@@ -247,9 +247,9 @@ exports[`Private methods > Private methods (fail) > class C { #method() { a() { 
 `;
 
 exports[`Private methods > Private methods (fail) > class C { #x = () => arguments; } 1`] = `
-"SyntaxError [1:30-1:31]: A class field initializer or static block may not contain arguments
+"SyntaxError [1:21-1:30]: A class field initializer or static block may not contain arguments
 > 1 | class C { #x = () => arguments; }
-    |                               ^ A class field initializer or static block may not contain arguments"
+    |                      ^^^^^^^^^ A class field initializer or static block may not contain arguments"
 `;
 
 exports[`Private methods > Private methods (fail) > class C { async \\u0023m() {} } } 1`] = `

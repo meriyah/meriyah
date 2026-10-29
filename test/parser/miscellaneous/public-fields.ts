@@ -6,6 +6,13 @@ import { fail, pass } from '../../test-utils.ts';
 
 describe('Public fields', () => {
   fail('Public fields (fail)', [
+    'class C { x = { arguments }; }',
+    'class C { x = () => ({ arguments }); }',
+    'class C { static { ({ arguments }); } }',
+    'function f() { class C { x = () => arguments; } }',
+    'function f() { class C { x = { arguments }; } }',
+    'function f() { class C { static { arguments; } } }',
+    'function f() { class C { static { () => arguments; } } }',
     { code: 'class A { "x" = arguments; }', options: { webcompat: true } },
     { code: 'class A { "x" = super(); }', options: { webcompat: true } },
     { code: 'class A { x = typeof super(); }', options: { webcompat: true } },

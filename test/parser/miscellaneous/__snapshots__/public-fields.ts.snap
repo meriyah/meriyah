@@ -102,10 +102,22 @@ exports[`Public fields > Public fields (fail) > class C { #m = function() { retu
     |                                                                                                ^ Private fields can't be accessed on super"
 `;
 
+exports[`Public fields > Public fields (fail) > class C { static { ({ arguments }); } } 1`] = `
+"SyntaxError [1:22-1:31]: A class field initializer or static block may not contain arguments
+> 1 | class C { static { ({ arguments }); } }
+    |                       ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
 exports[`Public fields > Public fields (fail) > class C { static x = await 1 } 1`] = `
 "SyntaxError [1:21-1:26]: Await is only valid in async functions
 > 1 | class C { static x = await 1 }
     |                      ^^^^^ Await is only valid in async functions"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { x = () => ({ arguments }); } 1`] = `
+"SyntaxError [1:23-1:32]: A class field initializer or static block may not contain arguments
+> 1 | class C { x = () => ({ arguments }); }
+    |                        ^^^^^^^^^ A class field initializer or static block may not contain arguments"
 `;
 
 exports[`Public fields > Public fields (fail) > class C { x = () => await 1 } 1`] = `
@@ -120,6 +132,12 @@ exports[`Public fields > Public fields (fail) > class C { x = (await 1) } 1`] = 
     |                ^^^^^ Await is only valid in async functions"
 `;
 
+exports[`Public fields > Public fields (fail) > class C { x = { arguments }; } 1`] = `
+"SyntaxError [1:16-1:25]: A class field initializer or static block may not contain arguments
+> 1 | class C { x = { arguments }; }
+    |                 ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
 exports[`Public fields > Public fields (fail) > class C { x = await 1 } 1`] = `
 "SyntaxError [1:14-1:19]: Await is only valid in async functions
 > 1 | class C { x = await 1 }
@@ -132,10 +150,34 @@ exports[`Public fields > Public fields (fail) > class C { x = class { y = await 
     |                           ^^^^^ Await is only valid in async functions"
 `;
 
+exports[`Public fields > Public fields (fail) > function f() { class C { static { () => arguments; } } } 1`] = `
+"SyntaxError [1:40-1:49]: A class field initializer or static block may not contain arguments
+> 1 | function f() { class C { static { () => arguments; } } }
+    |                                         ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Public fields > Public fields (fail) > function f() { class C { static { arguments; } } } 1`] = `
+"SyntaxError [1:34-1:43]: A class field initializer or static block may not contain arguments
+> 1 | function f() { class C { static { arguments; } } }
+    |                                   ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Public fields > Public fields (fail) > function f() { class C { x = () => arguments; } } 1`] = `
+"SyntaxError [1:35-1:44]: A class field initializer or static block may not contain arguments
+> 1 | function f() { class C { x = () => arguments; } }
+    |                                    ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Public fields > Public fields (fail) > function f() { class C { x = { arguments }; } } 1`] = `
+"SyntaxError [1:31-1:40]: A class field initializer or static block may not contain arguments
+> 1 | function f() { class C { x = { arguments }; } }
+    |                                ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
 exports[`Public fields > Public fields (fail) > var C = class { x = () => arguments); } 1`] = `
-"SyntaxError [1:35-1:36]: A class field initializer or static block may not contain arguments
+"SyntaxError [1:26-1:35]: A class field initializer or static block may not contain arguments
 > 1 | var C = class { x = () => arguments); }
-    |                                    ^ A class field initializer or static block may not contain arguments"
+    |                           ^^^^^^^^^ A class field initializer or static block may not contain arguments"
 `;
 
 exports[`Public fields > Public fields (fail) > var C = class { x = () => eval); } 1`] = `
