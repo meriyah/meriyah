@@ -1,5 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Await > Expressions - Await (fail) > "use strict"; async function a() { await static } 1`] = `
+"SyntaxError [1:35-1:40]: cannot use "await" as identifier inside an async function
+> 1 | "use strict"; async function a() { await static }
+    |                                    ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
 exports[`Expressions - Await > Expressions - Await (fail) > () => { await 5; } 1`] = `
 "SyntaxError [1:8-1:13]: Await is only valid in async functions
 > 1 | () => { await 5; }
@@ -304,6 +310,12 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function *f(fo
 "SyntaxError [1:24-1:29]: Await expression not allowed in formal parameter
 > 1 | async function *f(foo = await bar){}
     |                         ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Await > Expressions - Await (fail) > async function a() { await static } 1`] = `
+"SyntaxError [1:21-1:26]: cannot use "await" as identifier inside an async function
+> 1 | async function a() { await static }
+    |                      ^^^^^ cannot use "await" as identifier inside an async function"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
