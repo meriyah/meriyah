@@ -378,7 +378,13 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
 
           if (ch === Chars.Hyphen) {
             advanceChar(parser);
-            if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
+            if (
+              parser.currentChar === Chars.GreaterThan &&
+              (state & LexerState.NewLine ||
+                isStartOfLine ||
+                // First token after a hashbang line
+                (parser.getToken() === Token.EOF && parser.line > 1))
+            ) {
               if (!parser.options.webcompat) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
               state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, parser.tokenStart);

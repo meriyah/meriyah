@@ -121,3 +121,47 @@ describe('Miscellaneous - Hashbang', () => {
     });
   }
 });
+
+describe('Hashbang before HTML close comments', () => {
+  for (const [name, text, column] of [
+    ['LF', '#!x\n-->y', 0],
+    ['CR', '#!x\r-->y', 0],
+    ['CRLF', '#!x\r\n-->y', 0],
+    ['LS', '#!x\u2028-->y', 0],
+    ['PS', '#!x\u2029-->y', 0],
+    ['whitespace', '#!x\n  -->y', 2],
+    ['block comment', '#!x\n/*a*/-->y', 5],
+    ['empty hashbang', '#!\n-->y', 0],
+    ['empty HTML close comment', '#!x\n-->', 0],
+  ] as const) {
+    it(`accepts an HTML close comment after ${name}`, () => {
+      t.doesNotThrow(() => parseSource(text, { webcompat: true }));
+    });
+
+    it(`requires webcompat after ${name}`, () => {
+      t.throws(() => parseSource(text, { webcompat: false }), {
+        message: `[2:${column}-2:${column + 2}]: HTML comments are only allowed with web compatibility (Annex B)`,
+      });
+    });
+
+    it(`rejects an HTML close comment in a module after ${name}`, () => {
+      t.throws(() => parseSource(text, { sourceType: 'module', webcompat: true }), {
+        message: `[2:${column}-2:${column + 3}]: Unexpected token`,
+      });
+    });
+  }
+
+  it('keeps a decrement after a hashbang', () => {
+    t.deepEqual(parseSource('#!x\n--y').body, [
+      {
+        type: 'ExpressionStatement',
+        expression: {
+          type: 'UpdateExpression',
+          argument: { type: 'Identifier', name: 'y' },
+          operator: '--',
+          prefix: true,
+        },
+      },
+    ]);
+  });
+});
