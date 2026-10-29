@@ -6,10 +6,22 @@ exports[`Class static initialization block > Class static initialization block (
     |                                         ^^^^^ cannot use "await" in static blocks"
 `;
 
+exports[`Class static initialization block > Class static initialization block (fail) > async function t() { class A { static { for await (x of y); } } } 1`] = `
+"SyntaxError [1:44-1:49]: cannot use "await" in static blocks
+> 1 | async function t() { class A { static { for await (x of y); } } }
+    |                                             ^^^^^ cannot use "await" in static blocks"
+`;
+
 exports[`Class static initialization block > Class static initialization block (fail) > class A { async static {} } 1`] = `
 "SyntaxError [1:23-1:24]: Unexpected token: '{'
 > 1 | class A { async static {} }
     |                        ^ Unexpected token: '{'"
+`;
+
+exports[`Class static initialization block > Class static initialization block (fail) > class A { static { for await (x of y); } } 1`] = `
+"SyntaxError [1:23-1:28]: cannot use "await" in static blocks
+> 1 | class A { static { for await (x of y); } }
+    |                        ^^^^^ cannot use "await" in static blocks"
 `;
 
 exports[`Class static initialization block > Class static initialization block (fail) > class A { static { super() } } 1`] = `
