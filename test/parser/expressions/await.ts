@@ -74,6 +74,11 @@ describe('Expressions - Await', () => {
     'async function a() { await of }',
     'async function a() { await target }',
     'async function a() { await meta }',
+    'async function a() { await static }',
+    'async function a() { await implements }',
+    'async function a() { await package + 1 }',
+    'async function a() { (await private).x }',
+    'async function* a() { await static }',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
@@ -408,6 +413,8 @@ describe('Expressions - Await', () => {
   }
 
   fail('Expressions - Await (fail)', [
+    '"use strict"; async function a() { await static }',
+    { code: 'async function a() { await static }', options: { sourceType: 'module' } },
     'await f();',
     outdent`
       async function f() {

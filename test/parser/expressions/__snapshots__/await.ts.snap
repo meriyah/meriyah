@@ -1,5 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Await > Expressions - Await (fail) > "use strict"; async function a() { await static } 1`] = `
+"SyntaxError [1:41-1:47]: Unexpected token: 'static'
+> 1 | "use strict"; async function a() { await static }
+    |                                          ^^^^^^ Unexpected token: 'static'"
+`;
+
 exports[`Expressions - Await > Expressions - Await (fail) > () => { await 5; } 1`] = `
 "SyntaxError [1:8-1:13]: Await is only valid in async functions
 > 1 | () => { await 5; }
@@ -304,6 +310,12 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function *f(fo
 "SyntaxError [1:24-1:29]: Await expression not allowed in formal parameter
 > 1 | async function *f(foo = await bar){}
     |                         ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Await > Expressions - Await (fail) > async function a() { await static } 1`] = `
+"SyntaxError [1:27-1:33]: Unexpected token: 'static'
+> 1 | async function a() { await static }
+    |                            ^^^^^^ Unexpected token: 'static'"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
