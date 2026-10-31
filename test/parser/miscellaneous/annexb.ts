@@ -64,6 +64,36 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
         });
       });
     }
+
+    // Without web compatibility, and in module code, `<!--` is `<`, `!` and `--`.
+    for (const options of [{}, { sourceType: 'module' }, { sourceType: 'module', webcompat: true }] as const) {
+      it(`x = 1 <!--y with ${JSON.stringify(options)}`, () => {
+        const { body } = parseSource('x = 1 <!--y', options);
+        t.equal(body.length, 1);
+        t.deepEqual((body[0] as any).expression.right, {
+          type: 'BinaryExpression',
+          left: { type: 'Literal', value: 1 },
+          right: {
+            type: 'UnaryExpression',
+            operator: '!',
+            prefix: true,
+            argument: {
+              type: 'UpdateExpression',
+              operator: '--',
+              prefix: true,
+              argument: { type: 'Identifier', name: 'y' },
+            },
+          },
+          operator: '<',
+        });
+      });
+
+      it(`<!-- comment with ${JSON.stringify(options)}`, () => {
+        t.throws(() => {
+          parseSource('<!-- comment', options);
+        });
+      });
+    }
   });
 
   for (const text of [

@@ -270,6 +270,8 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
               // Treat HTML begin-comment as comment-till-end-of-line.
               const index = parser.index + 1;
               if (
+                parser.options.webcompat &&
+                !(context & Context.Module) &&
                 index + 1 < parser.end &&
                 source.charCodeAt(index) === Chars.Hyphen &&
                 source.charCodeAt(index + 1) == Chars.Hyphen

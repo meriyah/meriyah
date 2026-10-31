@@ -63,9 +63,9 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <!- 3`] = 
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <!-- HTML comment 1`] = `
-"SyntaxError [1:0-1:4]: Unexpected token
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
 > 1 | <!-- HTML comment
-    | ^^^^ Unexpected token"
+    | ^ Unexpected token: '<'"
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > <* 1`] = `

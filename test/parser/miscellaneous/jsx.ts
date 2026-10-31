@@ -118,6 +118,7 @@ describe('Miscellaneous - JSX', () => {
   }
 
   fail('Miscellaneous - JSX (fail)', [
+    { code: '<!--ccc-->', options: { jsx: true } },
     '<',
     '<foo',
     '>',
@@ -214,7 +215,7 @@ describe('Miscellaneous - JSX', () => {
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
-    { code: '<!--ccc-->', options: { jsx: true } },
+    { code: '<!--ccc-->', options: { jsx: true, webcompat: true } },
     {
       code: outdent`
         class Columns extends React.Component {
