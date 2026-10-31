@@ -2127,15 +2127,14 @@ function parseForStatement(
 
   nextToken(parser, context);
 
-  const awaitStart = parser.tokenStart;
+  // Class static blocks reserve `await` (Context.InAwaitContext) without allowing await expressions.
+  if (context & Context.InStaticBlock && parser.getToken() === Token.AwaitKeyword) {
+    parser.report(Errors.InvalidAwaitInStaticBlock);
+  }
+
   const forAwait =
     ((context & Context.InAwaitContext) > 0 || ((context & Context.Module) > 0 && (context & Context.InGlobal) > 0)) &&
     consumeOpt(parser, context, Token.AwaitKeyword);
-
-  // Class static blocks reserve `await` (Context.InAwaitContext) without allowing await expressions.
-  if (forAwait && context & Context.InStaticBlock) {
-    throw new ParseError(awaitStart, parser.startPosition, Errors.InvalidAwaitInStaticBlock);
-  }
 
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
 
