@@ -11,6 +11,8 @@ describe('Class static initialization block', () => {
     'class A { static async {} }',
     'class A { async static {} }',
     'async function t() { class A { static { await 0 } } }',
+    'async function t() { class A { static { for await (x of y); } } }',
+    { code: 'class A { static { for await (x of y); } }', options: { sourceType: 'module' } },
   ]);
 
   for (const text of [
@@ -49,6 +51,8 @@ describe('Class static initialization block', () => {
         }
       }
     `,
+    'class C { static { async function t() { for await (x of y); } } }',
+    'class C { static { async () => { for await (x of y); }; } }',
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
