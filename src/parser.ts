@@ -3944,12 +3944,13 @@ function parseAwaitExpressionOrIdentifier(
   const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, allowRegExp);
 
   // If got an arrow function, or token after "await" is not an expression.
-  // Strict mode reserved words such as `static` are not flagged as expression starts, but in sloppy mode they are
-  // identifiers, so `await static` is an await expression.
+  // Strict mode reserved words such as `static` are not flagged as expression starts, but "await" before them is
+  // still the await keyword. In strict mode the error is then reported at the reserved word.
   const isIdentifier =
     isEscaped ||
     possibleIdentifierOrArrowFunc.type === 'ArrowFunctionExpression' ||
-    ((parser.getToken() & Token.IsExpressionStart) === 0 && !isValidIdentifier(context, parser.getToken()));
+    ((parser.getToken() & Token.IsExpressionStart) === 0 &&
+      (parser.getToken() & Token.FutureReserved) !== Token.FutureReserved);
 
   if (isIdentifier) {
     if (context & Context.InAwaitContext)
