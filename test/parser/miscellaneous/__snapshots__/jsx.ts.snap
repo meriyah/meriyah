@@ -36,6 +36,12 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < 2`] = `
     | ^ Unexpected token"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <!--ccc--> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <!--ccc-->
+    |  ^ Unexpected token"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <.a></.a> 1`] = `
 "SyntaxError [1:1-1:2]: Unexpected token
 > 1 | <.a></.a>
