@@ -3,6 +3,47 @@ import { describe, it } from 'vitest';
 import { type SourceLocation } from '../../../src/estree.ts';
 import { parseSource } from '../../../src/parser.ts';
 
+describe('Hashbang and HTML close comment records', () => {
+  it('extracts the hashbang and following HTML close comment with positions', () => {
+    const comments: any[] = [];
+    const tokens: any[] = [];
+    parseSource('#!x\n-->y\nz', {
+      webcompat: true,
+      ranges: true,
+      loc: true,
+      onComment: comments,
+      onToken: tokens,
+    });
+    t.deepEqual(comments, [
+      {
+        type: 'HashbangComment',
+        value: 'x',
+        start: 0,
+        end: 3,
+        range: [0, 3],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
+      },
+      {
+        type: 'HTMLClose',
+        value: 'y',
+        start: 4,
+        end: 8,
+        range: [4, 8],
+        loc: { start: { line: 2, column: 0 }, end: { line: 2, column: 4 } },
+      },
+    ]);
+    t.deepEqual(tokens, [
+      {
+        token: 'Identifier',
+        start: 9,
+        end: 10,
+        range: [9, 10],
+        loc: { start: { line: 3, column: 0 }, end: { line: 3, column: 1 } },
+      },
+    ]);
+  });
+});
+
 describe('Miscellaneous - onComment', () => {
   it('should extract single line comment', () => {
     let onCommentCount = 0;
