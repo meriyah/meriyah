@@ -497,6 +497,11 @@ describe('Expressions - Arrow', () => {
   }
 
   fail('Expressions - Array (fail)', [
+    'x => {}?.a',
+    '(x) => {}?.[0]',
+    'async (x) => {}?.()',
+    'x => {}`a${1}`',
+    '(x) => {}`a${b}c`',
     { code: '"use strict"; let => {}', options: { lexical: true } },
     { code: 'let => {}', options: { sourceType: 'module' } },
     'function *a() { yield => foo }',
