@@ -1582,7 +1582,8 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > async function f() {
 "SyntaxError [1:38-1:40]: \`=>\` is an invalid assignment target
 > 1 | async function f() { await implements => 1 }
     |                                       ^^ \`=>\` is an invalid assignment target"
-    
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > async (x) => {}?.() 1`] = `
 "SyntaxError [1:15-1:17]: Block body arrows can not be immediately accessed without a group
 > 1 | async (x) => {}?.()
