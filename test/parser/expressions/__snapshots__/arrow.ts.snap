@@ -1256,6 +1256,18 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > (x)
     |  ^^ No line break is allowed after '=>'"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x) => {}?.[0] 1`] = `
+"SyntaxError [1:9-1:11]: Block body arrows can not be immediately accessed without a group
+> 1 | (x) => {}?.[0]
+    |          ^^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x) => {}\`a\${b}c\` 1`] = `
+"SyntaxError [1:9-1:13]: Block body arrows can not be immediately accessed without a group
+> 1 | (x) => {}\`a\${b}c\`
+    |          ^^^^ Block body arrows can not be immediately accessed without a group"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > (x, (y)) => 0 1`] = `
 "SyntaxError [1:9-1:11]: Unexpected token: '=>'
 > 1 | (x, (y)) => 0
@@ -1570,6 +1582,11 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > async function f() {
 "SyntaxError [1:38-1:40]: \`=>\` is an invalid assignment target
 > 1 | async function f() { await implements => 1 }
     |                                       ^^ \`=>\` is an invalid assignment target"
+    
+exports[`Expressions - Arrow > Expressions - Array (fail) > async (x) => {}?.() 1`] = `
+"SyntaxError [1:15-1:17]: Block body arrows can not be immediately accessed without a group
+> 1 | async (x) => {}?.()
+    |                ^^ Block body arrows can not be immediately accessed without a group"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > async("foo".bar) => x 1`] = `
@@ -2002,6 +2019,18 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > x = ac++=>{}; 1`] = 
 "SyntaxError [1:8-1:10]: Unexpected token: '=>'
 > 1 | x = ac++=>{};
     |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x => {}?.a 1`] = `
+"SyntaxError [1:7-1:9]: Block body arrows can not be immediately accessed without a group
+> 1 | x => {}?.a
+    |        ^^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x => {}\`a\${1}\` 1`] = `
+"SyntaxError [1:7-1:11]: Block body arrows can not be immediately accessed without a group
+> 1 | x => {}\`a\${1}\`
+    |        ^^^^ Block body arrows can not be immediately accessed without a group"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > x => await x; 1`] = `
