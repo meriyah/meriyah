@@ -7718,7 +7718,9 @@ function parseArrowFunctionExpression(
         parser.flags |= Flags.DisallowInvoke;
         break;
       case Token.Period:
+      case Token.QuestionMarkPeriod:
       case Token.TemplateSpan:
+      case Token.TemplateContinuation:
       case Token.QuestionMark:
         parser.report(Errors.InvalidAccessedBlockBodyArrow);
       case Token.LeftParen:
