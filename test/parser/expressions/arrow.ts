@@ -497,6 +497,11 @@ describe('Expressions - Arrow', () => {
   }
 
   fail('Expressions - Array (fail)', [
+    '-static => 1',
+    '!yield => 1',
+    'typeof package => 1',
+    '-await => 1',
+    'async function f() { await implements => 1 }',
     'x => {}?.a',
     '(x) => {}?.[0]',
     'async (x) => {}?.()',

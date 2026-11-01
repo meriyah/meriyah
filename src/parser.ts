@@ -3912,7 +3912,7 @@ function parseYieldExpressionOrIdentifier(
 
   if (context & Context.Strict) parser.report(Errors.DisallowedInContext, 'yield');
 
-  return parseIdentifierOrArrow(parser, context, privateScope);
+  return parseIdentifierOrArrow(parser, context, privateScope, 0, canAssign);
 }
 
 /**
@@ -3928,6 +3928,7 @@ function parseAwaitExpressionOrIdentifier(
   privateScope: PrivateScope | undefined,
   inNew: 0 | 1,
   inGroup: 0 | 1,
+  canAssign: 0 | 1,
   start: Location,
 ): ESTree.IdentifierOrExpression | ESTree.AwaitExpression {
   if (inGroup) {
@@ -3946,7 +3947,7 @@ function parseAwaitExpressionOrIdentifier(
   const allowRegExp: 0 | 1 = !isEscaped && context & (Context.InAwaitContext | Context.Module) ? 1 : 0;
 
   // Peek next Token first;
-  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, allowRegExp);
+  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, allowRegExp, canAssign);
 
   // If got an arrow function, or token after "await" is not an expression.
   // Strict mode reserved words such as `static` are not flagged as expression starts, but "await" before them is
@@ -4591,7 +4592,7 @@ function parsePrimaryExpression(
     switch (parser.getToken()) {
       case Token.AwaitKeyword:
       case Token.AwaitKeyword | Token.IsEscaped:
-        return parseAwaitExpressionOrIdentifier(parser, context, privateScope, inNew, inGroup, start);
+        return parseAwaitExpressionOrIdentifier(parser, context, privateScope, inNew, inGroup, canAssign, start);
       case Token.YieldKeyword:
         return parseYieldExpressionOrIdentifier(parser, context, privateScope, inGroup, canAssign, start);
       case Token.AsyncKeyword:
@@ -4723,7 +4724,9 @@ function parsePrimaryExpression(
       if (parser.options.jsx)
         return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0, parser.tokenStart);
     default:
-      if (isValidIdentifier(context, parser.getToken())) return parseIdentifierOrArrow(parser, context, privateScope);
+      if (isValidIdentifier(context, parser.getToken())) {
+        return parseIdentifierOrArrow(parser, context, privateScope, 0, canAssign);
+      }
       parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 }
@@ -7536,6 +7539,7 @@ function parseIdentifierOrArrow(
   context: Context,
   privateScope: PrivateScope | undefined,
   allowRegExp: 0 | 1 = 0,
+  canAssign: 0 | 1 = 1,
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
   const { tokenValue, tokenStart, currentLocation } = parser;
 
@@ -7551,6 +7555,7 @@ function parseIdentifierOrArrow(
   const expr = parseIdentifier(parser, context, allowRegExp);
   parser.assignable = AssignmentTargetKind.Simple;
   if (parser.getToken() === Token.Arrow) {
+    if (!canAssign) parser.report(Errors.InvalidAssignmentTarget);
     const scope = parser.options.lexical
       ? createArrowHeadParsingScope(parser, context, tokenValue, tokenStart, currentLocation)
       : undefined;
