@@ -5609,6 +5609,10 @@ function parseArrayLiteral(
     parser.report(Errors.InvalidShorthandPropInit);
   }
 
+  // An array or object literal is only an assignment target as a destructuring pattern before `=`, which is
+  // handled above, so it can't be the operand of `++` or `--`.
+  if (expr.type === 'ArrayExpression') parser.assignable = AssignmentTargetKind.Invalid;
+
   return expr as ESTree.ArrayExpression;
 }
 
@@ -6270,6 +6274,10 @@ function parseObjectLiteral(
   if (parser.destructible & DestructuringKind.HasToDestruct) {
     parser.report(Errors.InvalidShorthandPropInit);
   }
+
+  // An array or object literal is only an assignment target as a destructuring pattern before `=`, which is
+  // handled above, so it can't be the operand of `++` or `--`.
+  if (expr.type === 'ObjectExpression') parser.assignable = AssignmentTargetKind.Invalid;
 
   return expr as ESTree.ObjectExpression;
 }
