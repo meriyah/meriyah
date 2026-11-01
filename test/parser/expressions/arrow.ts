@@ -497,6 +497,11 @@ describe('Expressions - Arrow', () => {
   }
 
   fail('Expressions - Array (fail)', [
+    '-static => 1',
+    '!yield => 1',
+    'typeof package => 1',
+    '-await => 1',
+    'async function f() { await implements => 1 }',
     { code: '"use strict"; let => {}', options: { lexical: true } },
     { code: 'let => {}', options: { sourceType: 'module' } },
     'function *a() { yield => foo }',

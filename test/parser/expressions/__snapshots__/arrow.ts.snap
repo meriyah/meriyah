@@ -6,6 +6,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > !()=>{} 1`] = `
     |    ^^ \`=>\` is an invalid assignment target"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > !yield => 1 1`] = `
+"SyntaxError [1:7-1:9]: \`=>\` is an invalid assignment target
+> 1 | !yield => 1
+    |        ^^ \`=>\` is an invalid assignment target"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > "a" => {} 1`] = `
 "SyntaxError [1:4-1:6]: Unexpected token: '=>'
 > 1 | "a" => {}
@@ -1400,6 +1406,18 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > -a => {} 2`] = `
     |    ^^ \`=>\` is an invalid assignment target"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > -await => 1 1`] = `
+"SyntaxError [1:7-1:9]: \`=>\` is an invalid assignment target
+> 1 | -await => 1
+    |        ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > -static => 1 1`] = `
+"SyntaxError [1:8-1:10]: \`=>\` is an invalid assignment target
+> 1 | -static => 1
+    |         ^^ \`=>\` is an invalid assignment target"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > 0 || () => 0 1`] = `
 "SyntaxError [1:8-1:10]: \`=>\` is an invalid assignment target
 > 1 | 0 || () => 0
@@ -1546,6 +1564,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > async (x = 1) => {"u
 "SyntaxError [1:18-1:31]: Illegal 'use strict' directive in function with non-simple parameter list
 > 1 | async (x = 1) => {"use strict"}
     |                   ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async function f() { await implements => 1 } 1`] = `
+"SyntaxError [1:38-1:40]: \`=>\` is an invalid assignment target
+> 1 | async function f() { await implements => 1 }
+    |                                       ^^ \`=>\` is an invalid assignment target"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > async("foo".bar) => x 1`] = `
@@ -1732,6 +1756,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > package => { "use st
 "SyntaxError [1:27-1:28]: Unexpected strict mode reserved word
 > 1 | package => { "use strict"; }
     |                            ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > typeof package => 1 1`] = `
+"SyntaxError [1:15-1:17]: \`=>\` is an invalid assignment target
+> 1 | typeof package => 1
+    |                ^^ \`=>\` is an invalid assignment target"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > var a = () 
