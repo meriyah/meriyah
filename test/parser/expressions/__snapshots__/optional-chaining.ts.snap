@@ -384,6 +384,12 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > class A{ b
     |                           ^^ Invalid optional chain from super property"
 `;
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > class C { #x; m() { new this.#x?.y; } } 1`] = `
+"SyntaxError [1:31-1:33]: Invalid optional chain from new expression
+> 1 | class C { #x; m() { new this.#x?.y; } }
+    |                                ^^ Invalid optional chain from new expression"
+`;
+
 exports[`Optional chaining > Expressions - Optional chaining (fail) > class C {} class D extends C { constructor() { super?.(); } } 1`] = `
 "SyntaxError [1:52-1:54]: Invalid optional chain from super property
 > 1 | class C {} class D extends C { constructor() { super?.(); } }
@@ -648,10 +654,40 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > new C?.b.d
     |      ^^ Invalid optional chain from new expression"
 `;
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new a.b.c?.() 1`] = `
+"SyntaxError [1:9-1:11]: Invalid optional chain from new expression
+> 1 | new a.b.c?.()
+    |          ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new a.b?.c 1`] = `
+"SyntaxError [1:7-1:9]: Invalid optional chain from new expression
+> 1 | new a.b?.c
+    |        ^^ Invalid optional chain from new expression"
+`;
+
 exports[`Optional chaining > Expressions - Optional chaining (fail) > new a?.(); 1`] = `
 "SyntaxError [1:5-1:7]: Invalid optional chain from new expression
 > 1 | new a?.();
     |      ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new a[0]?.b 1`] = `
+"SyntaxError [1:8-1:10]: Invalid optional chain from new expression
+> 1 | new a[0]?.b
+    |         ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new a\`t\`?.b 1`] = `
+"SyntaxError [1:8-1:10]: Invalid optional chain from new expression
+> 1 | new a\`t\`?.b
+    |         ^^ Invalid optional chain from new expression"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > new new a()?.b 1`] = `
+"SyntaxError [1:11-1:13]: Invalid optional chain from new expression
+> 1 | new new a()?.b
+    |            ^^ Invalid optional chain from new expression"
 `;
 
 exports[`Optional chaining > Expressions - Optional chaining (fail) > new new class {}()?.constructor?.(); 1`] = `
