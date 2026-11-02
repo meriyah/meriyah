@@ -18,6 +18,12 @@ exports[`Expressions - Async > Expressions - Async (fail) > (async function(...x
     |                          ^ The binding declaration is not destructible"
 `;
 
+exports[`Expressions - Async > Expressions - Async (fail) > ;async => a ?? b >>>= 1 1`] = `
+"SyntaxError [1:17-1:21]: Invalid left-hand side in assignment
+> 1 | ;async => a ?? b >>>= 1
+    |                  ^^^^ Invalid left-hand side in assignment"
+`;
+
 exports[`Expressions - Async > Expressions - Async (fail) > async
 function f(){await x} 1`] = `
 "SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
@@ -84,6 +90,36 @@ exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...true=b)
 "SyntaxError [1:17-1:18]: Invalid destructuring assignment target
 > 1 | async (a, ...true=b) => a;
     |                  ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async => {} += 1 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in assignment
+> 1 | async => {} += 1
+    |             ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async => a * b += 1 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in assignment
+> 1 | async => a * b += 1
+    |                ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async => a || b ||= 1 1`] = `
+"SyntaxError [1:16-1:19]: Invalid left-hand side in assignment
+> 1 | async => a || b ||= 1
+    |                 ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async => a - b **= 1 1`] = `
+"SyntaxError [1:15-1:18]: Invalid left-hand side in assignment
+> 1 | async => a - b **= 1
+    |                ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async => await -async **= 1 1`] = `
+"SyntaxError [1:22-1:25]: Invalid left-hand side in assignment
+> 1 | async => await -async **= 1
+    |                       ^^^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Async > Expressions - Async (fail) > async function f(){ return await => {}; } 1`] = `

@@ -851,9 +851,9 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
         0,
         start,
       );
+    } else {
+      parser.assignable = AssignmentTargetKind.Simple;
     }
-
-    parser.assignable = AssignmentTargetKind.Simple;
   }
 
   /** MemberExpression :
