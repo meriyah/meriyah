@@ -107,6 +107,12 @@ describe('Expressions - Async', () => {
   }
 
   fail('Expressions - Async (fail)', [
+    'async => a * b += 1',
+    'async => a - b **= 1',
+    'async => await -async **= 1',
+    'async => a || b ||= 1',
+    'async => {} += 1',
+    ';async => a ?? b >>>= 1',
     { code: 'await => { let x; }', context: Context.InAwaitContext },
     'async while (1) {}',
     '(async function(...x = []) {})',
