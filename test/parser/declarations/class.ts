@@ -3,6 +3,40 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser.ts';
 
 describe('Declarations - Class', () => {
+  // The parameters of generator, async, setter, static and constructor methods are ordinary
+  // parameters, so a `var` or function declaration in the body may redeclare them, but not a `let`.
+  for (const head of [
+    'static m(a)',
+    '*m(a)',
+    'async m(a)',
+    'async *m(a)',
+    'set m(a)',
+    'static set m(a)',
+    'constructor(a)',
+  ]) {
+    for (const body of ['var a;', 'function a() {}', '{ var a; }']) {
+      it(`class C { ${head} { ${body} } }`, () => {
+        t.doesNotThrow(() => {
+          parseSource(`class C { ${head} { ${body} } }`, { lexical: true });
+        });
+      });
+    }
+
+    it(`class C { ${head} { let a; } }`, () => {
+      t.throws(() => {
+        parseSource(`class C { ${head} { let a; } }`, { lexical: true });
+      });
+    });
+  }
+
+  for (const head of ['*m(a)', 'async m(a)', 'set m(a)']) {
+    it(`({ ${head} { var a; } })`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`({ ${head} { var a; } })`, { lexical: true });
+      });
+    });
+  }
+
   for (const text of [
     'class A { get\n*a() {} }',
     'class B { static get\n*a() {} }',

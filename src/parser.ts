@@ -7137,7 +7137,7 @@ function parseMethodFormals(
         }
       }
 
-      left = parseAndClassifyIdentifier(parser, context, scope, kind | BindingKind.ArgumentList);
+      left = parseAndClassifyIdentifier(parser, context, scope, type);
     } else {
       if (parser.getToken() === Token.LeftBrace) {
         left = parseObjectLiteralOrPattern(parser, context, scope, privateScope, 1, inGroup, 1, type);
