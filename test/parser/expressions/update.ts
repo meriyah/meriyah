@@ -5,12 +5,16 @@ describe('Expressions - Update', () => {
   fail('Expressions - Update (fail)', [
     'foo\n++',
     'if (foo\n++);',
-    /*['++[]', Context.None],
-    ['++([])', Context.None],
-    ['(++[])', Context.None],
-    ['++[a]', Context.None],
-    ['[a]++', Context.None],
-    ['[]++', Context.None]*/
+    '++[]',
+    '++([])',
+    '(++[])',
+    '++[a]',
+    '[a]++',
+    '[]++',
+    '--{x}',
+    'x = ++{}',
+    'x = [a]--',
+    '({x}--)',
   ]);
   pass('Expressions - Update (pass)', [
     'foo\n++\nbar',
