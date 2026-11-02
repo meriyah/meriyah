@@ -278,7 +278,7 @@ function parseStatementListItem(
     case Token.ConstKeyword:
       return parseLexicalDeclaration(parser, context, scope, privateScope, BindingKind.Const);
     case Token.LetKeyword:
-      return parseLetIdentOrVarDeclarationStatement(parser, context, scope, privateScope, origin);
+      return parseLetIdentOrVarDeclarationStatement(parser, context, scope, privateScope, labels, origin);
     case Token.UsingKeyword:
       return parseUsingDeclarationOrExpressionStatement(parser, context, scope, privateScope, labels, origin);
     case Token.AwaitKeyword:
@@ -1578,6 +1578,7 @@ function parseDoWhileStatement(
  * @param parser  Parser object
  * @param context Context masks
  * @param scope Scope object
+ * @param labels Labels of the enclosing statements
  * @param origin Binding origin
  */
 function parseLetIdentOrVarDeclarationStatement(
@@ -1585,6 +1586,7 @@ function parseLetIdentOrVarDeclarationStatement(
   context: Context,
   scope: Scope | undefined,
   privateScope: PrivateScope | undefined,
+  labels: ESTree.Labels,
   origin: Origin,
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
   const { tokenValue, tokenStart, currentLocation } = parser;
@@ -1633,11 +1635,11 @@ function parseLetIdentOrVarDeclarationStatement(
       context,
       scope,
       privateScope,
-      {},
+      labels,
       tokenValue,
       expr,
       token,
-      0,
+      1,
       tokenStart,
       origin,
     );

@@ -65,6 +65,8 @@ describe('Statements - Labeled', () => {
   }
 
   fail('Statements - Labeled (fail)', [
+    'foo: { let: foo: x; }',
+    'let: { let: x; }',
     'label: class C {};',
     'label: let x;',
     'a: async function* a(){}',
@@ -129,6 +131,11 @@ describe('Statements - Labeled', () => {
     'if (false) {\n L: let\nx = 1; \n }',
     { code: 'foo: bar: function f(){}', options: { webcompat: true } },
     { code: 'foo: bar: third: function f(){}', options: { webcompat: true } },
+    { code: 'let: function f() {}', options: { webcompat: true } },
+    { code: 'foo: let: function f() {}', options: { webcompat: true } },
+    { code: 'switch (0) { case 0: let: function f() {} }', options: { webcompat: true } },
+    'foo: { let: break foo; }',
+    'foo: for (;;) { let: continue foo; }',
     'L: let\nx',
     { code: '__proto__: while (true) { break __proto__; }', options: { ranges: true } },
     'a:{break a;}',
