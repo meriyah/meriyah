@@ -8051,10 +8051,11 @@ function parseNewExpression(
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
-  if (parser.getToken() === Token.QuestionMarkPeriod) parser.report(Errors.OptionalChainingNoNew);
-
   // NewExpression without arguments.
   const callee = parseMemberExpressionNoCall(parser, context, privateScope, expr, inGroup, tokenStart);
+
+  // `new a?.b`, `new a.b?.c` and `new a[0]?.b` are invalid; an optional chain needs arguments first.
+  if (parser.getToken() === Token.QuestionMarkPeriod) parser.report(Errors.OptionalChainingNoNew);
 
   parser.assignable = AssignmentTargetKind.Invalid;
 
