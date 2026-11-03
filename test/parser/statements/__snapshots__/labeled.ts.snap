@@ -114,6 +114,12 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > false: x 1`] = `
     |      ^ Invalid keyword"
 `;
 
+exports[`Statements - Labeled > Statements - Labeled (fail) > foo: { let: foo: x; } 1`] = `
+"SyntaxError [1:15-1:16]: Label 'foo' has already been declared
+> 1 | foo: { let: foo: x; }
+    |                ^ Label 'foo' has already been declared"
+`;
+
 exports[`Statements - Labeled > Statements - Labeled (fail) > foo: bar: foo: x 1`] = `
 "SyntaxError [1:13-1:14]: Label 'foo' has already been declared
 > 1 | foo: bar: foo: x
@@ -208,6 +214,12 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > label: let x; 2`] 
 "SyntaxError [1:11-1:12]: Unexpected token: 'identifier'
 > 1 | label: let x;
     |            ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (fail) > let: { let: x; } 1`] = `
+"SyntaxError [1:10-1:11]: Label 'let' has already been declared
+> 1 | let: { let: x; }
+    |           ^ Label 'let' has already been declared"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > let: x 1`] = `
@@ -669,6 +681,41 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > await: while (awai
 }
 `;
 
+exports[`Statements - Labeled > Statements - Labeled (pass) > foo: { let: break foo; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": {
+              "label": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "type": "BreakStatement",
+            },
+            "label": {
+              "name": "let",
+              "type": "Identifier",
+            },
+            "type": "LabeledStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Statements - Labeled > Statements - Labeled (pass) > foo: bar: function f(){} 1`] = `
 {
   "body": [
@@ -750,6 +797,47 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > foo: bar: third: f
 }
 `;
 
+exports[`Statements - Labeled > Statements - Labeled (pass) > foo: for (;;) { let: continue foo; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "label": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "ContinueStatement",
+              },
+              "label": {
+                "name": "let",
+                "type": "Identifier",
+              },
+              "type": "LabeledStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "init": null,
+        "test": null,
+        "type": "ForStatement",
+        "update": null,
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Statements - Labeled > Statements - Labeled (pass) > foo: function bar() {} 1`] = `
 {
   "body": [
@@ -812,6 +900,43 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > foo: function bar(
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (pass) > foo: let: function f() {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionDeclaration",
+        },
+        "label": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "LabeledStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
@@ -1084,6 +1209,36 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > let: foo 1`] = `
 }
 `;
 
+exports[`Statements - Labeled > Statements - Labeled (pass) > let: function f() {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "label": {
+        "name": "let",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Statements - Labeled > Statements - Labeled (pass) > start: while (true) break start 1`] = `
 {
   "body": [
@@ -1152,6 +1307,54 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > start: while (true
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (pass) > switch (0) { case 0: let: function f() {} } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "body": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionDeclaration",
+              },
+              "label": {
+                "name": "let",
+                "type": "Identifier",
+              },
+              "type": "LabeledStatement",
+            },
+          ],
+          "test": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "type": "Literal",
+        "value": 0,
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
