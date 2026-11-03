@@ -564,9 +564,9 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b](foo) of c) d 1`
 `;
 
 exports[`Statements - For > Statements - For (pass) > for ([a.b]++ of c) d 1`] = `
-"SyntaxError [1:13-1:15]: Invalid left-hand side in for-of
+"SyntaxError [1:10-1:12]: Invalid increment/decrement operand
 > 1 | for ([a.b]++ of c) d
-    |              ^^ Invalid left-hand side in for-of"
+    |           ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for ([a.b].foo in c) d 1`] = `
@@ -1075,9 +1075,9 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c}\`z\` of d) e
 `;
 
 exports[`Statements - For > Statements - For (pass) > for ({a: b.c}-- of d) e 1`] = `
-"SyntaxError [1:16-1:18]: Invalid left-hand side in for-of
+"SyntaxError [1:13-1:15]: Invalid increment/decrement operand
 > 1 | for ({a: b.c}-- of d) e
-    |                 ^^ Invalid left-hand side in for-of"
+    |              ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for ({a: x + y} = z;;); 1`] = `

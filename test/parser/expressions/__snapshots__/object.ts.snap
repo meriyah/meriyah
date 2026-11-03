@@ -2383,9 +2383,9 @@ exports[`Expressions - Object > Expressions - Object (fail) > x = [{__proto__: 1
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { "a": {} ++a } 1`] = `
-"SyntaxError [1:16-1:17]: Expected '}'
+"SyntaxError [1:14-1:16]: Invalid increment/decrement operand
 > 1 | x = { "a": {} ++a }
-    |                 ^ Expected '}'"
+    |               ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { "a": {} /= a } 1`] = `
@@ -2395,9 +2395,9 @@ exports[`Expressions - Object > Expressions - Object (fail) > x = { "a": {} /= a
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { [a]: {} ++a } 1`] = `
-"SyntaxError [1:16-1:17]: Expected '}'
+"SyntaxError [1:14-1:16]: Invalid increment/decrement operand
 > 1 | x = { [a]: {} ++a }
-    |                 ^ Expected '}'"
+    |               ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { [a]: {} /= a } 1`] = `
@@ -2413,9 +2413,9 @@ exports[`Expressions - Object > Expressions - Object (fail) > x = { __proto__: n
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { 1: {} ++a } 1`] = `
-"SyntaxError [1:14-1:15]: Expected '}'
+"SyntaxError [1:12-1:14]: Invalid increment/decrement operand
 > 1 | x = { 1: {} ++a }
-    |               ^ Expected '}'"
+    |             ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { 1: {} /= a } 1`] = `
@@ -2425,9 +2425,9 @@ exports[`Expressions - Object > Expressions - Object (fail) > x = { 1: {} /= a }
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { a: {} ++a } 1`] = `
-"SyntaxError [1:14-1:15]: Expected '}'
+"SyntaxError [1:12-1:14]: Invalid increment/decrement operand
 > 1 | x = { a: {} ++a }
-    |               ^ Expected '}'"
+    |             ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > x = { a: {} /= a } 1`] = `
