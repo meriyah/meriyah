@@ -168,10 +168,34 @@ exports[`Statements - Continue > Declarations - Continue > do {  test262: {  con
     |                            ^^^^^^^ Label 'test262' does not denote an iteration statement"
 `;
 
+exports[`Statements - Continue > Declarations - Continue > do { x => { continue; } } while (false) 1`] = `
+"SyntaxError [1:12-1:20]: Illegal continue statement
+> 1 | do { x => { continue; } } while (false)
+    |             ^^^^^^^^ Illegal continue statement"
+`;
+
 exports[`Statements - Continue > Declarations - Continue > for (;;)    continue y  1`] = `
 "SyntaxError [1:21-1:22]: Undefined label 'y'
 > 1 | for (;;)    continue y 
     |                      ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > for (;;) { ({ m() { continue; } }) } 1`] = `
+"SyntaxError [1:20-1:28]: Illegal continue statement
+> 1 | for (;;) { ({ m() { continue; } }) }
+    |                     ^^^^^^^^ Illegal continue statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > for (;;) { (class { m() { continue; } }) } 1`] = `
+"SyntaxError [1:26-1:34]: Illegal continue statement
+> 1 | for (;;) { (class { m() { continue; } }) }
+    |                           ^^^^^^^^ Illegal continue statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > for (x of y) { async () => { continue; } } 1`] = `
+"SyntaxError [1:29-1:37]: Illegal continue statement
+> 1 | for (x of y) { async () => { continue; } }
+    |                              ^^^^^^^^ Illegal continue statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > function f(){    continue    } 1`] = `
@@ -420,6 +444,12 @@ exports[`Statements - Continue > Declarations - Continue > while (true)    if (x
 "SyntaxError [1:32-1:33]: Undefined label 'y'
 > 1 | while (true)    if (x) continue y   }
     |                                 ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > while (true) { () => { continue; } } 1`] = `
+"SyntaxError [1:23-1:31]: Illegal continue statement
+> 1 | while (true) { () => { continue; } }
+    |                        ^^^^^^^^ Illegal continue statement"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > while (true) continue x; 1`] = `

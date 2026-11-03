@@ -6185,7 +6185,8 @@ function parseMethodDefinition(
 
   const body = parseFunctionBody(
     parser,
-    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InStaticBlock)) |
+    (context &
+      ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InStaticBlock)) |
       Context.InMethodOrFunction |
       Context.InReturnContext,
     scope,
@@ -7713,7 +7714,7 @@ function parseArrowFunctionExpression(
   } else {
     scope = scope?.createChildScope(ScopeKind.FunctionBody);
 
-    const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal;
+    const modifierFlags = Context.InSwitch | Context.InIteration | Context.DisallowIn | Context.InGlobal;
 
     body = parseFunctionBody(
       parser,
