@@ -15,6 +15,14 @@ describe('Expressions - Update', () => {
     'x = ++{}',
     'x = [a]--',
     '({x}--)',
+    '[[a]++]',
+    '[{a}--]',
+    '[...[a]++]',
+    '({a: [b]++})',
+    '({a: {b}--})',
+    '({...[a]++})',
+    'x = [[a]--]',
+    'f(...[a]++)',
   ]);
   pass('Expressions - Update (pass)', [
     'foo\n++\nbar',

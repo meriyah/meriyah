@@ -4191,7 +4191,15 @@ function parseLeftHandSideExpression(
  * @param start
  */
 function parseUpdateExpression(parser: Parser, context: Context, expr: ESTree.Expression, start: Location) {
-  if (parser.assignable & AssignmentTargetKind.Invalid) parser.report(Errors.InvalidIncDecTarget);
+  // An array or object literal nested in another literal is still marked assignable, because it may become a
+  // destructuring pattern, but it can never be the operand of `++` or `--`.
+  if (
+    parser.assignable & AssignmentTargetKind.Invalid ||
+    expr.type === 'ArrayExpression' ||
+    expr.type === 'ObjectExpression'
+  ) {
+    parser.report(Errors.InvalidIncDecTarget);
+  }
 
   const token = parser.getToken();
 

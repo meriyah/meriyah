@@ -6,6 +6,24 @@ exports[`Expressions - Update > Expressions - Update (fail) > (++[]) 1`] = `
     |      ^ Invalid increment/decrement operand"
 `;
 
+exports[`Expressions - Update > Expressions - Update (fail) > ({...[a]++}) 1`] = `
+"SyntaxError [1:8-1:10]: Invalid increment/decrement operand
+> 1 | ({...[a]++})
+    |         ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > ({a: [b]++}) 1`] = `
+"SyntaxError [1:8-1:10]: Invalid increment/decrement operand
+> 1 | ({a: [b]++})
+    |         ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > ({a: {b}--}) 1`] = `
+"SyntaxError [1:8-1:10]: Invalid increment/decrement operand
+> 1 | ({a: {b}--})
+    |         ^^ Invalid increment/decrement operand"
+`;
+
 exports[`Expressions - Update > Expressions - Update (fail) > ({x}--) 1`] = `
 "SyntaxError [1:4-1:6]: Invalid increment/decrement operand
 > 1 | ({x}--)
@@ -30,10 +48,28 @@ exports[`Expressions - Update > Expressions - Update (fail) > ++[a] 1`] = `
     |     ^ Invalid increment/decrement operand"
 `;
 
+exports[`Expressions - Update > Expressions - Update (fail) > [...[a]++] 1`] = `
+"SyntaxError [1:7-1:9]: Invalid increment/decrement operand
+> 1 | [...[a]++]
+    |        ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > [[a]++] 1`] = `
+"SyntaxError [1:4-1:6]: Invalid increment/decrement operand
+> 1 | [[a]++]
+    |     ^^ Invalid increment/decrement operand"
+`;
+
 exports[`Expressions - Update > Expressions - Update (fail) > []++ 1`] = `
 "SyntaxError [1:2-1:4]: Invalid increment/decrement operand
 > 1 | []++
     |   ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > [{a}--] 1`] = `
+"SyntaxError [1:4-1:6]: Invalid increment/decrement operand
+> 1 | [{a}--]
+    |     ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Update > Expressions - Update (fail) > [a]++ 1`] = `
@@ -46,6 +82,12 @@ exports[`Expressions - Update > Expressions - Update (fail) > --{x} 1`] = `
 "SyntaxError [1:4-1:5]: Invalid increment/decrement operand
 > 1 | --{x}
     |     ^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > f(...[a]++) 1`] = `
+"SyntaxError [1:8-1:10]: Invalid increment/decrement operand
+> 1 | f(...[a]++)
+    |         ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Update > Expressions - Update (fail) > foo
@@ -68,6 +110,12 @@ exports[`Expressions - Update > Expressions - Update (fail) > x = ++{} 1`] = `
 "SyntaxError [1:7-1:8]: Invalid increment/decrement operand
 > 1 | x = ++{}
     |        ^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > x = [[a]--] 1`] = `
+"SyntaxError [1:8-1:10]: Invalid increment/decrement operand
+> 1 | x = [[a]--]
+    |         ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Expressions - Update > Expressions - Update (fail) > x = [a]-- 1`] = `
