@@ -19,6 +19,12 @@ describe('Statements - Break', () => {
     'loop1: function a() {}  while (true) { continue loop1; }',
     '{  break foo; var y=2; }',
     'loop1: while (true) { loop2: function a() { break loop2; } }',
+    'while (true) { () => { break; } }',
+    'while (true) { async () => { break; } }',
+    'for (;;) { ({ m() { break; } }) }',
+    'for (;;) { (class { m() { break; } }) }',
+    'for (;;) { (class { get x() { break; } }) }',
+    'for (;;) { (class { x = () => { break; } }) }',
     outdent`
       (function(){
           OuterLabel : var x=0, y=0;
