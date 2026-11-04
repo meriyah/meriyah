@@ -306,7 +306,7 @@ function parseStatementListItem(
     //   async [no LineTerminator here] AsyncArrowBindingIdentifier ...
     //   async [no LineTerminator here] ArrowFormalParameters ...
     case Token.AsyncKeyword:
-      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, labels, 1, origin);
+      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, labels, 1, 1, origin);
     default:
       return parseStatement(parser, context, scope, privateScope, labels, 1, origin);
   }
@@ -403,7 +403,16 @@ function parseStatement(
       // DebuggerStatement
       return parseDebuggerStatement(parser, context);
     case Token.AsyncKeyword:
-      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, labels, 0, origin);
+      return parseAsyncArrowOrAsyncFunctionDeclaration(
+        parser,
+        context,
+        scope,
+        privateScope,
+        labels,
+        0,
+        allowFuncDecl,
+        origin,
+      );
     // Miscellaneous error cases arguably better caught here than elsewhere
     case Token.CatchKeyword:
       parser.report(Errors.CatchWithoutTry);
@@ -733,6 +742,7 @@ function parseLabelledStatement(
  * @param privateScope Private scope object
  * @param labels
  * @param allowFuncDecl Allow / disallow func statement
+ * @param allowLabelledFuncDecl Allow / disallow func statement after an `async:` label
  * @param origin Origin of the statement
  */
 
@@ -743,6 +753,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
   privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
+  allowLabelledFuncDecl: 0 | 1,
   origin: Origin,
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration {
   // AsyncArrowFunction[In, Yield, Await]:
@@ -777,7 +788,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
       tokenValue,
       expr,
       token,
-      1,
+      allowLabelledFuncDecl,
       start,
       origin,
     );
