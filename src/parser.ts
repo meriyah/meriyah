@@ -4328,7 +4328,7 @@ function parseMemberOrUpdateExpression(
 
         const args = parseArguments(parser, context, privateScope, inGroup);
 
-        if (!(context & Context.Strict) && parser.options.webcompat) {
+        if (!restoreHasOptionalChaining && !(context & Context.Strict) && parser.options.webcompat) {
           parser.assignable = AssignmentTargetKind.WebCompat;
         } else {
           parser.assignable = AssignmentTargetKind.Invalid;
@@ -4440,11 +4440,7 @@ function parseOptionalChain(
   } else if (parser.getToken() === Token.LeftParen) {
     const args = parseArguments(parser, context, privateScope, 0);
 
-    if (!(context & Context.Strict) && parser.options.webcompat) {
-      parser.assignable = AssignmentTargetKind.WebCompat;
-    } else {
-      parser.assignable = AssignmentTargetKind.Invalid;
-    }
+    parser.assignable = AssignmentTargetKind.Invalid;
 
     node = parser.finishNode<ESTree.CallExpression>(
       {

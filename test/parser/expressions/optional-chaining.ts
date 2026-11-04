@@ -389,6 +389,15 @@ describe('Optional chaining', () => {
     { code: 'a?.b = c', options: { webcompat: true } },
     { code: 'a?.{a} = c', options: { webcompat: true } },
     { code: 'a?.(a) = c', options: { webcompat: false } },
+    { code: 'a?.(a) = c', options: { webcompat: true } },
+    { code: 'a?.() += c', options: { webcompat: true } },
+    { code: 'a?.()++', options: { webcompat: true } },
+    { code: '--a?.()', options: { webcompat: true } },
+    { code: 'a?.b.c() = d', options: { webcompat: true } },
+    { code: 'a?.b.c()--', options: { webcompat: true } },
+    { code: '(a?.()) = b', options: { webcompat: true } },
+    { code: 'for (a?.() of b);', options: { webcompat: true } },
+    { code: 'for (a?.b() in c);', options: { webcompat: true } },
     { code: 'o3?.a in ()', options: { webcompat: true } },
     { code: 'a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)', options: { webcompat: true } },
     // FIXME: current implementation does not invalidate destructuring.
@@ -410,6 +419,7 @@ describe('Optional chaining', () => {
 
   pass('Optional chaining (pass)', [
     { code: 'a?.b', options: { webcompat: true, ranges: true } },
+    { code: '(a?.())() = b', options: { webcompat: true } },
     { code: 'obj.aaa.bbb', options: { webcompat: true, ranges: true } },
     { code: 'obj.aaa?.bbb', options: { webcompat: true, ranges: true } },
     { code: 'obj?.aaa.bbb', options: { webcompat: true, ranges: true } },
@@ -423,6 +433,5 @@ describe('Optional chaining', () => {
     { code: 'a?.()', options: { webcompat: true, ranges: true } },
     { code: 'a?.b[3].c?.(x).d', options: { webcompat: true, ranges: true } },
     { code: '({})?.a["b"]', options: { webcompat: true, ranges: true } },
-    { code: 'a?.(a) = c', options: { webcompat: true, ranges: true } },
   ]);
 });
