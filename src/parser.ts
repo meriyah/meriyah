@@ -8995,7 +8995,7 @@ function parseClassElementList(
       key = parseLiteral(parser, context);
     } else if (parser.getToken() === Token.LeftBracket) {
       kind |= PropertyKind.Computed;
-      key = parseComputedPropertyName(parser, context, privateScope, /* inGroup */ 0);
+      key = parseComputedPropertyName(parser, inheritedContext, privateScope, /* inGroup */ 0);
     } else if (parser.getToken() === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
       key = parsePrivateIdentifier(parser, context, privateScope, kind);

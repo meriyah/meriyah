@@ -102,16 +102,46 @@ exports[`Expressions - Super > Expressions - Super (fail) > async(foo) => { supe
     |                      ^ Member access on super must be in a method"
 `;
 
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { *[super()]() {} } 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A extends B { *[super()]() {} }
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
 exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { *g2(a = 1 + (yield 2)) { } } 1`] = `
 "SyntaxError [1:33-1:38]: Yield expression not allowed in formal parameter
 > 1 | class A extends B { *g2(a = 1 + (yield 2)) { } }
     |                                  ^^^^^ Yield expression not allowed in formal parameter"
 `;
 
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { async *[super()]() {} } 1`] = `
+"SyntaxError [1:33-1:34]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A extends B { async *[super()]() {} }
+    |                                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { async [super()]() {} } 1`] = `
+"SyntaxError [1:32-1:33]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A extends B { async [super()]() {} }
+    |                                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
 exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { constructor() { (super)() } } 1`] = `
 "SyntaxError [1:42-1:43]: Unexpected token: 'super'
 > 1 | class A extends B { constructor() { (super)() } }
     |                                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { get [super()]() {} } 1`] = `
+"SyntaxError [1:30-1:31]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A extends B { get [super()]() {} }
+    |                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { static set [super()](v) {} } 1`] = `
+"SyntaxError [1:37-1:38]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A extends B { static set [super()](v) {} }
+    |                                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
 `;
 
 exports[`Expressions - Super > Expressions - Super (fail) > class C { constructor() { super(); } } 1`] = `
@@ -2853,6 +2883,176 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
               "async": false,
               "body": {
                 "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { class z { *[super()]() {} } } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "body": {
+                      "body": [
+                        {
+                          "computed": true,
+                          "key": {
+                            "arguments": [],
+                            "callee": {
+                              "type": "Super",
+                            },
+                            "optional": false,
+                            "type": "CallExpression",
+                          },
+                          "kind": "method",
+                          "static": false,
+                          "type": "MethodDefinition",
+                          "value": {
+                            "async": false,
+                            "body": {
+                              "body": [],
+                              "type": "BlockStatement",
+                            },
+                            "generator": true,
+                            "id": null,
+                            "params": [],
+                            "type": "FunctionExpression",
+                          },
+                        },
+                      ],
+                      "type": "ClassBody",
+                    },
+                    "id": {
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                    "superClass": null,
+                    "type": "ClassDeclaration",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { class z { get [super()]() {} } } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "body": {
+                      "body": [
+                        {
+                          "computed": true,
+                          "key": {
+                            "arguments": [],
+                            "callee": {
+                              "type": "Super",
+                            },
+                            "optional": false,
+                            "type": "CallExpression",
+                          },
+                          "kind": "get",
+                          "static": false,
+                          "type": "MethodDefinition",
+                          "value": {
+                            "async": false,
+                            "body": {
+                              "body": [],
+                              "type": "BlockStatement",
+                            },
+                            "generator": false,
+                            "id": null,
+                            "params": [],
+                            "type": "FunctionExpression",
+                          },
+                        },
+                      ],
+                      "type": "ClassBody",
+                    },
+                    "id": {
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                    "superClass": null,
+                    "type": "ClassDeclaration",
+                  },
+                ],
                 "type": "BlockStatement",
               },
               "generator": false,
