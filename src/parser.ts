@@ -8973,8 +8973,6 @@ function parseClassElementList(
     return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, start);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context);
-    if (parser.getToken() !== Token.LeftParen)
-      parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   } else {
     parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
