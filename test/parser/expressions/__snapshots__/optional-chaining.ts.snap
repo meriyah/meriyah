@@ -54,6 +54,12 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > ({x: [y]?.
     |                    ^ Invalid left-hand side in assignment"
 `;
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > (a?.()) = b 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (a?.()) = b
+    |         ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Optional chaining > Expressions - Optional chaining (fail) > ?. ?[] ?() ?: 1`] = `
 "SyntaxError [1:0-1:2]: Unexpected token: '?.'
 > 1 | ?. ?[] ?() ?:
@@ -130,6 +136,12 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > {a: 44}?.a
 "SyntaxError [1:7-1:9]: Unexpected token: '?.'
 > 1 | {a: 44}?.a
     |        ^^ Unexpected token: '?.'"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > --a?.() 1`] = `
+"SyntaxError [1:6-1:7]: Invalid increment/decrement operand
+> 1 | --a?.()
+    |       ^ Invalid increment/decrement operand"
 `;
 
 exports[`Optional chaining > Expressions - Optional chaining (fail) > 0, [{ set y(val) {}}?.y] = [23]; 1`] = `
@@ -276,7 +288,25 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > a.?b.?() 1
     |   ^ Dot property must be an identifier"
 `;
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.() += c 1`] = `
+"SyntaxError [1:6-1:8]: Invalid left-hand side in assignment
+> 1 | a?.() += c
+    |       ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.()++ 1`] = `
+"SyntaxError [1:5-1:7]: Invalid increment/decrement operand
+> 1 | a?.()++
+    |      ^^ Invalid increment/decrement operand"
+`;
+
 exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.(a) = c 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | a?.(a) = c
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.(a) = c 2`] = `
 "SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
 > 1 | a?.(a) = c
     |        ^ Invalid left-hand side in assignment"
@@ -316,6 +346,18 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b.c = d
 "SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
 > 1 | a?.b.c = d
     |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b.c() = d 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | a?.b.c() = d
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b.c()-- 1`] = `
+"SyntaxError [1:8-1:10]: Invalid increment/decrement operand
+> 1 | a?.b.c()--
+    |         ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Optional chaining > Expressions - Optional chaining (fail) > a?.b.c++ 1`] = `
@@ -594,6 +636,18 @@ exports[`Optional chaining > Expressions - Optional chaining (fail) > for ({ x: 
     |                  ^^ Invalid left-hand side in for-of"
 `;
 
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for (a?.() of b); 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in for-of
+> 1 | for (a?.() of b);
+    |            ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Optional chaining > Expressions - Optional chaining (fail) > for (a?.b() in c); 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in for-in
+> 1 | for (a?.b() in c);
+    |             ^^ Invalid left-hand side in for-in"
+`;
+
 exports[`Optional chaining > Expressions - Optional chaining (fail) > func:?(...args) 1`] = `
 "SyntaxError [1:5-1:6]: Unexpected token: '?'
 > 1 | func:?(...args)
@@ -843,6 +897,43 @@ exports[`Optional chaining > Optional chaining (pass) > ({})?.a["b"] 1`] = `
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > (a?.())() = b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [],
+          "callee": {
+            "expression": {
+              "arguments": [],
+              "callee": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "optional": true,
+              "type": "CallExpression",
+            },
+            "type": "ChainExpression",
+          },
+          "optional": false,
+          "type": "CallExpression",
+        },
+        "operator": "=",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
@@ -1234,91 +1325,6 @@ exports[`Optional chaining > Optional chaining (pass) > a?.() 1`] = `
   "range": [
     0,
     5,
-  ],
-  "sourceType": "script",
-  "start": 0,
-  "type": "Program",
-}
-`;
-
-exports[`Optional chaining > Optional chaining (pass) > a?.(a) = c 1`] = `
-{
-  "body": [
-    {
-      "end": 10,
-      "expression": {
-        "end": 10,
-        "left": {
-          "end": 6,
-          "expression": {
-            "arguments": [
-              {
-                "end": 5,
-                "name": "a",
-                "range": [
-                  4,
-                  5,
-                ],
-                "start": 4,
-                "type": "Identifier",
-              },
-            ],
-            "callee": {
-              "end": 1,
-              "name": "a",
-              "range": [
-                0,
-                1,
-              ],
-              "start": 0,
-              "type": "Identifier",
-            },
-            "end": 6,
-            "optional": true,
-            "range": [
-              0,
-              6,
-            ],
-            "start": 0,
-            "type": "CallExpression",
-          },
-          "range": [
-            0,
-            6,
-          ],
-          "start": 0,
-          "type": "ChainExpression",
-        },
-        "operator": "=",
-        "range": [
-          0,
-          10,
-        ],
-        "right": {
-          "end": 10,
-          "name": "c",
-          "range": [
-            9,
-            10,
-          ],
-          "start": 9,
-          "type": "Identifier",
-        },
-        "start": 0,
-        "type": "AssignmentExpression",
-      },
-      "range": [
-        0,
-        10,
-      ],
-      "start": 0,
-      "type": "ExpressionStatement",
-    },
-  ],
-  "end": 10,
-  "range": [
-    0,
-    10,
   ],
   "sourceType": "script",
   "start": 0,
