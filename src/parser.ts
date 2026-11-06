@@ -741,8 +741,8 @@ function parseLabelledStatement(
  * @param scope Scope object
  * @param privateScope Private scope object
  * @param labels
- * @param allowFuncDecl Allow / disallow func statement
- * @param allowLabelledFuncDecl Allow / disallow func statement after an `async:` label
+ * @param allowAsyncFuncDecl Allow / disallow async func statement
+ * @param allowFuncDecl Allow / disallow func statement after an `async:` label
  * @param origin Origin of the statement
  */
 
@@ -752,8 +752,8 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
   scope: Scope | undefined,
   privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
+  allowAsyncFuncDecl: 0 | 1,
   allowFuncDecl: 0 | 1,
-  allowLabelledFuncDecl: 0 | 1,
   origin: Origin,
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration {
   // AsyncArrowFunction[In, Yield, Await]:
@@ -788,7 +788,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
       tokenValue,
       expr,
       token,
-      allowLabelledFuncDecl,
+      allowFuncDecl,
       start,
       origin,
     );
@@ -799,7 +799,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
   if (!asyncNewLine) {
     // async function ...
     if (parser.getToken() === Token.FunctionKeyword) {
-      if (!allowFuncDecl) parser.report(Errors.AsyncFunctionInSingleStatementContext);
+      if (!allowAsyncFuncDecl) parser.report(Errors.AsyncFunctionInSingleStatementContext);
 
       return parseFunctionDeclaration(
         parser,
