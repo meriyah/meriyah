@@ -102,6 +102,12 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > do { test262: { co
     |                          ^^^^^^^ Label 'test262' does not denote an iteration statement"
 `;
 
+exports[`Statements - Labeled > Statements - Labeled (fail) > do async: function f() {} while (a) 1`] = `
+"SyntaxError [1:10-1:18]: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
+> 1 | do async: function f() {} while (a)
+    |           ^^^^^^^^ In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement"
+`;
+
 exports[`Statements - Labeled > Statements - Labeled (fail) > false: ; 1`] = `
 "SyntaxError [1:5-1:6]: Invalid keyword
 > 1 | false: ;
@@ -138,6 +144,12 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > foo:for; 1`] = `
     |        ^ Expected '('"
 `;
 
+exports[`Statements - Labeled > Statements - Labeled (fail) > for (;;) x: async: function f() {} 1`] = `
+"SyntaxError [1:19-1:27]: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (;;) x: async: function f() {}
+    |                    ^^^^^^^^ In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement"
+`;
+
 exports[`Statements - Labeled > Statements - Labeled (fail) > function *f(){ await: x; } 1`] = `
 "SyntaxError [1:15-1:20]: Can not use \`await\` as identifier in module or async func
 > 1 | function *f(){ await: x; }
@@ -166,6 +178,12 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > function test_func
 "SyntaxError [1:28-1:29]: Unexpected token: 'super'
 > 1 | function test_func() { super: while(true) { break super; }}"
     |                             ^ Unexpected token: 'super'"
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (fail) > if (a) async: function f() {} 1`] = `
+"SyntaxError [1:14-1:22]: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
+> 1 | if (a) async: function f() {}
+    |               ^^^^^^^^ In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > if (false) label1: label2: function test262() {} else ; 1`] = `
@@ -256,6 +274,12 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > var obj = { *metho
 "SyntaxError [1:29-1:30]: Unexpected strict mode reserved word
 > 1 | var obj = { *method() { yield: ; } };
     |                              ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (fail) > while (a) async: function f() {} 1`] = `
+"SyntaxError [1:17-1:25]: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
+> 1 | while (a) async: function f() {}
+    |                  ^^^^^^^^ In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > yield: { function *f(){ break await; } } 1`] = `
@@ -390,6 +414,43 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > __proto__: while (
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (pass) > L: async: function f() {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionDeclaration",
+        },
+        "label": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "LabeledStatement",
+      },
+      "label": {
+        "name": "L",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
@@ -550,6 +611,36 @@ exports[`Statements - Labeled > Statements - Labeled (pass) > async: await 1`] =
           "type": "Identifier",
         },
         "type": "ExpressionStatement",
+      },
+      "label": {
+        "name": "async",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Labeled > Statements - Labeled (pass) > async: function f() {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
       },
       "label": {
         "name": "async",

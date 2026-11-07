@@ -306,7 +306,7 @@ function parseStatementListItem(
     //   async [no LineTerminator here] AsyncArrowBindingIdentifier ...
     //   async [no LineTerminator here] ArrowFormalParameters ...
     case Token.AsyncKeyword:
-      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, labels, 1, origin);
+      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, labels, 1, 1, origin);
     default:
       return parseStatement(parser, context, scope, privateScope, labels, 1, origin);
   }
@@ -403,7 +403,16 @@ function parseStatement(
       // DebuggerStatement
       return parseDebuggerStatement(parser, context);
     case Token.AsyncKeyword:
-      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, labels, 0, origin);
+      return parseAsyncArrowOrAsyncFunctionDeclaration(
+        parser,
+        context,
+        scope,
+        privateScope,
+        labels,
+        0,
+        allowFuncDecl,
+        origin,
+      );
     // Miscellaneous error cases arguably better caught here than elsewhere
     case Token.CatchKeyword:
       parser.report(Errors.CatchWithoutTry);
@@ -732,7 +741,8 @@ function parseLabelledStatement(
  * @param scope Scope object
  * @param privateScope Private scope object
  * @param labels
- * @param allowFuncDecl Allow / disallow func statement
+ * @param allowAsyncFuncDecl Allow / disallow async func statement
+ * @param allowFuncDecl Allow / disallow func statement after an `async:` label
  * @param origin Origin of the statement
  */
 
@@ -742,6 +752,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
   scope: Scope | undefined,
   privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
+  allowAsyncFuncDecl: 0 | 1,
   allowFuncDecl: 0 | 1,
   origin: Origin,
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration {
@@ -777,7 +788,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
       tokenValue,
       expr,
       token,
-      1,
+      allowFuncDecl,
       start,
       origin,
     );
@@ -788,7 +799,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
   if (!asyncNewLine) {
     // async function ...
     if (parser.getToken() === Token.FunctionKeyword) {
-      if (!allowFuncDecl) parser.report(Errors.AsyncFunctionInSingleStatementContext);
+      if (!allowAsyncFuncDecl) parser.report(Errors.AsyncFunctionInSingleStatementContext);
 
       return parseFunctionDeclaration(
         parser,
