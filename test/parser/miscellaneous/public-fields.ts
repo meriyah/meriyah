@@ -13,6 +13,9 @@ describe('Public fields', () => {
     'function f() { class C { x = { arguments }; } }',
     'function f() { class C { static { arguments; } } }',
     'function f() { class C { static { () => arguments; } } }',
+    'class C { static { a ? arguments : 1; } }',
+    'class C { static { switch (a) { case arguments: } } }',
+    'class C { static { arguments: arguments; } }',
     { code: 'class A { "x" = arguments; }', options: { webcompat: true } },
     { code: 'class A { "x" = super(); }', options: { webcompat: true } },
     { code: 'class A { x = typeof super(); }', options: { webcompat: true } },
@@ -208,6 +211,11 @@ describe('Public fields', () => {
   }
 
   pass('Public fields (pass)', [
+    'class C { static { arguments: ; } }',
+    'class C { static { arguments: for (;;) break arguments; } }',
+    'class C { static { x: arguments: for (;;) continue arguments; } }',
+    String.raw`class C { static { argument\u0073: ; } }`,
+    'class C { x = () => { arguments: for (;;) continue arguments; }; }',
     { code: 'class C { [await 1] = 1 }', options: { sourceType: 'module' } },
     { code: 'class C extends (await 1) {}', options: { sourceType: 'module' } },
     { code: 'class C { x = async () => await 1 }', options: { sourceType: 'module' } },

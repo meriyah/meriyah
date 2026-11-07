@@ -108,6 +108,24 @@ exports[`Public fields > Public fields (fail) > class C { static { ({ arguments 
     |                       ^^^^^^^^^ A class field initializer or static block may not contain arguments"
 `;
 
+exports[`Public fields > Public fields (fail) > class C { static { a ? arguments : 1; } } 1`] = `
+"SyntaxError [1:23-1:32]: A class field initializer or static block may not contain arguments
+> 1 | class C { static { a ? arguments : 1; } }
+    |                        ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { static { arguments: arguments; } } 1`] = `
+"SyntaxError [1:30-1:39]: A class field initializer or static block may not contain arguments
+> 1 | class C { static { arguments: arguments; } }
+    |                               ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { static { switch (a) { case arguments: } } } 1`] = `
+"SyntaxError [1:37-1:46]: A class field initializer or static block may not contain arguments
+> 1 | class C { static { switch (a) { case arguments: } } }
+    |                                      ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
 exports[`Public fields > Public fields (fail) > class C { static x = await 1 } 1`] = `
 "SyntaxError [1:21-1:26]: Await is only valid in async functions
 > 1 | class C { static x = await 1 }
@@ -1615,6 +1633,181 @@ exports[`Public fields > Public fields (pass) > class C { [await 1] = 1 } 1`] = 
 }
 `;
 
+exports[`Public fields > Public fields (pass) > class C { static { argument\\u0073: ; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "body": {
+                  "type": "EmptyStatement",
+                },
+                "label": {
+                  "name": "arguments",
+                  "type": "Identifier",
+                },
+                "type": "LabeledStatement",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Public fields > Public fields (pass) > class C { static { arguments: ; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "body": {
+                  "type": "EmptyStatement",
+                },
+                "label": {
+                  "name": "arguments",
+                  "type": "Identifier",
+                },
+                "type": "LabeledStatement",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Public fields > Public fields (pass) > class C { static { arguments: for (;;) break arguments; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "body": {
+                  "body": {
+                    "label": {
+                      "name": "arguments",
+                      "type": "Identifier",
+                    },
+                    "type": "BreakStatement",
+                  },
+                  "init": null,
+                  "test": null,
+                  "type": "ForStatement",
+                  "update": null,
+                },
+                "label": {
+                  "name": "arguments",
+                  "type": "Identifier",
+                },
+                "type": "LabeledStatement",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Public fields > Public fields (pass) > class C { static { x: arguments: for (;;) continue arguments; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "body": {
+                  "body": {
+                    "body": {
+                      "label": {
+                        "name": "arguments",
+                        "type": "Identifier",
+                      },
+                      "type": "ContinueStatement",
+                    },
+                    "init": null,
+                    "test": null,
+                    "type": "ForStatement",
+                    "update": null,
+                  },
+                  "label": {
+                    "name": "arguments",
+                    "type": "Identifier",
+                  },
+                  "type": "LabeledStatement",
+                },
+                "label": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "LabeledStatement",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Public fields > Public fields (pass) > class C { static x } 1`] = `
 {
   "body": [
@@ -1739,6 +1932,69 @@ exports[`Public fields > Public fields (pass) > class C { static x } 1`] = `
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Public fields > Public fields (pass) > class C { x = () => { arguments: for (;;) continue arguments; }; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "body": {
+                      "body": {
+                        "label": {
+                          "name": "arguments",
+                          "type": "Identifier",
+                        },
+                        "type": "ContinueStatement",
+                      },
+                      "init": null,
+                      "test": null,
+                      "type": "ForStatement",
+                      "update": null,
+                    },
+                    "label": {
+                      "name": "arguments",
+                      "type": "Identifier",
+                    },
+                    "type": "LabeledStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "expression": false,
+              "generator": false,
+              "params": [],
+              "type": "ArrowFunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
