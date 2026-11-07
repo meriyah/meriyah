@@ -4694,7 +4694,7 @@ function parsePrimaryExpression(
     case Token.LeftParen:
       return parseParenthesizedExpression(
         parser,
-        context | Context.TaggedTemplate,
+        context,
         privateScope,
         canAssign,
         BindingKind.ArgumentList,
@@ -7427,7 +7427,7 @@ function parseParenthesizedExpression(
         );
       }
 
-      consume(parser, context, Token.RightParen);
+      consume(parser, context | Context.TaggedTemplate, Token.RightParen);
 
       parser.destructible = destructible | previousAwaitYield;
 
@@ -7478,7 +7478,7 @@ function parseParenthesizedExpression(
     );
   }
 
-  consume(parser, context, Token.RightParen);
+  consume(parser, context | Context.TaggedTemplate, Token.RightParen);
 
   if (destructible & DestructuringKind.CannotDestruct && destructible & DestructuringKind.HasToDestruct)
     parser.report(Errors.CantAssignToValidRHS);
