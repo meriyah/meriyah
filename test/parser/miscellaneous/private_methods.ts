@@ -70,6 +70,8 @@ describe('Private methods', () => {
     { code: 'class A { #x; fn() { return this.#y } }', options: { lexical: true } },
     { code: 'class A { #x } function fn() { return this.#y }', options: { lexical: true } },
     { code: 'class A extends B { #x() {} method() { super.#x() }  }', options: { lexical: true } },
+    { code: 'class A { m() { class B { m() { this.#y } } } #x }', options: { lexical: true } },
+    { code: 'class A { m() { class B { [this.#x]() {} } } } #x', options: { lexical: true } },
   ]);
 
   for (const text of [
@@ -295,6 +297,10 @@ describe('Private methods', () => {
     { code: 'class A { #yield = b[c]; }', options: { ranges: true } },
     { code: 'class A { #yield = foo + bar; }', options: { ranges: true } },
     { code: 'class A { #yield; }', options: { ranges: true } },
+    { code: 'class A { m() { class B { m() { return this.#x; } } } #x; }', options: { lexical: true } },
+    { code: 'class A { m() { class B { [#x in a]() {} } } #x; }', options: { lexical: true } },
+    { code: 'class A { m() { class B { y = this.#x; } } static #x() {} }', options: { lexical: true } },
+    { code: 'class A { m() { class B { m() { class C { m() { this.#x; } } } } } #x; }', options: { lexical: true } },
     'class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }',
     'class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }',
     'class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };',

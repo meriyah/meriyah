@@ -72,20 +72,16 @@ export class PrivateScope {
   }
 
   /**
-   * Checks if a private identifier name is defined in current scope
-   *
-   * @param name private identifier name
-   */
-  isPrivateIdentifierDefined(name: string): boolean {
-    return this.hasPrivateIdentifier(name) || Boolean(this.parent?.isPrivateIdentifierDefined(name));
-  }
-
-  /**
    * Validates all private identifier references in current scope
    */
   validatePrivateIdentifierRefs(): void {
     for (const name in this.refs) {
-      if (!this.isPrivateIdentifierDefined(name)) {
+      if (this.hasPrivateIdentifier(name)) continue;
+      // An enclosing class may still declare the name later in its body,
+      // so leave the check to the parent scope
+      if (this.parent) {
+        (this.parent.refs[name] ??= []).push(...this.refs[name]);
+      } else {
         const { index, line, column } = this.refs[name][0];
         throw new ParseError(
           { index, line, column },
