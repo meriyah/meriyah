@@ -1,5 +1,47 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Template > Expressions - Template (fail) > (\`\\01\`) 1`] = `
+"SyntaxError [1:1-1:3]: Octal escape sequences are not allowed in template strings
+> 1 | (\`\\01\`)
+    |  ^^ Octal escape sequences are not allowed in template strings"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > (\`\\8\`) 1`] = `
+"SyntaxError [1:1-1:3]: \\8 and \\9 are not allowed in template strings
+> 1 | (\`\\8\`)
+    |  ^^ \\8 and \\9 are not allowed in template strings"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > (\`\\unicode\`) 1`] = `
+"SyntaxError [1:1-1:4]: Invalid hexadecimal escape sequence
+> 1 | (\`\\unicode\`)
+    |  ^^^ Invalid hexadecimal escape sequence"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > (\`\\x\`) 1`] = `
+"SyntaxError [1:1-1:4]: Invalid hexadecimal escape sequence
+> 1 | (\`\\x\`)
+    |  ^^^ Invalid hexadecimal escape sequence"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > (\`a\${b}\\x\`) 1`] = `
+"SyntaxError [1:6-1:9]: Invalid hexadecimal escape sequence
+> 1 | (\`a\${b}\\x\`)
+    |       ^^^ Invalid hexadecimal escape sequence"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > ({ a: \`\\x\` }) 1`] = `
+"SyntaxError [1:6-1:9]: Invalid hexadecimal escape sequence
+> 1 | ({ a: \`\\x\` })
+    |       ^^^ Invalid hexadecimal escape sequence"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > (a, \`\\x\`) 1`] = `
+"SyntaxError [1:4-1:7]: Invalid hexadecimal escape sequence
+> 1 | (a, \`\\x\`)
+    |     ^^^ Invalid hexadecimal escape sequence"
+`;
+
 exports[`Expressions - Template > Expressions - Template (fail) > [\`\${""}\`] = {} 1`] = `
 "SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
 > 1 | [\`\${""}\`] = {}
@@ -316,6 +358,39 @@ exports[`Expressions - Template > Expressions - Template (fail) > x\`foo \${a b}
 "SyntaxError [1:10-1:11]: The first token after the template expression should be a continuation of the template
 > 1 | x\`foo \${a b} bar\`
     |           ^ The first token after the template expression should be a continuation of the template"
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > (a)\`\\x\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
 `;
 
 exports[`Expressions - Template > Expressions - Template (pass) > (tag = () => {})\`'\\00a0'\` 1`] = `
