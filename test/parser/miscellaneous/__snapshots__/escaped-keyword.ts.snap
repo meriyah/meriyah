@@ -66,10 +66,28 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
     |                 ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (async function aw\\u0061it() {}) 1`] = `
+"SyntaxError [1:16-1:26]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function aw\\u0061it() {})
+    |                 ^^^^^^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (async function() { aw\\u0061it x }) 1`] = `
 "SyntaxError [1:20-1:30]: Unexpected token: 'escaped keyword'
 > 1 | (async function() { aw\\u0061it x })
     |                     ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (async function* aw\\u0061it() {}) 1`] = `
+"SyntaxError [1:17-1:27]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function* aw\\u0061it() {})
+    |                  ^^^^^^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (async function* yi\\u0065ld() {}) 1`] = `
+"SyntaxError [1:17-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | (async function* yi\\u0065ld() {})
+    |                  ^^^^^^^^^^ 'yield' may not be used as an identifier in this context"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (function *gen() { yi\\u0065ld: ; }) 1`] = `
@@ -120,6 +138,12 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
     |             ^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (function aw\\u0061it() {}) 1`] = `
+"SyntaxError [1:10-1:20]: Expected '('
+> 1 | (function aw\\u0061it() {})
+    |           ^^^^^^^^^^ Expected '('"
+`;
+
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (function v\\u0061r() { }) 1`] = `
 "SyntaxError [1:10-1:18]: Expected '('
 > 1 | (function v\\u0061r() { })
@@ -136,6 +160,12 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
 "SyntaxError [1:16-1:26]: Unexpected token: 'escaped keyword'
 > 1 | (function* () { y\\u0069eld 10 })
     |                 ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (function* yi\\u0065ld() {}) 1`] = `
+"SyntaxError [1:11-1:21]: 'yield' may not be used as an identifier in this context
+> 1 | (function* yi\\u0065ld() {})
+    |            ^^^^^^^^^^ 'yield' may not be used as an identifier in this context"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (function*() { return (n++, y\\u0069eld 1); })() 1`] = `

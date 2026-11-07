@@ -131,6 +131,11 @@ describe('Miscellaneous - Escaped keywords', () => {
   }
   //
   fail('Miscellaneous - Escaped identifiers (failures)', [
+    String.raw`(function* yi\u0065ld() {})`,
+    String.raw`(async function* yi\u0065ld() {})`,
+    String.raw`(async function aw\u0061it() {})`,
+    String.raw`(async function* aw\u0061it() {})`,
+    { code: String.raw`(function aw\u0061it() {})`, options: { sourceType: 'module' } },
     String.raw`async (a = aw\u{61}it => {}) => {}`,
     String.raw`async (a = aw\u0061it => {}) => {}`,
     String.raw`async (aw\u{61}it) => {}`,

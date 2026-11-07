@@ -338,11 +338,13 @@ export function validateFunctionName(parser: Parser, context: Context, t: Token)
     parser.report(Errors.KeywordNotId);
   }
 
-  if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
+  // The name of a function expression is scanned in the enclosing context, so an
+  // escaped `yield` or `await` here can still carry the keyword token
+  if (context & (Context.InAwaitContext | Context.Module) && (t & ~Token.IsEscaped) === Token.AwaitKeyword) {
     parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
-  if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
+  if (context & (Context.InYieldContext | Context.Strict) && (t & ~Token.IsEscaped) === Token.YieldKeyword) {
     parser.report(Errors.DisallowedInContext, 'yield');
   }
 }
