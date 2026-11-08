@@ -582,6 +582,13 @@ describe('Expressions - Template', () => {
     '`\\7`',
     '`\\8`',
     '`\\9`',
+    '(`\\x`)',
+    '(`\\8`)',
+    '(`\\01`)',
+    '(`\\unicode`)',
+    '(`a${b}\\x`)',
+    '({ a: `\\x` })',
+    '(a, `\\x`)',
   ]);
   pass('Expressions - Template (pass)', [
     'var await = `simple template`;',
@@ -649,6 +656,7 @@ describe('Expressions - Template', () => {
     "(tag = () => {})`'\\00a0'`",
     'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
     'test`\\u{0`',
+    '(a)`\\x`',
   ]);
 
   describe('TemplateElement raw CR normalization', () => {
