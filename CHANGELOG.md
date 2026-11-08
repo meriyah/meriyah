@@ -1,3 +1,34 @@
+## [7.4.2](https://github.com/meriyah/meriyah/compare/v7.4.1...v7.4.2) (2026-11-08)
+
+### Bug Fixes
+
+* **lexer:** only treat `<!--` as a comment in web compatible script code ([#683](https://github.com/meriyah/meriyah/issues/683)) ([78eebfe](https://github.com/meriyah/meriyah/commit/78eebfe5a2eb4a51e11212598f6e586faa655606))
+* **lexer:** recognize an HTML close comment after a hashbang line ([#682](https://github.com/meriyah/meriyah/issues/682)) ([133b2b9](https://github.com/meriyah/meriyah/commit/133b2b906ddcc77941797f593389450baa5ad5c7))
+* **parser:** allow `#x in obj` as an array element, object property value and spread argument ([#678](https://github.com/meriyah/meriyah/issues/678)) ([1f7c40e](https://github.com/meriyah/meriyah/commit/1f7c40e8b031ea476934ab27610fdc04d35d2389)), closes [#x](https://github.com/meriyah/meriyah/issues/x)
+* **parser:** allow `arguments` as a label in class field initializers and static blocks ([#703](https://github.com/meriyah/meriyah/issues/703)) ([b3eae1f](https://github.com/meriyah/meriyah/commit/b3eae1f9958e12ffe5d36552b82f11b0cd8ff282))
+* **parser:** allow a nested class to use a private name declared later in an enclosing class ([#699](https://github.com/meriyah/meriyah/issues/699)) ([e476062](https://github.com/meriyah/meriyah/commit/e476062ed155cade8e8aa8fd70cd027068a3732f))
+* **parser:** allow an escaped strict mode reserved word as a class field name ([#698](https://github.com/meriyah/meriyah/issues/698)) ([5a764b5](https://github.com/meriyah/meriyah/commit/5a764b575b8e332a92c261e5e4fffef34e7c4eda))
+* **parser:** allow strict mode reserved words as identifiers in sloppy generators ([#674](https://github.com/meriyah/meriyah/issues/674)) ([0dc7926](https://github.com/meriyah/meriyah/commit/0dc792608674ac7796b8485f5b3cbaabbb604503))
+* **parser:** declare method parameters as parameters in lexical mode ([#688](https://github.com/meriyah/meriyah/issues/688)) ([c1dae06](https://github.com/meriyah/meriyah/commit/c1dae06f4cd76c75c780bd34c3c93ce08dc7980c))
+* **parser:** keep enclosing labels and allow web compat function declarations for a `let` label ([#692](https://github.com/meriyah/meriyah/issues/692)) ([0ab5c32](https://github.com/meriyah/meriyah/commit/0ab5c3289a0f581e42ec9a970851ffd929056627))
+* **parser:** parse `await` followed by a strict mode reserved word in sloppy async functions ([#679](https://github.com/meriyah/meriyah/issues/679)) ([dd8e9aa](https://github.com/meriyah/meriyah/commit/dd8e9aa6e16fe909e656bec4da02538e690597c0))
+* **parser:** parse operators after an import call at the start of a statement ([#677](https://github.com/meriyah/meriyah/issues/677)) ([c4b297a](https://github.com/meriyah/meriyah/commit/c4b297a26fbba6d01620f029d8ef9aef01a8b4a8))
+* **parser:** parse the computed key of a generator, async or accessor method in the enclosing context ([#695](https://github.com/meriyah/meriyah/issues/695)) ([a158249](https://github.com/meriyah/meriyah/commit/a1582490dc29ef1527e04af9cde38790da3bce32))
+* **parser:** reject `?.` and templates with substitutions after a block body arrow ([#686](https://github.com/meriyah/meriyah/issues/686)) ([1845d76](https://github.com/meriyah/meriyah/commit/1845d768841ccb0756372cf2f531b4184a59ce18))
+* **parser:** reject `++` and `--` after an array or object literal nested in another literal ([#694](https://github.com/meriyah/meriyah/issues/694)) ([7e1ec5e](https://github.com/meriyah/meriyah/commit/7e1ec5e78c1f00f911df78ad7b6fcb35e777dd9e))
+* **parser:** reject `++` and `--` on array and object literals ([#689](https://github.com/meriyah/meriyah/issues/689)) ([e13e7c9](https://github.com/meriyah/meriyah/commit/e13e7c922e91dfa692e35d49ba85f003087dbb5b))
+* **parser:** reject `arguments` in class field initializers and static blocks nested in functions ([#676](https://github.com/meriyah/meriyah/issues/676)) ([9a4f073](https://github.com/meriyah/meriyah/commit/9a4f07372b3766fa126d868fb40e45fd2554e50b))
+* **parser:** reject `await` in the concise body of a non-async arrow in module code ([#673](https://github.com/meriyah/meriyah/issues/673)) ([43449ea](https://github.com/meriyah/meriyah/commit/43449ea396c78524e1188ce816d4cc21d27a85a8))
+* **parser:** reject `break` and `continue` in an arrow or method body inside a loop ([#693](https://github.com/meriyah/meriyah/issues/693)) ([dfa8ad0](https://github.com/meriyah/meriyah/commit/dfa8ad0bb89f0bdd65db991e0f5e436f16ea67f9))
+* **parser:** reject `for await` in class static blocks ([#680](https://github.com/meriyah/meriyah/issues/680)) ([65d5350](https://github.com/meriyah/meriyah/commit/65d5350ad326d3f764500be51f4e93aa006b455a))
+* **parser:** reject a function declaration after an `async:` label in a single-statement context ([#697](https://github.com/meriyah/meriyah/issues/697)) ([4c4ea12](https://github.com/meriyah/meriyah/commit/4c4ea129bbb8eb6d68976b41d316752100694122))
+* **parser:** reject an escaped `yield` or `await` as the name of a generator or async function expression ([#702](https://github.com/meriyah/meriyah/issues/702)) ([1480dad](https://github.com/meriyah/meriyah/commit/1480dad32cc6546ea7d2a623e851f18fccf32a7f))
+* **parser:** reject an optional call as an assignment target in web compat mode ([#696](https://github.com/meriyah/meriyah/issues/696)) ([a3d5926](https://github.com/meriyah/meriyah/commit/a3d59264e1261c04030898a0001c7cbcd8a735ea))
+* **parser:** reject arrow functions after unary operators when the parameter is a reserved word ([#687](https://github.com/meriyah/meriyah/issues/687)) ([e79d7db](https://github.com/meriyah/meriyah/commit/e79d7dbd1a56f44144f6e9a5dcb281c2bc7f21d1))
+* **parser:** reject assignment to a statement-level arrow with an `async` parameter ([#690](https://github.com/meriyah/meriyah/issues/690)) ([1f16445](https://github.com/meriyah/meriyah/commit/1f164456e95a4338d45a80d3bb6489e1802c2ae8))
+* **parser:** reject optional chains after a member expression in `new` without arguments ([#691](https://github.com/meriyah/meriyah/issues/691)) ([b299db5](https://github.com/meriyah/meriyah/commit/b299db5590d7789d048eb2cdc89669ac58219921))
+* **parser:** template literal inside parentheses should not be processed as tagged template ([#701](https://github.com/meriyah/meriyah/issues/701)) ([431f0f4](https://github.com/meriyah/meriyah/commit/431f0f42faa4b51b1b1480371a55033fc126f30a)), closes [#700](https://github.com/meriyah/meriyah/issues/700)
+
 ## [7.4.1](https://github.com/meriyah/meriyah/compare/v7.4.0...v7.4.1) (2026-10-25)
 
 ### Bug Fixes
