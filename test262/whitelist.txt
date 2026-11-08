@@ -1,4 +1,0 @@
-language/statements/class/elements/arrow-body-arguments-label.js (default)
-language/statements/class/elements/arrow-body-arguments-label.js (strict mode)
-language/statements/class/static-init-arguments-label.js (default)
-language/statements/class/static-init-arguments-label.js (strict mode)

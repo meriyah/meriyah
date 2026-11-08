@@ -492,7 +492,7 @@ function parseExpressionOrLabelledStatement(
         0,
         1,
         parser.tokenStart,
-        Origin.None,
+        Origin.Statement,
         1,
       );
   }
@@ -4648,7 +4648,9 @@ function parsePrimaryExpression(
       !(context & Context.InArgumentList) &&
       // Use tokenValue instead of token === Token.Arguments
       // because "arguments" maybe escaped like argument\u0073
-      parser.tokenValue === 'arguments'
+      parser.tokenValue === 'arguments' &&
+      // `arguments:` at the start of a statement is a label, not a reference
+      !(origin & Origin.Statement && parser.getToken() === Token.Colon)
     )
       // Report the `arguments` token itself, which has already been consumed
       throw new ParseError(start, parser.startPosition, Errors.InvalidClassFieldArgEval);
