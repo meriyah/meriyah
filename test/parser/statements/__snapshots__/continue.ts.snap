@@ -36,6 +36,24 @@ exports[`Statements - Continue > Declarations - Continue > { continue } 1`] = `
     |   ^^^^^^^^ Illegal continue statement"
 `;
 
+exports[`Statements - Continue > Declarations - Continue > L: with (a) M: while (1) continue L; 1`] = `
+"SyntaxError [1:34-1:35]: Label 'L' does not denote an iteration statement
+> 1 | L: with (a) M: while (1) continue L;
+    |                                   ^ Label 'L' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > L: with (a) while (1) { continue L; } 1`] = `
+"SyntaxError [1:33-1:34]: Label 'L' does not denote an iteration statement
+> 1 | L: with (a) while (1) { continue L; }
+    |                                  ^ Label 'L' does not denote an iteration statement"
+`;
+
+exports[`Statements - Continue > Declarations - Continue > L: with (a) while (1) continue L; 1`] = `
+"SyntaxError [1:31-1:32]: Label 'L' does not denote an iteration statement
+> 1 | L: with (a) while (1) continue L;
+    |                                ^ Label 'L' does not denote an iteration statement"
+`;
+
 exports[`Statements - Continue > Declarations - Continue > LABEL1 : do {
 x++;
 (function(){continue LABEL1;})();
@@ -526,6 +544,80 @@ exports[`Statements - Continue > Statements - Continue > __proto__: while (true)
       },
       "label": {
         "name": "__proto__",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > L: with (a) while (1) break L; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": {
+            "label": {
+              "name": "L",
+              "type": "Identifier",
+            },
+            "type": "BreakStatement",
+          },
+          "test": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "WhileStatement",
+        },
+        "object": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "WithStatement",
+      },
+      "label": {
+        "name": "L",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > M: while (1) with (a) continue M; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": {
+            "label": {
+              "name": "M",
+              "type": "Identifier",
+            },
+            "type": "ContinueStatement",
+          },
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "WithStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "M",
         "type": "Identifier",
       },
       "type": "LabeledStatement",
