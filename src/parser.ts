@@ -6415,6 +6415,17 @@ function parseObjectLiteralOrPattern(
         ) {
           state |= PropertyKind.Shorthand;
 
+          // An escaped reserved word is not an identifier reference, so it can't
+          // be a shorthand property either, e.g. `"use strict"; ({ l\u0065t })`.
+          // Property names are scanned with escaped keywords allowed, so an escaped
+          // `yield` in a generator arrives as a plain identifier.
+          if (
+            token === Token.EscapedFutureReserved ||
+            (token & Token.IsEscaped && context & Context.InYieldContext && tokenValue === 'yield')
+          ) {
+            parser.report(Errors.InvalidEscapedKeyword);
+          }
+
           // `{ arguments }` is a reference to `arguments`, so it has the same restriction
           // in class field initializers and static blocks as a plain identifier
           if (
