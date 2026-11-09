@@ -239,7 +239,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
           return scanPrivateIdentifier(parser);
 
         case Token.WhiteSpace:
-          advanceChar(parser);
+          while (advanceChar(parser) === Chars.Space && parser.index + 1 < parser.end);
           break;
 
         case Token.CarriageReturn:
