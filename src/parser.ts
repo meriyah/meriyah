@@ -1333,7 +1333,7 @@ function parseWithStatement(
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const object = parseExpressions(parser, context, privateScope, 0, 1, parser.tokenStart);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  const body = parseStatement(parser, context, scope, privateScope, labels, 0, Origin.BlockStatement);
+  const body = parseStatement(parser, context, scope, privateScope, { parent: labels }, 0, Origin.BlockStatement);
   return parser.finishNode<ESTree.WithStatement>(
     {
       type: 'WithStatement',

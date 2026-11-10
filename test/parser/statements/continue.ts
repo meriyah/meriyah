@@ -28,6 +28,9 @@ describe('Statements - Continue', () => {
     'while (true) continue x;',
     'function f(){ do        if (x) continue y   ; while(true);}',
     'do     continue y   ; while(true);',
+    'L: with (a) while (1) continue L;',
+    'L: with (a) M: while (1) continue L;',
+    'L: with (a) while (1) { continue L; }',
     'do     if (x) continue y   ; while(true);',
     'function f(){ while (true)       if (x) continue y   }',
     'function f(){ for (;;)       if (x) continue y   }',
@@ -117,6 +120,8 @@ describe('Statements - Continue', () => {
 
   pass('Statements - Continue', [
     'while (x) continue',
+    'L: with (a) while (1) break L;',
+    'M: while (1) with (a) continue M;',
     'do continue; while(foo);',
     'foo: do continue foo; while(foo);',
     '__proto__: while (true) { continue __proto__; }',
