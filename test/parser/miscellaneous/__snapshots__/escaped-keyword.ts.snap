@@ -1,5 +1,29 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > "use strict"; ({impl\\u0065ments}) 1`] = `
+"SyntaxError [1:31-1:32]: Unexpected token: 'escaped keyword'
+> 1 | "use strict"; ({impl\\u0065ments})
+    |                                ^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > "use strict"; ({l\\u0065t}) 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected token: 'escaped keyword'
+> 1 | "use strict"; ({l\\u0065t})
+    |                         ^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > "use strict"; ({st\\u0061tic}) 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: 'escaped keyword'
+> 1 | "use strict"; ({st\\u0061tic})
+    |                            ^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > "use strict"; ({yi\\u0065ld}) 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: 'escaped keyword'
+> 1 | "use strict"; ({yi\\u0065ld})
+    |                           ^ Unexpected token: 'escaped keyword'"
+`;
+
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > 'use strict'; impleme\\u{006E}ts 1`] = `
 "SyntaxError [1:14-1:31]: Unexpected token: 'escaped future reserved keyword'
 > 1 | 'use strict'; impleme\\u{006E}ts
@@ -52,6 +76,12 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
 "SyntaxError [1:11-1:14]: Unexpected token: 'escaped keyword'
 > 1 | ({\\u0073et set(){}})
     |            ^^^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > ({l\\u0065t}) 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'escaped keyword'
+> 1 | ({l\\u0065t})
+    |           ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > (async ()=>{\\u0061wait 100})() 1`] = `
@@ -364,6 +394,12 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
 "SyntaxError [1:6-1:16]: Await expression not allowed in formal parameter
 > 1 | async aw\\u{61}it => {}
     |       ^^^^^^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async function* g() {({yi\\u0065ld});} 1`] = `
+"SyntaxError [1:33-1:34]: Unexpected token: 'escaped keyword'
+> 1 | async function* g() {({yi\\u0065ld});}
+    |                                  ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > async() => { void \\u0061wait; }; 1`] = `
@@ -688,6 +724,24 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
 "SyntaxError [1:9-1:24]: Unexpected token: 'escaped keyword'
 > 1 | function impl\\u0065ments() {}
     |          ^^^^^^^^^^^^^^^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > function* g() {({yi\\u0065ld = 1} = 1);} 1`] = `
+"SyntaxError [1:28-1:29]: Unexpected token: 'escaped keyword'
+> 1 | function* g() {({yi\\u0065ld = 1} = 1);}
+    |                             ^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > function* g() {({yi\\u0065ld} = 1);} 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: 'escaped keyword'
+> 1 | function* g() {({yi\\u0065ld} = 1);}
+    |                            ^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > function* g() {({yi\\u0065ld});} 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected token: 'escaped keyword'
+> 1 | function* g() {({yi\\u0065ld});}
+    |                            ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > i\\u0066 (0) 1`] = `
@@ -1081,9 +1135,9 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > var x = { interf\\u0061ce } = { interface: 42 }; 1`] = `
-"SyntaxError [1:29-1:30]: Invalid left-hand side in assignment
+"SyntaxError [1:25-1:26]: Unexpected token: 'escaped keyword'
 > 1 | var x = { interf\\u0061ce } = { interface: 42 };
-    |                              ^ Invalid left-hand side in assignment"
+    |                          ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > var x = { n\\u0065w } = { new: 42 }; 1`] = `
@@ -1093,15 +1147,15 @@ exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers 
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > var x = { privat\\u0065 } = { private: 42 }; 1`] = `
-"SyntaxError [1:27-1:28]: Invalid left-hand side in assignment
+"SyntaxError [1:23-1:24]: Unexpected token: 'escaped keyword'
 > 1 | var x = { privat\\u0065 } = { private: 42 };
-    |                            ^ Invalid left-hand side in assignment"
+    |                        ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > var x = { privat\\u0065 } = { private: 42 }; 2`] = `
-"SyntaxError [1:27-1:28]: Invalid left-hand side in assignment
+"SyntaxError [1:23-1:24]: Unexpected token: 'escaped keyword'
 > 1 | var x = { privat\\u0065 } = { private: 42 };
-    |                            ^ Invalid left-hand side in assignment"
+    |                        ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Miscellaneous - Escaped keywords > Miscellaneous - Escaped identifiers (failures) > var x = { sup\\u0065r } = { super: 42 }; 1`] = `

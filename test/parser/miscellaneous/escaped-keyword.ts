@@ -114,6 +114,11 @@ describe('Miscellaneous - Escaped keywords', () => {
     String.raw`(a = aw\u{61}it) => {}`,
     String.raw`async (aw\u{61}it);`,
     String.raw`async (a = aw\u{61}it => {});`,
+    String.raw`({l\u0065t})`,
+    String.raw`({yi\u0065ld})`,
+    String.raw`"use strict"; ({l\u0065t: 1})`,
+    String.raw`function* g() {({ yi\u0065ld: 1 });}`,
+    String.raw`function* g() {() => ({yi\u0065ld});}`,
   ]) {
     it(text, () => {
       t.doesNotThrow(() => {
@@ -131,6 +136,15 @@ describe('Miscellaneous - Escaped keywords', () => {
   }
   //
   fail('Miscellaneous - Escaped identifiers (failures)', [
+    String.raw`"use strict"; ({l\u0065t})`,
+    String.raw`"use strict"; ({st\u0061tic})`,
+    String.raw`"use strict"; ({yi\u0065ld})`,
+    String.raw`"use strict"; ({impl\u0065ments})`,
+    String.raw`function* g() {({yi\u0065ld});}`,
+    String.raw`function* g() {({yi\u0065ld} = 1);}`,
+    String.raw`function* g() {({yi\u0065ld = 1} = 1);}`,
+    String.raw`async function* g() {({yi\u0065ld});}`,
+    { code: String.raw`({l\u0065t})`, options: { sourceType: 'module' } },
     String.raw`(function* yi\u0065ld() {})`,
     String.raw`(async function* yi\u0065ld() {})`,
     String.raw`(async function aw\u0061it() {})`,
