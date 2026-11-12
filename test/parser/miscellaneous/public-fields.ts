@@ -16,6 +16,17 @@ describe('Public fields', () => {
     'class C { static { a ? arguments : 1; } }',
     'class C { static { switch (a) { case arguments: } } }',
     'class C { static { arguments: arguments; } }',
+    'class C { async x }',
+    'class C { async x; }',
+    'class C { async x = 1 }',
+    'class C { async x\n m() {} }',
+    'class C { static async x }',
+    'class C { async #x }',
+    'class C { async [x] }',
+    'class C { async "x" = 1 }',
+    'class C { async 1 }',
+    'class C { async get }',
+    '(class { async x })',
     { code: 'class A { "x" = arguments; }', options: { webcompat: true } },
     { code: 'class A { "x" = super(); }', options: { webcompat: true } },
     { code: 'class A { x = typeof super(); }', options: { webcompat: true } },
@@ -211,6 +222,8 @@ describe('Public fields', () => {
   }
 
   pass('Public fields (pass)', [
+    'class C { async\n x }',
+    'class C { static async\n x = 1 }',
     'class C { static { arguments: ; } }',
     'class C { static { arguments: for (;;) break arguments; } }',
     'class C { static { x: arguments: for (;;) continue arguments; } }',

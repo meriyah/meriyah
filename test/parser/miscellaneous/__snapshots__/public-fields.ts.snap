@@ -6,6 +6,12 @@ exports[`Public fields > Public fields (fail) > (async () => class { x = await 1
     |                          ^^^^^ Await is only valid in async functions"
 `;
 
+exports[`Public fields > Public fields (fail) > (class { async x }) 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: '}'
+> 1 | (class { async x })
+    |                  ^ Unexpected token: '}'"
+`;
+
 exports[`Public fields > Public fields (fail) > async () => class { x = await 1 }; 1`] = `
 "SyntaxError [1:24-1:29]: Await is only valid in async functions
 > 1 | async () => class { x = await 1 };
@@ -102,6 +108,62 @@ exports[`Public fields > Public fields (fail) > class C { #m = function() { retu
     |                                                                                                ^ Private fields can't be accessed on super"
 `;
 
+exports[`Public fields > Public fields (fail) > class C { async "x" = 1 } 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '='
+> 1 | class C { async "x" = 1 }
+    |                     ^ Unexpected token: '='"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async #x } 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: '}'
+> 1 | class C { async #x }
+    |                    ^ Unexpected token: '}'"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async [x] } 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '}'
+> 1 | class C { async [x] }
+    |                     ^ Unexpected token: '}'"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async 1 } 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: '}'
+> 1 | class C { async 1 }
+    |                   ^ Unexpected token: '}'"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async get } 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '}'
+> 1 | class C { async get }
+    |                     ^ Unexpected token: '}'"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async x
+ m() {} } 1`] = `
+"SyntaxError [2:1-2:2]: Unexpected token: 'identifier'
+  1 | class C { async x
+> 2 |  m() {} }
+    |  ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async x = 1 } 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: '='
+> 1 | class C { async x = 1 }
+    |                   ^ Unexpected token: '='"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async x } 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: '}'
+> 1 | class C { async x }
+    |                   ^ Unexpected token: '}'"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { async x; } 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: ';'
+> 1 | class C { async x; }
+    |                  ^ Unexpected token: ';'"
+`;
+
 exports[`Public fields > Public fields (fail) > class C { static { ({ arguments }); } } 1`] = `
 "SyntaxError [1:22-1:31]: A class field initializer or static block may not contain arguments
 > 1 | class C { static { ({ arguments }); } }
@@ -124,6 +186,12 @@ exports[`Public fields > Public fields (fail) > class C { static { switch (a) { 
 "SyntaxError [1:37-1:46]: A class field initializer or static block may not contain arguments
 > 1 | class C { static { switch (a) { case arguments: } } }
     |                                      ^^^^^^^^^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { static async x } 1`] = `
+"SyntaxError [1:25-1:26]: Unexpected token: '}'
+> 1 | class C { static async x }
+    |                          ^ Unexpected token: '}'"
 `;
 
 exports[`Public fields > Public fields (fail) > class C { static x = await 1 } 1`] = `
@@ -1633,6 +1701,49 @@ exports[`Public fields > Public fields (pass) > class C { [await 1] = 1 } 1`] = 
 }
 `;
 
+exports[`Public fields > Public fields (pass) > class C { async
+ x } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Public fields > Public fields (pass) > class C { static { argument\\u0073: ; } } 1`] = `
 {
   "body": [
@@ -1791,6 +1902,52 @@ exports[`Public fields > Public fields (pass) > class C { static { x: arguments:
               },
             ],
             "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Public fields > Public fields (pass) > class C { static async
+ x = 1 } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 1,
+            },
           },
         ],
         "type": "ClassBody",

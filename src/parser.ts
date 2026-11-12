@@ -9148,6 +9148,11 @@ function parsePropertyDefinition(
 
   if (state & PropertyKind.Generator) parser.report(Errors.Unexpected);
 
+  // `async` on the same line as the name starts a method, which needs a parameter list
+  if (state & PropertyKind.Async) {
+    parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+  }
+
   if (parser.getToken() === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
 
