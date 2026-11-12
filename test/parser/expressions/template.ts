@@ -589,8 +589,17 @@ describe('Expressions - Template', () => {
     '(`a${b}\\x`)',
     '({ a: `\\x` })',
     '(a, `\\x`)',
+    'x`\\x\\`',
+    'x`\\x\\${a}',
   ]);
   pass('Expressions - Template (pass)', [
+    'x`\\x\\``',
+    'x`\\1\\``',
+    'x`\\u{}\\`${a}\\x\\``',
+    'x`\\x\\${a}`',
+    'x`\\x\\\\`',
+    'x`\\x\\\\${a}`',
+    'x`\\x\\\n\\``\ny',
     'var await = `simple template`;',
     '`${y, x`)`}`',
     '`${x`)`, y}`',
