@@ -114,10 +114,7 @@ export function skipMultiLineComment(parser: Parser, source: string, state: Lexe
     if (parser.currentChar < 0x2b) {
       let skippedOneAsterisk = false;
       while (parser.currentChar === Chars.Asterisk) {
-        if (!skippedOneAsterisk) {
-          state &= ~LexerState.LastIsCR;
-          skippedOneAsterisk = true;
-        }
+        skippedOneAsterisk = true;
         if (advanceChar(parser) === Chars.Slash) {
           advanceChar(parser);
           if (parser.options.onComment) {
@@ -151,21 +148,19 @@ export function skipMultiLineComment(parser: Parser, source: string, state: Lexe
       }
 
       if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
+        state |= LexerState.NewLine;
         if (parser.currentChar === Chars.CarriageReturn) {
-          state |= LexerState.NewLine | LexerState.LastIsCR;
           scanNewLine(parser);
         } else {
-          consumeLineFeed(parser, state);
-          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+          consumeLineFeed(parser);
         }
       } else {
         advanceChar(parser);
       }
     } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
-      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+      state |= LexerState.NewLine;
       scanNewLine(parser);
     } else {
-      state &= ~LexerState.LastIsCR;
       advanceChar(parser);
     }
   }

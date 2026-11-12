@@ -6,7 +6,6 @@ import { Token } from '../token.ts';
 export const enum LexerState {
   None = 0,
   NewLine = 1 << 0,
-  LastIsCR = 1 << 2,
 }
 
 export const enum NumberKind {
@@ -51,10 +50,12 @@ export function consumePossibleSurrogatePair(parser: Parser): number {
 /**
  * Use to consume a line feed instead of `scanNewLine`.
  */
-export function consumeLineFeed(parser: Parser, state: LexerState): void {
+export function consumeLineFeed(parser: Parser): void {
+  // `<CR><LF>` is one line terminator, and the `<CR>` has been counted already
+  const isAfterCR = parser.source.charCodeAt(parser.index - 1) === Chars.CarriageReturn;
   parser.currentChar = parser.source.charCodeAt(++parser.index);
   parser.flags |= Flags.NewLine;
-  if ((state & LexerState.LastIsCR) === 0) {
+  if (!isAfterCR) {
     parser.column = 0;
     parser.line++;
   }
