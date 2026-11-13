@@ -1594,10 +1594,22 @@ exports[`Module - Import > Module - Import (fail) > import * as from 1`] = `
     |             ^^^^ Expected 'from'"
 `;
 
+exports[`Module - Import > Module - Import (fail) > import * as let from "a" 1`] = `
+"SyntaxError [1:12-1:15]: Unexpected strict mode reserved word
+> 1 | import * as let from "a"
+    |             ^^^ Unexpected strict mode reserved word"
+`;
+
 exports[`Module - Import > Module - Import (fail) > import * as x 1`] = `
 "SyntaxError [1:12-1:13]: Expected 'from'
 > 1 | import * as x
     |             ^ Expected 'from'"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import * as yield from "a" 1`] = `
+"SyntaxError [1:12-1:17]: Unexpected strict mode reserved word
+> 1 | import * as yield from "a"
+    |             ^^^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import * from "foo" 1`] = `
@@ -1978,6 +1990,12 @@ exports[`Module - Import > Module - Import (fail) > import a, * as a from "foo";
     |                ^ Duplicate binding 'a'"
 `;
 
+exports[`Module - Import > Module - Import (fail) > import a, * as let from "a" 1`] = `
+"SyntaxError [1:15-1:18]: Unexpected strict mode reserved word
+> 1 | import a, * as let from "a"
+    |                ^^^ Unexpected strict mode reserved word"
+`;
+
 exports[`Module - Import > Module - Import (fail) > import a, ** from 'foo'; 1`] = `
 "SyntaxError [1:10-1:12]: Only '*' or '{...}' can be imported after default
 > 1 | import a, ** from 'foo';
@@ -2146,6 +2164,12 @@ exports[`Module - Import > Module - Import (fail) > import implements, {x, y, z}
     |        ^^^^^^^^^^ Unexpected strict mode reserved word"
 `;
 
+exports[`Module - Import > Module - Import (fail) > import let from "a" 1`] = `
+"SyntaxError [1:7-1:10]: Unexpected strict mode reserved word
+> 1 | import let from "a"
+    |        ^^^ Unexpected strict mode reserved word"
+`;
+
 exports[`Module - Import > Module - Import (fail) > import package, * as foo from "foo"; 1`] = `
 "SyntaxError [1:7-1:14]: Unexpected strict mode reserved word
 > 1 | import package, * as foo from "foo";
@@ -2168,6 +2192,18 @@ exports[`Module - Import > Module - Import (fail) > import protected, {x, y, z} 
 "SyntaxError [1:7-1:16]: Unexpected strict mode reserved word
 > 1 | import protected, {x, y, z} from "foo";
     |        ^^^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import yield from "a" 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected strict mode reserved word
+> 1 | import yield from "a"
+    |        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Module - Import > Module - Import (fail) > import yield, {b} from "a" 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected strict mode reserved word
+> 1 | import yield, {b} from "a"
+    |        ^^^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Module - Import > Module - Import (fail) > import; 1`] = `
