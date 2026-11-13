@@ -82,19 +82,22 @@ export function scanTemplate(parser: Parser, context: Context): Token {
  */
 function scanBadTemplate(parser: Parser, ch: number, onCarriageReturn: () => void): number {
   while (ch !== Chars.Backtick) {
+    if (ch === Chars.Backslash) {
+      // The escaped character can neither end the template nor start a substitution
+      ch = advanceChar(parser);
+    } else if (ch === Chars.Dollar) {
+      const index = parser.index + 1;
+      if (index < parser.end && parser.source.charCodeAt(index) === Chars.LeftBrace) {
+        parser.index = index;
+        parser.column++;
+        return -ch;
+      }
+    }
+
     switch (ch) {
       case Chars.CarriageReturn:
         onCarriageReturn();
         break;
-      case Chars.Dollar: {
-        const index = parser.index + 1;
-        if (index < parser.end && parser.source.charCodeAt(index) === Chars.LeftBrace) {
-          parser.index = index;
-          parser.column++;
-          return -ch;
-        }
-        break;
-      }
       case Chars.LineFeed:
       case Chars.LineSeparator:
       case Chars.ParagraphSeparator:

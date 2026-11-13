@@ -354,6 +354,18 @@ exports[`Expressions - Template > Expressions - Template (fail) > x\`\\u{0\${\`\
     |         ^^ \\8 and \\9 are not allowed in template strings"
 `;
 
+exports[`Expressions - Template > Expressions - Template (fail) > x\`\\x\\\${a} 1`] = `
+"SyntaxError [1:1-1:9]: Unterminated template literal
+> 1 | x\`\\x\\\${a}
+    |  ^^^^^^^^ Unterminated template literal"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > x\`\\x\\\` 1`] = `
+"SyntaxError [1:1-1:6]: Unterminated template literal
+> 1 | x\`\\x\\\`
+    |  ^^^^^ Unterminated template literal"
+`;
+
 exports[`Expressions - Template > Expressions - Template (fail) > x\`foo \${a b} bar\` 1`] = `
 "SyntaxError [1:10-1:11]: The first token after the template expression should be a continuation of the template
 > 1 | x\`foo \${a b} bar\`
@@ -4413,6 +4425,273 @@ exports[`Expressions - Template > Expressions - Template (pass) > x = \`1 \${ yi
           "type": "TemplateLiteral",
         },
         "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\1\\\`\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\1\\\`",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\u{}\\\`\${a}\\x\\\`\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\u{}\\\`",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x\\\`",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\x\\
+\\\`\`
+y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x\\
+\\\`",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\x\\\${a}\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x\\\${a}",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\x\\\\\${a}\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x\\\\",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "",
+                "raw": "",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\x\\\\\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x\\\\",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x\`\\x\\\`\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\x\\\`",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
       },
       "type": "ExpressionStatement",
     },
