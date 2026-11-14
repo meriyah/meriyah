@@ -243,13 +243,13 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
           break;
 
         case Token.CarriageReturn:
-          state |= LexerState.NewLine | LexerState.LastIsCR;
+          state |= LexerState.NewLine;
           scanNewLine(parser);
           break;
 
         case Token.LineFeed:
-          consumeLineFeed(parser, state);
-          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+          consumeLineFeed(parser);
+          state |= LexerState.NewLine;
           break;
 
         // `<`, `<=`, `<<`, `<<=`, `<!--`
@@ -568,7 +568,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
       }
     } else {
       if ((char ^ Chars.LineSeparator) <= 1) {
-        state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+        state |= LexerState.NewLine;
         scanNewLine(parser);
         continue;
       }

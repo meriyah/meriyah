@@ -99,7 +99,6 @@ export function nextJSXToken(parser: Parser) {
     parser.report(Errors.UnexpectedGreaterThanInJSXText);
   }
 
-  let state = LexerState.None;
   let hasCarriageReturn = false;
 
   while (parser.index < parser.end) {
@@ -113,18 +112,15 @@ export function nextJSXToken(parser: Parser) {
     // line terminator (not two), `<LF><CR>` two line terminators (not one),
     // and counts `<LS>` / `<PS>` as line terminators at all.
     if (char === Chars.CarriageReturn) {
-      state |= LexerState.NewLine | LexerState.LastIsCR;
       hasCarriageReturn = true;
       scanNewLine(parser);
     } else if (char === Chars.LineFeed) {
-      consumeLineFeed(parser, state);
-      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+      consumeLineFeed(parser);
     } else if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
       parser.flags |= Flags.NewLine;
       parser.currentChar = parser.source.charCodeAt(++parser.index);
       parser.column = 0;
       parser.line++;
-      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
     } else {
       advanceChar(parser);
     }

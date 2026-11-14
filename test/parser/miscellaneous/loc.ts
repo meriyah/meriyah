@@ -148,4 +148,35 @@ describe('Miscellaneous - loc', () => {
       }),
     );
   });
+  // A carriage return that is not directly followed by a line feed is a line
+  // terminator on its own, so the line feed after it starts another line.
+  for (const [source, options, line, column] of [
+    ['1\r \nb', {}, 3, 0],
+    ['1\r\t\nb', {}, 3, 0],
+    ['\r\u00a0\nb', {}, 3, 0],
+    ['1\r/*\n*/b', {}, 3, 2],
+    ['1\r\n \nb', {}, 3, 0],
+    ['1\r\r\nb', {}, 3, 0],
+    ['<a>\r \n<b/></a>', { jsx: true }, 3, 0],
+    ['<a>x\r y\n<b/></a>', { jsx: true }, 3, 0],
+  ] as const) {
+    it(`Miscellaneous - loc (line feed after a carriage return) ${JSON.stringify(source)}`, () => {
+      const statement = parse(source, { ...options, loc: true }).body.at(-1)!;
+      const node =
+        statement.type === 'ExpressionStatement' && statement.expression.type === 'JSXElement'
+          ? statement.expression.children.at(-1)!
+          : statement;
+      t.deepEqual(node.loc!.start, { line, column });
+    });
+  }
+
+  it('Miscellaneous - loc (comment after a carriage return)', () => {
+    const comments: { loc: unknown }[] = [];
+    parse('a\r/*\n*/', {
+      onComment(_type, _value, _start, _end, loc) {
+        comments.push({ loc });
+      },
+    });
+    t.deepEqual(comments, [{ loc: { start: { line: 2, column: 0 }, end: { line: 3, column: 2 } } }]);
+  });
 });
