@@ -4390,7 +4390,7 @@ function parseMemberOrUpdateExpression(
             quasi:
               parser.getToken() === Token.TemplateContinuation
                 ? parseTemplate(parser, context | Context.TaggedTemplate, privateScope)
-                : parseTemplateLiteral(parser, context),
+                : parseTemplateLiteral(parser, context | Context.TaggedTemplate),
           },
           start,
         );
@@ -5077,6 +5077,7 @@ function parseTemplateLiteral(parser: Parser, context: Context): ESTree.Template
    */
 
   parser.assignable = AssignmentTargetKind.Invalid;
+  reportTemplateEscapeError(parser, context);
   const { tokenValue, tokenRaw, tokenStart } = parser;
   consume(parser, context, Token.TemplateSpan);
   const quasis = [parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, true)];
@@ -5104,6 +5105,7 @@ function parseTemplate(
 ): ESTree.TemplateLiteral {
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
+  reportTemplateEscapeError(parser, context);
   const { tokenValue, tokenRaw, tokenStart } = parser;
   consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
 
@@ -5116,6 +5118,7 @@ function parseTemplate(
   if (parser.getToken() !== Token.RightBrace) parser.report(Errors.InvalidTemplateContinuation);
 
   while (parser.setToken(scanTemplateTail(parser, context), true) !== Token.TemplateSpan) {
+    reportTemplateEscapeError(parser, context);
     const { tokenValue, tokenRaw, tokenStart } = parser;
     consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
     quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ false));
@@ -5125,6 +5128,7 @@ function parseTemplate(
   }
 
   {
+    reportTemplateEscapeError(parser, context);
     const { tokenValue, tokenRaw, tokenStart } = parser;
     consume(parser, context, Token.TemplateSpan);
     quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ true));
@@ -5140,6 +5144,16 @@ function parseTemplate(
     },
     tokenStart,
   );
+}
+
+/**
+ * Reports an invalid escape sequence in the current template token, unless the template is tagged
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ */
+function reportTemplateEscapeError(parser: Parser, context: Context): void {
+  if ((context & Context.TaggedTemplate) === 0 && parser.templateEscapeError) throw parser.templateEscapeError;
 }
 
 /**

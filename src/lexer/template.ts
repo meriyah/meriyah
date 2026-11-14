@@ -1,6 +1,6 @@
 import { Chars } from '../chars.ts';
 import { Context } from '../common.ts';
-import { Errors } from '../errors.ts';
+import { Errors, type ParseError } from '../errors.ts';
 import { type Parser } from '../parser/parser.ts';
 import { Token } from '../token.ts';
 import { advanceChar } from './common.ts';
@@ -14,6 +14,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
   let token: Token = Token.TemplateSpan;
   let ret: string | null = '';
   let hasCarriageReturn = false;
+  parser.templateEscapeError = undefined;
 
   let char = advanceChar(parser);
 
@@ -32,7 +33,13 @@ export function scanTemplate(parser: Parser, context: Context): Token {
         const code = parseEscape(parser, context | Context.Strict, char, /* isTemplate */ 1);
         if (code >= 0) {
           ret += String.fromCodePoint(code);
-        } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
+        } else if (code !== Escape.Empty) {
+          // Keep the error for the parser, which reports it if the template is not tagged
+          try {
+            handleStringError(parser, code as Escape, /* isTemplate */ 1);
+          } catch (error) {
+            parser.templateEscapeError = error as ParseError;
+          }
           // Restore before the error in parseEscape
           parser.index = index;
           parser.line = line;
@@ -43,8 +50,6 @@ export function scanTemplate(parser: Parser, context: Context): Token {
           });
           if (char < 0) token = Token.TemplateContinuation;
           break;
-        } else {
-          handleStringError(parser, code as Escape, /* isTemplate */ 1);
         }
       }
     } else if (parser.index < parser.end) {
