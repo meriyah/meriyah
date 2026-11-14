@@ -91,6 +91,12 @@ export class Parser {
   tokenRaw = '';
 
   /**
+   * Holds the error for an invalid escape sequence in the scanned template token.
+   * Only an untagged template reports it, and the lexer cannot know if a template is tagged.
+   */
+  templateEscapeError: ParseError | undefined = undefined;
+
+  /**
    * Holds the regExp info text that have been collected by the lexer
    */
   tokenRegExp: void | {
