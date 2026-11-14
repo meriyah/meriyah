@@ -4746,8 +4746,18 @@ function parsePrimaryExpression(
     case Token.ImportKeyword:
       return parseImportCallOrMetaExpression(parser, context, privateScope, inNew, inGroup, start);
     case Token.LessThan:
-      if (parser.options.jsx)
-        return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0, parser.tokenStart);
+      if (parser.options.jsx) {
+        const element = parseJSXRootElementOrFragment(
+          parser,
+          context,
+          privateScope,
+          /*inJSXChild*/ 0,
+          parser.tokenStart,
+        );
+        parser.assignable = AssignmentTargetKind.Invalid;
+        return element;
+      }
+    // falls through
     default:
       if (isValidIdentifier(context, parser.getToken())) {
         return parseIdentifierOrArrow(parser, context, privateScope, 0, canAssign);
