@@ -2583,6 +2583,8 @@ function parseRestrictedIdentifier(parser: Parser, context: Context, scope: Scop
   if (!isValidIdentifier(context, parser.getToken())) parser.report(Errors.UnexpectedStrictReserved);
   if ((parser.getToken() & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
     parser.report(Errors.StrictEvalArguments);
+  // `let` and `yield` are identifiers in sloppy mode only, and an import is always in module code
+  validateBindingIdentifier(parser, context, BindingKind.Let, parser.getToken(), 0);
   scope?.addBlockName(context, parser.tokenValue, BindingKind.Let, parser.tokenStart, parser.currentLocation);
   return parseIdentifier(parser, context);
 }

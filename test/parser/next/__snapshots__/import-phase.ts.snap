@@ -1023,6 +1023,18 @@ exports[`Import Phase invalid forms > import defer "m"; 1`] = `
     |              ^^^ 'import defer' must be followed by a namespace import"
 `;
 
+exports[`Import Phase invalid forms > import defer * as let from "m"; 1`] = `
+"SyntaxError [1:18-1:21]: Unexpected strict mode reserved word
+> 1 | import defer * as let from "m";
+    |                   ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Import Phase invalid forms > import defer * as yield from "m"; 1`] = `
+"SyntaxError [1:18-1:23]: Unexpected strict mode reserved word
+> 1 | import defer * as yield from "m";
+    |                   ^^^^^ Unexpected strict mode reserved word"
+`;
+
 exports[`Import Phase invalid forms > import defer {a} from "m"; 1`] = `
 "SyntaxError [1:13-1:14]: 'import defer' must be followed by a namespace import
 > 1 | import defer {a} from "m";
@@ -1051,6 +1063,18 @@ exports[`Import Phase invalid forms > import source {a} from "m"; 1`] = `
 "SyntaxError [1:14-1:15]: 'import source' must be followed by a default import
 > 1 | import source {a} from "m";
     |               ^ 'import source' must be followed by a default import"
+`;
+
+exports[`Import Phase invalid forms > import source let from "m"; 1`] = `
+"SyntaxError [1:14-1:17]: Unexpected strict mode reserved word
+> 1 | import source let from "m";
+    |               ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Import Phase invalid forms > import source yield from "m"; 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected strict mode reserved word
+> 1 | import source yield from "m";
+    |               ^^^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Import Phase invalid forms > new import.defer("m") 1`] = `

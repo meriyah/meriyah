@@ -225,6 +225,12 @@ describe('Module - Import', () => {
   }
 
   fail('Module - Import (fail)', [
+    { code: 'import let from "a"', options: { sourceType: 'module' } },
+    { code: 'import yield from "a"', options: { sourceType: 'module' } },
+    { code: 'import * as let from "a"', options: { sourceType: 'module' } },
+    { code: 'import * as yield from "a"', options: { sourceType: 'module' } },
+    { code: 'import a, * as let from "a"', options: { sourceType: 'module' } },
+    { code: 'import yield, {b} from "a"', options: { sourceType: 'module' } },
     '{import {x} from "y";}',
     { code: '{import {x} from "y";}', options: { sourceType: 'module' } },
     'function f(){import {x} from "y";}',

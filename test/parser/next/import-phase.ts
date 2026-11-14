@@ -63,6 +63,10 @@ pass('Import Phase contextual identifiers with next disabled', [
 ]);
 
 fail('Import Phase invalid forms', [
+  { code: 'import defer * as let from "m";', options: enableImportDefer },
+  { code: 'import defer * as yield from "m";', options: enableImportDefer },
+  { code: 'import source let from "m";', options: enableImportSource },
+  { code: 'import source yield from "m";', options: enableImportSource },
   { code: 'import defer x from "m";', options: enableImportDefer },
   { code: 'import defer {a} from "m";', options: enableImportDefer },
   { code: 'import source * as ns from "m";', options: enableImportSource },
