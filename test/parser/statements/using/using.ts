@@ -148,6 +148,22 @@ describe('Statements - using declarations', () => {
     expect(() => parseSource('class C { static { (() => { using await = null; }); } }')).not.toThrow();
   });
 
+  it('allows a strict mode reserved word as a using binding in sloppy mode', () => {
+    for (const name of ['static', 'implements', 'interface', 'package', 'private', 'protected', 'public']) {
+      for (const code of [
+        `{ using ${name} = acquire(); }`,
+        `for (using ${name} of resources) {}`,
+        `async function f() { await using ${name} = acquire(); }`,
+        `async function f() { for (await using ${name} of resources) {} }`,
+      ]) {
+        const program = parseSource(code);
+        expect(JSON.stringify(program)).toContain(`"name":"${name}"`);
+        expect(() => parseSource(`"use strict"; ${code}`)).toThrow();
+        expect(() => parseSource(code, moduleOptions)).toThrow();
+      }
+    }
+  });
+
   it('allows of as a using binding in a classic for statement', () => {
     const program = parseSource('for (using of = acquire(); condition; update()) {}');
 

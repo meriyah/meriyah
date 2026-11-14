@@ -1757,7 +1757,11 @@ function nextTokenIsUsingOnSameLine(parser: Parser): boolean {
 }
 
 function isResourceBindingStart(token: Token): boolean {
-  return (token & Token.IsIdentifier) === Token.IsIdentifier && (token & Token.Reserved) !== Token.Reserved;
+  return (
+    // `static`, `implements`, ... are identifiers in sloppy mode; in strict mode the binding is rejected later
+    ((token & Token.IsIdentifier) === Token.IsIdentifier || (token & Token.FutureReserved) === Token.FutureReserved) &&
+    (token & Token.Reserved) !== Token.Reserved
+  );
 }
 
 function parseUsingDeclarationOrExpressionStatement(
