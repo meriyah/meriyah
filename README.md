@@ -134,6 +134,24 @@ declare function onToken(token: string, start: number, end: number, loc: SourceL
 
 Note the `start/end/loc` information are provided to the function callback regardless of the settings on ranges and loc flags. onComment callback has one extra argument `value: string` for the body string of the comment.
 
+#### Attaching comments to nodes
+
+Comments are not part of the AST. To find the comments that belong to a node, collect them with `onComment` and attach them by position, for example with [estree-util-attach-comments](https://github.com/syntax-tree/estree-util-attach-comments):
+
+```js
+import { parse } from 'meriyah';
+import { attachComments } from 'estree-util-attach-comments';
+
+const comments = [];
+const ast = parse('const a = /* @__PURE__ */ f();', { ranges: true, onComment: comments });
+attachComments(ast, comments);
+
+console.log(ast.body[0].declarations[0].init.comments);
+// [{ type: 'MultiLine', value: ' @__PURE__ ', start: 10, end: 25, range: [10, 25], leading: true, trailing: false }]
+```
+
+The comments are matched to nodes by their positions, so `ranges` or `loc` must be enabled. Without them the comments carry no position and nothing is attached.
+
 ### onInsertedSemicolon
 
 If a function callback is supplied, the signature must be
