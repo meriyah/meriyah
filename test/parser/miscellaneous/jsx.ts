@@ -118,6 +118,20 @@ describe('Miscellaneous - JSX', () => {
   }
 
   fail('Miscellaneous - JSX (fail)', [
+    { code: '<a/> = 1', options: { jsx: true } },
+    { code: '<a/> += 1', options: { jsx: true } },
+    { code: '<></> = 1', options: { jsx: true } },
+    { code: '<a/>++', options: { jsx: true } },
+    { code: '<a></a>--', options: { jsx: true } },
+    { code: '++<a/>', options: { jsx: true } },
+    { code: '(<a/>) = 1', options: { jsx: true } },
+    { code: '[<a/>] = b', options: { jsx: true } },
+    { code: '[<a/> = 1] = b', options: { jsx: true } },
+    { code: '[...<a/>] = b', options: { jsx: true } },
+    { code: '({ x: <a/> } = b)', options: { jsx: true } },
+    { code: '({ ...<a/> } = b)', options: { jsx: true } },
+    { code: 'for (<a/> of b);', options: { jsx: true } },
+    { code: 'for (<a/> in b);', options: { jsx: true } },
     { code: '<!--ccc-->', options: { jsx: true } },
     '<',
     '<foo',
@@ -215,6 +229,12 @@ describe('Miscellaneous - JSX', () => {
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
+    { code: '<a/>.b = 1', options: { jsx: true } },
+    { code: '<a/>[b]++', options: { jsx: true } },
+    { code: '[<a/>.b] = c', options: { jsx: true } },
+    { code: '({ x: <a/>.b } = c)', options: { jsx: true } },
+    { code: 'for (<a/>.b of c);', options: { jsx: true } },
+    { code: 'x = [<a/>, <b/>]', options: { jsx: true } },
     { code: '<!--ccc-->', options: { jsx: true, webcompat: true } },
     {
       code: outdent`

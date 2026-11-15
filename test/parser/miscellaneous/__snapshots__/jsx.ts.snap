@@ -12,6 +12,30 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) >  > ; 1`] = `
     |  ^ Unexpected token: '>'"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > (<a/>) = 1 1`] = `
+"SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
+> 1 | (<a/>) = 1
+    |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > ({ ...<a/> } = b) 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ({ ...<a/> } = b)
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > ({ x: <a/> } = b) 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ({ x: <a/> } = b)
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > ++<a/> 1`] = `
+"SyntaxError [1:5-1:6]: Invalid increment/decrement operand
+> 1 | ++<a/>
+    |      ^ Invalid increment/decrement operand"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < > 1`] = `
 "SyntaxError [1:0-1:1]: Unexpected token: '<'
 > 1 | < >
@@ -108,6 +132,12 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <><//> 2`] = `
     |       ^ Unexpected token"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <></> = 1 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | <></> = 1
+    |       ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <{...b} {...a }>{...b}</{...b}> 1`] = `
 "SyntaxError [1:1-1:2]: Unexpected token
 > 1 | <{...b} {...a }>{...b}</{...b}>
@@ -198,6 +228,24 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a/! 1`] = `
     |    ^ Expected '>'"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a/> += 1 1`] = `
+"SyntaxError [1:5-1:7]: Invalid left-hand side in assignment
+> 1 | <a/> += 1
+    |      ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a/> = 1 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | <a/> = 1
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a/>++ 1`] = `
+"SyntaxError [1:4-1:6]: Invalid increment/decrement operand
+> 1 | <a/>++
+    |     ^^ Invalid increment/decrement operand"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a: />; 1`] = `
 "SyntaxError [1:4-1:5]: Unexpected token: '/'
 > 1 | <a: />;
@@ -226,6 +274,12 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>;</>; 1`] = `
 "SyntaxError [1:6-1:7]: Unexpected token: '>'
 > 1 | <a>;</>;
     |       ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a></a>-- 1`] = `
+"SyntaxError [1:7-1:9]: Invalid increment/decrement operand
+> 1 | <a></a>--
+    |        ^^ Invalid increment/decrement operand"
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a></b> 1`] = `
@@ -510,6 +564,24 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > > 2`] = `
     | ^ Unexpected token: '>'"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [...<a/>] = b 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | [...<a/>] = b
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [<a/> = 1] = b 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | [<a/> = 1] = b
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [<a/>] = b 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | [<a/>] = b
+    |          ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 1`] = `
 "SyntaxError [1:8-1:9]: Unexpected token: ';'
 > 1 | [foo] > ;
@@ -544,6 +616,18 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > a > ; 1`] = `
 "SyntaxError [1:4-1:5]: Unexpected token: ';'
 > 1 | a > ;
     |     ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > for (<a/> in b); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-in
+> 1 | for (<a/> in b);
+    |           ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > for (<a/> of b); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-of
+> 1 | for (<a/> of b);
+    |           ^^ Invalid left-hand side in for-of"
 `;
 
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div> /* intervening comment */ <div>two</div>; 1`] = `
@@ -623,6 +707,65 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > (<div />) < x; 1`] =
           "type": "Identifier",
         },
         "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > ({ x: <a/>.b } = c) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "computed": false,
+                "object": {
+                  "children": [],
+                  "closingElement": null,
+                  "openingElement": {
+                    "attributes": [],
+                    "name": {
+                      "name": "a",
+                      "type": "JSXIdentifier",
+                    },
+                    "selfClosing": true,
+                    "type": "JSXOpeningElement",
+                  },
+                  "type": "JSXElement",
+                },
+                "optional": false,
+                "property": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
       },
       "type": "ExpressionStatement",
     },
@@ -4790,6 +4933,49 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a/> 1`] = `
 }
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a/>.b = 1 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "children": [],
+            "closingElement": null,
+            "openingElement": {
+              "attributes": [],
+              "name": {
+                "name": "a",
+                "type": "JSXIdentifier",
+              },
+              "selfClosing": true,
+              "type": "JSXOpeningElement",
+            },
+            "type": "JSXElement",
+          },
+          "optional": false,
+          "property": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "=",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a/>==1 1`] = `
 {
   "body": [
@@ -4815,6 +5001,46 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a/>==1 1`] = `
           "value": 1,
         },
         "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a/>[b]++ 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": true,
+          "object": {
+            "children": [],
+            "closingElement": null,
+            "openingElement": {
+              "attributes": [],
+              "name": {
+                "name": "a",
+                "type": "JSXIdentifier",
+              },
+              "selfClosing": true,
+              "type": "JSXOpeningElement",
+            },
+            "type": "JSXElement",
+          },
+          "optional": false,
+          "property": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": false,
+        "type": "UpdateExpression",
       },
       "type": "ExpressionStatement",
     },
@@ -10813,6 +11039,54 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <日本語></日本�
 }
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > [<a/>.b] = c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "elements": [
+            {
+              "computed": false,
+              "object": {
+                "children": [],
+                "closingElement": null,
+                "openingElement": {
+                  "attributes": [],
+                  "name": {
+                    "name": "a",
+                    "type": "JSXIdentifier",
+                  },
+                  "selfClosing": true,
+                  "type": "JSXOpeningElement",
+                },
+                "type": "JSXElement",
+              },
+              "optional": false,
+              "property": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > ReactDOM.render(
   <CommentBox url="/api/comments" pollInterval={2000} />,
   document.getElementById('content')
@@ -12918,6 +13192,49 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > const e6 = <TestingO
       ],
       "kind": "const",
       "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > for (<a/>.b of c); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "computed": false,
+        "object": {
+          "children": [],
+          "closingElement": null,
+          "openingElement": {
+            "attributes": [],
+            "name": {
+              "name": "a",
+              "type": "JSXIdentifier",
+            },
+            "selfClosing": true,
+            "type": "JSXOpeningElement",
+          },
+          "type": "JSXElement",
+        },
+        "optional": false,
+        "property": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "right": {
+        "name": "c",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
     },
   ],
   "sourceType": "script",
@@ -15460,6 +15777,59 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var whitespace2 = <d
       ],
       "kind": "var",
       "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > x = [<a/>, <b/>] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "elements": [
+            {
+              "children": [],
+              "closingElement": null,
+              "openingElement": {
+                "attributes": [],
+                "name": {
+                  "name": "a",
+                  "type": "JSXIdentifier",
+                },
+                "selfClosing": true,
+                "type": "JSXOpeningElement",
+              },
+              "type": "JSXElement",
+            },
+            {
+              "children": [],
+              "closingElement": null,
+              "openingElement": {
+                "attributes": [],
+                "name": {
+                  "name": "b",
+                  "type": "JSXIdentifier",
+                },
+                "selfClosing": true,
+                "type": "JSXOpeningElement",
+              },
+              "type": "JSXElement",
+            },
+          ],
+          "type": "ArrayExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
     },
   ],
   "sourceType": "script",
