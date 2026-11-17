@@ -4672,6 +4672,243 @@ y",
 }
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b=<></> c=<></>></a> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": {
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "type": "JSXClosingElement",
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "b",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": {
+                "children": [],
+                "closingFragment": {
+                  "type": "JSXClosingFragment",
+                },
+                "openingFragment": {
+                  "type": "JSXOpeningFragment",
+                },
+                "type": "JSXFragment",
+              },
+            },
+            {
+              "name": {
+                "name": "c",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": {
+                "children": [],
+                "closingFragment": {
+                  "type": "JSXClosingFragment",
+                },
+                "openingFragment": {
+                  "type": "JSXOpeningFragment",
+                },
+                "type": "JSXFragment",
+              },
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b=<></>></a> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": {
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "type": "JSXClosingElement",
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "b",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": {
+                "children": [],
+                "closingFragment": {
+                  "type": "JSXClosingFragment",
+                },
+                "openingFragment": {
+                  "type": "JSXOpeningFragment",
+                },
+                "type": "JSXFragment",
+              },
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b=<></>>x</a> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [
+          {
+            "type": "JSXText",
+            "value": "x",
+          },
+        ],
+        "closingElement": {
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "type": "JSXClosingElement",
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "b",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": {
+                "children": [],
+                "closingFragment": {
+                  "type": "JSXClosingFragment",
+                },
+                "openingFragment": {
+                  "type": "JSXOpeningFragment",
+                },
+                "type": "JSXFragment",
+              },
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b=<><c/></>></a> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": {
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "type": "JSXClosingElement",
+        },
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": "b",
+                "type": "JSXIdentifier",
+              },
+              "type": "JSXAttribute",
+              "value": {
+                "children": [
+                  {
+                    "children": [],
+                    "closingElement": null,
+                    "openingElement": {
+                      "attributes": [],
+                      "name": {
+                        "name": "c",
+                        "type": "JSXIdentifier",
+                      },
+                      "selfClosing": true,
+                      "type": "JSXOpeningElement",
+                    },
+                    "type": "JSXElement",
+                  },
+                ],
+                "closingFragment": {
+                  "type": "JSXClosingFragment",
+                },
+                "openingFragment": {
+                  "type": "JSXOpeningFragment",
+                },
+                "type": "JSXFragment",
+              },
+            },
+          ],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b={x ? <c /> : <d />} /> 1`] = `
 {
   "body": [
@@ -15777,6 +16014,82 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var whitespace2 = <d
       ],
       "kind": "var",
       "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > x = <></>>=1 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "children": [],
+            "closingFragment": {
+              "type": "JSXClosingFragment",
+            },
+            "openingFragment": {
+              "type": "JSXOpeningFragment",
+            },
+            "type": "JSXFragment",
+          },
+          "operator": ">=",
+          "right": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > x = <></>>1 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "children": [],
+            "closingFragment": {
+              "type": "JSXClosingFragment",
+            },
+            "openingFragment": {
+              "type": "JSXOpeningFragment",
+            },
+            "type": "JSXFragment",
+          },
+          "operator": ">",
+          "right": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
     },
   ],
   "sourceType": "script",
