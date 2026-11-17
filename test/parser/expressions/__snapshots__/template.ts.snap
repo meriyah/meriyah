@@ -356,6 +356,24 @@ exports[`Expressions - Template > Expressions - Template (fail) > a\`\${\`\\8\`}
     |     ^^ \\8 and \\9 are not allowed in template strings"
 `;
 
+exports[`Expressions - Template > Expressions - Template (fail) > a\`\${b}\${(\`\\8\`)}\` 1`] = `
+"SyntaxError [1:9-1:11]: \\8 and \\9 are not allowed in template strings
+> 1 | a\`\${b}\${(\`\\8\`)}\`
+    |          ^^ \\8 and \\9 are not allowed in template strings"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > a\`\${b}\${\`\\8\`}\` 1`] = `
+"SyntaxError [1:8-1:10]: \\8 and \\9 are not allowed in template strings
+> 1 | a\`\${b}\${\`\\8\`}\`
+    |         ^^ \\8 and \\9 are not allowed in template strings"
+`;
+
+exports[`Expressions - Template > Expressions - Template (fail) > a\`\${b}\${c}\${\`\\x\`}\` 1`] = `
+"SyntaxError [1:12-1:15]: Invalid hexadecimal escape sequence
+> 1 | a\`\${b}\${c}\${\`\\x\`}\`
+    |             ^^^ Invalid hexadecimal escape sequence"
+`;
+
 exports[`Expressions - Template > Expressions - Template (fail) > a\`\\8\`; \`\\8\` 1`] = `
 "SyntaxError [1:7-1:9]: \\8 and \\9 are not allowed in template strings
 > 1 | a\`\\8\`; \`\\8\`
