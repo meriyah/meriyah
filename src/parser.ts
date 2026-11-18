@@ -4276,7 +4276,7 @@ function parseMemberOrUpdateExpression(
             ? AssignmentTargetKind.Invalid
             : AssignmentTargetKind.Simple;
 
-        const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope, 1);
+        const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope, 1);
 
         expr = parser.finishNode<ESTree.MemberExpression>(
           {
@@ -4390,7 +4390,7 @@ function parseMemberOrUpdateExpression(
             quasi:
               parser.getToken() === Token.TemplateContinuation
                 ? parseTemplate(parser, context | Context.TaggedTemplate, privateScope)
-                : parseTemplateLiteral(parser, context),
+                : parseTemplateLiteral(parser, context | Context.TaggedTemplate),
           },
           start,
         );
@@ -4626,7 +4626,7 @@ function parsePrimaryExpression(
     const { tokenValue } = parser;
     const token = parser.getToken();
 
-    const expr = parseIdentifier(parser, context | Context.TaggedTemplate);
+    const expr = parseIdentifier(parser, context);
 
     if (parser.getToken() === Token.Arrow) {
       if (!isLHS) parser.report(Errors.Unexpected);
@@ -5087,6 +5087,7 @@ function parseTemplateLiteral(parser: Parser, context: Context): ESTree.Template
    */
 
   parser.assignable = AssignmentTargetKind.Invalid;
+  reportTemplateEscapeError(parser, context);
   const { tokenValue, tokenRaw, tokenStart } = parser;
   consume(parser, context, Token.TemplateSpan);
   const quasis = [parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, true)];
@@ -5113,28 +5114,31 @@ function parseTemplate(
   privateScope: PrivateScope | undefined,
 ): ESTree.TemplateLiteral {
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
+  // A template in a substitution is not tagged by the template around it
+  const substitutionContext = context & ~Context.TaggedTemplate;
 
+  reportTemplateEscapeError(parser, context);
   const { tokenValue, tokenRaw, tokenStart } = parser;
-  consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
+  consume(parser, substitutionContext | Context.AllowRegExp, Token.TemplateContinuation);
 
   const quasis = [parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ false)];
 
-  const expressions = [
-    parseExpressions(parser, context & ~Context.TaggedTemplate, privateScope, 0, 1, parser.tokenStart),
-  ];
+  const expressions = [parseExpressions(parser, substitutionContext, privateScope, 0, 1, parser.tokenStart)];
 
   if (parser.getToken() !== Token.RightBrace) parser.report(Errors.InvalidTemplateContinuation);
 
   while (parser.setToken(scanTemplateTail(parser, context), true) !== Token.TemplateSpan) {
+    reportTemplateEscapeError(parser, context);
     const { tokenValue, tokenRaw, tokenStart } = parser;
-    consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
+    consume(parser, substitutionContext | Context.AllowRegExp, Token.TemplateContinuation);
     quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ false));
 
-    expressions.push(parseExpressions(parser, context, privateScope, 0, 1, parser.tokenStart));
+    expressions.push(parseExpressions(parser, substitutionContext, privateScope, 0, 1, parser.tokenStart));
     if (parser.getToken() !== Token.RightBrace) parser.report(Errors.InvalidTemplateContinuation);
   }
 
   {
+    reportTemplateEscapeError(parser, context);
     const { tokenValue, tokenRaw, tokenStart } = parser;
     consume(parser, context, Token.TemplateSpan);
     quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ true));
@@ -5150,6 +5154,16 @@ function parseTemplate(
     },
     tokenStart,
   );
+}
+
+/**
+ * Reports an invalid escape sequence in the current template token, unless the template is tagged
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ */
+function reportTemplateEscapeError(parser: Parser, context: Context): void {
+  if ((context & Context.TaggedTemplate) === 0 && parser.templateEscapeError) throw parser.templateEscapeError;
 }
 
 /**
@@ -5246,7 +5260,7 @@ function parseArguments(
   const args: (ESTree.Expression | ESTree.SpreadElement)[] = [];
 
   if (parser.getToken() === Token.RightParen) {
-    nextToken(parser, context | Context.TaggedTemplate);
+    nextToken(parser, context);
     return args;
   }
 
@@ -5264,7 +5278,7 @@ function parseArguments(
     if (parser.getToken() === Token.RightParen) break;
   }
 
-  consume(parser, context | Context.TaggedTemplate, Token.RightParen);
+  consume(parser, context, Token.RightParen);
 
   return args;
 }
@@ -7456,7 +7470,7 @@ function parseParenthesizedExpression(
         );
       }
 
-      consume(parser, context | Context.TaggedTemplate, Token.RightParen);
+      consume(parser, context, Token.RightParen);
 
       parser.destructible = destructible | previousAwaitYield;
 
@@ -7507,7 +7521,7 @@ function parseParenthesizedExpression(
     );
   }
 
-  consume(parser, context | Context.TaggedTemplate, Token.RightParen);
+  consume(parser, context, Token.RightParen);
 
   if (destructible & DestructuringKind.CannotDestruct && destructible & DestructuringKind.HasToDestruct)
     parser.report(Errors.CantAssignToValidRHS);
@@ -8709,15 +8723,12 @@ function parseDecorator(parser: Parser, context: Context, privateScope: PrivateS
       parser.report(Errors.DisallowedInContext, 'yield');
     }
 
-    let memberExpression: ESTree.Identifier | ESTree.MemberExpression = parseIdentifier(
-      parser,
-      context | Context.TaggedTemplate,
-    );
+    let memberExpression: ESTree.Identifier | ESTree.MemberExpression = parseIdentifier(parser, context);
 
     while (parser.getToken() === Token.Period) {
       nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
 
-      const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope, 1);
+      const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope, 1);
 
       memberExpression = parser.finishNode<ESTree.MemberExpression>(
         {

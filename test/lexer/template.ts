@@ -163,7 +163,11 @@ describe('Lexer - Template', () => {
   function fail(name: string, source: string, context: Context, options: Options = {}) {
     it(name, () => {
       const parser = new Parser(source, options);
-      t.throws(() => scanSingleToken(parser, context, 0));
+      t.throws(() => {
+        scanSingleToken(parser, context, 0);
+        // An invalid escape sequence is kept for the parser, which reports it for an untagged template
+        if (parser.templateEscapeError) throw parser.templateEscapeError;
+      });
     });
   }
 
