@@ -229,6 +229,12 @@ describe('Miscellaneous - JSX', () => {
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
+    { code: '<a b=<></>></a>', options: { jsx: true } },
+    { code: '<a b=<></>>x</a>', options: { jsx: true } },
+    { code: '<a b=<></> c=<></>></a>', options: { jsx: true } },
+    { code: '<a b=<><c/></>></a>', options: { jsx: true } },
+    { code: 'x = <></>>1', options: { jsx: true } },
+    { code: 'x = <></>>=1', options: { jsx: true } },
     { code: '<a/>.b = 1', options: { jsx: true } },
     { code: '<a/>[b]++', options: { jsx: true } },
     { code: '[<a/>.b] = c', options: { jsx: true } },

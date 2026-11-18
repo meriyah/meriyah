@@ -9470,7 +9470,7 @@ function parseJSXClosingFragment(
   inJSXChild: 0 | 1,
   start: Location,
 ): ESTree.JSXClosingFragment {
-  consume(parser, context, Token.Divide);
+  consume(parser, context | Context.InJSXTag, Token.Divide);
 
   if (parser.getToken() !== Token.GreaterThan) {
     parser.report(Errors.ExpectedToken, KeywordDescTable[Token.GreaterThan & Token.Type]);
