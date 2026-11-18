@@ -172,6 +172,8 @@ describe('Miscellaneous - JSX', () => {
     { code: '<a:b></c:d>', options: { jsx: true } },
     { code: '<a:x></b:x>', options: { jsx: true } },
     { code: '<x:a></x:b>', options: { jsx: true } },
+    { code: '<a:b-c></a:b-d>', options: { jsx: true } },
+    { code: '<a:b-c></a:b>', options: { jsx: true } },
     { code: '<foo.bar></foo.baz>', options: { jsx: true } },
     { code: '<chinese:alladinfoo.bar></foo.baz>', options: { jsx: true } },
     { code: '<foo:bar></foo.baz>', options: { jsx: true } },
@@ -400,6 +402,10 @@ describe('Miscellaneous - JSX', () => {
 
     { code: '<n:a />', options: { jsx: true, ranges: true } },
     { code: '<a:b><a:b></a:b></a:b>;', options: { jsx: true, ranges: true } },
+    { code: '<a:b-c />', options: { jsx: true, ranges: true } },
+    { code: '<a:b-c></a:b-c>', options: { jsx: true } },
+    { code: '<a-b:c-d e-f:g-h="1" />', options: { jsx: true } },
+    { code: '<a e:f-g />', options: { jsx: true, ranges: true } },
     { code: '<A aa={aa.bb.cc} bb={bb.cc.dd}><div>{aa.b}</div></A>', options: { jsx: true } },
 
     { code: 'var component = <Component {...props} />;', options: { jsx: true } },
