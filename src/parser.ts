@@ -9048,10 +9048,12 @@ function parseClassElementList(
   }
 
   if ((kind & PropertyKind.Computed) === 0) {
-    if (parser.tokenValue === 'constructor') {
-      if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
+    // Check the key itself: `parser.tokenValue` may already belong to the token after it
+    const keyName = key?.type === 'Identifier' ? key.name : key?.type === 'Literal' ? key.value : null;
+    if (keyName === 'constructor') {
+      if (parser.getToken() !== Token.LeftParen) {
         parser.report(Errors.InvalidClassFieldConstructor);
-      } else if ((kind & PropertyKind.Static) === 0 && parser.getToken() === Token.LeftParen) {
+      } else if ((kind & PropertyKind.Static) === 0) {
         if (kind & (PropertyKind.GetSet | PropertyKind.Async | PropertyKind.ClassField | PropertyKind.Generator)) {
           parser.report(Errors.InvalidConstructor, 'accessor');
         } else if ((context & Context.SuperCall) === 0) {
@@ -9065,7 +9067,7 @@ function parseClassElementList(
       // Async/Generator/GetSet can be named "prototype".
       (kind & PropertyKind.PrivateField) === 0 &&
       kind & PropertyKind.Static &&
-      parser.tokenValue === 'prototype'
+      keyName === 'prototype'
     ) {
       parser.report(Errors.StaticPrototype);
     }
