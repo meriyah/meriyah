@@ -6,8 +6,8 @@
     {
       groupName: 'non-major dev-dependencies',
       matchDepTypes: ['devDependencies'],
-      matchPackageNames: ['!/^(acorn|prettier)$/'],
       matchUpdateTypes: ['minor', 'patch'],
+      matchPackageNames: ['!acorn', '!prettier', '!@unicode/unicode-*'],
     },
     {
       groupName: 'GitHub Actions',
