@@ -18,6 +18,12 @@ exports[`Decorators > Decorators (fail) > (@dec a) 1`] = `
     |       ^ Expected 'class'"
 `;
 
+exports[`Decorators > Decorators (fail) > (class { @dec static {} }) 1`] = `
+"SyntaxError [1:21-1:22]: Decorators can't be used with a static block
+> 1 | (class { @dec static {} })
+    |                      ^ Decorators can't be used with a static block"
+`;
+
 exports[`Decorators > Decorators (fail) > @bar const foo = 1; 1`] = `
 "SyntaxError [1:5-1:10]: Expected 'class'
 > 1 | @bar const foo = 1;
@@ -156,10 +162,26 @@ exports[`Decorators > Decorators (fail) > class A {  constructor(@foo x) {} } 1`
     |                        ^ Expected ')'"
 `;
 
+exports[`Decorators > Decorators (fail) > class A { @a @b static {} } 1`] = `
+"SyntaxError [1:23-1:24]: Decorators can't be used with a static block
+> 1 | class A { @a @b static {} }
+    |                        ^ Decorators can't be used with a static block"
+`;
+
 exports[`Decorators > Decorators (fail) > class A { @abc constructor(){} } 1`] = `
 "SyntaxError [1:15-1:26]: Decorators can't be used with a constructor
 > 1 | class A { @abc constructor(){} }
     |                ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Decorators > Decorators (fail) > class A { @dec
+ static
+ {} } 1`] = `
+"SyntaxError [3:1-3:2]: Decorators can't be used with a static block
+  1 | class A { @dec
+  2 |  static
+> 3 |  {} }
+    |  ^ Decorators can't be used with a static block"
 `;
 
 exports[`Decorators > Decorators (fail) > class A { @dec ;} 1`] = `
@@ -178,6 +200,12 @@ exports[`Decorators > Decorators (fail) > class A { @dec accessor a() {}} 1`] = 
 "SyntaxError [1:25-1:26]: Unexpected token: '('
 > 1 | class A { @dec accessor a() {}}
     |                          ^ Unexpected token: '('"
+`;
+
+exports[`Decorators > Decorators (fail) > class A { @dec static {} } 1`] = `
+"SyntaxError [1:22-1:23]: Decorators can't be used with a static block
+> 1 | class A { @dec static {} }
+    |                       ^ Decorators can't be used with a static block"
 `;
 
 exports[`Decorators > Decorators (fail) > class A { @dec[0] m() {} } 1`] = `
@@ -4442,6 +4470,63 @@ exports[`Decorators > Decorators (pass) > class A { @dec name = 0; } 1`] = `
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Decorators > Decorators (pass) > class A { @dec static m() {} static {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [
+              {
+                "expression": {
+                  "name": "dec",
+                  "type": "Identifier",
+                },
+                "type": "Decorator",
+              },
+            ],
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "body": [],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;

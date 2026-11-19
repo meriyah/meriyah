@@ -9021,6 +9021,7 @@ function parseClassElementList(
   } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
   } else if (isStatic && token === Token.LeftBrace) {
+    if (decorators.length > 0) parser.report(Errors.InvalidDecoratedStaticBlock);
     return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, start);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context);
