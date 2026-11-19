@@ -9827,6 +9827,7 @@ function parseJSXNamespacedName(
   start: Location,
 ): ESTree.JSXNamespacedName {
   consume(parser, context, Token.Colon);
+  rescanJSXIdentifier(parser);
   const name = parseJSXIdentifier(parser, context);
   return parser.finishNode<ESTree.JSXNamespacedName>(
     {

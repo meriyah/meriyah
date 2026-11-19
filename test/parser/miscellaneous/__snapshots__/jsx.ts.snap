@@ -264,6 +264,18 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b></c:d> 1`] = `
     |           ^ Expected corresponding JSX closing tag for c:d"
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b-c></a:b> 1`] = `
+"SyntaxError [1:12-1:13]: Expected corresponding JSX closing tag for a:b
+> 1 | <a:b-c></a:b>
+    |             ^ Expected corresponding JSX closing tag for a:b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b-c></a:b-d> 1`] = `
+"SyntaxError [1:14-1:15]: Expected corresponding JSX closing tag for a:b-d
+> 1 | <a:b-c></a:b-d>
+    |               ^ Expected corresponding JSX closing tag for a:b-d"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:x></b:x> 1`] = `
 "SyntaxError [1:10-1:11]: Expected corresponding JSX closing tag for b:x
 > 1 | <a:x></b:x>
@@ -4981,6 +4993,102 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a b={x ? <c /> : <d
 }
 `;
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a e:f-g /> 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 11,
+        "openingElement": {
+          "attributes": [
+            {
+              "end": 8,
+              "name": {
+                "end": 8,
+                "name": {
+                  "end": 8,
+                  "name": "f-g",
+                  "range": [
+                    5,
+                    8,
+                  ],
+                  "start": 5,
+                  "type": "JSXIdentifier",
+                },
+                "namespace": {
+                  "end": 4,
+                  "name": "e",
+                  "range": [
+                    3,
+                    4,
+                  ],
+                  "start": 3,
+                  "type": "JSXIdentifier",
+                },
+                "range": [
+                  3,
+                  8,
+                ],
+                "start": 3,
+                "type": "JSXNamespacedName",
+              },
+              "range": [
+                3,
+                8,
+              ],
+              "start": 3,
+              "type": "JSXAttribute",
+              "value": null,
+            },
+          ],
+          "end": 11,
+          "name": {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "JSXIdentifier",
+          },
+          "range": [
+            0,
+            11,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a href={link}></a> 1`] = `
 {
   "body": [
@@ -5484,6 +5592,127 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b><a:b></a:b></a:
   ],
   "sourceType": "script",
   "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b-c /> 1`] = `
+{
+  "body": [
+    {
+      "end": 9,
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "end": 9,
+        "openingElement": {
+          "attributes": [],
+          "end": 9,
+          "name": {
+            "end": 6,
+            "name": {
+              "end": 6,
+              "name": "b-c",
+              "range": [
+                3,
+                6,
+              ],
+              "start": 3,
+              "type": "JSXIdentifier",
+            },
+            "namespace": {
+              "end": 2,
+              "name": "a",
+              "range": [
+                1,
+                2,
+              ],
+              "start": 1,
+              "type": "JSXIdentifier",
+            },
+            "range": [
+              1,
+              6,
+            ],
+            "start": 1,
+            "type": "JSXNamespacedName",
+          },
+          "range": [
+            0,
+            9,
+          ],
+          "selfClosing": true,
+          "start": 0,
+          "type": "JSXOpeningElement",
+        },
+        "range": [
+          0,
+          9,
+        ],
+        "start": 0,
+        "type": "JSXElement",
+      },
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 9,
+  "range": [
+    0,
+    9,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b-c></a:b-c> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": {
+          "name": {
+            "name": {
+              "name": "b-c",
+              "type": "JSXIdentifier",
+            },
+            "namespace": {
+              "name": "a",
+              "type": "JSXIdentifier",
+            },
+            "type": "JSXNamespacedName",
+          },
+          "type": "JSXClosingElement",
+        },
+        "openingElement": {
+          "attributes": [],
+          "name": {
+            "name": {
+              "name": "b-c",
+              "type": "JSXIdentifier",
+            },
+            "namespace": {
+              "name": "a",
+              "type": "JSXIdentifier",
+            },
+            "type": "JSXNamespacedName",
+          },
+          "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
   "type": "Program",
 }
 `;
@@ -6148,6 +6377,58 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a>{␍␊
             "type": "JSXIdentifier",
           },
           "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a-b:c-d e-f:g-h="1" /> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [],
+        "closingElement": null,
+        "openingElement": {
+          "attributes": [
+            {
+              "name": {
+                "name": {
+                  "name": "g-h",
+                  "type": "JSXIdentifier",
+                },
+                "namespace": {
+                  "name": "e-f",
+                  "type": "JSXIdentifier",
+                },
+                "type": "JSXNamespacedName",
+              },
+              "type": "JSXAttribute",
+              "value": {
+                "type": "Literal",
+                "value": "1",
+              },
+            },
+          ],
+          "name": {
+            "name": {
+              "name": "c-d",
+              "type": "JSXIdentifier",
+            },
+            "namespace": {
+              "name": "a-b",
+              "type": "JSXIdentifier",
+            },
+            "type": "JSXNamespacedName",
+          },
+          "selfClosing": true,
           "type": "JSXOpeningElement",
         },
         "type": "JSXElement",
