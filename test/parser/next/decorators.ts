@@ -108,6 +108,10 @@ describe('Decorators', () => {
     { code: 'class Foo { constructor(@foo x) {} }', options: { features: Features.Decorators } },
     { code: 'class Foo { @abc constructor(){} }', options: { features: Features.Decorators } },
     { code: 'class Foo {  @a; m(){}}', options: { features: Features.Decorators } },
+    { code: 'class A { @dec static {} }', options: { features: Features.Decorators } },
+    { code: 'class A { @a @b static {} }', options: { features: Features.Decorators } },
+    { code: 'class A { @dec\n static\n {} }', options: { features: Features.Decorators } },
+    { code: '(class { @dec static {} })', options: { features: Features.Decorators } },
     { code: 'class Foo { @abc constructor(){} }', options: { features: Features.Decorators } },
     { code: 'class A { @foo && bar method() {}  }', options: { features: Features.Decorators } },
     { code: 'class A { @foo && bar; method() {}  }', options: { features: Features.Decorators } },
@@ -267,6 +271,7 @@ describe('Decorators', () => {
 
   pass('Decorators (pass)', [
     { code: 'class A { @dec name = 0; }', options: { features: Features.Decorators, ranges: true, loc: true } },
+    { code: 'class A { @dec static m() {} static {} }', options: { features: Features.Decorators } },
     { code: 'class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}', options: { features: Features.Decorators } },
     { code: '(class A { @foo get getter(){} })', options: { sourceType: 'module', features: Features.Decorators } },
     {

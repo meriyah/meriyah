@@ -184,6 +184,7 @@ export const enum Errors {
   InvalidAwaitInStaticBlock,
   UnexpectedRightBraceInJSXText,
   UnexpectedGreaterThanInJSXText,
+  InvalidDecoratedStaticBlock,
 }
 
 const errorMessages: {
@@ -379,6 +380,7 @@ const errorMessages: {
   [Errors.InvalidAwaitInStaticBlock]: 'cannot use "await" in static blocks',
   [Errors.UnexpectedRightBraceInJSXText]: "Unexpected token `}`. Did you mean `&rbrace;` or `{'}'}`?",
   [Errors.UnexpectedGreaterThanInJSXText]: "Unexpected token `>`. Did you mean `&gt;` or `{'>'}`?",
+  [Errors.InvalidDecoratedStaticBlock]: "Decorators can't be used with a static block",
 };
 
 export class ParseError extends SyntaxError implements _Node {
