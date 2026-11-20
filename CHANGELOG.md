@@ -1,3 +1,25 @@
+## [7.4.3](https://github.com/meriyah/meriyah/compare/v7.4.2...v7.4.3) (2026-11-20)
+
+### Bug Fixes
+
+* **lexer:** count a line feed that does not directly follow a carriage return ([#709](https://github.com/meriyah/meriyah/issues/709)) ([4deebf2](https://github.com/meriyah/meriyah/commit/4deebf29b30ebac8c8e627d557aa94882dcd0b95))
+* **lexer:** keep an escaped backtick or `${` after an invalid escape inside a tagged template ([#707](https://github.com/meriyah/meriyah/issues/707)) ([a4149b7](https://github.com/meriyah/meriyah/commit/a4149b76963266aa71f9d3f2fd0c0cdd358e709b))
+* **parser:** allow a hyphen in the name part of a JSX namespaced name ([#716](https://github.com/meriyah/meriyah/issues/716)) ([b4c41b4](https://github.com/meriyah/meriyah/commit/b4c41b49897d5bdbd52696671925f2d0dcbfadc3))
+* **parser:** allow a strict mode reserved word as a `using` binding in sloppy mode ([#711](https://github.com/meriyah/meriyah/issues/711)) ([23eb93b](https://github.com/meriyah/meriyah/commit/23eb93b0196c6c74c2dc624767d12580cb3c16fc))
+* **parser:** allow invalid escapes in a tagged template after any tag ([#713](https://github.com/meriyah/meriyah/issues/713)) ([bb8a16a](https://github.com/meriyah/meriyah/commit/bb8a16af4cdcd6a2d2a39c8bfc92712f738bcb71))
+* **parser:** check the class element key for `constructor` and `prototype` ([#717](https://github.com/meriyah/meriyah/issues/717)) ([0e5c666](https://github.com/meriyah/meriyah/commit/0e5c66626cdc672024644eba5d69f16abc9945f3))
+* **parser:** do not let a label on a with statement be continued from a nested loop ([#705](https://github.com/meriyah/meriyah/issues/705)) ([c4aef60](https://github.com/meriyah/meriyah/commit/c4aef60ee90333b78f313845b353b3885c77e909))
+* **parser:** reject `let` and `yield` as an imported binding ([#710](https://github.com/meriyah/meriyah/issues/710)) ([a22f8f1](https://github.com/meriyah/meriyah/commit/a22f8f110faed23cee6b140cef9799e6ea4c210a))
+* **parser:** reject a JSX element as an assignment target ([#714](https://github.com/meriyah/meriyah/issues/714)) ([0bf42b3](https://github.com/meriyah/meriyah/commit/0bf42b347c5654a1eed25f6f172ef8db3c6dc8ef))
+* **parser:** reject an `async` class member without a parameter list ([#708](https://github.com/meriyah/meriyah/issues/708)) ([5cd3518](https://github.com/meriyah/meriyah/commit/5cd3518164a4f3f15a0477a4254cb1d5a95a4c44))
+* **parser:** reject an escaped reserved word as a shorthand property ([#706](https://github.com/meriyah/meriyah/issues/706)) ([e7cab22](https://github.com/meriyah/meriyah/commit/e7cab229da02f04cb3370be49531211f4f85f246))
+* **parser:** reject decorators on a class static block ([#718](https://github.com/meriyah/meriyah/issues/718)) ([f1bf691](https://github.com/meriyah/meriyah/commit/f1bf6913141e44ecacb1e55b2f9efa2181f3bab3))
+* **parser:** scan the `>` of a closing JSX fragment on its own ([#715](https://github.com/meriyah/meriyah/issues/715)) ([833477e](https://github.com/meriyah/meriyah/commit/833477e12f18f6ce109ae577e7ae118211699848))
+
+### Performance Improvements
+
+* **lexer:** skip runs of spaces in one loop ([#704](https://github.com/meriyah/meriyah/issues/704)) ([0d3c766](https://github.com/meriyah/meriyah/commit/0d3c766819d8814b3fb73daf5d50f84a82f61ca9))
+
 ## [7.4.2](https://github.com/meriyah/meriyah/compare/v7.4.1...v7.4.2) (2026-11-08)
 
 ### Bug Fixes
