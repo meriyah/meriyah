@@ -145,6 +145,12 @@ describe('Miscellaneous - ASI', () => {
   pass('Miscellaneous - ASI', [
     // Acorn issue: https://github.com/acornjs/acorn/issues/775
     { code: ';;1;;1;;1', options: { ranges: true } },
+    { code: 'var a\n/b/g', options: { ranges: true } },
+    'let a, b\n/c/.test(d)',
+    'let [a] = b, c\n/d/',
+    'var a\n/=b/',
+    'L: var a\n/b/g',
+    { code: 'for (;;) { continue\n/b/g }', options: { ranges: true } },
     { code: '"foo"\nx', options: { raw: true, ranges: true } },
     { code: "function f(){\n'foo';\n}", options: { raw: true } },
     { code: 'function f(){\n"foo"\n}', options: { raw: true } },

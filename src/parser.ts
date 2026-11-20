@@ -1250,7 +1250,7 @@ function parseContinueStatement(parser: Parser, context: Context, labels: ESTree
 
   const start = parser.tokenStart;
 
-  nextToken(parser, context);
+  nextToken(parser, context | Context.AllowRegExp);
   let label: ESTree.Identifier | undefined | null = null;
   if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() & Token.IsIdentifier) {
     const { tokenValue } = parser;
@@ -9342,7 +9342,9 @@ function parseAndClassifyIdentifier(
   }
 
   const { tokenValue, tokenStart, currentLocation } = parser;
-  nextToken(parser, context);
+  // A binding identifier is never followed by a division, but it can end a
+  // declaration before a line break, so a `/` after it starts a regular expression
+  nextToken(parser, context | Context.AllowRegExp);
 
   scope?.addVarOrBlock(context, tokenValue, kind, tokenStart, currentLocation, origin);
 
