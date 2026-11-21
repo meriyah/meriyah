@@ -171,7 +171,17 @@ export function matchOrInsertSemicolon(parser: Parser, context: Context): void {
 
 export function isValidStrictMode(parser: Parser, index: number, tokenIndex: number, tokenValue: string): 0 | 1 {
   if (index - tokenIndex < 13 && tokenValue === 'use strict') {
-    if ((parser.getToken() & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
+    const token = parser.getToken();
+    if ((token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon) return 1;
+    // A line break only ends the directive if the next token can't continue the expression,
+    // e.g. `"use strict"\n+1` is a single expression statement, not a directive.
+    if (
+      parser.flags & Flags.NewLine &&
+      (token & (Token.IsBinaryOp | Token.IsAssignOp | Token.IsMemberOrCallExpression)) === 0 &&
+      token !== Token.Comma &&
+      token !== Token.QuestionMark &&
+      token !== Token.Template
+    ) {
       return 1;
     }
   }

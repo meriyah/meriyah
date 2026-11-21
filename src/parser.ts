@@ -119,7 +119,10 @@ function parseStatementList(parser: Parser, context: Context, scope: Scope | und
         throw new ParseError(parser.tokenStart, parser.currentLocation, Errors.StrictEightAndNine);
       }
     }
-    statements.push(parseDirective(parser, context, expr, token, tokenStart));
+    const statement = parseDirective(parser, context, expr, token, tokenStart);
+    statements.push(statement);
+    // The directive prologue ends at the first statement that isn't just a string literal
+    if (statement.expression !== expr) break;
   }
 
   while (parser.getToken() !== Token.EOF) {
@@ -156,9 +159,11 @@ function parseModuleItemList(
   while (parser.getToken() === Token.StringLiteral) {
     const { tokenStart } = parser;
     const token = parser.getToken();
-    statements.push(
-      parseDirective(parser, context, parseLiteral<ESTree.StringLiteral>(parser, context), token, tokenStart),
-    );
+    const expr = parseLiteral<ESTree.StringLiteral>(parser, context);
+    const statement = parseDirective(parser, context, expr, token, tokenStart);
+    statements.push(statement);
+    // The directive prologue ends at the first statement that isn't just a string literal
+    if (statement.expression !== expr) break;
   }
 
   while (parser.getToken() !== Token.EOF) {
@@ -4074,7 +4079,10 @@ function parseFunctionBody(
 
         functionScope?.reportScopeError();
       }
-      body.push(parseDirective(parser, context, expr, token, tokenStart));
+      const statement = parseDirective(parser, context, expr, token, tokenStart);
+      body.push(statement);
+      // The directive prologue ends at the first statement that isn't just a string literal
+      if (statement.expression !== expr) break;
     }
     if (context & Context.Strict) {
       if (funcNameToken) {

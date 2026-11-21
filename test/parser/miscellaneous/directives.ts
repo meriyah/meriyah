@@ -279,5 +279,16 @@ describe('Miscellaneous - Directives', () => {
     { code: '("use strict"); foo = 42;', options: { ranges: true } },
     '"\\u0061b"\n"c\\u0064"',
     { code: '"\\u0061b"\n"c\\u0064"', options: { sourceType: 'module' } },
+    // A line break doesn't end the directive when the next token continues the expression
+    { code: '"use strict"\n+1; with (a) {}', options: { ranges: true } },
+    'function f() { "use strict"\n.length; with (a) {} }',
+    'function f() { "use strict"\n[0]; with (a) {} }',
+    'function f() { "use strict"\n`t`; with (a) {} }',
+    'function f() { "use strict"\nin a; var eval; }',
+    'function eval() { "use strict"\n, 1 }',
+    // The directive prologue ends at the first statement that isn't just a string literal
+    { code: '"a" + 1;\n"use strict"; with (a) {}', options: { ranges: true } },
+    'function f() { "a".x; "use strict"; with (a) {} }',
+    { code: '"a" + 1;\n"b"', options: { sourceType: 'module' } },
   ]);
 });
