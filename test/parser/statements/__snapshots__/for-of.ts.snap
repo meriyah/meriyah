@@ -228,6 +228,18 @@ exports[`Statements - For of > Statements - For of (fail) > for (var [x] = 1 of 
     |          ^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
 `;
 
+exports[`Statements - For of > Statements - For of (fail) > for (var { x: (y) = foo() } of [{}]) {} 1`] = `
+"SyntaxError [1:28-1:30]: The binding declaration is not destructible
+> 1 | for (var { x: (y) = foo() } of [{}]) {}
+    |                             ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For of > Statements - For of (fail) > for (var { x: (y.z) = foo() } of [{}]) {} 1`] = `
+"SyntaxError [1:30-1:32]: The binding declaration is not destructible
+> 1 | for (var { x: (y.z) = foo() } of [{}]) {}
+    |                               ^^ The binding declaration is not destructible"
+`;
+
 exports[`Statements - For of > Statements - For of (fail) > for (var i, j = 1 of {}) {} 1`] = `
 "SyntaxError [1:12-1:20]: 'for-of' loop head declarations can not have an initializer
 > 1 | for (var i, j = 1 of {}) {}

@@ -66,6 +66,120 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > ((a)) = b; 1`] = `
 }
 `;
 
+exports[`Expressions - Assign > Expressions - Assign (pass) > ({a: (b) = 1, "c": d.e = 2, [f]: [g].h = 3} = i) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+            {
+              "computed": false,
+              "key": {
+                "type": "Literal",
+                "value": "c",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "computed": false,
+                  "object": {
+                    "name": "d",
+                    "type": "Identifier",
+                  },
+                  "optional": false,
+                  "property": {
+                    "name": "e",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+            {
+              "computed": true,
+              "key": {
+                "name": "f",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "computed": false,
+                  "object": {
+                    "elements": [
+                      {
+                        "name": "g",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "optional": false,
+                  "property": {
+                    "name": "h",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 3,
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "i",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Assign > Expressions - Assign (pass) > (a) = b; 1`] = `
 {
   "body": [
@@ -78,6 +192,42 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > (a) = b; 1`] = `
         "operator": "=",
         "right": {
           "name": "b",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (pass) > [(a) = 1] = c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "elements": [
+            {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "c",
           "type": "Identifier",
         },
         "type": "AssignmentExpression",
@@ -737,6 +887,73 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > a -= b 1`] = `
           "type": "Identifier",
         },
         "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (pass) > async ([(a) = 1], {a: (b) = 1}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "operator": "=",
+                "right": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "type": "AssignmentExpression",
+              },
+            ],
+            "type": "ArrayExpression",
+          },
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "AssignmentExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "optional": false,
+        "type": "CallExpression",
       },
       "type": "ExpressionStatement",
     },

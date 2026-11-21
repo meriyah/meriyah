@@ -9,6 +9,7 @@ describe('Statements - Try', () => {
     'function f() { try {}  }',
     'try {} catch(x, f){}',
     'try {} catch(x = b){}',
+    'try {} catch ({a: (b) = 1}) {}',
     'try {} catch(x,){}',
     'try {} catch({x},){}',
     'try {} catch({x}=x){}',

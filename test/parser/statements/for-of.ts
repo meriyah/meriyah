@@ -202,6 +202,8 @@ describe('Statements - For of', () => {
     'for ([...[a]] = 0 of {});',
     'for ([] = 0 of {});',
     'for (let [...{ x } = []] of [[]]) {}',
+    'for (var { x: (y) = foo() } of [{}]) {}',
+    'for (var { x: (y.z) = foo() } of [{}]) {}',
   ]);
 
   for (const text of [
@@ -425,8 +427,8 @@ describe('Statements - For of', () => {
     'for (const { arrow = () => {} } of [{}]) {}',
     'for (var {} of [obj]) {}',
     'for (var { x: y = foo() } of [{}]) {}',
-    'for (var { x: (y) = foo() } of [{}]) {}',
-    'for (var { x: (y.z) = foo() } of [{}]) {}',
+    'for ({ x: (y) = foo() } of [{}]) {}',
+    'for ({ x: (y.z) = foo() } of [{}]) {}',
     'for (var { x: y = foo(1 / 2) } of [{}]) {}',
     'for (var { x: y = foo(() => a) } of [{}]) {}',
     'for (var { 1: y = foo(() => a) } of [{}]) {}',
