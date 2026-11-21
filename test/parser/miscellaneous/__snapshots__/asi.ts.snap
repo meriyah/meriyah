@@ -621,6 +621,120 @@ exports[`Miscellaneous - ASI > Miscellaneous - ASI > { "use strict"; } 1`] = `
 }
 `;
 
+exports[`Miscellaneous - ASI > Miscellaneous - ASI > L: var a
+/b/g 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "declarations": [
+          {
+            "id": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "label": {
+        "name": "L",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "g",
+          "pattern": "b",
+        },
+        "type": "Literal",
+        "value": /b/g,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ASI > Miscellaneous - ASI > for (;;) { continue
+/b/g } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "end": 19,
+            "label": null,
+            "range": [
+              11,
+              19,
+            ],
+            "start": 11,
+            "type": "ContinueStatement",
+          },
+          {
+            "end": 24,
+            "expression": {
+              "end": 24,
+              "range": [
+                20,
+                24,
+              ],
+              "regex": {
+                "flags": "g",
+                "pattern": "b",
+              },
+              "start": 20,
+              "type": "Literal",
+              "value": /b/g,
+            },
+            "range": [
+              20,
+              24,
+            ],
+            "start": 20,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 26,
+        "range": [
+          9,
+          26,
+        ],
+        "start": 9,
+        "type": "BlockStatement",
+      },
+      "end": 26,
+      "init": null,
+      "range": [
+        0,
+        26,
+      ],
+      "start": 0,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "end": 26,
+  "range": [
+    0,
+    26,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - ASI > Miscellaneous - ASI > function a() { "use strict" } "use strict"; foo; 1`] = `
 {
   "body": [
@@ -1036,6 +1150,225 @@ exports[`Miscellaneous - ASI > Miscellaneous - ASI > function wrap() { "use asm"
   "range": [
     0,
     48,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ASI > Miscellaneous - ASI > let [a] = b, c
+/d/ 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "",
+          "pattern": "d",
+        },
+        "type": "Literal",
+        "value": /d/,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ASI > Miscellaneous - ASI > let a, b
+/c/.test(d) 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "d",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "regex": {
+              "flags": "",
+              "pattern": "c",
+            },
+            "type": "Literal",
+            "value": /c/,
+          },
+          "optional": false,
+          "property": {
+            "name": "test",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "optional": false,
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ASI > Miscellaneous - ASI > var a
+/=b/ 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "",
+          "pattern": "=b",
+        },
+        "type": "Literal",
+        "value": /=b/,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ASI > Miscellaneous - ASI > var a
+/b/g 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "a",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 5,
+      "kind": "var",
+      "range": [
+        0,
+        5,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "end": 10,
+      "expression": {
+        "end": 10,
+        "range": [
+          6,
+          10,
+        ],
+        "regex": {
+          "flags": "g",
+          "pattern": "b",
+        },
+        "start": 6,
+        "type": "Literal",
+        "value": /b/g,
+      },
+      "range": [
+        6,
+        10,
+      ],
+      "start": 6,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
   ],
   "sourceType": "script",
   "start": 0,
