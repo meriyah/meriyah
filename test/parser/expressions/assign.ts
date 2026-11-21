@@ -92,5 +92,8 @@ describe('Expressions - Assign', () => {
     'a ||= b',
     'a &&= b',
     { code: 'a ??= b', options: { ranges: true, loc: true } },
+    '[(a) = 1] = c',
+    '({a: (b) = 1, "c": d.e = 2, [f]: [g].h = 3} = i)',
+    'async ([(a) = 1], {a: (b) = 1})',
   ]);
 });

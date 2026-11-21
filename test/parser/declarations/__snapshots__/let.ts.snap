@@ -648,6 +648,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > let [[(a)], ((((((([b]
     |                                ^ The binding declaration is not destructible"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > let [[x].y = 1] = c 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let [[x].y = 1] = c
+    |                 ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > let [1 <= 0] = "foo" 1`] = `
 "SyntaxError [1:13-1:14]: The binding declaration is not destructible
 > 1 | let [1 <= 0] = "foo"
@@ -750,6 +756,18 @@ exports[`Declarations - Let > Declarations - Let (fail) > let { x, ...y, ...z } 
     |                       ^ The binding declaration is not destructible"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > let {"a": (b) = 1} = c 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let {"a": (b) = 1} = c
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {"a": b.c = 1} = c 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let {"a": b.c = 1} = c
+    |                    ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > let {...(a,b)} = foo 1`] = `
 "SyntaxError [1:15-1:16]: The binding declaration is not destructible
 > 1 | let {...(a,b)} = foo
@@ -822,6 +840,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > let {[Symbol.iterator]
     |                            ^^ Unexpected token: 'of'"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > let {[a]: (b) = 1} = c 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let {[a]: (b) = 1} = c
+    |                    ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > let {[x]: y = z}; 1`] = `
 "SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
 > 1 | let {[x]: y = z};
@@ -856,6 +880,24 @@ exports[`Declarations - Let > Declarations - Let (fail) > let {0: a} of [] 1`] =
 "SyntaxError [1:11-1:13]: Unexpected token: 'of'
 > 1 | let {0: a} of []
     |            ^^ Unexpected token: 'of'"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {a: (b) = 1} = c 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | let {a: (b) = 1} = c
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {a: (b).c = 1} = c 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let {a: (b).c = 1} = c
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let {a: [x].y = 1} = c 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | let {a: [x].y = 1} = c
+    |                    ^ The binding declaration is not destructible"
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let {a: o.a} = obj; 1`] = `

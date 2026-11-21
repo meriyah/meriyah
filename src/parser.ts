@@ -5837,7 +5837,10 @@ function parseArrayExpressionOrPattern(
           parser.report(Errors.InvalidDestructuringTarget);
         } else {
           left = parseMemberOrUpdateExpression(parser, context, privateScope, left, inGroup, 0, tokenStart);
-          destructible = parser.assignable & AssignmentTargetKind.Invalid ? DestructuringKind.CannotDestruct : 0;
+          destructible =
+            parser.assignable & AssignmentTargetKind.Invalid
+              ? DestructuringKind.CannotDestruct
+              : DestructuringKind.Assignable;
 
           if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBracket) {
             left = parseAssignmentExpression(parser, context, privateScope, inGroup, isPattern, tokenStart, left);
@@ -5879,8 +5882,13 @@ function parseArrayExpressionOrPattern(
           // `[a + b] = c`, `[#x in o] = c`: only `=` keeps the element an assignment target
           if (parser.getToken() !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
           left = parseAssignmentExpression(parser, context, privateScope, inGroup, isPattern, tokenStart, left);
-          if ((kind & (BindingKind.Empty | BindingKind.ArgumentList)) === 0 && token === Token.LeftParen)
-            destructible |= DestructuringKind.CannotDestruct;
+          // `[(a) = 1]` is only valid as an assignment pattern
+          if (token === Token.LeftParen) {
+            destructible |=
+              kind & (BindingKind.Empty | BindingKind.ArgumentList)
+                ? DestructuringKind.Assignable
+                : DestructuringKind.CannotDestruct;
+          }
         } else if (parser.assignable & AssignmentTargetKind.Invalid) {
           destructible |= DestructuringKind.CannotDestruct;
         } else if (token === Token.LeftParen) {
@@ -6600,7 +6608,10 @@ function parseObjectLiteralOrPattern(
                 tokenStart,
               );
 
-              destructible = parser.assignable & AssignmentTargetKind.Invalid ? DestructuringKind.CannotDestruct : 0;
+              destructible =
+                parser.assignable & AssignmentTargetKind.Invalid
+                  ? DestructuringKind.CannotDestruct
+                  : DestructuringKind.Assignable;
 
               if ((parser.getToken() & Token.IsAssignOp) === Token.IsAssignOp) {
                 value = parseAssignmentExpressionOrPattern(
@@ -6646,7 +6657,10 @@ function parseObjectLiteralOrPattern(
             } else {
               value = parseMemberOrUpdateExpression(parser, context, privateScope, value, inGroup, 0, tokenStart);
 
-              destructible = parser.assignable & AssignmentTargetKind.Invalid ? DestructuringKind.CannotDestruct : 0;
+              destructible =
+                parser.assignable & AssignmentTargetKind.Invalid
+                  ? DestructuringKind.CannotDestruct
+                  : DestructuringKind.Assignable;
 
               if (parser.getToken() !== Token.Comma && token !== Token.RightBrace) {
                 if (parser.getToken() !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
@@ -6767,7 +6781,11 @@ function parseObjectLiteralOrPattern(
                     : DestructuringKind.CannotDestruct;
               }
             } else if (parser.getToken() === Token.Assign) {
-              if (parser.assignable & AssignmentTargetKind.Invalid) destructible |= DestructuringKind.CannotDestruct;
+              if (parser.assignable & AssignmentTargetKind.Invalid) {
+                destructible |= DestructuringKind.CannotDestruct;
+              } else if (token !== Token.Assign) {
+                destructible |= DestructuringKind.Assignable;
+              }
               value = parseAssignmentExpression(parser, context, privateScope, inGroup, isPattern, tokenStart, value);
             } else {
               destructible |= DestructuringKind.CannotDestruct;
@@ -6820,7 +6838,10 @@ function parseObjectLiteralOrPattern(
                 0,
                 tokenStart,
               );
-              destructible = parser.assignable & AssignmentTargetKind.Invalid ? DestructuringKind.CannotDestruct : 0;
+              destructible =
+                parser.assignable & AssignmentTargetKind.Invalid
+                  ? DestructuringKind.CannotDestruct
+                  : DestructuringKind.Assignable;
 
               if ((parser.getToken() & Token.IsAssignOp) === Token.IsAssignOp) {
                 value = parseAssignmentExpressionOrPattern(
@@ -6868,7 +6889,10 @@ function parseObjectLiteralOrPattern(
             } else {
               value = parseMemberOrUpdateExpression(parser, context, privateScope, value, inGroup, 0, tokenStart);
 
-              destructible = parser.assignable & AssignmentTargetKind.Simple ? 0 : DestructuringKind.CannotDestruct;
+              destructible =
+                parser.assignable & AssignmentTargetKind.Simple
+                  ? DestructuringKind.Assignable
+                  : DestructuringKind.CannotDestruct;
 
               if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBrace) {
                 if (parser.getToken() !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
@@ -6985,7 +7009,9 @@ function parseObjectLiteralOrPattern(
               );
 
               destructible =
-                parser.assignable & AssignmentTargetKind.Invalid ? destructible | DestructuringKind.CannotDestruct : 0;
+                parser.assignable & AssignmentTargetKind.Invalid
+                  ? destructible | DestructuringKind.CannotDestruct
+                  : DestructuringKind.Assignable;
 
               if ((parser.getToken() & Token.IsAssignOp) === Token.IsAssignOp) {
                 if (parser.getToken() !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
@@ -7032,7 +7058,10 @@ function parseObjectLiteralOrPattern(
             } else {
               value = parseMemberOrUpdateExpression(parser, context, privateScope, value, inGroup, 0, tokenStart);
 
-              destructible = parser.assignable & AssignmentTargetKind.Simple ? 0 : DestructuringKind.CannotDestruct;
+              destructible =
+                parser.assignable & AssignmentTargetKind.Simple
+                  ? DestructuringKind.Assignable
+                  : DestructuringKind.CannotDestruct;
 
               if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBrace) {
                 if (parser.getToken() !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;

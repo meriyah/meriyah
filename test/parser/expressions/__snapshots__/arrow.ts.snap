@@ -408,6 +408,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > (..a, ...b) => c 1`]
     |  ^ Unexpected token: '.'"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([(a) = 1]) => {}; 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([(a) = 1]) => {};
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > ([(a)]) => {}; 1`] = `
 "SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
 > 1 | ([(a)]) => {};
@@ -598,6 +604,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > ({a, b} => 42) 1`] =
 "SyntaxError [1:8-1:10]: Expected ')'
 > 1 | ({a, b} => 42)
     |         ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({a: (b) = 1}) => {}; 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({a: (b) = 1}) => {};
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > ({a:b[0]}) => x 1`] = `
@@ -1304,6 +1316,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > (x, /x/g) => x 2`] =
     |           ^^ Unexpected token: '=>'"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, {"a": this.y = 1}) => {}; 1`] = `
+"SyntaxError [1:23-1:25]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (x, {"a": this.y = 1}) => {};
+    |                        ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > (x, y)[7] => {} 1`] = `
 "SyntaxError [1:10-1:12]: Unexpected token: '=>'
 > 1 | (x, y)[7] => {}
@@ -1570,6 +1588,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > arguments => { 'use 
 "SyntaxError [1:29-1:35]: Unexpected eval or arguments in strict mode
 > 1 | arguments => { 'use strict'; return arguments + 2; }
     |                              ^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async ([(a) = 1]) => {}; 1`] = `
+"SyntaxError [1:18-1:20]: Invalid left-hand side in async arrow
+> 1 | async ([(a) = 1]) => {};
+    |                   ^^ Invalid left-hand side in async arrow"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > async (x = 1) => {"use strict"} 1`] = `
