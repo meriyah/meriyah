@@ -18,10 +18,22 @@ exports[`Class static initialization block > Class static initialization block (
     |                        ^ Unexpected token: '{'"
 `;
 
+exports[`Class static initialization block > Class static initialization block (fail) > class A { static { { var x } let x } } 1`] = `
+"SyntaxError [1:33-1:34]: Duplicate binding 'x'
+> 1 | class A { static { { var x } let x } }
+    |                                  ^ Duplicate binding 'x'"
+`;
+
 exports[`Class static initialization block > Class static initialization block (fail) > class A { static { for await (x of y); } } 1`] = `
 "SyntaxError [1:23-1:28]: cannot use "await" in static blocks
 > 1 | class A { static { for await (x of y); } }
     |                        ^^^^^ cannot use "await" in static blocks"
+`;
+
+exports[`Class static initialization block > Class static initialization block (fail) > class A { static { let f; function f() {} } } 1`] = `
+"SyntaxError [1:35-1:36]: Duplicate binding 'f'
+> 1 | class A { static { let f; function f() {} } }
+    |                                    ^ Duplicate binding 'f'"
 `;
 
 exports[`Class static initialization block > Class static initialization block (fail) > class A { static { super() } } 1`] = `
@@ -40,6 +52,116 @@ exports[`Class static initialization block > Class static initialization block (
 "SyntaxError [1:46-1:47]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
 > 1 | class A {}; class B extends A { static { super() } }
     |                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > class A { static { function f() {} function f() {} } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionDeclaration",
+              },
+              {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionDeclaration",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > class A { static { function f() {} var f } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionDeclaration",
+              },
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "f",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
 `;
 
 exports[`Class static initialization block > Class static initialization block (pass) > class A { static { this.a } } 1`] = `
@@ -77,6 +199,160 @@ exports[`Class static initialization block > Class static initialization block (
       },
       "superClass": null,
       "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > class A { static { using x = y } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "init": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "using",
+                "type": "VariableDeclaration",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > class A { static { var f; function f() {} } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "f",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+              {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionDeclaration",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > class A { static { var x } } let x 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
     },
   ],
   "sourceType": "script",
@@ -242,6 +518,131 @@ exports[`Class static initialization block > Class static initialization block (
         "name": "A",
         "type": "Identifier",
       },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > function g() { let x; class A { static { var x } } } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "declarations": [
+              {
+                "id": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "init": null,
+                "type": "VariableDeclarator",
+              },
+            ],
+            "kind": "let",
+            "type": "VariableDeclaration",
+          },
+          {
+            "body": {
+              "body": [
+                {
+                  "body": [
+                    {
+                      "declarations": [
+                        {
+                          "id": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                          "init": null,
+                          "type": "VariableDeclarator",
+                        },
+                      ],
+                      "kind": "var",
+                      "type": "VariableDeclaration",
+                    },
+                  ],
+                  "type": "StaticBlock",
+                },
+              ],
+              "type": "ClassBody",
+            },
+            "id": {
+              "name": "A",
+              "type": "Identifier",
+            },
+            "superClass": null,
+            "type": "ClassDeclaration",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "g",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Class static initialization block > Class static initialization block (pass) > let x; class A { static { var x } } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
       "type": "ClassDeclaration",
     },
   ],
