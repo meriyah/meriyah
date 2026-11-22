@@ -126,6 +126,8 @@ describe('Declarations - Function', () => {
   }
 
   fail('Declarations - Functions (fail)', [
+    'function f([(a) = 1]) {}',
+    'function f({a: (b) = 1}) {}',
     'function a({x: {x: y}.length}){}',
     'function a({x: {}.length}){}',
     'function a({x: void x}){}',

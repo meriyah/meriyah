@@ -2942,10 +2942,22 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function f(
     |            ^ Expected ')'"
 `;
 
+exports[`Declarations - Function > Declarations - Functions (fail) > function f([(a) = 1]) {} 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | function f([(a) = 1]) {}
+    |                     ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Function > Declarations - Functions (fail) > function f([x=x()=x]){} 1`] = `
 "SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
 > 1 | function f([x=x()=x]){}
     |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f({a: (b) = 1}) {} 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | function f({a: (b) = 1}) {}
+    |                        ^ The binding declaration is not destructible"
 `;
 
 exports[`Declarations - Function > Declarations - Functions (fail) > function f(async function() {}) { } 1`] = `

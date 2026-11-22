@@ -54,6 +54,12 @@ exports[`Statements - Try > Statements - Try (fail) > try { throw [1, 2, 3]; } c
     |                                              ^ The binding declaration is not destructible"
 `;
 
+exports[`Statements - Try > Statements - Try (fail) > try {} catch ({a: (b) = 1}) {} 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | try {} catch ({a: (b) = 1}) {}
+    |                           ^ The binding declaration is not destructible"
+`;
+
 exports[`Statements - Try > Statements - Try (fail) > try {} catch ({foo = "bar"} = {}) {} 1`] = `
 "SyntaxError [1:28-1:29]: Catch clause parameter does not support default values
 > 1 | try {} catch ({foo = "bar"} = {}) {}
