@@ -13,6 +13,8 @@ describe('Class static initialization block', () => {
     'async function t() { class A { static { await 0 } } }',
     'async function t() { class A { static { for await (x of y); } } }',
     { code: 'class A { static { for await (x of y); } }', options: { sourceType: 'module' } },
+    'class A { static {} = 1 }',
+    'class A { static {}\n= 1 }',
     { code: 'class A { static { let f; function f() {} } }', options: { lexical: true } },
     { code: 'class A { static { { var x } let x } }', options: { lexical: true } },
   ]);
