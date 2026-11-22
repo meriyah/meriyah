@@ -1525,7 +1525,9 @@ function parseStaticBlock(
   // ClassStaticBlockStatementList :
   //   StatementList[~Yield, +Await, ~Return]opt
 
-  scope = scope?.createChildScope();
+  // A static block is a var scope of its own, like a function body: `var` and
+  // top-level function declarations stay inside it
+  scope = scope ? parser.createScope(ScopeKind.FunctionRoot).createChildScope(ScopeKind.FunctionBody) : void 0;
 
   const ctorContext =
     Context.SuperCall |
@@ -1533,7 +1535,8 @@ function parseStaticBlock(
     Context.InYieldContext |
     Context.InSwitch |
     Context.InIteration |
-    Context.InMethodOrFunction;
+    Context.InMethodOrFunction |
+    Context.InGlobal;
 
   context =
     ((context | ctorContext) ^ ctorContext) |
@@ -1542,7 +1545,15 @@ function parseStaticBlock(
     Context.InStaticBlock |
     Context.AllowNewTarget;
 
-  return parseBlock(parser, context, scope, privateScope, {}, start, 'StaticBlock');
+  const body: ESTree.Statement[] = [];
+
+  consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
+  while (parser.getToken() !== Token.RightBrace) {
+    body.push(parseStatementListItem(parser, context, scope, privateScope, {}, Origin.TopLevel) as ESTree.Statement);
+  }
+  consume(parser, context | Context.AllowRegExp, Token.RightBrace);
+
+  return parser.finishNode<ESTree.StaticBlock>({ type: 'StaticBlock', body }, start);
 }
 
 /**
@@ -9055,8 +9066,6 @@ function parseClassElementList(
       // #privateId without get/set prefix is both GetSet.
       PropertyKind.GetSet,
     );
-  } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
-    kind |= PropertyKind.ClassField;
   } else if (isStatic && token === Token.LeftBrace) {
     if (decorators.length > 0) parser.report(Errors.InvalidDecoratedStaticBlock);
     return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, start);

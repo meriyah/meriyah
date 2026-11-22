@@ -116,6 +116,12 @@ exports[`Public fields > Public fields (fail) > class C { 'constructor'
     |  ^ Classes may not have a field called constructor"
 `;
 
+exports[`Public fields > Public fields (fail) > class C { = 1 } 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: '='
+> 1 | class C { = 1 }
+    |           ^ Unexpected token: '='"
+`;
+
 exports[`Public fields > Public fields (fail) > class C { async "x" = 1 } 1`] = `
 "SyntaxError [1:20-1:21]: Unexpected token: '='
 > 1 | class C { async "x" = 1 }
@@ -298,6 +304,12 @@ exports[`Public fields > Public fields (fail) > class C { x = class { y = await 
 "SyntaxError [1:26-1:31]: Await is only valid in async functions
 > 1 | class C { x = class { y = await 1 } }
     |                           ^^^^^ Await is only valid in async functions"
+`;
+
+exports[`Public fields > Public fields (fail) > class C { x; = 1 } 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: '='
+> 1 | class C { x; = 1 }
+    |              ^ Unexpected token: '='"
 `;
 
 exports[`Public fields > Public fields (fail) > function f() { class C { static { () => arguments; } } } 1`] = `

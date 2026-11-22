@@ -13,6 +13,10 @@ describe('Class static initialization block', () => {
     'async function t() { class A { static { await 0 } } }',
     'async function t() { class A { static { for await (x of y); } } }',
     { code: 'class A { static { for await (x of y); } }', options: { sourceType: 'module' } },
+    'class A { static {} = 1 }',
+    'class A { static {}\n= 1 }',
+    { code: 'class A { static { let f; function f() {} } }', options: { lexical: true } },
+    { code: 'class A { static { { var x } let x } }', options: { lexical: true } },
   ]);
 
   for (const text of [
@@ -65,5 +69,12 @@ describe('Class static initialization block', () => {
     { code: 'class A { static {} }', options: { loc: true, ranges: true } },
     'class A { static { this.a } }',
     'class A {}; class B extends A { static { super.a } }',
+    { code: 'class A { static { function f() {} var f } }', options: { lexical: true } },
+    { code: 'class A { static { var f; function f() {} } }', options: { lexical: true } },
+    { code: 'class A { static { function f() {} function f() {} } }', options: { lexical: true } },
+    { code: 'let x; class A { static { var x } }', options: { lexical: true } },
+    { code: 'class A { static { var x } } let x', options: { lexical: true } },
+    { code: 'function g() { let x; class A { static { var x } } }', options: { lexical: true } },
+    'class A { static { using x = y } }',
   ]);
 });

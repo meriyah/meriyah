@@ -6,6 +6,8 @@ import { fail, pass } from '../../test-utils.ts';
 
 describe('Public fields', () => {
   fail('Public fields (fail)', [
+    'class C { = 1 }',
+    'class C { x; = 1 }',
     'class C { x = { arguments }; }',
     'class C { x = () => ({ arguments }); }',
     'class C { static { ({ arguments }); } }',
