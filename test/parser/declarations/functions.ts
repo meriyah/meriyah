@@ -126,6 +126,8 @@ describe('Declarations - Function', () => {
   }
 
   fail('Declarations - Functions (fail)', [
+    { code: 'function f({"a": b = 1}) { let b }', options: { lexical: true } },
+    { code: 'function f({[a]: b = 1}) { let b }', options: { lexical: true } },
     'function f([(a) = 1]) {}',
     'function f({a: (b) = 1}) {}',
     'function a({x: {x: y}.length}){}',

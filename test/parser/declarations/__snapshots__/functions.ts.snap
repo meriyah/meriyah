@@ -2954,6 +2954,18 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function f(
     |                  ^ Invalid left-hand side in assignment"
 `;
 
+exports[`Declarations - Function > Declarations - Functions (fail) > function f({"a": b = 1}) { let b } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'b'
+> 1 | function f({"a": b = 1}) { let b }
+    |                                ^ Duplicate binding 'b'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f({[a]: b = 1}) { let b } 1`] = `
+"SyntaxError [1:31-1:32]: Duplicate binding 'b'
+> 1 | function f({[a]: b = 1}) { let b }
+    |                                ^ Duplicate binding 'b'"
+`;
+
 exports[`Declarations - Function > Declarations - Functions (fail) > function f({a: (b) = 1}) {} 1`] = `
 "SyntaxError [1:23-1:24]: The binding declaration is not destructible
 > 1 | function f({a: (b) = 1}) {}
