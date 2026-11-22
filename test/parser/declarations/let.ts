@@ -382,6 +382,11 @@ describe('Declarations - Let', () => {
   }
 
   fail('Declarations - Let (fail)', [
+    { code: 'let {"a": b = 1} = c; let b', options: { lexical: true } },
+    { code: 'let {1: b = 1} = c; let b', options: { lexical: true } },
+    { code: 'let {[a]: b = 1} = c; let b', options: { lexical: true } },
+    { code: 'const {"a": b = 1} = c; var b', options: { lexical: true } },
+    { code: 'for (let {[a]: b = 1} of c) { var b }', options: { lexical: true } },
     'let [1 <= 0] = "foo"',
     'let [({x: 1})] = [];',
     'let [(x)] = [];',

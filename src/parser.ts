@@ -6785,6 +6785,8 @@ function parseObjectLiteralOrPattern(
                 destructible |= DestructuringKind.CannotDestruct;
               } else if (token !== Token.Assign) {
                 destructible |= DestructuringKind.Assignable;
+              } else {
+                scope?.addVarOrBlock(context, valueAfterColon, kind, start, currentLocation, origin);
               }
               value = parseAssignmentExpression(parser, context, privateScope, inGroup, isPattern, tokenStart, value);
             } else {
@@ -6934,6 +6936,13 @@ function parseObjectLiteralOrPattern(
                     ? 0
                     : DestructuringKind.Assignable
                   : DestructuringKind.CannotDestruct;
+              if (
+                parser.assignable & AssignmentTargetKind.Simple &&
+                token === Token.Assign &&
+                (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier
+              ) {
+                scope?.addVarOrBlock(context, tokenValue, kind, tokenStart, currentLocation, origin);
+              }
               value = parseAssignmentExpressionOrPattern(
                 parser,
                 context,
