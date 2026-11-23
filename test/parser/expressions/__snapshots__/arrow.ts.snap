@@ -444,6 +444,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > ([[[[[[[[[[[[[[[[[[[
     |                                                   ^^ The left-hand side of the arrow can only be destructed through assignment"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([\`t\`[0]]) => {}; 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([\`t\`[0]]) => {};
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > ([{"foo": y.z} = a]) => b 1`] = `
 "SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
 > 1 | ([{"foo": y.z} = a]) => b

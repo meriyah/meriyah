@@ -10,6 +10,7 @@ describe('Statements - Try', () => {
     'try {} catch(x, f){}',
     'try {} catch(x = b){}',
     'try {} catch ({a: (b) = 1}) {}',
+    'try {} catch ([`t`.x]) {}',
     'try {} catch(x,){}',
     'try {} catch({x},){}',
     'try {} catch({x}=x){}',

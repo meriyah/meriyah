@@ -2948,6 +2948,12 @@ exports[`Declarations - Function > Declarations - Functions (fail) > function f(
     |                     ^ The binding declaration is not destructible"
 `;
 
+exports[`Declarations - Function > Declarations - Functions (fail) > function f([\`t\`.x]) {} 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | function f([\`t\`.x]) {}
+    |                   ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Function > Declarations - Functions (fail) > function f([x=x()=x]){} 1`] = `
 "SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
 > 1 | function f([x=x()=x]){}

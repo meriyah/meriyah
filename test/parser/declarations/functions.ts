@@ -129,6 +129,7 @@ describe('Declarations - Function', () => {
     { code: 'function f({"a": b = 1}) { let b }', options: { lexical: true } },
     { code: 'function f({[a]: b = 1}) { let b }', options: { lexical: true } },
     'function f([(a) = 1]) {}',
+    'function f([`t`.x]) {}',
     'function f({a: (b) = 1}) {}',
     'function a({x: {x: y}.length}){}',
     'function a({x: {}.length}){}',
