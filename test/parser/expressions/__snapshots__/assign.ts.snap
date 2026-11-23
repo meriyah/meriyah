@@ -240,6 +240,91 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > [(a) = 1] = c 1`] 
 }
 `;
 
+exports[`Expressions - Assign > Expressions - Assign (pass) > [\`t\`.x, "s".y = 1, /r/.z] = c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "elements": [
+            {
+              "computed": false,
+              "object": {
+                "expressions": [],
+                "quasis": [
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "t",
+                      "raw": "t",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+              "optional": false,
+              "property": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            {
+              "left": {
+                "computed": false,
+                "object": {
+                  "type": "Literal",
+                  "value": "s",
+                },
+                "optional": false,
+                "property": {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "AssignmentPattern",
+            },
+            {
+              "computed": false,
+              "object": {
+                "regex": {
+                  "flags": "",
+                  "pattern": "r",
+                },
+                "type": "Literal",
+                "value": /r/,
+              },
+              "optional": false,
+              "property": {
+                "name": "z",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Assign > Expressions - Assign (pass) > a %= b 1`] = `
 {
   "body": [
@@ -946,6 +1031,56 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > async ([(a) = 1], 
               },
             ],
             "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "optional": false,
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (pass) > async ([\`t\`.x]) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "elements": [
+              {
+                "computed": false,
+                "object": {
+                  "expressions": [],
+                  "quasis": [
+                    {
+                      "tail": true,
+                      "type": "TemplateElement",
+                      "value": {
+                        "cooked": "t",
+                        "raw": "t",
+                      },
+                    },
+                  ],
+                  "type": "TemplateLiteral",
+                },
+                "optional": false,
+                "property": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+            ],
+            "type": "ArrayExpression",
           },
         ],
         "callee": {

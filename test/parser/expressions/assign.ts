@@ -95,5 +95,7 @@ describe('Expressions - Assign', () => {
     '[(a) = 1] = c',
     '({a: (b) = 1, "c": d.e = 2, [f]: [g].h = 3} = i)',
     'async ([(a) = 1], {a: (b) = 1})',
+    '[`t`.x, "s".y = 1, /r/.z] = c',
+    'async ([`t`.x])',
   ]);
 });

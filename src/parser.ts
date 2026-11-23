@@ -5899,6 +5899,9 @@ function parseArrayExpressionOrPattern(
               kind & (BindingKind.Empty | BindingKind.ArgumentList)
                 ? DestructuringKind.Assignable
                 : DestructuringKind.CannotDestruct;
+          } else {
+            // `["s".x = 1] = c`: a member expression is only valid as an assignment target
+            destructible |= DestructuringKind.Assignable;
           }
         } else if (parser.assignable & AssignmentTargetKind.Invalid) {
           destructible |= DestructuringKind.CannotDestruct;
@@ -5907,6 +5910,9 @@ function parseArrayExpressionOrPattern(
             parser.assignable & AssignmentTargetKind.Simple && kind & (BindingKind.Empty | BindingKind.ArgumentList)
               ? DestructuringKind.Assignable
               : DestructuringKind.CannotDestruct;
+        } else {
+          // `["s".x] = c`, `[1..x] = c`: only valid as an assignment target
+          destructible |= DestructuringKind.Assignable;
         }
       }
 

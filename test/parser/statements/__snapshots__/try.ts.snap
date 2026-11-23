@@ -54,6 +54,12 @@ exports[`Statements - Try > Statements - Try (fail) > try { throw [1, 2, 3]; } c
     |                                              ^ The binding declaration is not destructible"
 `;
 
+exports[`Statements - Try > Statements - Try (fail) > try {} catch ([\`t\`.x]) {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | try {} catch ([\`t\`.x]) {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
 exports[`Statements - Try > Statements - Try (fail) > try {} catch ({a: (b) = 1}) {} 1`] = `
 "SyntaxError [1:26-1:27]: The binding declaration is not destructible
 > 1 | try {} catch ({a: (b) = 1}) {}

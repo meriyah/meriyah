@@ -222,6 +222,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > for (let [...foo,,] = 
     |                     ^ The binding declaration is not destructible"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > for (let [/r/.x] of c); 1`] = `
+"SyntaxError [1:17-1:19]: The binding declaration is not destructible
+> 1 | for (let [/r/.x] of c);
+    |                  ^^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > for (let [] = x); 1`] = `
 "SyntaxError [1:15-1:16]: Expected ';'
 > 1 | for (let [] = x);
@@ -528,6 +534,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > let  // start of a Lex
     |      ^ 'A lexical declaration can't define a 'let' binding"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > let ["s".x = 1] = c 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let ["s".x = 1] = c
+    |                 ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > let [((((a)))), b] = []; 1`] = `
 "SyntaxError [1:19-1:20]: The binding declaration is not destructible
 > 1 | let [((((a)))), b] = [];
@@ -666,6 +678,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > let [[x].y = 1] = c 1`
     |                 ^ The binding declaration is not destructible"
 `;
 
+exports[`Declarations - Let > Declarations - Let (fail) > let [\`t\`.x] = c 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | let [\`t\`.x] = c
+    |             ^ The binding declaration is not destructible"
+`;
+
 exports[`Declarations - Let > Declarations - Let (fail) > let [1 <= 0] = "foo" 1`] = `
 "SyntaxError [1:13-1:14]: The binding declaration is not destructible
 > 1 | let [1 <= 0] = "foo"
@@ -675,6 +693,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > let [1 <= 0] = "foo" 1
 exports[`Declarations - Let > Declarations - Let (fail) > let [1, a] = []; 1`] = `
 "SyntaxError [1:11-1:12]: The binding declaration is not destructible
 > 1 | let [1, a] = [];
+    |            ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Let > Declarations - Let (fail) > let [1..x] = c 1`] = `
+"SyntaxError [1:11-1:12]: The binding declaration is not destructible
+> 1 | let [1..x] = c
     |            ^ The binding declaration is not destructible"
 `;
 
