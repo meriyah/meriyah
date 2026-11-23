@@ -1020,6 +1020,12 @@ exports[`Expressions - Array > Expressions - Array (fail) > [{a = 0}.x] = []; 2`
     |         ^ Invalid destructuring assignment target"
 `;
 
+exports[`Expressions - Array > Expressions - Array (fail) > [{a = 1}, [b].c] 1`] = `
+"SyntaxError [1:15-1:16]: Invalid shorthand property initializer
+> 1 | [{a = 1}, [b].c]
+    |                ^ Invalid shorthand property initializer"
+`;
+
 exports[`Expressions - Array > Expressions - Array (fail) > [{a: 1} = []]; 1`] = `
 "SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
 > 1 | [{a: 1} = []];
@@ -1116,10 +1122,22 @@ exports[`Expressions - Array > Expressions - Array (fail) > [1 + 2] = x 1`] = `
     |           ^ Invalid left-hand side in assignment"
 `;
 
+exports[`Expressions - Array > Expressions - Array (fail) > [1, [a].b] = c 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | [1, [a].b] = c
+    |              ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Expressions - Array > Expressions - Array (fail) > [50] = a; 1`] = `
 "SyntaxError [1:7-1:8]: Invalid left-hand side in assignment
 > 1 | [50] = a;
     |        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Array > Expressions - Array (fail) > [a(), {}.b = 1] = c 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | [a(), {}.b = 1] = c
+    |                   ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Array > Expressions - Array (fail) > [a, ...(b = c)] = 0 1`] = `
@@ -1480,6 +1498,12 @@ exports[`Expressions - Array > Expressions - Array (fail) > async([].x) => x; 1`
 "SyntaxError [1:12-1:14]: Invalid left-hand side in async arrow
 > 1 | async([].x) => x;
     |             ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Array > Expressions - Array (fail) > for ([1, [a].b] of c); 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-of
+> 1 | for ([1, [a].b] of c);
+    |                 ^^ Invalid left-hand side in for-of"
 `;
 
 exports[`Expressions - Array > Expressions - Array (fail) > for (let [...a.b] in c) d 1`] = `

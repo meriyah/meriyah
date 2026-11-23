@@ -71,6 +71,8 @@ describe('Expressions - Assign', () => {
   }
 
   pass('Expressions - Assign (pass)', [
+    '[[a()].b, {c: d()}.e] = f',
+    '({a: [b()].c, d: {}.e} = f)',
     'a *= b',
     'a /= b',
     'a %= b',

@@ -437,6 +437,10 @@ describe('Expressions - Array', () => {
   }
 
   fail('Expressions - Array (fail)', [
+    '[1, [a].b] = c',
+    '[a(), {}.b = 1] = c',
+    '[{a = 1}, [b].c]',
+    'for ([1, [a].b] of c);',
     '[1 + 2] = x',
     '["a" in b] = x',
     '[...[1 + 2]] = x',

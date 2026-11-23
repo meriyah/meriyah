@@ -180,6 +180,89 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > ({a: (b) = 1, "c":
 }
 `;
 
+exports[`Expressions - Assign > Expressions - Assign (pass) > ({a: [b()].c, d: {}.e} = f) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "computed": false,
+                "object": {
+                  "elements": [
+                    {
+                      "arguments": [],
+                      "callee": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "optional": false,
+                      "type": "CallExpression",
+                    },
+                  ],
+                  "type": "ArrayExpression",
+                },
+                "optional": false,
+                "property": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+            },
+            {
+              "computed": false,
+              "key": {
+                "name": "d",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "computed": false,
+                "object": {
+                  "properties": [],
+                  "type": "ObjectExpression",
+                },
+                "optional": false,
+                "property": {
+                  "name": "e",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Assign > Expressions - Assign (pass) > (a) = b; 1`] = `
 {
   "body": [
@@ -228,6 +311,88 @@ exports[`Expressions - Assign > Expressions - Assign (pass) > [(a) = 1] = c 1`] 
         "operator": "=",
         "right": {
           "name": "c",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (pass) > [[a()].b, {c: d()}.e] = f 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "elements": [
+            {
+              "computed": false,
+              "object": {
+                "elements": [
+                  {
+                    "arguments": [],
+                    "callee": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "optional": false,
+                    "type": "CallExpression",
+                  },
+                ],
+                "type": "ArrayExpression",
+              },
+              "optional": false,
+              "property": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            {
+              "computed": false,
+              "object": {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "type": "Property",
+                    "value": {
+                      "arguments": [],
+                      "callee": {
+                        "name": "d",
+                        "type": "Identifier",
+                      },
+                      "optional": false,
+                      "type": "CallExpression",
+                    },
+                  },
+                ],
+                "type": "ObjectExpression",
+              },
+              "optional": false,
+              "property": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "f",
           "type": "Identifier",
         },
         "type": "AssignmentExpression",
