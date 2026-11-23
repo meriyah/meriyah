@@ -1688,6 +1688,8 @@ function parseLetIdentOrVarDeclarationStatement(
       scope = createArrowHeadParsingScope(parser, context, tokenValue, tokenStart, currentLocation);
 
     parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
+    // `let => { 'use strict' }`: `let` is reserved in strict mode code
+    parser.flags |= Flags.HasStrictReserved;
 
     expr = parseArrowFunctionExpression(parser, context, scope, privateScope, [expr], /* isAsync */ 0, tokenStart);
   } else {

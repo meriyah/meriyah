@@ -1752,6 +1752,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > left = (aSize.width/
     |                           ^ \`=>\` is an invalid assignment target"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > let => { "use strict"; } 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected strict mode reserved word
+> 1 | let => { "use strict"; }
+    |                        ^ Unexpected strict mode reserved word"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > let => {} 1`] = `
 "SyntaxError [1:4-1:6]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
 > 1 | let => {}
@@ -9548,6 +9554,50 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > for ( f => ( "key" i
       },
       "type": "ForStatement",
       "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > let => () => { "use strict"; } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "body": [
+              {
+                "directive": "use strict",
+                "expression": {
+                  "type": "Literal",
+                  "value": "use strict",
+                },
+                "type": "ExpressionStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "expression": false,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "let",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
     },
   ],
   "sourceType": "script",
