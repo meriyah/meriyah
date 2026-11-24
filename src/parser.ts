@@ -5766,6 +5766,7 @@ function parseArrayExpressionOrPattern(
 
       const { tokenStart, tokenValue, currentLocation } = parser;
       const token = parser.getToken();
+      const previousDestructible = destructible;
 
       if (token & Token.IsIdentifier) {
         left = parsePrimaryExpression(parser, context, privateScope, kind, 0, 1, inGroup, 1, tokenStart);
@@ -5909,6 +5910,10 @@ function parseArrayExpressionOrPattern(
               : DestructuringKind.CannotDestruct;
         }
       }
+
+      // An element can replace the flags of its own nested pattern, `[[a()].b] = c`,
+      // but not those of the elements before it, `[a(), [b].c] = d`
+      destructible |= previousDestructible;
 
       elements.push(left);
 
@@ -6436,6 +6441,7 @@ function parseObjectLiteralOrPattern(
   while (parser.getToken() !== Token.RightBrace) {
     const { tokenValue, tokenStart, currentLocation } = parser;
     const token = parser.getToken();
+    const previousDestructible = destructible;
 
     if (token === Token.Ellipsis) {
       properties.push(
@@ -7162,7 +7168,7 @@ function parseObjectLiteralOrPattern(
       );
     }
 
-    destructible |= parser.destructible;
+    destructible |= previousDestructible | parser.destructible;
     if (parser.getToken() !== Token.Comma) break;
     nextToken(parser, context);
   }

@@ -962,6 +962,11 @@ describe('Expressions - Object', () => {
   }
 
   fail('Expressions - Object (fail)', [
+    '({a: 1, b: [c].d} = e)',
+    '({a() {}, "b": {}.c} = d)',
+    '({a: 1, [b]: [c].d} = e)',
+    '({a: 1, [b]() {}, c: [d].e} = f)',
+    '({a = 1, b: [c].d})',
     '"use strict"; ({ [...a] = [] })',
     '({ [...a] = [] })',
     '"use strict"; ({ [...a]  })-',

@@ -972,6 +972,18 @@ exports[`Expressions - Object > Expressions - Object (fail) > ({a = 0}); 1`] = `
     |          ^ Expected '=>'"
 `;
 
+exports[`Expressions - Object > Expressions - Object (fail) > ({a = 1, b: [c].d}) 1`] = `
+"SyntaxError [1:18-1:19]: Expected '=>'
+> 1 | ({a = 1, b: [c].d})
+    |                   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a() {}, "b": {}.c} = d) 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | ({a() {}, "b": {}.c} = d)
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Expressions - Object > Expressions - Object (fail) > ({a([a.b]){}}) 1`] = `
 "SyntaxError [1:9-1:10]: The binding declaration is not destructible
 > 1 | ({a([a.b]){}})
@@ -1030,6 +1042,24 @@ exports[`Expressions - Object > Expressions - Object (fail) > ({a: {d = 1,c = 1}
 "SyntaxError [1:18-1:19]: Invalid destructuring assignment target
 > 1 | ({a: {d = 1,c = 1}.c = 2} = {});
     |                   ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: 1, [b]() {}, c: [d].e} = f) 1`] = `
+"SyntaxError [1:30-1:31]: Invalid left-hand side in assignment
+> 1 | ({a: 1, [b]() {}, c: [d].e} = f)
+    |                               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: 1, [b]: [c].d} = e) 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | ({a: 1, [b]: [c].d} = e)
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: 1, b: [c].d} = e) 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({a: 1, b: [c].d} = e)
+    |                     ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > ({a: b + c} = [2]) 1`] = `
