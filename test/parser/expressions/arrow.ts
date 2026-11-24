@@ -545,6 +545,7 @@ describe('Expressions - Arrow', () => {
     String.raw`(p\141ckage) => { "use strict"; }`,
     'package => { "use strict"; }',
     'let => { "use strict"; }',
+    'function f(static) {}\nlet => { "use strict"; }',
     { code: String.raw`p\u0061ckage => { }`, options: { impliedStrict: true } },
     String.raw`p\u0061ckage => { "use strict"; }`,
     String.raw`p\141ckage => { }`,

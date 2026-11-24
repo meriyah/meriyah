@@ -1716,6 +1716,14 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > function *a() { yiel
     |                       ^^ Unexpected token: '=>'"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > function f(static) {}
+let => { "use strict"; } 1`] = `
+"SyntaxError [2:0-2:3]: Unexpected strict mode reserved word
+  1 | function f(static) {}
+> 2 | let => { "use strict"; }
+    | ^^^ Unexpected strict mode reserved word"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > function foo(package) { } 1`] = `
 "SyntaxError [1:13-1:20]: Unexpected strict mode reserved word
 > 1 | function foo(package) { }
@@ -1753,9 +1761,9 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > left = (aSize.width/
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > let => { "use strict"; } 1`] = `
-"SyntaxError [1:23-1:24]: Unexpected strict mode reserved word
+"SyntaxError [1:0-1:3]: Unexpected strict mode reserved word
 > 1 | let => { "use strict"; }
-    |                        ^ Unexpected strict mode reserved word"
+    | ^^^ Unexpected strict mode reserved word"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > let => {} 1`] = `
