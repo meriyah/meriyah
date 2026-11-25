@@ -545,6 +545,7 @@ describe('Expressions - Arrow', () => {
     String.raw`(p\141ckage) => { "use strict"; }`,
     'package => { "use strict"; }',
     'let => { "use strict"; }',
+    'function f(eval, a = (static) => { "use strict"; }) {}',
     'function f(static) {}\nlet => { "use strict"; }',
     { code: String.raw`p\u0061ckage => { }`, options: { impliedStrict: true } },
     String.raw`p\u0061ckage => { "use strict"; }`,
@@ -1184,6 +1185,8 @@ describe('Expressions - Arrow', () => {
   pass('Expressions - Arrow (pass)', [
     { code: 'async let => {}', options: { lexical: true } },
     { code: 'let => {}', options: { lexical: true } },
+    'async (eval, a = function() { "use strict"; }) => a',
+    '({ m(arguments, a = async b => { "use strict"; }) {} })',
     'let => () => { "use strict"; }',
 
     'f = ([[,] = g()]) => {}',

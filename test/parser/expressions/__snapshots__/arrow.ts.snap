@@ -1716,6 +1716,12 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > function *a() { yiel
     |                       ^^ Unexpected token: '=>'"
 `;
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > function f(eval, a = (static) => { "use strict"; }) {} 1`] = `
+"SyntaxError [1:49-1:50]: Unexpected strict mode reserved word
+> 1 | function f(eval, a = (static) => { "use strict"; }) {}
+    |                                                  ^ Unexpected strict mode reserved word"
+`;
+
 exports[`Expressions - Arrow > Expressions - Array (fail) > function f(static) {}
 let => { "use strict"; } 1`] = `
 "SyntaxError [2:0-2:3]: Unexpected strict mode reserved word
@@ -3608,6 +3614,82 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x] = []) => {}; 1`
           },
         ],
         "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({ m(arguments, a = async b => { "use strict"; }) {} }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "arguments",
+                  "type": "Identifier",
+                },
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "async": true,
+                    "body": {
+                      "body": [
+                        {
+                          "directive": "use strict",
+                          "expression": {
+                            "type": "Literal",
+                            "value": "use strict",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "expression": false,
+                    "generator": false,
+                    "params": [
+                      {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrowFunctionExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
       },
       "type": "ExpressionStatement",
     },
@@ -8360,6 +8442,61 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > async (eval) => "use
           {
             "name": "eval",
             "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > async (eval, a = function() { "use strict"; }) => a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "eval",
+            "type": "Identifier",
+          },
+          {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "right": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "directive": "use strict",
+                    "expression": {
+                      "type": "Literal",
+                      "value": "use strict",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+            "type": "AssignmentPattern",
           },
         ],
         "type": "ArrowFunctionExpression",

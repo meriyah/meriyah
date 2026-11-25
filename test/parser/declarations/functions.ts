@@ -594,6 +594,8 @@ describe('Declarations - Function', () => {
   }
 
   pass('Declarations - Function (pass)', [
+    'function f(eval, a = function() { "use strict"; }) {}',
+    'function f(static, a = () => { "use strict"; }) {}',
     { code: 'function w(casecase){y:j:function casecase(){}}', options: { webcompat: true, ranges: true } },
     'function* x() { for (const [j = yield] in (x) => {}) {} }',
     '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
