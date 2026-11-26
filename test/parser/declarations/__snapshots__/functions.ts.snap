@@ -1405,6 +1405,116 @@ exports[`Declarations - Function > Declarations - Function (pass) > function f([
 }
 `;
 
+exports[`Declarations - Function > Declarations - Function (pass) > function f(eval, a = function() { "use strict"; }) {} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "name": "eval",
+          "type": "Identifier",
+        },
+        {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "right": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "directive": "use strict",
+                  "expression": {
+                    "type": "Literal",
+                    "value": "use strict",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Function > Declarations - Function (pass) > function f(static, a = () => { "use strict"; }) {} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "name": "static",
+          "type": "Identifier",
+        },
+        {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "right": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "directive": "use strict",
+                  "expression": {
+                    "type": "Literal",
+                    "value": "use strict",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
 exports[`Declarations - Function > Declarations - Function (pass) > function f(x) { { const x = y } } 1`] = `
 {
   "body": [

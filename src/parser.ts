@@ -36,7 +36,7 @@ import { type InternalOptions } from './options.ts';
 import { Parser } from './parser/parser.ts';
 import { type PrivateScope } from './parser/private-scope.ts';
 import { createArrowHeadParsingScope, type Scope, ScopeKind } from './parser/scope.ts';
-import { KeywordDescTable, Token } from './token.ts';
+import { descKeywordTable, KeywordDescTable, Token } from './token.ts';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
@@ -7840,6 +7840,21 @@ function parseArrowFunctionExpression(
   } else {
     scope = scope?.createChildScope(ScopeKind.FunctionBody);
 
+    // The flags can still hold what an enclosing parameter list set, as in
+    // `function f(eval, a = () => { 'use strict' }) {}`, so take them from this
+    // arrow's own parameters. Only a simple list (all identifiers) can be strict.
+    let strictFlags = 0;
+    for (const param of params) {
+      if (param.type !== 'Identifier') continue;
+      const token = descKeywordTable.get(param.name) ?? 0;
+      if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) strictFlags |= Flags.StrictEvalArguments;
+      else if ((token & Token.FutureReserved) === Token.FutureReserved) strictFlags |= Flags.HasStrictReserved;
+    }
+    parser.flags = (parser.flags & ~(Flags.StrictEvalArguments | Flags.HasStrictReserved)) | strictFlags;
+    if (parser.strictReservedRange && parser.strictReservedRange[0].index < start.index) {
+      parser.strictReservedRange = null;
+    }
+
     const modifierFlags = Context.InSwitch | Context.InIteration | Context.DisallowIn | Context.InGlobal;
 
     body = parseFunctionBody(
@@ -7939,7 +7954,11 @@ function parseFormalParametersOrFormalList(
    */
   consume(parser, context, Token.LeftParen);
 
-  parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
+  // Drop what the parameters of an enclosing function left behind, so that
+  // `function f(eval, a = function() { 'use strict' }) {}` checks only the inner list
+  parser.flags =
+    (parser.flags | Flags.NonSimpleParameterList | Flags.StrictEvalArguments | Flags.HasStrictReserved) ^
+    (Flags.NonSimpleParameterList | Flags.StrictEvalArguments | Flags.HasStrictReserved);
   parser.strictReservedRange = null;
   parser.firstAwaitLocation = null;
   parser.firstYieldLocation = null;
